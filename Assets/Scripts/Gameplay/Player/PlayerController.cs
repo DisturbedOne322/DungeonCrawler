@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Data;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,17 +7,22 @@ namespace Gameplay.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public async UniTask MoveTowards(Vector3 targetPosition, float moveTime, float rotateTime)
+        public async UniTask MoveTowards(MovementData movementData)
         {
-            var direction = (targetPosition - transform.position).normalized;
+            var currentPos = transform.position;
+            var targetPos = movementData.TargetPos;
 
-            if (Vector3.Dot(direction, transform.forward) < 0.99f)
+            float moveTime = movementData.MoveTime;
+            
+            if (!Mathf.Approximately(currentPos.x, targetPos.x))
             {
-                transform.DORotate(direction, rotateTime);
-                await UniTask.WaitForSeconds(rotateTime);
+                var horizontalMovePos = new Vector3(targetPos.x, currentPos.y, currentPos.z);
+                transform.DOMove(horizontalMovePos, moveTime);
+                
+                await UniTask.WaitForSeconds(moveTime);
             }
             
-            transform.DOMove(targetPosition, moveTime);
+            transform.DOMove(targetPos, moveTime);
             await UniTask.WaitForSeconds(moveTime);
         }
     }

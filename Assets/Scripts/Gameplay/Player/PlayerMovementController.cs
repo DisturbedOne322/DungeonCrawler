@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon;
@@ -10,7 +9,6 @@ namespace Gameplay.Player
     public class PlayerMovementController
     {
         private const float MoveTime = 1;
-        private const float RotateTime = 1;
         
         private readonly PlayerController _playerController;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
@@ -56,8 +54,11 @@ namespace Gameplay.Player
                 if (!_dungeonLayoutProvider.TryGetRoom(GetPositionIndex(), out var room))
                     throw new Exception("Invalid room");
                 
-                var position = room.PlayerStandPoint.position;
-                await _playerController.MoveTowards(position, MoveTime, RotateTime);
+                await _playerController.MoveTowards(new MovementData()
+                {
+                    TargetPos = room.PlayerStandPoint.position,
+                    MoveTime = MoveTime,
+                });
                 
                 _playerMovementHistory.AddRoom(room.RoomType);
                 SetPositionIndex(GetPositionIndex() + 1);

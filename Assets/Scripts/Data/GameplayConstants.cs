@@ -4,6 +4,6 @@ namespace Data
 {
     public class GameplayConstants
     {
-        public static readonly Vector2 RoomSize = new Vector2(10f, 10f);
+        public static readonly Vector2 RoomSize = new (10f, 10f);
     }
 }
