@@ -19,7 +19,7 @@ namespace Gameplay.Dungeon
             _dungeonPositioner = dungeonPositioner;
         }
         
-        public async UniTask WaitForDecision()
+        public async UniTask<int> WaitForDecision()
         {
             var roomSelection = GetRoomSelection();
             
@@ -28,6 +28,8 @@ namespace Gameplay.Dungeon
             
             _dungeonPositioner.AddXOffsetFromChoice(inputIndex);
             _dungeonGenerator.CreateNextMapSection(selectedRoom);
+            
+            return inputIndex;
         }
         
         private List<RoomType> GetRoomSelection()
