@@ -1,23 +1,25 @@
+using System;
 using System.Collections.Generic;
 using Data;
 using Gameplay.Dungeon.Areas;
 using UniRx;
-using UnityEngine;
 
 namespace Gameplay.Dungeon
 {
-    public class DungeonRoomsPool
+    public class DungeonRoomsPool : IDisposable
     {
         private readonly GameplayData _gameplayData;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         
         private readonly Dictionary<RoomType, List<DungeonRoom>> _dictionary = new ();
+        
+        private readonly IDisposable _disposable;
 
         public DungeonRoomsPool(GameplayData gameplayData, DungeonLayoutProvider dungeonLayoutProvider)
         {
             _dungeonLayoutProvider = dungeonLayoutProvider;
 
-            gameplayData.PlayerPositionIndex.Subscribe(TryReturnRoomToPool);
+            _disposable = gameplayData.PlayerPositionIndex.Subscribe(TryReturnRoomToPool);
         }
         
         public bool TryGetRoom(RoomType roomType, out DungeonRoom room)
@@ -49,5 +51,7 @@ namespace Gameplay.Dungeon
             else
                 _dictionary.Add(room.RoomType, new () { room });
         }
+
+        public void Dispose() => _disposable.Dispose();
     }
 }

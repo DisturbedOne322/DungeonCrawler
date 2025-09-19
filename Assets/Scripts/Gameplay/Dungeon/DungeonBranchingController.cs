@@ -9,16 +9,24 @@ namespace Gameplay.Dungeon
     {
         private readonly PlayerDecisionProvider _decisionProvider;
         private readonly DungeonGenerator _dungeonGenerator;
+        private readonly DungeonPositioner _dungeonPositioner;
 
-        public DungeonBranchingController(PlayerDecisionProvider decisionProvider, DungeonGenerator dungeonGenerator)
+        public DungeonBranchingController(PlayerDecisionProvider decisionProvider, 
+            DungeonGenerator dungeonGenerator, DungeonPositioner dungeonPositioner)
         {
             _decisionProvider = decisionProvider;
             _dungeonGenerator = dungeonGenerator;
+            _dungeonPositioner = dungeonPositioner;
         }
         
         public async UniTask WaitForDecision()
         {
-            var selectedRoom = await _decisionProvider.MakeDecision(GetRoomSelection());
+            var roomSelection = GetRoomSelection();
+            
+            var inputIndex = await _decisionProvider.MakeDecision();
+            var selectedRoom = roomSelection[inputIndex];
+            
+            _dungeonPositioner.AddXOffsetFromChoice(inputIndex);
             _dungeonGenerator.CreateNextMapSection(selectedRoom);
         }
         

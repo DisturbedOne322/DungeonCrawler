@@ -12,7 +12,7 @@ namespace Installers
             Container.Bind<DungeonBranchingController>().AsSingle();
             Container.Bind<DungeonPositioner>().AsSingle();
             Container.Bind<DungeonLayoutProvider>().AsSingle();
-            Container.Bind<DungeonRoomsPool>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DungeonRoomsPool>().AsSingle();
             Container.Bind<DungeonFactory>().FromComponentInHierarchy().AsSingle();
         }
     }

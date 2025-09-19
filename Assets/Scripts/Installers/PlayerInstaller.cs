@@ -12,7 +12,7 @@ namespace Installers
             Container.Bind<PlayerMovementController>().AsSingle();
             Container.Bind<PlayerMovementHistory>().AsSingle();
             Container.Bind<PlayerDecisionProvider>().AsSingle();
-            Container.Bind<PlayerInputProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerInputProvider>().AsSingle();
         }
     }
 }
