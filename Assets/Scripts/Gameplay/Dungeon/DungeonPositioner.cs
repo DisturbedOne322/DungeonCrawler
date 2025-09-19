@@ -13,10 +13,11 @@ namespace Gameplay.Dungeon
             _dungeonLayoutProvider = dungeonLayoutProvider;
         }
 
-        public void PlaceRoom(DungeonArea room, int decision = -1)
+        public void PlaceRoom(DungeonRoom room, int decision = -1)
         {
-            int existingRooms = _dungeonLayoutProvider.DungeonAreas.Count;
-            float posZ = existingRooms * GameplayConstants.RoomSize.y;
+            int roomsCount = _dungeonLayoutProvider.RoomsCount;
+            
+            float posZ = roomsCount * GameplayConstants.RoomSize.y;
             float posX = 0;
 
             if (decision != -1)

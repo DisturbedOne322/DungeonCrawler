@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Areas;
-using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -28,7 +28,13 @@ namespace Gameplay.Player
             _gameplayData = gameplayData;
         }
 
-        public StopArea GetCurrentRoom() => _dungeonLayoutProvider.DungeonAreas[GetPositionIndex()] as StopArea;
+        public StopRoom GetCurrentRoom()
+        {
+            if (_dungeonLayoutProvider.TryGetRoom(GetPositionIndex(), out var room))
+                return room as StopRoom;
+
+            return null;
+        }
 
         public void PositionPlayer()
         {
@@ -45,10 +51,10 @@ namespace Gameplay.Player
         {
             int targetIndex = GetIndexOfStopArea();
 
-            var areas = _dungeonLayoutProvider.DungeonAreas;
             for (; GetPositionIndex() < targetIndex;)
             {
-                var room = areas[GetPositionIndex()];
+                if (!_dungeonLayoutProvider.TryGetRoom(GetPositionIndex(), out var room))
+                    throw new Exception("Invalid room");
                 
                 var position = room.PlayerStandPoint.position;
                 await _playerController.MoveTowards(position, MoveTime, RotateTime);
@@ -60,25 +66,19 @@ namespace Gameplay.Player
 
         private int GetIndexOfStopArea()
         {
-            List<DungeonArea> dungeonAreas = _dungeonLayoutProvider.DungeonAreas;
-                
             int startIndex = GetPositionIndex() + 1;
             
-            for (int i = startIndex; i < dungeonAreas.Count; i++)
+            int roomsCount = _dungeonLayoutProvider.RoomsCount;
+            for (int i = startIndex; i < roomsCount; i++)
             {
-                if(dungeonAreas[i] is StopArea)
+                if(_dungeonLayoutProvider.TryGetRoom(i, out var room) && room is StopRoom)
                     return i;
             }
             
-            return dungeonAreas.Count - 1;
+            return roomsCount - 1;
         }
 
-        private void SetPositionIndex(int index)
-        {
-            Debug.Log("POS: " + index);
-            Debug.Log("SIZE: " + _dungeonLayoutProvider.DungeonAreas.Count);
-            _gameplayData.PlayerPositionIndex.Value = index;
-        }
+        private void SetPositionIndex(int index) => _gameplayData.PlayerPositionIndex.Value = index;
 
         private int GetPositionIndex() => _gameplayData.PlayerPositionIndex.Value;
     }

@@ -9,12 +9,14 @@ namespace Gameplay
     {
         private readonly PlayerMovementController _playerMovementController;
         private readonly DungeonGenerator _dungeonGenerator;
+        private readonly DungeonRoomsPool _dungeonRoomsPool;
 
         public GameSequenceController(PlayerMovementController playerMovementController,
-            DungeonGenerator dungeonGenerator)
+            DungeonGenerator dungeonGenerator, DungeonRoomsPool dungeonRoomsPool)
         {
             _playerMovementController = playerMovementController;
             _dungeonGenerator = dungeonGenerator;
+            _dungeonRoomsPool = dungeonRoomsPool;
         }
         
         public async UniTask StartRun()

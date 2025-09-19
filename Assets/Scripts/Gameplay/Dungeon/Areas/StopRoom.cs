@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 
 namespace Gameplay.Dungeon.Areas
 {
-    public abstract class StopArea : DungeonArea
+    public abstract class StopRoom : DungeonRoom
     {
         public abstract UniTask ClearRoom();
     }

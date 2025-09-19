@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Gameplay.Dungeon.Areas;
 
@@ -5,10 +6,24 @@ namespace Gameplay.Dungeon
 {
     public class DungeonLayoutProvider
     {
-        private readonly List<DungeonArea> _dungeonAreas = new ();
+        private readonly List<DungeonRoom> _dungeonAreas = new ();
         
-        public List<DungeonArea> DungeonAreas => _dungeonAreas;
+        public List<DungeonRoom> DungeonAreas => _dungeonAreas;
         
-        public void AddRoom(DungeonArea room) => _dungeonAreas.Add(room);
+        public int RoomsCount => _dungeonAreas.Count;
+        
+        public void AddRoom(DungeonRoom room) => _dungeonAreas.Add(room);
+
+        public bool TryGetRoom(int index, out DungeonRoom room)
+        {
+            if (index < 0 || index >= RoomsCount)
+            {
+                room = null;
+                return false;
+            }
+            
+            room = _dungeonAreas[index];
+            return true;
+        }
     }
 }
