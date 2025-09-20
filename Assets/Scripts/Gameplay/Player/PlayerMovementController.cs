@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Areas;
+using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -48,10 +49,13 @@ namespace Gameplay.Player
         public async UniTask MovePlayer()
         {
             int targetIndex = GetIndexOfStopArea();
-
-            for (; GetPositionIndex() < targetIndex;)
+            int currentIndex = GetPositionIndex();
+            
+            for (; currentIndex < targetIndex;)
             {
-                if (!_dungeonLayoutProvider.TryGetRoom(GetPositionIndex(), out var room))
+                currentIndex++;
+                
+                if (!_dungeonLayoutProvider.TryGetRoom(currentIndex, out var room))
                     throw new Exception("Invalid room");
                 
                 await _playerController.MoveTowards(new MovementData()
@@ -61,7 +65,7 @@ namespace Gameplay.Player
                 });
                 
                 _playerMovementHistory.AddRoom(room.RoomType);
-                SetPositionIndex(GetPositionIndex() + 1);
+                SetPositionIndex(currentIndex);
             }
         }
 

@@ -13,6 +13,7 @@ namespace Installers
             Container.BindInterfacesAndSelfTo<GameBootstrapper>().AsSingle();
             Container.Bind<GameSequenceController>().AsSingle();
             Container.Bind<GameplayData>().AsSingle();
+            Container.Bind<BalanceService>().AsSingle();
         }
     }
 }

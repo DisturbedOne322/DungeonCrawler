@@ -36,7 +36,7 @@ namespace Gameplay.Dungeon
         {
             return new(3)
             {
-                RoomType.Corridor,
+                RoomType.TreasureChest,
                 RoomType.Corridor,
                 RoomType.Corridor,
             };
