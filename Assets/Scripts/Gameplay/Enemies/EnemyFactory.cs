@@ -17,11 +17,11 @@ namespace Gameplay
             _containerFactory = containerFactory;
         }
         
-        public GameUnit CreateEnemy()
+        public EnemyUnit CreateEnemy()
         {
             var data = _enemyDatabase.Database[0];
             var prefab = data.Prefab.gameObject;
-            var unit = _containerFactory.Create<GameUnit>(prefab);
+            var unit = _containerFactory.Create<EnemyUnit>(prefab);
             
             unit.InitializeUnit(data);
             

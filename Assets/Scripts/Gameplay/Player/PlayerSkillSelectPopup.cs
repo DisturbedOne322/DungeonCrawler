@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Gameplay.Combat;
 using Gameplay.Combat.Skills;
+using TMPro.EditorUtilities;
 using UI;
 using UniRx;
 using UnityEngine;
@@ -58,22 +59,22 @@ namespace Gameplay.Player
         {
             int skillsAmount = _unitSkillsData.Skills.Count;
 
-            _selectedSkillIndex += direction;
+            do
+            {
+                _selectedSkillIndex += direction;
+                if(_selectedSkillIndex < 0)
+                    _selectedSkillIndex = skillsAmount - 1;
             
-            if(_selectedSkillIndex < 0)
-                _selectedSkillIndex = skillsAmount - 1;
-            
-            if(_selectedSkillIndex >= skillsAmount)
-                _selectedSkillIndex = 0;
+                if(_selectedSkillIndex >= skillsAmount)
+                    _selectedSkillIndex = 0;
+                
+            } while (!IsSkillUsable(_selectedSkillIndex));
             
             UpdateSelection();
         }
 
         private void TrySubmitSelection()
         {
-            if(!_unitSkillsData.Skills[_selectedSkillIndex].CanUse(_combatData))
-                return;
-            
             OnSkillSelected?.Invoke(_unitSkillsData.Skills[_selectedSkillIndex]);
             Destroy(gameObject);
         }
@@ -102,14 +103,11 @@ namespace Gameplay.Player
 
         private void UpdateSelection()
         {
-            var skills = _unitSkillsData.Skills;
-            
             for (int i = 0; i < _skillSelectViews.Count; i++)
             {
-                var skill = skills[i];
                 var view = _skillSelectViews[i];
-
-                if (!skill.CanUse(_combatData))
+                
+                if (!IsSkillUsable(i))
                 {
                     view.SetUnusable();
                     continue;
@@ -118,5 +116,8 @@ namespace Gameplay.Player
                 view.SetSelected(i == _selectedSkillIndex);
             }
         }
+
+        private bool IsSkillUsable(int index) => 
+            _unitSkillsData.Skills[index].CanUse(_combatData);
     }
 }

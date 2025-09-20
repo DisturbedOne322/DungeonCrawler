@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Combat;
@@ -15,13 +16,23 @@ namespace Gameplay.Dungeon.Areas
         
         public override RoomType RoomType => RoomType.Combat;
 
+        private EnemyUnit _enemy;
+
         [Inject]
         private void Construct(CombatSequenceController combatSequenceController, EnemyFactory enemyFactory)
         {
             _combatSequenceController = combatSequenceController;
             _enemyFactory = enemyFactory;
         }
-        
+
+        private void OnEnable()
+        {
+            _enemy = _enemyFactory.CreateEnemy();
+            
+            _enemy.transform.SetParent(_enemySpawnPoint, false);
+            _enemy.transform.localPosition = Vector3.zero;
+        }
+
         public override void ResetRoom()
         {
             
@@ -29,10 +40,8 @@ namespace Gameplay.Dungeon.Areas
 
         public override async UniTask ClearRoom()
         {
-            var enemy = _enemyFactory.CreateEnemy();
-            enemy.transform.position = _enemySpawnPoint.position;
-
-            await _combatSequenceController.StartCombat(enemy);
+            await _enemy.PlayAppearAnimation();
+            await _combatSequenceController.StartCombat(_enemy);
         }
     }
 }
