@@ -12,7 +12,6 @@ namespace Gameplay.Combat
 
         public void AssignSkills(List<BaseSkill> skills)
         {
-            return;
             _skills.Clear();
             _skills.AllocFreeAddRange(skills);
         }

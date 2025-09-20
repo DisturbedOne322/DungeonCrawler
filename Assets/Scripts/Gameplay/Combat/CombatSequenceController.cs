@@ -5,42 +5,33 @@ namespace Gameplay.Combat
 {
     public class CombatSequenceController
     {
-        private readonly PlayerUnit _playerUnit;
-        private GameUnit _enemyUnit;
+        private readonly CombatData _combatData;
         
-        private int _turnIndex = 0;
-        
-        public CombatSequenceController(PlayerUnit playerUnit)
+        public CombatSequenceController(CombatData combatData)
         {
-            _playerUnit = playerUnit;
+            _combatData = combatData;
         }
 
         public async UniTask StartCombat(GameUnit enemyUnit)
         {
-            _turnIndex = -1;
-
-            _enemyUnit = enemyUnit;
-
-
+            _combatData.StartCombat(enemyUnit);
+            
             while (!IsCombatOver())
             {
+                _combatData.ProcessTurn();
                 await ProcessTurn();
             }
         }
 
         private async UniTask ProcessTurn()
         {
-            _turnIndex++;
-            var currentUnit = GetCurrentTurnUnit();
-            var skill = await currentUnit.SkillSelectionProvider.SelectSkillToUse();
+            var currentUnit = _combatData.ActiveUnit;
             
-            skill.DealDamage(10, GetOtherUnit());
+            var skill = await currentUnit.SkillSelectionProvider.SelectSkillToUse();
+            await skill.UseSkill(_combatData);
         }
-
-        private GameUnit GetCurrentTurnUnit() => _turnIndex % 2 == 0 ? _playerUnit : _enemyUnit;
-        private GameUnit GetOtherUnit() => _turnIndex % 2 == 0 ? _enemyUnit : _playerUnit;
-
-        private bool IsCombatOver() => IsUnitDead(_enemyUnit) || IsUnitDead(_playerUnit);
+        
+        private bool IsCombatOver() => IsUnitDead(_combatData.Enemy) || IsUnitDead(_combatData.Player);
 
         private bool IsUnitDead(GameUnit unit) => unit.UnitHealthController.UnitHealthData.IsDead.Value;
     }

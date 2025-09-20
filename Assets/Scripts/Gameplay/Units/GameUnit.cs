@@ -8,18 +8,26 @@ namespace Gameplay.Combat
 {
     public class GameUnit : MonoBehaviour
     {
+        private UnitHealthData _healthData;
         private UnitHealthController _unitHealthController;
         private SkillSelectionProvider _skillSelectionProvider;
         private UnitStatsData _unitStatsData;
         private UnitSkillsData _unitSkillsData;
         
+        public UnitHealthData HealthData => _healthData;
         public UnitHealthController UnitHealthController => _unitHealthController;
         public SkillSelectionProvider SkillSelectionProvider => _skillSelectionProvider;
+        public UnitStatsData UnitStatsData => _unitStatsData;
+        public UnitSkillsData UnitSkillsData => _unitSkillsData;
 
         [Inject]
-        private void Construct(UnitHealthController unitHealthController, SkillSelectionProvider skillSelectionProvider,
-            UnitStatsData unitStatsData, UnitSkillsData unitSkillsData)
+        private void Construct(UnitHealthData unitHealthData,
+            UnitHealthController unitHealthController, 
+            SkillSelectionProvider skillSelectionProvider,
+            UnitStatsData unitStatsData, 
+            UnitSkillsData unitSkillsData)
         {
+            _healthData = unitHealthData;
             _unitHealthController = unitHealthController;
             _skillSelectionProvider = skillSelectionProvider;
             _unitStatsData = unitStatsData;

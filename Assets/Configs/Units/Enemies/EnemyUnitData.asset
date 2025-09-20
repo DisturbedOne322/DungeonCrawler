@@ -21,3 +21,5 @@ MonoBehaviour:
     _intelligence: 1
     _luck: 1
   _maxHp: 50
+  _skillSet:
+  - {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}

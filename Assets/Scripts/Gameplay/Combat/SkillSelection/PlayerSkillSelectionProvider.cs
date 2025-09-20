@@ -1,18 +1,29 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Skills;
+using UI;
 
 namespace Gameplay.Combat
 {
     public class PlayerSkillSelectionProvider : SkillSelectionProvider
     {
-        public PlayerSkillSelectionProvider(UnitSkillsData unitSkillsData) : base(unitSkillsData)
+        private readonly UIFactory _factory;
+        
+        public PlayerSkillSelectionProvider(UnitSkillsData unitSkillsData, UIFactory uiFactory) : base(unitSkillsData)
         {
+            _factory = uiFactory;
         }
 
         public override async UniTask<BaseSkill> SelectSkillToUse()
         {
-            await UniTask.WaitForSeconds(1);
-            return new BaseAttackSkill();
+            var popup = _factory.CreateSkillSelectPopup();
+
+            var tcs = new UniTaskCompletionSource<BaseSkill>();
+
+            popup.OnSkillSelected += (skill) => tcs.TrySetResult(skill);
+
+            BaseSkill selectedSkill = await tcs.Task;
+
+            return selectedSkill;
         }
     }
 }

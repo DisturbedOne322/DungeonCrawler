@@ -21,7 +21,7 @@ namespace Gameplay.Player
         {
             CancellationTokenSource cts = new CancellationTokenSource();
             
-            _playerInputProvider.EnableInput(true);
+            _playerInputProvider.EnableMovementInput(true);
             
             var leftTask = _playerInputProvider.OnGoLeft.First().ToUniTask(cancellationToken: cts.Token);
             var forwardTask = _playerInputProvider.OnGoForward.First().ToUniTask(cancellationToken: cts.Token);
@@ -32,7 +32,7 @@ namespace Gameplay.Player
             cts.Cancel();
             cts.Dispose();
             
-            _playerInputProvider.EnableInput(false);
+            _playerInputProvider.EnableMovementInput(false);
             
             return completed.winArgumentIndex;
         }
