@@ -1,11 +1,12 @@
 using Cysharp.Threading.Tasks;
 using Data;
 using DG.Tweening;
+using Gameplay.Combat;
 using UnityEngine;
 
 namespace Gameplay.Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerUnit : GameUnit
     {
         public async UniTask MoveTowards(MovementData movementData)
         {

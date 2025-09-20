@@ -1,3 +1,4 @@
+using System;
 using Data;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Areas;
@@ -29,7 +30,7 @@ namespace Gameplay.Services
             if (_dungeonRoomsDatabase.TryGetRoomData(roomType, out var data))
                 return _containerFactory.Create<DungeonRoom>(data.RoomPrefab.gameObject);
             
-            return null;
+            throw new Exception($"No room found of type {roomType}");
         }
     }
 }

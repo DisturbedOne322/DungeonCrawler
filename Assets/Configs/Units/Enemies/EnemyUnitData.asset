@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9627b2cbd0f749bcba8eea86d752f308, type: 3}
+  m_Name: EnemyUnitData
+  m_EditorClassIdentifier: 
+  _name: Test Enemy
+  _prefab: {fileID: 5294280859536209961, guid: 298d9f510cb756345a254b72c041cd37, type: 3}
+  _unitBaseStats:
+    _constitution: 1
+    _strength: 1
+    _dexterity: 1
+    _intelligence: 1
+    _luck: 1
+  _maxHp: 50

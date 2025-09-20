@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Areas;
-using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -11,17 +10,17 @@ namespace Gameplay.Player
     {
         private const float MoveTime = 1;
         
-        private readonly PlayerController _playerController;
+        private readonly PlayerUnit _playerUnit;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly PlayerMovementHistory _playerMovementHistory;
         private readonly GameplayData _gameplayData;
         
-        public PlayerMovementController(PlayerController playerController,
+        public PlayerMovementController(PlayerUnit playerUnit,
             DungeonLayoutProvider dungeonLayoutProvider,
             PlayerMovementHistory playerMovementHistory,
             GameplayData gameplayData)
         {
-            _playerController = playerController;
+            _playerUnit = playerUnit;
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _playerMovementHistory = playerMovementHistory;
             _gameplayData = gameplayData;
@@ -40,8 +39,8 @@ namespace Gameplay.Player
             SetPositionIndex(0);
             
             var firstRoom = _dungeonLayoutProvider.DungeonAreas[GetPositionIndex()];
-            _playerController.transform.position = firstRoom.PlayerStandPoint.position;
-            _playerController.transform.forward = firstRoom.PlayerStandPoint.forward;
+            _playerUnit.transform.position = firstRoom.PlayerStandPoint.position;
+            _playerUnit.transform.forward = firstRoom.PlayerStandPoint.forward;
             
             _playerMovementHistory.AddRoom(RoomType.Corridor);
         }
@@ -58,7 +57,7 @@ namespace Gameplay.Player
                 if (!_dungeonLayoutProvider.TryGetRoom(currentIndex, out var room))
                     throw new Exception("Invalid room");
                 
-                await _playerController.MoveTowards(new MovementData()
+                await _playerUnit.MoveTowards(new MovementData()
                 {
                     TargetPos = room.PlayerStandPoint.position,
                     MoveTime = MoveTime,

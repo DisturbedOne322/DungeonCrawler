@@ -9,20 +9,17 @@ namespace Gameplay
     {
         private readonly PlayerMovementController _playerMovementController;
         private readonly DungeonGenerator _dungeonGenerator;
-        private readonly DungeonRoomsPool _dungeonRoomsPool;
 
         public GameSequenceController(PlayerMovementController playerMovementController,
-            DungeonGenerator dungeonGenerator, DungeonRoomsPool dungeonRoomsPool)
+            DungeonGenerator dungeonGenerator)
         {
             _playerMovementController = playerMovementController;
             _dungeonGenerator = dungeonGenerator;
-            _dungeonRoomsPool = dungeonRoomsPool;
         }
         
         public async UniTask StartRun()
         {
             _dungeonGenerator.CreateNextMapSection(RoomType.Corridor);
-            
             _playerMovementController.PositionPlayer();
 
             while (true)

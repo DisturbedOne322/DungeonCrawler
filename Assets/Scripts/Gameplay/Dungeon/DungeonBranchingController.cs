@@ -38,7 +38,7 @@ namespace Gameplay.Dungeon
             {
                 RoomType.TreasureChest,
                 RoomType.Corridor,
-                RoomType.Corridor,
+                RoomType.Combat,
             };
         }
     }

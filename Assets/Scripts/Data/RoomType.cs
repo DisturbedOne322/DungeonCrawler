@@ -4,6 +4,7 @@ namespace Data
     {
         Corridor,
         Decision,
-        TreasureChest
+        TreasureChest,
+        Combat,
     }
 }
