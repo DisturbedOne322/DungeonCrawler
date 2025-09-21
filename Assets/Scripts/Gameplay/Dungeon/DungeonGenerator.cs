@@ -35,6 +35,8 @@ namespace Gameplay.Dungeon
         private void CreateRoom(RoomType roomType)
         {
             var room = _dungeonFactory.CreateArea(roomType);
+            room.SetupRoom();
+            
             _dungeonLayoutProvider.AddRoom(room);
             _dungeonPositioner.PlaceRoom(room);
         }

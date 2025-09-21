@@ -1,3 +1,4 @@
+using Gameplay.Combat.Data;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -6,6 +7,6 @@ namespace Gameplay.Combat.Skills
     {
         [SerializeField, Min(1)] protected int BaseDamage = 1;
         
-        protected abstract int GetHitDamage(CombatData combatData);
+        protected abstract int GetHitDamage(UnitStatsData statsData);
     }
 }

@@ -27,24 +27,21 @@ namespace Gameplay.Dungeon.Areas
             _enemyFactory = enemyFactory;
         }
         
-        public override void ResetRoom()
-        {
-            
-        }
-        
-        public override UniTask SetupRoom()
+        public override void SetupRoom()
         {
             _enemy = _enemyFactory.CreateEnemy();
             
             _enemy.transform.SetParent(_enemySpawnPoint, false);
             _enemy.transform.localPosition = Vector3.zero;
-            
-            return UniTask.CompletedTask;
+        }
+
+        public override async UniTask PlayEnterSequence()
+        {
+            await _enemy.PlayAppearAnimation();
         }
 
         public override async UniTask ClearRoom()
         {
-            await _enemy.PlayAppearAnimation();
             await _combatSequenceController.StartCombat(_enemy);
             Destroy(_enemy.gameObject);
         }

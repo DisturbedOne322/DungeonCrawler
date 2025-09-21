@@ -27,11 +27,6 @@ namespace Gameplay.Dungeon.Areas
             _chestAnimator.ResetChest();   
         }
 
-        public override UniTask SetupRoom()
-        {
-            return UniTask.CompletedTask;
-        }
-
         public override async UniTask ClearRoom()
         {
             await _chestAnimator.PlayOpenAnimation();

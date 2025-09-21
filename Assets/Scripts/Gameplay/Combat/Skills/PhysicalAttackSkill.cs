@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat.Data;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -9,22 +10,22 @@ namespace Gameplay.Combat.Skills
         [SerializeField] private float _strengthScaling = 1.25f;
         [SerializeField] private int _fixedHealthPrice = 5;
         
-        public override async UniTask UseSkill(CombatData combatData)
+        public override async UniTask UseSkill(CombatService service)
         {
             await UniTask.WaitForSeconds(0.5f);
             
-            combatData.OtherUnit.UnitHealthController.TakeDamage(GetHitDamage(combatData));
-            combatData.ActiveUnit.UnitHealthController.TakeDamage(_fixedHealthPrice);
+            service.DealDamageTo(service.ActiveUnit, _fixedHealthPrice);
+            service.DealDamageTo(service.OtherUnit, GetHitDamage(service.ActiveUnit.UnitStatsData));
             
             await UniTask.WaitForSeconds(0.5f);
         }
 
-        public override bool CanUse(CombatData combatData) =>
-            combatData.ActiveUnit.HealthData.CurrentHealth.Value >= _fixedHealthPrice;
+        public override bool CanUse(CombatService combatService) =>
+            combatService.ActiveUnit.HealthData.CurrentHealth.Value >= _fixedHealthPrice;
 
-        protected override int GetHitDamage(CombatData combatData)
+        protected override int GetHitDamage(UnitStatsData statsData)
         {
-            int strength = combatData.ActiveUnit.UnitStatsData.Strength.Value;
+            int strength = statsData.Strength.Value;
             int additionalPower = Mathf.RoundToInt(_strengthScaling * strength);
             
             int finalAttackPower = BaseDamage + additionalPower;

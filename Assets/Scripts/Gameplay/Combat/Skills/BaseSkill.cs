@@ -11,7 +11,7 @@ namespace Gameplay.Combat.Skills
         public string Name => _name;
         public string Description => _description;
 
-        public abstract UniTask UseSkill(CombatData combatData);
-        public abstract bool CanUse(CombatData combatData);
+        public abstract UniTask UseSkill(CombatService combatService);
+        public abstract bool CanUse(CombatService combatService);
     }
 }

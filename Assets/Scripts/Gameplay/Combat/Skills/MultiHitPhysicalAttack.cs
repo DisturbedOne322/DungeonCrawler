@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat.Data;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -8,21 +9,21 @@ namespace Gameplay.Combat.Skills
     {
         [SerializeField, Min(2)] private int _hits = 2;
         
-        public override async UniTask UseSkill(CombatData combatData)
+        public override async UniTask UseSkill(CombatService combatService)
         {
             await UniTask.WaitForSeconds(0.5f);
 
             for (int i = 0; i < _hits; i++)
             {
-                combatData.OtherUnit.UnitHealthController.TakeDamage(GetHitDamage(combatData));
+                combatService.DealDamageTo(combatService.OtherUnit, GetHitDamage(combatService.ActiveUnit.UnitStatsData));
                 await UniTask.WaitForSeconds(0.15f);
             }
             
             await UniTask.WaitForSeconds(0.5f);
         }
 
-        public override bool CanUse(CombatData combatData) => true;
+        public override bool CanUse(CombatService combatService) => true;
 
-        protected override int GetHitDamage(CombatData combatData) => BaseDamage;
+        protected override int GetHitDamage(UnitStatsData statsData) => BaseDamage;
     }
 }

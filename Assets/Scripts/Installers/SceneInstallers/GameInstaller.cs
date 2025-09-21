@@ -21,6 +21,7 @@ namespace Installers.SceneInstallers
             
             Container.Bind<GameSequenceController>().AsSingle();
             Container.Bind<CombatSequenceController>().AsSingle();
+            Container.Bind<CombatService>().AsSingle();
             
             Container.Bind<PlayerMovementController>().AsSingle();
             Container.Bind<PlayerMovementHistory>().AsSingle();

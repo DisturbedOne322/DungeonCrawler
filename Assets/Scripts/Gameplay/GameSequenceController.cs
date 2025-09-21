@@ -30,13 +30,10 @@ namespace Gameplay
             {
                 var stopRoom = _playerMovementController.GetNextStopRoom();
                 
-                await stopRoom.SetupRoom();
-                
                 await _playerMovementController.MovePlayer();
                 
+                await stopRoom.PlayEnterSequence();
                 await stopRoom.ClearRoom();
-                
-                _dungeonBranchingSelector.PrepareSelection();
             }
         }
     }

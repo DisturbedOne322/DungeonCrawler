@@ -28,6 +28,8 @@ namespace Gameplay.Dungeon
             var selectedRoom = roomSelection[inputIndex];
             
             _dungeonPositioner.AddXOffsetFromChoice(inputIndex);
+            
+            _dungeonBranchingSelector.PrepareSelection();
             _dungeonGenerator.CreateNextMapSection(selectedRoom);
             
             return inputIndex;

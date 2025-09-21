@@ -4,7 +4,7 @@ namespace Gameplay.Dungeon.Areas
 {
     public abstract class StopRoom : DungeonRoom
     {
-        public abstract UniTask SetupRoom();
-        public abstract UniTask ClearRoom();
+        public virtual UniTask PlayEnterSequence() => UniTask.CompletedTask;
+        public virtual UniTask ClearRoom() => UniTask.CompletedTask;
     }
 }

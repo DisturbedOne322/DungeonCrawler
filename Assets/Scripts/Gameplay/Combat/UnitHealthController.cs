@@ -31,8 +31,7 @@ namespace Gameplay.Combat
         {
             if (_unitHealthData.IsDead.Value) 
                 return;
-
-            amount = GetFinalDamage(amount);
+            
             _unitHealthData.CurrentHealth.Value = Mathf.Max(_unitHealthData.CurrentHealth.Value - amount, 0);
         }
 
@@ -42,18 +41,6 @@ namespace Gameplay.Combat
                 return;
             
             _unitHealthData.CurrentHealth.Value = Mathf.Min(_unitHealthData.CurrentHealth.Value + amount, _unitHealthData.MaxHealth.Value);
-        }
-
-        private int GetFinalDamage(int rawDamage)
-        {
-            float damageReductionModifier = CalculateDamageReduction();
-            return Mathf.RoundToInt(rawDamage * damageReductionModifier);
-        }
-
-        private float CalculateDamageReduction()
-        {
-            int constitutionStat = _unitStatsData.Constitution.Value;
-            return 1 - Mathf.Clamp(constitutionStat, 1, 99) * 1f / 100;
         }
     }
 }

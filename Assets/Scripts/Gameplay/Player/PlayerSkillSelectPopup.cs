@@ -19,7 +19,7 @@ namespace Gameplay.Player
         
         private UnitSkillsData _unitSkillsData;
         private PlayerInputProvider _playerInputProvider;
-        private CombatData _combatData;
+        private CombatService _combatService;
 
         private int _selectedSkillIndex = 0;
         
@@ -32,11 +32,11 @@ namespace Gameplay.Player
         [Inject]
         private void Construct(PlayerUnit player, 
             PlayerInputProvider playerInputProvider, 
-            CombatData combatData)
+            CombatService combatService)
         {
             _unitSkillsData = player.UnitSkillsData;
             _playerInputProvider = playerInputProvider;
-            _combatData = combatData;
+            _combatService = combatService;
         }
         
         private void Awake()
@@ -96,7 +96,7 @@ namespace Gameplay.Player
                 if (i == 0)
                     view.SetSelected(true);
                 
-                if(!skill.CanUse(_combatData))
+                if(!skill.CanUse(_combatService))
                     view.SetUnusable();
                 
                 _skillSelectViews.Add(view);
@@ -120,6 +120,6 @@ namespace Gameplay.Player
         }
 
         private bool IsSkillUsable(int index) => 
-            _unitSkillsData.Skills[index].CanUse(_combatData);
+            _unitSkillsData.Skills[index].CanUse(_combatService);
     }
 }

@@ -35,15 +35,14 @@ namespace Gameplay.Dungeon.Areas
             _doorAnimator.ResetDoors();
         }
 
-        public override UniTask SetupRoom()
+        public override void SetupRoom()
         {
             var doorTypes = _dungeonBranchingSelector.RoomsForSelection;
             for (int i = 0; i < doorTypes.Count; i++)
             {
                 var door = _doors[i];
                 door.SetDoorIcon(_dungeonFactory.GetRoomData(doorTypes[i]).Icon);
-            }  
-            return UniTask.CompletedTask;
+            } 
         }
 
         public override async UniTask ClearRoom()

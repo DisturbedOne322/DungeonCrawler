@@ -11,6 +11,14 @@ namespace Gameplay.Dungeon.Areas
 
         public abstract RoomType RoomType { get; }
 
-        public abstract void ResetRoom();
+        public virtual void ResetRoom()
+        {
+            
+        }
+        
+        public virtual void SetupRoom()
+        {
+            
+        }
     }
 }
