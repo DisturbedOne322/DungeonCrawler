@@ -252,6 +252,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UiBack"",
+                    ""type"": ""Button"",
+                    ""id"": ""94b9d5e6-767a-49a0-ae3b-dda0b1914856"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -342,6 +351,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c665d16c-36ae-433f-a982-f0db06ca1ff9"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UiBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b430535-69cf-4076-92e5-28eed8ecc134"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UiBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -358,6 +389,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
         m_UI_Down = m_UI.FindAction("Down", throwIfNotFound: true);
         m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
+        m_UI_UiBack = m_UI.FindAction("UiBack", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -560,6 +592,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Up;
     private readonly InputAction m_UI_Down;
     private readonly InputAction m_UI_Submit;
+    private readonly InputAction m_UI_UiBack;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -583,6 +616,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "UI/Submit".
         /// </summary>
         public InputAction @Submit => m_Wrapper.m_UI_Submit;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/UiBack".
+        /// </summary>
+        public InputAction @UiBack => m_Wrapper.m_UI_UiBack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -618,6 +655,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Submit.started += instance.OnSubmit;
             @Submit.performed += instance.OnSubmit;
             @Submit.canceled += instance.OnSubmit;
+            @UiBack.started += instance.OnUiBack;
+            @UiBack.performed += instance.OnUiBack;
+            @UiBack.canceled += instance.OnUiBack;
         }
 
         /// <summary>
@@ -638,6 +678,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Submit.started -= instance.OnSubmit;
             @Submit.performed -= instance.OnSubmit;
             @Submit.canceled -= instance.OnSubmit;
+            @UiBack.started -= instance.OnUiBack;
+            @UiBack.performed -= instance.OnUiBack;
+            @UiBack.canceled -= instance.OnUiBack;
         }
 
         /// <summary>
@@ -728,5 +771,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSubmit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "UiBack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUiBack(InputAction.CallbackContext context);
     }
 }

@@ -9,7 +9,7 @@ namespace Gameplay.Combat.Data
         public ReactiveProperty<int> Dexterity;
         public ReactiveProperty<int> Intelligence;
         public ReactiveProperty<int> Luck;
-
+        
         public void SetStats(UnitBaseStats stats)
         {
             Constitution = new(stats.Constitution);

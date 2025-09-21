@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a575bc238a4cad82018d0fc684c70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerUnitData: {fileID: 11400000, guid: 9de862ccee5bfc4468efdcadb9dbc699, type: 2}
+  _playerUnitData: {fileID: 11400000, guid: 4fb11040b9b3ffe4a99996db897e4c8a, type: 2}
 --- !u!4 &658651225
 Transform:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841a49d374eb44b5a70935af0cbc42fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8029676583531020069, guid: e5258b6176f35ab428f53615ddb16684, type: 3}
+  _battleMenuController: {fileID: 3550141366985302513, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
   _canvas: {fileID: 2139679682}
 --- !u!4 &870362189
 Transform:
@@ -916,7 +916,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

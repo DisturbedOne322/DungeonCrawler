@@ -1,5 +1,6 @@
 using Gameplay.Player;
 using Gameplay.Services;
+using UI.PlayerBattleMenu;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +8,7 @@ namespace UI
 {
     public class UIFactory : MonoBehaviour
     {
-        [SerializeField] private PlayerSkillSelectPopup _prefab;
+        [SerializeField] private BattleMenuController _battleMenuController;
         [SerializeField] private Canvas _canvas;
         
         private ContainerFactory _factory;
@@ -18,9 +19,9 @@ namespace UI
             _factory = factory;
         }
         
-        public PlayerSkillSelectPopup CreateSkillSelectPopup()
+        public BattleMenuController CreateSkillSelectPopup()
         {
-            var result = _factory.Create<PlayerSkillSelectPopup>(_prefab.gameObject);
+            var result = _factory.Create<BattleMenuController>(_battleMenuController.gameObject);
             result.transform.SetParent(_canvas.transform, false);
             return result;
         }

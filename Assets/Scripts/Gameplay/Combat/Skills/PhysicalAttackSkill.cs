@@ -14,8 +14,8 @@ namespace Gameplay.Combat.Skills
         {
             await UniTask.WaitForSeconds(0.5f);
             
-            service.DealDamageTo(service.ActiveUnit, _fixedHealthPrice);
-            service.DealDamageTo(service.OtherUnit, GetHitDamage(service.ActiveUnit.UnitStatsData));
+            service.DealDamageToActiveUnit(_fixedHealthPrice);
+            service.DealDamageToOtherUnit(GetHitDamage(service.ActiveUnit.UnitStatsData));
             
             await UniTask.WaitForSeconds(0.5f);
         }

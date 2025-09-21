@@ -23,18 +23,45 @@ namespace Gameplay.Combat
             _combatData.ResetCombat(enemy);
         }
 
-        public void ProcessTurn()
+        public void StartTurn()
         {
             _turnCount++;
             _combatData.UpdateCurrentTurnUnit(_turnCount);
+            ActiveUnit.UnitBuffsData.Guarded.Value = false;
+        }
+
+        public void ApplyGuardToActiveUnit() => ActiveUnit.UnitBuffsData.Guarded.Value = true;
+        public void ApplyChargeToActiveUnit() => ActiveUnit.UnitBuffsData.Charged.Value = true;
+        public void ApplyConcentrateToActiveUnit() => ActiveUnit.UnitBuffsData.Concentrated.Value = true;
+        
+        public void DealDamageToActiveUnit(int damage)
+        {
+            int damageTaken = GetFinalDamageTo(ActiveUnit, damage);
+            ActiveUnit.UnitHealthController.TakeDamage(damageTaken);
         }
         
-        public void DealDamageTo(GameUnit unit, int damage) => unit.UnitHealthController.TakeDamage(GetFinalDamage(unit, damage));
+        public void DealDamageToOtherUnit(int damage)
+        {
+            if (ActiveUnit.UnitBuffsData.Charged.Value)
+            {
+                ActiveUnit.UnitBuffsData.Charged.Value = false;
+                damage *= 2;
+            }
+            
+            int damageTaken = GetFinalDamageTo(OtherUnit, damage);
+            OtherUnit.UnitHealthController.TakeDamage(damageTaken);
+        }
 
-        private int GetFinalDamage(GameUnit unit, int rawDamage)
+        private int GetFinalDamageTo(GameUnit unit, int rawDamage)
         {
             float damageReductionModifier = CalculateDamageReduction(unit);
-            return Mathf.RoundToInt(rawDamage * damageReductionModifier);
+            
+            float constitutionReducedDamage = rawDamage * damageReductionModifier;
+
+            if (unit.UnitBuffsData.Guarded.Value)
+                constitutionReducedDamage /= 2;
+            
+            return Mathf.RoundToInt(constitutionReducedDamage);
         }
 
         private float CalculateDamageReduction(GameUnit unit)

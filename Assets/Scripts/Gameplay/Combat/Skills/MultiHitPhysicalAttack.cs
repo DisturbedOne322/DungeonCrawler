@@ -15,7 +15,7 @@ namespace Gameplay.Combat.Skills
 
             for (int i = 0; i < _hits; i++)
             {
-                combatService.DealDamageTo(combatService.OtherUnit, GetHitDamage(combatService.ActiveUnit.UnitStatsData));
+                combatService.DealDamageToOtherUnit(GetHitDamage(combatService.ActiveUnit.UnitStatsData));
                 await UniTask.WaitForSeconds(0.15f);
             }
             

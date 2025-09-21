@@ -16,7 +16,7 @@ namespace Gameplay.Combat.SkillSelection
 
         public override async UniTask<BaseSkill> SelectSkillToUse()
         {
-            return UnitSkillsData.Skills[0];
+            return UnitSkillsData.BasicAttackSkill;
         }
     }
 }

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Units;
+using UnityEngine;
 
 namespace Gameplay.Combat
 {
@@ -20,7 +21,7 @@ namespace Gameplay.Combat
             
             while (!IsCombatOver())
             {
-                _combatService.ProcessTurn();
+                _combatService.StartTurn();
                 await ProcessTurn();
             }
         }
@@ -28,7 +29,7 @@ namespace Gameplay.Combat
         private async UniTask ProcessTurn()
         {
             var currentUnit = _combatData.ActiveUnit;
-            
+
             var skill = await currentUnit.SkillSelectionProvider.SelectSkillToUse();
             await skill.UseSkill(_combatService);
         }

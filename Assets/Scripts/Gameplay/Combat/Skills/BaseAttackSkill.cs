@@ -13,7 +13,7 @@ namespace Gameplay.Combat.Skills
         {
             await UniTask.WaitForSeconds(0.5f);
             
-            combatService.DealDamageTo(combatService.OtherUnit, GetHitDamage(combatService.ActiveUnit.UnitStatsData));
+            combatService.DealDamageToOtherUnit(GetHitDamage(combatService.ActiveUnit.UnitStatsData));
             
             await UniTask.WaitForSeconds(0.5f);
         }

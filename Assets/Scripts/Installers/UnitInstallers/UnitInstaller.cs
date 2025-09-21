@@ -13,6 +13,7 @@ namespace Installers.UnitInstallers
             
             Container.Bind<UnitSkillsData>().AsSingle();
             Container.Bind<UnitStatsData>().AsSingle();
+            Container.Bind<UnitBuffsData>().AsSingle();
         }
     }
 }
