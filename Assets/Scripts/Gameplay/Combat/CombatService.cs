@@ -5,6 +5,8 @@ namespace Gameplay.Combat
 {
     public class CombatService
     {
+        private const int CritDamageMultiplier = 2;
+        
         private readonly CombatData _combatData;
         private readonly CombatFormulaService _combatFormulaService;
 
@@ -42,8 +44,13 @@ namespace Gameplay.Combat
             ActiveUnit.UnitHealthController.TakeDamage(damageTaken);
         }
         
-        public void DealDamageToOtherUnit(int damage)
+        public void DealDamageToOtherUnit(int damage, float skillCritChance = 0)
         {
+            float finalCritChance = _combatFormulaService.GetFinalCritChance(ActiveUnit, skillCritChance);
+
+            if (IsCrit(finalCritChance))
+                damage *= CritDamageMultiplier;
+            
             if (ActiveUnit.UnitBuffsData.Charged.Value)
             {
                 ActiveUnit.UnitBuffsData.Charged.Value = false;
@@ -71,5 +78,7 @@ namespace Gameplay.Combat
             int constitutionStat = unit.UnitStatsData.Constitution.Value;
             return 1 - Mathf.Clamp(constitutionStat, 1, 99) * 1f / 100;
         }
+
+        private bool IsCrit(float chance) => Random.value < chance;
     }
 }

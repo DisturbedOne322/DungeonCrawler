@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MultiHitPhysicalAttack
   m_EditorClassIdentifier: 
   _name: Multi Hit
-  _description: Deal three weak physical attacks
-  BaseDamage: 7
-  _hits: 3
+  _description: Deal five weak physical attacks. High Crit Chance
+  BaseDamage: 3
+  _hits: 5
+  _critChance: 0.5
