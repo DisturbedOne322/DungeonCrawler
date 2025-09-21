@@ -16,6 +16,7 @@ namespace UI.PlayerBattleMenu
         [SerializeField] private RectTransform _mainMenuParent;
         [SerializeField] private RectTransform _skillsMenuParent;
 
+        private BaseMenuState _currentState;
         private SelectableMenuState _mainState;
         private SelectableMenuState _skillsState;
 
@@ -49,7 +50,7 @@ namespace UI.PlayerBattleMenu
             _skillsState = new SelectableMenuState(_input, this, true);
             _skillsState.Initialize(skillItems);
 
-            ShowMainMenu();
+            OpenMainMenu();
             _input.EnableUiInput(true);
         }
 
@@ -94,33 +95,30 @@ namespace UI.PlayerBattleMenu
             _mainMenuParent.gameObject.SetActive(false);
             _skillsMenuParent.gameObject.SetActive(true);
 
-            _mainState.ExitState();
-            _skillsState.EnterState();
+            ChangeState(_skillsState);
         }
 
-        public void ReturnToMainMenu()
+        public void OpenMainMenu()
         {
             _skillsMenuParent.gameObject.SetActive(false);
             _mainMenuParent.gameObject.SetActive(true);
 
-            _skillsState.ExitState();
-            _mainState.EnterState();
+            ChangeState(_mainState);
         }
-
-        private void ShowMainMenu()
+        
+        private void ChangeState(BaseMenuState state)
         {
-            _mainMenuParent.gameObject.SetActive(true);
-            _skillsMenuParent.gameObject.SetActive(false);
-            _mainState.EnterState();
+            _currentState?.ExitState();
+            _currentState = state;
+            _currentState.EnterState();
         }
 
         private void SelectSkill(BaseSkill skill)
         {
             OnSkillSelected?.Invoke(skill);
             _input.EnableUiInput(false);
-
-            _mainState.ExitState();
-            _skillsState.ExitState();
+            _currentState.ExitState();
+            
             Destroy(gameObject);
         }
     }

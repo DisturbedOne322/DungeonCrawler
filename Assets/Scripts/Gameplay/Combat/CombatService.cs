@@ -6,15 +6,17 @@ namespace Gameplay.Combat
     public class CombatService
     {
         private readonly CombatData _combatData;
+        private readonly CombatFormulaService _combatFormulaService;
 
         private int _turnCount = -1;
         
         public GameUnit ActiveUnit => _combatData.ActiveUnit;
         public GameUnit OtherUnit => _combatData.OtherUnit;
 
-        public CombatService(CombatData combatData)
+        public CombatService(CombatData combatData, CombatFormulaService combatFormulaService)
         {
             _combatData = combatData;
+            _combatFormulaService = combatFormulaService;
         }
         
         public void StartCombat(GameUnit enemy)

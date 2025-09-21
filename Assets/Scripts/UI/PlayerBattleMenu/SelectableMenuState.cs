@@ -20,7 +20,7 @@ namespace UI.PlayerBattleMenu
             d.Add(Input.OnUiSubmit.Subscribe(_ => Navigator.ExecuteSelection(Items)));
 
             if (_canGoBack)
-                d.Add(Input.OnUiBack.Subscribe(_ => Controller.ReturnToMainMenu()));
+                d.Add(Input.OnUiBack.Subscribe(_ => Controller.OpenMainMenu()));
         }
     }
 }
