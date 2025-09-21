@@ -13,10 +13,6 @@ namespace Installers.UIInstallers
         {
             Container.Bind<BattleMenuController>().FromInstance(_battleMenuController).AsSingle();
             Container.Bind<MenuItemViewFactory>().FromInstance(_menuItemViewFactory).AsSingle();
-            
-            Container.Bind<MainBattleBaseMenuState>().AsSingle();
-            Container.Bind<SkillsMenuState>().AsSingle();
-            Container.Bind<MenuItemsUpdater>().AsSingle();
         }
     }
 }

@@ -1,30 +1,38 @@
 using System.Collections.Generic;
 using Gameplay.Player;
+using UniRx;
 
 namespace UI.PlayerBattleMenu
 {
     public abstract class BaseMenuState
     {
-        protected MenuItemsUpdater MenuItemsUpdater;
-        protected PlayerInputProvider PlayerInputProvider;
-        protected BattleMenuController BattleMenuController;
-        
-        protected int SelectedItemIndex;
-        
-        protected List<MenuItemView> MenuItems;
+        protected readonly PlayerInputProvider Input;
+        protected readonly BattleMenuController Controller;
+        protected readonly MenuNavigator Navigator = new();
 
-        public BaseMenuState(MenuItemsUpdater menuItemsUpdater, PlayerInputProvider playerInputProvider, BattleMenuController battleMenuController)
+        protected List<MenuItemView> Items = new();
+        private CompositeDisposable _disposables;
+
+        protected BaseMenuState(PlayerInputProvider input, BattleMenuController controller)
         {
-            MenuItemsUpdater = menuItemsUpdater;
-            PlayerInputProvider = playerInputProvider;
-            BattleMenuController = battleMenuController;
+            Input = input;
+            Controller = controller;
         }
 
-        public void Initialize(List<MenuItemView> menuItems)
+        public void Initialize(List<MenuItemView> items) => Items = items;
+
+        public virtual void EnterState()
         {
-            MenuItems = menuItems;
+            _disposables = new CompositeDisposable();
+            SubscribeInput(_disposables);
+            Navigator.ResetSelection(Items);
         }
-        public abstract void EnterState();
-        public abstract void ExitState();
+
+        public virtual void ExitState()
+        {
+            _disposables?.Dispose();
+        }
+
+        protected abstract void SubscribeInput(CompositeDisposable disposables);
     }
 }

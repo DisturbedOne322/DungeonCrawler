@@ -191,8 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04976b0a26b47e5a0234534a6396fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuItemsParent: {fileID: 3911141103170600714}
-  _skillItemsParent: {fileID: 3637090957574446040}
+  _mainMenuParent: {fileID: 3911141103170600714}
+  _skillsMenuParent: {fileID: 3637090957574446040}
 --- !u!114 &5132244110253741117
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Skills;
@@ -12,132 +13,114 @@ namespace UI.PlayerBattleMenu
 {
     public class BattleMenuController : MonoBehaviour
     {
-        [SerializeField] private RectTransform _mainMenuItemsParent;
-        [SerializeField] private RectTransform _skillItemsParent;
-        
-        private MainBattleBaseMenuState _mainState;
-        private SkillsMenuState _skillsState;
+        [SerializeField] private RectTransform _mainMenuParent;
+        [SerializeField] private RectTransform _skillsMenuParent;
 
-        private PlayerInputProvider _playerInputProvider;
+        private SelectableMenuState _mainState;
+        private SelectableMenuState _skillsState;
+
+        private PlayerInputProvider _input;
         private UnitSkillsData _skillsData;
         private MenuItemViewFactory _factory;
-        private CombatService _combatService;
-        
+        private CombatService _combat;
+
         public event Action<BaseSkill> OnSkillSelected;
-        
+
         [Inject]
-        private void Construct(PlayerUnit player, 
-            PlayerInputProvider playerInputProvider,
-            CombatService combatService,
-            MenuItemViewFactory menuItemViewFactory,
-            MainBattleBaseMenuState mainState,
-            SkillsMenuState skillsState)
+        private void Construct(PlayerUnit player,
+            PlayerInputProvider input,
+            CombatService combat,
+            MenuItemViewFactory factory)
         {
             _skillsData = player.UnitSkillsData;
-            _playerInputProvider = playerInputProvider;
-            _combatService = combatService;
-            _factory = menuItemViewFactory;
-            _skillsState = skillsState;
-            _mainState = mainState;
+            _input = input;
+            _combat = combat;
+            _factory = factory;
         }
 
         private void Start()
         {
-            CreateMenuItems();
-            CreateSkillItems();
-            
-            _mainState.EnterState();
-            
-            _playerInputProvider.EnableUiInput(true);
-        }
+            var mainItems = BuildMainMenuItems();
+            var skillItems = BuildSkillsMenuItems();
 
-        private void CreateMenuItems()
-        {
-            List<MenuItemView> mainMenuItems = new List<MenuItemView>();
-            
-            var attackSkillItem = _factory.CreateSkillItemView(_skillsData.BasicAttackSkill);
-            var attackSkillData = new MenuItemData()
-            {
-                OnSelected = () => SelectSkill(_skillsData.BasicAttackSkill),
-                Selectable = () => _skillsData.BasicAttackSkill.CanUse(_combatService),
-            };
-            attackSkillItem.SetData(attackSkillData);
-            attackSkillItem.transform.SetParent(_mainMenuItemsParent, false);
-            mainMenuItems.Add(attackSkillItem);
+            _mainState = new SelectableMenuState(_input, this);
+            _mainState.Initialize(mainItems);
 
-
-            var guardSkillItem = _factory.CreateSkillItemView(_skillsData.GuardSkill);
-            var guardSkillData = new MenuItemData()
-            {
-                OnSelected = () => SelectSkill(_skillsData.GuardSkill),
-                Selectable = () => _skillsData.GuardSkill.CanUse(_combatService),
-            };
-            guardSkillItem.SetData(guardSkillData);
-            guardSkillItem.transform.SetParent(_mainMenuItemsParent, false);
-            mainMenuItems.Add(guardSkillItem);
-
-            var skillsMenuItem = _factory.CreateMenuItemView("Skills");
-            var skillsData = new MenuItemData()
-            {
-                OnSelected = OpenSkillsMenu,
-                Selectable = () => true,
-            };
-            skillsMenuItem.SetData(skillsData);
-            skillsMenuItem.transform.SetParent(_mainMenuItemsParent, false);
-            mainMenuItems.Add(skillsMenuItem);
-
-            _mainState.Initialize(mainMenuItems);
-        }
-
-        private void CreateSkillItems()
-        {
-            var skills = _skillsData.Skills;
-
-            List<MenuItemView> skillItems = new();
-            
-            foreach (var skill in skills)
-            {
-                var view = _factory.CreateSkillItemView(skill);
-                var data = new MenuItemData()
-                {
-                    OnSelected = () => SelectSkill(skill),
-                    Selectable = () => skill.CanUse(_combatService)
-                };
-                
-                view.SetData(data);
-                skillItems.Add(view);
-                view.transform.SetParent(_skillItemsParent, false);
-            }
-            
+            _skillsState = new SelectableMenuState(_input, this, true);
             _skillsState.Initialize(skillItems);
+
+            ShowMainMenu();
+            _input.EnableUiInput(true);
+        }
+
+        private List<MenuItemView> BuildMainMenuItems()
+        {
+            var items = new List<MenuItemView>
+            {
+                CreateSkillItem(_skillsData.BasicAttackSkill),
+                CreateSkillItem(_skillsData.GuardSkill),
+                CreateMenuItem("Skills", OpenSkillsMenu)
+            };
+            return items;
+        }
+
+        private List<MenuItemView> BuildSkillsMenuItems()
+        {
+            return _skillsData.Skills
+                .Select(CreateSkillItem)
+                .ToList();
+        }
+
+        private MenuItemView CreateSkillItem(BaseSkill skill)
+        {
+            var view = _factory.CreateSkillItemView(skill);
+            view.SetData(MenuItemData.ForSkill(skill, _combat, SelectSkill));
+            view.transform.SetParent(skill == _skillsData.BasicAttackSkill || skill == _skillsData.GuardSkill
+                ? _mainMenuParent
+                : _skillsMenuParent, false);
+            return view;
+        }
+
+        private MenuItemView CreateMenuItem(string label, Action action)
+        {
+            var view = _factory.CreateMenuItemView(label);
+            view.SetData(MenuItemData.Simple(label, action));
+            view.transform.SetParent(_mainMenuParent, false);
+            return view;
         }
 
         private void OpenSkillsMenu()
         {
-            _mainMenuItemsParent.gameObject.SetActive(false);
-            _skillItemsParent.gameObject.SetActive(true);
-            
+            _mainMenuParent.gameObject.SetActive(false);
+            _skillsMenuParent.gameObject.SetActive(true);
+
             _mainState.ExitState();
             _skillsState.EnterState();
         }
 
         public void ReturnToMainMenu()
         {
-            _skillItemsParent.gameObject.SetActive(false);
-            _mainMenuItemsParent.gameObject.SetActive(true);
+            _skillsMenuParent.gameObject.SetActive(false);
+            _mainMenuParent.gameObject.SetActive(true);
 
             _skillsState.ExitState();
+            _mainState.EnterState();
+        }
+
+        private void ShowMainMenu()
+        {
+            _mainMenuParent.gameObject.SetActive(true);
+            _skillsMenuParent.gameObject.SetActive(false);
             _mainState.EnterState();
         }
 
         private void SelectSkill(BaseSkill skill)
         {
             OnSkillSelected?.Invoke(skill);
-            _playerInputProvider.EnableUiInput(false);
-            
+            _input.EnableUiInput(false);
+
             _mainState.ExitState();
             _skillsState.ExitState();
-            
             Destroy(gameObject);
         }
     }
