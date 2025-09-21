@@ -42,7 +42,7 @@ namespace Gameplay.Dungeon
             
             if (!_dungeonLayoutProvider.TryGetRoom(roomIndex, out var room))
                 return;
-            
+
             room.ResetRoom();
             room.gameObject.SetActive(false);
             

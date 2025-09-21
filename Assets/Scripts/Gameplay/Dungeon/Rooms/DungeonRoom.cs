@@ -10,6 +10,7 @@ namespace Gameplay.Dungeon.Areas
         public Transform PlayerStandPoint => _playerStandPoint;
 
         public abstract RoomType RoomType { get; }
+
         public abstract void ResetRoom();
     }
 }

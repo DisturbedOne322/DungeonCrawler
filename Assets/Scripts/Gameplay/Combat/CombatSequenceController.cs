@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Player;
+using Gameplay.Units;
 
 namespace Gameplay.Combat
 {

@@ -1,7 +1,7 @@
-using Gameplay.Combat;
+using Gameplay.Combat.SkillSelection;
 using Zenject;
 
-namespace Installers
+namespace Installers.UnitInstallers
 {
     public class EnemyInstaller : MonoInstaller
     {

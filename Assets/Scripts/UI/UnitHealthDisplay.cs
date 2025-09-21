@@ -1,5 +1,6 @@
 using System;
 using Gameplay.Combat;
+using Gameplay.Combat.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

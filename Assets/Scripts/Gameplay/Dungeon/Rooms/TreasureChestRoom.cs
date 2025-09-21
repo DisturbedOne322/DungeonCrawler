@@ -21,8 +21,16 @@ namespace Gameplay.Dungeon.Areas
         {
             _balanceService = balanceService;
         }
-        
-        public override void ResetRoom() => _chestAnimator.ResetChest();
+
+        public override void ResetRoom()
+        {
+            _chestAnimator.ResetChest();   
+        }
+
+        public override UniTask SetupRoom()
+        {
+            return UniTask.CompletedTask;
+        }
 
         public override async UniTask ClearRoom()
         {

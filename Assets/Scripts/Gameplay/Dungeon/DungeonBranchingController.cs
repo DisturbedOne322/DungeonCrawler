@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Data;
 using Gameplay.Player;
 
 namespace Gameplay.Dungeon
@@ -10,18 +8,21 @@ namespace Gameplay.Dungeon
         private readonly PlayerDecisionProvider _decisionProvider;
         private readonly DungeonGenerator _dungeonGenerator;
         private readonly DungeonPositioner _dungeonPositioner;
+        private readonly DungeonBranchingSelector _dungeonBranchingSelector;
 
         public DungeonBranchingController(PlayerDecisionProvider decisionProvider, 
-            DungeonGenerator dungeonGenerator, DungeonPositioner dungeonPositioner)
+            DungeonGenerator dungeonGenerator, DungeonPositioner dungeonPositioner, 
+            DungeonBranchingSelector dungeonBranchingSelector)
         {
             _decisionProvider = decisionProvider;
             _dungeonGenerator = dungeonGenerator;
             _dungeonPositioner = dungeonPositioner;
+            _dungeonBranchingSelector = dungeonBranchingSelector;
         }
         
         public async UniTask<int> WaitForDecision()
         {
-            var roomSelection = GetRoomSelection();
+            var roomSelection = _dungeonBranchingSelector.RoomsForSelection;
             
             var inputIndex = await _decisionProvider.MakeDecision();
             var selectedRoom = roomSelection[inputIndex];
@@ -30,16 +31,6 @@ namespace Gameplay.Dungeon
             _dungeonGenerator.CreateNextMapSection(selectedRoom);
             
             return inputIndex;
-        }
-        
-        private List<RoomType> GetRoomSelection()
-        {
-            return new(3)
-            {
-                RoomType.TreasureChest,
-                RoomType.Corridor,
-                RoomType.Combat,
-            };
         }
     }
 }

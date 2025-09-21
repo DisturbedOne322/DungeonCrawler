@@ -16,7 +16,7 @@ namespace Gameplay.Dungeon.Animations
             await UniTask.WaitForSeconds(_doorOpenTime);
         }
 
-        public void ResetRoom()
+        public void ResetDoors()
         {
             foreach (var pivot in _doorPivots) 
                 pivot.transform.rotation = Quaternion.identity;

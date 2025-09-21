@@ -1,7 +1,8 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat.Data;
 using Gameplay.Combat.Skills;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.SkillSelection
 {
     public abstract class SkillSelectionProvider
     {

@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Areas;
+using Gameplay.Units;
 
 namespace Gameplay.Player
 {
@@ -26,9 +27,9 @@ namespace Gameplay.Player
             _gameplayData = gameplayData;
         }
 
-        public StopRoom GetCurrentRoom()
+        public StopRoom GetNextStopRoom()
         {
-            if (_dungeonLayoutProvider.TryGetRoom(GetPositionIndex(), out var room))
+            if (_dungeonLayoutProvider.TryGetRoom(GetIndexOfStopArea(), out var room))
                 return room as StopRoom;
 
             return null;

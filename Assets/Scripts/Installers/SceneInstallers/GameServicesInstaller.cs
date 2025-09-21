@@ -1,10 +1,10 @@
-using Gameplay;
+using Gameplay.Enemies;
 using Gameplay.Player;
 using Gameplay.Services;
 using UI;
 using Zenject;
 
-namespace Installers
+namespace Installers.SceneInstallers
 {
     public class GameServicesInstaller : MonoInstaller
     {

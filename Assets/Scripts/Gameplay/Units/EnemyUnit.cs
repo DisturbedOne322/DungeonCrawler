@@ -1,9 +1,8 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Gameplay.Combat;
 using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Units
 {
     public class EnemyUnit : GameUnit
     {

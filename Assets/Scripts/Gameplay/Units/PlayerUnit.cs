@@ -1,10 +1,9 @@
 using Cysharp.Threading.Tasks;
 using Data;
 using DG.Tweening;
-using Gameplay.Combat;
 using UnityEngine;
 
-namespace Gameplay.Player
+namespace Gameplay.Units
 {
     public class PlayerUnit : GameUnit
     {

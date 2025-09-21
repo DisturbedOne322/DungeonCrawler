@@ -1,9 +1,9 @@
-using Gameplay.Combat;
 using Gameplay.Services;
+using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay
+namespace Gameplay.Enemies
 {
     public class EnemyFactory : MonoBehaviour
     {

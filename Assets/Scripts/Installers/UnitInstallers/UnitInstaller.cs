@@ -2,7 +2,7 @@ using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Zenject;
 
-namespace Installers
+namespace Installers.UnitInstallers
 {
     public class UnitInstaller : MonoInstaller
     {

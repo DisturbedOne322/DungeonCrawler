@@ -27,10 +27,16 @@ namespace Gameplay.Services
             if (_roomsPool.TryGetRoom(roomType, out var room))
                 return room;
 
+            var roomData = GetRoomData(roomType);
+                return _containerFactory.Create<DungeonRoom>(roomData.RoomPrefab.gameObject);
+        }
+
+        public RoomData GetRoomData(RoomType roomType)
+        {
             if (_dungeonRoomsDatabase.TryGetRoomData(roomType, out var data))
-                return _containerFactory.Create<DungeonRoom>(data.RoomPrefab.gameObject);
+                return data;
             
-            throw new Exception($"No room found of type {roomType}");
+            throw new Exception($"No room data found of type {roomType}");
         }
     }
 }

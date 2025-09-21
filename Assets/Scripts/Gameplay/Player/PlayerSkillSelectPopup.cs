@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Combat;
+using Gameplay.Combat.Data;
 using Gameplay.Combat.Skills;
+using Gameplay.Units;
 using TMPro.EditorUtilities;
 using UI;
 using UniRx;

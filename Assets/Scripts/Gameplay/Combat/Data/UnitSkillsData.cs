@@ -3,7 +3,7 @@ using Gameplay.Combat.Skills;
 using ModestTree;
 using UniRx;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Data
 {
     public class UnitSkillsData
     {

@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Skills;
 using UnityEngine;
 
-namespace Gameplay
+namespace Gameplay.Units
 {
     [CreateAssetMenu(fileName = "UnitData", menuName = "Units/UnitData")]
     public class UnitData : ScriptableObject

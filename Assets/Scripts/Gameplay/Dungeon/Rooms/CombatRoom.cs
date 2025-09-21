@@ -2,6 +2,8 @@ using System;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Combat;
+using Gameplay.Enemies;
+using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
@@ -24,24 +26,27 @@ namespace Gameplay.Dungeon.Areas
             _combatSequenceController = combatSequenceController;
             _enemyFactory = enemyFactory;
         }
-
-        private void OnEnable()
+        
+        public override void ResetRoom()
+        {
+            
+        }
+        
+        public override UniTask SetupRoom()
         {
             _enemy = _enemyFactory.CreateEnemy();
             
             _enemy.transform.SetParent(_enemySpawnPoint, false);
             _enemy.transform.localPosition = Vector3.zero;
-        }
-
-        public override void ResetRoom()
-        {
             
+            return UniTask.CompletedTask;
         }
 
         public override async UniTask ClearRoom()
         {
             await _enemy.PlayAppearAnimation();
             await _combatSequenceController.StartCombat(_enemy);
+            Destroy(_enemy.gameObject);
         }
     }
 }

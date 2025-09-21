@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+using Gameplay.Combat;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Skills;
+using Gameplay.Combat.SkillSelection;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Combat
+namespace Gameplay.Units
 {
     public class GameUnit : MonoBehaviour
     {

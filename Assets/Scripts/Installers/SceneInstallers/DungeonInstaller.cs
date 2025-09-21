@@ -2,7 +2,7 @@ using Gameplay.Dungeon;
 using Gameplay.Services;
 using Zenject;
 
-namespace Installers
+namespace Installers.SceneInstallers
 {
     public class DungeonInstaller : MonoInstaller
     {
@@ -10,6 +10,7 @@ namespace Installers
         {
             Container.Bind<DungeonGenerator>().AsSingle();
             Container.Bind<DungeonBranchingController>().AsSingle();
+            Container.Bind<DungeonBranchingSelector>().AsSingle();
             Container.Bind<DungeonPositioner>().AsSingle();
             Container.Bind<DungeonLayoutProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<DungeonRoomsPool>().AsSingle();

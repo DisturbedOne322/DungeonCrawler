@@ -3,11 +3,11 @@ using Gameplay;
 using Gameplay.Combat;
 using Gameplay.Player;
 using Gameplay.Services;
-using UI;
+using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Installers
+namespace Installers.SceneInstallers
 {
     public class GameInstaller : MonoInstaller
     {

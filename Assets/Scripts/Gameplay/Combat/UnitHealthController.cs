@@ -32,8 +32,7 @@ namespace Gameplay.Combat
             if (_unitHealthData.IsDead.Value) 
                 return;
 
-            Debug.Log(amount);
-            //amount = GetFinalDamage(amount);
+            amount = GetFinalDamage(amount);
             _unitHealthData.CurrentHealth.Value = Mathf.Max(_unitHealthData.CurrentHealth.Value - amount, 0);
         }
 
