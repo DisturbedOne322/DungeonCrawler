@@ -7,16 +7,16 @@ namespace UI.PlayerBattleMenu
     public abstract class BaseMenuState
     {
         protected readonly PlayerInputProvider Input;
-        protected readonly BattleMenuController Controller;
+        protected readonly BattleMenuView View;
         protected readonly MenuNavigator Navigator = new();
 
         protected List<MenuItemView> Items = new();
         private CompositeDisposable _disposables;
 
-        protected BaseMenuState(PlayerInputProvider input, BattleMenuController controller)
+        protected BaseMenuState(PlayerInputProvider input, BattleMenuView view)
         {
             Input = input;
-            Controller = controller;
+            View = view;
         }
 
         public void Initialize(List<MenuItemView> items) => Items = items;

@@ -7,8 +7,8 @@ namespace UI.PlayerBattleMenu
     {
         private readonly bool _canGoBack;
 
-        public SelectableMenuState(PlayerInputProvider input, BattleMenuController controller, bool canGoBack = false)
-            : base(input, controller)
+        public SelectableMenuState(PlayerInputProvider input, BattleMenuView view, bool canGoBack = false)
+            : base(input, view)
         {
             _canGoBack = canGoBack;
         }
@@ -20,7 +20,7 @@ namespace UI.PlayerBattleMenu
             d.Add(Input.OnUiSubmit.Subscribe(_ => Navigator.ExecuteSelection(Items)));
 
             if (_canGoBack)
-                d.Add(Input.OnUiBack.Subscribe(_ => Controller.OpenMainMenu()));
+                d.Add(Input.OnUiBack.Subscribe(_ => View.OpenMainMenu()));
         }
     }
 }

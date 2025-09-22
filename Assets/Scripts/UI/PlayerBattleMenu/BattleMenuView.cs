@@ -11,7 +11,7 @@ using Zenject;
 
 namespace UI.PlayerBattleMenu
 {
-    public class BattleMenuController : MonoBehaviour
+    public class BattleMenuView : MonoBehaviour
     {
         [SerializeField] private RectTransform _mainMenuParent;
         [SerializeField] private RectTransform _skillsMenuParent;
