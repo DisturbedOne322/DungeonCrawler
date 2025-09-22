@@ -31,26 +31,23 @@ namespace StateMachine.BattleMenu
             foreach (var skill in skillsData.Skills)
             {
                 MenuItems.Add(
-                    BattleMenuItem.ForSkill(
+                    BattleMenuItemData.ForSkill(
                         skill,
                         CombatService,
                         () => StateMachine.SelectSkill(skill))
                 );
             }
+            
+            MenuItemsUpdater.SetMenuItems(MenuItems);
         }
 
         protected override void SubscribeToInputEvents()
         {
             _disposables = new();
             
-            _disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ =>
-            {
-                MenuItemsUpdater.ExecuteSelection(MenuItems);
-                StateMachine.Reset();
-            }));            
-            
-            _disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(MenuItems, -1)));
-            _disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(MenuItems, +1)));
+            _disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));            
+            _disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
+            _disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
             _disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ => StateMachine.GoToState<MainBattleMenuState>().Forget()));
         }
 

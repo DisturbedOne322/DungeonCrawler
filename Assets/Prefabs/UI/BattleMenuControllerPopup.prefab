@@ -148,10 +148,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2169062834420437272}
-  - component: {fileID: 3550141366985302513}
-  - component: {fileID: 5132244110253741117}
-  - component: {fileID: 1458831422262420}
-  - component: {fileID: 2604763583364276264}
+  - component: {fileID: 7564488841196983790}
+  - component: {fileID: 5078626436397534129}
   m_Layer: 0
   m_Name: BattleMenuControllerPopup
   m_TagString: Untagged
@@ -179,7 +177,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3550141366985302513
+--- !u!114 &7564488841196983790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,12 +186,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4901343141959259639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d04976b0a26b47e5a0234534a6396fee, type: 3}
+  m_Script: {fileID: 11500000, guid: 148e430b1ad648e887ff473493fdc600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuParent: {fileID: 3911141103170600714}
-  _skillsMenuParent: {fileID: 3637090957574446040}
---- !u!114 &5132244110253741117
+  _factory: {fileID: 5078626436397534129}
+  _mainContent: {fileID: 3911141103170600714}
+  _skillsContent: {fileID: 3637090957574446040}
+--- !u!114 &5078626436397534129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,43 +201,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4901343141959259639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 938bf81e9f704d75998ed2b13e745474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 1458831422262420}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
---- !u!114 &1458831422262420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901343141959259639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822c1d6d593a4969ac9b409d4a9298f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _battleMenuController: {fileID: 3550141366985302513}
-  _menuItemViewFactory: {fileID: 2604763583364276264}
---- !u!114 &2604763583364276264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901343141959259639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e235a68fb9664070b7a4781f13104555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _skillPrefab: {fileID: 2640060859129170609, guid: 47b2b83507cb95c43bf47faef2ec054b, type: 3}
-  _menuItemPrefab: {fileID: 645692292402151887, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
+  _menuItemPrefab: {fileID: 938312228375403707, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
+  _skillMenuItemPrefab: {fileID: 6822584178029666815, guid: 47b2b83507cb95c43bf47faef2ec054b, type: 3}
 --- !u!1 &6708444874652247909
 GameObject:
   m_ObjectHideFlags: 0

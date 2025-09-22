@@ -12,10 +12,11 @@ namespace StateMachine.BattleMenu
     {
         protected readonly PlayerUnit Player;
         protected readonly PlayerInputProvider PlayerInputProvider;
-        protected readonly MenuItemsUpdater MenuItemsUpdater;
         protected readonly CombatService CombatService;
+        
+        public readonly MenuItemsUpdater MenuItemsUpdater;
 
-        protected List<BattleMenuItem> MenuItems = new();
+        protected List<BattleMenuItemData> MenuItems = new();
         
         public BattleMenuState(PlayerUnit player, 
             PlayerInputProvider playerInputProvider, 
@@ -30,6 +31,7 @@ namespace StateMachine.BattleMenu
 
         public override UniTask EnterState()
         {
+            MenuItemsUpdater.ResetSelection();
             LoadMenuItems();
             SubscribeToInputEvents();
             return UniTask.CompletedTask;

@@ -4,7 +4,6 @@ using Gameplay.Combat.Skills;
 using Gameplay.Player;
 using States;
 using UniRx;
-using UnityEngine;
 
 namespace StateMachine.BattleMenu
 {
@@ -14,6 +13,7 @@ namespace StateMachine.BattleMenu
         private readonly PlayerInputProvider _playerInputProvider;
         
         public readonly Subject<BaseSkill> SkillSelected = new();
+        public readonly Subject<Unit> OnOpened = new();
 
         public BattleMenuStateMachine(IEnumerable<BattleMenuState> states, PlayerInputProvider playerInputProvider) :
             base(states)
@@ -25,6 +25,8 @@ namespace StateMachine.BattleMenu
         {
             _playerInputProvider.EnableUiInput(true);
             GoToState<MainBattleMenuState>().Forget();
+            
+            OnOpened.OnNext(Unit.Default);
         }
 
         public void SelectSkill(BaseSkill skill)

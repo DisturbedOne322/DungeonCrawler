@@ -1,21 +1,29 @@
 using System.Collections.Generic;
+using UniRx;
 
 namespace StateMachine.BattleMenu
 {
     public class MenuItemsUpdater
     {
-        private int _selectedIndex;
-        public int SelectedIndex => _selectedIndex;
+        public ReactiveProperty<int> SelectedIndex = new();
+
+        private List<BattleMenuItemData> _menuItems;
+        public List<BattleMenuItemData> MenuItems => _menuItems;
         
-        public void UpdateSelection(List<BattleMenuItem> items, int increment = 0)
+        public void SetMenuItems(List<BattleMenuItemData> menuItems) => _menuItems = menuItems;
+        
+        public void UpdateSelection(int increment = 0)
         {
-            if (items.Count == 0) return;
+            int count = _menuItems.Count;
+            
+            if (count == 0) 
+                return;
 
-            _selectedIndex = (_selectedIndex + increment + items.Count) % items.Count;
+            SelectedIndex.Value = (SelectedIndex.Value + increment + count) % count;
 
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < count; i++)
             {
-                var item = items[i];
+                var item = _menuItems[i];
                 
                 if (!item.IsSelectable())
                 {
@@ -23,22 +31,18 @@ namespace StateMachine.BattleMenu
                     continue;
                 }
                 
-                item.IsHighlighted.Value = i == _selectedIndex;
+                item.IsHighlighted.Value = i == SelectedIndex.Value;
             }
         }
 
-        public void ResetSelection(List<BattleMenuItem> items)
-        {
-            _selectedIndex = 0;
-            UpdateSelection(items);
-        }
+        public void ResetSelection() => SelectedIndex.Value = 0;
 
-        public void ExecuteSelection(List<BattleMenuItem> items)
+        public void ExecuteSelection()
         {
-            if (items.Count == 0) 
+            if (_menuItems.Count == 0) 
                 return;
             
-            items[_selectedIndex].OnSelected?.Invoke();
+            _menuItems[SelectedIndex.Value].OnSelected?.Invoke();
         }
     }
 }

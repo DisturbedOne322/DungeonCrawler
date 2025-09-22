@@ -3,7 +3,6 @@ using Gameplay.Combat;
 using Gameplay.Player;
 using Gameplay.Units;
 using UniRx;
-using UnityEngine;
 
 namespace StateMachine.BattleMenu
 {
@@ -28,33 +27,35 @@ namespace StateMachine.BattleMenu
             MenuItems.Clear();
             
             MenuItems.Add(
-                BattleMenuItem.ForSkill(
+                BattleMenuItemData.ForSkill(
                     Player.UnitSkillsData.BasicAttackSkill,
                     CombatService,
                     () => StateMachine.SelectSkill(Player.UnitSkillsData.BasicAttackSkill))
                 );
             
             MenuItems.Add(
-                BattleMenuItem.ForSkill(
+                BattleMenuItemData.ForSkill(
                     Player.UnitSkillsData.GuardSkill,
                     CombatService,
                     () => StateMachine.SelectSkill(Player.UnitSkillsData.GuardSkill))
             );
             
             MenuItems.Add(
-                BattleMenuItem.Simple(
+                BattleMenuItemData.Simple(
                     "SKILLS", 
                     () => StateMachine.GoToState<SkillSelectBattleMenuState>().Forget())
             );
+            
+            MenuItemsUpdater.SetMenuItems(MenuItems);
         }
 
         protected override void SubscribeToInputEvents()
         {
             _disposables = new();
             
-            _disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection(MenuItems)));
-            _disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(MenuItems, -1)));
-            _disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(MenuItems, +1)));
+            _disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));
+            _disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
+            _disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
         }
 
         protected override void UnsubscribeFromInputEvents()
