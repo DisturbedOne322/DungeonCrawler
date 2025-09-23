@@ -22,7 +22,7 @@ namespace StateMachine.BattleMenu
             
         }
 
-        protected override void LoadMenuItems()
+        public override void LoadMenuItems()
         {
             MenuItems.Clear();
 

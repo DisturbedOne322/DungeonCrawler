@@ -30,7 +30,6 @@ namespace StateMachine.BattleMenu
 
         public override UniTask EnterState()
         {
-            LoadMenuItems();
             SubscribeToInputEvents();
             MenuItemsUpdater.ResetSelection();
             return UniTask.CompletedTask;
@@ -41,8 +40,9 @@ namespace StateMachine.BattleMenu
             UnsubscribeFromInputEvents();
             return UniTask.CompletedTask;
         }
-
-        protected abstract void LoadMenuItems();
+        
+        public abstract void LoadMenuItems();
+        
         protected abstract void SubscribeToInputEvents();
         protected abstract void UnsubscribeFromInputEvents();
     }

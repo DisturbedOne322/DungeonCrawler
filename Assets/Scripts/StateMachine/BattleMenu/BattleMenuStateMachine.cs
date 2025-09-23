@@ -23,13 +23,21 @@ namespace StateMachine.BattleMenu
 
         public void OpenBattleMenu()
         {
-            foreach (var typeStateKv in States) 
-                typeStateKv.Value.MenuItemsUpdater.ResetSelection(false);
+            ResetMenus();
             
             _playerInputProvider.EnableUiInput(true);
             GoToState<MainBattleMenuState>().Forget();
             
             OnOpened.OnNext(Unit.Default);
+        }
+
+        private void ResetMenus()
+        {
+            foreach (var typeStateKv in States)
+            {
+                typeStateKv.Value.MenuItemsUpdater.ResetSelection(false);
+                typeStateKv.Value.LoadMenuItems();
+            }
         }
 
         public void SelectSkill(BaseSkill skill)

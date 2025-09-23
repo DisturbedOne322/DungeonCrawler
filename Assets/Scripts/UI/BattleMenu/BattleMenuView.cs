@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using StateMachine.BattleMenu;
 using UnityEngine;
 using Zenject;
@@ -17,6 +17,8 @@ namespace UI.BattleMenu
 
         private BattleMenuPageView _currentPage;
         
+        private Dictionary<BattleMenuState, BattleMenuPageView> _pagePool = new();
+        
         [Inject]
         private void Construct(BattleMenuStateMachine stateMachine)
         {
@@ -31,29 +33,53 @@ namespace UI.BattleMenu
         private void Subscribe()
         {
             _disposables = new();
-            _disposables.Add(_stateMachine.OnStateChanged.Subscribe(CreateMenu));
-            _disposables.Add(_stateMachine.SkillSelected.Subscribe(_ => CloseMenu()));
+            _disposables.Add(_stateMachine.OnStateChanged.Subscribe(OpenMenu));
+            _disposables.Add(_stateMachine.SkillSelected.Subscribe(_ => DestroyAllMenus()));
         }
 
-        private void OnDestroy() => _disposables.Dispose();
-        
-        private void CloseMenu() => DestroyCurrentPage();
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
+
+        private void OpenMenu(BattleMenuState state)
+        {
+            CloseCurrentMenu();
+
+            if (_pagePool.TryGetValue(state, out var page))
+            {
+                _currentPage = page;
+                _currentPage.gameObject.SetActive(true);
+                return;
+            }
+            
+            CreateMenu(state);
+        }
 
         private void CreateMenu(BattleMenuState state)
         {
-            DestroyCurrentPage();
-            
             var updater = state.MenuItemsUpdater;
 
             _currentPage = _factory.CreatePage();
             _currentPage.transform.SetParent(_pagesParent, false);
             _currentPage.SetItems(_factory.CreateViewsForData(updater.MenuItems));
+            
+            _pagePool.TryAdd(state, _currentPage);
         }
 
-        private void DestroyCurrentPage()
+        private void CloseCurrentMenu()
         {
             if (_currentPage) 
-                Destroy(_currentPage.gameObject);
+                _currentPage.gameObject.SetActive(false);
+        }
+
+        private void DestroyAllMenus()
+        {
+            foreach (var view in _pagePool.Values) 
+                Destroy(view.gameObject);
+            
+            _currentPage = null;
+            _pagePool.Clear();
         }
     }
 }
