@@ -22,8 +22,6 @@ MonoBehaviour:
     _luck: 10
   _maxHp: 100
   _basicAttackSkill: {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}
-  _skillSet:
-  - {fileID: 11400000, guid: 1b5c98718c47df04a8cce4d8f2ca44d8, type: 2}
-  - {fileID: 11400000, guid: ec231c2fecaf2574fbc44debc180f4be, type: 2}
-  - {fileID: 11400000, guid: 8262d71984cb6d5458f58f23092f0fc9, type: 2}
   _guardSkill: {fileID: 11400000, guid: 5a2ec0e93c678fb42b0087f73304518c, type: 2}
+  _skillSet:
+  - {fileID: 11400000, guid: 8262d71984cb6d5458f58f23092f0fc9, type: 2}

@@ -9,17 +9,21 @@ namespace States
         where TState : IState<TMachine>
         where TMachine : StateMachine<TState, TMachine>
     {
-        private readonly Dictionary<Type, TState> _states = new();
+        protected readonly Dictionary<Type, TState> States = new();
+        
+        private TState _currentState;
         private TState _previousState;
 
-        public ReactiveProperty<TState> CurrentState = new ();
+        public readonly Subject<TState> OnStateChanged = new();
+        
+        public TState CurrentState => _currentState;
         public TState PreviousState => _previousState;
 
         public StateMachine(IEnumerable<TState> states)
         {
             foreach (var state in states)
             {
-                _states.Add(state.GetType(), state);
+                States.Add(state.GetType(), state);
                 state.SetStateMachine((TMachine)this);
             }
         }
@@ -37,21 +41,23 @@ namespace States
 
         public void Reset()
         {
-            CurrentState.Value.ExitState();
-            CurrentState.Value = default;
+            _currentState.ExitState();
+            _currentState = default;
             _previousState = default;
         }
 
         private async UniTask ChangeState(Type type)
         {
-            if (CurrentState.Value != null)
+            if (CurrentState != null)
             {
-                _previousState = CurrentState.Value;
-                await CurrentState.Value.ExitState();
+                _previousState = _currentState;
+                await _currentState.ExitState();
             }
 
-            CurrentState.Value = _states[type];
-            await CurrentState.Value.EnterState();
+            _currentState = States[type];
+            await _currentState.EnterState();
+            
+            OnStateChanged.OnNext(_currentState);
         }
     }
 }

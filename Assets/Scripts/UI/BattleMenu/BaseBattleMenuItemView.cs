@@ -1,5 +1,4 @@
 using System;
-using Cysharp.Threading.Tasks;
 using StateMachine.BattleMenu;
 using TMPro;
 using UniRx;
@@ -20,14 +19,28 @@ namespace UI.BattleMenu
             _text.text = data.Label;
 
             _disposable = data.IsHighlighted
-                .Subscribe(isOn => _background.color = isOn ? Color.green : Color.white);
-
-            _background.color = data.IsSelectable() ? Color.white : Color.grey;
+                .Subscribe(isOn =>
+                {
+                    if (!data.IsSelectable())
+                        SetLocked();
+                    else
+                        SetSelectionColor(isOn);
+                });
         }
-        
+
         private void OnDestroy()
         {
             _disposable.Dispose();
+        }
+
+        private void SetLocked()
+        {
+            _background.color = Color.grey;
+        }
+
+        private void SetSelectionColor(bool isOn)
+        {
+            _background.color = isOn ? Color.green : Color.white;
         }
     }
 }

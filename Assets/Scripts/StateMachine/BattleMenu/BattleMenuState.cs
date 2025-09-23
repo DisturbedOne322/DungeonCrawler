@@ -4,7 +4,6 @@ using Gameplay.Combat;
 using Gameplay.Player;
 using Gameplay.Units;
 using States;
-using UnityEngine;
 
 namespace StateMachine.BattleMenu
 {
@@ -31,9 +30,9 @@ namespace StateMachine.BattleMenu
 
         public override UniTask EnterState()
         {
-            MenuItemsUpdater.ResetSelection();
             LoadMenuItems();
             SubscribeToInputEvents();
+            MenuItemsUpdater.ResetSelection();
             return UniTask.CompletedTask;
         }
 

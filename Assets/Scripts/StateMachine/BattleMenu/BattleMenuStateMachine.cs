@@ -23,6 +23,9 @@ namespace StateMachine.BattleMenu
 
         public void OpenBattleMenu()
         {
+            foreach (var typeStateKv in States) 
+                typeStateKv.Value.MenuItemsUpdater.ResetSelection(false);
+            
             _playerInputProvider.EnableUiInput(true);
             GoToState<MainBattleMenuState>().Forget();
             

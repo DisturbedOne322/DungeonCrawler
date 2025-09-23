@@ -48,7 +48,7 @@ namespace StateMachine.BattleMenu
             _disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));            
             _disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
             _disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
-            _disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ => StateMachine.GoToState<MainBattleMenuState>().Forget()));
+            _disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ => StateMachine.GoToPrevState().Forget()));
         }
 
         protected override void UnsubscribeFromInputEvents()

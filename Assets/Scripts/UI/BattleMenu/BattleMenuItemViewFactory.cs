@@ -8,6 +8,7 @@ namespace UI.BattleMenu
 {
     public class BattleMenuItemViewFactory : MonoBehaviour
     {
+        [SerializeField] private BattleMenuPageView _pagePrefab;
         [SerializeField] private BaseBattleMenuItemView _menuItemPrefab;
         [SerializeField] private SkillBattleMenuItemView _skillMenuItemPrefab;
 
@@ -18,6 +19,8 @@ namespace UI.BattleMenu
         {
             _factory = factory;
         }
+
+        public BattleMenuPageView CreatePage() => _factory.Create<BattleMenuPageView>(_pagePrefab.gameObject);
 
         public List<BaseBattleMenuItemView> CreateViewsForData(List<BattleMenuItemData> dataList)
         {
