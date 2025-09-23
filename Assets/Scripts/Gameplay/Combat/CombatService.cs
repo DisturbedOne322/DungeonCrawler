@@ -46,9 +46,9 @@ namespace Gameplay.Combat
         public void ApplyChargeToActiveUnit() => ActiveUnit.UnitBuffsData.Charged.Value = true;
         public void ApplyConcentrateToActiveUnit() => ActiveUnit.UnitBuffsData.Concentrated.Value = true;
         
-        public void DealDamageToActiveUnit(int damage)
+        public void DealDamageToActiveUnit(int damage, bool isPiercing = false)
         {
-            int damageTaken = GetFinalDamageTo(ActiveUnit, damage);
+            int damageTaken = _combatFormulaService.GetFinalDamageTo(ActiveUnit, damage, isPiercing);
             ActiveUnit.UnitHealthController.TakeDamage(damageTaken);
             
             _onHitDealt.OnNext(new HitDamageData()
@@ -59,7 +59,7 @@ namespace Gameplay.Combat
             });
         }
         
-        public void DealDamageToOtherUnit(int damage, float skillCritChance = 0)
+        public void DealDamageToOtherUnit(int damage, float skillCritChance = 0, bool isPiercing = false)
         {
             float finalCritChance = _combatFormulaService.GetFinalCritChance(ActiveUnit, skillCritChance);
 
@@ -74,7 +74,7 @@ namespace Gameplay.Combat
                 damage *= 2;
             }
             
-            int damageTaken = GetFinalDamageTo(OtherUnit, damage);
+            int damageTaken = _combatFormulaService.GetFinalDamageTo(OtherUnit, damage, isPiercing);
             OtherUnit.UnitHealthController.TakeDamage(damageTaken);
             
             _onHitDealt.OnNext(new HitDamageData()
@@ -84,25 +84,7 @@ namespace Gameplay.Combat
                 Target = OtherUnit
             });
         }
-
-        private int GetFinalDamageTo(GameUnit unit, int rawDamage)
-        {
-            float damageReductionModifier = CalculateDamageReduction(unit);
-            
-            float constitutionReducedDamage = rawDamage * damageReductionModifier;
-
-            if (unit.UnitBuffsData.Guarded.Value)
-                constitutionReducedDamage /= 2;
-            
-            return Mathf.RoundToInt(constitutionReducedDamage);
-        }
-
-        private float CalculateDamageReduction(GameUnit unit)
-        {
-            int constitutionStat = unit.UnitStatsData.Constitution.Value;
-            return 1 - Mathf.Clamp(constitutionStat, 1, 99) * 1f / 100;
-        }
-
+        
         private bool IsCrit(float chance) => Random.value < chance;
     }
 }

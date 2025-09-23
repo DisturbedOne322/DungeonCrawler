@@ -14,14 +14,17 @@ namespace Gameplay.Combat.Skills
         {
             await UniTask.WaitForSeconds(0.5f);
             
-            service.DealDamageToActiveUnit(_fixedHealthPrice);
+            service.DealDamageToActiveUnit(_fixedHealthPrice, true);
             service.DealDamageToOtherUnit(GetHitDamage(service.ActiveUnit.UnitStatsData));
             
             await UniTask.WaitForSeconds(0.5f);
         }
 
-        public override bool CanUse(CombatService combatService) =>
-            combatService.ActiveUnit.HealthData.CurrentHealth.Value >= _fixedHealthPrice;
+        public override bool CanUse(CombatService combatService)
+        {
+            int currentHealth = combatService.ActiveUnit.HealthData.CurrentHealth.Value;
+            return currentHealth > _fixedHealthPrice;
+        }
 
         protected override int GetHitDamage(UnitStatsData statsData)
         {

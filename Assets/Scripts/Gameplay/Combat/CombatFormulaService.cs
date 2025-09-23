@@ -6,7 +6,23 @@ namespace Gameplay.Combat
     public class CombatFormulaService
     {
         private const int MaxStatValue = 100;
-        
+
+        public int GetFinalDamageTo(GameUnit unit, int rawDamage, bool isPiercing = false)
+        {
+            if (isPiercing)
+                return rawDamage;
+            
+            int constitutionStat = unit.UnitStatsData.Constitution.Value;
+            float damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, MaxStatValue) * 1f / MaxStatValue;
+            
+            float constitutionReducedDamage = rawDamage * damageReductionModifier;
+
+            if (unit.UnitBuffsData.Guarded.Value)
+                constitutionReducedDamage /= 2;
+            
+            return Mathf.RoundToInt(constitutionReducedDamage);
+        }
+
         public float GetFinalCritChance(GameUnit unit, float skillCritChance = 0)
         {
             float finalCritChance = 0f;
@@ -20,7 +36,7 @@ namespace Gameplay.Combat
             finalCritChance = skillCritChance + chanceFromDex + chanceFromLuck;
             return Mathf.Clamp01(finalCritChance);
         }
-        
+
         public float GetFinalEvasionChance(GameUnit unit)
         {
             int dex = unit.UnitStatsData.Dexterity.Value;
@@ -32,19 +48,6 @@ namespace Gameplay.Combat
             float finalEvasionChance = chanceFromDex + chanceFromLuck;
             
             return Mathf.Clamp01(finalEvasionChance);
-        }
-        
-        public int GetFinalDamageTo(GameUnit unit, int rawDamage)
-        {
-            int constitutionStat = unit.UnitStatsData.Constitution.Value;
-            float damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, MaxStatValue) * 1f / MaxStatValue;
-            
-            float constitutionReducedDamage = rawDamage * damageReductionModifier;
-
-            if (unit.UnitBuffsData.Guarded.Value)
-                constitutionReducedDamage /= 2;
-            
-            return Mathf.RoundToInt(constitutionReducedDamage);
         }
     }
 }
