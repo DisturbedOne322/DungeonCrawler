@@ -1,4 +1,3 @@
-using System;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Combat;
@@ -7,7 +6,7 @@ using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Dungeon.Areas
+namespace Gameplay.Dungeon.Rooms
 {
     public class CombatRoom : StopRoom
     {

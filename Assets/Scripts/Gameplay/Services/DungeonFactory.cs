@@ -1,8 +1,8 @@
 using System;
 using Data;
 using Gameplay.Dungeon;
-using Gameplay.Dungeon.Areas;
 using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 using Zenject;
 

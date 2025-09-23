@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UniRx;
 
-namespace States
+namespace StateMachine.Core
 {
     public class StateMachine<TState, TMachine>
         where TState : IState<TMachine>

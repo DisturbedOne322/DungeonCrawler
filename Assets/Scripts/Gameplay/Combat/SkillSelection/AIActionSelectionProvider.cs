@@ -4,17 +4,18 @@ using Gameplay.Combat.Skills;
 
 namespace Gameplay.Combat.SkillSelection
 {
-    public class AISkillSelectionProvider : SkillSelectionProvider
+    public class AIActionSelectionProvider : ActionSelectionProvider
     {
         private readonly UnitHealthData _unitHealthData;
         private readonly UnitStatsData _unitStatsData;
         
-        public AISkillSelectionProvider(UnitSkillsData unitSkillsData) : base(unitSkillsData)
+        public AIActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData) : 
+            base(unitSkillsData, unitInventoryData)
         {
             
         }
 
-        public override async UniTask<BaseSkill> SelectSkillToUse()
+        public override async UniTask<BaseCombatAction> SelectAction()
         {
             return UnitSkillsData.BasicAttackSkill;
         }

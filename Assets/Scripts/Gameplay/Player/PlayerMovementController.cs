@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon;
-using Gameplay.Dungeon.Areas;
+using Gameplay.Dungeon.Rooms;
 using Gameplay.Units;
 
 namespace Gameplay.Player

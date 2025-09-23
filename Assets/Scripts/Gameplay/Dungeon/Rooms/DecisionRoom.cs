@@ -6,7 +6,7 @@ using Gameplay.Services;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Dungeon.Areas
+namespace Gameplay.Dungeon.Rooms
 {
     [RequireComponent(typeof(DoorAnimator))]
     public class DecisionRoom : StopRoom

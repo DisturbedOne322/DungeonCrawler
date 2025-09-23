@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Gameplay.Dungeon.Areas;
+using Gameplay.Dungeon.Rooms;
 
 namespace Gameplay.Dungeon
 {

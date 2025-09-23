@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Gameplay.Combat.Skills;
+using Gameplay.Combat;
 using Gameplay.Player;
-using States;
+using StateMachine.Core;
 using UniRx;
 
 namespace StateMachine.BattleMenu
@@ -12,7 +12,7 @@ namespace StateMachine.BattleMenu
     {
         private readonly PlayerInputProvider _playerInputProvider;
         
-        public readonly Subject<BaseSkill> SkillSelected = new();
+        public readonly Subject<BaseCombatAction> ActionSelected = new();
         public readonly Subject<Unit> OnOpened = new();
 
         public BattleMenuStateMachine(IEnumerable<BattleMenuState> states, PlayerInputProvider playerInputProvider) :
@@ -40,10 +40,10 @@ namespace StateMachine.BattleMenu
             }
         }
 
-        public void SelectSkill(BaseSkill skill)
+        public void SelectAction(BaseCombatAction action)
         {
             _playerInputProvider.EnableUiInput(false);
-            SkillSelected.OnNext(skill);
+            ActionSelected.OnNext(action);
             Reset();
         }
     }

@@ -9,7 +9,7 @@ namespace Gameplay.Combat.Skills
     {
         [SerializeField] private float _strengthScaling = 1;
         
-        public override async UniTask UseSkill(CombatService combatService)
+        public override async UniTask UseAction(CombatService combatService)
         {
             await UniTask.WaitForSeconds(0.5f);
             

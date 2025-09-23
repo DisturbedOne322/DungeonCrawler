@@ -7,7 +7,7 @@ namespace Installers.UnitInstallers
     {
         public override void InstallBindings()
         {
-            Container.Bind<SkillSelectionProvider>().To<AISkillSelectionProvider>().AsSingle();
+            Container.Bind<ActionSelectionProvider>().To<AIActionSelectionProvider>().AsSingle();
         }
     }
 }

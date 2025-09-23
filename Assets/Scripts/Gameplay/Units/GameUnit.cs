@@ -10,39 +10,45 @@ namespace Gameplay.Units
     {
         private UnitHealthData _healthData;
         private UnitHealthController _unitHealthController;
-        private SkillSelectionProvider _skillSelectionProvider;
+        private ActionSelectionProvider _actionSelectionProvider;
         private UnitStatsData _unitStatsData;
         private UnitSkillsData _unitSkillsData;
         private UnitBuffsData _unitBuffsData;
+        private UnitInventoryData _unitInventoryData;
         
         public UnitHealthData HealthData => _healthData;
         public UnitHealthController UnitHealthController => _unitHealthController;
-        public SkillSelectionProvider SkillSelectionProvider => _skillSelectionProvider;
+        public ActionSelectionProvider ActionSelectionProvider => _actionSelectionProvider;
         public UnitStatsData UnitStatsData => _unitStatsData;
         public UnitSkillsData UnitSkillsData => _unitSkillsData;
         public UnitBuffsData UnitBuffsData => _unitBuffsData;
+        public UnitInventoryData UnitInventoryData => _unitInventoryData;
 
         [Inject]
         private void Construct(UnitHealthData unitHealthData,
             UnitHealthController unitHealthController, 
-            SkillSelectionProvider skillSelectionProvider,
+            ActionSelectionProvider actionSelectionProvider,
             UnitStatsData unitStatsData, 
             UnitSkillsData unitSkillsData,
-            UnitBuffsData unitBuffsData)
+            UnitBuffsData unitBuffsData,
+            UnitInventoryData unitInventoryData)
         {
             _healthData = unitHealthData;
             _unitHealthController = unitHealthController;
-            _skillSelectionProvider = skillSelectionProvider;
+            _actionSelectionProvider = actionSelectionProvider;
             _unitStatsData = unitStatsData;
             _unitSkillsData = unitSkillsData;
             _unitBuffsData = unitBuffsData;
+            _unitInventoryData = unitInventoryData;
         }
 
         public void InitializeUnit(UnitData unitData)
         {
-            _unitHealthController.UnitHealthData.Initialize(unitData.MaxHp);
-            _unitSkillsData.AssignSkills(unitData);
+            _healthData.Initialize(unitData.MaxHp);
             _unitStatsData.SetStats(unitData.UnitBaseStats);
+            
+            _unitSkillsData.AssignSkills(unitData);
+            _unitInventoryData.AssignItems(unitData.Items);
         }
     }
 }

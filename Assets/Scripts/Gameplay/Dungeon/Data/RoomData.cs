@@ -1,4 +1,4 @@
-using Gameplay.Dungeon.Areas;
+using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.Data

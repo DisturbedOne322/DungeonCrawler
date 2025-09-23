@@ -8,7 +8,7 @@ namespace Installers.UnitInstallers
     {
         public override void InstallBindings()
         {
-            Container.Bind<SkillSelectionProvider>().To<PlayerSkillSelectionProvider>().AsSingle();
+            Container.Bind<ActionSelectionProvider>().To<PlayerActionSelectionProvider>().AsSingle();
             
             Container.Bind<BattleMenuStateMachine>().AsSingle();
             Container.Bind<BattleMenuState>().To<MainBattleMenuState>().AsSingle();

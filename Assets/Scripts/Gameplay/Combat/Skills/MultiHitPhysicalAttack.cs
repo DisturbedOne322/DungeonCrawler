@@ -10,7 +10,7 @@ namespace Gameplay.Combat.Skills
         [SerializeField, Min(2)] private int _hits = 2;
         [SerializeField] private float _critChance = 1;
         
-        public override async UniTask UseSkill(CombatService combatService)
+        public override async UniTask UseAction(CombatService combatService)
         {
             await UniTask.WaitForSeconds(0.5f);
 

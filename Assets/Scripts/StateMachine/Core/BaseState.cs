@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace States
+namespace StateMachine.Core
 {
     public abstract class BaseState<TState, TMachine> : IState<TMachine>
         where TState : BaseState<TState, TMachine>

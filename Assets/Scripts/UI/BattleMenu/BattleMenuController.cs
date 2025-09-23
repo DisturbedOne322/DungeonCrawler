@@ -6,7 +6,7 @@ using UniRx;
 
 namespace UI.BattleMenu
 {
-    public class BattleMenuView : MonoBehaviour
+    public class BattleMenuController : MonoBehaviour
     {
         [SerializeField] private RectTransform _pagesParent;
         [SerializeField] private BattleMenuItemViewFactory _factory;
@@ -34,7 +34,7 @@ namespace UI.BattleMenu
         {
             _disposables = new();
             _disposables.Add(_stateMachine.OnStateChanged.Subscribe(OpenMenu));
-            _disposables.Add(_stateMachine.SkillSelected.Subscribe(_ => DestroyAllMenus()));
+            _disposables.Add(_stateMachine.ActionSelected.Subscribe(_ => DestroyAllMenus()));
         }
 
         private void OnDestroy()

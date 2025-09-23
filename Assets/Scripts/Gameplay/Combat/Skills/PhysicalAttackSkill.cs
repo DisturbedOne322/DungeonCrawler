@@ -10,7 +10,7 @@ namespace Gameplay.Combat.Skills
         [SerializeField] private float _strengthScaling = 1.25f;
         [SerializeField] private int _fixedHealthPrice = 5;
         
-        public override async UniTask UseSkill(CombatService service)
+        public override async UniTask UseAction(CombatService service)
         {
             await UniTask.WaitForSeconds(0.5f);
             

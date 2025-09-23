@@ -6,14 +6,10 @@ namespace Gameplay.Combat
     public class UnitHealthController
     {
         private readonly UnitHealthData _unitHealthData;
-        private readonly UnitStatsData _unitStatsData;
         
-        public UnitHealthData UnitHealthData => _unitHealthData;
-
-        public UnitHealthController(UnitHealthData unitHealthData, UnitStatsData unitStatsData)
+        public UnitHealthController(UnitHealthData unitHealthData)
         {
             _unitHealthData = unitHealthData;
-            _unitStatsData = unitStatsData;
         }
         
         public void SetNewMaxHealth(int maxHealth)

@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace States
+namespace StateMachine.Core
 {
     public interface IState<TMachine>
     {

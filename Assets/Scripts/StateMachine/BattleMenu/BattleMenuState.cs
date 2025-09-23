@@ -3,7 +3,8 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
 using Gameplay.Player;
 using Gameplay.Units;
-using States;
+using StateMachine.Core;
+using UniRx;
 
 namespace StateMachine.BattleMenu
 {
@@ -16,6 +17,8 @@ namespace StateMachine.BattleMenu
         public readonly MenuItemsUpdater MenuItemsUpdater;
 
         protected List<BattleMenuItemData> MenuItems = new();
+        
+        protected CompositeDisposable Disposables;
         
         public BattleMenuState(PlayerUnit player, 
             PlayerInputProvider playerInputProvider, 
@@ -40,10 +43,11 @@ namespace StateMachine.BattleMenu
             UnsubscribeFromInputEvents();
             return UniTask.CompletedTask;
         }
-        
+
         public abstract void LoadMenuItems();
-        
+
         protected abstract void SubscribeToInputEvents();
-        protected abstract void UnsubscribeFromInputEvents();
+        
+        private void UnsubscribeFromInputEvents() => Disposables?.Dispose();
     }
 }

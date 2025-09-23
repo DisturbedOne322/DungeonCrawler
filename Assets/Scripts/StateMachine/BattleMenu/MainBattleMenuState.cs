@@ -8,8 +8,6 @@ namespace StateMachine.BattleMenu
 {
     public class MainBattleMenuState : BattleMenuState
     {
-        private CompositeDisposable _disposables;
-        
         public MainBattleMenuState(PlayerUnit player, 
             PlayerInputProvider playerInputProvider, 
             MenuItemsUpdater menuItemsUpdater, 
@@ -30,14 +28,14 @@ namespace StateMachine.BattleMenu
                 BattleMenuItemData.ForSkill(
                     Player.UnitSkillsData.BasicAttackSkill,
                     CombatService,
-                    () => StateMachine.SelectSkill(Player.UnitSkillsData.BasicAttackSkill))
+                    () => StateMachine.SelectAction(Player.UnitSkillsData.BasicAttackSkill))
                 );
             
             MenuItems.Add(
                 BattleMenuItemData.ForSkill(
                     Player.UnitSkillsData.GuardSkill,
                     CombatService,
-                    () => StateMachine.SelectSkill(Player.UnitSkillsData.GuardSkill))
+                    () => StateMachine.SelectAction(Player.UnitSkillsData.GuardSkill))
             );
             
             MenuItems.Add(
@@ -46,21 +44,22 @@ namespace StateMachine.BattleMenu
                     () => StateMachine.GoToState<SkillSelectBattleMenuState>().Forget())
             );
             
+            MenuItems.Add(
+                BattleMenuItemData.Simple(
+                    "ITEMS", 
+                    () => StateMachine.GoToState<ItemSelectBattleMenuState>().Forget())
+            );
+            
             MenuItemsUpdater.SetMenuItems(MenuItems);
         }
 
         protected override void SubscribeToInputEvents()
         {
-            _disposables = new();
+            Disposables = new();
             
-            _disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));
-            _disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
-            _disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
-        }
-
-        protected override void UnsubscribeFromInputEvents()
-        {
-            _disposables.Dispose();
+            Disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));
+            Disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
+            Disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
         }
     }
 }

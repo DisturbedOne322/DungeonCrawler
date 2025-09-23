@@ -1,14 +1,16 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
+using Gameplay.Combat.Items;
 using Gameplay.Player;
 using Gameplay.Units;
 using UniRx;
 
 namespace StateMachine.BattleMenu
 {
-    public class SkillSelectBattleMenuState : BattleMenuState
+    public class ItemSelectBattleMenuState : BattleMenuState
     {
-        public SkillSelectBattleMenuState(PlayerUnit player, 
+        public ItemSelectBattleMenuState(PlayerUnit player, 
             PlayerInputProvider playerInputProvider, 
             MenuItemsUpdater menuItemsUpdater, 
             CombatService combatService) : 
@@ -17,23 +19,34 @@ namespace StateMachine.BattleMenu
                 menuItemsUpdater, 
                 combatService)
         {
-            
         }
 
         public override void LoadMenuItems()
         {
             MenuItems.Clear();
 
-            var skillsData = Player.UnitSkillsData;
+            var inventory = Player.UnitInventoryData;
 
-            foreach (var skill in skillsData.Skills)
+            Dictionary<BaseItem, int> itemsDict = new ();
+
+            foreach (var item in inventory.Items)
             {
+                if (!itemsDict.TryAdd(item, 1)) 
+                    itemsDict[item]++;
+            }
+            
+            foreach (var itemQuantityKv in itemsDict)
+            {
+                var item = itemQuantityKv.Key;
+                var quantity = itemQuantityKv.Value;
+                
                 MenuItems.Add(
-                    BattleMenuItemData.ForSkill(
-                        skill,
+                    BattleMenuItemData.ForItem(
+                        item,
                         CombatService,
-                        () => StateMachine.SelectAction(skill))
-                );
+                        () => StateMachine.SelectAction(item),
+                        quantity
+                ));
             }
             
             MenuItemsUpdater.SetMenuItems(MenuItems);

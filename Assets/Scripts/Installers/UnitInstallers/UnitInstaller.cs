@@ -12,6 +12,7 @@ namespace Installers.UnitInstallers
             Container.Bind<UnitHealthController>().AsSingle();
             
             Container.Bind<UnitSkillsData>().AsSingle();
+            Container.Bind<UnitInventoryData>().AsSingle();
             Container.Bind<UnitStatsData>().AsSingle();
             Container.Bind<UnitBuffsData>().AsSingle();
         }
