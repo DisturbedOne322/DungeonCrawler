@@ -39,14 +39,16 @@ namespace StateMachine.BattleMenu
             );
             
             MenuItems.Add(
-                BattleMenuItemData.Simple(
+                BattleMenuItemData.ForSubmenu(
                     "SKILLS", 
+                    () => Player.UnitSkillsData.Skills.Count > 0,
                     () => StateMachine.GoToState<SkillSelectBattleMenuState>().Forget())
             );
             
             MenuItems.Add(
-                BattleMenuItemData.Simple(
+                BattleMenuItemData.ForSubmenu(
                     "ITEMS", 
+                    () => Player.UnitInventoryData.Items.Count > 0,
                     () => StateMachine.GoToState<ItemSelectBattleMenuState>().Forget())
             );
             

@@ -11,6 +11,7 @@ namespace UI.BattleMenu
         [SerializeField] private BattleMenuPageView _pagePrefab;
         [SerializeField] private BaseBattleMenuItemView _menuItemPrefab;
         [SerializeField] private SkillBattleMenuItemView _skillMenuItemPrefab;
+        [SerializeField] private ItemBattleMenuItemView _itemMenuItemPrefab;
 
         private ContainerFactory _factory;
 
@@ -28,10 +29,18 @@ namespace UI.BattleMenu
 
             foreach (var data in dataList)
             {
-                if(data.Description != null)
-                    views.Add(CreateSkillMenuItem(data));
-                else
-                    views.Add(CreateMenuItem(data));
+                switch (data.Type)
+                {
+                    case MenuItemType.Submenu:
+                        views.Add(CreateMenuItem(data));
+                        break;
+                    case MenuItemType.Skill:
+                        views.Add(CreateSkillMenuItem(data));
+                        break;
+                    case MenuItemType.Item:
+                        views.Add(CreateItemMenuItem(data));
+                        break;
+                }
             }
             
             return views;
@@ -50,6 +59,16 @@ namespace UI.BattleMenu
             var view = _factory.Create<SkillBattleMenuItemView>(_skillMenuItemPrefab.gameObject);
             view.Bind(data);
             view.SetDescription(data.Description);
+            
+            return view;
+        }
+        
+        private ItemBattleMenuItemView CreateItemMenuItem(BattleMenuItemData data)
+        {
+            var view = _factory.Create<ItemBattleMenuItemView>(_itemMenuItemPrefab.gameObject);
+            view.Bind(data);
+            view.SetDescription(data.Description);
+            view.SetQuantity(data.Quantity);
             
             return view;
         }

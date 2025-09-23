@@ -340,18 +340,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2169062834420437272, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2169062834420437272, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2169062834420437272, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2169062834420437272, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -404,32 +392,17 @@ PrefabInstance:
       value: BattleMenuControllerPopup
       objectReference: {fileID: 0}
     - target: {fileID: 5078626436397534129, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-      propertyPath: _pagePrefab
+      propertyPath: _itemMenuItemPrefab
       value: 
-      objectReference: {fileID: 1418061875997372433, guid: ec8fed9fcc959cb46b55935dda8bb5f4, type: 3}
-    - target: {fileID: 6708444874652247909, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-      propertyPath: m_Name
-      value: BattleMenuPagePrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 7564488841196983790, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-      propertyPath: _pagesParent
-      value: 
-      objectReference: {fileID: 835477545159465684}
+      objectReference: {fileID: 8459208238833676252, guid: 521c301c7cebf7544990fb1575187ad8, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 593249956582611539, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-    - {fileID: 6708444874652247909, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
 --- !u!224 &82241530966274669 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2169062834420437272, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
-  m_PrefabInstance: {fileID: 2251273264823706485}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &835477545159465684 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1487902556073834913, guid: 88160922c4f4e464a950f10b3c29de3a, type: 3}
   m_PrefabInstance: {fileID: 2251273264823706485}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2591512993287405142
@@ -441,8 +414,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 7334791737408202459}
     m_Modifications:
     - target: {fileID: 2305101848092501155, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
-      propertyPath: m_Interactable
-      value: 0
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3735751388594025494, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
       propertyPath: m_Pivot.x
@@ -536,9 +509,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6737168362627493591, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
-      propertyPath: m_fontSize
-      value: 46.9
+    - target: {fileID: 4461514308767012891, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461514308767012891, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -637,10 +614,6 @@ PrefabInstance:
     - target: {fileID: 712393068089804307, guid: 188a837947046ea4a956f554d01b1177, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186539336244426970, guid: 188a837947046ea4a956f554d01b1177, type: 3}
-      propertyPath: m_fontSize
-      value: 78.2
       objectReference: {fileID: 0}
     - target: {fileID: 6822830184209081373, guid: 188a837947046ea4a956f554d01b1177, type: 3}
       propertyPath: m_Name

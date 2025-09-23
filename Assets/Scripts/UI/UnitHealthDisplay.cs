@@ -30,10 +30,13 @@ namespace UI
             int health = _unitHealthData.CurrentHealth.Value;
             int maxHealth = _unitHealthData.MaxHealth.Value;
             
-            float fillPercent = health * 1f / maxHealth;
-            _slider.value = fillPercent;
-            
             _healthText.text = health + "/" + maxHealth;
+
+            if (maxHealth > 0)
+            {
+                float fillPercent = health * 1f / maxHealth;
+                _slider.value = fillPercent;
+            }
         }
     }
 }

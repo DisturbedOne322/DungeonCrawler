@@ -44,7 +44,11 @@ namespace StateMachine.BattleMenu
                     BattleMenuItemData.ForItem(
                         item,
                         CombatService,
-                        () => StateMachine.SelectAction(item),
+                        () =>
+                        {
+                            Player.UnitInventoryData.RemoveItem(item);
+                            StateMachine.SelectAction(item);
+                        },
                         quantity
                 ));
             }
