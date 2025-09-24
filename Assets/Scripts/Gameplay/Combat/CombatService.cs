@@ -45,15 +45,15 @@ namespace Gameplay.Combat
         public void ApplyChargeToActiveUnit() => ActiveUnit.UnitBuffsData.Charged.Value = true;
         public void ApplyConcentrateToActiveUnit() => ActiveUnit.UnitBuffsData.Concentrated.Value = true;
         
-        public void DealDamageToActiveUnit(OffensiveSkillData skillData)=> DealDamageToUnit(ActiveUnit, ActiveUnit, skillData);
+        public UniTask DealDamageToActiveUnit(OffensiveSkillData skillData)=> DealDamageToUnit(ActiveUnit, ActiveUnit, skillData);
         
-        public void DealDamageToOtherUnit(OffensiveSkillData skillData) => DealDamageToUnit(ActiveUnit, OtherUnit, skillData);
+        public UniTask DealDamageToOtherUnit(OffensiveSkillData skillData) => DealDamageToUnit(ActiveUnit, OtherUnit, skillData);
 
-        private void DealDamageToUnit(GameUnit caster, GameUnit target, OffensiveSkillData skillData)
+        private async UniTask DealDamageToUnit(GameUnit caster, GameUnit target, OffensiveSkillData skillData)
         {
             if (Evaded(target, skillData))
             {
-                target.EvadeAnimator.PlayEvadeAnimation(0).Forget();
+                await target.EvadeAnimator.PlayEvadeAnimation();
                 return;
             }
             

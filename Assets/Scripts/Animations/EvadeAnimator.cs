@@ -14,10 +14,15 @@ namespace Animations
         [SerializeField] private Ease _evadeEase = Ease.OutQuad;
         [SerializeField] private Ease _returnEase = Ease.InOutQuad;
 
-        public async UniTask PlayEvadeAnimation(float waitTime)
+        private bool _inAnimation = false;
+        
+        public async UniTask PlayEvadeAnimation()
         {
-            await UniTask.WaitForSeconds(waitTime);
+            if(_inAnimation)
+                return;
 
+            _inAnimation = true;
+            
             int direction = Random.value > 0.5f ? 1 : -1;
 
             Vector3 originalPos = transform.localPosition;
@@ -45,6 +50,8 @@ namespace Animations
                 .SetEase(_returnEase));
 
             await seq.AsyncWaitForCompletion().AsUniTask();
+            
+            _inAnimation = false;
         }
     }
 }

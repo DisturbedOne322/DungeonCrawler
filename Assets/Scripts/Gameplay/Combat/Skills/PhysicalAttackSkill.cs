@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Data;
 using Gameplay.Combat.Data;
 using UnityEngine;
 
@@ -10,14 +11,10 @@ namespace Gameplay.Combat.Skills
         [SerializeField] private float _strengthScaling = 1.25f;
         [SerializeField] private int _fixedHealthPrice = 5;
         
-        public override async UniTask UseAction(CombatService service)
+        protected override async UniTask PerformAction(CombatService service)
         {
-            await UniTask.WaitForSeconds(0.5f);
-            
             service.DealDamageToActiveUnit(GetSelfDamageData());
-            service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit.UnitStatsData));
-            
-            await UniTask.WaitForSeconds(0.5f);
+            await service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit.UnitStatsData));
         }
 
         public override bool CanUse(CombatService combatService)

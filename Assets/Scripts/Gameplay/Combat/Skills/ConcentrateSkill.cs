@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Data;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -6,10 +7,9 @@ namespace Gameplay.Combat.Skills
     [CreateAssetMenu(fileName = "ConcentrateSkill", menuName = "Skills/General/ConcentrateSkill")]
     public class ConcentrateSkill : BaseSkill
     {
-        public override async UniTask UseAction(CombatService combatService)
+        protected override async UniTask PerformAction(CombatService combatService)
         {
             combatService.ApplyConcentrateToActiveUnit();
-            await UniTask.WaitForSeconds(0.5f);
         }
 
         public override bool CanUse(CombatService combatService) =>
