@@ -14,21 +14,33 @@ namespace Gameplay.Services
 
         private ContainerFactory _containerFactory;
         private DungeonRoomsPool _roomsPool;
+        
+        private Transform _parent;
 
         [Inject]
         private void Construct(ContainerFactory containerFactory, DungeonRoomsPool roomsPool)
         {
             _containerFactory = containerFactory;
             _roomsPool = roomsPool;
+            
         }
-        
+
+        private void Awake()
+        {
+            _parent = new GameObject("[ROOMS POOL]").transform;
+        }
+
         public DungeonRoom CreateArea(RoomType roomType)
         {
             if (_roomsPool.TryGetRoom(roomType, out var room))
                 return room;
 
             var roomData = GetRoomData(roomType);
-                return _containerFactory.Create<DungeonRoom>(roomData.RoomPrefab.gameObject);
+            var newRoom = _containerFactory.Create<DungeonRoom>(roomData.RoomPrefab.gameObject);
+            
+            newRoom.transform.SetParent(_parent);
+            
+            return newRoom;
         }
 
         public RoomData GetRoomData(RoomType roomType)
