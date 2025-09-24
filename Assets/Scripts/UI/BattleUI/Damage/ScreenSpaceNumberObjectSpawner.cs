@@ -26,7 +26,7 @@ namespace UI.BattleUI.Damage
             if(data.Target is not PlayerUnit)
                 return;
             
-            ShowText(data.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data.DamageType), '-');
+            ShowText(data.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data.HitDamageType), '-');
         }
         
         public override void ShowHealNumber(HealEventData data)

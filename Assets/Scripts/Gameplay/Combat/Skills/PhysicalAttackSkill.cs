@@ -13,7 +13,7 @@ namespace Gameplay.Combat.Skills
         
         protected override async UniTask PerformAction(CombatService service)
         {
-            service.DealDamageToActiveUnit(GetSelfDamageData()).Forget();
+            service.DealDamageToActiveUnit(GetSelfDamageData());
             await service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit.UnitStatsData));
         }
 
@@ -43,7 +43,7 @@ namespace Gameplay.Combat.Skills
                 IsPiercing = true,
                 IsUnavoidable = true,
                 CanCrit = false,
-                DamageType = DamageType.Physical
+                DamageType = DamageType.Absolute
             };
         }
     }

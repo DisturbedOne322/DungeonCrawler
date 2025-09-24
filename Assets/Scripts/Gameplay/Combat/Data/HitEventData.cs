@@ -6,6 +6,6 @@ namespace Gameplay.Combat.Data
     {
         public GameUnit Target;
         public int Damage;
-        public DamageType DamageType;
+        public HitDamageType HitDamageType;
     }
 }

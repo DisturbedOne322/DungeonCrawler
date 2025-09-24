@@ -28,7 +28,7 @@ namespace UI.BattleUI.Damage
                 return;
             
             var enemyPos = data.Target.transform.position;
-            ShowText(enemyPos, data.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data.DamageType), '-');
+            ShowText(enemyPos, data.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data.HitDamageType), '-');
         }
 
         public override void ShowHealNumber(HealEventData data)

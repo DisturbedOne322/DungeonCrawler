@@ -1,9 +1,10 @@
 namespace Gameplay.Combat.Data
 {
-    public enum DamageType
+    public enum HitDamageType
     {
         Physical,
         Magical,
-        Absolute,
+        PhysicalCritical,
+        MagicalCritical,
     }
 }

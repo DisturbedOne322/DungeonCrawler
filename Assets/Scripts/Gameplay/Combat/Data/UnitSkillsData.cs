@@ -14,8 +14,8 @@ namespace Gameplay.Combat.Data
         private BaseSkill _guardSkill;
         public BaseSkill GuardSkill => _guardSkill;
         
-        public List<BaseSkill> Skills => _skills;
-        private readonly List<BaseSkill> _skills = new();
+        public ReactiveCollection<BaseSkill> Skills => _skills;
+        private readonly ReactiveCollection<BaseSkill> _skills = new();
 
         public void AssignSkills(UnitData data)
         {

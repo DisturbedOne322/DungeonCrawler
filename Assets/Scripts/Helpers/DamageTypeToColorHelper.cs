@@ -5,17 +5,17 @@ namespace Helpers
 {
     public static class DamageTypeToColorHelper
     {
-        public static Color GetDamageTypeColor(DamageType damageType)
+        public static Color GetDamageTypeColor(HitDamageType damageType)
         {
             switch (damageType)
             {
-                case DamageType.Physical:
+                case HitDamageType.Physical:
                     return Color.white;
-                case DamageType.PhysicalCritical:
+                case HitDamageType.PhysicalCritical:
                     return Color.red;
-                case DamageType.Magical:
+                case HitDamageType.Magical:
                     return Color.blue;
-                case DamageType.MagicalCritical:
+                case HitDamageType.MagicalCritical:
                     return Color.cyan;
             }
             

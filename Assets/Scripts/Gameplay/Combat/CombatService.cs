@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
 using Gameplay.Units;
 using UniRx;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -81,7 +82,7 @@ namespace Gameplay.Combat
             OnHitDealt.OnNext(new HitEventData()
             {
                 Damage = damageTaken,
-                DamageType = crit ? DamageType.PhysicalCritical : DamageType.Physical,
+                HitDamageType = crit ? HitDamageType.PhysicalCritical : HitDamageType.Physical,
                 Target = target
             });
         }
