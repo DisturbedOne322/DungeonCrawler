@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Units;
+using UniRx;
 
 namespace Gameplay.Combat
 {
@@ -7,6 +8,9 @@ namespace Gameplay.Combat
     {
         private readonly CombatData _combatData;
         private readonly CombatService _combatService;
+        
+        public readonly Subject<Unit> OnCombatStarted = new ();
+        public readonly Subject<Unit> OnCombatEnded = new ();
         
         public CombatSequenceController(CombatData combatData, CombatService combatService)
         {
@@ -17,12 +21,15 @@ namespace Gameplay.Combat
         public async UniTask StartCombat(GameUnit enemyUnit)
         {
             _combatService.StartCombat(enemyUnit);
+            OnCombatStarted.OnNext(default);
             
             while (!IsCombatOver())
             {
                 _combatService.StartTurn();
                 await ProcessTurn();
             }
+            
+            OnCombatEnded.OnNext(default);
         }
 
         private async UniTask ProcessTurn()

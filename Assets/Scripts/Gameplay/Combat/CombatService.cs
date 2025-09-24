@@ -2,7 +2,6 @@ using System;
 using Gameplay.Combat.Data;
 using Gameplay.Units;
 using UniRx;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -19,9 +18,7 @@ namespace Gameplay.Combat
         public GameUnit ActiveUnit => _combatData.ActiveUnit;
         public GameUnit OtherUnit => _combatData.OtherUnit;
         
-        private readonly Subject<HitDamageData> _onHitDealt = new();
-        
-        public IObservable<HitDamageData> OnHitDealt => _onHitDealt;
+        public Subject<HitDamageData> OnHitDealt = new();
 
         public CombatService(CombatData combatData, CombatFormulaService combatFormulaService)
         {
@@ -51,7 +48,7 @@ namespace Gameplay.Combat
             int damageTaken = _combatFormulaService.GetFinalDamageTo(ActiveUnit, skillData);
             ActiveUnit.UnitHealthController.TakeDamage(damageTaken);
             
-            _onHitDealt.OnNext(new HitDamageData()
+            OnHitDealt.OnNext(new HitDamageData()
             {
                 Damage = damageTaken,
                 DamageType = DamageType.Physical,
@@ -77,7 +74,7 @@ namespace Gameplay.Combat
             int damageTaken = _combatFormulaService.GetFinalDamageTo(OtherUnit, skillData);
             OtherUnit.UnitHealthController.TakeDamage(damageTaken);
             
-            _onHitDealt.OnNext(new HitDamageData()
+            OnHitDealt.OnNext(new HitDamageData()
             {
                 Damage = damageTaken,
                 DamageType = crit ? DamageType.PhysicalCritical : DamageType.Physical,

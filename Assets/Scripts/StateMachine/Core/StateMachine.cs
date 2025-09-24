@@ -39,7 +39,7 @@ namespace StateMachine.Core
             await ChangeState(_previousState.GetType());
         }
 
-        public void Reset()
+        protected void ResetStateMachine()
         {
             _currentState.ExitState();
             _currentState = default;

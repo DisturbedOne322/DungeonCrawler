@@ -13,38 +13,40 @@ namespace StateMachine.BattleMenu
         private readonly PlayerInputProvider _playerInputProvider;
         
         public readonly Subject<BaseCombatAction> ActionSelected = new();
-        public readonly Subject<Unit> OnOpened = new();
 
-        public BattleMenuStateMachine(IEnumerable<BattleMenuState> states, PlayerInputProvider playerInputProvider) :
+        public BattleMenuStateMachine(IEnumerable<BattleMenuState> states, 
+            PlayerInputProvider playerInputProvider,
+            CombatSequenceController combatSequenceController) :
             base(states)
         {
             _playerInputProvider = playerInputProvider;
+            combatSequenceController.OnCombatEnded.Subscribe(_ => ResetMenus());
         }
 
         public void OpenBattleMenu()
         {
-            ResetMenus();
-            
+            LoadMenus();
             _playerInputProvider.EnableUiInput(true);
             GoToState<MainBattleMenuState>().Forget();
-            
-            OnOpened.OnNext(Unit.Default);
-        }
-
-        private void ResetMenus()
-        {
-            foreach (var typeStateKv in States)
-            {
-                typeStateKv.Value.MenuItemsUpdater.ResetSelection(false);
-                typeStateKv.Value.LoadMenuItems();
-            }
         }
 
         public void SelectAction(BaseCombatAction action)
         {
             _playerInputProvider.EnableUiInput(false);
             ActionSelected.OnNext(action);
-            Reset();
+            ResetStateMachine();
+        }
+
+        private void LoadMenus()
+        {
+            foreach (var typeStateKv in States) 
+                typeStateKv.Value.LoadMenuItems();
+        }
+
+        private void ResetMenus()
+        {
+            foreach (var typeStateKv in States) 
+                typeStateKv.Value.MenuItemsUpdater.ResetSelection(false);
         }
     }
 }
