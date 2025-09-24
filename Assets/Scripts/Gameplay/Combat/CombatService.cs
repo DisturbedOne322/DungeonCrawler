@@ -46,9 +46,9 @@ namespace Gameplay.Combat
         public void ApplyChargeToActiveUnit() => ActiveUnit.UnitBuffsData.Charged.Value = true;
         public void ApplyConcentrateToActiveUnit() => ActiveUnit.UnitBuffsData.Concentrated.Value = true;
         
-        public void DealDamageToActiveUnit(int damage, bool isPiercing = false)
+        public void DealDamageToActiveUnit(OffensiveSkillData skillData)
         {
-            int damageTaken = _combatFormulaService.GetFinalDamageTo(ActiveUnit, damage, isPiercing);
+            int damageTaken = _combatFormulaService.GetFinalDamageTo(ActiveUnit, skillData);
             ActiveUnit.UnitHealthController.TakeDamage(damageTaken);
             
             _onHitDealt.OnNext(new HitDamageData()
@@ -59,22 +59,22 @@ namespace Gameplay.Combat
             });
         }
         
-        public void DealDamageToOtherUnit(int damage, float skillCritChance = 0, bool isPiercing = false)
+        public void DealDamageToOtherUnit(OffensiveSkillData skillData)
         {
-            float finalCritChance = _combatFormulaService.GetFinalCritChance(ActiveUnit, skillCritChance);
+            float finalCritChance = _combatFormulaService.GetFinalCritChance(ActiveUnit, skillData);
 
             bool crit = IsCrit(finalCritChance);
             
             if (crit)
-                damage *= CritDamageMultiplier;
+                skillData.Damage *= CritDamageMultiplier;
             
             if (ActiveUnit.UnitBuffsData.Charged.Value)
             {
                 ActiveUnit.UnitBuffsData.Charged.Value = false;
-                damage *= 2;
+                skillData.Damage *= 2;
             }
             
-            int damageTaken = _combatFormulaService.GetFinalDamageTo(OtherUnit, damage, isPiercing);
+            int damageTaken = _combatFormulaService.GetFinalDamageTo(OtherUnit, skillData);
             OtherUnit.UnitHealthController.TakeDamage(damageTaken);
             
             _onHitDealt.OnNext(new HitDamageData()

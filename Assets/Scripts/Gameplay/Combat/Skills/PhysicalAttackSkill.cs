@@ -14,8 +14,8 @@ namespace Gameplay.Combat.Skills
         {
             await UniTask.WaitForSeconds(0.5f);
             
-            service.DealDamageToActiveUnit(_fixedHealthPrice, true);
-            service.DealDamageToOtherUnit(GetHitDamage(service.ActiveUnit.UnitStatsData));
+            service.DealDamageToActiveUnit(GetSelfDamageData());
+            service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit.UnitStatsData));
             
             await UniTask.WaitForSeconds(0.5f);
         }
@@ -26,13 +26,26 @@ namespace Gameplay.Combat.Skills
             return currentHealth > _fixedHealthPrice;
         }
 
-        protected override int GetHitDamage(UnitStatsData statsData)
+        protected override OffensiveSkillData GetSkillData(UnitStatsData statsData)
         {
+            var skillData = base.GetSkillData(statsData);
             int strength = statsData.Strength.Value;
             int additionalPower = Mathf.RoundToInt(_strengthScaling * strength);
             
             int finalAttackPower = BaseDamage + additionalPower;
-            return finalAttackPower;
+
+            skillData.Damage = finalAttackPower;
+            return skillData;
+        }
+
+        private OffensiveSkillData GetSelfDamageData()
+        {
+            return new OffensiveSkillData()
+            {
+                Damage = _fixedHealthPrice,
+                IsPiercing = true,
+                DamageType = DamageType.Physical
+            };
         }
     }
 }

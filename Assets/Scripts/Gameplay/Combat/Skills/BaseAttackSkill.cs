@@ -13,19 +13,24 @@ namespace Gameplay.Combat.Skills
         {
             await UniTask.WaitForSeconds(0.5f);
             
-            combatService.DealDamageToOtherUnit(GetHitDamage(combatService.ActiveUnit.UnitStatsData));
+            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit.UnitStatsData));
             
             await UniTask.WaitForSeconds(0.5f);
         }
         
         public override bool CanUse(CombatService combatService) => true;
-        protected override int GetHitDamage(UnitStatsData statsData)
+
+        protected override OffensiveSkillData GetSkillData(UnitStatsData statsData)
         {
+            var skillData = base.GetSkillData(statsData);
+            
             int strength = statsData.Strength.Value;
             int additionalPower = Mathf.RoundToInt(_strengthScaling * strength);
             
             int finalAttackPower = BaseDamage + additionalPower;
-            return finalAttackPower;
+
+            skillData.Damage = finalAttackPower;
+            return skillData;
         }
     }
 }

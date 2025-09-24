@@ -8,7 +8,6 @@ namespace Gameplay.Combat.Skills
     public class MultiHitPhysicalAttack : OffensiveSkill
     {
         [SerializeField, Min(2)] private int _hits = 2;
-        [SerializeField] private float _critChance = 1;
         
         public override async UniTask UseAction(CombatService combatService)
         {
@@ -16,7 +15,7 @@ namespace Gameplay.Combat.Skills
 
             for (int i = 0; i < _hits; i++)
             {
-                combatService.DealDamageToOtherUnit(GetHitDamage(combatService.ActiveUnit.UnitStatsData), _critChance);
+                combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit.UnitStatsData));
                 await UniTask.WaitForSeconds(0.15f);
             }
             
@@ -24,7 +23,5 @@ namespace Gameplay.Combat.Skills
         }
 
         public override bool CanUse(CombatService combatService) => true;
-
-        protected override int GetHitDamage(UnitStatsData statsData) => BaseDamage;
     }
 }
