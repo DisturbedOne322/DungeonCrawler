@@ -1,3 +1,4 @@
+using Animations;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.SkillSelection;
@@ -8,6 +9,8 @@ namespace Gameplay.Units
 {
     public class GameUnit : MonoBehaviour
     {
+        [SerializeField] private EvadeAnimator _evadeAnimator;
+        
         private UnitHealthData _healthData;
         private UnitHealthController _unitHealthController;
         private ActionSelectionProvider _actionSelectionProvider;
@@ -23,6 +26,8 @@ namespace Gameplay.Units
         public UnitSkillsData UnitSkillsData => _unitSkillsData;
         public UnitBuffsData UnitBuffsData => _unitBuffsData;
         public UnitInventoryData UnitInventoryData => _unitInventoryData;
+        
+        public EvadeAnimator EvadeAnimator => _evadeAnimator;
 
         [Inject]
         private void Construct(UnitHealthData unitHealthData,

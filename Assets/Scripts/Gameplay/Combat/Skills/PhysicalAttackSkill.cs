@@ -44,6 +44,8 @@ namespace Gameplay.Combat.Skills
             {
                 Damage = _fixedHealthPrice,
                 IsPiercing = true,
+                IsUnavoidable = true,
+                CanCrit = false,
                 DamageType = DamageType.Physical
             };
         }

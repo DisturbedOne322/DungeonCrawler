@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4412116789316726052}
   - component: {fileID: 872746221856949856}
   - component: {fileID: -6431121546750036222}
+  - component: {fileID: 4177818035213239152}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590da0873516468d96b75d85f11f96cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _evadeAnimator: {fileID: 4177818035213239152}
 --- !u!114 &4412116789316726052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +94,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3fc30ede1c4c0e9a896580d1ac1be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4177818035213239152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245938063390694093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5461d90113a84e9aa64ca2c1ed9e020b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _evadeDistance: 3
+  _rotateAngle: -30
+  _evadeDuration: 0.3
+  _returnDuration: 0.75
+  _evadeEase: 6
+  _returnEase: 7
 --- !u!1 &5953198693083202781
 GameObject:
   m_ObjectHideFlags: 0

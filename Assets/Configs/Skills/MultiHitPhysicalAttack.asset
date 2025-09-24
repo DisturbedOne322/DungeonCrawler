@@ -15,5 +15,9 @@ MonoBehaviour:
   _name: Multi Hit
   _description: Deal five weak physical attacks. High Crit Chance
   BaseDamage: 3
+  _baseCritChance: 0.5
+  _isPiercing: 0
+  _isUnavoidable: 0
+  _canCrit: 1
+  _damageType: 0
   _hits: 5
-  _critChance: 0.5

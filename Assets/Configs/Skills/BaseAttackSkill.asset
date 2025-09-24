@@ -15,4 +15,9 @@ MonoBehaviour:
   _name: Base Attack
   _description: Deals Low Physical Damage. Scales with Strength.
   BaseDamage: 10
+  _baseCritChance: 0
+  _isPiercing: 0
+  _isUnavoidable: 0
+  _canCrit: 1
+  _damageType: 0
   _strengthScaling: 1

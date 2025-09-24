@@ -756,6 +756,7 @@ GameObject:
   - component: {fileID: 6983753173133552157}
   - component: {fileID: 5294280859536209961}
   - component: {fileID: 2598502399907720380}
+  - component: {fileID: 5524385198127312848}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Untagged
@@ -822,6 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2185f61081a748a19a6e3f967d57cc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _evadeAnimator: {fileID: 5524385198127312848}
   _pivot: {fileID: 86822986121481779}
   _animTime: 1.3
 --- !u!114 &2598502399907720380
@@ -836,3 +838,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a4b2cf27cf4c06b3dc6e0a426f6155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5524385198127312848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111563962663850096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5461d90113a84e9aa64ca2c1ed9e020b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _evadeDistance: 2.5
+  _rotateAngle: 45
+  _evadeDuration: 0.25
+  _returnDuration: 0.75
+  _evadeEase: 6
+  _returnEase: 7
