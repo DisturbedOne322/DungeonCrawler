@@ -5,17 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b01c1607-263b-4881-a7aa-e39f2a4ad2d9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HealEventData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HealEventData.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Animations/EvadeAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Animations/EvadeAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/ScreenDamageNumberDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/ScreenDamageNumberDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/WorldDamageNumberDisplayPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/WorldDamageNumberDisplayPrefab.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/GameplayConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/GameplayConstants.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/BaseCombatAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/BaseCombatAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/CombatFormulaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/CombatFormulaService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/CombatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/CombatService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/BaseAttackSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/BaseAttackSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitDamageData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitEventData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitDamageData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitEventData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Items/HealingItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Items/HealingItem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/ChargeSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/ChargeSkill.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/ConcentrateSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/ConcentrateSkill.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/GuardSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/GuardSkill.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/MultiHitPhysicalAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/MultiHitPhysicalAttack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/PhysicalAttackSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/PhysicalAttackSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/SceneInstallers/GameServicesInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/SceneInstallers/GameServicesInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumberSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumberSpawner.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectSpawner.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumberView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumberView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectView.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumbersAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectsAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumbersAnimator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectsAnimator.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumbersPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectsPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/DamageNumbersPool.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/NumberObjectsPool.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/ScreenSpaceDamageNumberSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/ScreenSpaceNumberObjectSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/ScreenSpaceDamageNumberSpawner.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/ScreenSpaceNumberObjectSpawner.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/WorldSpaceDamageNumberSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/WorldSpaceNumberObjectSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/WorldSpaceDamageNumberSpawner.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleUI/Damage/WorldSpaceNumberObjectSpawner.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -13,7 +13,7 @@ namespace Gameplay.Combat.Skills
         
         protected override async UniTask PerformAction(CombatService service)
         {
-            service.DealDamageToActiveUnit(GetSelfDamageData());
+            service.DealDamageToActiveUnit(GetSelfDamageData()).Forget();
             await service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit.UnitStatsData));
         }
 

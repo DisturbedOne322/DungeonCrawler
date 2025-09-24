@@ -2,7 +2,7 @@ using Gameplay.Units;
 
 namespace Gameplay.Combat.Data
 {
-    public struct HitDamageData
+    public struct HitEventData
     {
         public GameUnit Target;
         public int Damage;

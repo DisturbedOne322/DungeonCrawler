@@ -14,7 +14,7 @@ namespace Gameplay.Combat
                 return skillData.Damage;
             
             int constitutionStat = unit.UnitStatsData.Constitution.Value;
-            float damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, MaxStatValue) * 1f / MaxStatValue;
+            float damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, MaxStatValue) * 0.8f / MaxStatValue;
             
             float constitutionReducedDamage = skillData.Damage * damageReductionModifier;
 

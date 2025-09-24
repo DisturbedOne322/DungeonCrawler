@@ -16,8 +16,8 @@ namespace Installers.SceneInstallers
             Container.Bind<PlayerFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<UIFactory>().FromComponentInHierarchy().AsSingle();
             
-            Container.Bind<DamageNumbersPool>().AsTransient();
-            Container.Bind<DamageNumbersAnimator>().AsSingle();
+            Container.Bind<NumberObjectsPool>().AsTransient();
+            Container.Bind<NumberObjectsAnimator>().AsSingle();
             
             Container.Bind<BalanceService>().AsSingle();
         }

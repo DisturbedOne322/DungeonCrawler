@@ -14,8 +14,9 @@ namespace Gameplay.Combat
 
         public async UniTask UseAction(CombatService combatService)
         {
+            await UniTask.WaitForSeconds(GameplayConstants.DelayBeforeAction);
             await PerformAction(combatService);
-            await UniTask.WaitForSeconds(GameplayConstants.DelayAfterSkill);
+            await UniTask.WaitForSeconds(GameplayConstants.DelayAfterAction);
         }
         
         public abstract bool CanUse(CombatService combatService);

@@ -1,3 +1,4 @@
+using Data;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Units;
@@ -8,7 +9,7 @@ using Zenject;
 
 namespace UI.BattleUI.Damage
 {
-    public class WorldSpaceDamageNumberSpawner : DamageNumberSpawner
+    public class WorldSpaceNumberObjectSpawner : NumberObjectSpawner
     {
         [SerializeField] private Canvas _canvas;
         
@@ -21,24 +22,38 @@ namespace UI.BattleUI.Damage
             combatService.OnHitDealt.Subscribe(ShowDamageNumber).AddTo(gameObject);
         }
         
-        public override void ShowDamageNumber(HitDamageData data)
+        public override void ShowDamageNumber(HitEventData data)
         {
             if(data.Target is PlayerUnit)
                 return;
             
+            var enemyPos = data.Target.transform.position;
+            ShowText(enemyPos, data.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data.DamageType), '-');
+        }
+
+        public override void ShowHealNumber(HealEventData data)
+        {
+            if(data.Target is PlayerUnit)
+                return;
+            
+            var enemyPos = data.Target.transform.position;
+            ShowText(enemyPos, data.Amount, GameplayConstants.HealColor, '+');
+        }
+
+        private void ShowText(Vector3 pos, int amount, Color color, char prefix)
+        {
             var view = Pool.Get();
 
-            var enemyPos = data.Target.transform.position;
             var offset = Random.insideUnitSphere * _spawnRadius;
             offset.z = _zSpawnOffet;
             
-            var spawnPos = enemyPos + offset;
+            var spawnPos = pos + offset;
 
             view.transform.SetParent(_canvas.transform, false);
             view.transform.position = spawnPos;
 
-            view.SetText(data.Damage);
-            Animator.PlayWorldAnimation(view, DamageTypeToColorHelper.GetDamageTypeColor(data.DamageType), Pool);
+            view.SetText(amount, prefix);
+            Animator.PlayWorldAnimation(view, color, Pool);
         }
     }
 }

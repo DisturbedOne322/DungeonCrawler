@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace UI.BattleUI.Damage
 {
-    public class DamageNumbersAnimator
+    public class NumberObjectsAnimator
     {
-        public void PlayScreenAnimation(DamageNumberView view, Color targetColor, DamageNumbersPool pool)
+        public void PlayScreenAnimation(NumberObjectView objectView, Color targetColor, NumberObjectsPool pool)
         {
-            Transform t = view.transform;
+            Transform t = objectView.transform;
         
             t.localScale = Vector3.zero;
-            var text = view.DamageText;
-            view.DamageText.color = targetColor;
+            var text = objectView.NumberText;
+            objectView.NumberText.color = targetColor;
         
             Sequence seq = DOTween.Sequence();
 
@@ -22,16 +22,16 @@ namespace UI.BattleUI.Damage
                 .Join(text.DOFade(0f, 0.6f))
                 .AppendCallback(() =>
                 {
-                    pool.Return(view);
+                    pool.Return(objectView);
                 });
         }
         
-        public void PlayWorldAnimation(DamageNumberView view, Color targetColor, DamageNumbersPool pool)
+        public void PlayWorldAnimation(NumberObjectView objectView, Color targetColor, NumberObjectsPool pool)
         {
-            Transform t = view.transform;
+            Transform t = objectView.transform;
 
             t.localScale = Vector3.zero;
-            var text = view.DamageText;
+            var text = objectView.NumberText;
             text.color = targetColor;
 
             Sequence seq = DOTween.Sequence();
@@ -44,7 +44,7 @@ namespace UI.BattleUI.Damage
            
                 .Join(t.DORotate(new Vector3(0, 0, Random.Range(-15f, 15f)), 0.8f, RotateMode.LocalAxisAdd))
            
-                .AppendCallback(() => pool.Return(view)); 
+                .AppendCallback(() => pool.Return(objectView)); 
         }
     }
 }

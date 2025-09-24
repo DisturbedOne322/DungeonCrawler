@@ -8,7 +8,11 @@ namespace Gameplay.Combat.Items
     {
         [SerializeField, Space] private int _healAmount;
 
-        protected override async UniTask PerformAction(CombatService combatService) => combatService.ActiveUnit.UnitHealthController.Heal(_healAmount);
+        protected override UniTask PerformAction(CombatService combatService)
+        {
+            combatService.HealActiveUnit(_healAmount);
+            return UniTask.CompletedTask;
+        }
 
         public override bool CanUse(CombatService combatService)
         {

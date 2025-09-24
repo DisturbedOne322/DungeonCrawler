@@ -1,9 +1,7 @@
-using System;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
 using Gameplay.Units;
 using UniRx;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -20,7 +18,8 @@ namespace Gameplay.Combat
         public GameUnit ActiveUnit => _combatData.ActiveUnit;
         public GameUnit OtherUnit => _combatData.OtherUnit;
         
-        public Subject<HitDamageData> OnHitDealt = new();
+        public Subject<HitEventData> OnHitDealt = new();
+        public Subject<HealEventData> OnHealed = new();
 
         public CombatService(CombatData combatData, CombatFormulaService combatFormulaService)
         {
@@ -44,7 +43,11 @@ namespace Gameplay.Combat
         public void ApplyGuardToActiveUnit() => ActiveUnit.UnitBuffsData.Guarded.Value = true;
         public void ApplyChargeToActiveUnit() => ActiveUnit.UnitBuffsData.Charged.Value = true;
         public void ApplyConcentrateToActiveUnit() => ActiveUnit.UnitBuffsData.Concentrated.Value = true;
+
+        public void HealActiveUnit(int amount)=> HealUnit(ActiveUnit, amount);
         
+        public void HealOtherUnit(int amount) => HealUnit(OtherUnit, amount);
+
         public UniTask DealDamageToActiveUnit(OffensiveSkillData skillData)=> DealDamageToUnit(ActiveUnit, ActiveUnit, skillData);
         
         public UniTask DealDamageToOtherUnit(OffensiveSkillData skillData) => DealDamageToUnit(ActiveUnit, OtherUnit, skillData);
@@ -71,7 +74,7 @@ namespace Gameplay.Combat
             int damageTaken = _combatFormulaService.GetFinalDamageTo(target, skillData);
             target.UnitHealthController.TakeDamage(damageTaken);
             
-            OnHitDealt.OnNext(new HitDamageData()
+            OnHitDealt.OnNext(new HitEventData()
             {
                 Damage = damageTaken,
                 DamageType = crit ? DamageType.PhysicalCritical : DamageType.Physical,
@@ -92,6 +95,16 @@ namespace Gameplay.Combat
         {
             float evasionChance = _combatFormulaService.GetFinalEvasionChance(unit, skillData);
             return Random.value < evasionChance;
+        }
+
+        private void HealUnit(GameUnit target, int amount)
+        {
+            target.UnitHealthController.Heal(amount);
+            OnHealed?.OnNext(new HealEventData()
+            {
+                Amount = amount,
+                Target = target
+            });
         }
     }
 }

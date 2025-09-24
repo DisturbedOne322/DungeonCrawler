@@ -7,9 +7,10 @@ namespace Gameplay.Combat.Skills
     [CreateAssetMenu(fileName = "GuardSkill", menuName = "Skills/General/GuardSkill")]
     public class GuardSkill : BaseSkill
     {
-        protected override async UniTask PerformAction(CombatService combatService)
+        protected override UniTask PerformAction(CombatService combatService)
         {
             combatService.ApplyGuardToActiveUnit();
+            return UniTask.CompletedTask;
         }
 
         public override bool CanUse(CombatService combatService) => true;
