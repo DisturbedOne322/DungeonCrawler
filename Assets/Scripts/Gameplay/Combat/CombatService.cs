@@ -48,22 +48,26 @@ namespace Gameplay.Combat
         
         public void HealOtherUnit(int amount) => HealUnit(OtherUnit, amount);
 
-        public UniTask DealDamageToActiveUnit(OffensiveSkillData skillData)=> DealDamageToUnit(ActiveUnit, ActiveUnit, skillData);
+        public UniTask DealDamageToActiveUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
+            DealDamageToUnit(ActiveUnit, ActiveUnit, skillData, consumeCharge);
         
-        public UniTask DealDamageToOtherUnit(OffensiveSkillData skillData) => DealDamageToUnit(ActiveUnit, OtherUnit, skillData);
+        public UniTask DealDamageToOtherUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
+            DealDamageToUnit(ActiveUnit, OtherUnit, skillData, consumeCharge);
 
-        private async UniTask DealDamageToUnit(GameUnit caster, GameUnit target, OffensiveSkillData skillData)
+        private async UniTask DealDamageToUnit(GameUnit caster, GameUnit target, OffensiveSkillData skillData, bool consumeCharge = true)
         {
+            if (caster.UnitBuffsData.Charged.Value)
+            {
+                if(consumeCharge)
+                    caster.UnitBuffsData.Charged.Value = false;
+                
+                skillData.Damage *= 2;
+            }
+            
             if (Evaded(target, skillData))
             {
                 await target.EvadeAnimator.PlayEvadeAnimation();
                 return;
-            }
-            
-            if (caster.UnitBuffsData.Charged.Value)
-            {
-                caster.UnitBuffsData.Charged.Value = false;
-                skillData.Damage *= 2;
             }
             
             bool crit = IsCritical(caster, skillData);

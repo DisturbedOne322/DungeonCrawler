@@ -11,11 +11,14 @@ namespace Gameplay.Combat.Skills
         
         protected override async UniTask PerformAction(CombatService combatService)
         {
-            for (int i = 0; i < _hits; i++)
+            for (int i = 0; i < _hits - 1; i++)
             {
-                await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit.UnitStatsData));
+                await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit.UnitStatsData), false);
                 await UniTask.WaitForSeconds(0.15f);
             }
+            
+            await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit.UnitStatsData));
+            await UniTask.WaitForSeconds(0.15f);
         }
 
         public override bool CanUse(CombatService combatService) => true;
