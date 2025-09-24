@@ -23,6 +23,7 @@ namespace Installers.SceneInstallers
             Container.Bind<CombatSequenceController>().AsSingle();
             Container.Bind<CombatService>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
+            Container.Bind<CombatBuffsProcessor>().AsSingle();
             
             Container.Bind<PlayerMovementController>().AsSingle();
             Container.Bind<PlayerMovementHistory>().AsSingle();

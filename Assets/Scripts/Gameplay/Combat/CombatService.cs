@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
 using Gameplay.Units;
 using UniRx;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -13,6 +12,7 @@ namespace Gameplay.Combat
         
         private readonly CombatData _combatData;
         private readonly CombatFormulaService _combatFormulaService;
+        private readonly CombatBuffsProcessor _combatBuffsProcessor;
 
         private int _turnCount = -1;
         
@@ -22,10 +22,12 @@ namespace Gameplay.Combat
         public Subject<HitEventData> OnHitDealt = new();
         public Subject<HealEventData> OnHealed = new();
 
-        public CombatService(CombatData combatData, CombatFormulaService combatFormulaService)
+        public CombatService(CombatData combatData, CombatFormulaService combatFormulaService,
+            CombatBuffsProcessor combatBuffsProcessor)
         {
             _combatData = combatData;
             _combatFormulaService = combatFormulaService;
+            _combatBuffsProcessor = combatBuffsProcessor;
         }
         
         public void StartCombat(GameUnit enemy)
@@ -41,9 +43,9 @@ namespace Gameplay.Combat
             ActiveUnit.UnitBuffsData.Guarded.Value = false;
         }
 
-        public void ApplyGuardToActiveUnit() => ActiveUnit.UnitBuffsData.Guarded.Value = true;
-        public void ApplyChargeToActiveUnit() => ActiveUnit.UnitBuffsData.Charged.Value = true;
-        public void ApplyConcentrateToActiveUnit() => ActiveUnit.UnitBuffsData.Concentrated.Value = true;
+        public void ApplyGuardToActiveUnit() => _combatBuffsProcessor.ApplyGuardToUnit(ActiveUnit);
+        public void ApplyChargeToActiveUnit() => _combatBuffsProcessor.ApplyChargeToUnit(ActiveUnit);
+        public void ApplyConcentrateToActiveUnit() => _combatBuffsProcessor.ApplyConcentrateToUnit(ActiveUnit);
 
         public void HealActiveUnit(int amount)=> HealUnit(ActiveUnit, amount);
         
@@ -57,14 +59,8 @@ namespace Gameplay.Combat
 
         private async UniTask DealDamageToUnit(GameUnit caster, GameUnit target, OffensiveSkillData skillData, bool consumeCharge = true)
         {
-            if (caster.UnitBuffsData.Charged.Value)
-            {
-                if(consumeCharge)
-                    caster.UnitBuffsData.Charged.Value = false;
-                
-                skillData.Damage *= 2;
-            }
-            
+            skillData.Damage = _combatBuffsProcessor.GetBuffedDamage(caster, skillData, consumeCharge);
+
             if (Evaded(target, skillData))
             {
                 await target.EvadeAnimator.PlayEvadeAnimation();
