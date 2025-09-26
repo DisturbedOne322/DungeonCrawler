@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Player
   _prefab: {fileID: 454397997071619803, guid: 9648656f8a2a12c48bf2fd0d35375c2a, type: 3}
+  _maxHp: 100
   _unitBaseStats:
     _constitution: 10
     _strength: 10
     _dexterity: 10
     _intelligence: 10
     _luck: 10
-  _maxHp: 100
   _basicAttackSkill: {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}
   _guardSkill: {fileID: 11400000, guid: 5a2ec0e93c678fb42b0087f73304518c, type: 2}
   _skillSet:
@@ -31,3 +31,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: 38607ef3b4f273c4cbff5d30b1a16cd3, type: 2}
+  _baseWeapon: {fileID: 11400000, guid: 5e11bfc90a9f49148b5a11e64c92969d, type: 2}
+  _baseArmor: {fileID: 0}

@@ -3,24 +3,28 @@ using System.Linq;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
+using UnityEngine;
 
 namespace Gameplay.Combat
 {
     public class ModifiersCalculationService
     {
-        public int GetFinalOutgoingDamage(in DamageContext damageContext)
+        public int GetFinalOutgoingDamage(int baseDamage, in DamageContext damageContext)
         {
-            int result = damageContext.SkillData.Damage;
+            int result = baseDamage;
             var modifiers = damageContext.Attacker.GetOffensiveModifiers();
+
+            if (modifiers.Count > 0)
+            {
+                var additiveModifiers = modifiers.Where(x => x.Priority == OffensiveModifierPriorityType.Additive);
+                var multiplicativeModifiers = modifiers.Where(x => x.Priority == OffensiveModifierPriorityType.Multiplicative);
+
+                foreach (var modifier in additiveModifiers) 
+                    result = modifier.ModifyOutgoingDamage(result, damageContext);
             
-            var additiveModifiers = modifiers.Where(x => x.Priority == OffensiveModifierPriorityType.Additive);
-            var multiplicativeModifiers = modifiers.Where(x => x.Priority == OffensiveModifierPriorityType.Multiplicative);
-            
-            foreach (var modifier in additiveModifiers) 
-                result = modifier.ModifyOutgoingDamage(result, damageContext);
-            
-            foreach (var modifier in multiplicativeModifiers) 
-                result = modifier.ModifyOutgoingDamage(result, damageContext);
+                foreach (var modifier in multiplicativeModifiers) 
+                    result = modifier.ModifyOutgoingDamage(result, damageContext);
+            }
             
             result = ApplyCharge(result, damageContext);
 
@@ -30,21 +34,25 @@ namespace Gameplay.Combat
             return result;
         }
         
-        public int GetReducedIngoingDamage(in DamageContext damageContext)
+        public int GetReducedIngoingDamage(int incomingDamage, in DamageContext damageContext)
         {
-            int result = damageContext.SkillData.Damage;
+            int reducedDamage = incomingDamage;
+            
             var modifiers = damageContext.Defender.GetDefensiveModifiers();
+
+            if (modifiers.Count > 0)
+            {
+                var subtractiveModifiers = modifiers.Where(x => x.Priority == DefensiveModifierPriorityType.Subtractive);
+                var divisiveModifiers = modifiers.Where(x => x.Priority == DefensiveModifierPriorityType.Divisive);
             
-            var subtractiveModifiers = modifiers.Where(x => x.Priority == DefensiveModifierPriorityType.Subtractive);
-            var divisiveModifiers = modifiers.Where(x => x.Priority == DefensiveModifierPriorityType.Divisive);
+                foreach (var modifier in subtractiveModifiers) 
+                    reducedDamage = modifier.ModifyIngoingDamage(reducedDamage, damageContext);
             
-            foreach (var modifier in subtractiveModifiers) 
-                result = modifier.ModifyIngoingDamage(result, damageContext);
+                foreach (var modifier in divisiveModifiers) 
+                    reducedDamage = modifier.ModifyIngoingDamage(reducedDamage, damageContext);
+            }
             
-            foreach (var modifier in divisiveModifiers) 
-                result = modifier.ModifyIngoingDamage(result, damageContext);
-            
-            return result;
+            return reducedDamage;
         }
         
         private int ApplyCharge(int damage, in DamageContext damageContext)

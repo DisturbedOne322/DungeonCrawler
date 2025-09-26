@@ -9,20 +9,22 @@ namespace Gameplay.Combat
     {
         private const int MaxStatValue = 100;
 
-        public int GetFinalDamageTo(IEntity unit, OffensiveSkillData skillData)
+        public int GetFinalDamageTo(int incomingDamage, IEntity unit, OffensiveSkillData skillData)
         {
             if (skillData.IsPiercing)
-                return skillData.Damage;
+                return incomingDamage;
             
             int constitutionStat = unit.UnitStatsData.Constitution.Value;
             float damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, MaxStatValue) * 0.8f / MaxStatValue;
             
-            float constitutionReducedDamage = skillData.Damage * damageReductionModifier;
+            float constitutionReducedDamage = incomingDamage * damageReductionModifier;
 
             if (unit.UnitBuffsData.Guarded.Value)
                 constitutionReducedDamage /= 2;
             
-            return Mathf.RoundToInt(constitutionReducedDamage);
+            int clampedDamage = Mathf.Max(Mathf.RoundToInt(constitutionReducedDamage), 0);
+            
+            return clampedDamage;
         }
 
         public float GetFinalCritChance(IEntity unit, OffensiveSkillData skillData)

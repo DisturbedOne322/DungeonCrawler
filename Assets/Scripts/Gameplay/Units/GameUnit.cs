@@ -67,6 +67,12 @@ namespace Gameplay.Units
             
             _unitSkillsData.AssignSkills(unitData);
             _unitInventoryData.AssignItems(unitData.Items);
+            
+            if(unitData.BaseWeapon)
+                _unitEquipmentData.EquipWeapon(unitData.BaseWeapon);
+            
+            if(unitData.BaseArmor)
+                _unitEquipmentData.EquipArmor(unitData.BaseArmor);
         }
 
         public List<IOffensiveModifier> GetOffensiveModifiers()
@@ -91,20 +97,20 @@ namespace Gameplay.Units
 
         private void TryAddModifiersFromEquipment(List<IOffensiveModifier> offensiveModifiers)
         {
-            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon() is IOffensiveModifier weaponBuff)
-                offensiveModifiers.Add(weaponBuff);
+            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon().OffensiveModifier)
+                offensiveModifiers.Add(_unitEquipmentData.GetEquippedWeapon().OffensiveModifier);
             
-            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor() is IOffensiveModifier armorBuff)
-                offensiveModifiers.Add(armorBuff);
+            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor().OffensiveModifier)
+                offensiveModifiers.Add(_unitEquipmentData.GetEquippedArmor().OffensiveModifier);
         }
         
         private void TryAddModifiersFromEquipment(List<IDefensiveModifier> defensiveModifiers)
         {
-            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon() is IDefensiveModifier weaponBuff)
-                defensiveModifiers.Add(weaponBuff);
+            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon().DefensiveModifier)
+                defensiveModifiers.Add(_unitEquipmentData.GetEquippedWeapon().DefensiveModifier);
             
-            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor() is IDefensiveModifier armorBuff)
-                defensiveModifiers.Add(armorBuff);
+            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor().DefensiveModifier)
+                defensiveModifiers.Add(_unitEquipmentData.GetEquippedArmor().DefensiveModifier);
         }
     }
 }

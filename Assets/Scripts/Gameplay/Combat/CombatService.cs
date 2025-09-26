@@ -4,6 +4,7 @@ using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -64,24 +65,25 @@ namespace Gameplay.Combat
         private async UniTask DealDamageToUnit(IGameUnit caster, IGameUnit target, OffensiveSkillData skillData, bool consumeCharge = true)
         {
             bool isCritical = IsCritical(caster, skillData);
-
+            
+            int outgoingDamage = skillData.Damage;
             var damageContext = new DamageContext(caster, target, skillData, isCritical, consumeCharge);
-            skillData.Damage = _modifiersCalculationService.GetFinalOutgoingDamage(damageContext);
-
+            outgoingDamage = _modifiersCalculationService.GetFinalOutgoingDamage(outgoingDamage, damageContext);
+            
             if (Evaded(target, skillData))
             {
                 await target.EvadeAnimator.PlayEvadeAnimation();
                 return;
             }
             
-            skillData.Damage = _modifiersCalculationService.GetReducedIngoingDamage(damageContext);
-            int finalDamage = _combatFormulaService.GetFinalDamageTo(target, skillData);
+            outgoingDamage = _modifiersCalculationService.GetReducedIngoingDamage(outgoingDamage, damageContext);
+            outgoingDamage = _combatFormulaService.GetFinalDamageTo(outgoingDamage, target, skillData);
             
-            target.UnitHealthController.TakeDamage(finalDamage);
+            target.UnitHealthController.TakeDamage(outgoingDamage);
             
             OnHitDealt.OnNext(new HitEventData()
             {
-                Damage = finalDamage,
+                Damage = outgoingDamage,
                 HitDamageType = isCritical ? HitDamageType.PhysicalCritical : HitDamageType.Physical,
                 Target = target
             });

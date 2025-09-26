@@ -1,6 +1,5 @@
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
-using Gameplay.Units;
 
 namespace Gameplay.Combat.Modifiers
 {
