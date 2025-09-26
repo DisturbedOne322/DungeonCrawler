@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
-using Gameplay.Combat.Items;
+using Gameplay.Combat.Consumables;
 using Gameplay.Player;
 using Gameplay.Units;
 using UniRx;
@@ -27,7 +27,7 @@ namespace StateMachine.BattleMenu
 
             var inventory = Player.UnitInventoryData;
 
-            Dictionary<BaseItem, int> itemsDict = new ();
+            Dictionary<BaseConsumable, int> itemsDict = new ();
 
             foreach (var item in inventory.Items)
             {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Data;
 using DG.Tweening;
-using Gameplay.Combat.Items;
+using Gameplay.Combat.Consumables;
 using Gameplay.Combat.Skills;
 using Gameplay.Units;
 using TMPro;
@@ -76,7 +76,7 @@ namespace UI
 
         private void ShowSkillReward(BaseSkill skill) => ShowReward(skill.Icon, $"YOU LEARNED:\n{skill.Name}");
 
-        private void ShowItemReward(BaseItem item, int amount) => ShowReward(item.Icon, $"YOU GOT:\n{item.Name}", amount);
+        private void ShowItemReward(BaseConsumable consumable, int amount) => ShowReward(consumable.Icon, $"YOU GOT:\n{consumable.Name}", amount);
 
         private void ShowCoinReward(Sprite sprite, int amount) => ShowReward(sprite, "YOU FOUND COINS!", amount);
 

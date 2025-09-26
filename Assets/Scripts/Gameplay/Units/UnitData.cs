@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Gameplay.Combat.Consumables;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Items;
 using Gameplay.Combat.Skills;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,7 +17,7 @@ namespace Gameplay.Units
         [SerializeField] private BaseSkill _basicAttackSkill;
         [SerializeField] private BaseSkill _guardSkill;
         [SerializeField] private List<BaseSkill> _skillSet;
-        [SerializeField] private List<BaseItem> _items;
+        [SerializeField] private List<BaseConsumable> _items;
         
         public string Name => _name;
         public GameUnit Prefab => _prefab;
@@ -26,6 +26,6 @@ namespace Gameplay.Units
         public BaseSkill BasicAttackSkill => _basicAttackSkill;
         public BaseSkill GuardSkill => _guardSkill;
         public List<BaseSkill> SkillSet => _skillSet;
-        public List<BaseItem> Items => _items;
+        public List<BaseConsumable> Items => _items;
     }
 }

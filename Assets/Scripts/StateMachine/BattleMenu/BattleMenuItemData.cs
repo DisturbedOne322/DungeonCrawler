@@ -1,6 +1,6 @@
 using System;
 using Gameplay.Combat;
-using Gameplay.Combat.Items;
+using Gameplay.Combat.Consumables;
 using Gameplay.Combat.Skills;
 using UI.BattleMenu;
 using UniRx;
@@ -49,17 +49,17 @@ namespace StateMachine.BattleMenu
         }
 
         public static BattleMenuItemData ForItem(
-            BaseItem item,
+            BaseConsumable consumable,
             CombatService service,
             Action onItemSelected,
             int quantity)
         {
             return new BattleMenuItemData(
-                item.Name,
-                () => item.CanUse(service),
+                consumable.Name,
+                () => consumable.CanUse(service),
                 onItemSelected,
                 MenuItemType.Item,
-                item.Description,
+                consumable.Description,
                 quantity
             );
         }
