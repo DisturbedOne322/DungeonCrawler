@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Combat.Data;
+using Gameplay.Facades;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -13,20 +14,20 @@ namespace Gameplay.Combat.Skills
         
         protected override async UniTask PerformAction(CombatService service)
         {
-            service.DealDamageToActiveUnit(GetSelfDamageData());
-            await service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit.UnitStatsData));
+            service.DealDamageToActiveUnit(GetSelfDamageData()).Forget();
+            await service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit));
         }
 
         public override bool CanUse(CombatService combatService)
         {
-            int currentHealth = combatService.ActiveUnit.HealthData.CurrentHealth.Value;
+            int currentHealth = combatService.ActiveUnit.UnitHealthData.CurrentHealth.Value;
             return currentHealth > _fixedHealthPrice;
         }
 
-        protected override OffensiveSkillData GetSkillData(UnitStatsData statsData)
+        protected override OffensiveSkillData GetSkillData(IEntity entity)
         {
-            var skillData = base.GetSkillData(statsData);
-            int strength = statsData.Strength.Value;
+            var skillData = base.GetSkillData(entity);
+            int strength = entity.UnitStatsData.Strength.Value;
             int additionalPower = Mathf.RoundToInt(_strengthScaling * strength);
             
             int finalAttackPower = BaseDamage + additionalPower;

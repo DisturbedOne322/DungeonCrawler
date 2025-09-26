@@ -27,7 +27,7 @@ namespace UI.BattleUI.Damage
             if(data.Target is PlayerUnit)
                 return;
             
-            var enemyPos = data.Target.transform.position;
+            var enemyPos = data.Target.Position;
             ShowText(enemyPos, data.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data.HitDamageType), '-');
         }
 
@@ -36,7 +36,7 @@ namespace UI.BattleUI.Damage
             if(data.Target is PlayerUnit)
                 return;
             
-            var enemyPos = data.Target.transform.position;
+            var enemyPos = data.Target.Position;
             ShowText(enemyPos, data.Amount, GameplayConstants.HealColor, '+');
         }
 

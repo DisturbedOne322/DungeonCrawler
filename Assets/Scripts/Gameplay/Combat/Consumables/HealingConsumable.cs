@@ -16,8 +16,8 @@ namespace Gameplay.Combat.Consumables
 
         public override bool CanUse(CombatService combatService)
         {
-            int activeUnitHealth = combatService.ActiveUnit.HealthData.CurrentHealth.Value;
-            int activeUnitMaxHealth = combatService.ActiveUnit.HealthData.MaxHealth.Value;
+            int activeUnitHealth = combatService.ActiveUnit.UnitHealthData.CurrentHealth.Value;
+            int activeUnitMaxHealth = combatService.ActiveUnit.UnitHealthData.MaxHealth.Value;
             
             return activeUnitHealth < activeUnitMaxHealth;
         }

@@ -1,4 +1,5 @@
 using Gameplay.Combat.Data;
+using Gameplay.Facades;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -12,7 +13,7 @@ namespace Gameplay.Combat.Skills
         [SerializeField] private bool _isUnavoidable = false;
         [SerializeField] private DamageType _damageType;
         
-        protected virtual OffensiveSkillData GetSkillData(UnitStatsData statsData)
+        protected virtual OffensiveSkillData GetSkillData(IEntity entity)
         {
             return new OffensiveSkillData()
             {

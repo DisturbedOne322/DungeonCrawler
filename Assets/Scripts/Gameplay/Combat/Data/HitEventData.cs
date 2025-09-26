@@ -1,10 +1,10 @@
-using Gameplay.Units;
+using Gameplay.Facades;
 
 namespace Gameplay.Combat.Data
 {
     public struct HitEventData
     {
-        public GameUnit Target;
+        public IEntity Target;
         public int Damage;
         public HitDamageType HitDamageType;
     }

@@ -1,0 +1,11 @@
+using Gameplay.Combat.Data;
+using Gameplay.Combat.SkillSelection;
+
+namespace Gameplay.Facades
+{
+    public interface ISkillUser
+    {
+        UnitSkillsData UnitSkillsData { get; }
+        ActionSelectionProvider ActionSelectionProvider { get; }
+    }
+}

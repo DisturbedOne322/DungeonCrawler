@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Combat.Data;
+using Gameplay.Facades;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -10,15 +11,15 @@ namespace Gameplay.Combat.Skills
     {
         [SerializeField] private float _strengthScaling = 1;
         
-        protected override async UniTask PerformAction(CombatService combatService) => await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit.UnitStatsData));
+        protected override async UniTask PerformAction(CombatService combatService) => await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit));
 
         public override bool CanUse(CombatService combatService) => true;
 
-        protected override OffensiveSkillData GetSkillData(UnitStatsData statsData)
+        protected override OffensiveSkillData GetSkillData(IEntity entity)
         {
-            var skillData = base.GetSkillData(statsData);
+            var skillData = base.GetSkillData(entity);
             
-            int strength = statsData.Strength.Value;
+            int strength = entity.UnitStatsData.Strength.Value;
             int additionalPower = Mathf.RoundToInt(_strengthScaling * strength);
             
             int finalAttackPower = BaseDamage + additionalPower;

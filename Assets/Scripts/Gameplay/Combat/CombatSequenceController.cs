@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
 
@@ -42,6 +43,6 @@ namespace Gameplay.Combat
         
         private bool IsCombatOver() => IsUnitDead(_combatData.Enemy) || IsUnitDead(_combatData.Player);
 
-        private bool IsUnitDead(GameUnit unit) => unit.HealthData.IsDead.Value;
+        private bool IsUnitDead(IEntity unit) => unit.UnitHealthData.IsDead.Value;
     }
 }

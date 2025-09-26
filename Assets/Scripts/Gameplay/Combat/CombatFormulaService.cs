@@ -1,4 +1,5 @@
 using Gameplay.Combat.Data;
+using Gameplay.Facades;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Gameplay.Combat
     {
         private const int MaxStatValue = 100;
 
-        public int GetFinalDamageTo(GameUnit unit, OffensiveSkillData skillData)
+        public int GetFinalDamageTo(IEntity unit, OffensiveSkillData skillData)
         {
             if (skillData.IsPiercing)
                 return skillData.Damage;
@@ -24,21 +25,21 @@ namespace Gameplay.Combat
             return Mathf.RoundToInt(constitutionReducedDamage);
         }
 
-        public float GetFinalCritChance(GameUnit unit, OffensiveSkillData skillData)
+        public float GetFinalCritChance(IEntity unit, OffensiveSkillData skillData)
         {
             float finalCritChance = 0f;
             
             int dex = unit.UnitStatsData.Dexterity.Value;
             int luck = unit.UnitStatsData.Luck.Value;
 
-            float chanceFromDex = dex * 0.2f / MaxStatValue;
-            float chanceFromLuck = luck * 0.33f / MaxStatValue;
+            float chanceFromDex = Mathf.Clamp(dex, 0, MaxStatValue) * 0.2f / MaxStatValue;
+            float chanceFromLuck = Mathf.Clamp(luck, 0, MaxStatValue) * 0.33f / MaxStatValue;
 
             finalCritChance = skillData.CritChance + chanceFromDex + chanceFromLuck;
             return Mathf.Clamp01(finalCritChance);
         }
 
-        public float GetFinalEvasionChance(GameUnit unit, OffensiveSkillData skillData)
+        public float GetFinalEvasionChance(IEntity unit, OffensiveSkillData skillData)
         {
             if(skillData.IsUnavoidable)
                 return 0f;
@@ -46,8 +47,8 @@ namespace Gameplay.Combat
             int dex = unit.UnitStatsData.Dexterity.Value;
             int luck = unit.UnitStatsData.Luck.Value;
 
-            float chanceFromDex = dex * 0.2f / MaxStatValue;
-            float chanceFromLuck = luck * 0.15f / MaxStatValue;
+            float chanceFromDex = Mathf.Clamp(dex, 0, MaxStatValue) * 0.2f / MaxStatValue;
+            float chanceFromLuck = Mathf.Clamp(luck, 0, MaxStatValue) * 0.15f / MaxStatValue;
 
             float finalEvasionChance = chanceFromDex + chanceFromLuck;
             

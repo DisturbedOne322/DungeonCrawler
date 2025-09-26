@@ -1,5 +1,6 @@
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
+using Gameplay.Equipment;
 using Zenject;
 
 namespace Installers.UnitInstallers
@@ -15,6 +16,7 @@ namespace Installers.UnitInstallers
             Container.Bind<UnitInventoryData>().AsSingle();
             Container.Bind<UnitStatsData>().AsSingle();
             Container.Bind<UnitBuffsData>().AsSingle();
+            Container.Bind<UnitEquipmentData>().AsSingle();
         }
     }
 }

@@ -1,13 +1,17 @@
+using System.Collections.Generic;
 using Animations;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
+using Gameplay.Combat.Modifiers;
 using Gameplay.Combat.SkillSelection;
+using Gameplay.Equipment;
+using Gameplay.Facades;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Units
 {
-    public class GameUnit : MonoBehaviour
+    public class GameUnit : MonoBehaviour, IGameUnit
     {
         [SerializeField] private EvadeAnimator _evadeAnimator;
         
@@ -18,17 +22,24 @@ namespace Gameplay.Units
         private UnitSkillsData _unitSkillsData;
         private UnitBuffsData _unitBuffsData;
         private UnitInventoryData _unitInventoryData;
+        private UnitEquipmentData _unitEquipmentData;
         
-        public UnitHealthData HealthData => _healthData;
+        public Vector3 Position => transform.position;
+        
+        public UnitHealthData UnitHealthData => _healthData;
         public UnitHealthController UnitHealthController => _unitHealthController;
         public ActionSelectionProvider ActionSelectionProvider => _actionSelectionProvider;
         public UnitStatsData UnitStatsData => _unitStatsData;
         public UnitSkillsData UnitSkillsData => _unitSkillsData;
         public UnitBuffsData UnitBuffsData => _unitBuffsData;
         public UnitInventoryData UnitInventoryData => _unitInventoryData;
-        
-        public EvadeAnimator EvadeAnimator => _evadeAnimator;
+        public UnitEquipmentData UnitEquipmentData => _unitEquipmentData;
 
+        public EvadeAnimator EvadeAnimator => _evadeAnimator;
+        
+        private List<IOffensiveModifier> _offensiveModifiers = new();
+        private List<IDefensiveModifier> _defensiveModifiers = new();
+        
         [Inject]
         private void Construct(UnitHealthData unitHealthData,
             UnitHealthController unitHealthController, 
@@ -36,7 +47,8 @@ namespace Gameplay.Units
             UnitStatsData unitStatsData, 
             UnitSkillsData unitSkillsData,
             UnitBuffsData unitBuffsData,
-            UnitInventoryData unitInventoryData)
+            UnitInventoryData unitInventoryData,
+            UnitEquipmentData unitEquipmentData)
         {
             _healthData = unitHealthData;
             _unitHealthController = unitHealthController;
@@ -45,6 +57,7 @@ namespace Gameplay.Units
             _unitSkillsData = unitSkillsData;
             _unitBuffsData = unitBuffsData;
             _unitInventoryData = unitInventoryData;
+            _unitEquipmentData = unitEquipmentData;
         }
 
         public void InitializeUnit(UnitData unitData)
@@ -54,6 +67,44 @@ namespace Gameplay.Units
             
             _unitSkillsData.AssignSkills(unitData);
             _unitInventoryData.AssignItems(unitData.Items);
+        }
+
+        public List<IOffensiveModifier> GetOffensiveModifiers()
+        {
+            _offensiveModifiers.Clear();
+            _offensiveModifiers.AddRange(_unitBuffsData.OffensiveBuffs);
+            
+            TryAddModifiersFromEquipment(_offensiveModifiers);
+            
+            return _offensiveModifiers;
+        }
+
+        public List<IDefensiveModifier> GetDefensiveModifiers()
+        {
+            _defensiveModifiers.Clear();
+            _defensiveModifiers.AddRange(_unitBuffsData.DefensiveBuffs);
+            
+            TryAddModifiersFromEquipment(_defensiveModifiers);
+            
+            return _defensiveModifiers;       
+        }
+
+        private void TryAddModifiersFromEquipment(List<IOffensiveModifier> offensiveModifiers)
+        {
+            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon() is IOffensiveModifier weaponBuff)
+                offensiveModifiers.Add(weaponBuff);
+            
+            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor() is IOffensiveModifier armorBuff)
+                offensiveModifiers.Add(armorBuff);
+        }
+        
+        private void TryAddModifiersFromEquipment(List<IDefensiveModifier> defensiveModifiers)
+        {
+            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon() is IDefensiveModifier weaponBuff)
+                defensiveModifiers.Add(weaponBuff);
+            
+            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor() is IDefensiveModifier armorBuff)
+                defensiveModifiers.Add(armorBuff);
         }
     }
 }
