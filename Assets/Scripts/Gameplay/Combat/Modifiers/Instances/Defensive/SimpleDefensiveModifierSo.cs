@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Modifiers.Instances.Defensive
 {
-    [CreateAssetMenu(fileName = "SimpleDefensiveModifierSo", menuName = "Modifiers/Defensive/SimpleDefensiveModifierSo")]
+    [CreateAssetMenu(fileName = "SimpleDefensiveModifierSo", menuName = "Gameplay/Modifiers/Defensive/SimpleDefensiveModifierSo")]
     public class SimpleDefensiveModifierSo : DefensiveModifierSo
     {
         [SerializeField, Min(0)] private int _reducedDamage;

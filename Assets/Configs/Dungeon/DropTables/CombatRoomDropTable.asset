@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36c28b78df84ba2b95cacb3831bc66b, type: 3}
-  m_Name: SimpleOffensiveModifierSo
+  m_Script: {fileID: 11500000, guid: c5b85132e38044d7b37fe559236186b4, type: 3}
+  m_Name: CombatRoomDropTable
   m_EditorClassIdentifier: 
-  _priority: 0
-  _damageIncrease: 10
+  _entriesList:
+  - _item: {fileID: 11400000, guid: 615ab50e8e2f7b54c8a840fa78cadef9, type: 2}
+    _weight: 1
+    _amount: 1

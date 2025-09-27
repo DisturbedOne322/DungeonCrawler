@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using DG.Tweening;
+using Gameplay.Combat;
 using Gameplay.Combat.Consumables;
 using Gameplay.Combat.Skills;
 using Gameplay.Units;
@@ -33,25 +35,65 @@ namespace UI
         [Inject]
         private void Construct(PlayerUnit playerUnit, GameplayData gameplayData)
         {
-            _disposables.Add(
-                playerUnit.UnitInventoryData.Items
-                    .ObserveAdd()
-                    .Subscribe(addEvent => EnqueueReward(() => ShowItemReward(addEvent.Value, 1)))
-            );
+            SubscribeToConsumablesAddEvents(playerUnit);
+            SubscribeToSkillsAddEvents(playerUnit);
+            SubscribeToCoinsAddEvents(gameplayData);
+            SubscribeToWeaponAddEvent(playerUnit);
+            SubscribeToArmorAddEvent(playerUnit);
+        }
 
+        private void OnDestroy() => _disposables.Dispose();
+
+        private void SubscribeToConsumablesAddEvents(PlayerUnit playerUnit)
+        {
+            _disposables.Add(
+                playerUnit.UnitInventoryData.Consumables
+                    .ObserveAdd()
+                    .Buffer(TimeSpan.FromMilliseconds(50))
+                    .Where(buffer => buffer.Count > 0)
+                    .Subscribe(addEvents =>
+                    {
+                        var grouped = addEvents
+                            .GroupBy(ev => ev.Value)
+                            .Select(g => new { Item = g.Key, Count = g.Count() });
+
+                        foreach (var entry in grouped)
+                            EnqueueReward(() => ShowItemReward(entry.Item, entry.Count));
+                    }));
+        }
+
+        private void SubscribeToSkillsAddEvents(PlayerUnit playerUnit)
+        {
             _disposables.Add(
                 playerUnit.UnitSkillsData.Skills
                     .ObserveAdd()
                     .Subscribe(addEvent => EnqueueReward(() => ShowSkillReward(addEvent.Value)))
             );
+        }
 
+        private void SubscribeToCoinsAddEvents(GameplayData gameplayData)
+        {
             _disposables.Add(
                 gameplayData.Coins.SkipLatestValueOnSubscribe().Subscribe(coins =>
                     EnqueueReward(() => ShowCoinReward(null, coins)))
             );
         }
 
-        private void OnDestroy() => _disposables.Dispose();
+        private void SubscribeToWeaponAddEvent(PlayerUnit playerUnit)
+        {
+            _disposables.Add(
+                playerUnit.UnitEquipmentData.OnWeaponEquipped.Subscribe(weapon => 
+                    EnqueueReward(() => ShowEquipmentReward(weapon)))
+                );
+        }
+        
+        private void SubscribeToArmorAddEvent(PlayerUnit playerUnit)
+        {
+            _disposables.Add(
+                playerUnit.UnitEquipmentData.OnArmorEquipped.Subscribe(armor => 
+                    EnqueueReward(() => ShowEquipmentReward(armor)))
+            );
+        }
 
         private void EnqueueReward(Action showAction)
         {
@@ -79,6 +121,7 @@ namespace UI
         private void ShowItemReward(BaseConsumable consumable, int amount) => ShowReward(consumable.Icon, $"YOU GOT:\n{consumable.Name}", amount);
 
         private void ShowCoinReward(Sprite sprite, int amount) => ShowReward(sprite, "YOU FOUND COINS!", amount);
+        private void ShowEquipmentReward(BaseGameItem item) => ShowReward(item.Icon, $"YOU GOT: \n {item.name}");
 
         private void ShowReward(Sprite icon, string tip, int amount = 0)
         {

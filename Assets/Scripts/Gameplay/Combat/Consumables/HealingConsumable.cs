@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Consumables
 {
-    [CreateAssetMenu(fileName = "HealingItem", menuName = "Items/HealingItem")]
+    [CreateAssetMenu(fileName = "HealingItem", menuName = "Gameplay/Items/HealingItem")]
     public class HealingConsumable : BaseConsumable
     {
         [SerializeField, Space] private int _healAmount;

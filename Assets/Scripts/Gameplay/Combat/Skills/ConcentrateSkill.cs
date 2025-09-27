@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Skills
 {
-    [CreateAssetMenu(fileName = "ConcentrateSkill", menuName = "Skills/General/ConcentrateSkill")]
+    [CreateAssetMenu(fileName = "ConcentrateSkill", menuName = "Gameplay/Skills/General/ConcentrateSkill")]
     public class ConcentrateSkill : BaseSkill
     {
         protected override UniTask PerformAction(CombatService combatService)

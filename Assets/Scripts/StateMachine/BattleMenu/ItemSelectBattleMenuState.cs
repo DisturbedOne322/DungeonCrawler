@@ -29,7 +29,7 @@ namespace StateMachine.BattleMenu
 
             Dictionary<BaseConsumable, int> itemsDict = new ();
 
-            foreach (var item in inventory.Items)
+            foreach (var item in inventory.Consumables)
             {
                 if (!itemsDict.TryAdd(item, 1)) 
                     itemsDict[item]++;

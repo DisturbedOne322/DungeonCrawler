@@ -66,7 +66,7 @@ namespace Gameplay.Units
             _unitStatsData.SetStats(unitData.UnitBaseStats);
             
             _unitSkillsData.AssignSkills(unitData);
-            _unitInventoryData.AssignItems(unitData.Items);
+            _unitInventoryData.AddItems(unitData.Items);
             
             if(unitData.BaseWeapon)
                 _unitEquipmentData.EquipWeapon(unitData.BaseWeapon);
@@ -97,20 +97,20 @@ namespace Gameplay.Units
 
         private void TryAddModifiersFromEquipment(List<IOffensiveModifier> offensiveModifiers)
         {
-            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon().OffensiveModifier)
-                offensiveModifiers.Add(_unitEquipmentData.GetEquippedWeapon().OffensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedWeapon(out var weapon) && weapon.OffensiveModifier)
+                offensiveModifiers.Add(weapon.OffensiveModifier);
             
-            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor().OffensiveModifier)
-                offensiveModifiers.Add(_unitEquipmentData.GetEquippedArmor().OffensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedArmor(out var armor) && armor.OffensiveModifier)
+                offensiveModifiers.Add(armor.OffensiveModifier);
         }
         
         private void TryAddModifiersFromEquipment(List<IDefensiveModifier> defensiveModifiers)
         {
-            if(_unitEquipmentData.IsWeaponEquipped() && _unitEquipmentData.GetEquippedWeapon().DefensiveModifier)
-                defensiveModifiers.Add(_unitEquipmentData.GetEquippedWeapon().DefensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedWeapon(out var weapon) && weapon.DefensiveModifier)
+                defensiveModifiers.Add(weapon.DefensiveModifier);
             
-            if(_unitEquipmentData.IsArmorEquipped() && _unitEquipmentData.GetEquippedArmor().DefensiveModifier)
-                defensiveModifiers.Add(_unitEquipmentData.GetEquippedArmor().DefensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedArmor(out var armor) && armor.DefensiveModifier)
+                defensiveModifiers.Add(armor.DefensiveModifier);
         }
     }
 }

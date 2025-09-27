@@ -48,7 +48,7 @@ namespace StateMachine.BattleMenu
             MenuItems.Add(
                 BattleMenuItemData.ForSubmenu(
                     "ITEMS", 
-                    () => Player.UnitInventoryData.Items.Count > 0,
+                    () => Player.UnitInventoryData.Consumables.Count > 0,
                     () => StateMachine.GoToState<ItemSelectBattleMenuState>().Forget())
             );
             

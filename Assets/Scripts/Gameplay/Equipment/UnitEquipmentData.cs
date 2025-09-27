@@ -1,5 +1,7 @@
+using System;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
+using UniRx;
 
 namespace Gameplay.Equipment
 {
@@ -8,13 +10,31 @@ namespace Gameplay.Equipment
         private BaseWeapon _weapon;
         private BaseArmor _armor;
 
-        public bool IsWeaponEquipped() => _weapon;
-        public bool IsArmorEquipped() => _armor;
-        
-        public BaseWeapon GetEquippedWeapon() => _weapon;
-        public BaseArmor GetEquippedArmor() => _armor;
+        public readonly Subject<BaseWeapon> OnWeaponEquipped = new();
+        public readonly Subject<BaseArmor> OnArmorEquipped = new();
 
-        public void EquipWeapon(BaseWeapon weapon) => _weapon = weapon;
-        public void EquipArmor(BaseArmor armor) => _armor = armor;
+        public bool TryGetEquippedWeapon(out BaseWeapon weapon)
+        {
+            weapon = _weapon;
+            return _weapon;
+        }
+
+        public bool TryGetEquippedArmor(out BaseArmor armor)
+        {
+            armor = _armor;
+            return _armor;
+        }
+        
+        public void EquipWeapon(BaseWeapon weapon)
+        {
+            _weapon = weapon;
+            OnWeaponEquipped?.OnNext(_weapon);
+        }
+
+        public void EquipArmor(BaseArmor armor)
+        {
+            _armor = armor;
+            OnArmorEquipped?.OnNext(_armor);
+        }
     }
 }

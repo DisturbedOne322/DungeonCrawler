@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Modifiers
 {
-    [CreateAssetMenu(fileName = "SimpleOffensiveModifierSo", menuName = "Modifiers/Offensive/SimpleOffensiveModifier")]
+    [CreateAssetMenu(fileName = "SimpleOffensiveModifierSo", menuName = "Gameplay/Modifiers/Offensive/SimpleOffensiveModifier")]
     public class SimpleOffensiveModifierSo : OffensiveModifierSo
     {
         [SerializeField, Min(0)] private int _damageIncrease;

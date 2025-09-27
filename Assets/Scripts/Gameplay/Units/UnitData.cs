@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 
 namespace Gameplay.Units
 {
-    [CreateAssetMenu(fileName = "UnitData", menuName = "Units/UnitData")]
+    [CreateAssetMenu(fileName = "UnitData", menuName = "Gameplay/Units/UnitData")]
     public class UnitData : ScriptableObject
     {
         [SerializeField] private string _name;

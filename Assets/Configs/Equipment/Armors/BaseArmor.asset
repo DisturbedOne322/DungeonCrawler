@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6322f718e94c859dec109b674024b9, type: 3}
   m_Name: BaseArmor
   m_EditorClassIdentifier: 
-  _offensiveModifier: {fileID: 0}
+  _icon: {fileID: 0}
+  _name: 
+  _description: 
+  _offensiveModifier: {fileID: 11400000, guid: f16665da67c13ed439403e4aaf725872, type: 2}
   _defensiveModifier: {fileID: 0}

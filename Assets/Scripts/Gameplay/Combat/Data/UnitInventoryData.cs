@@ -7,10 +7,16 @@ namespace Gameplay.Combat.Data
 {
     public class UnitInventoryData
     {
-        public ReactiveCollection<BaseConsumable> Items { get; } = new();
+        public ReactiveCollection<BaseConsumable> Consumables { get; } = new();
 
-        public void AssignItems(List<BaseConsumable> items) => Items.AllocFreeAddRange(items);
-        public void AddItem(BaseConsumable consumable) => Items.Add(consumable);
-        public void RemoveItem(BaseConsumable consumable) => Items.Remove(consumable);
+        public void AddItems(List<BaseConsumable> items) => Consumables.AllocFreeAddRange(items);
+        public void AddItems(BaseConsumable item, int amount)
+        {
+            for (int i = 0; i < amount; i++) 
+                Consumables.Add(item);
+        }
+
+        public void AddItem(BaseConsumable consumable) => Consumables.Add(consumable);
+        public void RemoveItem(BaseConsumable consumable) => Consumables.Remove(consumable);
     }
 }

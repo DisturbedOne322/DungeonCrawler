@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.Data
 {
-    [CreateAssetMenu(fileName = "DungeonRoomsDatabase", menuName = "Dungeon/Data/DungeonRoomsDatabase")]
+    [CreateAssetMenu(fileName = "DungeonRoomsDatabase", menuName = "Gameplay/Dungeon/Data/DungeonRoomsDatabase")]
     public class DungeonRoomsDatabase : ScriptableObject
     {
         [SerializeField] private List<RoomData> _roomDataList;

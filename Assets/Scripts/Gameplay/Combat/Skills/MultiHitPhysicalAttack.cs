@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Skills
 {
-    [CreateAssetMenu(fileName = "MultiHitPhysicalAttack", menuName = "Skills/MultiHitPhysicalAttack")]
+    [CreateAssetMenu(fileName = "MultiHitPhysicalAttack", menuName = "Gameplay/Skills/MultiHitPhysicalAttack")]
     public class MultiHitPhysicalAttack : OffensiveSkill
     {
         [SerializeField, Min(2)] private int _hits = 2;

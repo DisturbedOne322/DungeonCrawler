@@ -2,6 +2,7 @@ using Data;
 using Gameplay;
 using Gameplay.Combat;
 using Gameplay.Player;
+using Gameplay.Rewards;
 using Gameplay.Services;
 using Gameplay.Units;
 using UnityEngine;
@@ -30,6 +31,8 @@ namespace Installers.SceneInstallers
             Container.Bind<PlayerMovementHistory>().AsSingle();
             Container.Bind<PlayerDecisionProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputProvider>().AsSingle();
+
+            Container.Bind<RewardSelectorService>().AsSingle();
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Skills
 {
-    [CreateAssetMenu(fileName = "BaseAttackSkill", menuName = "Skills/BaseAttackSkill")]
+    [CreateAssetMenu(fileName = "BaseAttackSkill", menuName = "Gameplay/Skills/BaseAttackSkill")]
     public class BaseAttackSkill : OffensiveSkill
     {
         [SerializeField] private float _strengthScaling = 1;

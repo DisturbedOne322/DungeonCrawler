@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Enemies
 {
-    [CreateAssetMenu(fileName = "EnemyData", menuName = "Enemies/EnemyDatabase")]
+    [CreateAssetMenu(fileName = "EnemyData", menuName = "Gameplay/Enemies/EnemyDatabase")]
     public class EnemyDatabase : ScriptableObject
     {
         [SerializeField] private List<UnitData> _database;

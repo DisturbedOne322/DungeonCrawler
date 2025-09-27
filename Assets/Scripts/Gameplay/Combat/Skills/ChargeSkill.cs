@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Skills
 {
-    [CreateAssetMenu(fileName = "ChargeSkill", menuName = "Skills/General/ChargeSkill")]
+    [CreateAssetMenu(fileName = "ChargeSkill", menuName = "Gameplay/Skills/General/ChargeSkill")]
     public class ChargeSkill : BaseSkill
     {
         protected override UniTask PerformAction(CombatService combatService)
