@@ -74,9 +74,20 @@ namespace UI
         private void SubscribeToCoinsAddEvents(GameplayData gameplayData)
         {
             _disposables.Add(
-                gameplayData.Coins.SkipLatestValueOnSubscribe().Subscribe(coins =>
-                    EnqueueReward(() => ShowCoinReward(null, coins)))
+                gameplayData.Coins
+                    .SkipLatestValueOnSubscribe()
+                    .Pairwise()
+                    .Subscribe(pair =>
+                    {
+                        int prev = pair.Previous;
+                        int current = pair.Current;
+                        int added = current - prev;
+
+                        if (added > 0)
+                            EnqueueReward(() => ShowCoinReward(null, added));
+                    })
             );
+
         }
 
         private void SubscribeToWeaponAddEvent(PlayerUnit playerUnit)
@@ -121,7 +132,7 @@ namespace UI
         private void ShowItemReward(BaseConsumable consumable, int amount) => ShowReward(consumable.Icon, $"YOU GOT:\n{consumable.Name}", amount);
 
         private void ShowCoinReward(Sprite sprite, int amount) => ShowReward(sprite, "YOU FOUND COINS!", amount);
-        private void ShowEquipmentReward(BaseGameItem item) => ShowReward(item.Icon, $"YOU GOT: \n {item.name}");
+        private void ShowEquipmentReward(BaseGameItem item) => ShowReward(item.Icon, $"YOU GOT: \n {item.Name}");
 
         private void ShowReward(Sprite icon, string tip, int amount = 0)
         {

@@ -6,6 +6,6 @@ namespace Gameplay.Dungeon
     {
         [SerializeField] private MeshRenderer _meshRenderer;
         
-        public void SetDoorIcon(Texture2D texture) => _meshRenderer.material.mainTexture = texture;
+        public void SetDoorIcon(Sprite sprite) => _meshRenderer.material.mainTexture = sprite.texture;
     }
 }

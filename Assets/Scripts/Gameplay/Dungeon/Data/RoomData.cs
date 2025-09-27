@@ -8,11 +8,11 @@ namespace Gameplay.Dungeon.Data
     public class RoomData : ScriptableObject
     {
         [SerializeField] private DungeonRoom _prefab;
-        [SerializeField] private Texture2D _icon;
+        [SerializeField] private Sprite _icon;
         [SerializeField] private RewardDropTable _rewardDropTable;
         
         public DungeonRoom RoomPrefab => _prefab;
-        public Texture2D Icon => _icon;
+        public Sprite Icon => _icon;
         public RewardDropTable RewardDropTable => _rewardDropTable;
     }
 }

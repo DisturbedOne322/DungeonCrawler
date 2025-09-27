@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: CorridorRoom
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4668317362049676833, guid: 0cfbdb06b46ac514ca73efcb276195bf, type: 3}
-  _icon: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  _icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  _rewardDropTable: {fileID: 0}

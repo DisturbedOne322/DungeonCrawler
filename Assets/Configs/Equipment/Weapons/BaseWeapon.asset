@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356bd6aaeef949a2a304b9a2d6b59c87, type: 3}
   m_Name: BaseWeapon
   m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
+  _name: Wooden Sword
+  _description: 
   _prefab: {fileID: 0}
   _offensiveModifier: {fileID: 11400000, guid: f16665da67c13ed439403e4aaf725872, type: 2}
   _defensiveModifier: {fileID: 0}
