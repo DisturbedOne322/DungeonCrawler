@@ -1,5 +1,6 @@
 using Gameplay.Enemies;
 using Gameplay.Player;
+using Gameplay.Rewards;
 using Gameplay.Services;
 using UI;
 using UI.BattleUI.Damage;
@@ -14,12 +15,15 @@ namespace Installers.SceneInstallers
             Container.Bind<ContainerFactory>().AsSingle();
             Container.Bind<EnemyFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PlayerFactory>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<UIFactory>().FromComponentInHierarchy().AsSingle();
             
             Container.Bind<NumberObjectsPool>().AsTransient();
             Container.Bind<NumberObjectsAnimator>().AsSingle();
             
             Container.Bind<BalanceService>().AsSingle();
+            
+            Container.Bind<RewardDistributor>().AsSingle();
+            Container.Bind<RewardSelectorService>().AsSingle();
+            Container.Bind<RoomDropsService>().AsSingle();
         }
     }
 }

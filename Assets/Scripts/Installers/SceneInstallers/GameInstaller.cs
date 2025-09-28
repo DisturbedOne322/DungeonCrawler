@@ -31,8 +31,6 @@ namespace Installers.SceneInstallers
             Container.Bind<PlayerMovementHistory>().AsSingle();
             Container.Bind<PlayerDecisionProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputProvider>().AsSingle();
-
-            Container.Bind<RewardSelectorService>().AsSingle();
         }
     }
 }

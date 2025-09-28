@@ -13,20 +13,17 @@ namespace Gameplay
         private readonly PlayerMovementController _playerMovementController;
         private readonly DungeonBranchingSelector _dungeonBranchingSelector;
         private readonly DungeonGenerator _dungeonGenerator;
-        private readonly DungeonFactory _dungeonFactory;
-        private readonly RewardSelectorService _rewardSelectorService;
+        private readonly RoomDropsService _roomDropsService;
 
         public GameSequenceController(PlayerMovementController playerMovementController,
             DungeonBranchingSelector dungeonBranchingSelector,
             DungeonGenerator dungeonGenerator,
-            DungeonFactory dungeonFactory,
-            RewardSelectorService rewardSelectorService)
+            RoomDropsService roomDropsService)
         {
             _playerMovementController = playerMovementController;
             _dungeonBranchingSelector = dungeonBranchingSelector;
             _dungeonGenerator = dungeonGenerator;
-            _dungeonFactory = dungeonFactory;
-            _rewardSelectorService = rewardSelectorService;
+            _roomDropsService = roomDropsService;
         }
         
         public async UniTask StartRun()
@@ -44,16 +41,8 @@ namespace Gameplay
                 await stopRoom.PlayEnterSequence();
                 await stopRoom.ClearRoom();
 
-                TryAddRewardsFrom(stopRoom);
+                await _roomDropsService.GiveRewardToPlayer(stopRoom);
             }
-        }
-
-        private void TryAddRewardsFrom(DungeonRoom room)
-        {
-            var roomType = room.RoomType;
-            var roomData = _dungeonFactory.GetRoomData(roomType);
-            
-            _rewardSelectorService.TryAddReward(roomData.RewardDropTable);
         }
     }
 }

@@ -21,10 +21,10 @@ namespace Gameplay.Rewards
             _player = player;
         }
         
-        public void TryAddReward(RewardDropTable dropTable)
+        public DropEntry SelectReward(RewardDropTable dropTable)
         {
             if (!dropTable)
-                return;
+                return null;
 
             var rewards = new List<DropEntry>(dropTable.EntriesList);
 
@@ -33,10 +33,10 @@ namespace Gameplay.Rewards
             RemovePlayerSkillsFromSelection(_player.UnitSkillsData, rewards);
 
             if (rewards.Count == 0)
-                return;
+                return null;
 
             var itemReward = SelectWeightedRandom(rewards);
-            GiveRewardToPlayer(itemReward);
+            return itemReward;
         }
 
         private void RemovePlayerSkillsFromSelection(UnitSkillsData skillsData, List<DropEntry> skillDrops)
@@ -88,32 +88,6 @@ namespace Gameplay.Rewards
             }
 
             return entries.Last();
-        }
-
-        private void GiveRewardToPlayer(DropEntry dropEntry)
-        {
-            switch (dropEntry.Item)
-            {
-                case BaseWeapon weapon:
-                    _player.UnitEquipmentData.EquipWeapon(weapon);
-                    break;
-
-                case BaseArmor armor:
-                    _player.UnitEquipmentData.EquipArmor(armor);
-                    break;
-
-                case BaseSkill skill:
-                    _player.UnitSkillsData.AddSkill(skill);
-                    break;
-
-                case BaseConsumable consumable:
-                    _player.UnitInventoryData.AddItems(consumable, dropEntry.Amount);
-                    break;
-
-                default:
-                    Debug.LogWarning($"Unhandled reward type: {dropEntry.Item.name}");
-                    break;
-            }
         }
     }
 }

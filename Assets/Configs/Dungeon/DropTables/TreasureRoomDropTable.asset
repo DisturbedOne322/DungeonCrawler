@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: TreasureRoomDropTable
   m_EditorClassIdentifier: 
   _entriesList:
-  - _item: {fileID: 11400000, guid: 94fd4053e9861cc4fb9ec8897e733740, type: 2}
+  - _item: {fileID: 11400000, guid: 2b7b80a3081412d45bc410d4c637a3d0, type: 2}
     _weight: 1
     _amount: 1
-  - _item: {fileID: 11400000, guid: 38607ef3b4f273c4cbff5d30b1a16cd3, type: 2}
-    _weight: 3
-    _amount: 3

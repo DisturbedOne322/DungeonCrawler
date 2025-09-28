@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 841879405}
   - component: {fileID: 841879408}
   - component: {fileID: 841879407}
+  - component: {fileID: 841879409}
   m_Layer: 0
   m_Name: '[Scene Context]'
   m_TagString: Untagged
@@ -443,6 +444,7 @@ MonoBehaviour:
   - {fileID: 841879405}
   - {fileID: 841879408}
   - {fileID: 841879407}
+  - {fileID: 841879409}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -509,6 +511,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c053e8c8ba4e4e87c9fc4bae7e2d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &841879409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841879401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd020729f154b54b51b204489088f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &870362187
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +533,8 @@ GameObject:
   m_Component:
   - component: {fileID: 870362189}
   - component: {fileID: 870362190}
+  - component: {fileID: 870362191}
+  - component: {fileID: 870362192}
   m_Layer: 0
   m_Name: '[UI]'
   m_TagString: Untagged
@@ -559,6 +575,34 @@ MonoBehaviour:
   _canvas: {fileID: 1839586626}
   _zSpawnOffet: -0.1
   _spawnRadius: 0.5
+--- !u!114 &870362191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870362187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841a49d374eb44b5a70935af0cbc42fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 2139679682}
+  _uiPrefabsContainer: {fileID: 870362192}
+--- !u!114 &870362192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870362187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a3dc856d2149e9a0b8bcccddd6ad8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabs:
+  - {fileID: 2779634372701121051, guid: a6eade608dd302448a8a1bc85b225bae, type: 3}
 --- !u!1 &1158684239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1179,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3451415224599081772, guid: c997076adf2ac8844996eac60771e2c5, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451415224599081772, guid: c997076adf2ac8844996eac60771e2c5, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4998436731104441283, guid: c997076adf2ac8844996eac60771e2c5, type: 3}
