@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UniRx;
 
 namespace StateMachine.BattleMenu
 {
@@ -8,7 +9,12 @@ namespace StateMachine.BattleMenu
         public List<MenuItemData> MenuItems => _menuItems;
 
         protected int SelectedIndex = 0;
-        
+
+        public Subject<Unit> OnViewChanged = new();
+
+        public int GetSelectedIndex() => SelectedIndex;
+        public bool IsSelectionValid() => CheckSelectionValid();
+
         public void SetMenuItems(List<MenuItemData> menuItems) => _menuItems = menuItems;
 
         public void UpdateSelection(int increment)
@@ -30,7 +36,7 @@ namespace StateMachine.BattleMenu
             if(_menuItems == null)
                 return;
             
-            if (!rememberSelection || !IsSelectionValid()) 
+            if (!rememberSelection || !CheckSelectionValid()) 
                 SelectedIndex = FindFirstSelectableIndex();
 
             ApplyHighlight();
@@ -38,7 +44,7 @@ namespace StateMachine.BattleMenu
 
         public virtual void ExecuteSelection()
         {
-            if (!IsSelectionValid()) 
+            if (!CheckSelectionValid()) 
                 return;
             
             _menuItems[SelectedIndex].OnSelected?.Invoke();
@@ -51,6 +57,8 @@ namespace StateMachine.BattleMenu
                 var item = _menuItems[i];
                 item.IsHighlighted.Value = (i == SelectedIndex && item.IsSelectable());
             }
+            
+            OnViewChanged?.OnNext(default);
         }
 
         private int FindFirstSelectableIndex()
@@ -74,7 +82,7 @@ namespace StateMachine.BattleMenu
             int count = _menuItems.Count;
             int nextIndex = SelectedIndex;
 
-            for (int attempts = 0; attempts < count; attempts++)
+            for (int i = 0; i < count; i++)
             {
                 nextIndex = (nextIndex + increment + count) % count;
                 if (_menuItems[nextIndex].IsSelectable())
@@ -84,7 +92,7 @@ namespace StateMachine.BattleMenu
             return -1;
         }
         
-        private bool IsSelectionValid()
+        private bool CheckSelectionValid()
         {
             if (_menuItems == null)
                 return false;

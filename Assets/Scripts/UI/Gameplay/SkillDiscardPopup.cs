@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using DG.Tweening;
-using Gameplay.Combat;
-using StateMachine.BattleMenu;
 using UI.BattleMenu;
 using UI.Core;
 using UnityEngine;
@@ -19,6 +17,7 @@ namespace UI
         [SerializeField] private float _hideTime = 0.5f;
 
         [SerializeField] private SkillMenuItemView _skillPrefab;
+        [SerializeField] private MenuItemsScroller _menuItemsScroller;
         
         protected override void InitializePopup()
         {
@@ -43,17 +42,23 @@ namespace UI
         {
             var playerSkills = skillDiscardMenuUpdater.MenuItems;
             var newSkill = skillDiscardMenuUpdater.NewSkillData;
+
+            List<BaseMenuItemView> list = new();
             
             foreach (var skill in playerSkills)
             {
                 var view = Instantiate(_skillPrefab, _oldSkillsParent, false);
                 view.Bind(skill);
                 view.SetDescription(skill.Description);
+                
+                list.Add(view);
             }
             
             var newView = Instantiate(_skillPrefab, _newSkillParent, false);
             newView.Bind(newSkill);
             newView.SetDescription(newSkill.Description);
+            
+            _menuItemsScroller.SetData(list, skillDiscardMenuUpdater);
         }
     }
 }

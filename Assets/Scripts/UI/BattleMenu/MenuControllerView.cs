@@ -62,7 +62,7 @@ namespace UI.BattleMenu
 
             _currentPage = _factory.CreatePage();
             _currentPage.transform.SetParent(_pagesParent, false);
-            _currentPage.SetItems(_factory.CreateViewsForData(updater.MenuItems));
+            _currentPage.SetItems(_factory.CreateViewsForData(updater.MenuItems), updater);
             
             _pagePool.TryAdd(state, _currentPage);
         }

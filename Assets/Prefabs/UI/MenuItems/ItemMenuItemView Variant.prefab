@@ -392,17 +392,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemMenuItemView Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5365182365074275023, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
+      propertyPath: _aspectRatio
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5709712365899243119, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
       propertyPath: m_fontSize
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8142197115834019048, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8142197115834019048, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8142197115834019048, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
       propertyPath: m_AnchorMin.x
@@ -422,6 +426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 938312228375403707, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
+    - {fileID: 3192503311420008859, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8142197115834019048, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
