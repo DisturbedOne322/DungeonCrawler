@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e0c85477b142758d8d5a4adb5999ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firstSelected: {fileID: 3541616662082853545}
   _canvas: {fileID: 7153801201563895590}
   _oldEquipData: {fileID: 71680819860071991}
   _newEquipData: {fileID: 2725345523304231478}
@@ -313,7 +314,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.2396766, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -741,7 +742,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.2396766, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1115,6 +1116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemDataDisplay (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5948377152081813365, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
+      propertyPath: m_fontSize
+      value: 25.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8958961302407124514, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1267,6 +1272,10 @@ PrefabInstance:
     - target: {fileID: 2895809821027005474, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_Name
       value: ItemDataDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948377152081813365, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
+      propertyPath: m_fontSize
+      value: 25.3
       objectReference: {fileID: 0}
     - target: {fileID: 8958961302407124514, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_AnchorMax.x

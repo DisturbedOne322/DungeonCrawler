@@ -22,11 +22,9 @@ namespace UI
 
         public event Action OnKeepPressed;
         public event Action OnChangePressed;
-        
-        public override void ShowPopup()
+
+        protected override void InitializePopup()
         {
-            _canvas.DOFade(1, _showTime).SetEase(Ease.OutBack).SetLink(gameObject);
-            
             _keepButton.onClick.AddListener(() =>
             {
                 OnKeepPressed?.Invoke();
@@ -38,6 +36,11 @@ namespace UI
                 OnChangePressed?.Invoke();
                 HidePopup();
             });
+        }
+
+        public override void ShowPopup()
+        {
+            _canvas.DOFade(1, _showTime).SetEase(Ease.OutBack).SetLink(gameObject);
         }
 
         public override void HidePopup()
