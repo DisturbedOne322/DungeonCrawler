@@ -15,11 +15,14 @@ namespace Gameplay.Rewards
     {
         private readonly PlayerUnit _player;
         private readonly EquipmentChangeController _equipmentChangeController;
+        private readonly SkillDiscardController _skillDiscardController;
 
-        public RewardDistributor(PlayerUnit player, EquipmentChangeController equipmentChangeController)
+        public RewardDistributor(PlayerUnit player, EquipmentChangeController equipmentChangeController,
+            SkillDiscardController skillDiscardController)
         {
             _player = player;
             _equipmentChangeController = equipmentChangeController;
+            _skillDiscardController = skillDiscardController;
         }
         
         public async UniTask GiveRewardToPlayer(DropEntry dropEntry)
@@ -38,7 +41,7 @@ namespace Gameplay.Rewards
                     break;
 
                 case BaseSkill skill:
-                    _player.UnitSkillsData.AddSkill(skill);
+                    await ProcessSkillReward(skill);
                     break;
 
                 case BaseConsumable consumable:
@@ -62,7 +65,7 @@ namespace Gameplay.Rewards
             else
                 _player.UnitEquipmentData.EquipWeapon(newWeapon);
         }
-        
+
         private async UniTask ProcessArmorReward(BaseArmor newArmor)
         {
             if (_player.UnitEquipmentData.TryGetEquippedArmor(out var currentArmor))
@@ -73,6 +76,16 @@ namespace Gameplay.Rewards
             }
             else
                 _player.UnitEquipmentData.EquipArmor(newArmor);
+        }
+
+        private async Task ProcessSkillReward(BaseSkill skill)
+        {
+            var skillToDiscard = await _skillDiscardController.MakeSkillDiscardChoice(skill);
+            if (skillToDiscard != skill)
+            {
+                _player.UnitSkillsData.RemoveSkill(skillToDiscard);
+                _player.UnitSkillsData.AddSkill(skill);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using UniRx;
 
 namespace StateMachine.BattleMenu
 {
-    public class BattleMenuItemData
+    public class MenuItemData
     {
         public string Label { get; }
         public string Description { get; }
@@ -18,7 +18,7 @@ namespace StateMachine.BattleMenu
 
         public ReactiveProperty<bool> IsHighlighted { get; } = new ReactiveProperty<bool>();
 
-        public BattleMenuItemData(
+        public MenuItemData(
             string label,
             Func<bool> isSelectable,
             Action onSelected,
@@ -34,29 +34,29 @@ namespace StateMachine.BattleMenu
             Quantity = quantity;
         }
 
-        public static BattleMenuItemData ForSkill(
+        public static MenuItemData ForSkill(
             BaseSkill skill,
-            CombatService service,
+            Func<bool> isSelectable,
             Action onSkillSelected)
         {
-            return new BattleMenuItemData(
+            return new MenuItemData(
                 skill.Name,
-                () => skill.CanUse(service),
+                isSelectable,
                 onSkillSelected,
                 MenuItemType.Skill,
                 skill.Description
             );
         }
 
-        public static BattleMenuItemData ForItem(
+        public static MenuItemData ForItem(
             BaseConsumable consumable,
-            CombatService service,
+            Func<bool> isSelectable,
             Action onItemSelected,
             int quantity)
         {
-            return new BattleMenuItemData(
+            return new MenuItemData(
                 consumable.Name,
-                () => consumable.CanUse(service),
+                isSelectable,
                 onItemSelected,
                 MenuItemType.Item,
                 consumable.Description,
@@ -64,13 +64,13 @@ namespace StateMachine.BattleMenu
             );
         }
 
-        public static BattleMenuItemData ForSubmenu(
+        public static MenuItemData ForSubmenu(
             string label,
             Func<bool> isSelectable,
             Action onSelected,
             string description = null)
         {
-            return new BattleMenuItemData(label, 
+            return new MenuItemData(label, 
                 isSelectable, 
                 onSelected, 
                 MenuItemType.Submenu,

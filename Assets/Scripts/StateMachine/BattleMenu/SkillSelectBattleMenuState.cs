@@ -29,9 +29,9 @@ namespace StateMachine.BattleMenu
             foreach (var skill in skillsData.Skills)
             {
                 MenuItems.Add(
-                    BattleMenuItemData.ForSkill(
+                    MenuItemData.ForSkill(
                         skill,
-                        CombatService,
+                        () => skill.CanUse(CombatService),
                         () => StateMachine.SelectAction(skill))
                 );
             }

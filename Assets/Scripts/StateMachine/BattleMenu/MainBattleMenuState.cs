@@ -25,28 +25,28 @@ namespace StateMachine.BattleMenu
             MenuItems.Clear();
             
             MenuItems.Add(
-                BattleMenuItemData.ForSkill(
+                MenuItemData.ForSkill(
                     Player.UnitSkillsData.BasicAttackSkill,
-                    CombatService,
+                    () => true,
                     () => StateMachine.SelectAction(Player.UnitSkillsData.BasicAttackSkill))
                 );
             
             MenuItems.Add(
-                BattleMenuItemData.ForSkill(
+                MenuItemData.ForSkill(
                     Player.UnitSkillsData.GuardSkill,
-                    CombatService,
+                    () => true,
                     () => StateMachine.SelectAction(Player.UnitSkillsData.GuardSkill))
             );
             
             MenuItems.Add(
-                BattleMenuItemData.ForSubmenu(
+                MenuItemData.ForSubmenu(
                     "SKILLS", 
                     () => Player.UnitSkillsData.Skills.Count > 0,
                     () => StateMachine.GoToState<SkillSelectBattleMenuState>().Forget())
             );
             
             MenuItems.Add(
-                BattleMenuItemData.ForSubmenu(
+                MenuItemData.ForSubmenu(
                     "ITEMS", 
                     () => Player.UnitInventoryData.Consumables.Count > 0,
                     () => StateMachine.GoToState<ItemSelectBattleMenuState>().Forget())

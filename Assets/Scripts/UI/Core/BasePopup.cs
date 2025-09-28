@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,7 +9,9 @@ namespace UI.Core
 
         private void Awake()
         {
-            EventSystem.current?.SetSelectedGameObject(_firstSelected);
+            if(_firstSelected)
+                EventSystem.current.SetSelectedGameObject(_firstSelected);
+            
             InitializePopup();
         }
 

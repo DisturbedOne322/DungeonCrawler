@@ -6,18 +6,18 @@ using UniRx;
 
 namespace UI.BattleMenu
 {
-    public class BattleMenuController : MonoBehaviour
+    public class MenuControllerView : MonoBehaviour
     {
         [SerializeField] private RectTransform _pagesParent;
-        [SerializeField] private BattleMenuItemViewFactory _factory;
+        [SerializeField] private MenuItemViewFactory _factory;
         
         private BattleMenuStateMachine _stateMachine;
         
         private CompositeDisposable _disposables;
 
-        private BattleMenuPageView _currentPage;
+        private MenuPageView _currentPage;
         
-        private Dictionary<BattleMenuState, BattleMenuPageView> _pagePool = new();
+        private Dictionary<BattleMenuState, MenuPageView> _pagePool = new();
         
         [Inject]
         private void Construct(BattleMenuStateMachine stateMachine)

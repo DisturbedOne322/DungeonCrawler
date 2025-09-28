@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 namespace UI.BattleMenu
 {
-    public class BaseBattleMenuItemView : MonoBehaviour
+    public class BaseMenuItemView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Image _background;
 
         private IDisposable _disposable;
         
-        public void Bind(BattleMenuItemData data)
+        public void Bind(MenuItemData data)
         {
             _text.text = data.Label;
 

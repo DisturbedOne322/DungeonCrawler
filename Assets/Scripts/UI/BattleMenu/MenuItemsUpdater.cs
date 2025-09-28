@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace StateMachine.BattleMenu
 {
     public class MenuItemsUpdater
     {
-        private List<BattleMenuItemData> _menuItems;
-        public List<BattleMenuItemData> MenuItems => _menuItems;
+        private List<MenuItemData> _menuItems;
+        public List<MenuItemData> MenuItems => _menuItems;
 
-        private int _selectedIndex = 0;
+        protected int SelectedIndex = 0;
         
-        public void SetMenuItems(List<BattleMenuItemData> menuItems) => _menuItems = menuItems;
+        public void SetMenuItems(List<MenuItemData> menuItems) => _menuItems = menuItems;
 
         public void UpdateSelection(int increment)
         {
@@ -19,8 +18,8 @@ namespace StateMachine.BattleMenu
             if (count == 0) 
                 return;
 
-            _selectedIndex = FindNextSelectableIndex(increment);
-            if (_selectedIndex == -1)
+            SelectedIndex = FindNextSelectableIndex(increment);
+            if (SelectedIndex == -1)
                 return;
 
             ApplyHighlight();
@@ -32,25 +31,25 @@ namespace StateMachine.BattleMenu
                 return;
             
             if (!rememberSelection || !IsSelectionValid()) 
-                _selectedIndex = FindFirstSelectableIndex();
+                SelectedIndex = FindFirstSelectableIndex();
 
             ApplyHighlight();
         }
 
-        public void ExecuteSelection()
+        public virtual void ExecuteSelection()
         {
             if (!IsSelectionValid()) 
                 return;
             
-            _menuItems[_selectedIndex].OnSelected?.Invoke();
+            _menuItems[SelectedIndex].OnSelected?.Invoke();
         }
         
-        private void ApplyHighlight()
+        protected void ApplyHighlight()
         {
             for (int i = 0; i < _menuItems.Count; i++)
             {
                 var item = _menuItems[i];
-                item.IsHighlighted.Value = (i == _selectedIndex && item.IsSelectable());
+                item.IsHighlighted.Value = (i == SelectedIndex && item.IsSelectable());
             }
         }
 
@@ -69,11 +68,11 @@ namespace StateMachine.BattleMenu
         
         private int FindNextSelectableIndex(int increment)
         {
-            if (_selectedIndex == -1)
+            if (SelectedIndex == -1)
                 return FindFirstSelectableIndex();
 
             int count = _menuItems.Count;
-            int nextIndex = _selectedIndex;
+            int nextIndex = SelectedIndex;
 
             for (int attempts = 0; attempts < count; attempts++)
             {
@@ -93,10 +92,10 @@ namespace StateMachine.BattleMenu
             if(_menuItems.Count == 0)
                 return false;
             
-            if(_selectedIndex < 0 || _selectedIndex >= _menuItems.Count)
+            if(SelectedIndex < 0 || SelectedIndex >= _menuItems.Count)
                 return false;
             
-            return _menuItems[_selectedIndex].IsSelectable();
+            return _menuItems[SelectedIndex].IsSelectable();
         }
     }
 }

@@ -6,12 +6,12 @@ using Zenject;
 
 namespace UI.BattleMenu
 {
-    public class BattleMenuItemViewFactory : MonoBehaviour
+    public class MenuItemViewFactory : MonoBehaviour
     {
-        [SerializeField] private BattleMenuPageView _pagePrefab;
-        [SerializeField] private BaseBattleMenuItemView _menuItemPrefab;
-        [SerializeField] private SkillBattleMenuItemView _skillMenuItemPrefab;
-        [SerializeField] private ItemBattleMenuItemView _itemMenuItemPrefab;
+        [SerializeField] private MenuPageView _pagePrefab;
+        [SerializeField] private BaseMenuItemView _menuItemPrefab;
+        [SerializeField] private SkillMenuItemView _skillMenuItemPrefab;
+        [SerializeField] private ItemMenuItemView _itemMenuItemPrefab;
 
         private ContainerFactory _factory;
 
@@ -21,11 +21,11 @@ namespace UI.BattleMenu
             _factory = factory;
         }
 
-        public BattleMenuPageView CreatePage() => _factory.Create<BattleMenuPageView>(_pagePrefab.gameObject);
+        public MenuPageView CreatePage() => _factory.Create<MenuPageView>(_pagePrefab.gameObject);
 
-        public List<BaseBattleMenuItemView> CreateViewsForData(List<BattleMenuItemData> dataList)
+        public List<BaseMenuItemView> CreateViewsForData(List<MenuItemData> dataList)
         {
-            List<BaseBattleMenuItemView> views = new List<BaseBattleMenuItemView>();
+            List<BaseMenuItemView> views = new List<BaseMenuItemView>();
 
             foreach (var data in dataList)
             {
@@ -46,26 +46,26 @@ namespace UI.BattleMenu
             return views;
         }
         
-        private BaseBattleMenuItemView CreateMenuItem(BattleMenuItemData data)
+        private BaseMenuItemView CreateMenuItem(MenuItemData data)
         {
-            var view = _factory.Create<BaseBattleMenuItemView>(_menuItemPrefab.gameObject);
+            var view = _factory.Create<BaseMenuItemView>(_menuItemPrefab.gameObject);
             view.Bind(data);
             
             return view;
         }
         
-        private SkillBattleMenuItemView CreateSkillMenuItem(BattleMenuItemData data)
+        private SkillMenuItemView CreateSkillMenuItem(MenuItemData data)
         {
-            var view = _factory.Create<SkillBattleMenuItemView>(_skillMenuItemPrefab.gameObject);
+            var view = _factory.Create<SkillMenuItemView>(_skillMenuItemPrefab.gameObject);
             view.Bind(data);
             view.SetDescription(data.Description);
             
             return view;
         }
         
-        private ItemBattleMenuItemView CreateItemMenuItem(BattleMenuItemData data)
+        private ItemMenuItemView CreateItemMenuItem(MenuItemData data)
         {
-            var view = _factory.Create<ItemBattleMenuItemView>(_itemMenuItemPrefab.gameObject);
+            var view = _factory.Create<ItemMenuItemView>(_itemMenuItemPrefab.gameObject);
             view.Bind(data);
             view.SetDescription(data.Description);
             view.SetQuantity(data.Quantity);

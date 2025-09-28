@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI.BattleMenu
 {
-    public class BattleMenuPageView : MonoBehaviour
+    public class MenuPageView : MonoBehaviour
     {
         [SerializeField] private RectTransform _content;
 

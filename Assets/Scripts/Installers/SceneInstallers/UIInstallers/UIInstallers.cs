@@ -9,6 +9,8 @@ namespace Installers.SceneInstallers.UIInstallers
         public override void InstallBindings()
         {
             Container.Bind<EquipmentChangeController>().AsSingle();
+            Container.Bind<SkillDiscardController>().AsSingle();
+            
             Container.Bind<UIFactory>().FromComponentInHierarchy().AsSingle();
         }
     }

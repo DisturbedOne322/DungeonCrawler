@@ -16,7 +16,7 @@ namespace StateMachine.BattleMenu
         
         public readonly MenuItemsUpdater MenuItemsUpdater;
 
-        protected List<BattleMenuItemData> MenuItems = new();
+        protected List<MenuItemData> MenuItems = new();
         
         protected CompositeDisposable Disposables;
         

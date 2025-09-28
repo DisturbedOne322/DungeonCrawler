@@ -41,9 +41,9 @@ namespace StateMachine.BattleMenu
                 var quantity = itemQuantityKv.Value;
                 
                 MenuItems.Add(
-                    BattleMenuItemData.ForItem(
+                    MenuItemData.ForItem(
                         item,
-                        CombatService,
+                        () => item.CanUse(CombatService),
                         () =>
                         {
                             Player.UnitInventoryData.RemoveItem(item);

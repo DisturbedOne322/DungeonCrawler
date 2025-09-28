@@ -15,17 +15,31 @@ namespace Gameplay.Player
         public readonly Subject<Unit> OnUiDown = new();
         public readonly Subject<Unit> OnUiSubmit = new();
         public readonly Subject<Unit> OnUiBack = new();
+        public readonly Subject<Unit> OnUiLeft = new();
+        public readonly Subject<Unit> OnUiRight = new();
         
         public PlayerInputProvider()
+        {
+            SubscribeMovementActions();
+
+            SubscribeUiActions();
+        }
+
+        private void SubscribeMovementActions()
         {
             _inputActions.Decision.GoLeft.performed += ctx => OnGoLeft.OnNext(Unit.Default);
             _inputActions.Decision.GoForward.performed += ctx => OnGoForward.OnNext(Unit.Default);
             _inputActions.Decision.GoRight.performed += ctx => OnGoRight.OnNext(Unit.Default);
-            
+        }
+
+        private void SubscribeUiActions()
+        {
             _inputActions.UI.Up.performed += ctx => OnUiUp.OnNext(Unit.Default);
             _inputActions.UI.Down.performed += ctx => OnUiDown.OnNext(Unit.Default);
             _inputActions.UI.Submit.performed += ctx => OnUiSubmit.OnNext(Unit.Default);
-            _inputActions.UI.UiBack.performed += ctx => OnUiBack.OnNext(Unit.Default);
+            _inputActions.UI.Back.performed += ctx => OnUiBack.OnNext(Unit.Default);
+            _inputActions.UI.Left.performed += ctx => OnUiLeft.OnNext(Unit.Default);
+            _inputActions.UI.Right.performed += ctx => OnUiRight.OnNext(Unit.Default);
         }
 
         public void EnableMovementInput(bool enable)

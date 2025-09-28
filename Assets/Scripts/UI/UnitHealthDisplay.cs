@@ -1,5 +1,3 @@
-using System;
-using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using TMPro;
 using UnityEngine;
@@ -15,20 +13,20 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _healthText;
         
         [Inject]
-        private UnitHealthData _unitHealthData;
+        private UnitHealthData _healthData;
 
         private void Awake()
         {
             SetHealthDisplay();
             
-            _unitHealthData.CurrentHealth.Subscribe(_ => SetHealthDisplay()).AddTo(gameObject);
-            _unitHealthData.MaxHealth.Subscribe(_ => SetHealthDisplay()).AddTo(gameObject);
+            _healthData.CurrentHealth.Subscribe(_ => SetHealthDisplay()).AddTo(gameObject);
+            _healthData.MaxHealth.Subscribe(_ => SetHealthDisplay()).AddTo(gameObject);
         }
 
         private void SetHealthDisplay()
         {
-            int health = _unitHealthData.CurrentHealth.Value;
-            int maxHealth = _unitHealthData.MaxHealth.Value;
+            int health = _healthData.CurrentHealth.Value;
+            int maxHealth = _healthData.MaxHealth.Value;
             
             _healthText.text = health + "/" + maxHealth;
 

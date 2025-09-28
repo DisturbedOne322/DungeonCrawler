@@ -142,4 +142,4 @@ MonoBehaviour:
   _pagePrefab: {fileID: 1418061875997372433, guid: ec8fed9fcc959cb46b55935dda8bb5f4, type: 3}
   _menuItemPrefab: {fileID: 938312228375403707, guid: dabd4d6c78f504844b3792dc566f5dcf, type: 3}
   _skillMenuItemPrefab: {fileID: 6822584178029666815, guid: 47b2b83507cb95c43bf47faef2ec054b, type: 3}
-  _itemMenuItemPrefab: {fileID: 0}
+  _itemMenuItemPrefab: {fileID: 8459208238833676252, guid: 521c301c7cebf7544990fb1575187ad8, type: 3}
