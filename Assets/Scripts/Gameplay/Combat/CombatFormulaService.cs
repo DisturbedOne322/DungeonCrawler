@@ -1,6 +1,5 @@
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
-using Gameplay.Units;
 using UnityEngine;
 
 namespace Gameplay.Combat

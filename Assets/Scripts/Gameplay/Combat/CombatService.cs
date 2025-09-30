@@ -11,8 +11,6 @@ namespace Gameplay.Combat
 {
     public class CombatService
     {
-        private const int CritDamageMultiplier = 2;
-        
         private readonly CombatData _combatData;
         private readonly CombatFormulaService _combatFormulaService;
         private readonly CombatBuffsApplicator _combatBuffsApplicator;

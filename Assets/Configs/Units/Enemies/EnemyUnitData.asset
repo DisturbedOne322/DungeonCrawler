@@ -9,20 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627b2cbd0f749bcba8eea86d752f308, type: 3}
+  m_Script: {fileID: 11500000, guid: c25f8a9b436b4406bb6f2785e5d3c590, type: 3}
   m_Name: EnemyUnitData
   m_EditorClassIdentifier: 
   _name: Test Enemy
   _prefab: {fileID: 5294280859536209961, guid: 298d9f510cb756345a254b72c041cd37, type: 3}
+  _maxHp: 50
   _unitBaseStats:
     _constitution: 10
     _strength: 10
     _dexterity: 10
     _intelligence: 10
     _luck: 10
-  _maxHp: 50
   _basicAttackSkill: {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}
   _guardSkill: {fileID: 11400000, guid: 5a2ec0e93c678fb42b0087f73304518c, type: 2}
   _skillSet:
   - {fileID: 11400000, guid: 1b5c98718c47df04a8cce4d8f2ca44d8, type: 2}
   _items: []
+  _baseWeapon: {fileID: 0}
+  _baseArmor: {fileID: 0}
+  _experienceBonus: 50

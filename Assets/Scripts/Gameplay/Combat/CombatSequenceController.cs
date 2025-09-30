@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Experience;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
@@ -9,17 +10,21 @@ namespace Gameplay.Combat
     {
         private readonly CombatData _combatData;
         private readonly CombatService _combatService;
+        private readonly PlayerExperienceService _playerExperienceService;
         
         public readonly Subject<Unit> OnCombatStarted = new ();
         public readonly Subject<Unit> OnCombatEnded = new ();
+        public readonly Subject<int> OnEnemyDefeated = new();
         
-        public CombatSequenceController(CombatData combatData, CombatService combatService)
+        public CombatSequenceController(CombatData combatData, CombatService combatService,
+            PlayerExperienceService playerExperienceService)
         {
             _combatData = combatData;
             _combatService = combatService;
+            _playerExperienceService = playerExperienceService;
         }
 
-        public async UniTask StartCombat(GameUnit enemyUnit)
+        public async UniTask StartCombat(EnemyUnit enemyUnit)
         {
             _combatService.StartCombat(enemyUnit);
             OnCombatStarted.OnNext(default);
@@ -31,6 +36,9 @@ namespace Gameplay.Combat
             }
             
             OnCombatEnded.OnNext(default);
+            
+            if(IsUnitDead(enemyUnit))
+                _playerExperienceService.AddExperience(enemyUnit.ExperienceBonus);
         }
 
         private async UniTask ProcessTurn()

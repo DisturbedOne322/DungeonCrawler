@@ -5,7 +5,6 @@ using Gameplay.Combat.Skills;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Units
 {

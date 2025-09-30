@@ -24,6 +24,7 @@ namespace Gameplay.Enemies
             var unit = _containerFactory.Create<EnemyUnit>(prefab);
             
             unit.InitializeUnit(data);
+            unit.SetExperienceBonus(data.ExperienceBonus);
             
             return unit;
         }

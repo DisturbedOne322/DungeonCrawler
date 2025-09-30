@@ -1,6 +1,7 @@
 using Data;
 using Gameplay;
 using Gameplay.Combat;
+using Gameplay.Experience;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
@@ -26,7 +27,11 @@ namespace Installers.SceneInstallers
             Container.Bind<CombatFormulaService>().AsSingle();
             Container.Bind<CombatBuffsApplicator>().AsSingle();
             Container.Bind<ModifiersCalculationService>().AsSingle();
-            
+
+            Container.Bind<PlayerExperienceService>().AsSingle();
+            Container.Bind<ExperienceRequirementsProvider>().AsSingle();
+            Container.Bind<ExperienceData>().AsSingle();
+
             Container.Bind<PlayerMovementController>().AsSingle();
             Container.Bind<PlayerMovementHistory>().AsSingle();
             Container.Bind<PlayerDecisionProvider>().AsSingle();
