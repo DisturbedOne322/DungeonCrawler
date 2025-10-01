@@ -4,6 +4,7 @@ using Gameplay.Combat;
 using Gameplay.Combat.Consumables;
 using Gameplay.Player;
 using Gameplay.Units;
+using UI.BattleMenu;
 using UniRx;
 
 namespace StateMachine.BattleMenu

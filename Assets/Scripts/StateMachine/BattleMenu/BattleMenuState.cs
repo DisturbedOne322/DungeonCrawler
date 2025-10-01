@@ -4,6 +4,7 @@ using Gameplay.Combat;
 using Gameplay.Player;
 using Gameplay.Units;
 using StateMachine.Core;
+using UI.BattleMenu;
 using UniRx;
 
 namespace StateMachine.BattleMenu

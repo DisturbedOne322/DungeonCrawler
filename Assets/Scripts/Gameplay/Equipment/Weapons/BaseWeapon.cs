@@ -1,6 +1,7 @@
 using Gameplay.Combat;
 using Gameplay.Combat.Modifiers;
 using Gameplay.Combat.Modifiers.Instances.Defensive;
+using Gameplay.Combat.Modifiers.Instances.Offensive;
 using UnityEngine;
 
 namespace Gameplay.Equipment.Weapons

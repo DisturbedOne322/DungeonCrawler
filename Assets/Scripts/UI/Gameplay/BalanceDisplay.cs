@@ -1,11 +1,10 @@
-using System;
 using Data;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace UI
+namespace UI.Gameplay
 {
     public class BalanceDisplay : MonoBehaviour
     {

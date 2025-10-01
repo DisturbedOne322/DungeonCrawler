@@ -537,9 +537,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870362189}
-  - component: {fileID: 870362190}
   - component: {fileID: 870362191}
-  - component: {fileID: 870362192}
   m_Layer: 0
   m_Name: '[UI]'
   m_TagString: Untagged
@@ -564,22 +562,6 @@ Transform:
   - {fileID: 1839586623}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &870362190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870362187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f702c10217a74142b7b01fe38d92fb42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefab: {fileID: 1910897593051744348, guid: 49933912bf4a4554aad2b93a46169324, type: 3}
-  _canvas: {fileID: 1839586626}
-  _zSpawnOffet: -0.05
-  _spawnRadius: 0.5
 --- !u!114 &870362191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,22 +575,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 2139679682}
-  _uiPrefabsContainer: {fileID: 870362192}
---- !u!114 &870362192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870362187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74a3dc856d2149e9a0b8bcccddd6ad8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabs:
-  - {fileID: 2779634372701121051, guid: a6eade608dd302448a8a1bc85b225bae, type: 3}
-  - {fileID: 1624487029282205957, guid: 8d5b51b476e359a4c96f1a011f85a432, type: 3}
 --- !u!1 &1158684239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,6 +1060,7 @@ GameObject:
   - component: {fileID: 1839586626}
   - component: {fileID: 1839586625}
   - component: {fileID: 1839586624}
+  - component: {fileID: 1839586627}
   m_Layer: 0
   m_Name: WorldCanvs
   m_TagString: Untagged
@@ -1183,6 +1150,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1839586627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839586622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f702c10217a74142b7b01fe38d92fb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 1910897593051744348, guid: 49933912bf4a4554aad2b93a46169324, type: 3}
+  _canvas: {fileID: 1839586626}
+  _zSpawnOffet: -0.05
+  _spawnRadius: 0.5
 --- !u!1001 &1873454189
 PrefabInstance:
   m_ObjectHideFlags: 0

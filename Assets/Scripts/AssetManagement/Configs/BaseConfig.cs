@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AssetManagement
+namespace AssetManagement.Configs
 {
     public class BaseConfig : ScriptableObject
     {

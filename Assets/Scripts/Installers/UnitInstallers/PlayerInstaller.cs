@@ -1,5 +1,6 @@
 using Gameplay.Combat.SkillSelection;
 using StateMachine.BattleMenu;
+using UI.BattleMenu;
 using Zenject;
 
 namespace Installers.UnitInstallers

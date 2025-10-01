@@ -1,3 +1,4 @@
+using Bootstrap;
 using Data;
 using Gameplay;
 using Gameplay.Combat;
@@ -19,7 +20,7 @@ namespace Installers.SceneInstallers
         {
             Container.Bind<PlayerUnit>().FromComponentInNewPrefab(_prefab).AsSingle();
             
-            Container.BindInterfacesAndSelfTo<GameBootstrapper>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayBootstrapper>().AsSingle();
             
             Container.Bind<GameSequenceController>().AsSingle();
             Container.Bind<CombatSequenceController>().AsSingle();

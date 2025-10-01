@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Combat.Modifiers
+namespace Gameplay.Combat.Modifiers.Instances.Offensive
 {
     public abstract class OffensiveModifierSo : ScriptableObject, IOffensiveModifier
     {

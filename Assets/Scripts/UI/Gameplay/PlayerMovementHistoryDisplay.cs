@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Data;
 using DG.Tweening;
 using Gameplay.Services;
@@ -7,7 +6,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace UI
+namespace UI.Gameplay
 {
     public class PlayerMovementHistoryDisplay : MonoBehaviour
     {

@@ -1,11 +1,11 @@
 using DG.Tweening;
 using Gameplay.Experience;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using Zenject;
-using UniRx;
 
-namespace UI
+namespace UI.Gameplay
 {
     public class ExperienceDisplay : MonoBehaviour
     {

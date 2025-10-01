@@ -5,7 +5,7 @@ using UI.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.Gameplay
 {
     public class EquipmentChangeConfirmPopup : BasePopup
     {

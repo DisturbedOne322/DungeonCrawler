@@ -5,6 +5,8 @@ using Gameplay.Player;
 using Gameplay.Units;
 using StateMachine.BattleMenu;
 using UI;
+using UI.BattleMenu;
+using UI.Gameplay;
 using UniRx;
 
 namespace Controllers

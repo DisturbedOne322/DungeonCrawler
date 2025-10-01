@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UniRx;
 
-namespace StateMachine.BattleMenu
+namespace UI.BattleMenu
 {
     public class MenuItemsUpdater
     {
