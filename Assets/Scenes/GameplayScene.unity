@@ -129,51 +129,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4599276090538480106, guid: 18ea634a7d639734f8fc2df799646a83, type: 3}
   m_PrefabInstance: {fileID: 4892328734800913793}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &277491647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 277491648}
-  - component: {fileID: 277491649}
-  m_Layer: 0
-  m_Name: '[Dungeon]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &277491648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277491647}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &277491649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277491647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e483a764b7e4980a4c6906bbc6373ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dungeonRoomsDatabase: {fileID: 11400000, guid: 486ecff181d46f74db930f4f095442ad, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,51 +250,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &658651223
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 658651225}
-  - component: {fileID: 658651224}
-  m_Layer: 0
-  m_Name: '[PlayerFactory]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &658651224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658651223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a575bc238a4cad82018d0fc684c70e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerUnitData: {fileID: 11400000, guid: 4fb11040b9b3ffe4a99996db897e4c8a, type: 2}
---- !u!4 &658651225
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658651223}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &701839501 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2274805034054993341, guid: c997076adf2ac8844996eac60771e2c5, type: 3}
@@ -804,51 +714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e3669e44cb471cbcf731cea18b4eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1569646150
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1569646151}
-  - component: {fileID: 1569646152}
-  m_Layer: 0
-  m_Name: '[EnemyFactory]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1569646151
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569646150}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1569646152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569646150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57836ccf7010431c9872428729d31a0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyDatabase: {fileID: 11400000, guid: 522553de5c1126149bd70467e7bb9ced, type: 2}
 --- !u!1001 &1585172191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1673,7 +1538,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1158684242}
   - {fileID: 841879402}
-  - {fileID: 277491648}
-  - {fileID: 1569646151}
-  - {fileID: 658651225}
   - {fileID: 870362189}

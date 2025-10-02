@@ -1,35 +1,35 @@
 using System;
+using AssetManagement.AssetProviders.Core;
 using Data;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Data;
 using Gameplay.Dungeon.Rooms;
+using Gameplay.Progression;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Services
 {
-    public class DungeonFactory : MonoBehaviour
+    public class DungeonFactory : IInitializable
     {
-        [SerializeField] private DungeonRoomsDatabase _dungeonRoomsDatabase;
-
-        private ContainerFactory _containerFactory;
-        private DungeonRoomsPool _roomsPool;
+        private readonly BaseConfigProvider<GameplayConfig> _configProvider;
+        private readonly ContainerFactory _containerFactory;
+        private readonly DungeonRoomsPool _roomsPool;
         
         private Transform _parent;
 
-        [Inject]
-        private void Construct(ContainerFactory containerFactory, DungeonRoomsPool roomsPool)
+        private DungeonFactory(ContainerFactory containerFactory, DungeonRoomsPool roomsPool, BaseConfigProvider<GameplayConfig> configProvider)
         {
             _containerFactory = containerFactory;
             _roomsPool = roomsPool;
-            
+            _configProvider = configProvider;
         }
 
-        private void Awake()
+        public void Initialize()
         {
             _parent = new GameObject("[ROOMS POOL]").transform;
         }
-
+        
         public DungeonRoom CreateArea(RoomType roomType)
         {
             if (_roomsPool.TryGetRoom(roomType, out var room))
@@ -45,7 +45,8 @@ namespace Gameplay.Services
 
         public RoomData GetRoomData(RoomType roomType)
         {
-            if (_dungeonRoomsDatabase.TryGetRoomData(roomType, out var data))
+            var config = _configProvider.GetConfig<DungeonRoomsDatabase>();
+            if (config.TryGetRoomData(roomType, out var data))
                 return data;
             
             throw new Exception($"No room data found of type {roomType}");

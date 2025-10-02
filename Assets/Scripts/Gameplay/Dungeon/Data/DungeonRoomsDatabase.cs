@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Gameplay.Progression;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.Data
 {
     [CreateAssetMenu(fileName = "DungeonRoomsDatabase", menuName = "Gameplay/Dungeon/Data/DungeonRoomsDatabase")]
-    public class DungeonRoomsDatabase : ScriptableObject
+    public class DungeonRoomsDatabase : GameplayConfig
     {
         [SerializeField] private List<RoomData> _roomDataList;
 
@@ -19,7 +20,12 @@ namespace Gameplay.Dungeon.Data
                 .ToDictionary(d => d.RoomPrefab.RoomType, d => d);
         }
 
-        public bool TryGetRoomData(RoomType type, out RoomData roomData) 
-            => _roomDataMap.TryGetValue(type, out roomData);
+        public bool TryGetRoomData(RoomType type, out RoomData roomData)
+        {
+            if(_roomDataMap.TryGetValue(type, out roomData))
+                return true;
+            
+            throw new KeyNotFoundException($"No room data found for type {type}");
+        }
     }
 }

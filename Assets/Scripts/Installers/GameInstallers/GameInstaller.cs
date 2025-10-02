@@ -20,6 +20,8 @@ namespace Installers.SceneInstallers
             
             Container.BindInterfacesAndSelfTo<GameplayBootstrapper>().AsSingle();
             
+            Container.Bind<PlayerInitializer>().AsSingle();
+            
             BindCombat();
 
             BindProgression();

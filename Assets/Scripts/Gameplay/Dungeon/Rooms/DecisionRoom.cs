@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using AssetManagement.AssetProviders.Core;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon.Animations;
+using Gameplay.Dungeon.Data;
+using Gameplay.Progression;
 using Gameplay.Services;
 using UnityEngine;
 using Zenject;
@@ -15,18 +18,18 @@ namespace Gameplay.Dungeon.Rooms
         [SerializeField] private List<DecisionDoor> _doors;
 
         private DungeonBranchingController _dungeonBranchingController;
-        private DungeonFactory _dungeonFactory;
+        private BaseConfigProvider<GameplayConfig> _configProvider;
         private DungeonBranchingSelector _dungeonBranchingSelector;
 
         public override RoomType RoomType => RoomType.Decision;
         
         [Inject]
         private void Construct(DungeonBranchingController dungeonBranchingController, 
-            DungeonFactory dungeonFactory, 
+            BaseConfigProvider<GameplayConfig> configProvider,
             DungeonBranchingSelector dungeonBranchingSelector)
         {
             _dungeonBranchingController = dungeonBranchingController;
-            _dungeonFactory = dungeonFactory;
+            _configProvider = configProvider;
             _dungeonBranchingSelector = dungeonBranchingSelector;
         }
 
@@ -41,7 +44,10 @@ namespace Gameplay.Dungeon.Rooms
             for (int i = 0; i < doorTypes.Count; i++)
             {
                 var door = _doors[i];
-                door.SetDoorIcon(_dungeonFactory.GetRoomData(doorTypes[i]).Icon);
+                var config = _configProvider.GetConfig<DungeonRoomsDatabase>();
+                
+                if(config.TryGetRoomData(doorTypes[i], out var data)) 
+                    door.SetDoorIcon(data.Icon);
             } 
         }
 

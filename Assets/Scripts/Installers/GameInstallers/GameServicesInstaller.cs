@@ -13,8 +13,7 @@ namespace Installers.SceneInstallers
         public override void InstallBindings()
         {
             Container.Bind<ContainerFactory>().AsSingle();
-            Container.Bind<EnemyFactory>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<PlayerFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<EnemyFactory>().AsSingle();
             
             Container.Bind<NumberObjectsPool>().AsTransient();
             Container.Bind<NumberObjectsAnimator>().AsSingle();

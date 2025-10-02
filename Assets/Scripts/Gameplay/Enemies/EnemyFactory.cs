@@ -1,25 +1,26 @@
+using AssetManagement.AssetProviders.Core;
+using Gameplay.Progression;
 using Gameplay.Services;
 using Gameplay.Units;
-using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Enemies
 {
-    public class EnemyFactory : MonoBehaviour
+    public class EnemyFactory
     {
-        [SerializeField] private EnemyDatabase _enemyDatabase;
+        private readonly BaseConfigProvider<GameplayConfig> _configProvider;
+        private readonly ContainerFactory _containerFactory;
 
-        private ContainerFactory _containerFactory;
-
-        [Inject]
-        private void Construct(ContainerFactory containerFactory)
+        private EnemyFactory(BaseConfigProvider<GameplayConfig> configProvider, ContainerFactory containerFactory)
         {
+            _configProvider = configProvider;
             _containerFactory = containerFactory;
         }
         
         public EnemyUnit CreateEnemy()
         {
-            var data = _enemyDatabase.Database[0];
+            var enemyDatabase = _configProvider.GetConfig<EnemyDatabase>();
+            
+            var data = enemyDatabase.Database[0];
             var prefab = data.Prefab.gameObject;
             var unit = _containerFactory.Create<EnemyUnit>(prefab);
             

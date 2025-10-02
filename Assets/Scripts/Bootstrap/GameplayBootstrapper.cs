@@ -9,19 +9,19 @@ namespace Bootstrap
     public class GameplayBootstrapper : IInitializable
     {
         private readonly GameSequenceController _gameSequenceController;
-        private readonly PlayerFactory _playerFactory;
+        private readonly PlayerInitializer _playerInitializer;
         private readonly PlayerUnit _playerUnit;
 
-        public GameplayBootstrapper(GameSequenceController gameSequenceController, PlayerFactory playerFactory, PlayerUnit playerUnit)
+        public GameplayBootstrapper(GameSequenceController gameSequenceController, PlayerInitializer playerInitializer, PlayerUnit playerUnit)
         {
             _gameSequenceController = gameSequenceController;
-            _playerFactory = playerFactory;
+            _playerInitializer = playerInitializer;
             _playerUnit = playerUnit;
         }
         
         public void Initialize()
         {
-            _playerFactory.InitializePlayer(_playerUnit);
+            _playerInitializer.InitializePlayer(_playerUnit);
             _gameSequenceController.StartRun().Forget();
         }
     }

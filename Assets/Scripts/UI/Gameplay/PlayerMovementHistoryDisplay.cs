@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using AssetManagement.AssetProviders.Core;
 using Data;
 using DG.Tweening;
+using Gameplay.Dungeon.Data;
+using Gameplay.Progression;
 using Gameplay.Services;
 using UniRx;
 using UnityEngine;
@@ -16,14 +19,14 @@ namespace UI.Gameplay
         [SerializeField] private float _scaleUpDuration = 0.2f;
         [SerializeField] private float _scaleDownDuration = 0.15f;
 
-        private DungeonFactory _factory;
+        private BaseConfigProvider<GameplayConfig> _configProvider;
 
         private readonly LinkedList<RoomIconDisplay> _activeDisplays = new();
 
         [Inject]
-        private void Construct(PlayerMovementHistory history, DungeonFactory factory)
+        private void Construct(PlayerMovementHistory history, BaseConfigProvider<GameplayConfig> configProvider)
         {
-            _factory = factory;
+            _configProvider = configProvider;
 
             for (var i = 0; i < _maximumRoomsHistory; i++)
             {
@@ -43,7 +46,12 @@ namespace UI.Gameplay
 
             display.transform.DOScale(Vector3.zero, _scaleDownDuration).OnComplete(() =>
             {
-                display.SetIcon(_factory.GetRoomData(roomType).Icon);
+                var config = _configProvider.GetConfig<DungeonRoomsDatabase>();
+
+                if (!config.TryGetRoomData(roomType, out var roomData))
+                    return;
+                
+                display.SetIcon(roomData.Icon);
                 display.transform.localScale = Vector3.zero;
                 display.transform.SetAsFirstSibling();
                 AnimateScaleUp(display);
