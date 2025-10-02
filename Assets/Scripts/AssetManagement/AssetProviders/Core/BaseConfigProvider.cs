@@ -9,7 +9,7 @@ namespace AssetManagement.AssetProviders.Core
 
         public BaseConfigProvider(IAssetLoader assetLoader) => AssetLoader = assetLoader;
 
-        public abstract TConfigType GetConfig();
+        public abstract T GetConfig<T>() where T : TConfigType;
         public abstract UniTask Initialize();
         public abstract void Dispose();
     }

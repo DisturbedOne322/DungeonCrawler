@@ -7,6 +7,7 @@ using AssetManagement.Configs;
 using AssetManagement.Scenes;
 using Constants;
 using Cysharp.Threading.Tasks;
+using Gameplay.Progression;
 
 namespace StateMachine.App
 {
@@ -16,11 +17,15 @@ namespace StateMachine.App
 
         private List<IAssetProvider> _assetProviders = new();
         
-        public GameplayAppState(BaseConfigProvider<UIPopupsConfig> uiPopupsConfigProvider, UIPrefabsProvider uiPrefabsProvider,
-            SceneTransitionController sceneTransitionController)
+        public GameplayAppState(
+            SceneTransitionController sceneTransitionController,
+            BaseConfigProvider<GameplayConfig> gameplayConfigProvider,
+            BaseConfigProvider<UIPopupsConfig> uiPopupsConfigProvider, 
+            UIPrefabsProvider uiPrefabsProvider)
         {
             _sceneTransitionController = sceneTransitionController;
             
+            _assetProviders.Add(gameplayConfigProvider);
             _assetProviders.Add(uiPrefabsProvider);
             _assetProviders.Add(uiPopupsConfigProvider);
         }

@@ -3,6 +3,7 @@ using AssetManagement.AssetProviders.Core;
 using AssetManagement.Configs;
 using AssetManagement.Scenes;
 using Bootstrap;
+using Gameplay.Progression;
 using StateMachine.App;
 using Zenject;
 
@@ -32,6 +33,7 @@ namespace Installers
 
             Container.Bind<UIPrefabsProvider>().AsSingle();
             Container.Bind<BaseConfigProvider<UIPopupsConfig>>().To<UIPopupsConfigProvider>().AsSingle();
+            Container.Bind<BaseConfigProvider<GameplayConfig>>().To<GameplayConfigsProvider>().AsSingle();
         }
     }
 }

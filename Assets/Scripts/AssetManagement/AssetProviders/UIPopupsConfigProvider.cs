@@ -12,14 +12,14 @@ namespace AssetManagement.AssetProviders
         
         public UIPopupsConfigProvider(IAssetLoader assetLoader) : base(assetLoader) {}
 
+        public override T GetConfig<T>() => _loadedConfig as T;
+
         public override async UniTask Initialize()
         {
             _loadedConfig =
                 await AssetLoader.Load<UIPopupsConfig>(ConstConfigs.UIPopupsConfig);
         }
-
-        public override UIPopupsConfig GetConfig() => _loadedConfig;
-
+        
         public override void Dispose() => Addressables.Release(_loadedConfig);
     }
 }

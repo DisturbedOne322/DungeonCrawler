@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using AssetManagement.AssetProviders.Core;
 using Controllers;
 using Cysharp.Threading.Tasks;
 using Data.UI;
@@ -6,6 +7,8 @@ using Gameplay.Combat.Consumables;
 using Gameplay.Combat.Skills;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
+using Gameplay.Player;
+using Gameplay.Progression;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -16,13 +19,15 @@ namespace Gameplay.Rewards
         private readonly PlayerUnit _player;
         private readonly EquipmentChangeController _equipmentChangeController;
         private readonly SkillDiscardController _skillDiscardController;
+        private readonly PlayerSkillSlotsManager _skillSlotsManager;
 
         public RewardDistributor(PlayerUnit player, EquipmentChangeController equipmentChangeController,
-            SkillDiscardController skillDiscardController)
+            SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager)
         {
             _player = player;
             _equipmentChangeController = equipmentChangeController;
             _skillDiscardController = skillDiscardController;
+            _skillSlotsManager = skillSlotsManager;
         }
         
         public async UniTask GiveRewardToPlayer(DropEntry dropEntry)
@@ -80,6 +85,12 @@ namespace Gameplay.Rewards
 
         private async Task ProcessSkillReward(BaseSkill skill)
         {
+            if (_skillSlotsManager.HasFreeSkillSlot())
+            {
+                _player.UnitSkillsData.AddSkill(skill);
+                return;
+            }
+            
             var skillToDiscard = await _skillDiscardController.MakeSkillDiscardChoice(skill);
             if (skillToDiscard != skill)
             {

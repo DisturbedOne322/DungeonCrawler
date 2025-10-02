@@ -25,7 +25,7 @@ namespace UI
 
         public T CreatePopup<T>() where T : BasePopup
         {
-            var config = _uiPopupsConfigProvider.GetConfig();
+            var config = _uiPopupsConfigProvider.GetConfig<UIPopupsConfig>();
             
             if (!config.TryGetPopup<T>(out var prefab))
                 throw new Exception($"Could not find popup {typeof(T)}");

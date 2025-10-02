@@ -61,6 +61,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: d4dbe00d6884cd74d95e52195bb738d5, type: 2}
   - {fileID: 11400000, guid: 4c928d430c0e8f44cbb368aaf459c2d4, type: 2}
+  - {fileID: 11400000, guid: ff62cd1aeef974f43a18ceba62fc5a6d, type: 2}
   - {fileID: 11400000, guid: 2739ab8c900883f4d99edc4855c77fec, type: 2}
   - {fileID: 11400000, guid: ae569fc723c821647b5a14d02fb58144, type: 2}
   m_BuildSettings:
@@ -103,6 +104,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - UIPrefab
+    - GameplayConfig
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e1a99c6c03eba264e82306fbf820d40e, type: 2}
