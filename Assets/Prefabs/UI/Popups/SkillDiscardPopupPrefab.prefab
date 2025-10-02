@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.2
+  m_fontSize: 29.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.85
+  m_fontSize: 20.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -432,6 +432,7 @@ GameObject:
   - component: {fileID: 1247111339286330083}
   - component: {fileID: 6043951798475542175}
   - component: {fileID: 1624487029282205957}
+  - component: {fileID: 6827376802798932613}
   m_Layer: 0
   m_Name: SkillDiscardPopupPrefab
   m_TagString: Untagged
@@ -522,13 +523,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstSelected: {fileID: 0}
-  _canvas: {fileID: 6542469246941607197}
+  _popupAnimator: {fileID: 6827376802798932613}
   _oldSkillsParent: {fileID: 196147439037014081}
   _newSkillParent: {fileID: 3249918530859620290}
-  _showTime: 0.3
-  _hideTime: 0.2
   _skillPrefab: {fileID: 6822584178029666815, guid: 47b2b83507cb95c43bf47faef2ec054b, type: 3}
   _menuItemsScroller: {fileID: 2448324556456125585}
+--- !u!114 &6827376802798932613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353082666775778533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0181b03426a41169afe82680757b6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 6542469246941607197}
+  _showTime: 0.5
+  _hideTime: 0.5
 --- !u!1 &5161963753779210227
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,8 +825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab01f80471a48839bc5fc5907616bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _area: {fileID: 4184347526459070457}
-  _content: {fileID: 196147439037014081}
   _layoutGroup: {fileID: 576405775032093854}
   _visibilityCheckOffset: 20
 --- !u!1 &6694877477831643729
@@ -972,7 +984,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.85
+  m_fontSize: 20.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

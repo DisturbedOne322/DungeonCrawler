@@ -1,6 +1,6 @@
-namespace AssetManagement.Configs
+namespace Constants
 {
-    public class ConstAddressableConfigNames
+    public class ConstConfigs
     {
         public const string UIPopupsConfig  = "UIPopupsConfig";
     }

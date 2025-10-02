@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 7153801201563895590}
   - component: {fileID: 7756102202040126086}
   - component: {fileID: 3091485520851916926}
+  - component: {fileID: 5192961966842724420}
   m_Layer: 0
   m_Name: EquipmentChangePopupPrefab
   m_TagString: Untagged
@@ -155,13 +156,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstSelected: {fileID: 3541616662082853545}
-  _canvas: {fileID: 7153801201563895590}
+  _popupAnimator: {fileID: 5192961966842724420}
   _oldEquipData: {fileID: 71680819860071991}
   _newEquipData: {fileID: 2725345523304231478}
   _keepButton: {fileID: 6478680641026985823}
   _changeButton: {fileID: 6065216579387637348}
-  _showTime: 0.3
-  _hideTime: 0.2
 --- !u!225 &7153801201563895590
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -170,7 +169,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2968439101229222862}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -212,6 +211,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5192961966842724420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968439101229222862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0181b03426a41169afe82680757b6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 7153801201563895590}
+  _showTime: 0.5
+  _hideTime: 0.5
 --- !u!1 &3541616662082853545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,7 +1132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5948377152081813365, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_fontSize
-      value: 25.3
+      value: 25.15
       objectReference: {fileID: 0}
     - target: {fileID: 8958961302407124514, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1275,7 +1289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5948377152081813365, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_fontSize
-      value: 25.3
+      value: 25.15
       objectReference: {fileID: 0}
     - target: {fileID: 8958961302407124514, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_AnchorMax.x

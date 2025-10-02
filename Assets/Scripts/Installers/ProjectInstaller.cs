@@ -1,4 +1,6 @@
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.Core;
+using AssetManagement.Configs;
 using AssetManagement.Scenes;
 using Bootstrap;
 using StateMachine.App;
@@ -26,7 +28,10 @@ namespace Installers
 
         private void BindAssetProviders()
         {
+            Container.Bind<IAssetLoader>().To<AssetLoader>().AsSingle();
+
             Container.Bind<UIPrefabsProvider>().AsSingle();
+            Container.Bind<BaseConfigProvider<UIPopupsConfig>>().To<UIPopupsConfigProvider>().AsSingle();
         }
     }
 }

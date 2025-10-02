@@ -1,27 +1,45 @@
 using System;
-using AssetManagement.Configs;
+using System.Collections.Generic;
+using AssetManagement.AssetProviders.Core;
+using Constants;
 using Cysharp.Threading.Tasks;
-using UI.Core;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace AssetManagement.AssetProviders
 {
-    public class UIPrefabsProvider : IConfigProvider<BasePopup>
+    public class UIPrefabsProvider : BasePrefabProvider
     {
-        private UIPopupsConfig _config;
-
-        public async UniTask Initialize() => _config = await LoadAsset<UIPopupsConfig>(ConstAddressableConfigNames.UIPopupsConfig);
-
-        public async UniTask<T> LoadAsset<T>(string assetName) => await Addressables.LoadAssetAsync<T>(assetName);
-
-        public T GetAsset<T>() where T : BasePopup
+        private Dictionary<string, GameObject> _loadedPrefabs = new ();
+        
+        public UIPrefabsProvider(IAssetLoader assetLoader) : base(assetLoader)
         {
-            if (_config.TryGetPopup(out T popup))
-                return popup;
-            
-            throw new Exception($"Prefab of type {typeof(T)} not found");
         }
 
-        public void Dispose() => Addressables.Release(_config);
+        public override async UniTask Initialize()
+        {
+            List<string> labels = new()
+            {
+                ConstLabels.UIPrefab
+            };
+            
+            _loadedPrefabs = await AssetLoader.LoadPrefabsByLabel(labels);
+        }
+
+        public override GameObject GetPrefab(string assetName)
+        {
+            if (_loadedPrefabs.TryGetValue(assetName, out GameObject prefab))
+                return prefab;
+            
+            throw new KeyNotFoundException($"The asset {assetName} was not loaded.");
+        }
+
+        public override void Dispose()
+        {
+            foreach (var prefab in _loadedPrefabs.Values) 
+                Addressables.Release(prefab);
+            
+            _loadedPrefabs.Clear();
+        }
     }
 }

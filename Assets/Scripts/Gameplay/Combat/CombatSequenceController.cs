@@ -14,7 +14,6 @@ namespace Gameplay.Combat
         
         public readonly Subject<Unit> OnCombatStarted = new ();
         public readonly Subject<Unit> OnCombatEnded = new ();
-        public readonly Subject<int> OnEnemyDefeated = new();
         
         public CombatSequenceController(CombatData combatData, CombatService combatService,
             PlayerExperienceService playerExperienceService)
@@ -38,7 +37,7 @@ namespace Gameplay.Combat
             OnCombatEnded.OnNext(default);
             
             if(IsUnitDead(enemyUnit))
-                _playerExperienceService.AddExperience(enemyUnit.ExperienceBonus);
+                await _playerExperienceService.AddExperience(enemyUnit.ExperienceBonus);
         }
 
         private async UniTask ProcessTurn()

@@ -28,4 +28,4 @@ MonoBehaviour:
   _items: []
   _baseWeapon: {fileID: 0}
   _baseArmor: {fileID: 0}
-  _experienceBonus: 50
+  _experienceBonus: 200

@@ -1,4 +1,4 @@
-namespace AssetManagement
+namespace Constants
 {
     public class ConstSceneNames
     {

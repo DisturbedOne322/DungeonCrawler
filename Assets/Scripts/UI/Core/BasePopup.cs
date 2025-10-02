@@ -6,20 +6,22 @@ namespace UI.Core
     public abstract class BasePopup : MonoBehaviour
     {
         [SerializeField] private GameObject _firstSelected;
-
+        [SerializeField] private PopupAnimator _popupAnimator;
+        
         private void Awake()
         {
-            if(_firstSelected)
-                EventSystem.current.SetSelectedGameObject(_firstSelected);
-            
+            if (_firstSelected)
+                SetSelectedGameObject(_firstSelected);
+
             InitializePopup();
         }
 
-        protected abstract void InitializePopup();
-
-        public abstract void ShowPopup();
-        public abstract void HidePopup();
+        public virtual void ShowPopup() => _popupAnimator.PlayShowAnim();
+        public virtual void HidePopup() => _popupAnimator.PlayHideAnim(DestroyPopup);
 
         public void DestroyPopup() => Destroy(gameObject);
+        
+        protected virtual void InitializePopup(){}
+        protected void SetSelectedGameObject(GameObject gameObject) => EventSystem.current.SetSelectedGameObject(_firstSelected);
     }
 }

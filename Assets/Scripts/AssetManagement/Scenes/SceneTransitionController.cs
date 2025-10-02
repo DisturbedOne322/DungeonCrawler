@@ -1,3 +1,4 @@
+using Constants;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -15,8 +16,8 @@ namespace AssetManagement.Scenes
         public async UniTask LoadNextScene(string nextSceneName, bool unloadLoadingScene = true)
         {
             await LoadLoadingScene();
-            await LoadScene(nextSceneName);
             await UnloadPrevScene();
+            await LoadScene(nextSceneName);
 
             _prevSceneName = nextSceneName;
 
