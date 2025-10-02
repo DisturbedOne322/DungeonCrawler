@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AssetManagement.AssetProviders;
 using Constants;
 using Gameplay.Services;
+using UI.BattleMenu;
 using UI.Stats;
 using UniRx;
 
@@ -11,18 +12,37 @@ namespace Gameplay.Experience
     {
         private readonly UIPrefabsProvider _uiPrefabsProvider;
         private readonly ContainerFactory _containerFactory;
+        private readonly MenuItemViewFactory _menuFactory;
 
         public PlayerStatDistributionTableBuilder(UIPrefabsProvider uiPrefabsProvider,
-            ContainerFactory containerFactory)
+            ContainerFactory containerFactory, MenuItemViewFactory menuFactory)
         {
             _uiPrefabsProvider = uiPrefabsProvider;
             _containerFactory = containerFactory;
+            _menuFactory = menuFactory;
         }
 
-        public Dictionary<StatNameDisplay, StatIncreaseView> GetStatsTable(
-            Dictionary<string, ReactiveProperty<int>> playerStats)
+        public List<MenuItemData> CreateItemDataList(List<string> statNames)
         {
-            Dictionary<StatNameDisplay, StatIncreaseView> result = new();
+            List<MenuItemData> menuItems = new();
+
+            foreach (var name in statNames)
+            {
+                menuItems.Add(new MenuItemData(
+                    label: name,
+                    () => true,
+                    () => {},
+                    MenuItemType.Stat
+                ));
+            }
+            
+            return menuItems;
+        }
+        
+        public Dictionary<BaseMenuItemView, StatIncreaseView> GetStatsTable(
+            Dictionary<MenuItemData, ReactiveProperty<int>> playerStats)
+        {
+            Dictionary<BaseMenuItemView, StatIncreaseView> result = new();
 
             foreach (var statKv in playerStats) 
                 AddEntry(statKv.Key, statKv.Value, result);
@@ -30,18 +50,15 @@ namespace Gameplay.Experience
             return result;
         }
 
-        private void AddEntry(string statName, ReactiveProperty<int> statValue, Dictionary<StatNameDisplay, StatIncreaseView> dictionary)
+        private void AddEntry(MenuItemData itemData, ReactiveProperty<int> statValue, Dictionary<BaseMenuItemView, StatIncreaseView> dictionary)
         {
-            var statNamePrefab = _uiPrefabsProvider.GetPrefab(ConstPrefabs.StatNameDisplayPrefab);
             var statIncreasePrefab = _uiPrefabsProvider.GetPrefab(ConstPrefabs.StatIncreaseDisplayPrefab);
-
-            var nameView = _containerFactory.Create<StatNameDisplay>(statNamePrefab);
             var statView = _containerFactory.Create<StatIncreaseView>(statIncreasePrefab);
-            
-            nameView.Initialize(statName);
+
+            var view = _menuFactory.CreateMenuItem(itemData);
             statView.Initialize(statValue);
             
-            dictionary.Add(nameView, statView);
+            dictionary.Add(view, statView);
         }
     }
 }

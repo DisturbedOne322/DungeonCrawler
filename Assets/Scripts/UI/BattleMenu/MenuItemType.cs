@@ -4,6 +4,7 @@ namespace UI.BattleMenu
     {
         Submenu,
         Skill,
-        Item
+        Item,
+        Stat
     }
 }

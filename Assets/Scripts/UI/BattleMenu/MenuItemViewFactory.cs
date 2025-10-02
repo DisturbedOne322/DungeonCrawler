@@ -1,27 +1,25 @@
 using System.Collections.Generic;
+using AssetManagement.AssetProviders;
+using Constants;
 using Gameplay.Services;
-using StateMachine.BattleMenu;
 using UnityEngine;
 using Zenject;
 
 namespace UI.BattleMenu
 {
-    public class MenuItemViewFactory : MonoBehaviour
+    public class MenuItemViewFactory
     {
-        [SerializeField] private MenuPageView _pagePrefab;
-        [SerializeField] private BaseMenuItemView _menuItemPrefab;
-        [SerializeField] private SkillMenuItemView _skillMenuItemPrefab;
-        [SerializeField] private ItemMenuItemView _itemMenuItemPrefab;
+        private readonly UIPrefabsProvider _uiPrefabsProvider;
+        private readonly ContainerFactory _factory;
 
-        private ContainerFactory _factory;
-
-        [Inject]
-        private void Construct(ContainerFactory factory)
+        public MenuItemViewFactory(ContainerFactory factory, UIPrefabsProvider uiPrefabsProvider)
         {
             _factory = factory;
+            _uiPrefabsProvider = uiPrefabsProvider;
         }
 
-        public MenuPageView CreatePage() => _factory.Create<MenuPageView>(_pagePrefab.gameObject);
+        public MenuPageView CreatePage() => 
+            _factory.Create<MenuPageView>(GetPrefab(ConstPrefabs.MenuPagePrefab));
 
         public List<BaseMenuItemView> CreateViewsForData(List<MenuItemData> dataList)
         {
@@ -46,9 +44,9 @@ namespace UI.BattleMenu
             return views;
         }
         
-        private BaseMenuItemView CreateMenuItem(MenuItemData data)
+        public BaseMenuItemView CreateMenuItem(MenuItemData data)
         {
-            var view = _factory.Create<BaseMenuItemView>(_menuItemPrefab.gameObject);
+            var view = _factory.Create<BaseMenuItemView>(GetPrefab(ConstPrefabs.MenuItemViewPrefab));
             view.Bind(data);
             
             return view;
@@ -56,7 +54,7 @@ namespace UI.BattleMenu
         
         private SkillMenuItemView CreateSkillMenuItem(MenuItemData data)
         {
-            var view = _factory.Create<SkillMenuItemView>(_skillMenuItemPrefab.gameObject);
+            var view = _factory.Create<SkillMenuItemView>(GetPrefab(ConstPrefabs.SkillMenuItemPrefab));
             view.Bind(data);
             view.SetDescription(data.Description);
             
@@ -65,12 +63,14 @@ namespace UI.BattleMenu
         
         private ItemMenuItemView CreateItemMenuItem(MenuItemData data)
         {
-            var view = _factory.Create<ItemMenuItemView>(_itemMenuItemPrefab.gameObject);
+            var view = _factory.Create<ItemMenuItemView>(GetPrefab(ConstPrefabs.ItemMenuItemViewPrefab));
             view.Bind(data);
             view.SetDescription(data.Description);
             view.SetQuantity(data.Quantity);
             
             return view;
         }
+        
+        private GameObject GetPrefab(string name) => _uiPrefabsProvider.GetPrefab(name);
     }
 }

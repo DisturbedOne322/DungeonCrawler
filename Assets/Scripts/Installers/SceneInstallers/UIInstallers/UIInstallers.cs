@@ -1,5 +1,6 @@
 using Controllers;
 using UI;
+using UI.BattleMenu;
 using Zenject;
 
 namespace Installers.SceneInstallers.UIInstallers
@@ -10,6 +11,7 @@ namespace Installers.SceneInstallers.UIInstallers
         {
             Container.Bind<EquipmentChangeController>().AsSingle();
             Container.Bind<SkillDiscardController>().AsSingle();
+            Container.Bind<MenuItemViewFactory>().AsSingle();
             
             Container.Bind<UIFactory>().FromComponentInHierarchy().AsSingle();
         }

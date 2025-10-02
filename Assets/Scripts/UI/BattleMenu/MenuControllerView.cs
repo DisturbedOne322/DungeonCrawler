@@ -9,9 +9,9 @@ namespace UI.BattleMenu
     public class MenuControllerView : MonoBehaviour
     {
         [SerializeField] private RectTransform _pagesParent;
-        [SerializeField] private MenuItemViewFactory _factory;
         
         private BattleMenuStateMachine _stateMachine;
+        private MenuItemViewFactory _menuFactory;
         
         private CompositeDisposable _disposables;
 
@@ -20,9 +20,10 @@ namespace UI.BattleMenu
         private Dictionary<BattleMenuState, MenuPageView> _pagePool = new();
         
         [Inject]
-        private void Construct(BattleMenuStateMachine stateMachine)
+        private void Construct(BattleMenuStateMachine stateMachine, MenuItemViewFactory menuFactory)
         {
             _stateMachine = stateMachine;
+            _menuFactory = menuFactory;
         }
 
         private void Awake()
@@ -60,9 +61,9 @@ namespace UI.BattleMenu
         {
             var updater = state.MenuItemsUpdater;
 
-            _currentPage = _factory.CreatePage();
+            _currentPage = _menuFactory.CreatePage();
             _currentPage.transform.SetParent(_pagesParent, false);
-            _currentPage.SetItems(_factory.CreateViewsForData(updater.MenuItems), updater);
+            _currentPage.SetItems(_menuFactory.CreateViewsForData(updater.MenuItems), updater);
             
             _pagePool.TryAdd(state, _currentPage);
         }

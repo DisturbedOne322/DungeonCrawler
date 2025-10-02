@@ -32,14 +32,6 @@ namespace UI.Gameplay
                 HidePopup();
             });
         }
-
-        public override void ShowPopup()
-        {
-        }
-
-        public override void HidePopup()
-        {
-        }
         
         public void SetData(BaseGameItem oldItem, BaseGameItem newItem)
         {

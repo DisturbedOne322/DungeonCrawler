@@ -21,8 +21,32 @@ MonoBehaviour:
     m_SerializedLabels:
     - UIPrefab
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47b2b83507cb95c43bf47faef2ec054b
+    m_Address: SkillMenuItemPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIPrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 521c301c7cebf7544990fb1575187ad8
+    m_Address: ItemMenuItemViewPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIPrefab
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9e6ecd608b1a47438f9da3bf6dbc503
     m_Address: StatIncreaseDisplayPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIPrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dabd4d6c78f504844b3792dc566f5dcf
+    m_Address: MenuItemViewPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIPrefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec8fed9fcc959cb46b55935dda8bb5f4
+    m_Address: MenuPagePrefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - UIPrefab

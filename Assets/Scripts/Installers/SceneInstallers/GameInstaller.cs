@@ -34,6 +34,7 @@ namespace Installers.SceneInstallers
             Container.Bind<ExperienceData>().AsSingle();
             Container.Bind<PlayerLevelUpController>().AsSingle();
             Container.Bind<PlayerStatDistributionTableBuilder>().AsSingle();
+            Container.Bind<PlayerStatDistrubutionController>().AsSingle();
 
             Container.Bind<PlayerMovementController>().AsSingle();
             Container.Bind<PlayerMovementHistory>().AsSingle();

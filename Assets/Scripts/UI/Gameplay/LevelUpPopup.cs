@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UI.BattleMenu;
 using UI.Core;
 using UI.Stats;
 using UniRx;
@@ -14,7 +15,7 @@ namespace UI.Gameplay
         [SerializeField] private VerticalLayoutGroup _statsParent;
         [SerializeField] private TextMeshProUGUI _pointsLeftText;
         
-        public void SetTable(Dictionary<StatNameDisplay, StatIncreaseView> table)
+        public void SetTable(Dictionary<BaseMenuItemView, StatIncreaseView> table)
         {
             foreach (var kv in table)
             {
