@@ -45,6 +45,8 @@ namespace Controllers
             
             Dispose();
 
+            await _skillDiscardPopup.HidePopup();
+            
             return _skillToDiscard;
         }
 
@@ -63,14 +65,13 @@ namespace Controllers
         {
             _playerInputProvider.EnableUiInput(false);
             _disposables.Dispose();
-            _skillDiscardPopup.HidePopup();
         }
 
         private void ShowPopup()
         {
             _skillDiscardPopup = _uiFactory.CreatePopup<SkillDiscardPopup>();
             _skillDiscardPopup.SetData(_skillDiscardMenuUpdater);
-            _skillDiscardPopup.ShowPopup();
+            _skillDiscardPopup.ShowPopup().Forget();
         }
 
         private void CreateItemsSelection(BaseSkill newSkill)

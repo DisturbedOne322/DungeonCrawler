@@ -20,17 +20,9 @@ namespace UI.Gameplay
 
         protected override void InitializePopup()
         {
-            _keepButton.onClick.AddListener(() =>
-            {
-                OnKeepPressed?.Invoke();
-                HidePopup();
-            });
+            _keepButton.onClick.AddListener(() => OnKeepPressed?.Invoke());
             
-            _changeButton.onClick.AddListener(() =>
-            {
-                OnChangePressed?.Invoke();
-                HidePopup();
-            });
+            _changeButton.onClick.AddListener(() => OnChangePressed?.Invoke());
         }
         
         public void SetData(BaseGameItem oldItem, BaseGameItem newItem)

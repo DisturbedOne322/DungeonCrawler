@@ -20,13 +20,15 @@ namespace Controllers
             UniTaskCompletionSource<EquipmentSelectChoice> tcs = new ();
 
             var popup = _uiFactory.CreatePopup<EquipmentChangeConfirmPopup>();
-            popup.ShowPopup();
             popup.SetData(oldItem, newItem);
 
             popup.OnKeepPressed += () => tcs.TrySetResult(EquipmentSelectChoice.Keep);
             popup.OnChangePressed += () => tcs.TrySetResult(EquipmentSelectChoice.Change);
+
+            popup.ShowPopup().Forget();
             
             var result =  await tcs.Task;
+            await popup.HidePopup();
 
             return result;
         }

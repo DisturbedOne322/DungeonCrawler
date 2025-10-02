@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,19 +12,19 @@ namespace UI
         [SerializeField] private float _showTime = 0.5f;
         [SerializeField] private float _hideTime = 0.5f;
 
-        public void PlayShowAnim()
+        public async UniTask PlayShowAnim()
         {
             _canvas.alpha = 0;
-            _canvas.DOFade(1, _showTime).SetEase(Ease.OutBack).SetLink(gameObject);
+            await _canvas.DOFade(1, _showTime).SetEase(Ease.OutBack).SetLink(gameObject).AsyncWaitForCompletion().AsUniTask();
         }
 
-        public void PlayHideAnim(Action callback = null)
+        public async UniTask PlayHideAnim(Action callback = null)
         {
             _canvas.DOKill();
-            _canvas.DOFade(0, _hideTime).
+            await _canvas.DOFade(0, _hideTime).
                 SetEase(Ease.OutBack).
                 SetLink(gameObject).
-                OnComplete(() => callback?.Invoke());
+                OnComplete(() => callback?.Invoke()).AsyncWaitForCompletion().AsUniTask();
         }
     }
 }

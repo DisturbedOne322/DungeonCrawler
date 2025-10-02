@@ -38,11 +38,11 @@ namespace Gameplay.Experience
             var playerStats = GetPlayerStats();
             popup.SetTable(_playerStatDistributionTableBuilder.GetStatsTable(playerStats));
             popup.SetReactivePointsLeft(_statPoints);
-            popup.ShowPopup();
+            popup.ShowPopup().Forget();
 
             await _playerStatDistrubutionController.DistributeStats(playerStats, _statPoints);
             
-            popup.HidePopup();
+            await popup.HidePopup();
         }
 
         private Dictionary<MenuItemData, ReactiveProperty<int>> GetPlayerStats()

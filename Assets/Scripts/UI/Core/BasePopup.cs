@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,8 +17,8 @@ namespace UI.Core
             InitializePopup();
         }
 
-        public virtual void ShowPopup() => _popupAnimator.PlayShowAnim();
-        public virtual void HidePopup() => _popupAnimator.PlayHideAnim(DestroyPopup);
+        public virtual async UniTask ShowPopup() => await _popupAnimator.PlayShowAnim();
+        public virtual async UniTask HidePopup() => await _popupAnimator.PlayHideAnim(DestroyPopup);
 
         public void DestroyPopup() => Destroy(gameObject);
         
