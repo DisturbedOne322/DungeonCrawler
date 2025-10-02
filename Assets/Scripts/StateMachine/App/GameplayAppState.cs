@@ -1,57 +1,34 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AssetManagement;
 using AssetManagement.AssetProviders;
-using AssetManagement.AssetProviders.Core;
-using AssetManagement.Configs;
 using AssetManagement.Scenes;
 using Constants;
 using Cysharp.Threading.Tasks;
-using Gameplay.Progression;
 
 namespace StateMachine.App
 {
     public class GameplayAppState : BaseAppState
     {
         private readonly SceneTransitionController _sceneTransitionController;
-
-        private List<IAssetProvider> _assetProviders = new();
+        private readonly AssetProvidersController _assetProvidersController;
         
         public GameplayAppState(
             SceneTransitionController sceneTransitionController,
-            BaseConfigProvider<GameplayConfig> gameplayConfigProvider,
-            BaseConfigProvider<UIPopupsConfig> uiPopupsConfigProvider, 
-            UIPrefabsProvider uiPrefabsProvider)
+            AssetProvidersController assetProvidersController)
         {
             _sceneTransitionController = sceneTransitionController;
-            
-            _assetProviders.Add(gameplayConfigProvider);
-            _assetProviders.Add(uiPrefabsProvider);
-            _assetProviders.Add(uiPopupsConfigProvider);
+            _assetProvidersController = assetProvidersController;
         }
         
         public override async UniTask EnterState()
         {
-            await InitializeClasses();
+            await _assetProvidersController.Initialize();
             await _sceneTransitionController.LoadNextScene(ConstSceneNames.GameplayScene);
         }
 
         public override async UniTask ExitState()
         {
-            foreach (var disposable in _assetProviders) 
-                disposable.Dispose();
+            _assetProvidersController.Dispose();
             
             await _sceneTransitionController.LoadNextScene(ConstSceneNames.MainMenuScene);
-        }
-
-        private async Task InitializeClasses()
-        {
-            UniTask[] initializeTasks = new UniTask[_assetProviders.Count];
-
-            for (int i = 0; i < _assetProviders.Count; i++) 
-                initializeTasks[i] = _assetProviders[i].Initialize();
-            
-            await UniTask.WhenAll(initializeTasks);
         }
     }
 }
