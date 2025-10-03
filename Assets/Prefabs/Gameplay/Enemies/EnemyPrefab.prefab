@@ -302,6 +302,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2584227555149422283}
+  - {fileID: 6790569185541513824}
   m_Father: {fileID: 86822986121481779}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &2906489999224382829
@@ -743,6 +744,54 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &8272968687435686240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6790569185541513824}
+  - component: {fileID: 6289424905026183575}
+  m_Layer: 0
+  m_Name: WeaponHoldPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6790569185541513824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272968687435686240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.37827578, y: 0.1108727, z: 0.07488894, w: 0.91597295}
+  m_LocalPosition: {x: -6.01, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4782324159750568308}
+  m_LocalEulerAnglesHint: {x: 42.561, y: 20.651, z: 17.466}
+--- !u!111 &6289424905026183575
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272968687435686240}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &9111563962663850096
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,6 +806,7 @@ GameObject:
   - component: {fileID: 5294280859536209961}
   - component: {fileID: 2598502399907720380}
   - component: {fileID: 5524385198127312848}
+  - component: {fileID: 7159382151759450141}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Untagged
@@ -824,6 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _evadeAnimator: {fileID: 5524385198127312848}
+  _attackAnimator: {fileID: 7159382151759450141}
   _pivot: {fileID: 86822986121481779}
   _animTime: 1.3
 --- !u!114 &2598502399907720380
@@ -856,3 +907,16 @@ MonoBehaviour:
   _returnDuration: 0.75
   _evadeEase: 6
   _returnEase: 7
+--- !u!114 &7159382151759450141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111563962663850096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ba7abe62e542ac87db78e63de59251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation: {fileID: 6289424905026183575}

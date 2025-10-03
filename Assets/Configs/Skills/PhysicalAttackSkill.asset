@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca99c38faf7432fac3092fe23dfa33f, type: 3}
   m_Name: PhysicalAttackSkill
   m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
   _name: Physical Attack
   _description: Deals Moderate Physical Damage. Sacrifices some health points.
   BaseDamage: 15
+  SkillAnimationData: {fileID: 11400000, guid: c3c0820717aca144fbd6a60c66f9b48e, type: 2}
   _baseCritChance: 0
+  _canCrit: 1
   _isPiercing: 0
   _isUnavoidable: 0
-  _canCrit: 1
   _damageType: 0
   _strengthScaling: 1.25
   _fixedHealthPrice: 5

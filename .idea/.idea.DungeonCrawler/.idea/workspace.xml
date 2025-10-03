@@ -5,32 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/WeaponEquipperMono.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/WeaponEquipperMono.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerIdleAnimator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerIdleAnimator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerMoveAnimator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerMoveAnimator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/SkillAnimationData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/SkillAnimationData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Visual.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Visual/AttackAnimator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Visual/AttackAnimator.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon 2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon 2.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Units/PlayerCharacters/PlayerUnitData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Units/PlayerCharacters/PlayerUnitData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/DecisionRoomPrefab Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/DecisionRoomPrefab Variant.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/TreasureChestRoomPrefab Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/TreasureChestRoomPrefab Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Skills/BaseAttackSkill.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Skills/BaseAttackSkill.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Skills/MultiHitPhysicalAttack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Skills/MultiHitPhysicalAttack.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Skills/PhysicalAttackSkill.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Skills/PhysicalAttackSkill.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Enemies/EnemyPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Enemies/EnemyPrefab.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MenuItems/BattleMenuPagePrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MenuItems/BattleMenuPagePrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/SkillDiscardPopupPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/SkillDiscardPopupPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/Visual Effect Graph/17.0.4/Learning Templates/VFX/Context&amp;Flow.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Visual Effect Graph/17.0.4/Learning Templates/VFX/Context&amp;Flow.vfx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/Visual Effect Graph/17.0.4/Learning Templates/VFX/FlipbookBlending.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Visual Effect Graph/17.0.4/Learning Templates/VFX/FlipbookBlending.vfx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/Visual Effect Graph/17.0.4/Learning Templates/VFX/SpawnContext.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Visual Effect Graph/17.0.4/Learning Templates/VFX/SpawnContext.vfx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/MovementData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/MovementData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/UnitEquipmentData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/UnitEquipmentData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/CameraFollowPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/CameraFollowPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerMovementController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/PlayerUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/PlayerUnit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MenuItemsScroller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MenuItemsScroller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Constants/GameplayConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Constants/GameplayConstants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/BaseCombatAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/BaseCombatAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/CombatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/CombatService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/BaseAttackSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/BaseAttackSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/BaseSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/BaseSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/MultiHitPhysicalAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/MultiHitPhysicalAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/OffensiveSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/OffensiveSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/PhysicalAttackSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Skills/PhysicalAttackSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/Weapons/BaseWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/Weapons/BaseWeapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Facades/ICombatant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Facades/ICombatant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/GameUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/GameUnit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visual/Weapons/LowPoly/FreeSwords/Sword5/Sword5_Material_Red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Visual/Weapons/LowPoly/FreeSwords/Sword5/Sword5_Material_Red.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visual/Weapons/LowPoly/FreeSwords/Sword6/Sword6_Material_Blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Visual/Weapons/LowPoly/FreeSwords/Sword6/Sword6_Material_Blue.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Visual/Weapons/LowPoly/FreeSwords/Sword8/Sword8_Material_Gold.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Visual/Weapons/LowPoly/FreeSwords/Sword8/Sword8_Material_Gold.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +160,7 @@
       <workItem from="1759342133411" duration="5409000" />
       <workItem from="1759393874144" duration="674000" />
       <workItem from="1759412454871" duration="20746000" />
-      <workItem from="1759513187795" duration="9406000" />
+      <workItem from="1759513187795" duration="14637000" />
     </task>
     <servers />
   </component>

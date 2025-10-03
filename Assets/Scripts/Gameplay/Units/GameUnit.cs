@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Animations;
+using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Modifiers;
 using Gameplay.Combat.SkillSelection;
 using Gameplay.Equipment;
 using Gameplay.Facades;
+using Gameplay.Visual;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +16,7 @@ namespace Gameplay.Units
     public class GameUnit : MonoBehaviour, IGameUnit
     {
         [SerializeField] private EvadeAnimator _evadeAnimator;
+        [SerializeField] private AttackAnimator _attackAnimator;
         
         private UnitHealthData _healthData;
         private UnitHealthController _unitHealthController;
@@ -36,6 +39,7 @@ namespace Gameplay.Units
         public UnitEquipmentData UnitEquipmentData => _unitEquipmentData;
 
         public EvadeAnimator EvadeAnimator => _evadeAnimator;
+        public AttackAnimator AttackAnimator => _attackAnimator;
         
         private List<IOffensiveModifier> _offensiveModifiers = new();
         private List<IDefensiveModifier> _defensiveModifiers = new();
@@ -94,7 +98,7 @@ namespace Gameplay.Units
             
             return _defensiveModifiers;       
         }
-
+        
         private void TryAddModifiersFromEquipment(List<IOffensiveModifier> offensiveModifiers)
         {
             if(_unitEquipmentData.TryGetEquippedWeapon(out var weapon) && weapon.OffensiveModifier)

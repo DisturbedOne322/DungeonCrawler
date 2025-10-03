@@ -10,5 +10,6 @@ namespace Constants
         
         public const float DelayAfterAction = 0.5f;
         public const float DelayBeforeAction = 0.15f;
+        public const float DelayBetweenHits = 0.15f;
     }
 }

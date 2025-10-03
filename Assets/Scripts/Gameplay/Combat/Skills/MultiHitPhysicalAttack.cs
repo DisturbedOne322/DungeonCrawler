@@ -1,5 +1,6 @@
+using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Data;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
@@ -7,18 +8,24 @@ namespace Gameplay.Combat.Skills
     [CreateAssetMenu(fileName = "MultiHitPhysicalAttack", menuName = "Gameplay/Skills/MultiHitPhysicalAttack")]
     public class MultiHitPhysicalAttack : OffensiveSkill
     {
-        [SerializeField, Min(2)] private int _hits = 2;
-        
         protected override async UniTask PerformAction(CombatService combatService)
         {
-            for (int i = 0; i < _hits - 1; i++)
-            {
-                await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), false);
-                await UniTask.WaitForSeconds(0.15f);
-            }
+            var clip = SkillAnimationData.AnimationClip;
             
-            await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit));
-            await UniTask.WaitForSeconds(0.15f);
+            var animationTask = combatService.ActiveUnit.AttackAnimator.PlayAnimation(clip);
+            
+            int hits = SkillAnimationData.HitTimings.Count;
+            
+            for (int i = 0; i < hits - 1; i++)
+            {
+                await UniTask.WaitForSeconds(SkillAnimationData.GetHitDelay(i));
+                combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), false);
+            }
+
+            await UniTask.WaitForSeconds(SkillAnimationData.GetHitDelay(hits - 1));
+            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit));
+            
+            await animationTask;
         }
 
         public override bool CanUse(CombatService combatService) => true;

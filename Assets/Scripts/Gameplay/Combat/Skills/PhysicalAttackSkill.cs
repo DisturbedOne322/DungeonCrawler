@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Data;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using UnityEngine;
@@ -14,8 +13,15 @@ namespace Gameplay.Combat.Skills
         
         protected override async UniTask PerformAction(CombatService service)
         {
-            service.DealDamageToActiveUnit(GetSelfDamageData()).Forget();
-            await service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit));
+            var clip = SkillAnimationData.AnimationClip;
+            var task = service.ActiveUnit.AttackAnimator.PlayAnimation(clip);
+            
+            service.DealDamageToActiveUnit(GetSelfDamageData());
+
+            await UniTask.WaitForSeconds(SkillAnimationData.GetHitTime(0));
+            service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit));
+
+            await task;
         }
 
         public override bool CanUse(CombatService combatService)

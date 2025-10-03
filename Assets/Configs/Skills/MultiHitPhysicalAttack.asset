@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bd27ec593a47a2b086d4ac90dbafce, type: 3}
   m_Name: MultiHitPhysicalAttack
   m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
   _name: Multi Hit
   _description: Deal five weak physical attacks. High Crit Chance
   BaseDamage: 3
+  SkillAnimationData: {fileID: 11400000, guid: a10b9d85057632a4c8c2fe08fb958867, type: 2}
   _baseCritChance: 0.5
+  _canCrit: 1
   _isPiercing: 0
   _isUnavoidable: 0
-  _canCrit: 1
   _damageType: 0
-  _hits: 5

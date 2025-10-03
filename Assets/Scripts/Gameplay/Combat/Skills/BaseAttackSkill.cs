@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Data;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using UnityEngine;
@@ -11,7 +10,15 @@ namespace Gameplay.Combat.Skills
     {
         [SerializeField] private float _strengthScaling = 1;
         
-        protected override async UniTask PerformAction(CombatService combatService) => await combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit));
+        protected override async UniTask PerformAction(CombatService combatService)
+        {
+            var task = combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.AnimationClip);
+            
+            await UniTask.WaitForSeconds(SkillAnimationData.GetHitTime(0));
+            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit));
+            
+            await task;
+        }
 
         public override bool CanUse(CombatService combatService) => true;
 

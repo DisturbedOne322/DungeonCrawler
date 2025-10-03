@@ -1,6 +1,5 @@
 using Constants;
 using Cysharp.Threading.Tasks;
-using Data;
 
 namespace Gameplay.Combat
 {

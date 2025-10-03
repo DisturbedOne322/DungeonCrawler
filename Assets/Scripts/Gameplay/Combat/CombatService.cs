@@ -4,7 +4,6 @@ using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -54,13 +53,13 @@ namespace Gameplay.Combat
         
         public void HealOtherUnit(int amount) => HealUnit(OtherUnit, amount);
 
-        public UniTask DealDamageToActiveUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
+        public void DealDamageToActiveUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
             DealDamageToUnit(ActiveUnit, ActiveUnit, skillData, consumeCharge);
         
-        public UniTask DealDamageToOtherUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
+        public void DealDamageToOtherUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
             DealDamageToUnit(ActiveUnit, OtherUnit, skillData, consumeCharge);
 
-        private async UniTask DealDamageToUnit(IGameUnit caster, IGameUnit target, OffensiveSkillData skillData, bool consumeCharge = true)
+        private void DealDamageToUnit(IGameUnit caster, IGameUnit target, OffensiveSkillData skillData, bool consumeCharge = true)
         {
             bool isCritical = IsCritical(caster, skillData);
             
@@ -70,7 +69,7 @@ namespace Gameplay.Combat
             
             if (Evaded(target, skillData))
             {
-                await target.EvadeAnimator.PlayEvadeAnimation();
+                target.EvadeAnimator.PlayEvadeAnimation();
                 return;
             }
             
