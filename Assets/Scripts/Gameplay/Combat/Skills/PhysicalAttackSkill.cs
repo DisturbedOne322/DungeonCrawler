@@ -11,15 +11,13 @@ namespace Gameplay.Combat.Skills
         [SerializeField] private float _strengthScaling = 1.25f;
         [SerializeField] private int _fixedHealthPrice = 5;
         
-        protected override async UniTask PerformAction(CombatService service)
+        protected override async UniTask PerformAction(CombatService combatService)
         {
-            var clip = SkillAnimationData.AnimationClip;
-            var task = service.ActiveUnit.AttackAnimator.PlayAnimation(clip);
+            var task = StartAnimation(combatService);
             
-            service.DealDamageToActiveUnit(GetSelfDamageData());
+            combatService.DealDamageToActiveUnit(GetSelfDamageData());
 
-            await UniTask.WaitForSeconds(SkillAnimationData.GetHitTime(0));
-            service.DealDamageToOtherUnit(GetSkillData(service.ActiveUnit));
+            await ProcessHit(combatService);
 
             await task;
         }

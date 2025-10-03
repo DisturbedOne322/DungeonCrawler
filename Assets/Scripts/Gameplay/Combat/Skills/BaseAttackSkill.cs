@@ -12,10 +12,9 @@ namespace Gameplay.Combat.Skills
         
         protected override async UniTask PerformAction(CombatService combatService)
         {
-            var task = combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.AnimationClip);
+            var task = StartAnimation(combatService);
             
-            await UniTask.WaitForSeconds(SkillAnimationData.GetHitTime(0));
-            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit));
+            await ProcessHit(combatService);
             
             await task;
         }

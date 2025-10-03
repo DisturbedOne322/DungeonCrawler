@@ -41,11 +41,8 @@ Animation:
   m_GameObject: {fileID: 1956490363771260608}
   m_Enabled: 1
   serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 7323823f7f6d8f14fa39cc6e7c0fdef3, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 6acbd374fa6a9fc4eae618020daf2a63, type: 2}
-  - {fileID: 7400000, guid: 808fd17bccd411c43a62711464752a65, type: 2}
-  - {fileID: 7400000, guid: 7323823f7f6d8f14fa39cc6e7c0fdef3, type: 2}
+  m_Animation: {fileID: 0}
+  m_Animations: []
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -514,7 +511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6737168362627493591, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
       propertyPath: m_fontSize
-      value: 46.35
+      value: 46.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

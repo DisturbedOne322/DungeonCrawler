@@ -10,20 +10,14 @@ namespace Gameplay.Combat.Skills
     {
         protected override async UniTask PerformAction(CombatService combatService)
         {
-            var clip = SkillAnimationData.AnimationClip;
-            
-            var animationTask = combatService.ActiveUnit.AttackAnimator.PlayAnimation(clip);
+            var animationTask = StartAnimation(combatService);
             
             int hits = SkillAnimationData.HitTimings.Count;
             
-            for (int i = 0; i < hits - 1; i++)
-            {
-                await UniTask.WaitForSeconds(SkillAnimationData.GetHitDelay(i));
-                combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), false);
-            }
+            for (int i = 0; i < hits - 1; i++) 
+                await ProcessHit(combatService, i, false);
 
-            await UniTask.WaitForSeconds(SkillAnimationData.GetHitDelay(hits - 1));
-            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit));
+            await ProcessHit(combatService, hits - 1);
             
             await animationTask;
         }

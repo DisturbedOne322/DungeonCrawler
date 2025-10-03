@@ -9,9 +9,12 @@ namespace Gameplay.Combat
     {
         [SerializeField] private AnimationClip  _animationClip;
         [SerializeField] private List<HitTiming> _hitTimings;
+        [SerializeField] private HitTiming _recoveryTiming;
         
         public AnimationClip AnimationClip => _animationClip;
         public List<HitTiming> HitTimings => _hitTimings;
+
+        public HitTiming RecoveryTiming => _recoveryTiming;
         
         public float TimeInSeconds => AnimationClip.length;
 

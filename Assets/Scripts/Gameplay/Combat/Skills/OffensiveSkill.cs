@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using UnityEngine;
@@ -15,6 +16,15 @@ namespace Gameplay.Combat.Skills
         [SerializeField] private bool _isUnavoidable = false;
         [SerializeField] private DamageType _damageType;
 
+        protected async UniTask ProcessHit(CombatService combatService, int hitIndex = 0, bool consumeCharge = true)
+        {
+            await UniTask.WaitForSeconds(SkillAnimationData.GetHitDelay(hitIndex));
+            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), consumeCharge);
+        }
+        
+        protected UniTask StartAnimation(CombatService combatService) => 
+            combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.AnimationClip);
+        
         protected virtual OffensiveSkillData GetSkillData(IEntity entity)
         {
             return new OffensiveSkillData()

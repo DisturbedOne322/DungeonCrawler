@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animationClip: {fileID: 7400000, guid: 6acbd374fa6a9fc4eae618020daf2a63, type: 2}
   _hitTimings:
-  - Timing: 0.7
+  - Timing: 0.5
+  _recoveryTiming:
+    Timing: 0
