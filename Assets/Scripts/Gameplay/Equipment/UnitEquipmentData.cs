@@ -2,6 +2,7 @@ using System;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using UniRx;
+using UnityEngine;
 
 namespace Gameplay.Equipment
 {

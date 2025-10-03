@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using StateMachine.BattleMenu;
 using UI.BattleMenu;
 using UniRx;
 using UnityEngine;
@@ -11,10 +10,10 @@ namespace UI
 {
     public class MenuItemsScroller : MonoBehaviour
     {
+        [SerializeField] private RectTransform _area;
         [SerializeField] private VerticalLayoutGroup _layoutGroup;
         [SerializeField] private float _visibilityCheckOffset = 5;
 
-        private RectTransform _area;
         private RectTransform _content;
         
         private List<BaseMenuItemView> _menuItems;
@@ -34,7 +33,6 @@ namespace UI
             yield return null;
 
             _content = _layoutGroup.GetComponent<RectTransform>();
-            _area = _content.parent.GetComponent<RectTransform>();
             
             _areaHeight = _area.rect.height;
             _area.GetWorldCorners(_parentCorners);
@@ -60,7 +58,7 @@ namespace UI
             {
                 if (_itemHeight == 0)
                     _itemHeight = ((RectTransform)item.transform).rect.height;
-
+                
                 var localPos = _area.InverseTransformPoint(item.transform.position);
 
                 _parentYPos = GetTargetPos(activeItemId, localPos.y);

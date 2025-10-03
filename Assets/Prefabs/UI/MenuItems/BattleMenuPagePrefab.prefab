@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _area: {fileID: 6578395860792379701}
-  _content: {fileID: 1118917953083698134}
   _layoutGroup: {fileID: 497702847669756953}
   _visibilityCheckOffset: 20
 --- !u!222 &519384798768266556

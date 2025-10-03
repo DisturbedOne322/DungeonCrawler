@@ -15,6 +15,6 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _name: Wooden Sword
   _description: 
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 8449004803641222730, guid: 5cdf1ac831646004288735c99ac51e4a, type: 3}
   _offensiveModifier: {fileID: 11400000, guid: f16665da67c13ed439403e4aaf725872, type: 2}
   _defensiveModifier: {fileID: 0}

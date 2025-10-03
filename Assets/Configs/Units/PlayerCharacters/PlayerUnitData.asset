@@ -26,6 +26,11 @@ MonoBehaviour:
   _skillSet:
   - {fileID: 11400000, guid: 1b5c98718c47df04a8cce4d8f2ca44d8, type: 2}
   - {fileID: 11400000, guid: ec231c2fecaf2574fbc44debc180f4be, type: 2}
+  - {fileID: 11400000, guid: ec231c2fecaf2574fbc44debc180f4be, type: 2}
+  - {fileID: 11400000, guid: ec231c2fecaf2574fbc44debc180f4be, type: 2}
+  - {fileID: 11400000, guid: ec231c2fecaf2574fbc44debc180f4be, type: 2}
+  - {fileID: 11400000, guid: ec231c2fecaf2574fbc44debc180f4be, type: 2}
+  - {fileID: 11400000, guid: ec231c2fecaf2574fbc44debc180f4be, type: 2}
   _items:
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}

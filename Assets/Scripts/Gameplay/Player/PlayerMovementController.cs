@@ -9,9 +9,9 @@ namespace Gameplay.Player
 {
     public class PlayerMovementController
     {
-        private const float MoveTime = 1;
+        private const float MoveTimePerMeter = 0.1f;
         
-        private readonly PlayerUnit _playerUnit;
+        private readonly PlayerMoveAnimator _moveAnimator;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly PlayerMovementHistory _playerMovementHistory;
         private readonly GameplayData _gameplayData;
@@ -21,7 +21,7 @@ namespace Gameplay.Player
             PlayerMovementHistory playerMovementHistory,
             GameplayData gameplayData)
         {
-            _playerUnit = playerUnit;
+            _moveAnimator = playerUnit.PlayerMoveAnimator;
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _playerMovementHistory = playerMovementHistory;
             _gameplayData = gameplayData;
@@ -40,8 +40,8 @@ namespace Gameplay.Player
             SetPositionIndex(0);
             
             var firstRoom = _dungeonLayoutProvider.DungeonAreas[GetPositionIndex()];
-            _playerUnit.transform.position = firstRoom.PlayerStandPoint.position;
-            _playerUnit.transform.forward = firstRoom.PlayerStandPoint.forward;
+            _moveAnimator.transform.position = firstRoom.PlayerStandPoint.position;
+            _moveAnimator.transform.forward = firstRoom.PlayerStandPoint.forward;
             
             _playerMovementHistory.AddRoom(RoomType.Corridor);
         }
@@ -51,6 +51,8 @@ namespace Gameplay.Player
             int targetIndex = GetIndexOfStopArea();
             int currentIndex = GetPositionIndex();
             
+            _moveAnimator.CreateSequence();
+            
             for (; currentIndex < targetIndex;)
             {
                 currentIndex++;
@@ -58,15 +60,24 @@ namespace Gameplay.Player
                 if (!_dungeonLayoutProvider.TryGetRoom(currentIndex, out var room))
                     throw new Exception("Invalid room");
                 
-                await _playerUnit.MoveTowards(new MovementData()
+                bool isLast = currentIndex == targetIndex;
+                
+                var moveData = new MovementData()
                 {
                     TargetPos = room.PlayerStandPoint.position,
-                    MoveTime = MoveTime,
-                });
+                    MoveTimePerMeter = MoveTimePerMeter
+                };
+
+                int index = currentIndex;
                 
-                _playerMovementHistory.AddRoom(room.RoomType);
-                SetPositionIndex(currentIndex);
+                _moveAnimator.AppendSequence(moveData, () =>
+                {                
+                    _playerMovementHistory.AddRoom(room.RoomType);
+                    SetPositionIndex(index);
+                }, isLast);
             }
+            
+            await _moveAnimator.ExecuteSequence();
         }
 
         private int GetIndexOfStopArea()
