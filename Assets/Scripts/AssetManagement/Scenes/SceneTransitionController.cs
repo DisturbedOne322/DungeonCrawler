@@ -1,5 +1,6 @@
 using Constants;
 using Cysharp.Threading.Tasks;
+using UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -27,15 +28,14 @@ namespace AssetManagement.Scenes
 
         public async UniTask UnloadLoadingScene()
         {
-            //LoadingViewController.Instance.SetProgress(1);
-            //await LoadingViewController.Instance.FadeOut();
-            
+            await LoadingDisplay.Instance.FadeOut();
             await SceneManager.UnloadSceneAsync(ConstSceneNames.LoadingScene).ToUniTask();
         }
 
         private async UniTask LoadLoadingScene()
         {
             await Addressables.LoadSceneAsync(ConstSceneNames.LoadingScene, LoadSceneMode.Additive);
+            await LoadingDisplay.Instance.FadeIn();
         }
 
         private async UniTask LoadScene(string nextSceneName)
@@ -44,7 +44,7 @@ namespace AssetManagement.Scenes
 
             while (!_currentHandle.IsDone)
             {
-                //LoadingViewController.Instance.SetProgress(_currentHandle.PercentComplete);
+                LoadingDisplay.Instance.SetProgress(_currentHandle.PercentComplete);
                 await UniTask.NextFrame();
             }
             
