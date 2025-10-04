@@ -12,7 +12,7 @@ namespace Gameplay.Combat
         private readonly CombatService _combatService;
         private readonly PlayerExperienceService _playerExperienceService;
         
-        public readonly Subject<Unit> OnCombatStarted = new ();
+        public readonly Subject<EnemyUnit> OnCombatStarted = new ();
         public readonly Subject<Unit> OnCombatEnded = new ();
         
         public CombatSequenceController(CombatData combatData, CombatService combatService,
@@ -26,7 +26,7 @@ namespace Gameplay.Combat
         public async UniTask StartCombat(EnemyUnit enemyUnit)
         {
             _combatService.StartCombat(enemyUnit);
-            OnCombatStarted.OnNext(default);
+            OnCombatStarted.OnNext(enemyUnit);
             
             while (!IsCombatOver())
             {

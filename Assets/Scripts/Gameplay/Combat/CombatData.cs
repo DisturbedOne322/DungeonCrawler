@@ -5,14 +5,14 @@ namespace Gameplay.Combat
 {
     public class CombatData
     {
-        private GameUnit _player;
-        private GameUnit _enemy;
+        private PlayerUnit _player;
+        private EnemyUnit _enemy;
 
         private GameUnit _activeUnit;
         private GameUnit _otherUnit;
         
-        public GameUnit Player => _player;
-        public GameUnit Enemy => _enemy;
+        public PlayerUnit Player => _player;
+        public EnemyUnit Enemy => _enemy;
         
         public GameUnit ActiveUnit => _activeUnit;
         public GameUnit OtherUnit => _otherUnit;
@@ -22,7 +22,7 @@ namespace Gameplay.Combat
             _player = player;
         }
 
-        public void ResetCombat(GameUnit enemy)
+        public void ResetCombat(EnemyUnit enemy)
         {
             _enemy = enemy;
             _activeUnit = _player;

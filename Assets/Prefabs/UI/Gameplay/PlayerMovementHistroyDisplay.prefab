@@ -61,7 +61,7 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
-  m_ReverseArrangement: 1
+  m_ReverseArrangement: 0
 --- !u!1 &3219664549150315815
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,5 +114,5 @@ MonoBehaviour:
   _parent: {fileID: 2275336048583182489}
   _roomIconDisplay: {fileID: 5782089124191957003, guid: a8377a358d0af944ab0e2075963c0786, type: 3}
   _maximumRoomsHistory: 4
-  _scaleUpDuration: 0.2
+  _scaleUpDuration: 0.3
   _scaleDownDuration: 0.15

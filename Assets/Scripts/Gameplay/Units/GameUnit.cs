@@ -26,6 +26,8 @@ namespace Gameplay.Units
         private UnitBuffsData _unitBuffsData;
         private UnitInventoryData _unitInventoryData;
         private UnitEquipmentData _unitEquipmentData;
+
+        private string _unitName;
         
         public Vector3 Position => transform.position;
         
@@ -40,6 +42,8 @@ namespace Gameplay.Units
 
         public EvadeAnimator EvadeAnimator => _evadeAnimator;
         public AttackAnimator AttackAnimator => _attackAnimator;
+        
+        public string EntityName => _unitName;
         
         private List<IOffensiveModifier> _offensiveModifiers = new();
         private List<IDefensiveModifier> _defensiveModifiers = new();
@@ -66,6 +70,8 @@ namespace Gameplay.Units
 
         public void InitializeUnit(UnitData unitData)
         {
+            _unitName = unitData.Name;
+            
             _healthData.Initialize(unitData.MaxHp);
             _unitStatsData.SetStats(unitData.UnitBaseStats);
             

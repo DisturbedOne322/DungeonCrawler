@@ -4,7 +4,6 @@ using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -33,7 +32,7 @@ namespace Gameplay.Combat
             _modifiersCalculationService = modifiersCalculationService;
         }
         
-        public void StartCombat(GameUnit enemy)
+        public void StartCombat(EnemyUnit enemy)
         {
             _turnCount = -1;
             _combatData.ResetCombat(enemy);

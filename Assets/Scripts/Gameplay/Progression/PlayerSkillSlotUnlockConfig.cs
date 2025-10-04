@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using AssetManagement.Configs;
 using UnityEngine;
 
 namespace Gameplay.Progression
