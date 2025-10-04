@@ -6,10 +6,12 @@ namespace AssetManagement.AssetProviders
 {
     public class AssetProvidersController
     {
+        private readonly IAssetLoader _assetLoader;
         private readonly List<IAssetProvider> _assetProviders = new ();
 
-        public AssetProvidersController(List<IAssetProvider> assetProviders)
+        public AssetProvidersController(List<IAssetProvider> assetProviders, IAssetLoader assetLoader)
         {
+            _assetLoader = assetLoader;
             foreach (var assetProvider in assetProviders) 
                 _assetProviders.Add(assetProvider);
         }
@@ -26,6 +28,7 @@ namespace AssetManagement.AssetProviders
 
         public void Dispose()
         {
+            _assetLoader.Dispose();
             foreach (var assetProvider in _assetProviders) 
                 assetProvider.Dispose();
         }

@@ -5,6 +5,10 @@ using Gameplay.Dungeon.Rooms;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
+using Gameplay.Units;
+using StateMachine.App;
+using UI;
+using UI.Gameplay;
 
 namespace Gameplay
 {
@@ -14,16 +18,25 @@ namespace Gameplay
         private readonly DungeonBranchingSelector _dungeonBranchingSelector;
         private readonly DungeonGenerator _dungeonGenerator;
         private readonly RoomDropsService _roomDropsService;
+        private readonly PlayerUnit _playerUnit;
+        private readonly UIFactory _uiFactory;
+        private readonly AppStateMachine _stateMachine;
 
         public GameSequenceController(PlayerMovementController playerMovementController,
             DungeonBranchingSelector dungeonBranchingSelector,
             DungeonGenerator dungeonGenerator,
-            RoomDropsService roomDropsService)
+            RoomDropsService roomDropsService,
+            PlayerUnit playerUnit,
+            UIFactory uiFactory,
+            AppStateMachine stateMachine)
         {
             _playerMovementController = playerMovementController;
             _dungeonBranchingSelector = dungeonBranchingSelector;
             _dungeonGenerator = dungeonGenerator;
             _roomDropsService = roomDropsService;
+            _playerUnit = playerUnit;
+            _uiFactory = uiFactory;
+            _stateMachine = stateMachine;
         }
         
         public async UniTask StartRun()
@@ -32,7 +45,7 @@ namespace Gameplay
             _dungeonGenerator.CreateNextMapSection(RoomType.Corridor);
             _playerMovementController.PositionPlayer();
 
-            while (true)
+            while (IsPlayerAlive())
             {
                 var stopRoom = _playerMovementController.GetNextStopRoom();
                 
@@ -41,8 +54,20 @@ namespace Gameplay
                 await stopRoom.PlayEnterSequence();
                 await stopRoom.ClearRoom();
 
-                await _roomDropsService.GiveRewardToPlayer(stopRoom);
+                if(IsPlayerAlive())
+                    await _roomDropsService.GiveRewardToPlayer(stopRoom);
             }
+            
+            ShowGameOverPopup();
+        }
+
+        private bool IsPlayerAlive() => !_playerUnit.UnitHealthData.IsDead.Value;
+
+        private void ShowGameOverPopup()
+        {
+            var popup = _uiFactory.CreatePopup<GameOverPopup>();
+            popup.OnExitPressed += () => _stateMachine.GoToState<MainMenuAppState>().Forget();
+            popup.OnRetryPressed += () => _stateMachine.GoToState<GameplayAppState>().Forget();
         }
     }
 }

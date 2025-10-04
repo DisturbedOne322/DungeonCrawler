@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -6,9 +7,8 @@ using Object = UnityEngine.Object;
 
 namespace AssetManagement.AssetProviders.Core
 {
-    public interface IAssetLoader
+    public interface IAssetLoader : IDisposable, ICustomInitializable
     {
-        public UniTask Initialize();
         public UniTask<List<Object>> LoadByLabel(List<string> labels,
             Addressables.MergeMode mergeMode = Addressables.MergeMode.Union);
 

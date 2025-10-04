@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
-using UnityEngine;
 
 namespace Gameplay.Combat
 {
@@ -11,7 +9,11 @@ namespace Gameplay.Combat
     {
         public int GetFinalOutgoingDamage(int baseDamage, in DamageContext damageContext)
         {
+            if (damageContext.SkillData.DamageType == DamageType.Absolute)
+                return baseDamage;
+            
             int result = baseDamage;
+            
             var modifiers = damageContext.Attacker.GetOffensiveModifiers();
 
             if (modifiers.Count > 0)
@@ -36,6 +38,9 @@ namespace Gameplay.Combat
         
         public int GetReducedIngoingDamage(int incomingDamage, in DamageContext damageContext)
         {
+            if (damageContext.SkillData.DamageType == DamageType.Absolute)
+                return incomingDamage;
+            
             int reducedDamage = incomingDamage;
             
             var modifiers = damageContext.Defender.GetDefensiveModifiers();

@@ -4,6 +4,7 @@ using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -55,7 +56,7 @@ namespace Gameplay.Combat
 
         public void DealDamageToActiveUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
             DealDamageToUnit(ActiveUnit, ActiveUnit, skillData, consumeCharge);
-        
+
         public void DealDamageToOtherUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
             DealDamageToUnit(ActiveUnit, OtherUnit, skillData, consumeCharge);
 

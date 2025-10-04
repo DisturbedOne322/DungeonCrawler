@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace AssetManagement.AssetProviders
 {
-    public class AssetLoader : IAssetLoader
+    public class AssetLoader : IAssetLoader, IDisposable
     {
         private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new ();
 
@@ -32,9 +32,9 @@ namespace AssetManagement.AssetProviders
                     loadedAssets.Add(asset);
                 }));
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Error occured while loading assets");
+                throw new Exception(ex.Message);
             }
 
             return loadedAssets;
@@ -88,6 +88,12 @@ namespace AssetManagement.AssetProviders
             }
 
             resourceHandles.Add(handle);
+        }
+
+        public void Dispose()
+        {
+            _completedCache.Clear();
+            _handles.Clear();
         }
     }
 }

@@ -22,5 +22,5 @@ MonoBehaviour:
   _isPiercing: 0
   _isUnavoidable: 0
   _damageType: 0
-  _strengthScaling: 1.25
-  _fixedHealthPrice: 5
+  _strengthScaling: 1.5
+  _fixedHealthPrice: 10
