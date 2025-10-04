@@ -16,6 +16,5 @@ MonoBehaviour:
   _name: Iron Sword
   _description: 
   _prefab: {fileID: 7676615874565401376, guid: d7e67ff5daed3494fbe6d1904e928589, type: 3}
-  _attackClip: {fileID: 7400000, guid: 6acbd374fa6a9fc4eae618020daf2a63, type: 2}
   _offensiveModifier: {fileID: 11400000, guid: f16665da67c13ed439403e4aaf725872, type: 2}
   _defensiveModifier: {fileID: 0}

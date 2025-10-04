@@ -1,15 +1,17 @@
-using UnityEngine;
+using AssetManagement.AssetProviders.Core;
+using Gameplay.Progression;
 
 namespace Gameplay.Experience
 {
     public class ExperienceRequirementsProvider
     {
-        private const int BaseExperience = 100;
-        private const float BaseValue = 1.1f;
-        
-        public int GetXpRequiredForLevel(int level)
+        private readonly BaseConfigProvider<GameplayConfig> _configProvider;
+
+        public ExperienceRequirementsProvider(BaseConfigProvider<GameplayConfig> configProvider)
         {
-            return (int)(BaseExperience * Mathf.Pow(BaseValue, level - 1));
+            _configProvider = configProvider;
         }
+        
+        public int GetXpRequiredForLevel(int level) => _configProvider.GetConfig<PlayerExperienceRequirementedConfig>().GetXpRequiredForLevel(level);
     }
 }
