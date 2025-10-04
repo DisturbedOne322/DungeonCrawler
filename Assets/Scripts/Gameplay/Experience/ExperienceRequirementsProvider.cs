@@ -12,6 +12,6 @@ namespace Gameplay.Experience
             _configProvider = configProvider;
         }
         
-        public int GetXpRequiredForLevel(int level) => _configProvider.GetConfig<PlayerExperienceRequirementedConfig>().GetXpRequiredForLevel(level);
+        public int GetXpRequiredForLevel(int level) => _configProvider.GetConfig<PlayerExperienceRequirementsConfig>().GetXpRequiredForLevel(level);
     }
 }

@@ -44,10 +44,12 @@ namespace Installers.SceneInstallers
             Container.Bind<PlayerExperienceService>().AsSingle();
             Container.Bind<ExperienceRequirementsProvider>().AsSingle();
             Container.Bind<ExperienceData>().AsSingle();
-            Container.Bind<PlayerLevelUpController>().AsSingle();
+            Container.Bind<PlayerStatDistributionController>().AsSingle();
             Container.Bind<PlayerStatDistributionTableBuilder>().AsSingle();
             Container.Bind<PlayerStatDistrubutionController>().AsSingle();
             Container.Bind<PlayerSkillSlotsManager>().AsSingle();
+            Container.Bind<PlayerLevelUpBonusApplier>().AsSingle();
+            Container.Bind<PlayerLevelUpController>().AsSingle();
         }
 
         private void BindMovement()

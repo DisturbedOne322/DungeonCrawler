@@ -29,11 +29,8 @@ namespace Gameplay.Experience
             
             int targetExp = _experienceRequirementsProvider.GetXpRequiredForLevel(currentLevel + 1);
 
-            if (currentExp >= targetExp)
-            {
-                _experienceData.IncrementLevel();
-                await _playerLevelUpController.DistributeStatPoints();
-            }
+            if (currentExp >= targetExp) 
+                await _playerLevelUpController.ProcessLevelUp();
         }
     }
 }
