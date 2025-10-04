@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 96.65
+  m_fontSize: 96.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -203,7 +203,7 @@ MonoBehaviour:
   _fadeIn:
     FadeDuration: 0.25
     Ease: 17
-  _stayDuration: 0.5
+  _stayDuration: 1.5
   _fadeOut:
     FadeDuration: 0.4
     Ease: 18

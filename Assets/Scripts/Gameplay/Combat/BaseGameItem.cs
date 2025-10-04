@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace Gameplay.Combat
 {
@@ -9,7 +10,7 @@ namespace Gameplay.Combat
         [SerializeField, TextArea] private string _description;
         
         public Sprite Icon => _icon;
-        public string Name => _name;
+        public virtual string Name => _name;
         public string Description => _description;
     }
 }

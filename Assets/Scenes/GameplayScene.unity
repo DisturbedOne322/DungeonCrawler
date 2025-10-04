@@ -1555,6 +1555,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2139679679}
     m_Modifications:
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: myString.m_TableEntryReference.m_KeyId
+      value: 124242214912
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: _chargedBuff.m_TableEntryReference.m_KeyId
+      value: 124242214912
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: _guardedBuff.m_TableEntryReference.m_KeyId
+      value: 147046645760
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: _concentratedBuff.m_TableEntryReference.m_KeyId
+      value: 8114520064
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: myString.m_TableReference.m_TableCollectionName
+      value: GUID:e0790245ed25fe94da481b2147ce30f2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: _chargedBuff.m_TableReference.m_TableCollectionName
+      value: GUID:e0790245ed25fe94da481b2147ce30f2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: _guardedBuff.m_TableReference.m_TableCollectionName
+      value: GUID:e0790245ed25fe94da481b2147ce30f2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659294568317739240, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: _concentratedBuff.m_TableReference.m_TableCollectionName
+      value: GUID:e0790245ed25fe94da481b2147ce30f2
+      objectReference: {fileID: 0}
     - target: {fileID: 6302092689137727893, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1638,18 +1670,6 @@ PrefabInstance:
     - target: {fileID: 6967208411696583478, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
       propertyPath: m_Name
       value: BuffNotificationDisplay
-      objectReference: {fileID: 0}
-    - target: {fileID: 8443186023423729927, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
-      propertyPath: _fadeIn.Ease
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8443186023423729927, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
-      propertyPath: _fadeOut.Ease
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 8443186023423729927, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
-      propertyPath: _stayDuration
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

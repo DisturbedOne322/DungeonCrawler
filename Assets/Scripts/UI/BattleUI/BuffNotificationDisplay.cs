@@ -1,15 +1,20 @@
-using System;
+using Constants;
 using Gameplay.Combat;
 using Gameplay.Units;
 using UI.Core;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Localization;
 using Zenject;
 
 namespace UI.BattleUI
 {
     public class BuffNotificationDisplay : MonoBehaviour
     {
+        [SerializeField] private LocalizedString _chargedBuff;
+        [SerializeField] private LocalizedString _concentratedBuff;
+        [SerializeField] private LocalizedString _guardedBuff;
+
         [SerializeField] private TextDisplay _textDisplay;
 
         private CombatSequenceController _combatSequenceController;
@@ -55,27 +60,27 @@ namespace UI.BattleUI
                 buffsData.Guarded.Subscribe(buffed =>
                 {
                     if (buffed)
-                        DisplayBuff(unitName, "GUARDED");
+                        DisplayBuff(unitName, _guardedBuff.GetLocalizedString());
                 }));
 
             _unitSubscriptions.Add(
                 buffsData.Concentrated.Subscribe(buffed =>
                 {
                 if (buffed)
-                    DisplayBuff(unitName, "CONCENTRATED");
+                    DisplayBuff(unitName, _concentratedBuff.GetLocalizedString());
                 }));
 
             _unitSubscriptions.Add(
                 buffsData.Charged.Subscribe(buffed =>
                 {
                 if (buffed)
-                    DisplayBuff(unitName, "CHARGED");
+                    DisplayBuff(unitName, _chargedBuff.GetLocalizedString());
                 }));
         }
 
         private void DisplayBuff(string unitName, string buffText)
         {
-            _textDisplay.ShowText(unitName + " IS " + buffText + "!");
+            _textDisplay.ShowText($"{unitName} {buffText}!");
         }
     }
 }
