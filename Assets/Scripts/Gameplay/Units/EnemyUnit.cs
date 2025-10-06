@@ -16,6 +16,7 @@ namespace Gameplay.Units
         {
             _pivot.transform.rotation = Quaternion.Euler(new Vector3(90, 0 ,0));
         }
+        
         public void SetExperienceBonus(int experienceBonus) => _experienceBonus = experienceBonus;
         
         public async UniTask PlayAppearAnimation()

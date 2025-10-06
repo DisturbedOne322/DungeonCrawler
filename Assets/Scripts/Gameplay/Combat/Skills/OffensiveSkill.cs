@@ -22,9 +22,14 @@ namespace Gameplay.Combat.Skills
             combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), consumeCharge);
         }
         
-        protected UniTask StartAnimation(CombatService combatService) => 
-            combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.AnimationClip);
-        
+        protected UniTask StartAnimation(CombatService combatService)
+        {
+            if(combatService.IsPlayerTurn())
+                return combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.FpvAnimationClip);
+            
+            return combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.TpvAnimationClip);
+        }
+
         protected virtual OffensiveSkillData GetSkillData(IEntity entity)
         {
             return new OffensiveSkillData()

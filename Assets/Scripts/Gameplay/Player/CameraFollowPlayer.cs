@@ -15,7 +15,7 @@ namespace Gameplay.Player
         [Inject]
         private void Construct(PlayerUnit playerUnit)
         {
-            _playerTransform = playerUnit.transform;
+            _playerTransform = playerUnit.CameraPivot;
         }
 
         private void LateUpdate()

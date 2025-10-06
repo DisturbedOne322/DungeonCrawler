@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6911787b7ea94360b2f31c10c924895c, type: 3}
   m_Name: PhysicalAttackAnimData
   m_EditorClassIdentifier: 
-  _animationClip: {fileID: 7400000, guid: 7323823f7f6d8f14fa39cc6e7c0fdef3, type: 2}
+  _fpvAnimationClip: {fileID: 7400000, guid: b0f7b62c2c22e554ea0ab6e883c0b10e, type: 2}
+  _tpvAnimationClip: {fileID: 7400000, guid: 5faa91358f849344a87619a0f52615aa, type: 2}
   _hitTimings:
   - Timing: 0.65
   _recoveryTiming:

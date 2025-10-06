@@ -13,6 +13,9 @@ namespace UI.BattleMenu
         public Subject<Unit> OnViewChanged = new();
 
         public int GetSelectedIndex() => SelectedIndex;
+        public int GetFirstSelectableIndex() => FindFirstSelectableIndex();
+        public int GetLastSelectableIndex() => FindLastSelectableIndex();
+        
         public bool IsSelectionValid() => CheckSelectionValid();
 
         public void SetMenuItems(List<MenuItemData> menuItems) => _menuItems = menuItems;
@@ -66,6 +69,19 @@ namespace UI.BattleMenu
             int count = _menuItems.Count;
             
             for (int i = 0; i < count; i++)
+            {
+                if (_menuItems[i].IsSelectable())
+                    return i;
+            }
+            
+            return -1;
+        }
+
+        private int FindLastSelectableIndex()
+        {
+            int count = _menuItems.Count;
+            
+            for (int i = count - 1; i >= 0; i--)
             {
                 if (_menuItems[i].IsSelectable())
                     return i;

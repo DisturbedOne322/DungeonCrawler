@@ -11,7 +11,7 @@ namespace Gameplay.Combat.Skills
         protected override async UniTask PerformAction(CombatService combatService)
         {
             var animationTask = StartAnimation(combatService);
-            
+
             int hits = SkillAnimationData.HitTimings.Count;
             
             for (int i = 0; i < hits - 1; i++) 

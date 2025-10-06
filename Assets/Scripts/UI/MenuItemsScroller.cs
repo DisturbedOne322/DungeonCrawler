@@ -87,11 +87,19 @@ namespace UI
 
         private float GetTargetPos(int currentIndex, float localY)
         {
-            if (currentIndex == 0 && _prevItemIndex == _menuItems.Count - 1)
+            int firstIndex = _menuItemsUpdater.GetFirstSelectableIndex();
+            int lastIndex = _menuItemsUpdater.GetLastSelectableIndex();
+            
+            if (currentIndex == firstIndex && _prevItemIndex == lastIndex)
                 return 0;
 
-            if (currentIndex == _menuItems.Count - 1 && _prevItemIndex == 0)
+            if (currentIndex == lastIndex && _prevItemIndex == firstIndex)
             {
+                Debug.Log(_menuItems.Count);
+                Debug.Log(lastIndex);
+                
+                int inactiveLastItems = _menuItems.Count - lastIndex - 1;
+                
                 float offset = 0;
                 while (offset < _areaHeight) 
                     offset += GetStep();
@@ -99,7 +107,7 @@ namespace UI
                 if(offset != 0)
                     offset -= GetStep();
                 
-                return _content.rect.height - offset;
+                return _content.rect.height - offset - GetStep() * inactiveLastItems;
             }
 
             int indexIncrease = Mathf.Abs(currentIndex - _prevItemIndex);

@@ -31,6 +31,8 @@ namespace Gameplay.Combat
             _combatBuffsApplicator = combatBuffsApplicator;
             _modifiersCalculationService = modifiersCalculationService;
         }
+
+        public bool IsPlayerTurn() => ActiveUnit is PlayerUnit;
         
         public void StartCombat(EnemyUnit enemy)
         {

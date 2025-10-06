@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6911787b7ea94360b2f31c10c924895c, type: 3}
   m_Name: MultiHitAttackAnimData
   m_EditorClassIdentifier: 
-  _animationClip: {fileID: 7400000, guid: 808fd17bccd411c43a62711464752a65, type: 2}
+  _fpvAnimationClip: {fileID: 7400000, guid: 9dd8b6779fca3cf4487a51cae63b3606, type: 2}
+  _tpvAnimationClip: {fileID: 7400000, guid: b08dfe9b5ea203b4d8be4fe74e26fa8f, type: 2}
   _hitTimings:
   - Timing: 0.4
   - Timing: 0.5
   - Timing: 0.6
   - Timing: 0.7
+  _recoveryTiming:
+    Timing: 0

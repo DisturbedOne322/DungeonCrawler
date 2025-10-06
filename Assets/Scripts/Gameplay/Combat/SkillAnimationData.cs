@@ -7,16 +7,19 @@ namespace Gameplay.Combat
     [CreateAssetMenu(fileName = "SkillAnimationData", menuName = "Gameplay/Animations/Skills/SkillAnimationData")]
     public class SkillAnimationData : ScriptableObject
     {
-        [SerializeField] private AnimationClip  _animationClip;
+        [SerializeField] private AnimationClip  _fpvAnimationClip;
+        [SerializeField] private AnimationClip  _tpvAnimationClip;
         [SerializeField] private List<HitTiming> _hitTimings;
         [SerializeField] private HitTiming _recoveryTiming;
         
-        public AnimationClip AnimationClip => _animationClip;
+        public AnimationClip FpvAnimationClip => _fpvAnimationClip;
+        public AnimationClip TpvAnimationClip => _tpvAnimationClip;
+        
         public List<HitTiming> HitTimings => _hitTimings;
 
         public HitTiming RecoveryTiming => _recoveryTiming;
         
-        public float TimeInSeconds => AnimationClip.length;
+        public float TimeInSeconds => _fpvAnimationClip.length;
 
         public float GetHitTime(int index)
         {
