@@ -18,7 +18,7 @@ namespace Gameplay.Player
         
         private int _previousSlots = 0;
         
-        public readonly Subject<Unit> OnSkillSlotAdded = new ();
+        public readonly Subject<int> OnSkillSlotsAdded = new ();
         
         public PlayerSkillSlotsManager(PlayerUnit playerUnit,
             ExperienceData experienceData, 
@@ -46,9 +46,12 @@ namespace Gameplay.Player
             
             if(_previousSlots == 0)
                 _previousSlots = skillSlots;
-            
-            if(_previousSlots < skillSlots)
-                OnSkillSlotAdded?.OnNext(Unit.Default);
+
+            if (_previousSlots >= skillSlots) 
+                return;
+
+            OnSkillSlotsAdded?.OnNext(skillSlots - _previousSlots);
+            _previousSlots = skillSlots;
         }
 
         private int GetSkillSlotsForLevel(int level)

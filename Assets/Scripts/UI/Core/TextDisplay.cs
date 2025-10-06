@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -35,12 +34,5 @@ namespace UI.Core
             color.a = 0;
             _text.color = color;
         }
-    }
-
-    [Serializable]
-    public class FadeOptions
-    {
-        [Min(0.01f)] public float FadeDuration = 0.5f;
-        public Ease Ease = Ease.Linear;
     }
 }

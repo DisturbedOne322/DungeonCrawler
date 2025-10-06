@@ -95,9 +95,6 @@ namespace UI
 
             if (currentIndex == lastIndex && _prevItemIndex == firstIndex)
             {
-                Debug.Log(_menuItems.Count);
-                Debug.Log(lastIndex);
-                
                 int inactiveLastItems = _menuItems.Count - lastIndex - 1;
                 
                 float offset = 0;
