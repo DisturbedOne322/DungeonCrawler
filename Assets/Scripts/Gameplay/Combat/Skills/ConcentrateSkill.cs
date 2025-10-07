@@ -5,15 +5,15 @@ using UnityEngine;
 namespace Gameplay.Combat.Skills
 {
     [CreateAssetMenu(fileName = "ConcentrateSkill", menuName = "Gameplay/Skills/General/ConcentrateSkill")]
-    public class ConcentrateSkill : BaseSkill
+    public class ConcentrateSkill : OffensiveBuffSkill
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.ApplyConcentrateToActiveUnit();
+            combatService.CombatBuffsService.AddCombatBuffTo(combatService.ActiveUnit, OffensiveBuffData);
             return UniTask.CompletedTask;
         }
 
         public override bool CanUse(CombatService combatService) =>
-            !combatService.ActiveUnit.UnitBuffsData.Concentrated.Value;
+            !combatService.ActiveUnit.UnitActiveBuffsData.IsOffensiveBuffActive(OffensiveBuffData);
     }
 }

@@ -3,7 +3,7 @@ using UI;
 using UI.BattleMenu;
 using Zenject;
 
-namespace Installers.SceneInstallers.UIInstallers
+namespace Installers.GameInstallers.UIInstallers
 {
     public class UIInstallers : MonoInstaller
     {

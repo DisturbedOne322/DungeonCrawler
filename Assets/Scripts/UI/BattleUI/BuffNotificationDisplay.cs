@@ -1,5 +1,6 @@
 using Constants;
 using Gameplay.Combat;
+using Gameplay.Facades;
 using Gameplay.Units;
 using UI.Core;
 using UniRx;
@@ -17,30 +18,30 @@ namespace UI.BattleUI
 
         [SerializeField] private TextDisplay _textDisplay;
 
-        private CombatSequenceController _combatSequenceController;
+        private CombatEventsService _combatEventsService;
         private PlayerUnit _playerUnit;
         
         private CompositeDisposable _unitSubscriptions;
         private CompositeDisposable _combatSubscriptions;
         
         [Inject]
-        private void Construct(CombatSequenceController combatSequenceController, PlayerUnit playerUnit)
+        private void Construct(CombatEventsService combatEventsService, PlayerUnit playerUnit)
         {
-            _combatSequenceController = combatSequenceController;
+            _combatEventsService = combatEventsService;
             _playerUnit = playerUnit;
         }
         
         private void Awake()
         {
             _combatSubscriptions = new();
-            _combatSubscriptions.Add(_combatSequenceController.OnCombatStarted.Subscribe((enemy) =>
+            _combatSubscriptions.Add(_combatEventsService.OnCombatStarted.Subscribe((enemy) =>
             {
                 _unitSubscriptions = new();
                 SubscribeToUnit(_playerUnit);
                 SubscribeToUnit(enemy);
             }));
             
-            _combatSubscriptions.Add(_combatSequenceController.OnCombatEnded.Subscribe(_ =>
+            _combatSubscriptions.Add(_combatEventsService.OnCombatEnded.Subscribe(_ =>
             {
                 _unitSubscriptions.Dispose();
             }));
@@ -51,12 +52,12 @@ namespace UI.BattleUI
             _combatSubscriptions.Dispose();
         }
 
-        private void SubscribeToUnit(GameUnit gameUnit)
+        private void SubscribeToUnit(IGameUnit gameUnit)
         {
             string unitName = gameUnit.EntityName;
             var buffsData = gameUnit.UnitBuffsData;
 
-            _unitSubscriptions.Add(
+            /*_unitSubscriptions.Add(
                 buffsData.Guarded.Subscribe(buffed =>
                 {
                     if (buffed)
@@ -75,7 +76,7 @@ namespace UI.BattleUI
                 {
                 if (buffed)
                     DisplayBuff(unitName, _chargedBuff.GetLocalizedString());
-                }));
+                }));*/
         }
 
         private void DisplayBuff(string unitName, string buffText)

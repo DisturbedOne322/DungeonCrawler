@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gameplay.Progression
+namespace Gameplay.Configs
 {
     [CreateAssetMenu(fileName = "PlayerProgressionConfig", menuName = "Gameplay/Configs/PlayerProgressionConfig")]
     public class PlayerSkillSlotUnlockConfig : GameplayConfig

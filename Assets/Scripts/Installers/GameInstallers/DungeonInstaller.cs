@@ -2,7 +2,7 @@ using Gameplay.Dungeon;
 using Gameplay.Services;
 using Zenject;
 
-namespace Installers.SceneInstallers
+namespace Installers.GameInstallers
 {
     public class DungeonInstaller : MonoInstaller
     {

@@ -1,6 +1,6 @@
 using AssetManagement.Configs;
 
-namespace Gameplay.Progression
+namespace Gameplay.Configs
 {
     public abstract class GameplayConfig : BaseConfig
     {

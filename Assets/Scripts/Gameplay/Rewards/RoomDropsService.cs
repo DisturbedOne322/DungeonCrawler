@@ -1,8 +1,8 @@
 using AssetManagement.AssetProviders.Core;
 using Cysharp.Threading.Tasks;
+using Gameplay.Configs;
 using Gameplay.Dungeon.Data;
 using Gameplay.Dungeon.Rooms;
-using Gameplay.Progression;
 
 namespace Gameplay.Rewards
 {

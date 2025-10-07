@@ -3,7 +3,7 @@ using AssetManagement.AssetProviders.Core;
 using AssetManagement.Configs;
 using AssetManagement.Scenes;
 using Bootstrap;
-using Gameplay.Progression;
+using Gameplay.Configs;
 using StateMachine.App;
 using Zenject;
 

@@ -1,6 +1,7 @@
 using Bootstrap;
 using Data;
 using Gameplay;
+using Gameplay.Buffs;
 using Gameplay.Combat;
 using Gameplay.Experience;
 using Gameplay.Player;
@@ -8,7 +9,7 @@ using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Installers.SceneInstallers
+namespace Installers.GameInstallers
 {
     public class GameInstaller : MonoInstaller
     {
@@ -34,9 +35,11 @@ namespace Installers.SceneInstallers
             Container.Bind<GameSequenceController>().AsSingle();
             Container.Bind<CombatSequenceController>().AsSingle();
             Container.Bind<CombatService>().AsSingle();
+            Container.Bind<CombatEventsService>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
-            Container.Bind<CombatBuffsApplicator>().AsSingle();
-            Container.Bind<ModifiersCalculationService>().AsSingle();
+            Container.Bind<CombatBuffsService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CombatBuffsApplicationService>().AsSingle().NonLazy();
+            Container.Bind<BuffsCalculationService>().AsSingle();
         }
 
         private void BindProgression()

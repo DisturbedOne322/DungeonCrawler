@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AssetManagement.AssetProviders.Core;
 using Constants;
 using Cysharp.Threading.Tasks;
-using Gameplay.Progression;
+using Gameplay.Configs;
 using UnityEngine.AddressableAssets;
 
 namespace AssetManagement.AssetProviders

@@ -5,14 +5,17 @@ using UnityEngine;
 namespace Gameplay.Combat.Skills
 {
     [CreateAssetMenu(fileName = "GuardSkill", menuName = "Gameplay/Skills/General/GuardSkill")]
-    public class GuardSkill : BaseSkill
+    public class GuardSkill : DefensiveBuffSkill
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.ApplyGuardToActiveUnit();
+            combatService.CombatBuffsService.AddCombatBuffTo(combatService.ActiveUnit, 
+                DefensiveBuffData);
+            
             return UniTask.CompletedTask;
         }
 
-        public override bool CanUse(CombatService combatService) => true;
+        public override bool CanUse(CombatService combatService) => 
+            !combatService.ActiveUnit.UnitActiveBuffsData.IsDefensiveBuffActive(DefensiveBuffData);
     }
 }

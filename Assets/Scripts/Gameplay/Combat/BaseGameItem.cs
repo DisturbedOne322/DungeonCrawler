@@ -10,7 +10,7 @@ namespace Gameplay.Combat
         [SerializeField, TextArea] private string _description;
         
         public Sprite Icon => _icon;
-        public virtual string Name => _name;
+        public string Name => _name;
         public string Description => _description;
     }
 }

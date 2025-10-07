@@ -4,8 +4,10 @@ namespace Gameplay.Combat.Data
 {
     public struct HitEventData
     {
-        public IEntity Target;
+        public IGameUnit Attacker;
+        public IGameUnit Target;
         public int Damage;
+        public bool IsCritical;
         public HitDamageType HitDamageType;
     }
 }

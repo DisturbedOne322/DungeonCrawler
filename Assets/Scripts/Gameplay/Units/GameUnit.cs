@@ -24,6 +24,7 @@ namespace Gameplay.Units
         private UnitStatsData _unitStatsData;
         private UnitSkillsData _unitSkillsData;
         private UnitBuffsData _unitBuffsData;
+        private UnitActiveBuffsData _unitActiveBuffsData;
         private UnitInventoryData _unitInventoryData;
         private UnitEquipmentData _unitEquipmentData;
 
@@ -37,6 +38,7 @@ namespace Gameplay.Units
         public UnitStatsData UnitStatsData => _unitStatsData;
         public UnitSkillsData UnitSkillsData => _unitSkillsData;
         public UnitBuffsData UnitBuffsData => _unitBuffsData;
+        public UnitActiveBuffsData UnitActiveBuffsData => _unitActiveBuffsData;
         public UnitInventoryData UnitInventoryData => _unitInventoryData;
         public UnitEquipmentData UnitEquipmentData => _unitEquipmentData;
 
@@ -45,8 +47,8 @@ namespace Gameplay.Units
         
         public string EntityName => _unitName;
         
-        private List<IOffensiveModifier> _offensiveModifiers = new();
-        private List<IDefensiveModifier> _defensiveModifiers = new();
+        private List<IOffensiveBuff> _offensiveModifiers = new();
+        private List<IDefensiveBuff> _defensiveModifiers = new();
         
         [Inject]
         private void Construct(UnitHealthData unitHealthData,
@@ -55,6 +57,7 @@ namespace Gameplay.Units
             UnitStatsData unitStatsData, 
             UnitSkillsData unitSkillsData,
             UnitBuffsData unitBuffsData,
+            UnitActiveBuffsData unitActiveBuffsData,
             UnitInventoryData unitInventoryData,
             UnitEquipmentData unitEquipmentData)
         {
@@ -64,6 +67,7 @@ namespace Gameplay.Units
             _unitStatsData = unitStatsData;
             _unitSkillsData = unitSkillsData;
             _unitBuffsData = unitBuffsData;
+            _unitActiveBuffsData = unitActiveBuffsData;
             _unitInventoryData = unitInventoryData;
             _unitEquipmentData = unitEquipmentData;
         }
@@ -85,7 +89,7 @@ namespace Gameplay.Units
                 _unitEquipmentData.EquipArmor(unitData.BaseArmor);
         }
 
-        public List<IOffensiveModifier> GetOffensiveModifiers()
+        public List<IOffensiveBuff> GetOffensiveModifiers()
         {
             _offensiveModifiers.Clear();
             _offensiveModifiers.AddRange(_unitBuffsData.OffensiveBuffs);
@@ -95,7 +99,7 @@ namespace Gameplay.Units
             return _offensiveModifiers;
         }
 
-        public List<IDefensiveModifier> GetDefensiveModifiers()
+        public List<IDefensiveBuff> GetDefensiveModifiers()
         {
             _defensiveModifiers.Clear();
             _defensiveModifiers.AddRange(_unitBuffsData.DefensiveBuffs);
@@ -105,22 +109,22 @@ namespace Gameplay.Units
             return _defensiveModifiers;       
         }
         
-        private void TryAddModifiersFromEquipment(List<IOffensiveModifier> offensiveModifiers)
+        private void TryAddModifiersFromEquipment(List<IOffensiveBuff> offensiveModifiers)
         {
-            if(_unitEquipmentData.TryGetEquippedWeapon(out var weapon) && weapon.OffensiveModifier)
-                offensiveModifiers.Add(weapon.OffensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedWeapon(out var weapon) && weapon.OffensiveBuff)
+                offensiveModifiers.Add(weapon.OffensiveBuff);
             
-            if(_unitEquipmentData.TryGetEquippedArmor(out var armor) && armor.OffensiveModifier)
-                offensiveModifiers.Add(armor.OffensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedArmor(out var armor) && armor.OffensiveBuff)
+                offensiveModifiers.Add(armor.OffensiveBuff);
         }
         
-        private void TryAddModifiersFromEquipment(List<IDefensiveModifier> defensiveModifiers)
+        private void TryAddModifiersFromEquipment(List<IDefensiveBuff> defensiveModifiers)
         {
-            if(_unitEquipmentData.TryGetEquippedWeapon(out var weapon) && weapon.DefensiveModifier)
-                defensiveModifiers.Add(weapon.DefensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedWeapon(out var weapon) && weapon.DefensiveBuff)
+                defensiveModifiers.Add(weapon.DefensiveBuff);
             
-            if(_unitEquipmentData.TryGetEquippedArmor(out var armor) && armor.DefensiveModifier)
-                defensiveModifiers.Add(armor.DefensiveModifier);
+            if(_unitEquipmentData.TryGetEquippedArmor(out var armor) && armor.DefensiveBuff)
+                defensiveModifiers.Add(armor.DefensiveBuff);
         }
     }
 }

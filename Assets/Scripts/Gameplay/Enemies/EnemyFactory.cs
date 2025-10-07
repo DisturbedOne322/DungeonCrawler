@@ -1,5 +1,5 @@
 using AssetManagement.AssetProviders.Core;
-using Gameplay.Progression;
+using Gameplay.Configs;
 using Gameplay.Services;
 using Gameplay.Units;
 

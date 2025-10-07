@@ -1,9 +1,8 @@
-using Cysharp.Threading.Tasks;
+using Gameplay.Buffs;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
 using Gameplay.Units;
-using UniRx;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -12,46 +11,61 @@ namespace Gameplay.Combat
     {
         private readonly CombatData _combatData;
         private readonly CombatFormulaService _combatFormulaService;
-        private readonly CombatBuffsApplicator _combatBuffsApplicator;
-        private readonly ModifiersCalculationService _modifiersCalculationService;
-
-        private int _turnCount = -1;
+        private readonly CombatBuffsService _combatBuffsService;
+        private readonly BuffsCalculationService _buffsCalculationService;
+        private readonly CombatEventsService _combatEventsService;
         
         public IGameUnit ActiveUnit => _combatData.ActiveUnit;
         public IGameUnit OtherUnit => _combatData.OtherUnit;
         
-        public Subject<HitEventData> OnHitDealt = new();
-        public Subject<HealEventData> OnHealed = new();
+        public int TurnCount => _combatData.TurnCount;
 
         public CombatService(CombatData combatData, CombatFormulaService combatFormulaService,
-            CombatBuffsApplicator combatBuffsApplicator, ModifiersCalculationService modifiersCalculationService)
+            CombatBuffsService combatBuffsService, BuffsCalculationService buffsCalculationService,
+            CombatEventsService combatEventsService)
         {
             _combatData = combatData;
             _combatFormulaService = combatFormulaService;
-            _combatBuffsApplicator = combatBuffsApplicator;
-            _modifiersCalculationService = modifiersCalculationService;
+            _combatBuffsService = combatBuffsService;
+            _buffsCalculationService = buffsCalculationService;
+            _combatEventsService = combatEventsService;
         }
+
+        public CombatBuffsService CombatBuffsService => _combatBuffsService;
 
         public bool IsPlayerTurn() => ActiveUnit is PlayerUnit;
         
         public void StartCombat(EnemyUnit enemy)
         {
-            _turnCount = -1;
             _combatData.ResetCombat(enemy);
+            _combatEventsService.InvokeCombatStarted(enemy);
+        }
+
+        public void EndCombat()
+        {
+            _combatEventsService.InvokeCombatEnded(_combatData.Enemy);
         }
 
         public void StartTurn()
         {
-            _turnCount++;
-            _combatData.UpdateCurrentTurnUnit(_turnCount);
-            ActiveUnit.UnitBuffsData.Guarded.Value = false;
+            _combatData.UpdateCurrentTurnUnit();
+            _combatEventsService.InvokeTurnStarted(new ()
+            {
+                TurnCount = TurnCount,
+                ActiveUnit = ActiveUnit
+            });
         }
 
-        public void ApplyGuardToActiveUnit() => _combatBuffsApplicator.ApplyGuardToUnit(ActiveUnit);
-        public void ApplyChargeToActiveUnit() => _combatBuffsApplicator.ApplyChargeToUnit(ActiveUnit);
-        public void ApplyConcentrateToActiveUnit() => _combatBuffsApplicator.ApplyConcentrateToUnit(ActiveUnit);
-
-        public void HealActiveUnit(int amount)=> HealUnit(ActiveUnit, amount);
+        public void EndTurn()
+        {
+            _combatEventsService.InvokeTurnEnded(new()
+            {
+                TurnCount = TurnCount,
+                ActiveUnit = ActiveUnit
+            });
+        }
+        
+        public void HealActiveUnit(int amount) => HealUnit(ActiveUnit, amount);
         
         public void HealOtherUnit(int amount) => HealUnit(OtherUnit, amount);
 
@@ -61,30 +75,34 @@ namespace Gameplay.Combat
         public void DealDamageToOtherUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
             DealDamageToUnit(ActiveUnit, OtherUnit, skillData, consumeCharge);
 
-        private void DealDamageToUnit(IGameUnit caster, IGameUnit target, OffensiveSkillData skillData, bool consumeCharge = true)
+        private void DealDamageToUnit(IGameUnit caster, IGameUnit target, 
+            OffensiveSkillData skillData, bool consumeCharge = true)
         {
             bool isCritical = IsCritical(caster, skillData);
             
             int outgoingDamage = skillData.Damage;
             var damageContext = new DamageContext(caster, target, skillData, isCritical, consumeCharge);
-            outgoingDamage = _modifiersCalculationService.GetFinalOutgoingDamage(outgoingDamage, damageContext);
+            outgoingDamage = _buffsCalculationService.GetFinalOutgoingDamage(outgoingDamage, damageContext);
             
             if (Evaded(target, skillData))
             {
                 target.EvadeAnimator.PlayEvadeAnimation();
+                _combatEventsService.InvokeEvaded(target);
                 return;
             }
             
-            outgoingDamage = _modifiersCalculationService.GetReducedIngoingDamage(outgoingDamage, damageContext);
+            outgoingDamage = _buffsCalculationService.GetReducedIngoingDamage(outgoingDamage, damageContext);
             outgoingDamage = _combatFormulaService.GetFinalDamageTo(outgoingDamage, target, skillData);
-            
+
             target.UnitHealthController.TakeDamage(outgoingDamage);
             
-            OnHitDealt.OnNext(new HitEventData()
+            _combatEventsService.InvokeHitDealt(new HitEventData()
             {
+                Attacker = caster,
+                Target = target,
+                HitDamageType = HitDamageType.Physical,
+                IsCritical = isCritical,
                 Damage = outgoingDamage,
-                HitDamageType = isCritical ? HitDamageType.PhysicalCritical : HitDamageType.Physical,
-                Target = target
             });
         }
         
@@ -103,10 +121,11 @@ namespace Gameplay.Combat
             return Random.value < evasionChance;
         }
 
-        private void HealUnit(IEntity target, int amount)
+        private void HealUnit(IGameUnit target, int amount)
         {
             target.UnitHealthController.Heal(amount);
-            OnHealed?.OnNext(new HealEventData()
+            
+            _combatEventsService.InvokeHealed(new HealEventData()
             {
                 Amount = amount,
                 Target = target

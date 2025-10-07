@@ -2,7 +2,7 @@ using Data;
 using Gameplay.Combat;
 using Zenject;
 
-namespace Installers.SceneInstallers
+namespace Installers.GameInstallers
 {
     public class GameDataInstaller : MonoInstaller
     {

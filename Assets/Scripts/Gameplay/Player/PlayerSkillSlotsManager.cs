@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using AssetManagement.AssetProviders.Core;
+using Gameplay.Configs;
 using Gameplay.Experience;
-using Gameplay.Progression;
 using Gameplay.Units;
 using UniRx;
 

@@ -1,19 +1,18 @@
 using Cysharp.Threading.Tasks;
-using Data;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills
 {
     [CreateAssetMenu(fileName = "ChargeSkill", menuName = "Gameplay/Skills/General/ChargeSkill")]
-    public class ChargeSkill : BaseSkill
+    public class ChargeSkill : OffensiveBuffSkill
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.ApplyChargeToActiveUnit();
+            combatService.CombatBuffsService.AddCombatBuffTo(combatService.ActiveUnit, OffensiveBuffData);
             return UniTask.CompletedTask;
         }
 
         public override bool CanUse(CombatService combatService) =>
-            !combatService.ActiveUnit.UnitBuffsData.Charged.Value;
+            !combatService.ActiveUnit.UnitActiveBuffsData.IsOffensiveBuffActive(OffensiveBuffData);
     }
 }

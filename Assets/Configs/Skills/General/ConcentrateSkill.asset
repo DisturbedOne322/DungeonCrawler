@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7c7eba490f4107ad542e175948e8c0, type: 3}
   m_Name: ConcentrateSkill
   m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
   _name: Concentrate
   _description: Doubles the next magical attack damage.
+  OffensiveBuffData: {fileID: 11400000, guid: efdd2c6366aef764281f16cf12fa0b9e, type: 2}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Progression
+namespace Gameplay.Configs
 {
     [CreateAssetMenu(menuName = "Gameplay/Configs/PlayerLevelUpBuffsConfig")]
     public class PlayerLevelUpBuffsConfig : GameplayConfig

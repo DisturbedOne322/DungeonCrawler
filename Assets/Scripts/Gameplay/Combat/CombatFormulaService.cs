@@ -17,9 +17,6 @@ namespace Gameplay.Combat
             float damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, MaxStatValue) * 0.8f / MaxStatValue;
             
             float constitutionReducedDamage = incomingDamage * damageReductionModifier;
-
-            if (unit.UnitBuffsData.Guarded.Value)
-                constitutionReducedDamage /= 2;
             
             int clampedDamage = Mathf.Max(Mathf.RoundToInt(constitutionReducedDamage), 0);
             

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Progression;
+using Gameplay.Configs;
 using Gameplay.Units;
 using UnityEngine;
 

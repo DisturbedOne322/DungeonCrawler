@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Data;
-using Gameplay.Progression;
+using Gameplay.Configs;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.Data

@@ -5,6 +5,6 @@ namespace Gameplay.Combat.Data
     public struct HealEventData
     {
         public int Amount;
-        public IEntity Target;
+        public IGameUnit Target;
     }
 }

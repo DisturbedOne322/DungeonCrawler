@@ -15,7 +15,7 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _name: Base Attack
   _description: Deals Low Physical Damage. Scales with Strength.
-  BaseDamage: 10
+  BaseDamage: 1
   SkillAnimationData: {fileID: 11400000, guid: c1a390193a2d5a5409794f1209af5ee8, type: 2}
   _baseCritChance: 0
   _canCrit: 1

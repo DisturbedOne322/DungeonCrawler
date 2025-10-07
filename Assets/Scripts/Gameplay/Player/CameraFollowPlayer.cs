@@ -25,15 +25,6 @@ namespace Gameplay.Player
 
             transform.position = _playerTransform.position;
             transform.rotation = _playerTransform.rotation;
-            
-            return;
-            
-            transform.position = Vector3.SmoothDamp(
-                transform.position,
-                _playerTransform.position,
-                ref _velocity,
-                _followSmoothTime
-            );
         }
     }
 }

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d7bc2e492d4741b5d05602e4e11218, type: 3}
   m_Name: GuardSkill
   m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
   _name: Guard
   _description: Halves the damage taken this turn.
+  DefensiveBuffData: {fileID: 11400000, guid: f79d837017b9c634fa02fcd7fe34444d, type: 2}

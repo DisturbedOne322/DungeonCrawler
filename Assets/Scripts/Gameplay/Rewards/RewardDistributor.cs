@@ -8,7 +8,6 @@ using Gameplay.Combat.Skills;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Player;
-using Gameplay.Progression;
 using Gameplay.Units;
 using UnityEngine;
 

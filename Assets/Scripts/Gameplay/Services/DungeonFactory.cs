@@ -1,10 +1,10 @@
 using System;
 using AssetManagement.AssetProviders.Core;
 using Data;
+using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Data;
 using Gameplay.Dungeon.Rooms;
-using Gameplay.Progression;
 using UnityEngine;
 using Zenject;
 
