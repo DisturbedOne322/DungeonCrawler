@@ -21,5 +21,6 @@ MonoBehaviour:
   _canCrit: 1
   _isPiercing: 0
   _isUnavoidable: 0
+  _canBeBuffed: 1
   _damageType: 0
   _strengthScaling: 0.5

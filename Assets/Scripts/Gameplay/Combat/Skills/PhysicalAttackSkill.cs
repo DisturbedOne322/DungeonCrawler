@@ -14,9 +14,9 @@ namespace Gameplay.Combat.Skills
         protected override async UniTask PerformAction(CombatService combatService)
         {
             var task = StartAnimation(combatService);
-            
-            combatService.DealDamageToActiveUnit(GetSelfDamageData());
 
+            combatService.DealDamageToActiveUnit(GetSelfDamageData());
+            
             await ProcessHit(combatService);
 
             await task;
@@ -48,7 +48,8 @@ namespace Gameplay.Combat.Skills
                 IsPiercing = true,
                 IsUnavoidable = true,
                 CanCrit = false,
-                DamageType = DamageType.Absolute
+                DamageType = DamageType.Absolute,
+                CanBeBuffed = false
             };
         }
     }

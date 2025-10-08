@@ -2,10 +2,8 @@ using Gameplay.Combat.Modifiers;
 
 namespace Gameplay.Buffs
 {
-    public struct OffensiveBuffInstance
+    public class OffensiveBuffInstance : BaseBuffInstance
     {
-        public int TurnDurationLeft;
-        public BuffExpirationType ExpirationType;
         public OffensiveBuffPriorityType PriorityType;
         public OffensiveBuffData OffensiveBuffData;
         
@@ -16,6 +14,7 @@ namespace Gameplay.Buffs
                 TurnDurationLeft = buffData.BuffDurationData.TurnDurations,
                 ExpirationType = buffData.BuffDurationData.ExpirationType,
                 PriorityType = buffData.Priority,
+                BuffData = buffData,
                 OffensiveBuffData = buffData,
             };
         }

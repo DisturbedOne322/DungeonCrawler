@@ -10,28 +10,34 @@ namespace Gameplay.Combat.Data
 
         public bool RefreshIfActive(OffensiveBuffData buff)
         {
-            for(int i = 0; i < ActiveOffensiveBuffs.Count; i++)
-                if (ActiveOffensiveBuffs[i].OffensiveBuffData == buff)
+            for (int i = 0; i < ActiveOffensiveBuffs.Count; i++)
+            {
+                var activeBuff = ActiveOffensiveBuffs[i];
+                
+                if (activeBuff.BuffData == buff)
                 {
-                    var buffData = ActiveOffensiveBuffs[i];
-                    buffData.TurnDurationLeft = ActiveOffensiveBuffs[i].OffensiveBuffData.BuffDurationData.TurnDurations;
-                    ActiveOffensiveBuffs[i] = buffData;
+                    activeBuff.TurnDurationLeft = activeBuff.BuffData.BuffDurationData.TurnDurations;
+                    ActiveOffensiveBuffs[i] = activeBuff;
                     return true;
                 }
+            }
             
             return false;
         }
         
         public bool RefreshIfActive(DefensiveBuffData buff)
         {
-            for(int i = 0; i < ActiveOffensiveBuffs.Count; i++)
-                if (ActiveDefensiveBuffs[i].DefensiveBuffData == buff)
+            for (int i = 0; i < ActiveDefensiveBuffs.Count; i++)
+            {
+                var activeBuff = ActiveDefensiveBuffs[i];
+                if (activeBuff.BuffData == buff)
                 {
-                    var buffData = ActiveDefensiveBuffs[i];
-                    buffData.TurnDurationLeft = ActiveDefensiveBuffs[i].DefensiveBuffData.BuffDurationData.TurnDurations;
-                    ActiveDefensiveBuffs[i] = buffData;
+                    activeBuff.TurnDurationLeft = activeBuff.BuffData.BuffDurationData.TurnDurations;
+                    ActiveDefensiveBuffs[i] = activeBuff;
                     return true;
                 }
+            }
+
             
             return false;
         }
@@ -39,7 +45,7 @@ namespace Gameplay.Combat.Data
         public bool IsOffensiveBuffActive(OffensiveBuffData buff)
         {
             for(int i = 0; i < ActiveOffensiveBuffs.Count; i++)
-                if(ActiveOffensiveBuffs[i].OffensiveBuffData == buff)
+                if(ActiveOffensiveBuffs[i].BuffData == buff)
                     return true;
             
             return false;
@@ -48,7 +54,7 @@ namespace Gameplay.Combat.Data
         public bool IsDefensiveBuffActive(DefensiveBuffData buff)
         {
             for(int i = 0; i < ActiveOffensiveBuffs.Count; i++)
-                if(ActiveDefensiveBuffs[i].DefensiveBuffData == buff)
+                if(ActiveDefensiveBuffs[i].BuffData == buff)
                     return true;
             
             return false;

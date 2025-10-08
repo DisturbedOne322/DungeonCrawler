@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20445362797e414391132ec740cabe65, type: 3}
+  m_Name: OnHitFlatAttackBuff
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
+  _name: On Hit Flat Attack Buff
+  _description: On hit, increases any damage instance by 5 points for the next 3
+    turns.
+  _buffDurationData: {fileID: 11400000, guid: f9fe3cfb13fc36240ac7100a7cc1abef, type: 2}
+  _triggerType: 12
+  _priority: 0
+  _damageIncrease: 5

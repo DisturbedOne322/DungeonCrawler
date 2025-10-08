@@ -2,8 +2,8 @@ namespace Gameplay.Combat.Modifiers
 {
     public enum OffensiveBuffPriorityType
     {
-        Additive,
-        Multiplicative,
-        Stance
+        Additive = 0,
+        Multiplicative = 1,
+        Stance = 2
     }
 }

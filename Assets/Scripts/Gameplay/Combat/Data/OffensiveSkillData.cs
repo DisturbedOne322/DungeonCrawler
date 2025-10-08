@@ -7,6 +7,7 @@ namespace Gameplay.Combat.Data
         public bool IsPiercing;
         public bool CanCrit;
         public float CritChance;
+        public bool CanBeBuffed;
         public DamageType DamageType;
     }
 }

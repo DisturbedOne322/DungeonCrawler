@@ -4,6 +4,7 @@ using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Buffs
@@ -77,19 +78,21 @@ namespace Gameplay.Buffs
             if(eventData.IsCritical)
                 _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.CriticalHit);
 
-            if (eventData.HitDamageType == HitDamageType.Physical)
+            var damageType = eventData.SkillData.DamageType;
+            
+            if (damageType == DamageType.Physical)
             {
                 _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.PhysicalDamage);
                 _combatBuffsService.RemoveBuffsOnAction(attacker, BuffExpirationType.NextPhysicalAction);
             }
 
-            if (eventData.HitDamageType == HitDamageType.Magical)
+            if (damageType == DamageType.Magical)
             {
                 _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.MagicalDamage);
-                _combatBuffsService.RemoveBuffsOnAction(attacker, BuffExpirationType.NextPhysicalAction);
+                _combatBuffsService.RemoveBuffsOnAction(attacker, BuffExpirationType.NextMagicalAction);
             }
 
-            if (eventData.HitDamageType == HitDamageType.Absolute)
+            if (damageType == DamageType.Absolute)
             {
                 _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.AbsoluteDamage);
                 _combatBuffsService.RemoveBuffsOnAction(attacker, BuffExpirationType.NextAbsoluteAction);

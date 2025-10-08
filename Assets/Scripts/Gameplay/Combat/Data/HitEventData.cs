@@ -8,6 +8,6 @@ namespace Gameplay.Combat.Data
         public IGameUnit Target;
         public int Damage;
         public bool IsCritical;
-        public HitDamageType HitDamageType;
+        public OffensiveSkillData SkillData;
     }
 }

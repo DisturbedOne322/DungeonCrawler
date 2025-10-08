@@ -9,7 +9,7 @@ namespace Gameplay.Player
 {
     public class PlayerMovementController
     {
-        private const float MoveTimePerMeter = 0.1f;
+        private const float MoveTimePerMeter = 0.01f;
         
         private readonly PlayerMoveAnimator _moveAnimator;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Facades;
 using UnityEngine;
@@ -39,7 +40,6 @@ namespace Gameplay.Buffs
         public void EnableBuffsOnTrigger(IGameUnit unit, BuffTriggerType triggerType)
         {
             var offensiveBuffs = unit.UnitBuffsData.OffensiveBuffs;
-            var defensiveBuffs = unit.UnitBuffsData.DefensiveBuffs;
 
             for (int i = offensiveBuffs.Count - 1; i >= 0; i--)
             {
@@ -47,9 +47,13 @@ namespace Gameplay.Buffs
                 if(buff.TriggerType != triggerType)
                     continue;
                 
+                Debug.Log(buff.TriggerType);
+                
                 AddCombatBuffTo(unit, buff);
             }
             
+            var defensiveBuffs = unit.UnitBuffsData.DefensiveBuffs;
+
             for (int i = defensiveBuffs.Count - 1; i >= 0; i--)
             {
                 var buff = defensiveBuffs[i];
@@ -65,6 +69,12 @@ namespace Gameplay.Buffs
             var offensiveBuffs = unit.UnitActiveBuffsData.ActiveOffensiveBuffs;
             var defensiveBuffs = unit.UnitActiveBuffsData.ActiveDefensiveBuffs;
 
+            RemoveBuffsOnAction(offensiveBuffs, expirationType);
+            RemoveBuffsOnAction(defensiveBuffs, expirationType);
+        }
+
+        private void RemoveBuffsOnAction<T>(List<T> buffs, BuffExpirationType expirationType) where T : BaseBuffInstance
+        {
             bool IsValidExpiration(BuffExpirationType expirationType)
             {
                 return !(expirationType is 
@@ -72,28 +82,16 @@ namespace Gameplay.Buffs
                     BuffExpirationType.TurnCount);
             }
             
-            for (int i = offensiveBuffs.Count - 1; i >= 0; i--)
+            for (int i = buffs.Count - 1; i >= 0; i--)
             {
                 if(!IsValidExpiration(expirationType))
                     continue;
                 
-                var buff = offensiveBuffs[i];
+                var buff = buffs[i];
                 if(buff.ExpirationType != expirationType)
                     continue;
                 
-                offensiveBuffs.RemoveAt(i);
-            }
-            
-            for (int i = defensiveBuffs.Count - 1; i >= 0; i--)
-            {
-                if(!IsValidExpiration(expirationType))
-                    continue;
-                
-                var buff = defensiveBuffs[i];
-                if(buff.ExpirationType != expirationType)
-                    continue;
-                
-                defensiveBuffs.RemoveAt(i);
+                buffs.RemoveAt(i);
             }
         }
 
@@ -118,38 +116,28 @@ namespace Gameplay.Buffs
         private void ProcessUnitOffensiveBuffs(IEntity buffTarget)
         {
             var activeOffensiveBuffs = buffTarget.UnitActiveBuffsData.ActiveOffensiveBuffs;
-
-            for (int i = activeOffensiveBuffs.Count - 1; i >= 0; i--)
-            {
-                var buff = activeOffensiveBuffs[i];
-
-                if(buff.ExpirationType != BuffExpirationType.TurnCount)
-                    continue;
-                
-                if (buff.TurnDurationLeft == 0)
-                {
-                    activeOffensiveBuffs.RemoveAt(i);
-                    continue;
-                }
-
-                buff.TurnDurationLeft--;
-            }
+            ProcessUnitTurnBuffs(activeOffensiveBuffs);
         }
         
         private void ProcessUnitDefensiveBuffs(IEntity buffTarget)
         {
             var activeDefensiveBuffs = buffTarget.UnitActiveBuffsData.ActiveDefensiveBuffs;
+            ProcessUnitTurnBuffs(activeDefensiveBuffs);
+        }
 
-            for (int i = activeDefensiveBuffs.Count - 1; i >= 0; i--)
+        private void ProcessUnitTurnBuffs<T>(List<T> buffs)
+            where T : BaseBuffInstance
+        {
+            for (int i = buffs.Count - 1; i >= 0; i--)
             {
-                var buff = activeDefensiveBuffs[i];
+                var buff = buffs[i];
 
-                if(buff.ExpirationType != BuffExpirationType.TurnCount)
+                if (buff.ExpirationType != BuffExpirationType.TurnCount)
                     continue;
-                
+
                 if (buff.TurnDurationLeft == 0)
                 {
-                    activeDefensiveBuffs.RemoveAt(i);
+                    buffs.RemoveAt(i);
                     continue;
                 }
 

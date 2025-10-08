@@ -1,8 +1,10 @@
+using Cysharp.Threading.Tasks;
 using Gameplay.Buffs;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
 using Gameplay.Units;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -86,23 +88,23 @@ namespace Gameplay.Combat
             
             if (Evaded(target, skillData))
             {
-                target.EvadeAnimator.PlayEvadeAnimation();
+                target.EvadeAnimator.PlayEvadeAnimation().Forget();
                 _combatEventsService.InvokeEvaded(target);
                 return;
             }
             
             outgoingDamage = _buffsCalculationService.GetReducedIngoingDamage(outgoingDamage, damageContext);
             outgoingDamage = _combatFormulaService.GetFinalDamageTo(outgoingDamage, target, skillData);
-
+            
             target.UnitHealthController.TakeDamage(outgoingDamage);
             
             _combatEventsService.InvokeHitDealt(new HitEventData()
             {
                 Attacker = caster,
                 Target = target,
-                HitDamageType = HitDamageType.Physical,
                 IsCritical = isCritical,
                 Damage = outgoingDamage,
+                SkillData = skillData,
             });
         }
         

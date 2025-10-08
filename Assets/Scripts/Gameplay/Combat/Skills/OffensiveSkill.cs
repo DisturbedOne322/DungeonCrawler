@@ -14,12 +14,13 @@ namespace Gameplay.Combat.Skills
         [SerializeField] private bool _canCrit = true;
         [SerializeField] private bool _isPiercing = false;
         [SerializeField] private bool _isUnavoidable = false;
+        [SerializeField] private bool _canBeBuffed = true;
         [SerializeField] private DamageType _damageType;
 
-        protected async UniTask ProcessHit(CombatService combatService, int hitIndex = 0, bool consumeCharge = true)
+        protected async UniTask ProcessHit(CombatService combatService, int hitIndex = 0, bool consumeStance = true)
         {
             await UniTask.WaitForSeconds(SkillAnimationData.GetHitDelay(hitIndex));
-            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), consumeCharge);
+            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), consumeStance);
         }
         
         protected UniTask StartAnimation(CombatService combatService)
@@ -40,6 +41,7 @@ namespace Gameplay.Combat.Skills
                 IsUnavoidable = _isUnavoidable,
                 DamageType = _damageType,
                 CanCrit = _canCrit,
+                CanBeBuffed = _canBeBuffed,
             };
         }
     }
