@@ -11,7 +11,7 @@ namespace Gameplay.Buffs.StatBuffsCore
 
         protected override List<StatBuffInstance> GetActiveBuffs(IEntity buffTarget) => buffTarget.UnitActiveBuffsData.ActiveStatBuffs;
 
-        protected override StatBuffInstance CreateBuffInstance(StatBuffData buffData, IEntity buffTarget) => buffData.ApplyTo(buffTarget);
+        protected override StatBuffInstance CreateBuffInstance(StatBuffData buffData, IEntity buffTarget) => buffData.CreateBuffInstance(buffTarget);
         
         protected override void RemoveBuffInstance(IEntity buffTarget, StatBuffInstance buffInstance)
         {

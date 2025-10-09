@@ -14,22 +14,17 @@ namespace Gameplay.Buffs.StatBuffsCore
         public StatType BuffedStatType => _buffedStatType;
         public StatBuffPriorityType PriorityType => _priorityType;
 
-        public StatBuffInstance ApplyTo(IEntity unit)
+        public StatBuffInstance CreateBuffInstance(IEntity unit)
         {
             var buffDelta = GetBuffDelta(unit);
-            
             var instance = StatBuffInstance.Create(this, buffDelta);
-            unit.UnitActiveBuffsData.ActiveStatBuffs.Add(instance);
-
             ModifyStat(unit, buffDelta);
+            
             return instance;
         }
 
-        public void RemoveFrom(IEntity unit, StatBuffInstance instance)
-        {
-            ModifyStat(unit, -instance.ValueChange);
-        }
-        
+        public void RemoveFrom(IEntity unit, StatBuffInstance instance) => ModifyStat(unit, -instance.ValueChange);
+
         protected abstract int GetBuffDelta(IEntity unit);
 
         private void ModifyStat(IEntity unit, int delta)

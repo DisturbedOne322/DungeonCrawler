@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Gameplay.Facades;
 using UniRx;
+using UnityEngine;
 
 namespace Gameplay.Buffs.Core
 {
@@ -58,12 +59,13 @@ namespace Gameplay.Buffs.Core
         public void ProcessTurn(IEntity buffTarget)
         {
             var buffs = GetActiveBuffs(buffTarget);
+            
             for (var i = buffs.Count - 1; i >= 0; i--)
             {
                 var buff = buffs[i];
                 if (buff.ExpirationType != BuffExpirationType.TurnCount)
                     continue;
-
+                
                 if (buff.TurnDurationLeft == 0)
                 {
                     RemoveBuffInstance(buffTarget, buff);
@@ -85,6 +87,7 @@ namespace Gameplay.Buffs.Core
                 var buff = buffs[i];
                 if (buff.ExpirationType != expirationType)
                     continue;
+                
                 RemoveBuffInstance(unit, buff);
             }
         }
