@@ -5,7 +5,6 @@ namespace Gameplay.Buffs.StatBuffsCore
 {
     public class StatBuffInstance : BaseBuffInstance
     {
-        public StatBuffPriorityType PriorityType;
         public StatType StatType;
         public int ValueChange;
         public StatBuffData StatBuffData;
@@ -16,7 +15,6 @@ namespace Gameplay.Buffs.StatBuffsCore
             {
                 TurnDurationLeft = buffDataData.BuffDurationData.TurnDurations,
                 ExpirationType = buffDataData.BuffDurationData.ExpirationType,
-                PriorityType = buffDataData.PriorityType,
                 StatType = buffDataData.BuffedStatType,
                 BuffData = buffDataData,
                 StatBuffData = buffDataData,
