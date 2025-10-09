@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffCalculationProcessor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffCalculationProcessor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/IBuffApplicationProcessor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/IBuffApplicationProcessor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/DefensiveCore/DefensiveBuffCalculationProcessor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/DefensiveCore/DefensiveBuffCalculationProcessor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/OffensiveCore/OffensiveBuffCalculationProcessor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/OffensiveCore/OffensiveBuffCalculationProcessor.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Buffs/StatBuffs/SimpleStatBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Buffs/StatBuffs/SimpleStatBuff.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Services/BuffsCalculationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Services/BuffsCalculationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffProcessor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +140,7 @@
       <workItem from="1759774886030" duration="12357000" />
       <workItem from="1759853741777" duration="10158000" />
       <workItem from="1759952919033" duration="7488000" />
-      <workItem from="1760028429757" duration="12515000" />
+      <workItem from="1760028429757" duration="13719000" />
     </task>
     <servers />
   </component>

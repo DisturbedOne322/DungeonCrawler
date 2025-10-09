@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Gameplay.Facades;
 using UniRx;
-using UnityEngine;
 
 namespace Gameplay.Buffs.Core
 {
@@ -94,7 +93,10 @@ namespace Gameplay.Buffs.Core
 
         public void ClearBuffs(IEntity buffTarget)
         {
-            GetActiveBuffs(buffTarget).Clear();
+            var activeBuffs = GetActiveBuffs(buffTarget);
+
+            for (int i = activeBuffs.Count - 1; i >= 0; i--) 
+                RemoveBuffInstance(buffTarget, activeBuffs[i]);
         }
 
         protected bool IsValidActionExpiration(BuffExpirationType expirationType)

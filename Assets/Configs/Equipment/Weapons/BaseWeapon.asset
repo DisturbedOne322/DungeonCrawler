@@ -18,4 +18,4 @@ MonoBehaviour:
   _prefab: {fileID: 8449004803641222730, guid: 5cdf1ac831646004288735c99ac51e4a, type: 3}
   _offensiveBuff: {fileID: 11400000, guid: bd87ab00ef7e8044c9df8299953c6a8a, type: 2}
   _defensiveBuff: {fileID: 0}
-  _statBuff: {fileID: 0}
+  _statBuff: {fileID: 11400000, guid: 9723e17e83286f34dbe804bfdc7afea2, type: 2}
