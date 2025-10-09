@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Animations;
 using Cysharp.Threading.Tasks;
+using Gameplay.Buffs.DefensiveCore;
+using Gameplay.Buffs.OffensiveCore;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Modifiers;
 using Gameplay.Combat.SkillSelection;
 using Gameplay.Equipment;
 using Gameplay.Facades;

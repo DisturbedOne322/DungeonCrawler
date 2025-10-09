@@ -1,7 +1,8 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Buffs;
+using Gameplay.Buffs.Core;
+using Gameplay.Buffs.Services;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Modifiers;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UnityEngine;

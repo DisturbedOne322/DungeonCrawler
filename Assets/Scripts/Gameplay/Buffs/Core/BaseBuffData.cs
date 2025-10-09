@@ -1,7 +1,7 @@
 using Gameplay.Combat;
 using UnityEngine;
 
-namespace Gameplay.Buffs
+namespace Gameplay.Buffs.Core
 {
     public abstract class BaseBuffData : BaseGameItem
     {

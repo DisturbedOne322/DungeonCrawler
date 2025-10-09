@@ -1,6 +1,6 @@
-using Gameplay.Combat.Modifiers;
+using Gameplay.Buffs.Core;
 
-namespace Gameplay.Buffs
+namespace Gameplay.Buffs.DefensiveCore
 {
     public class DefensiveBuffInstance : BaseBuffInstance
     {

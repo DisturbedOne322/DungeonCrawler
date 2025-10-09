@@ -1,7 +1,7 @@
-using Gameplay.Combat.Modifiers;
+using Gameplay.Buffs.Core;
 using UnityEngine;
 
-namespace Gameplay.Buffs
+namespace Gameplay.Buffs.OffensiveCore
 {
     public abstract class OffensiveBuffData : BaseBuffData, IOffensiveBuff
     {

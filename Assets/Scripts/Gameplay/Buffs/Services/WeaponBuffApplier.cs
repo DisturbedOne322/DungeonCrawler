@@ -5,7 +5,7 @@ using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using UniRx;
 
-namespace Gameplay.Buffs
+namespace Gameplay.Buffs.Services
 {
     public class WeaponBuffApplier : IDisposable
     {
@@ -19,21 +19,10 @@ namespace Gameplay.Buffs
             _unitBuffsData = unitBuffsData;
             _unitEquipmentData = unitEquipmentData;
             
-            _compositeDisposable.Add(
-                _unitEquipmentData.OnWeaponEquipped.Subscribe(EquipBuffFromWeapon)
-                );
-            
-            _compositeDisposable.Add(
-                _unitEquipmentData.OnArmorEquipped.Subscribe(EquipBuffFromArmor)
-            );
-            
-            _compositeDisposable.Add(
-                _unitEquipmentData.OnWeaponRemoved.Subscribe(RemoveBuffFromWeapon)
-            );
-            
-            _compositeDisposable.Add(
-                _unitEquipmentData.OnArmorRemoved.Subscribe(RemoveBuffFromArmor)
-            );
+            _compositeDisposable.Add(_unitEquipmentData.OnWeaponEquipped.Subscribe(EquipBuffFromWeapon));
+            _compositeDisposable.Add(_unitEquipmentData.OnArmorEquipped.Subscribe(EquipBuffFromArmor));
+            _compositeDisposable.Add(_unitEquipmentData.OnWeaponRemoved.Subscribe(RemoveBuffFromWeapon));
+            _compositeDisposable.Add(_unitEquipmentData.OnArmorRemoved.Subscribe(RemoveBuffFromArmor));
         }
 
         private void EquipBuffFromWeapon(BaseWeapon weapon)
@@ -43,6 +32,9 @@ namespace Gameplay.Buffs
             
             if(weapon.DefensiveBuff)
                 _unitBuffsData.DefensiveBuffs.Add(weapon.DefensiveBuff);
+            
+            if(weapon.StatBuff)
+                _unitBuffsData.StatBuffs.Add(weapon.StatBuff);
         }
         
         private void EquipBuffFromArmor(BaseArmor armor)
@@ -52,6 +44,9 @@ namespace Gameplay.Buffs
             
             if(armor.DefensiveBuff)
                 _unitBuffsData.DefensiveBuffs.Add(armor.DefensiveBuff);
+            
+            if(armor.StatBuff)
+                _unitBuffsData.StatBuffs.Add(armor.StatBuff);
         }
         
         private void RemoveBuffFromWeapon(BaseWeapon weapon)
@@ -61,6 +56,9 @@ namespace Gameplay.Buffs
             
             if(weapon.DefensiveBuff)
                 _unitBuffsData.DefensiveBuffs.Remove(weapon.DefensiveBuff);
+            
+            if(weapon.StatBuff)
+                _unitBuffsData.StatBuffs.Remove(weapon.StatBuff);
         }
         
         private void RemoveBuffFromArmor(BaseArmor armor)
@@ -70,6 +68,9 @@ namespace Gameplay.Buffs
             
             if(armor.DefensiveBuff)
                 _unitBuffsData.DefensiveBuffs.Remove(armor.DefensiveBuff);
+            
+            if(armor.StatBuff)
+                _unitBuffsData.StatBuffs.Remove(armor.StatBuff);
         }
 
         public void Dispose() => _compositeDisposable.Dispose();

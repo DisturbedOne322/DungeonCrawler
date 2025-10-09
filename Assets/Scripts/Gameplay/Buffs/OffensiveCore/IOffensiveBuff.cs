@@ -1,4 +1,6 @@
-namespace Gameplay.Combat.Modifiers
+using Gameplay.Buffs.Core;
+
+namespace Gameplay.Buffs.OffensiveCore
 {
     public interface IOffensiveBuff
     {

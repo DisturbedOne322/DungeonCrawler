@@ -2,6 +2,7 @@ using Bootstrap;
 using Data;
 using Gameplay;
 using Gameplay.Buffs;
+using Gameplay.Buffs.Services;
 using Gameplay.Combat;
 using Gameplay.Experience;
 using Gameplay.Player;

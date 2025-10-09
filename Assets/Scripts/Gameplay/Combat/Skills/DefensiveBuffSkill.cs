@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Buffs;
+using Gameplay.Buffs.DefensiveCore;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills

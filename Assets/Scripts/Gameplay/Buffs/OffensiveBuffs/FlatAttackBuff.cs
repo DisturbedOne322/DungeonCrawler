@@ -1,4 +1,5 @@
-using Gameplay.Combat.Modifiers;
+using Gameplay.Buffs.Core;
+using Gameplay.Buffs.OffensiveCore;
 using UnityEngine;
 
 namespace Gameplay.Buffs.OffensiveBuffs

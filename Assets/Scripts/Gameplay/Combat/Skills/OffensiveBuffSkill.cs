@@ -1,4 +1,5 @@
 using Gameplay.Buffs;
+using Gameplay.Buffs.OffensiveCore;
 using UnityEngine;
 
 namespace Gameplay.Combat.Skills

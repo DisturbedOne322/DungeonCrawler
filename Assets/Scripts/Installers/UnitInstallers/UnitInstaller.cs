@@ -1,4 +1,5 @@
 using Gameplay.Buffs;
+using Gameplay.Buffs.Services;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Equipment;

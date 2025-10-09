@@ -1,5 +1,7 @@
 using System.Collections.Generic;
-using Gameplay.Buffs;
+using Gameplay.Buffs.DefensiveCore;
+using Gameplay.Buffs.OffensiveCore;
+using Gameplay.Buffs.StatBuffsCore;
 
 namespace Gameplay.Combat.Data
 {
@@ -7,40 +9,7 @@ namespace Gameplay.Combat.Data
     {
         public readonly List<OffensiveBuffInstance> ActiveOffensiveBuffs = new ();
         public readonly List<DefensiveBuffInstance> ActiveDefensiveBuffs = new ();
-
-        public bool RefreshIfActive(OffensiveBuffData buff)
-        {
-            for (int i = 0; i < ActiveOffensiveBuffs.Count; i++)
-            {
-                var activeBuff = ActiveOffensiveBuffs[i];
-                
-                if (activeBuff.BuffData == buff)
-                {
-                    activeBuff.TurnDurationLeft = activeBuff.BuffData.BuffDurationData.TurnDurations;
-                    ActiveOffensiveBuffs[i] = activeBuff;
-                    return true;
-                }
-            }
-            
-            return false;
-        }
-        
-        public bool RefreshIfActive(DefensiveBuffData buff)
-        {
-            for (int i = 0; i < ActiveDefensiveBuffs.Count; i++)
-            {
-                var activeBuff = ActiveDefensiveBuffs[i];
-                if (activeBuff.BuffData == buff)
-                {
-                    activeBuff.TurnDurationLeft = activeBuff.BuffData.BuffDurationData.TurnDurations;
-                    ActiveDefensiveBuffs[i] = activeBuff;
-                    return true;
-                }
-            }
-
-            
-            return false;
-        }
+        public readonly List<StatBuffInstance> ActiveStatBuffs = new ();
         
         public bool IsOffensiveBuffActive(OffensiveBuffData buff)
         {
@@ -55,6 +24,15 @@ namespace Gameplay.Combat.Data
         {
             for(int i = 0; i < ActiveOffensiveBuffs.Count; i++)
                 if(ActiveDefensiveBuffs[i].BuffData == buff)
+                    return true;
+            
+            return false;
+        }
+        
+        public bool IsStatBuffActive(StatBuffData buffData)
+        {
+            for(int i = 0; i < ActiveStatBuffs.Count; i++)
+                if(ActiveStatBuffs[i].BuffData == buffData)
                     return true;
             
             return false;

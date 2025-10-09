@@ -9,7 +9,7 @@ namespace Gameplay.Combat.Skills
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.CombatBuffsService.AddCombatBuffTo(combatService.ActiveUnit, 
+            combatService.CombatBuffsService.AddDefensiveBuffTo(combatService.ActiveUnit, 
                 DefensiveBuffData);
             
             return UniTask.CompletedTask;

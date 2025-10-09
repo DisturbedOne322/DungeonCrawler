@@ -1,18 +1,21 @@
-using Gameplay.Buffs;
+using Gameplay.Buffs.Core;
+using Gameplay.Buffs.OffensiveCore;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Modifiers;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ChargeStance", menuName = "Gameplay/Buffs/OffensiveBuffs/ChargeStance")]
-public class ChargeStance : OffensiveBuffData
+namespace Gameplay.Buffs.OffensiveBuffs
 {
-    [SerializeField, Min(1)] private float _damageMultiplier;
-    
-    public override int ModifyOutgoingDamage(int currentDamage, in DamageContext ctx)
+    [CreateAssetMenu(fileName = "ChargeStance", menuName = "Gameplay/Buffs/OffensiveBuffs/ChargeStance")]
+    public class ChargeStance : OffensiveBuffData
     {
-        if (ctx.SkillData.DamageType is not DamageType.Physical)
-            return currentDamage;
+        [SerializeField, Min(1)] private float _damageMultiplier;
+    
+        public override int ModifyOutgoingDamage(int currentDamage, in DamageContext ctx)
+        {
+            if (ctx.SkillData.DamageType is not DamageType.Physical)
+                return currentDamage;
         
-        return Mathf.RoundToInt(currentDamage * _damageMultiplier);
+            return Mathf.RoundToInt(currentDamage * _damageMultiplier);
+        }
     }
 }

@@ -1,4 +1,4 @@
-namespace Gameplay.Combat.Modifiers
+namespace Gameplay.Buffs.OffensiveCore
 {
     public enum OffensiveBuffPriorityType
     {

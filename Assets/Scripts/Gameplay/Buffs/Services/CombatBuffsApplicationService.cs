@@ -1,13 +1,13 @@
 using System;
+using Gameplay.Buffs.Core;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Buffs
+namespace Gameplay.Buffs.Services
 {
     public class CombatBuffsApplicationService : IDisposable, IInitializable
     {

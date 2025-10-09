@@ -14,13 +14,18 @@ namespace Gameplay.Combat
         
         public void SetNewMaxHealth(int maxHealth)
         {
+            maxHealth = Mathf.Max(1, maxHealth);
+            
             int currentHealth = _unitHealthData.CurrentHealth.Value;
-            int currentMaxHealth = _unitHealthData.MaxHealth.Value;
+            int currentMaxHealth = Mathf.Max(1, _unitHealthData.MaxHealth.Value);
             
             float currentHealthRatio = (float)currentHealth / currentMaxHealth;
-
+            
             _unitHealthData.MaxHealth.Value = maxHealth;
-            _unitHealthData.CurrentHealth.Value = Mathf.CeilToInt(currentHealthRatio * maxHealth);
+            _unitHealthData.CurrentHealth.Value = Mathf.Clamp(
+                Mathf.RoundToInt(currentHealthRatio * maxHealth), 
+                0, maxHealth
+            );
         }
         
         public void TakeDamage(int amount)

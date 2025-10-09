@@ -1,4 +1,4 @@
-namespace Gameplay.Buffs
+namespace Gameplay.Buffs.Core
 {
     public enum BuffTriggerType
     {

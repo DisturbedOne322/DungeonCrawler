@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47db080d8771443b9c1601c95c51220c, type: 3}
+  m_Name: SimpleStatBuff
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
+  _name: Test Strength Mega Buff
+  _description: +100 Strength
+  _buffDurationData: {fileID: 11400000, guid: a77771e8592387a499b924362105b355, type: 2}
+  _triggerType: 12
+  _buffedStatType: 3
+  _priorityType: 0
+  _increaseAmount: 50

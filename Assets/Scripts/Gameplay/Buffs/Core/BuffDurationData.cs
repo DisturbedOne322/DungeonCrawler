@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Buffs
+namespace Gameplay.Buffs.Core
 {
     [CreateAssetMenu(fileName = "BuffDurationData", menuName = "Gameplay/Buffs/DurationType")]
     public class BuffDurationData : ScriptableObject

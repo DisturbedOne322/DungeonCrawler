@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using Gameplay.Buffs;
-using Gameplay.Combat.Modifiers;
+using Gameplay.Buffs.Core;
+using Gameplay.Buffs.DefensiveCore;
+using Gameplay.Buffs.OffensiveCore;
 
-namespace Gameplay.Combat
+namespace Gameplay.Buffs.Services
 {
     public class BuffsCalculationService
     {
