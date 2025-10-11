@@ -28,49 +28,32 @@ namespace Gameplay.Buffs.Services
             };
         }
         
-
         public void AddOffensiveBuffTo(IGameUnit buffTarget, OffensiveBuffData buffData) => _offensiveBuffProcessor.AddBuffTo(buffTarget, buffData);
         public void AddDefensiveBuffTo(IGameUnit buffTarget, DefensiveBuffData buffData) => _defensiveBuffProcessor.AddBuffTo(buffTarget, buffData);
         public void AddStatBuffTo(IGameUnit buffTarget, StatBuffData buffData) => _statBuffProcessor.AddBuffTo(buffTarget, buffData);
 
-        public void ApplyPermanentBuffs(IEntity buffTarget)
-        {
-            foreach (var processor in _buffProcessors)
-            {
-                processor.ApplyPermanentBuffs(buffTarget);
-            }
-        }
-
         public void ClearCombatBuffs(IEntity buffTarget)
         {
-            foreach (var processor in _buffProcessors)
-            {
+            foreach (var processor in _buffProcessors) 
                 processor.ClearBuffs(buffTarget);
-            }
         }
 
         public void ProcessTurn(IEntity buffTarget)
         {
-            foreach (var processor in _buffProcessors)
-            {
+            foreach (var processor in _buffProcessors) 
                 processor.ProcessTurn(buffTarget);
-            }
         }
 
         public void EnableBuffsOnTrigger(IGameUnit unit, BuffTriggerType triggerType)
         {
-            foreach (var processor in _buffProcessors)
-            {
+            foreach (var processor in _buffProcessors) 
                 processor.EnableBuffsOnTrigger(unit, triggerType);
-            }
         }
 
         public void RemoveBuffsOnAction(IGameUnit unit, BuffExpirationType expirationType)
         {
-            foreach (var processor in _buffProcessors)
-            {
+            foreach (var processor in _buffProcessors) 
                 processor.RemoveBuffsOnAction(unit, expirationType);
-            }
         }
     }
 }

@@ -18,30 +18,30 @@ namespace UI.BattleUI
 
         [SerializeField] private TextDisplay _textDisplay;
 
-        private CombatEventsService _combatEventsService;
+        private CombatEventsBus _combatEventsBus;
         private PlayerUnit _playerUnit;
         
         private CompositeDisposable _unitSubscriptions;
         private CompositeDisposable _combatSubscriptions;
         
         [Inject]
-        private void Construct(CombatEventsService combatEventsService, PlayerUnit playerUnit)
+        private void Construct(CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
         {
-            _combatEventsService = combatEventsService;
+            _combatEventsBus = combatEventsBus;
             _playerUnit = playerUnit;
         }
         
         private void Awake()
         {
             _combatSubscriptions = new();
-            _combatSubscriptions.Add(_combatEventsService.OnCombatStarted.Subscribe((enemy) =>
+            _combatSubscriptions.Add(_combatEventsBus.OnCombatStarted.Subscribe((enemy) =>
             {
                 _unitSubscriptions = new();
                 SubscribeToUnit(_playerUnit);
                 SubscribeToUnit(enemy);
             }));
             
-            _combatSubscriptions.Add(_combatEventsService.OnCombatEnded.Subscribe(_ =>
+            _combatSubscriptions.Add(_combatEventsBus.OnCombatEnded.Subscribe(_ =>
             {
                 _unitSubscriptions.Dispose();
             }));

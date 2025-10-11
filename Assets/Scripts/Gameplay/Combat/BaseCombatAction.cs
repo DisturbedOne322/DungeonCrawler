@@ -12,7 +12,7 @@ namespace Gameplay.Combat
             await UniTask.WaitForSeconds(GameplayConstants.DelayAfterAction);
         }
         
-        public abstract bool CanUse(CombatService combatService);
+        public virtual bool CanUse(CombatService combatService) => true;
         
         protected abstract UniTask PerformAction(CombatService combatService);
     }

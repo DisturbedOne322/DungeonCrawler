@@ -7,17 +7,15 @@ namespace Gameplay.Buffs.Core
     {
         public IGameUnit Attacker { get; }
         public IGameUnit Defender { get; }
-        public OffensiveSkillData SkillData { get; }
-        public bool IsCritical { get; }
-        public bool ConsumeCharge { get; }
+        public HitData HitData { get; }
+        public SkillData SkillData { get; }
 
-        public DamageContext(IGameUnit attacker, IGameUnit defender, OffensiveSkillData skillData, bool isCritical, bool consumeCharge)
+        public DamageContext(IGameUnit attacker, IGameUnit defender, HitData hitData, SkillData skillData)
         {
             Attacker = attacker;
             Defender = defender;
+            HitData = hitData;
             SkillData = skillData;
-            IsCritical = isCritical;
-            ConsumeCharge = consumeCharge;
         }
     }
 }

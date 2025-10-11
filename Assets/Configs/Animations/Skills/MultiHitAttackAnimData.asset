@@ -14,10 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fpvAnimationClip: {fileID: 7400000, guid: 9dd8b6779fca3cf4487a51cae63b3606, type: 2}
   _tpvAnimationClip: {fileID: 7400000, guid: b08dfe9b5ea203b4d8be4fe74e26fa8f, type: 2}
-  _hitTimings:
-  - Timing: 0.4
-  - Timing: 0.5
-  - Timing: 0.6
-  - Timing: 0.7
-  _recoveryTiming:
-    Timing: 0
+  _swingTiming: 0.4
+  _recoveryTiming: 0.75

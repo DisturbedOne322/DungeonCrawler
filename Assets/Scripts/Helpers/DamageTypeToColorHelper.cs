@@ -7,14 +7,14 @@ namespace Helpers
     {
         public static Color GetDamageTypeColor(HitEventData data)
         {
-            var damageType = data.SkillData.DamageType;
+            var damageType = data.HitData.DamageType;
             
             switch (damageType)
             {
                 case DamageType.Physical:
-                    return data.IsCritical ? Color.red : Color.white;
+                    return data.HitData.IsCritical ? Color.red : Color.white;
                 case DamageType.Magical:
-                    return data.IsCritical ? Color.cyan : Color.blue;
+                    return data.HitData.IsCritical ? Color.cyan : Color.blue;
             }
             
             return Color.white;

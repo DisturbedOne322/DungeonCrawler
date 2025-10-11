@@ -15,11 +15,16 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _name: Multi Hit
   _description: Deal five weak physical attacks. High Crit Chance
-  BaseDamage: 3
-  SkillAnimationData: {fileID: 11400000, guid: a10b9d85057632a4c8c2fe08fb958867, type: 2}
-  _baseCritChance: 0.5
-  _canCrit: 1
-  _isPiercing: 0
-  _isUnavoidable: 0
-  _canBeBuffed: 1
-  _damageType: 0
+  _skillAnimationData: {fileID: 11400000, guid: a10b9d85057632a4c8c2fe08fb958867, type: 2}
+  _skillData:
+    Damage: 3
+    DamageType: 0
+    MinHits: 4
+    MaxHits: 4
+    BaseCritChance: 0.5
+    CanCrit: 1
+    BaseHitChance: 1
+    IsUnavoidable: 0
+    IsPiercing: 0
+    CanBeBuffed: 1
+    ConsumeStance: 1

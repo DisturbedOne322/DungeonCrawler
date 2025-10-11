@@ -12,7 +12,7 @@ namespace Gameplay.Buffs.OffensiveBuffs
     
         public override int ModifyOutgoingDamage(int currentDamage, in DamageContext ctx)
         {
-            if (ctx.SkillData.DamageType is not DamageType.Physical)
+            if (ctx.HitData.DamageType is not DamageType.Physical)
                 return currentDamage;
         
             return Mathf.RoundToInt(currentDamage * _damageMultiplier);

@@ -15,13 +15,29 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _name: Physical Attack
   _description: Deals Moderate Physical Damage. Sacrifices some health points.
-  BaseDamage: 15
-  SkillAnimationData: {fileID: 11400000, guid: c3c0820717aca144fbd6a60c66f9b48e, type: 2}
-  _baseCritChance: 0
-  _canCrit: 1
-  _isPiercing: 0
-  _isUnavoidable: 0
-  _canBeBuffed: 1
-  _damageType: 0
+  _skillAnimationData: {fileID: 11400000, guid: c3c0820717aca144fbd6a60c66f9b48e, type: 2}
+  _skillData:
+    Damage: 15
+    DamageType: 0
+    MinHits: 1
+    MaxHits: 1
+    BaseCritChance: 0
+    CanCrit: 1
+    BaseHitChance: 1
+    IsUnavoidable: 0
+    IsPiercing: 0
+    CanBeBuffed: 1
+    ConsumeStance: 1
   _strengthScaling: 1.5
-  _fixedHealthPrice: 10
+  _selfDamageData:
+    Damage: 5
+    DamageType: 2
+    MinHits: 1
+    MaxHits: 1
+    BaseCritChance: 0
+    CanCrit: 0
+    BaseHitChance: 0
+    IsUnavoidable: 1
+    IsPiercing: 1
+    CanBeBuffed: 0
+    ConsumeStance: 0

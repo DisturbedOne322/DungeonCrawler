@@ -36,7 +36,7 @@ namespace Installers.GameInstallers
             Container.Bind<GameSequenceController>().AsSingle();
             Container.Bind<CombatSequenceController>().AsSingle();
             Container.Bind<CombatService>().AsSingle();
-            Container.Bind<CombatEventsService>().AsSingle();
+            Container.Bind<CombatEventsBus>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
             Container.Bind<CombatBuffsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<CombatBuffsApplicationService>().AsSingle().NonLazy();

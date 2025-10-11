@@ -4,6 +4,7 @@ using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using Gameplay.Units;
+using Helpers;
 using UniRx;
 using Zenject;
 
@@ -13,33 +14,54 @@ namespace Gameplay.Buffs.Services
     {
         private readonly PlayerUnit _playerUnit;
         private readonly CombatBuffsService _combatBuffsService;
-        private readonly CombatEventsService _combatEventsService;
+        private readonly CombatEventsBus _combatEvents;
 
-        private CompositeDisposable _disposables = new();
-        
+        private readonly CompositeDisposable _disposables = new();
+
+        [Inject]
         public CombatBuffsApplicationService(
             PlayerUnit playerUnit,
             CombatBuffsService combatBuffsService,
-            CombatEventsService combatEventsService)
+            CombatEventsBus combatEvents)
         {
             _playerUnit = playerUnit;
             _combatBuffsService = combatBuffsService;
-            _combatEventsService = combatEventsService;
+            _combatEvents = combatEvents;
         }
 
         public void Initialize()
         {
-            _combatEventsService.OnCombatStarted.Subscribe(ProcessCombatStart);
-            _combatEventsService.OnCombatEnded.Subscribe(ProcessCombatEnded);
-            
-            _combatEventsService.OnTurnStarted.Subscribe(ProcessTurnStarted);
-            _combatEventsService.OnTurnEnded.Subscribe(ProcessTurnEnded);
+            _combatEvents.OnCombatStarted
+                .Subscribe(ProcessCombatStart)
+                .AddTo(_disposables);
 
-            _combatEventsService.OnHitDealt.Subscribe(ProcessHitDealt);
+            _combatEvents.OnCombatEnded
+                .Subscribe(ProcessCombatEnded)
+                .AddTo(_disposables);
+
+            _combatEvents.OnTurnStarted
+                .Subscribe(ProcessTurnStarted)
+                .AddTo(_disposables);
+
+            _combatEvents.OnTurnEnded
+                .Subscribe(ProcessTurnEnded)
+                .AddTo(_disposables);
+
+            _combatEvents.OnHitDealt
+                .Subscribe(ProcessHitDealt)
+                .AddTo(_disposables);
             
-            _combatEventsService.OnHealed.Subscribe(ProcessHealed);
-            
-            _combatEventsService.OnEvaded.Subscribe(ProcessEvaded);
+            _combatEvents.OnSkillUsed
+                .Subscribe(ProcessSkillUsed)
+                .AddTo(_disposables);
+
+            _combatEvents.OnHealed
+                .Subscribe(ProcessHealed)
+                .AddTo(_disposables);
+
+            _combatEvents.OnEvaded
+                .Subscribe(ProcessEvaded)
+                .AddTo(_disposables);
         }
 
         private void ProcessCombatStart(IGameUnit enemy)
@@ -47,71 +69,51 @@ namespace Gameplay.Buffs.Services
             _combatBuffsService.EnableBuffsOnTrigger(_playerUnit, BuffTriggerType.CombatStart);
             _combatBuffsService.EnableBuffsOnTrigger(enemy, BuffTriggerType.CombatStart);
         }
-        
+
         private void ProcessCombatEnded(IGameUnit enemy)
         {
             _combatBuffsService.ClearCombatBuffs(_playerUnit);
             _combatBuffsService.ClearCombatBuffs(enemy);
         }
-        
-        private void ProcessTurnStarted(TurnData turnData)
+
+        private void ProcessTurnStarted(TurnData turn)
         {
-            if(turnData.TurnCount <= 1)
-                _combatBuffsService.ApplyPermanentBuffs(turnData.ActiveUnit);
-            
-            _combatBuffsService.ProcessTurn(turnData.ActiveUnit);
+            _combatBuffsService.ProcessTurn(turn.ActiveUnit);
         }
-        
-        private void ProcessTurnEnded(TurnData turnData)
+
+        private void ProcessTurnEnded(TurnData turn)
         {
             
         }
-        
-        private void ProcessHitDealt(HitEventData eventData)
+
+        private void ProcessSkillUsed(SkillUsedData skillUsedData)
         {
-            var attacker = eventData.Attacker;
+            if(!skillUsedData.SkillData.ConsumeStance)
+                return;
             
+            var expirationType = BuffsHelper.GetExpirationForDamageType(skillUsedData.SkillData.DamageType); 
+            _combatBuffsService.RemoveBuffsOnAction(skillUsedData.Attacker, expirationType);
+        }
+
+        private void ProcessHitDealt(HitEventData data)
+        {
+            var attacker = data.Attacker;
+            var target = data.Target;
+
             _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.Hit);
-            
-            _combatBuffsService.EnableBuffsOnTrigger(eventData.Target, BuffTriggerType.DamageTaken);
-            
-            if(eventData.IsCritical)
+            _combatBuffsService.EnableBuffsOnTrigger(target, BuffTriggerType.DamageTaken);
+
+            if (data.HitData.IsCritical)
                 _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.CriticalHit);
 
-            var damageType = eventData.SkillData.DamageType;
-            
-            if (damageType == DamageType.Physical)
-            {
-                _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.PhysicalDamage);
-                _combatBuffsService.RemoveBuffsOnAction(attacker, BuffExpirationType.NextPhysicalAction);
-            }
+            var triggerType = BuffsHelper.GetBuffTriggerForDamageType(data.HitData.DamageType);
+            _combatBuffsService.EnableBuffsOnTrigger(attacker, triggerType);
+        }
+        
+        private void ProcessHealed(HealEventData data) => _combatBuffsService.EnableBuffsOnTrigger(data.Target, BuffTriggerType.Healing);
 
-            if (damageType == DamageType.Magical)
-            {
-                _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.MagicalDamage);
-                _combatBuffsService.RemoveBuffsOnAction(attacker, BuffExpirationType.NextMagicalAction);
-            }
+        private void ProcessEvaded(IGameUnit unit) => _combatBuffsService.EnableBuffsOnTrigger(unit, BuffTriggerType.Dodge);
 
-            if (damageType == DamageType.Absolute)
-            {
-                _combatBuffsService.EnableBuffsOnTrigger(attacker, BuffTriggerType.AbsoluteDamage);
-                _combatBuffsService.RemoveBuffsOnAction(attacker, BuffExpirationType.NextAbsoluteAction);
-            }
-        }
-        
-        private void ProcessHealed(HealEventData eventData)
-        {
-            _combatBuffsService.EnableBuffsOnTrigger(eventData.Target, BuffTriggerType.Healing);
-        }
-        
-        private void ProcessEvaded(IGameUnit evadedUnit)
-        {
-            _combatBuffsService.EnableBuffsOnTrigger(evadedUnit, BuffTriggerType.Dodge);
-        }
-        
-        public void Dispose()
-        {
-            _disposables.Dispose();
-        }
+        public void Dispose() => _disposables.Dispose();
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Gameplay.Buffs.Core
 {
     public abstract class BaseBuffCalculationProcessor<TBuffInstance, TPriorityType>
-        where TBuffInstance : class
+        where TBuffInstance : BaseBuffInstance
         where TPriorityType : Enum
     {
         private const int DefaultBuffsCapacity = 20;
@@ -33,9 +33,9 @@ namespace Gameplay.Buffs.Core
         
         protected abstract TPriorityType GetPriorityType(TBuffInstance buff);
         
-        public int CalculateDamage(int baseDamage, in DamageContext damageContext)
+        public int CalculateDamage(in DamageContext damageContext)
         {
-            var result = baseDamage;
+            var result = damageContext.HitData.Damage;
 
             var buffs = GetActiveBuffs(damageContext);
             if (buffs.Count == 0 || !CanApplyBuffs(damageContext))

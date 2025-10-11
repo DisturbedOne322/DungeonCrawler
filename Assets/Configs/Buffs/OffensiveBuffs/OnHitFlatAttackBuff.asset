@@ -17,6 +17,6 @@ MonoBehaviour:
   _description: On hit, increases any damage instance by 5 points for the next 3
     turns.
   _buffDurationData: {fileID: 11400000, guid: f9fe3cfb13fc36240ac7100a7cc1abef, type: 2}
-  _triggerType: 12
+  _triggerType: 2
   _priority: 0
   _damageIncrease: 5

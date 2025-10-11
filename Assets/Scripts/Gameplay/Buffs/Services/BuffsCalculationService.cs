@@ -6,28 +6,17 @@ namespace Gameplay.Buffs.Services
 {
     public class BuffsCalculationService
     {
-        private readonly OffensiveBuffCalculationProcessor _offensiveProcessor;
-        private readonly DefensiveBuffCalculationProcessor _defensiveProcessor;
+        private readonly OffensiveBuffCalculationProcessor _offensiveProcessor = new();
+        private readonly DefensiveBuffCalculationProcessor _defensiveProcessor = new();
 
-        public BuffsCalculationService()
+        public void BuffOutgoingDamage(in DamageContext damageContext)
         {
-            _offensiveProcessor = new OffensiveBuffCalculationProcessor();
-            _defensiveProcessor = new DefensiveBuffCalculationProcessor();
+            damageContext.HitData.Damage = _offensiveProcessor.CalculateDamage(damageContext);
+
+            if (damageContext.HitData.IsCritical)
+                damageContext.HitData.Damage *= 2;
         }
 
-        public int GetFinalOutgoingDamage(int baseDamage, in DamageContext damageContext)
-        {
-            var result = _offensiveProcessor.CalculateDamage(baseDamage, damageContext);
-
-            if (damageContext.IsCritical)
-                result *= 2;
-
-            return result;
-        }
-
-        public int GetReducedIngoingDamage(int incomingDamage, in DamageContext damageContext)
-        {
-            return _defensiveProcessor.CalculateDamage(incomingDamage, damageContext);
-        }
+        public void DebuffIncomingDamage(in DamageContext damageContext) => damageContext.HitData.Damage = _defensiveProcessor.CalculateDamage(damageContext);
     }
 }

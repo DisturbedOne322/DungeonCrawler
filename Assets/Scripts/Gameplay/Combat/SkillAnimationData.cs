@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gameplay.Combat
@@ -9,43 +7,21 @@ namespace Gameplay.Combat
     {
         [SerializeField] private AnimationClip  _fpvAnimationClip;
         [SerializeField] private AnimationClip  _tpvAnimationClip;
-        [SerializeField] private List<HitTiming> _hitTimings;
-        [SerializeField] private HitTiming _recoveryTiming;
+        [SerializeField, Range(0,1)] private float _swingTiming = 0.5f;
+        [SerializeField, Range(0,1)] private float _recoveryTiming = 0.7f;
         
         public AnimationClip FpvAnimationClip => _fpvAnimationClip;
         public AnimationClip TpvAnimationClip => _tpvAnimationClip;
         
-        public List<HitTiming> HitTimings => _hitTimings;
-
-        public HitTiming RecoveryTiming => _recoveryTiming;
+        public float SwingTiming => _swingTiming * TimeInSeconds;
+        public float RecoveryTiming => _recoveryTiming * TimeInSeconds;
         
         public float TimeInSeconds => _fpvAnimationClip.length;
 
-        public float GetHitTime(int index)
+        private void OnValidate()
         {
-            if(index < 0 || index >= _hitTimings.Count)
-                throw new Exception("Animation clip index is out of range.");
-            
-            return _hitTimings[index].Timing * TimeInSeconds;
+            if(_recoveryTiming < _swingTiming)
+                _recoveryTiming = _swingTiming;
         }
-        
-        public float GetHitDelay(int index)
-        {
-            if(index < 0 || index >= _hitTimings.Count)
-                throw new Exception("Animation clip index is out of range.");
-
-            if (index == 0)
-                return GetHitTime(0);
-            
-            int prev = index - 1;
-            
-            return GetHitTime(index) - GetHitTime(prev);
-        }
-    }
-
-    [Serializable]
-    public class HitTiming
-    {
-        [Range(0f, 1f)] public float Timing;
     }
 }

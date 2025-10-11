@@ -13,9 +13,6 @@ namespace Gameplay.Buffs.DefensiveCore
 
         protected override DefensiveBuffInstance CreateBuffInstance(DefensiveBuffData buffData, IEntity buffTarget) => DefensiveBuffInstance.Create(buffData);
 
-        protected override void RemoveBuffInstance(IEntity buffTarget, DefensiveBuffInstance buffInstance)
-        {
-            buffTarget.UnitActiveBuffsData.ActiveDefensiveBuffs.Remove(buffInstance);
-        }
+        protected override void RemoveBuffInstance(IEntity buffTarget, DefensiveBuffInstance buffInstance) => buffTarget.UnitActiveBuffsData.ActiveDefensiveBuffs.Remove(buffInstance);
     }
 }

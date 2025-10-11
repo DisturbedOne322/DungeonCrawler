@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Localization;
 
 namespace Gameplay.Combat
 {

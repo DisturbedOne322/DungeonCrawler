@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
@@ -7,42 +8,62 @@ namespace Gameplay.Combat.Skills
 {
     public abstract class OffensiveSkill : BaseSkill
     {
-        [SerializeField, Min(1)] protected int BaseDamage = 1;
-        [SerializeField] protected SkillAnimationData SkillAnimationData;
-        
-        [SerializeField, Range(0, 1f), Space] private float _baseCritChance = 0;
-        [SerializeField] private bool _canCrit = true;
-        [SerializeField] private bool _isPiercing = false;
-        [SerializeField] private bool _isUnavoidable = false;
-        [SerializeField] private bool _canBeBuffed = true;
-        [SerializeField] private DamageType _damageType;
+        [SerializeField, Space] private SkillAnimationData _skillAnimationData;
+        [SerializeField] private SkillData _skillData;
 
-        protected async UniTask ProcessHit(CombatService combatService, int hitIndex = 0, bool consumeStance = true)
+        protected override async UniTask PerformAction(CombatService combatService)
         {
-            await UniTask.WaitForSeconds(SkillAnimationData.GetHitDelay(hitIndex));
-            combatService.DealDamageToOtherUnit(GetSkillData(combatService.ActiveUnit), consumeStance);
+            var task = StartAnimation(combatService);
+
+            var hitsStream = combatService.CreateFinalHitsStream(GetSkillData(combatService.ActiveUnit));
+            int hitsCount = hitsStream.Hits.Count;
+
+            float animStartTime = _skillAnimationData.SwingTiming;
+            float animEndTime = _skillAnimationData.RecoveryTiming;
+
+            float animStep = (animEndTime - animStartTime) / hitsCount;
+            
+            await DealHit(combatService, hitsStream, 0, animStartTime);
+            
+            for (int i = 1; i < hitsCount; i++) 
+                await DealHit(combatService, hitsStream, i, animStep);
+            
+            await task;
+        }
+
+        private async UniTask DealHit(CombatService combatService, HitDataStream hitDataStream, int index, float delay)
+        {
+            await UniTask.WaitForSeconds(delay);
+            combatService.DealDamageToOtherUnit(hitDataStream, index);
         }
         
-        protected UniTask StartAnimation(CombatService combatService)
+        private UniTask StartAnimation(CombatService combatService)
         {
             if(combatService.IsPlayerTurn())
-                return combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.FpvAnimationClip);
+                return combatService.ActiveUnit.AttackAnimator.PlayAnimation(_skillAnimationData.FpvAnimationClip);
             
-            return combatService.ActiveUnit.AttackAnimator.PlayAnimation(SkillAnimationData.TpvAnimationClip);
+            return combatService.ActiveUnit.AttackAnimator.PlayAnimation(_skillAnimationData.TpvAnimationClip);
         }
 
-        protected virtual OffensiveSkillData GetSkillData(IEntity entity)
+        protected virtual SkillData GetSkillData(IEntity entity) => _skillData;
+
+        private void OnValidate()
         {
-            return new OffensiveSkillData()
-            {
-                Damage = BaseDamage,
-                CritChance = _baseCritChance,
-                IsPiercing = _isPiercing,
-                IsUnavoidable = _isUnavoidable,
-                DamageType = _damageType,
-                CanCrit = _canCrit,
-                CanBeBuffed = _canBeBuffed,
-            };
+            if(_skillData.Damage < 1)
+                _skillData.Damage = 1;
+            
+            if(_skillData.MinHits < 1)
+                _skillData.MinHits = 1;
+            
+            if(_skillData.MaxHits < _skillData.MinHits)
+                _skillData.MaxHits = _skillData.MinHits;
+        }
+
+        private void Reset()
+        {
+            _skillData.CanBeBuffed = true;
+            _skillData.CanCrit = true;
+            _skillData.ConsumeStance = true;
         }
     }
 }

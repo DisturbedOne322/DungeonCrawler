@@ -1,11 +1,9 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Buffs;
 using Gameplay.Buffs.Core;
 using Gameplay.Buffs.Services;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using Gameplay.Units;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat
@@ -16,7 +14,7 @@ namespace Gameplay.Combat
         private readonly CombatFormulaService _combatFormulaService;
         private readonly CombatBuffsService _combatBuffsService;
         private readonly BuffsCalculationService _buffsCalculationService;
-        private readonly CombatEventsService _combatEventsService;
+        private readonly CombatEventsBus _combatEventsBus;
         
         public IGameUnit ActiveUnit => _combatData.ActiveUnit;
         public IGameUnit OtherUnit => _combatData.OtherUnit;
@@ -25,13 +23,13 @@ namespace Gameplay.Combat
 
         public CombatService(CombatData combatData, CombatFormulaService combatFormulaService,
             CombatBuffsService combatBuffsService, BuffsCalculationService buffsCalculationService,
-            CombatEventsService combatEventsService)
+            CombatEventsBus combatEventsBus)
         {
             _combatData = combatData;
             _combatFormulaService = combatFormulaService;
             _combatBuffsService = combatBuffsService;
             _buffsCalculationService = buffsCalculationService;
-            _combatEventsService = combatEventsService;
+            _combatEventsBus = combatEventsBus;
         }
 
         public CombatBuffsService CombatBuffsService => _combatBuffsService;
@@ -41,18 +39,18 @@ namespace Gameplay.Combat
         public void StartCombat(EnemyUnit enemy)
         {
             _combatData.ResetCombat(enemy);
-            _combatEventsService.InvokeCombatStarted(enemy);
+            _combatEventsBus.InvokeCombatStarted(enemy);
         }
 
         public void EndCombat()
         {
-            _combatEventsService.InvokeCombatEnded(_combatData.Enemy);
+            _combatEventsBus.InvokeCombatEnded(_combatData.Enemy);
         }
 
         public void StartTurn()
         {
             _combatData.UpdateCurrentTurnUnit();
-            _combatEventsService.InvokeTurnStarted(new ()
+            _combatEventsBus.InvokeTurnStarted(new ()
             {
                 TurnCount = TurnCount,
                 ActiveUnit = ActiveUnit
@@ -61,7 +59,7 @@ namespace Gameplay.Combat
 
         public void EndTurn()
         {
-            _combatEventsService.InvokeTurnEnded(new()
+            _combatEventsBus.InvokeTurnEnded(new()
             {
                 TurnCount = TurnCount,
                 ActiveUnit = ActiveUnit
@@ -72,63 +70,87 @@ namespace Gameplay.Combat
         
         public void HealOtherUnit(int amount) => HealUnit(OtherUnit, amount);
 
-        public void DealDamageToActiveUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
-            DealDamageToUnit(ActiveUnit, ActiveUnit, skillData, consumeCharge);
+        public void DealDamageToActiveUnit(HitDataStream hitDataStream, int index) => 
+            DealDamageToUnit(ActiveUnit, ActiveUnit, hitDataStream, index);
 
-        public void DealDamageToOtherUnit(OffensiveSkillData skillData, bool consumeCharge = true) => 
-            DealDamageToUnit(ActiveUnit, OtherUnit, skillData, consumeCharge);
+        public void DealDamageToOtherUnit(HitDataStream hitDataStream, int index) => 
+            DealDamageToUnit(ActiveUnit, OtherUnit, hitDataStream, index);
 
-        private void DealDamageToUnit(IGameUnit caster, IGameUnit target, 
-            OffensiveSkillData skillData, bool consumeCharge = true)
+        public HitDataStream CreateFinalHitsStream(SkillData skillData)
         {
-            bool isCritical = IsCritical(caster, skillData);
+            HitDataStream hitDataStream = new (skillData);
             
-            int outgoingDamage = skillData.Damage;
-            var damageContext = new DamageContext(caster, target, skillData, isCritical, consumeCharge);
-            outgoingDamage = _buffsCalculationService.GetFinalOutgoingDamage(outgoingDamage, damageContext);
+            int hits = Random.Range(hitDataStream.MinHits, hitDataStream.MaxHits);
+            hitDataStream.CreateHitDataList(hits);
             
-            if (Evaded(target, skillData))
-            {
-                target.EvadeAnimator.PlayEvadeAnimation().Forget();
-                _combatEventsService.InvokeEvaded(target);
+            return hitDataStream;
+        }
+
+        private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitDataStream hitDataStream, int index)
+        {
+            ProcessHitData(attacker, target, hitDataStream, index);
+            
+            var hit = hitDataStream.Hits[index];
+            
+            if(index == hitDataStream.Hits.Count - 1)
+                _combatEventsBus.InvokeSkillUsed(new ()
+                {
+                    Attacker = attacker,
+                    SkillData = hitDataStream.BaseSkillData,
+                });
+            
+            if(hit.Evaded)
                 return;
-            }
             
-            outgoingDamage = _buffsCalculationService.GetReducedIngoingDamage(outgoingDamage, damageContext);
-            outgoingDamage = _combatFormulaService.GetFinalDamageTo(outgoingDamage, target, skillData);
+            target.UnitHealthController.TakeDamage(hit.Damage);
             
-            target.UnitHealthController.TakeDamage(outgoingDamage);
-            
-            _combatEventsService.InvokeHitDealt(new HitEventData()
+            _combatEventsBus.InvokeHitDealt(new HitEventData()
             {
-                Attacker = caster,
+                Attacker = attacker,
                 Target = target,
-                IsCritical = isCritical,
-                Damage = outgoingDamage,
-                SkillData = skillData,
+                HitData = hit,
             });
         }
         
-        private bool IsCritical(IGameUnit caster, OffensiveSkillData skillData)
+        private void ProcessHitData(IGameUnit caster, IGameUnit target, HitDataStream hitsStream, int hitIndex)
         {
-            if(!skillData.CanCrit)
-                return false;
+            var hitData = hitsStream.Hits[hitIndex];
+
+            var damageContext = new DamageContext(caster, target, hitData, hitsStream.BaseSkillData);
+
+            if (Evaded(target, damageContext))
+            {
+                hitData.Evaded = true;
+                target.EvadeAnimator.PlayEvadeAnimation().Forget();
+                _combatEventsBus.InvokeEvaded(target);
+                return;
+            }
             
-            float finalCritChance = _combatFormulaService.GetFinalCritChance(caster, skillData);
+            hitData.IsCritical = IsCritical(caster, damageContext);
+            
+            _buffsCalculationService.BuffOutgoingDamage(damageContext);
+            _buffsCalculationService.DebuffIncomingDamage(damageContext);
+            
+            _combatFormulaService.ReduceDamageByStats(target, damageContext);
+        }
+        
+        private bool IsCritical(IGameUnit caster, in DamageContext damageContext)
+        {
+            float finalCritChance = _combatFormulaService.GetFinalCritChance(caster, damageContext);
             return Random.value < finalCritChance;
         }
 
-        private bool Evaded(IEntity unit, OffensiveSkillData skillData)
+        private bool Evaded(IEntity unit, in DamageContext damageContext)
         {
-            float evasionChance = _combatFormulaService.GetFinalEvasionChance(unit, skillData);
+            float evasionChance = _combatFormulaService.GetFinalEvasionChance(unit, damageContext);
             return Random.value < evasionChance;
         }
-
+        
         private void HealUnit(IGameUnit target, int amount)
         {
             target.UnitHealthController.Heal(amount);
             
-            _combatEventsService.InvokeHealed(new HealEventData()
+            _combatEventsBus.InvokeHealed(new HealEventData()
             {
                 Amount = amount,
                 Target = target

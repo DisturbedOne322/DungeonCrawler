@@ -16,11 +16,11 @@ namespace StateMachine.BattleMenu
 
         public BattleMenuStateMachine(IEnumerable<BattleMenuState> states, 
             PlayerInputProvider playerInputProvider,
-            CombatEventsService combatEventsService) :
+            CombatEventsBus combatEventsBus) :
             base(states)
         {
             _playerInputProvider = playerInputProvider;
-            combatEventsService.OnCombatEnded.Subscribe(_ => ResetMenus());
+            combatEventsBus.OnCombatEnded.Subscribe(_ => ResetMenus());
         }
 
         public void OpenBattleMenu()

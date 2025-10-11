@@ -18,9 +18,9 @@ namespace UI.BattleUI.Damage
         [SerializeField] private float _spawnRadius;
 
         [Inject]
-        private void Construct(CombatEventsService combatEventsService)
+        private void Construct(CombatEventsBus combatEventsBus)
         {
-            combatEventsService.OnHitDealt.Subscribe(ShowDamageNumber).AddTo(gameObject);
+            combatEventsBus.OnHitDealt.Subscribe(ShowDamageNumber).AddTo(gameObject);
         }
         
         public override void ShowDamageNumber(HitEventData data)
@@ -29,7 +29,7 @@ namespace UI.BattleUI.Damage
                 return;
             
             var enemyPos = data.Target.Position;
-            ShowText(enemyPos, data.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data), '-');
+            ShowText(enemyPos, data.HitData.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data), '-');
         }
 
         public override void ShowHealNumber(HealEventData data)
