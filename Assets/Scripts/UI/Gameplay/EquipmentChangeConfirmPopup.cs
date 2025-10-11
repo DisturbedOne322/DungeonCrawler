@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Gameplay;
 using Gameplay.Combat;
 using UI.Core;
 using UnityEngine;

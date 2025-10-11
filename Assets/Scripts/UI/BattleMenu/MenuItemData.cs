@@ -1,6 +1,6 @@
 using System;
-using Gameplay.Combat.Consumables;
-using Gameplay.Combat.Skills;
+using Gameplay.Consumables;
+using Gameplay.Skills.Core;
 using UniRx;
 
 namespace UI.BattleMenu

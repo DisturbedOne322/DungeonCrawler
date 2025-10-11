@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Combat.Consumables;
+using Gameplay.Consumables;
 using ModestTree;
 using UniRx;
 

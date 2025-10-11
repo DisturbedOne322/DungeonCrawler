@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Gameplay.Combat.Consumables;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Skills;
+using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
+using Gameplay.Skills.Core;
 using UnityEngine;
 
 namespace Gameplay.Units

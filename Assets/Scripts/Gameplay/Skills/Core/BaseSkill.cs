@@ -1,7 +1,6 @@
-using Gameplay.Combat.Data;
-using UnityEngine;
+using Gameplay.Combat;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.Core
 {
     public abstract class BaseSkill : BaseCombatAction
     {

@@ -1,7 +1,9 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat;
+using Gameplay.Skills.Core;
 using UnityEngine;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.OffensiveBuffs
 {
     [CreateAssetMenu(fileName = "ChargeSkill", menuName = "Gameplay/Skills/General/ChargeSkill")]
     public class ChargeSkill : OffensiveBuffSkill

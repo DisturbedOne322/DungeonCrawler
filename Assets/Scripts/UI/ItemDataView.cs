@@ -1,3 +1,4 @@
+using Gameplay;
 using Gameplay.Combat;
 using TMPro;
 using UnityEngine;

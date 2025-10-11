@@ -14,7 +14,7 @@ namespace Gameplay.Combat.Data
         {
             HitIndex = index;
             
-            Damage = skillData.Damage;
+            Damage = skillData.BaseDamage;
             
             DamageType = skillData.DamageType;
         }

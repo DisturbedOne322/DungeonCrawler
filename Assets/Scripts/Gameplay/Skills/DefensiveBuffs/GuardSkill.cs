@@ -1,8 +1,9 @@
 using Cysharp.Threading.Tasks;
-using Data;
+using Gameplay.Combat;
+using Gameplay.Skills.Core;
 using UnityEngine;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.DefensiveBuffs
 {
     [CreateAssetMenu(fileName = "GuardSkill", menuName = "Gameplay/Skills/General/GuardSkill")]
     public class GuardSkill : DefensiveBuffSkill

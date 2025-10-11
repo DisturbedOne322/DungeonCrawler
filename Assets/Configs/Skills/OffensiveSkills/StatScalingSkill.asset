@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78bd27ec593a47a2b086d4ac90dbafce, type: 3}
-  m_Name: MultiHitPhysicalAttack
+  m_Script: {fileID: 11500000, guid: b3351bab6b3d491193b8afd6d1429c99, type: 3}
+  m_Name: StatScalingSkill
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _name: Multi Hit
-  _description: Deal five weak physical attacks. High Crit Chance
+  _name: Imba
+  _description: Multi-hit strength and dexterity scaling attack with 2-8 hits.
   _skillAnimationData: {fileID: 11400000, guid: a10b9d85057632a4c8c2fe08fb958867, type: 2}
   _skillData:
-    Damage: 3
+    BaseDamage: 10
     DamageType: 0
-    MinHits: 4
-    MaxHits: 4
+    MinHits: 2
+    MaxHits: 8
     BaseCritChance: 0.5
     CanCrit: 1
     BaseHitChance: 1
@@ -28,3 +28,8 @@ MonoBehaviour:
     IsPiercing: 0
     CanBeBuffed: 1
     ConsumeStance: 1
+  _scalingsList:
+  - StatType: 3
+    Scaling: 1
+  - StatType: 4
+    Scaling: 2

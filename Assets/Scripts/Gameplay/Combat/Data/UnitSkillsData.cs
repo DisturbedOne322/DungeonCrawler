@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Combat.Skills;
+using Gameplay.Skills.Core;
 using Gameplay.Units;
 using ModestTree;
 using UniRx;

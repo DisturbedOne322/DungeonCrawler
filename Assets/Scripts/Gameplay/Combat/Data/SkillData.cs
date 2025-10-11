@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Combat.Data
 {
@@ -7,7 +8,7 @@ namespace Gameplay.Combat.Data
     public struct SkillData
     {
         [Min(1)] 
-        public int Damage;
+        public int BaseDamage;
         public DamageType DamageType;
 
         [Space, Min(1)] 

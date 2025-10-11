@@ -1,9 +1,7 @@
-using Cysharp.Threading.Tasks;
-using Gameplay.Buffs;
 using Gameplay.Buffs.DefensiveCore;
 using UnityEngine;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.Core
 {
     public abstract class DefensiveBuffSkill : BaseSkill
     {

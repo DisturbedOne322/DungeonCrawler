@@ -1,8 +1,9 @@
 using Cysharp.Threading.Tasks;
-using Data;
+using Gameplay.Combat;
+using Gameplay.Skills.Core;
 using UnityEngine;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.OffensiveBuffs
 {
     [CreateAssetMenu(fileName = "ConcentrateSkill", menuName = "Gameplay/Skills/General/ConcentrateSkill")]
     public class ConcentrateSkill : OffensiveBuffSkill

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Gameplay.Combat.Consumables;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Skills;
 using Gameplay.Equipment;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;

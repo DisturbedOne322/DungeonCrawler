@@ -1,8 +1,7 @@
-using Gameplay.Buffs;
 using Gameplay.Buffs.OffensiveCore;
 using UnityEngine;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.Core
 {
     public abstract class OffensiveBuffSkill : BaseSkill
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Gameplay.Combat.Skills;
 using Gameplay.Player;
+using Gameplay.Skills.Core;
 using Gameplay.Units;
 using StateMachine.BattleMenu;
 using UI;

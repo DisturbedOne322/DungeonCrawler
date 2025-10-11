@@ -3,11 +3,11 @@ using AssetManagement.AssetProviders.Core;
 using Controllers;
 using Cysharp.Threading.Tasks;
 using Data.UI;
-using Gameplay.Combat.Consumables;
-using Gameplay.Combat.Skills;
+using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Player;
+using Gameplay.Skills.Core;
 using Gameplay.Units;
 using UnityEngine;
 

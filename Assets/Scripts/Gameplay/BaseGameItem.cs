@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Combat
+namespace Gameplay
 {
     public abstract class BaseGameItem : ScriptableObject
     {

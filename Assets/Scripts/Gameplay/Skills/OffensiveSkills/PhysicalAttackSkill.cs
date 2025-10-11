@@ -1,9 +1,11 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
+using Gameplay.Skills.Core;
 using UnityEngine;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.OffensiveSkills
 {
     [CreateAssetMenu(fileName = "PhysicalAttackSkill", menuName = "Gameplay/Skills/PhysicalAttackSkill")]
     public class PhysicalAttackSkill : OffensiveSkill
@@ -22,7 +24,7 @@ namespace Gameplay.Combat.Skills
         public override bool CanUse(CombatService combatService)
         {
             int currentHealth = combatService.ActiveUnit.UnitHealthData.CurrentHealth.Value;
-            return currentHealth > _selfDamageData.Damage;
+            return currentHealth > _selfDamageData.BaseDamage;
         }
 
         protected override SkillData GetSkillData(IEntity entity)
@@ -31,9 +33,9 @@ namespace Gameplay.Combat.Skills
             int strength = entity.UnitStatsData.Strength.Value;
             int additionalPower = Mathf.RoundToInt(_strengthScaling * strength);
             
-            int finalAttackPower = skillData.Damage + additionalPower;
+            int finalAttackPower = skillData.BaseDamage + additionalPower;
         
-            skillData.Damage = finalAttackPower;
+            skillData.BaseDamage = finalAttackPower;
             return skillData;
         }
     }

@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
-using Gameplay.Combat.Skills;
 
 namespace Gameplay.Combat.SkillSelection
 {

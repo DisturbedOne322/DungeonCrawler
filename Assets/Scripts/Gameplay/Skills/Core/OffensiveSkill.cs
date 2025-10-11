@@ -1,10 +1,10 @@
-using System;
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using UnityEngine;
 
-namespace Gameplay.Combat.Skills
+namespace Gameplay.Skills.Core
 {
     public abstract class OffensiveSkill : BaseSkill
     {
@@ -49,8 +49,8 @@ namespace Gameplay.Combat.Skills
 
         private void OnValidate()
         {
-            if(_skillData.Damage < 1)
-                _skillData.Damage = 1;
+            if(_skillData.BaseDamage < 1)
+                _skillData.BaseDamage = 1;
             
             if(_skillData.MinHits < 1)
                 _skillData.MinHits = 1;
@@ -64,6 +64,8 @@ namespace Gameplay.Combat.Skills
             _skillData.CanBeBuffed = true;
             _skillData.CanCrit = true;
             _skillData.ConsumeStance = true;
+
+            _skillData.BaseHitChance = 1;
         }
     }
 }

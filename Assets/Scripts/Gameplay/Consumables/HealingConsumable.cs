@@ -1,7 +1,8 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat;
 using UnityEngine;
 
-namespace Gameplay.Combat.Consumables
+namespace Gameplay.Consumables
 {
     [CreateAssetMenu(fileName = "HealingItem", menuName = "Gameplay/Items/HealingItem")]
     public class HealingConsumable : BaseConsumable
