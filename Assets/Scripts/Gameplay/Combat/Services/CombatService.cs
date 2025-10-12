@@ -99,7 +99,7 @@ namespace Gameplay.Combat.Services
                     SkillData = hitDataStream.BaseSkillData,
                 });
             
-            if(hit.Evaded)
+            if(hit.Missed)
                 return;
             
             target.UnitHealthController.TakeDamage(hit.Damage);
@@ -112,26 +112,25 @@ namespace Gameplay.Combat.Services
             });
         }
         
-        private void ProcessHitData(IGameUnit caster, IGameUnit target, HitDataStream hitsStream, int hitIndex)
+        private void ProcessHitData(IGameUnit attacker, IGameUnit defender, HitDataStream hitsStream, int hitIndex)
         {
             var hitData = hitsStream.Hits[hitIndex];
 
-            var damageContext = new DamageContext(caster, target, hitData, hitsStream.BaseSkillData);
+            var damageContext = new DamageContext(attacker, defender, hitData, hitsStream.BaseSkillData);
 
-            if (Evaded(target, damageContext))
+            _buffsCalculationService.BuffOutgoingDamage(damageContext);
+            _buffsCalculationService.DebuffIncomingDamage(damageContext);
+
+            if (Missed(attacker, defender, damageContext))
             {
-                hitData.Evaded = true;
-                target.EvadeAnimator.PlayEvadeAnimation().Forget();
-                _combatEventsBus.InvokeEvaded(target);
+                hitData.Missed = true;
+                defender.EvadeAnimator.PlayEvadeAnimation().Forget();
+                _combatEventsBus.InvokeEvaded(defender);
                 return;
             }
             
-            hitData.IsCritical = IsCritical(caster, damageContext);
-            
-            _buffsCalculationService.BuffOutgoingDamage(damageContext);
-            _buffsCalculationService.DebuffIncomingDamage(damageContext);
-            
-            _combatFormulaService.ReduceDamageByStats(target, damageContext);
+            hitData.IsCritical = IsCritical(attacker, damageContext);
+            _combatFormulaService.ReduceDamageByStats(defender, damageContext);
         }
         
         private bool IsCritical(IGameUnit caster, in DamageContext damageContext)
@@ -140,10 +139,10 @@ namespace Gameplay.Combat.Services
             return Random.value < finalCritChance;
         }
 
-        private bool Evaded(IEntity unit, in DamageContext damageContext)
+        private bool Missed(IEntity attacker, IEntity defender, in DamageContext damageContext)
         {
-            float evasionChance = _combatFormulaService.GetFinalEvasionChance(unit, damageContext);
-            return Random.value < evasionChance;
+            float hitChance = _combatFormulaService.GetHitChance(attacker, defender, damageContext);
+            return Random.value > hitChance;
         }
         
         private void HealUnit(IGameUnit target, int amount)

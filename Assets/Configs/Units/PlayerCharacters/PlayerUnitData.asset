@@ -18,7 +18,7 @@ MonoBehaviour:
   _unitBaseStats:
     _constitution: 10
     _strength: 10
-    _dexterity: 10
+    _dexterity: 59
     _intelligence: 10
     _luck: 10
   _basicAttackSkill: {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}

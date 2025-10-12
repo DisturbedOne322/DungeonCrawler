@@ -16,11 +16,11 @@ MonoBehaviour:
   _prefab: {fileID: 5294280859536209961, guid: 298d9f510cb756345a254b72c041cd37, type: 3}
   _maxHp: 100
   _unitBaseStats:
-    _constitution: 1
-    _strength: 1
-    _dexterity: 1
-    _intelligence: 1
-    _luck: 1
+    _constitution: 10
+    _strength: 10
+    _dexterity: 10
+    _intelligence: 10
+    _luck: 10
   _basicAttackSkill: {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}
   _guardSkill: {fileID: 11400000, guid: 5a2ec0e93c678fb42b0087f73304518c, type: 2}
   _skillSet:

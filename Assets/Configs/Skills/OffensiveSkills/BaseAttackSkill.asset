@@ -17,7 +17,7 @@ MonoBehaviour:
   _description: Deals Low Physical Damage. Scales with Strength.
   _skillAnimationData: {fileID: 11400000, guid: c1a390193a2d5a5409794f1209af5ee8, type: 2}
   _skillData:
-    Damage: 10
+    BaseDamage: 5
     DamageType: 0
     MinHits: 1
     MaxHits: 1
@@ -28,4 +28,3 @@ MonoBehaviour:
     IsPiercing: 0
     CanBeBuffed: 1
     ConsumeStance: 1
-  _strengthScaling: 0.5

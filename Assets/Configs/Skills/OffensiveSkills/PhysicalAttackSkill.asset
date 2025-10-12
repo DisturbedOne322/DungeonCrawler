@@ -17,7 +17,7 @@ MonoBehaviour:
   _description: Deals Moderate Physical Damage. Sacrifices some health points.
   _skillAnimationData: {fileID: 11400000, guid: c3c0820717aca144fbd6a60c66f9b48e, type: 2}
   _skillData:
-    Damage: 15
+    BaseDamage: 15
     DamageType: 0
     MinHits: 1
     MaxHits: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
     ConsumeStance: 1
   _strengthScaling: 1.5
   _selfDamageData:
-    Damage: 5
+    BaseDamage: 5
     DamageType: 2
     MinHits: 1
     MaxHits: 1
