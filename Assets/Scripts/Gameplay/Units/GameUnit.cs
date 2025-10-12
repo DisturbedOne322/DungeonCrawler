@@ -17,6 +17,10 @@ namespace Gameplay.Units
         
         private UnitHealthData _healthData;
         private UnitHealthController _unitHealthController;
+        
+        private UnitManaData _manaData;
+        private UnitManaController _unitManaController;
+        
         private ActionSelectionProvider _actionSelectionProvider;
         private UnitStatsData _unitStatsData;
         private UnitSkillsData _unitSkillsData;
@@ -47,6 +51,8 @@ namespace Gameplay.Units
         [Inject]
         private void Construct(UnitHealthData unitHealthData,
             UnitHealthController unitHealthController, 
+            UnitManaData unitManaData,
+            UnitManaController unitManaController,
             ActionSelectionProvider actionSelectionProvider,
             UnitStatsData unitStatsData, 
             UnitSkillsData unitSkillsData,
@@ -57,6 +63,8 @@ namespace Gameplay.Units
         {
             _healthData = unitHealthData;
             _unitHealthController = unitHealthController;
+            _manaData = unitManaData;
+            _unitManaController = unitManaController;
             _actionSelectionProvider = actionSelectionProvider;
             _unitStatsData = unitStatsData;
             _unitSkillsData = unitSkillsData;
@@ -71,6 +79,8 @@ namespace Gameplay.Units
             _unitName = unitData.Name;
             
             _healthData.Initialize(unitData.MaxHp);
+            _manaData.Initialize(unitData.MaxMp);
+            
             _unitStatsData.SetStats(unitData.UnitBaseStats);
             
             _unitSkillsData.AssignSkills(unitData);

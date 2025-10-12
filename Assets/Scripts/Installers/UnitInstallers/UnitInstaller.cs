@@ -1,4 +1,3 @@
-using Gameplay.Buffs;
 using Gameplay.Buffs.Services;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
@@ -12,7 +11,10 @@ namespace Installers.UnitInstallers
         public override void InstallBindings()
         {
             Container.Bind<UnitHealthData>().AsSingle();
-            Container.Bind<UnitHealthController>().AsSingle();
+            Container.Bind<UnitHealthController>().AsSingle();    
+            
+            Container.Bind<UnitManaData>().AsSingle();
+            Container.Bind<UnitManaController>().AsSingle();
             
             Container.Bind<UnitSkillsData>().AsSingle();
             Container.Bind<UnitInventoryData>().AsSingle();

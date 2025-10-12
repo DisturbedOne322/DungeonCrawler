@@ -13,7 +13,10 @@ namespace Gameplay.Units
     {
         [SerializeField] private string _name;
         [SerializeField, Space] private GameUnit _prefab;
+        
         [SerializeField] private int _maxHp;
+        [SerializeField] private int _maxMp;
+        
         [SerializeField] private UnitBaseStats _unitBaseStats;
         [SerializeField, Space] private BaseSkill _basicAttackSkill;
         [SerializeField] private BaseSkill _guardSkill;
@@ -26,6 +29,7 @@ namespace Gameplay.Units
         public string Name => _name;
         public GameUnit Prefab => _prefab;
         public int MaxHp => _maxHp;
+        public int MaxMp => _maxMp;
         public UnitBaseStats UnitBaseStats => _unitBaseStats;
         public BaseSkill BasicAttackSkill => _basicAttackSkill;
         public BaseSkill GuardSkill => _guardSkill;

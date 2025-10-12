@@ -22,11 +22,7 @@ namespace Gameplay.Skills.OffensiveSkills
             await base.PerformAction(combatService);
         }
 
-        public override bool CanUse(CombatService combatService)
-        {
-            int currentHealth = combatService.ActiveUnit.UnitHealthData.CurrentHealth.Value;
-            return currentHealth > _selfDamageData.BaseDamage;
-        }
+        public override bool CanUse(CombatService combatService) => combatService.ActiveUnit.UnitHealthController.HasEnoughHp(_selfDamageData.BaseDamage);
 
         protected override SkillData GetSkillData(IEntity entity)
         {

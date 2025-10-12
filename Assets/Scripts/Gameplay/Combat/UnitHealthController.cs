@@ -28,6 +28,8 @@ namespace Gameplay.Combat
             );
         }
         
+        public bool HasEnoughHp(int requestedHp) => _unitHealthData.CurrentHealth.Value >= requestedHp;
+        
         public void TakeDamage(int amount)
         {
             if (_unitHealthData.IsDead.Value) 
