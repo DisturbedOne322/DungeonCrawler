@@ -33,20 +33,20 @@ namespace Gameplay.Combat.Services
             damageContext.HitData.Damage = clampedDamage;
         }
 
-        public float GetFinalCritChance(IEntity unit, in DamageContext damageContext)
+        public float GetFinalCritChance(IEntity attacker, in DamageContext damageContext)
         {
             if(!damageContext.SkillData.CanCrit)
                 return -1;
             
             float finalCritChance = 0f;
             
-            int dex = unit.UnitStatsData.Dexterity.Value;
-            int luck = unit.UnitStatsData.Luck.Value;
+            int dex = attacker.UnitStatsData.Dexterity.Value;
+            int luck = attacker.UnitStatsData.Luck.Value;
 
             float chanceFromDex = Mathf.Clamp(dex, 0, StatConstants.MaxStatPoints) * _config.MaxDexterityCritInfluence / StatConstants.MaxStatPoints;
             float chanceFromLuck = Mathf.Clamp(luck, 0, StatConstants.MaxStatPoints) * _config.MaxLuckCritInfluence / StatConstants.MaxStatPoints;
 
-            finalCritChance = damageContext.SkillData.BaseCritChance + chanceFromDex + chanceFromLuck;
+            finalCritChance = damageContext.SkillData.BaseCritChance + attacker.UnitBonusStatsData.CritChanceBonus.Value + chanceFromDex + chanceFromLuck;
             return Mathf.Clamp01(finalCritChance);
         }
         

@@ -30,7 +30,7 @@ namespace UI.BattleUI.Damage
                 return;
             
             var enemyPos = data.Target.Position;
-            ShowText(enemyPos, data.HitData.Damage, DamageTypeToColorHelper.GetDamageTypeColor(data), '-');
+            ShowText(enemyPos, data.HitData.Damage, ColorHelpers.GetDamageTypeColor(data), '-');
         }
 
         public override void ShowHealNumber(HealEventData data)
@@ -39,7 +39,7 @@ namespace UI.BattleUI.Damage
                 return;
             
             var enemyPos = data.Target.Position;
-            ShowText(enemyPos, data.Amount, GameplayConstants.HealColor, '+');
+            ShowText(enemyPos, data.Amount, ColorHelpers.GetHealColor(), '+');
         }
 
         private void ShowText(Vector3 pos, int amount, Color color, char prefix)

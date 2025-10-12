@@ -9,11 +9,14 @@ namespace Gameplay.Facades
     {
         string EntityName { get;}
         UnitHealthData UnitHealthData { get; }
+        UnitManaData UnitManaData { get; }
         UnitStatsData UnitStatsData { get; }
+        UnitBonusStatsData UnitBonusStatsData { get; }
         UnitBuffsData UnitBuffsData { get; }
         UnitEquipmentData UnitEquipmentData { get; }
         UnitActiveBuffsData UnitActiveBuffsData { get; }
         UnitHealthController UnitHealthController { get; }
+        UnitManaController UnitManaController { get; }
         Vector3 Position { get; }
     }
 }

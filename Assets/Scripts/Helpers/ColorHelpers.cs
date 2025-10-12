@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Helpers
 {
-    public static class DamageTypeToColorHelper
+    public static class ColorHelpers
     {
         public static Color GetDamageTypeColor(HitEventData data)
         {
@@ -19,5 +19,7 @@ namespace Helpers
             
             return Color.white;
         }
+        
+        public static Color GetHealColor() => Color.green;
     }
 }

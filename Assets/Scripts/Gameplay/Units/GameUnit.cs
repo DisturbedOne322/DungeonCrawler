@@ -23,6 +23,7 @@ namespace Gameplay.Units
         
         private ActionSelectionProvider _actionSelectionProvider;
         private UnitStatsData _unitStatsData;
+        private UnitBonusStatsData _unitBonusStatsData;
         private UnitSkillsData _unitSkillsData;
         private UnitBuffsData _unitBuffsData;
         private UnitActiveBuffsData _unitActiveBuffsData;
@@ -34,9 +35,12 @@ namespace Gameplay.Units
         public Vector3 Position => transform.position;
         
         public UnitHealthData UnitHealthData => _healthData;
+        public UnitManaData UnitManaData => _manaData;
         public UnitHealthController UnitHealthController => _unitHealthController;
+        public UnitManaController UnitManaController => _unitManaController;
         public ActionSelectionProvider ActionSelectionProvider => _actionSelectionProvider;
         public UnitStatsData UnitStatsData => _unitStatsData;
+        public UnitBonusStatsData UnitBonusStatsData => _unitBonusStatsData;
         public UnitSkillsData UnitSkillsData => _unitSkillsData;
         public UnitBuffsData UnitBuffsData => _unitBuffsData;
         public UnitActiveBuffsData UnitActiveBuffsData => _unitActiveBuffsData;
@@ -55,6 +59,7 @@ namespace Gameplay.Units
             UnitManaController unitManaController,
             ActionSelectionProvider actionSelectionProvider,
             UnitStatsData unitStatsData, 
+            UnitBonusStatsData unitBonusStatsData,
             UnitSkillsData unitSkillsData,
             UnitBuffsData unitBuffsData,
             UnitActiveBuffsData unitActiveBuffsData,
@@ -67,6 +72,7 @@ namespace Gameplay.Units
             _unitManaController = unitManaController;
             _actionSelectionProvider = actionSelectionProvider;
             _unitStatsData = unitStatsData;
+            _unitBonusStatsData = unitBonusStatsData;
             _unitSkillsData = unitSkillsData;
             _unitBuffsData = unitBuffsData;
             _unitActiveBuffsData = unitActiveBuffsData;
