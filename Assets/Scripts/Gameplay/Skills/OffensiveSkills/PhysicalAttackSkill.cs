@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
+using Gameplay.Combat.Services;
 using Gameplay.Facades;
 using Gameplay.Skills.Core;
 using UnityEngine;

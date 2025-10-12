@@ -1,9 +1,10 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Combat.Data;
 using Gameplay.Experience;
 using Gameplay.Facades;
 using Gameplay.Units;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Services
 {
     public class CombatSequenceController
     {

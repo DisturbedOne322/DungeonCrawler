@@ -6,7 +6,7 @@ using Gameplay.Facades;
 using Gameplay.Units;
 using Random = UnityEngine.Random;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Services
 {
     public class CombatService
     {

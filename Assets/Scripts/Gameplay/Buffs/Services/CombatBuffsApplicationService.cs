@@ -2,6 +2,7 @@ using System;
 using Gameplay.Buffs.Core;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
+using Gameplay.Combat.Services;
 using Gameplay.Facades;
 using Gameplay.Units;
 using Helpers;

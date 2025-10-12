@@ -3,7 +3,7 @@ using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using UniRx;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Services
 {
     public class CombatEventsBus
     {

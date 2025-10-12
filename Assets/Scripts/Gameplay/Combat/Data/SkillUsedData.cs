@@ -1,7 +1,6 @@
-using Gameplay.Combat.Data;
 using Gameplay.Facades;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Data
 {
     public struct SkillUsedData
     {

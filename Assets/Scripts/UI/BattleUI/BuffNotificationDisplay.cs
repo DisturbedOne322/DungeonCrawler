@@ -1,5 +1,6 @@
 using Constants;
 using Gameplay.Combat;
+using Gameplay.Combat.Services;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UI.Core;

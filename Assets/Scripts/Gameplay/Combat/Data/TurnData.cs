@@ -1,6 +1,6 @@
 using Gameplay.Facades;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Data
 {
     public struct TurnData
     {

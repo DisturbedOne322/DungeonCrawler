@@ -16,6 +16,6 @@ MonoBehaviour:
   _name: Test Strength Mega Buff
   _description: +100 Strength
   _buffDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
-  _triggerType: 12
+  _triggerType: 2
   _buffedStatType: 3
   _increaseAmount: 50

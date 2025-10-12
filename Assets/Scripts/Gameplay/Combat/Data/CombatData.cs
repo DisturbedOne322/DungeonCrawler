@@ -1,7 +1,6 @@
-using Gameplay.Player;
 using Gameplay.Units;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Data
 {
     public class CombatData
     {

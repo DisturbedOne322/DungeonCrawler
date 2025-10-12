@@ -4,6 +4,7 @@ using Gameplay;
 using Gameplay.Buffs;
 using Gameplay.Buffs.Services;
 using Gameplay.Combat;
+using Gameplay.Combat.Services;
 using Gameplay.Experience;
 using Gameplay.Player;
 using Gameplay.Units;

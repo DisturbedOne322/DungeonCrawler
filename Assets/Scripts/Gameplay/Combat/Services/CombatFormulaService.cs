@@ -1,9 +1,8 @@
 using Gameplay.Buffs.Core;
-using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using UnityEngine;
 
-namespace Gameplay.Combat
+namespace Gameplay.Combat.Services
 {
     public class CombatFormulaService
     {
