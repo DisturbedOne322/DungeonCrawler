@@ -28,5 +28,26 @@ namespace Gameplay.Combat.Data
         public bool IsPiercing;
         public bool CanBeBuffed;
         public bool ConsumeStance;
+        
+        public void OnValidate()
+        {
+            if(BaseDamage < 1)
+                BaseDamage = 1;
+            
+            if(MinHits < 1)
+                MinHits = 1;
+            
+            if(MaxHits < MinHits)
+                MaxHits = MinHits;
+        }
+
+        public void Reset()
+        {
+            CanBeBuffed = true;
+            CanCrit = true;
+            ConsumeStance = true;
+
+            BaseHitChance = 1;
+        }
     }
 }

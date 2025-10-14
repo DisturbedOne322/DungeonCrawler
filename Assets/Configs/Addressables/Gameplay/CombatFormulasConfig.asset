@@ -16,9 +16,9 @@ MonoBehaviour:
   AttackerLuckInfluence: 0.5
   DefenderDexterityInfluence: 1
   DefenderLuckInfluence: 0.5
-  EqualStatsHitChance: 0.75
+  EqualStatsHitChance: 0.85
   MaxEffectiveStatDiff: 50
-  MaxStatHitInfluence: 0.25
+  MaxStatHitInfluence: 0.35
   MaxDexterityCritInfluence: 0.25
   MaxLuckCritInfluence: 0.35
   MaxConstitutionInfluence: 0.8

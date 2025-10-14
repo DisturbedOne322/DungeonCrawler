@@ -8,6 +8,7 @@ namespace Gameplay.Combat.Data
     public class UnitInventoryData
     {
         public ReactiveCollection<BaseConsumable> Consumables { get; } = new();
+        public ReactiveProperty<int> Coins = new();
 
         public void AddItems(List<BaseConsumable> items) => Consumables.AllocFreeAddRange(items);
         public void AddItems(BaseConsumable item, int amount)

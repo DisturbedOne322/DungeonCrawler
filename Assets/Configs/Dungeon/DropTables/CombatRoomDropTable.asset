@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CombatRoomDropTable
   m_EditorClassIdentifier: 
   _entriesList:
-  - _item: {fileID: 11400000, guid: 615ab50e8e2f7b54c8a840fa78cadef9, type: 2}
+  - _item: {fileID: 11400000, guid: 9723e17e83286f34dbe804bfdc7afea2, type: 2}
     _weight: 1
     _amount: 1

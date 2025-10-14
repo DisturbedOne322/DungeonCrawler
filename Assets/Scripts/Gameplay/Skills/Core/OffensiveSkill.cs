@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
@@ -11,9 +12,13 @@ namespace Gameplay.Skills.Core
     {
         [SerializeField, Space] private SkillAnimationData _skillAnimationData;
         [SerializeField] private SkillData _skillData;
-
+        [SerializeReference] private List<ISkillCost> _costs = new();
+        
         protected override async UniTask PerformAction(CombatService combatService)
         {
+            foreach (var skillCost in _costs)
+                skillCost.Pay(combatService);
+            
             var task = StartAnimation(combatService);
 
             var hitsStream = combatService.CreateFinalHitsStream(GetSkillData(combatService.ActiveUnit));
@@ -37,7 +42,18 @@ namespace Gameplay.Skills.Core
             await UniTask.WaitForSeconds(delay);
             combatService.DealDamageToOtherUnit(hitDataStream, index);
         }
-        
+
+        public override bool CanUse(CombatService combatService)
+        {
+            foreach (var skillCost in _costs)
+            {
+                if(!skillCost.CanPay(combatService))
+                    return false;
+            }
+            
+            return true;
+        }
+
         private UniTask StartAnimation(CombatService combatService)
         {
             if(combatService.IsPlayerTurn())
@@ -47,26 +63,5 @@ namespace Gameplay.Skills.Core
         }
 
         protected virtual SkillData GetSkillData(IEntity entity) => _skillData;
-
-        private void OnValidate()
-        {
-            if(_skillData.BaseDamage < 1)
-                _skillData.BaseDamage = 1;
-            
-            if(_skillData.MinHits < 1)
-                _skillData.MinHits = 1;
-            
-            if(_skillData.MaxHits < _skillData.MinHits)
-                _skillData.MaxHits = _skillData.MinHits;
-        }
-
-        private void Reset()
-        {
-            _skillData.CanBeBuffed = true;
-            _skillData.CanCrit = true;
-            _skillData.ConsumeStance = true;
-
-            _skillData.BaseHitChance = 1;
-        }
     }
 }

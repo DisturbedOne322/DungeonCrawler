@@ -1,14 +1,14 @@
-using Data;
+using Gameplay.Units;
 
 namespace Gameplay.Services
 {
     public class BalanceService
     {
-        private readonly GameplayData _gameplayData;
+        private readonly PlayerUnit _playerUnit;
 
-        public BalanceService(GameplayData gameplayData)
+        public BalanceService(PlayerUnit playerUnit)
         {
-            _gameplayData = gameplayData;
+            _playerUnit = playerUnit;
         }
         
         public bool TryPurchase(int price)
@@ -16,12 +16,12 @@ namespace Gameplay.Services
             if (GetBalance() < price)
                 return false;
             
-            _gameplayData.Coins.Value -= price;
+            _playerUnit.UnitInventoryData.Coins.Value -= price;
             return true;
         }
         
-        public void AddBalance(int amount) => _gameplayData.Coins.Value += amount;
+        public void AddBalance(int amount) => _playerUnit.UnitInventoryData.Coins.Value += amount;
         
-        public int GetBalance() => _gameplayData.Coins.Value;
+        public int GetBalance() => _playerUnit.UnitInventoryData.Coins.Value;
     }
 }

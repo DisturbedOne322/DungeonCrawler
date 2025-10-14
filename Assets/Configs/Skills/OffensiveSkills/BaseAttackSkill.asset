@@ -28,3 +28,7 @@ MonoBehaviour:
     IsPiercing: 0
     CanBeBuffed: 1
     ConsumeStance: 1
+  _costs: []
+  references:
+    version: 2
+    RefIds: []

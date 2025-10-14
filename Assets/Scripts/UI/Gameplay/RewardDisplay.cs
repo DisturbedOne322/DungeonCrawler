@@ -34,11 +34,11 @@ namespace UI.Gameplay
         private bool _isPlaying;
 
         [Inject]
-        private void Construct(PlayerUnit playerUnit, GameplayData gameplayData)
+        private void Construct(PlayerUnit playerUnit)
         {
             SubscribeToConsumablesAddEvents(playerUnit);
             SubscribeToSkillsAddEvents(playerUnit);
-            SubscribeToCoinsAddEvents(gameplayData);
+            SubscribeToCoinsAddEvents(playerUnit);
             SubscribeToWeaponAddEvent(playerUnit);
             SubscribeToArmorAddEvent(playerUnit);
         }
@@ -72,10 +72,10 @@ namespace UI.Gameplay
             );
         }
 
-        private void SubscribeToCoinsAddEvents(GameplayData gameplayData)
+        private void SubscribeToCoinsAddEvents(PlayerUnit playerUnit)
         {
             _disposables.Add(
-                gameplayData.Coins
+                playerUnit.UnitInventoryData.Coins
                     .SkipLatestValueOnSubscribe()
                     .Pairwise()
                     .Subscribe(pair =>

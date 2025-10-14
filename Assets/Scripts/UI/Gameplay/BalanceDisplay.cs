@@ -1,4 +1,5 @@
 using Data;
+using Gameplay.Units;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -11,12 +12,13 @@ namespace UI.Gameplay
         [SerializeField] private TextMeshProUGUI _balanceText;
         
         [Inject]
-        private GameplayData _gameplayData;
+        private PlayerUnit _playerUnit;
 
         private void Awake()
         {
-            _balanceText.text = _gameplayData.Coins.Value.ToString();
-            _gameplayData.Coins.Subscribe(coins => _balanceText.text = coins.ToString()).AddTo(gameObject);
+            _playerUnit.UnitInventoryData.Coins.Subscribe(
+                coins => _balanceText.text = coins.ToString()
+                ).AddTo(gameObject);
         }
     }
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Player
   _prefab: {fileID: 454397997071619803, guid: 9648656f8a2a12c48bf2fd0d35375c2a, type: 3}
   _maxHp: 100
+  _maxMp: 0
   _unitBaseStats:
     _constitution: 10
     _strength: 10
@@ -24,9 +25,9 @@ MonoBehaviour:
   _basicAttackSkill: {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}
   _guardSkill: {fileID: 11400000, guid: 5a2ec0e93c678fb42b0087f73304518c, type: 2}
   _skillSet:
-  - {fileID: 11400000, guid: 1b5c98718c47df04a8cce4d8f2ca44d8, type: 2}
-  - {fileID: 11400000, guid: 8262d71984cb6d5458f58f23092f0fc9, type: 2}
+  - {fileID: 11400000, guid: c8626eaaea3e4dd46af25de239bde580, type: 2}
   - {fileID: 11400000, guid: 0858c102f24ad3a48b80d507b5807b4d, type: 2}
+  - {fileID: 11400000, guid: 8262d71984cb6d5458f58f23092f0fc9, type: 2}
   _items:
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}

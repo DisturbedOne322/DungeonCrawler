@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: StatScalingSkill
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _name: Imba
+  _name: Multi Hit
   _description: Multi-hit strength and dexterity scaling attack with 2-8 hits.
   _skillAnimationData: {fileID: 11400000, guid: a10b9d85057632a4c8c2fe08fb958867, type: 2}
   _skillData:
-    BaseDamage: 10
+    BaseDamage: 5
     DamageType: 0
-    MinHits: 2
-    MaxHits: 8
+    MinHits: 4
+    MaxHits: 7
     BaseCritChance: 0.5
     CanCrit: 1
     BaseHitChance: 1
@@ -28,8 +28,12 @@ MonoBehaviour:
     IsPiercing: 0
     CanBeBuffed: 1
     ConsumeStance: 1
+  _costs: []
   _scalingsList:
   - StatType: 3
-    Scaling: 1
+    Scaling: 0.5
   - StatType: 4
-    Scaling: 2
+    Scaling: 0.5
+  references:
+    version: 2
+    RefIds: []

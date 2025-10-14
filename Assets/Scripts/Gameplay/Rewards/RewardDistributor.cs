@@ -3,6 +3,10 @@ using AssetManagement.AssetProviders.Core;
 using Controllers;
 using Cysharp.Threading.Tasks;
 using Data.UI;
+using Gameplay.Buffs.Core;
+using Gameplay.Buffs.DefensiveCore;
+using Gameplay.Buffs.OffensiveCore;
+using Gameplay.Buffs.StatBuffsCore;
 using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
@@ -52,6 +56,18 @@ namespace Gameplay.Rewards
                     _player.UnitInventoryData.AddItems(consumable, dropEntry.Amount);
                     break;
 
+                case OffensiveBuffData offensiveBuff:
+                    _player.UnitBuffsData.OffensiveBuffs.Add(offensiveBuff);
+                    break;
+                
+                case DefensiveBuffData defensiveBuff:
+                    _player.UnitBuffsData.DefensiveBuffs.Add(defensiveBuff);
+                    break;
+                
+                case StatBuffData statBuffData:
+                    _player.UnitBuffsData.StatBuffs.Add(statBuffData);
+                    break;
+                
                 default:
                     Debug.LogWarning($"Unhandled reward type: {dropEntry.Item.name}");
                     break;

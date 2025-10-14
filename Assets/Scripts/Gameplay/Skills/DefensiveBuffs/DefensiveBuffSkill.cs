@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace Gameplay.Skills.DefensiveBuffs
 {
-    [CreateAssetMenu(fileName = "GuardSkill", menuName = "Gameplay/Skills/General/GuardSkill")]
-    public class GuardSkill : DefensiveBuffSkill
+    [CreateAssetMenu(fileName = "DefensiveBuffSkill", menuName = "Gameplay/Skills/Buffs/DefensiveBuffSkill")]
+    public class DefensiveBuffSkill : Core.DefensiveBuffSkill
     {
         protected override UniTask PerformAction(CombatService combatService)
         {

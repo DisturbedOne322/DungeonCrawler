@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049845dd92fe43748cd099b98599a711, type: 3}
+  m_Name: SelfDamagingPhysicalSkill
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
+  _name: Soul Sacrifice
+  _description: Deals low damage to self. Deals high physical attack once to the
+    enemy
+  _skillAnimationData: {fileID: 11400000, guid: c3c0820717aca144fbd6a60c66f9b48e, type: 2}
+  _skillData:
+    BaseDamage: 50
+    DamageType: 0
+    MinHits: 1
+    MaxHits: 1
+    BaseCritChance: 0.25
+    CanCrit: 1
+    BaseHitChance: 1
+    IsUnavoidable: 0
+    IsPiercing: 0
+    CanBeBuffed: 1
+    ConsumeStance: 1
+  _costs:
+  - rid: 3919211730702434662
+  references:
+    version: 2
+    RefIds:
+    - rid: 3919211730702434662
+      type: {class: HealthSkillCost, ns: Gameplay.Skills.SkillCosts, asm: Assembly-CSharp}
+      data:
+        _selfDamageData:
+          BaseDamage: 5
+          DamageType: 2
+          MinHits: 1
+          MaxHits: 1
+          BaseCritChance: 0
+          CanCrit: 0
+          BaseHitChance: 0.49
+          IsUnavoidable: 1
+          IsPiercing: 1
+          CanBeBuffed: 0
+          ConsumeStance: 0

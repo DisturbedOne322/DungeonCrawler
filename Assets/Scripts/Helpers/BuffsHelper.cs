@@ -24,7 +24,7 @@ namespace Helpers
 
         private static readonly Dictionary<BuffReapplyType, IBuffReapplyStrategy> BuffReapplyStrategies = new()
         {
-            { BuffReapplyType.Ignore, new ReapplyIgnoreStrategy() },
+            { BuffReapplyType.None, new ReapplyIgnoreStrategy() },
             { BuffReapplyType.Stack, new ReapplyStackStrategy() },
             { BuffReapplyType.ExtendDuration, new ReapplyExtendDurationStrategy() },
             { BuffReapplyType.LowerDuration, new ReapplyLowerDurationStrategy() },
