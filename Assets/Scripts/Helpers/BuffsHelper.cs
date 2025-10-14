@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Buffs.Core;
+using Gameplay.Buffs.ReapplyStrategies;
 using Gameplay.Combat.Data;
 
 namespace Helpers
@@ -21,6 +22,15 @@ namespace Helpers
             { DamageType.Absolute, BuffExpirationType.NextAbsoluteAction },
         };
 
+        private static readonly Dictionary<BuffReapplyType, IBuffReapplyStrategy> BuffReapplyStrategies = new()
+        {
+            { BuffReapplyType.Ignore, new ReapplyIgnoreStrategy() },
+            { BuffReapplyType.Stack, new ReapplyStackStrategy() },
+            { BuffReapplyType.ExtendDuration, new ReapplyExtendDurationStrategy() },
+            { BuffReapplyType.LowerDuration, new ReapplyLowerDurationStrategy() },
+            { BuffReapplyType.RefreshDuration, new ReapplyRefreshDurationStrategy() },
+        };
+
         public static BuffTriggerType GetBuffTriggerForDamageType(DamageType damageType)
         {
             if(DamageTypeToTriggerDict.TryGetValue(damageType, out BuffTriggerType buffTrigger))
@@ -36,5 +46,7 @@ namespace Helpers
             
             throw new ArgumentException("Unknown damage type: " + damageType);
         }
+
+        public static void ReapplyBuff(BaseBuffInstance instance, BaseBuffData data) => BuffReapplyStrategies[data.BuffReapplyType].ReapplyBuff(instance, data);
     }
 }

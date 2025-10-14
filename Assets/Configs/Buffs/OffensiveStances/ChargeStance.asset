@@ -17,5 +17,7 @@ MonoBehaviour:
   _description: Increases the damage of the next physical attack by 100%.
   _buffDurationData: {fileID: 11400000, guid: 039864eb366ca9a40aa4e605ea416d59, type: 2}
   _triggerType: 1
+  _buffReapplyType: 2
+  _maxStacks: 1
   _priority: 2
   _damageMultiplier: 2

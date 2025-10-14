@@ -17,5 +17,7 @@ MonoBehaviour:
   _description: Reduces the damage taken during next turn by 50%.
   _buffDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
   _triggerType: 1
+  _buffReapplyType: 2
+  _maxStacks: 1
   _priority: 2
   _damageMultiplier: 0.5

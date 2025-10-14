@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Gameplay.Facades;
+using Helpers;
 using UniRx;
 
 namespace Gameplay.Buffs.Core
@@ -22,25 +23,12 @@ namespace Gameplay.Buffs.Core
                 var activeBuff = activeBuffs[i];
                 if (activeBuff.BuffData == buffData)
                 {
-                    activeBuff.TurnDurationLeft = activeBuff.BuffData.BuffDurationData.TurnDurations;
-                    activeBuffs[i] = activeBuff;
+                    BuffsHelper.ReapplyBuff(activeBuff, buffData);
                     return;
                 }
             }
             
             GetActiveBuffs(buffTarget).Add(CreateBuffInstance(buffData, buffTarget));
-        }
-        
-        public void ApplyPermanentBuffs(IEntity buffTarget)
-        {
-            var buffs = GetBuffData(buffTarget);
-            foreach (var buff in buffs)
-            {
-                if (buff.BuffDurationData.ExpirationType is not BuffExpirationType.Permanent)
-                    continue;
-                
-                AddBuffTo(buffTarget, buff);
-            }
         }
 
         public void EnableBuffsOnTrigger(IGameUnit unit, BuffTriggerType triggerType)
@@ -99,9 +87,12 @@ namespace Gameplay.Buffs.Core
                 RemoveBuffInstance(buffTarget, activeBuffs[i]);
         }
 
-        protected bool IsValidActionExpiration(BuffExpirationType expirationType)
+        private bool IsValidActionExpiration(BuffExpirationType expirationType)
         {
-            return expirationType is not (BuffExpirationType.Permanent or BuffExpirationType.TurnCount);
+            return expirationType is 
+                BuffExpirationType.NextAbsoluteAction or 
+                BuffExpirationType.NextMagicalAction or 
+                BuffExpirationType.NextPhysicalAction;
         }
     }
 }
