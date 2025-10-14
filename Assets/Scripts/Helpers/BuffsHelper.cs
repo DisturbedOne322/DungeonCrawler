@@ -47,6 +47,15 @@ namespace Helpers
             throw new ArgumentException("Unknown damage type: " + damageType);
         }
 
-        public static void ReapplyBuff(BaseBuffInstance instance, BaseBuffData data) => BuffReapplyStrategies[data.BuffReapplyType].ReapplyBuff(instance, data);
+        public static void ReapplyBuff(BaseBuffInstance instance, BaseBuffData data)
+        {
+            var type = data.BuffReapplyType;
+
+            foreach (var pair in BuffReapplyStrategies)
+            {
+                if (type.HasFlag(pair.Key))
+                    pair.Value.ReapplyBuff(instance, data);
+            }
+        }
     }
 }

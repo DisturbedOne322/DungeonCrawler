@@ -5,25 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffReapplyType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffReapplyType.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/IBuffReapplyStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/IBuffReapplyStrategy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyExtendDurationStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyExtendDurationStrategy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyIgnoreStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyIgnoreStrategy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyLowerDurationStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyLowerDurationStrategy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyRefreshDurationStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyRefreshDurationStrategy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyStackStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/ReapplyStrategies/ReapplyStackStrategy.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffProcessor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffCalculationProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BaseBuffCalculationProcessor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffReapplyType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Buffs/Core/BuffReapplyType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/BuffsHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/BuffsHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +144,7 @@
       <workItem from="1760176806612" duration="19659000" />
       <workItem from="1760269532519" duration="11470000" />
       <workItem from="1760385657464" duration="600000" />
-      <workItem from="1760461349357" duration="5676000" />
+      <workItem from="1760461349357" duration="6268000" />
     </task>
     <servers />
   </component>

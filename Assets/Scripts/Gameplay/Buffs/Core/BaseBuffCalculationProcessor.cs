@@ -53,8 +53,13 @@ namespace Gameplay.Buffs.Core
             }
 
             foreach (var kv in _buffsByPriority)
+            {
                 foreach (var buff in kv.Value)
-                    result = ApplyBuff(buff, result, damageContext);
+                {
+                    for(int i = 0; i < buff.Stacks; i++)
+                        result = ApplyBuff(buff, result, damageContext);
+                }
+            }
             
             return result;
         }
