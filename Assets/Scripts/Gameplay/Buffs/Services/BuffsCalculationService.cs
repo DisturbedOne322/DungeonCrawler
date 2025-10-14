@@ -17,7 +17,7 @@ namespace Gameplay.Buffs.Services
 
             if (damageContext.HitData.IsCritical) 
                 ApplyCriticalDamageMultiplier(damageContext);
-
+            
             ApplyAttackMultiplier(damageContext);
         }
 
@@ -31,21 +31,21 @@ namespace Gameplay.Buffs.Services
         {
             float damageMultiplier = GetCriticalDamageMultiplier(damageContext);
             int damage = damageContext.HitData.Damage;
-            damageContext.HitData.Damage *= Mathf.RoundToInt(damage * damageMultiplier);
+            damageContext.HitData.Damage = Mathf.RoundToInt(damage * damageMultiplier);
         }
         
         private void ApplyAttackMultiplier(in DamageContext damageContext)
         {
             float damageMultiplier = damageContext.Attacker.UnitBonusStatsData.AttackMultiplier.Value;
             int damage = damageContext.HitData.Damage;
-            damageContext.HitData.Damage *= Mathf.RoundToInt(damage * damageMultiplier);
+            damageContext.HitData.Damage = Mathf.RoundToInt(damage * damageMultiplier);
         }
 
         private void ApplyDefenseMultiplier(in DamageContext damageContext)
         {
             float defenseMultiplier = damageContext.Defender.UnitBonusStatsData.DefenseMultiplier.Value;
             int damage = damageContext.HitData.Damage;
-            damageContext.HitData.Damage *= Mathf.RoundToInt(damage / defenseMultiplier);
+            damageContext.HitData.Damage = Mathf.RoundToInt(damage / defenseMultiplier);
         }
         
         private float GetCriticalDamageMultiplier(in DamageContext damageContext)

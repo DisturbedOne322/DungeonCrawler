@@ -4,6 +4,7 @@ using Gameplay.Buffs.Services;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using Gameplay.Units;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat.Services
@@ -118,6 +119,8 @@ namespace Gameplay.Combat.Services
 
             var damageContext = new DamageContext(attacker, defender, hitData, hitsStream.BaseSkillData);
 
+            hitData.IsCritical = IsCritical(attacker, damageContext);
+            
             _buffsCalculationService.BuffOutgoingDamage(damageContext);
             _buffsCalculationService.DebuffIncomingDamage(damageContext);
 
@@ -129,7 +132,6 @@ namespace Gameplay.Combat.Services
                 return;
             }
             
-            hitData.IsCritical = IsCritical(attacker, damageContext);
             _combatFormulaService.ReduceDamageByStats(defender, damageContext);
         }
         

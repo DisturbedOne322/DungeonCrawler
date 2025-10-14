@@ -8,6 +8,7 @@ namespace UI.BattleUI.Damage
     public abstract class NumberObjectSpawner : MonoBehaviour
     {
         [SerializeField] private NumberObjectView _prefab;
+        [SerializeField] private int _poolSize = 10;
         
         protected NumberObjectsPool Pool;
         protected NumberObjectsAnimator Animator;
@@ -19,7 +20,7 @@ namespace UI.BattleUI.Damage
             Animator = animator;
         }
 
-        private void Start() => Pool.Initialize(_prefab);
+        private void Start() => Pool.Initialize(_prefab, _poolSize);
 
         public abstract void ShowDamageNumber(HitEventData data);
         public abstract void ShowHealNumber(HealEventData data);

@@ -1,0 +1,74 @@
+using System.Collections.Generic;
+using Gameplay.Services;
+using UnityEngine;
+
+namespace Pools
+{
+    public class BasePool<T> where T : Component
+    {
+        private readonly ContainerFactory _factory;
+        
+        private readonly Stack<T> _pool = new();
+        private readonly List<T> _activeElements = new();
+
+        private T _prefab;
+
+        private Transform _parent;
+
+        public BasePool(ContainerFactory factory)
+        {
+            _factory = factory;
+        }
+        
+        public void Initialize(T prefab, int poolSize)
+        {
+            _parent = new GameObject($"[{typeof(T).ToString().ToUpper()} POOL]").transform;
+            
+            _prefab = prefab;
+            
+            for (int i = 0; i < poolSize; i++) 
+                _pool.Push(Create());
+        }
+
+        public virtual T Get()
+        {
+            T result = null;
+            
+            if (_pool.Count > 0)
+                result = _pool.Pop();
+            else
+                result = Create();
+
+            result.gameObject.SetActive(true);
+            _activeElements.Add(result);
+            
+            return result;
+        }
+
+        public virtual void Return(T view)
+        {
+            view.gameObject.SetActive(false);
+            
+            _activeElements.Remove(view);
+            _pool.Push(view);
+        }
+
+        public void ReturnAll()
+        {
+            for (int i = _activeElements.Count - 1; i >= 0; i--) 
+                Return(_activeElements[i]);
+            
+            _activeElements.Clear();
+        }
+        
+        protected virtual T Create()
+        {
+            var view = _factory.Create<T>(_prefab.gameObject);
+            view.gameObject.SetActive(false);
+            
+            view.transform.SetParent(_parent);
+            
+            return view;
+        }
+    }
+}
