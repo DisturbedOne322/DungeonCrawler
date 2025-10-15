@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Gameplay.Configs
@@ -22,5 +23,6 @@ namespace Gameplay.Configs
         
         [Header("Damage Reduction"), Space]
         [Range(0, 1f)] public float MaxConstitutionInfluence = 0.8f;
+        [Min(0.1f)]public float MinDefenseMultiplier = 0.5f;
     }
 }

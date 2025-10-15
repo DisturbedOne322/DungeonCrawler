@@ -1,4 +1,3 @@
-using System;
 using Data;
 using Gameplay.Buffs.Core;
 using Gameplay.Facades;
@@ -19,6 +18,6 @@ namespace Gameplay.Buffs.StatBuffsCore
             return instance;
         }
         
-        protected abstract int GetBuffDelta(IEntity unit);
+        protected abstract float GetBuffDelta(IEntity unit);
     }
 }

@@ -25,6 +25,7 @@ MonoBehaviour:
     CanCrit: 0
     BaseHitChance: 1
     IsUnavoidable: 0
+    PenetrationRatio: 0
     IsPiercing: 0
     CanBeBuffed: 1
     ConsumeStance: 1

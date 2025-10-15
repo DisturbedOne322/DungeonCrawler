@@ -18,9 +18,6 @@ namespace Gameplay.Combat.Services
         
         public void ReduceDamageByStats(IEntity unit, in DamageContext damageContext)
         {
-            if (damageContext.SkillData.IsPiercing)
-                return;
-            
             int constitutionStat = unit.UnitStatsData.Constitution.Value;
             float damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, StatConstants.MaxStatPoints) 
                 * _config.MaxConstitutionInfluence 
@@ -32,7 +29,31 @@ namespace Gameplay.Combat.Services
             
             damageContext.HitData.Damage = clampedDamage;
         }
+        
+        public void ApplyFinalDamageMultiplier(in DamageContext damageContext)
+        {
+            if (damageContext.HitData.IsCritical) 
+                ApplyCriticalDamageMultiplier(damageContext);
+            
+            ApplyAttackMultiplier(damageContext);
+        }
+        
+        public void ApplyFinalDefenseMultiplier(in DamageContext damageContext)
+        {
+            float defenseMultiplier = damageContext.Defender.UnitBonusStatsData.DefenseMultiplier.Value;
 
+            if (!damageContext.SkillData.IsPiercing)
+                defenseMultiplier -= damageContext.SkillData.PenetrationRatio;
+            else
+                defenseMultiplier = 0;
+            
+            if(defenseMultiplier < _config.MinDefenseMultiplier)
+                defenseMultiplier = _config.MinDefenseMultiplier;
+            
+            int damage = damageContext.HitData.Damage;
+            damageContext.HitData.Damage = Mathf.RoundToInt(damage / defenseMultiplier);
+        }
+        
         public float GetFinalCritChance(IEntity attacker, in DamageContext damageContext)
         {
             if(!damageContext.SkillData.CanCrit)
@@ -46,6 +67,8 @@ namespace Gameplay.Combat.Services
             float chanceFromDex = Mathf.Clamp(dex, 0, StatConstants.MaxStatPoints) * _config.MaxDexterityCritInfluence / StatConstants.MaxStatPoints;
             float chanceFromLuck = Mathf.Clamp(luck, 0, StatConstants.MaxStatPoints) * _config.MaxLuckCritInfluence / StatConstants.MaxStatPoints;
 
+            Debug.Log("cr"+attacker.UnitBonusStatsData.CritChanceBonus.Value);
+            
             finalCritChance = damageContext.SkillData.BaseCritChance + attacker.UnitBonusStatsData.CritChanceBonus.Value + chanceFromDex + chanceFromLuck;
             return Mathf.Clamp01(finalCritChance);
         }
@@ -87,6 +110,26 @@ namespace Gameplay.Combat.Services
             float effectiveDex = stats.Dexterity.Value * _config.DefenderDexterityInfluence;
             float effectiveLuck = stats.Luck.Value * _config.DefenderLuckInfluence;
             return effectiveDex + effectiveLuck;
+        }
+        
+        private void ApplyCriticalDamageMultiplier(in DamageContext damageContext)
+        {
+            float damageMultiplier = GetCriticalDamageMultiplier(damageContext);
+            int damage = damageContext.HitData.Damage;
+            damageContext.HitData.Damage = Mathf.RoundToInt(damage * damageMultiplier);
+        }
+        
+        private void ApplyAttackMultiplier(in DamageContext damageContext)
+        {
+            float damageMultiplier = damageContext.Attacker.UnitBonusStatsData.AttackMultiplier.Value;
+            int damage = damageContext.HitData.Damage;
+            damageContext.HitData.Damage = Mathf.RoundToInt(damage * damageMultiplier);
+        }
+        
+        private float GetCriticalDamageMultiplier(in DamageContext damageContext)
+        {
+            return GameplayConstants.CriticalDamageMultiplier +
+                   damageContext.Attacker.UnitBonusStatsData.CritDamageBonus.Value;
         }
     }
 }

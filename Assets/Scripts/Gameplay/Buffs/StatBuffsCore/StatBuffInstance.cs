@@ -6,10 +6,10 @@ namespace Gameplay.Buffs.StatBuffsCore
     public class StatBuffInstance : BaseBuffInstance
     {
         public StatType StatType;
-        public int ValueChange;
+        public float ValueChange;
         public StatBuffData StatBuffData;
 
-        public static StatBuffInstance Create(StatBuffData buffDataData, int valueChange)
+        public static StatBuffInstance Create(StatBuffData buffDataData, float valueChange)
         {
             return new StatBuffInstance()
             {

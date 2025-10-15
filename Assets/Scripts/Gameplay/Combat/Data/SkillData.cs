@@ -5,49 +5,31 @@ using UnityEngine.Serialization;
 namespace Gameplay.Combat.Data
 {
     [Serializable]
-    public struct SkillData
+    public class SkillData
     {
         [Min(1)] 
-        public int BaseDamage;
-        public DamageType DamageType;
+        public int BaseDamage = 1;
+        public DamageType DamageType = DamageType.Physical;
 
         [Space, Min(1)] 
-        public int MinHits;
+        public int MinHits = 1;
         [Min(1)]
-        public int MaxHits;
+        public int MaxHits = 1;
 
         [Range(0,1), Space] 
-        public float BaseCritChance;
-        public bool CanCrit;
+        public float BaseCritChance = 0f;
+        public bool CanCrit = true;
         
         [Range(0,1), Space] 
-        public float BaseHitChance;
-        public bool IsUnavoidable;
-        
-        [Space] 
-        public bool IsPiercing;
-        public bool CanBeBuffed;
-        public bool ConsumeStance;
-        
-        public void OnValidate()
-        {
-            if(BaseDamage < 1)
-                BaseDamage = 1;
-            
-            if(MinHits < 1)
-                MinHits = 1;
-            
-            if(MaxHits < MinHits)
-                MaxHits = MinHits;
-        }
+        public float BaseHitChance = 1;
+        public bool IsUnavoidable = false;
 
-        public void Reset()
-        {
-            CanBeBuffed = true;
-            CanCrit = true;
-            ConsumeStance = true;
-
-            BaseHitChance = 1;
-        }
+        [Range(0, 1f), Space] 
+        public float PenetrationRatio = 0;
+        public bool IsPiercing = false;
+        
+        [Space]
+        public bool CanBeBuffed = true;
+        public bool ConsumeStance = true;
     }
 }

@@ -118,12 +118,7 @@ namespace Gameplay.Combat.Services
             var hitData = hitsStream.Hits[hitIndex];
 
             var damageContext = new DamageContext(attacker, defender, hitData, hitsStream.BaseSkillData);
-
-            hitData.IsCritical = IsCritical(attacker, damageContext);
             
-            _buffsCalculationService.BuffOutgoingDamage(damageContext);
-            _buffsCalculationService.DebuffIncomingDamage(damageContext);
-
             if (Missed(attacker, defender, damageContext))
             {
                 hitData.Missed = true;
@@ -131,6 +126,14 @@ namespace Gameplay.Combat.Services
                 _combatEventsBus.InvokeEvaded(defender);
                 return;
             }
+            
+            hitData.IsCritical = IsCritical(attacker, damageContext);
+            
+            _buffsCalculationService.BuffOutgoingDamage(damageContext);
+            _buffsCalculationService.DebuffIncomingDamage(damageContext);
+
+            _combatFormulaService.ApplyFinalDamageMultiplier(damageContext);
+            _combatFormulaService.ApplyFinalDefenseMultiplier(damageContext);
             
             _combatFormulaService.ReduceDamageByStats(defender, damageContext);
         }
