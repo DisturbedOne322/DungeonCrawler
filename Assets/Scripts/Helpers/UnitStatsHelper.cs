@@ -55,12 +55,6 @@ namespace Helpers
                 case StatType.CriticalDamage:
                     value = bonus.CritDamageBonus.Value;
                     return true;
-                case StatType.AttackMultiplier:
-                    value = bonus.AttackMultiplier.Value;
-                    return true;
-                case StatType.DefenseMultiplier:
-                    value = bonus.DefenseMultiplier.Value;
-                    return true;
                 case StatType.HealthRegen:
                     value = bonus.HealthRegenBonus.Value;
                     return true;

@@ -12,19 +12,19 @@ namespace Gameplay.Combat
             _unitManaData = unitManaData;
         }
 
-        public void SetNewMaxMana(int maxMana)
+        public void IncreaseMaxMana(int delta)
         {
-            maxMana = Mathf.Max(1, maxMana);
-
             var currentMana = _unitManaData.CurrentMana.Value;
             var currentMaxMana = Mathf.Max(1, _unitManaData.MaxMana.Value);
 
+            currentMaxMana += delta;
+            
             var currentManaRatio = (float)currentMana / currentMaxMana;
 
-            _unitManaData.MaxMana.Value = maxMana;
+            _unitManaData.MaxMana.Value = currentMaxMana;
             _unitManaData.CurrentMana.Value = Mathf.Clamp(
-                Mathf.RoundToInt(currentManaRatio * maxMana),
-                0, maxMana
+                Mathf.RoundToInt(currentManaRatio * currentMaxMana),
+                0, currentMaxMana
             );
         }
 

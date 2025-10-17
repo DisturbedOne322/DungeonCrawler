@@ -15,9 +15,9 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _name: Guaranteed crit hit
   _description: +100 crit rate on next hit. Triggered on hit
-  _buffDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
+  _statusEffectDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
   _triggerType: 2
-  _buffReapplyType: 1
+  _statusEffectReapplyType: 1
   _maxStacks: 1
   _buffedStatType: 7
   _increaseAmount: 1

@@ -33,24 +33,6 @@ namespace Gameplay.Combat.Services
         {
             if (damageContext.HitData.IsCritical)
                 ApplyCriticalDamageMultiplier(damageContext);
-
-            ApplyAttackMultiplier(damageContext);
-        }
-
-        public void ApplyFinalDefenseMultiplier(in DamageContext damageContext)
-        {
-            var defenseMultiplier = damageContext.Defender.UnitBonusStatsData.DefenseMultiplier.Value;
-
-            if (!damageContext.SkillData.IsPiercing)
-                defenseMultiplier -= damageContext.SkillData.PenetrationRatio;
-            else
-                defenseMultiplier = 0;
-
-            if (defenseMultiplier < _config.MinDefenseMultiplier)
-                defenseMultiplier = _config.MinDefenseMultiplier;
-
-            var damage = damageContext.HitData.Damage;
-            damageContext.HitData.Damage = Mathf.RoundToInt(damage / defenseMultiplier);
         }
 
         public float GetFinalCritChance(IEntity attacker, in DamageContext damageContext)
@@ -67,9 +49,7 @@ namespace Gameplay.Combat.Services
                                 StatConstants.MaxStatPoints;
             var chanceFromLuck = Mathf.Clamp(luck, 0, StatConstants.MaxStatPoints) * _config.MaxLuckCritInfluence /
                                  StatConstants.MaxStatPoints;
-
-            Debug.Log("cr" + attacker.UnitBonusStatsData.CritChanceBonus.Value);
-
+            
             finalCritChance = damageContext.SkillData.BaseCritChance +
                               attacker.UnitBonusStatsData.CritChanceBonus.Value + chanceFromDex + chanceFromLuck;
             return Mathf.Clamp01(finalCritChance);
@@ -117,13 +97,6 @@ namespace Gameplay.Combat.Services
         private void ApplyCriticalDamageMultiplier(in DamageContext damageContext)
         {
             var damageMultiplier = GetCriticalDamageMultiplier(damageContext);
-            var damage = damageContext.HitData.Damage;
-            damageContext.HitData.Damage = Mathf.RoundToInt(damage * damageMultiplier);
-        }
-
-        private void ApplyAttackMultiplier(in DamageContext damageContext)
-        {
-            var damageMultiplier = damageContext.Attacker.UnitBonusStatsData.AttackMultiplier.Value;
             var damage = damageContext.HitData.Damage;
             damageContext.HitData.Damage = Mathf.RoundToInt(damage * damageMultiplier);
         }

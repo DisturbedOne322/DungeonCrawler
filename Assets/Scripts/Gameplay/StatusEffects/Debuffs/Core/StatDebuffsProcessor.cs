@@ -20,7 +20,6 @@ namespace Gameplay.StatusEffects.Debuffs
         
         public void EnableDebuffsOnTrigger(IGameUnit debuffHolder, IGameUnit debuffTarget, StatusEffectTriggerType triggerType)
         {
-            Debug.Log(triggerType);
             var debuffs = GetUnitDebuffs(debuffHolder);
             for (var i = debuffs.Count - 1; i >= 0; i--)
             {
@@ -29,7 +28,6 @@ namespace Gameplay.StatusEffects.Debuffs
                     continue;
                 
                 AddDebuffTo(debuffTarget, debuff);
-                Debug.Log("debuffed");
             }
         }
 
@@ -78,7 +76,6 @@ namespace Gameplay.StatusEffects.Debuffs
                     }
                 }
 
-            Debug.Log("Here");
             GetActiveDebuffs(debuffTarget).Add(CreateDebuffInstance(debuffData, debuffTarget));
         }
 
@@ -88,16 +85,14 @@ namespace Gameplay.StatusEffects.Debuffs
         private StatDebuffInstance CreateDebuffInstance(StatDebuffData debuffData, IEntity debuffTarget)
         {
             var instance = debuffData.CreateDebuffInstance(debuffTarget);
-            ModifyStat(debuffTarget, instance.StatType, -instance.ValueChange);
+            instance.ValueChange = _unitStatsModificationService.ModifyStat(debuffTarget, instance.StatType, -instance.ValueChange);
             return instance;
         }
 
         private void RemoveDebuffInstance(IEntity debuffTarget, StatDebuffInstance debuffInstance)
         {
             debuffTarget.UnitActiveDebuffsData.ActiveStatDebuffs.Remove(debuffInstance);
-            ModifyStat(debuffTarget, debuffInstance.StatType, debuffInstance.ValueChange);
+            _unitStatsModificationService.ModifyStat(debuffTarget, debuffInstance.StatType, -debuffInstance.ValueChange);
         }
-        
-        private void ModifyStat(IEntity unit, StatType statType, float delta) => _unitStatsModificationService.ModifyStat(unit, statType, delta);
     }
 }

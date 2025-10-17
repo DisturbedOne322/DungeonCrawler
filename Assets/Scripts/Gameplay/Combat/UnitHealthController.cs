@@ -6,25 +6,28 @@ namespace Gameplay.Combat
     public class UnitHealthController
     {
         private readonly UnitHealthData _unitHealthData;
-
+        
         public UnitHealthController(UnitHealthData unitHealthData)
         {
             _unitHealthData = unitHealthData;
         }
 
-        public void SetNewMaxHealth(int maxHealth)
+        public void IncreaseMaxHealth(int delta)
         {
-            maxHealth = Mathf.Max(1, maxHealth);
-
+            var oldMaxHealth = Mathf.Max(1, _unitHealthData.MaxHealth.Value);
             var currentHealth = _unitHealthData.CurrentHealth.Value;
-            var currentMaxHealth = Mathf.Max(1, _unitHealthData.MaxHealth.Value);
+            
+            var currentHealthRatio = (float)currentHealth / oldMaxHealth;
 
-            var currentHealthRatio = (float)currentHealth / currentMaxHealth;
-
-            _unitHealthData.MaxHealth.Value = maxHealth;
+            var newMaxHealth = oldMaxHealth + delta;
+            
+            if (newMaxHealth < 0) 
+                newMaxHealth = 1;
+            
+            _unitHealthData.MaxHealth.Value = newMaxHealth;
             _unitHealthData.CurrentHealth.Value = Mathf.Clamp(
-                Mathf.RoundToInt(currentHealthRatio * maxHealth),
-                0, maxHealth
+                Mathf.RoundToInt(currentHealthRatio * newMaxHealth),
+                1, newMaxHealth
             );
         }
 

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Data;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.Core;
 using UniRx;
@@ -29,19 +28,14 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             IEntity buffTarget)
         {
             var instance = buffData.CreateBuffInstance(buffTarget);
-            ModifyStat(buffTarget, instance.StatType, instance.ValueChange);
+            instance.ValueChange = _unitStatsModificationService.ModifyStat(buffTarget, instance.StatType, instance.ValueChange);
             return instance;
         }
 
         protected override void RemoveBuffInstance(IEntity buffTarget, StatBuffInstance statBuffInstance)
         {
             buffTarget.UnitActiveBuffsData.ActiveStatBuffs.Remove(statBuffInstance);
-            ModifyStat(buffTarget, statBuffInstance.StatType, -statBuffInstance.ValueChange);
-        }
-
-        private void ModifyStat(IEntity unit, StatType statType, float delta)
-        {
-            _unitStatsModificationService.ModifyStat(unit, statType, delta);
+            _unitStatsModificationService.ModifyStat(buffTarget, statBuffInstance.StatType, -statBuffInstance.ValueChange);
         }
     }
 }

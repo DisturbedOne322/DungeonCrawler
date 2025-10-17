@@ -17,23 +17,24 @@ MonoBehaviour:
   _description: Multi-hit strength and dexterity scaling attack with 2-8 hits.
   _skillAnimationData: {fileID: 11400000, guid: a10b9d85057632a4c8c2fe08fb958867, type: 2}
   _skillData:
-    BaseDamage: 5
+    BaseDamage: 1
     DamageType: 0
-    MinHits: 4
-    MaxHits: 7
+    MinHits: 1
+    MaxHits: 1
     BaseCritChance: 0.5
-    CanCrit: 1
+    CanCrit: 0
     BaseHitChance: 1
     IsUnavoidable: 0
+    PenetrationRatio: 0
     IsPiercing: 0
     CanBeBuffed: 1
     ConsumeStance: 1
   _costs: []
   _scalingsList:
   - StatType: 3
-    Scaling: 0.5
+    Scaling: 0.1
   - StatType: 4
-    Scaling: 0.5
+    Scaling: 0.1
   references:
     version: 2
     RefIds: []

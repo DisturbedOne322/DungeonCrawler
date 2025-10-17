@@ -75,7 +75,6 @@ namespace Gameplay.StatusEffects.Debuffs
 
         private void ProcessCombatStart(IGameUnit enemy)
         {
-            Debug.Log(1);
             _combatDebuffsService.EnableDebuffsOnTrigger(_playerUnit, enemy, StatusEffectTriggerType.CombatStart);
             _combatDebuffsService.EnableDebuffsOnTrigger(enemy, _playerUnit, StatusEffectTriggerType.CombatStart);
         }

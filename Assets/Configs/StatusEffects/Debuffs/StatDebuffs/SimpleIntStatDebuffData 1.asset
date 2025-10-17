@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47db080d8771443b9c1601c95c51220c, type: 3}
-  m_Name: SimpleStatBuff
+  m_Script: {fileID: 11500000, guid: 79b38f349fde4306a78a320024675d1a, type: 3}
+  m_Name: SimpleIntStatDebuffData 1
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _name: Test Strength Mega Buff
-  _description: +100 Strength
-  _statusEffectDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
-  _triggerType: 2
+  _name: Test Stat Debuff
+  _description: 
+  _statusEffectDurationData: {fileID: 11400000, guid: a77771e8592387a499b924362105b355, type: 2}
+  _triggerType: 0
   _statusEffectReapplyType: 32
   _maxStacks: 1
-  _buffedStatType: 3
-  _increaseAmount: 100
+  _debuffedStatType: 0
+  _debuffValue: 50

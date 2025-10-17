@@ -19,9 +19,8 @@ namespace Gameplay.Experience
         {
             var config = _configProvider.GetConfig<PlayerLevelUpBuffsConfig>();
             var healthBonus = config.HealthBonus;
-
-            var maxHp = _player.UnitHealthData.MaxHealth.Value;
-            _player.UnitHealthController.SetNewMaxHealth(maxHp + healthBonus);
+            
+            _player.UnitHealthController.IncreaseMaxHealth(healthBonus);
         }
     }
 }

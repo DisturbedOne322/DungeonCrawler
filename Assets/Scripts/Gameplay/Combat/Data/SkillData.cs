@@ -4,21 +4,21 @@ using UnityEngine;
 namespace Gameplay.Combat.Data
 {
     [Serializable]
-    public class SkillData
+    public struct SkillData
     {
-        [Min(1)] public int BaseDamage = 1;
+        [Min(1)] public int BaseDamage;
 
-        public DamageType DamageType = DamageType.Physical;
+        public DamageType DamageType;
 
-        [Space] [Min(1)] public int MinHits = 1;
+        [Space] [Min(1)] public int MinHits;
 
-        [Min(1)] public int MaxHits = 1;
+        [Min(1)] public int MaxHits;
 
         [Range(0, 1)] [Space] public float BaseCritChance;
 
-        public bool CanCrit = true;
+        public bool CanCrit;
 
-        [Range(0, 1)] [Space] public float BaseHitChance = 1;
+        [Range(0, 1)] [Space] public float BaseHitChance;
 
         public bool IsUnavoidable;
 
@@ -26,8 +26,8 @@ namespace Gameplay.Combat.Data
 
         public bool IsPiercing;
 
-        [Space] public bool CanBeBuffed = true;
+        [Space] public bool CanBeBuffed;
 
-        public bool ConsumeStance = true;
+        public bool ConsumeStance;
     }
 }

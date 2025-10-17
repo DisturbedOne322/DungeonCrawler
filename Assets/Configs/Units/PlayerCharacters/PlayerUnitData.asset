@@ -15,8 +15,8 @@ MonoBehaviour:
   _name: Player
   _prefab: {fileID: 454397997071619803, guid: 9648656f8a2a12c48bf2fd0d35375c2a, type: 3}
   _maxHp: 100
-  _maxMp: 0
-  _unitBaseStats:
+  _maxMp: 50
+  _unitStartingStats:
     _constitution: 10
     _strength: 10
     _dexterity: 10

@@ -130,7 +130,6 @@ namespace Gameplay.Combat.Services
             _buffsCalculationService.DebuffIncomingDamage(damageContext);
 
             _combatFormulaService.ApplyFinalDamageMultiplier(damageContext);
-            _combatFormulaService.ApplyFinalDefenseMultiplier(damageContext);
 
             _combatFormulaService.ReduceDamageByStats(defender, damageContext);
         }

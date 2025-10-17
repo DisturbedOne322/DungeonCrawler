@@ -20,4 +20,4 @@ MonoBehaviour:
   _statusEffectReapplyType: 32
   _maxStacks: 1
   _debuffedStatType: 0
-  _debuffValue: 50
+  _debuffValue: 150
