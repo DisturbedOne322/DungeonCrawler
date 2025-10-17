@@ -12,11 +12,10 @@ namespace Bootstrap
         {
             _stateMachine = stateMachine;
         }
-        
+
         public void Initialize()
         {
             _stateMachine.GoToState<MainMenuAppState>().Forget();
-            
         }
     }
 }

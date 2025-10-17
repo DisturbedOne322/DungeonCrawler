@@ -4,6 +4,5 @@ namespace UI.Stats
 {
     public class StatDistributionMenuUpdater : MenuItemsUpdater
     {
-        
     }
 }

@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using Data;
-using Gameplay.Combat;
 using Gameplay.Combat.Services;
 using Gameplay.Enemies;
 using Gameplay.Units;
@@ -12,13 +11,13 @@ namespace Gameplay.Dungeon.Rooms
     public class CombatRoom : StopRoom
     {
         [SerializeField] private Transform _enemySpawnPoint;
-        
+
         private CombatSequenceController _combatSequenceController;
-        private EnemyFactory _enemyFactory;
-        
-        public override RoomType RoomType => RoomType.Combat;
 
         private EnemyUnit _enemy;
+        private EnemyFactory _enemyFactory;
+
+        public override RoomType RoomType => RoomType.Combat;
 
         [Inject]
         private void Construct(CombatSequenceController combatSequenceController, EnemyFactory enemyFactory)
@@ -26,11 +25,11 @@ namespace Gameplay.Dungeon.Rooms
             _combatSequenceController = combatSequenceController;
             _enemyFactory = enemyFactory;
         }
-        
+
         public override void SetupRoom()
         {
             _enemy = _enemyFactory.CreateEnemy();
-            
+
             _enemy.transform.SetParent(_enemySpawnPoint, false);
             _enemy.transform.localPosition = Vector3.zero;
         }

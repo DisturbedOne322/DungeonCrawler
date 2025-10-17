@@ -8,11 +8,11 @@ namespace Gameplay.Player
 {
     public class PlayerMoveAnimator : MonoBehaviour
     {
-        private Sequence _sequence;
         private bool _firstAppend;
 
         private Vector3 _prevPos;
-        
+        private Sequence _sequence;
+
         public void CreateSequence()
         {
             _sequence?.Kill();
@@ -24,13 +24,13 @@ namespace Gameplay.Player
         {
             if (MoveHorizontally(movementData, out var moveTween))
                 _sequence.Append(moveTween);
-            
+
             if (_firstAppend && isLast)
             {
                 _sequence.Append(Move(movementData, callback, Ease.InOutQuad));
                 return;
             }
-            
+
             if (_firstAppend)
             {
                 _sequence.Append(Move(movementData, callback, Ease.InQuad));
@@ -43,27 +43,30 @@ namespace Gameplay.Player
                 _sequence.Append(Move(movementData, callback, Ease.OutQuad));
                 return;
             }
-            
+
             _sequence.Append(Move(movementData, callback, Ease.Linear));
         }
 
-        public async UniTask ExecuteSequence() => await _sequence.Play().AsyncWaitForCompletion().AsUniTask();
+        public async UniTask ExecuteSequence()
+        {
+            await _sequence.Play().AsyncWaitForCompletion().AsUniTask();
+        }
 
         private bool MoveHorizontally(MovementData movementData, out Tween tween)
         {
             var currentPos = transform.position;
             var targetPos = movementData.TargetPos;
-            
+
             if (!Mathf.Approximately(currentPos.x, targetPos.x))
             {
                 var horizontalMovePos = new Vector3(targetPos.x, currentPos.y, currentPos.z);
 
-                var moveData = new MovementData()
+                var moveData = new MovementData
                 {
                     TargetPos = horizontalMovePos,
-                    MoveTimePerMeter = movementData.MoveTimePerMeter,
+                    MoveTimePerMeter = movementData.MoveTimePerMeter
                 };
-                
+
                 tween = transform.DOMove(horizontalMovePos, GetMoveTime(moveData)).SetEase(Ease.InOutQuad);
 
                 return true;
@@ -72,7 +75,7 @@ namespace Gameplay.Player
             tween = null;
             return false;
         }
-        
+
         private Tween Move(MovementData data, Action callback, Ease ease)
         {
             Tween tween = transform.DOMove(data.TargetPos, GetMoveTime(data)).SetEase(ease).OnStart(callback.Invoke);
@@ -83,10 +86,10 @@ namespace Gameplay.Player
         {
             if (_firstAppend)
                 _prevPos = transform.position;
-            
-            float moveTime = Vector3.Distance(_prevPos, data.TargetPos) * data.MoveTimePerMeter;
+
+            var moveTime = Vector3.Distance(_prevPos, data.TargetPos) * data.MoveTimePerMeter;
             _prevPos = data.TargetPos;
-            
+
             return moveTime;
         }
     }

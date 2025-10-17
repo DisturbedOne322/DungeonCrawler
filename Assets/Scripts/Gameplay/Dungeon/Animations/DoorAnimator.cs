@@ -18,7 +18,7 @@ namespace Gameplay.Dungeon.Animations
 
         public void ResetDoors()
         {
-            foreach (var pivot in _doorPivots) 
+            foreach (var pivot in _doorPivots)
                 pivot.transform.rotation = Quaternion.identity;
         }
     }

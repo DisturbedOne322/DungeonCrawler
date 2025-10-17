@@ -12,13 +12,14 @@ namespace Bootstrap
         private readonly PlayerInitializer _playerInitializer;
         private readonly PlayerUnit _playerUnit;
 
-        public GameplayBootstrapper(GameSequenceController gameSequenceController, PlayerInitializer playerInitializer, PlayerUnit playerUnit)
+        public GameplayBootstrapper(GameSequenceController gameSequenceController, PlayerInitializer playerInitializer,
+            PlayerUnit playerUnit)
         {
             _gameSequenceController = gameSequenceController;
             _playerInitializer = playerInitializer;
             _playerUnit = playerUnit;
         }
-        
+
         public void Initialize()
         {
             _playerInitializer.InitializePlayer(_playerUnit);

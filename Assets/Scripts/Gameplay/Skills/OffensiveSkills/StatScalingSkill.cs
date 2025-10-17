@@ -21,16 +21,16 @@ namespace Gameplay.Skills.OffensiveSkills
             foreach (var scalingData in _scalingsList)
             {
                 var stat = scalingData.StatType;
-                float scaling = scalingData.Scaling;
-                
+                var scaling = scalingData.Scaling;
+
                 var statValue = UnitStatsHelper.GetStatValue(entity, stat);
                 additionalPower += statValue * scaling;
             }
-            
-            int finalAttackPower = skillData.BaseDamage + Mathf.RoundToInt(additionalPower);
-        
+
+            var finalAttackPower = skillData.BaseDamage + Mathf.RoundToInt(additionalPower);
+
             skillData.BaseDamage = finalAttackPower;
-            
+
             return skillData;
         }
     }

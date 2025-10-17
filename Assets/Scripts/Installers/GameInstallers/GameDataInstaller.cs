@@ -1,5 +1,4 @@
 using Data;
-using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Zenject;
 

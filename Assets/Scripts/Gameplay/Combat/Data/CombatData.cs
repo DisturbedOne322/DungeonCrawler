@@ -4,41 +4,36 @@ namespace Gameplay.Combat.Data
 {
     public class CombatData
     {
-        private PlayerUnit _player;
-        private EnemyUnit _enemy;
-
-        private GameUnit _activeUnit;
-        private GameUnit _otherUnit;
-        
-        private int _turnCount = -1;
-        public int TurnCount => _turnCount;
-        
-        public PlayerUnit Player => _player;
-        public EnemyUnit Enemy => _enemy;
-        
-        public GameUnit ActiveUnit => _activeUnit;
-        public GameUnit OtherUnit => _otherUnit;
-        
         public CombatData(PlayerUnit player)
         {
-            _player = player;
+            Player = player;
         }
+
+        public int TurnCount { get; private set; } = -1;
+
+        public PlayerUnit Player { get; }
+
+        public EnemyUnit Enemy { get; private set; }
+
+        public GameUnit ActiveUnit { get; private set; }
+
+        public GameUnit OtherUnit { get; private set; }
 
         public void ResetCombat(EnemyUnit enemy)
         {
-            _turnCount = -1;
-            
-            _enemy = enemy;
-            _otherUnit = enemy;
-            
-            _activeUnit = _player;
+            TurnCount = -1;
+
+            Enemy = enemy;
+            OtherUnit = enemy;
+
+            ActiveUnit = Player;
         }
-        
+
         public void UpdateCurrentTurnUnit()
         {
-            _turnCount++;
-            _activeUnit = _turnCount % 2 == 0 ? _player : _enemy;
-            _otherUnit = _turnCount % 2 != 0 ? _player : _enemy;
+            TurnCount++;
+            ActiveUnit = TurnCount % 2 == 0 ? Player : Enemy;
+            OtherUnit = TurnCount % 2 != 0 ? Player : Enemy;
         }
     }
 }

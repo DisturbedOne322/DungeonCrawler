@@ -9,15 +9,11 @@ namespace StateMachine.Core
         where TState : IState<TMachine>
         where TMachine : StateMachine<TState, TMachine>
     {
+        public readonly Subject<TState> OnStateChanged = new();
         protected readonly Dictionary<Type, TState> States = new();
-        
+
         private TState _currentState;
         private TState _previousState;
-
-        public readonly Subject<TState> OnStateChanged = new();
-        
-        public TState CurrentState => _currentState;
-        public TState PreviousState => _previousState;
 
         public StateMachine(IEnumerable<TState> states)
         {
@@ -28,8 +24,13 @@ namespace StateMachine.Core
             }
         }
 
+        public TState CurrentState => _currentState;
+        public TState PreviousState => _previousState;
+
         public async UniTask GoToState<T>() where T : TState
-            => await ChangeState(typeof(T));
+        {
+            await ChangeState(typeof(T));
+        }
 
         public async UniTask GoToPrevState()
         {
@@ -56,7 +57,7 @@ namespace StateMachine.Core
 
             _currentState = States[type];
             await _currentState.EnterState();
-            
+
             OnStateChanged.OnNext(_currentState);
         }
     }

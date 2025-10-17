@@ -1,22 +1,18 @@
-using System;
-using Gameplay.Combat.Data;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using UniRx;
-using UnityEngine;
 
 namespace Gameplay.Equipment
 {
     public class UnitEquipmentData
     {
-        private BaseWeapon _weapon;
-        private BaseArmor _armor;
+        public readonly Subject<BaseArmor> OnArmorEquipped = new();
+        public readonly Subject<BaseArmor> OnArmorRemoved = new();
 
         public readonly Subject<BaseWeapon> OnWeaponEquipped = new();
         public readonly Subject<BaseWeapon> OnWeaponRemoved = new();
-        
-        public readonly Subject<BaseArmor> OnArmorEquipped = new();
-        public readonly Subject<BaseArmor> OnArmorRemoved = new();
+        private BaseArmor _armor;
+        private BaseWeapon _weapon;
 
         public bool TryGetEquippedWeapon(out BaseWeapon weapon)
         {
@@ -29,11 +25,11 @@ namespace Gameplay.Equipment
             armor = _armor;
             return _armor;
         }
-        
+
         public void EquipWeapon(BaseWeapon weapon)
         {
             TryRemoveWeapon();
-            
+
             _weapon = weapon;
             OnWeaponEquipped?.OnNext(_weapon);
         }
@@ -41,24 +37,24 @@ namespace Gameplay.Equipment
         public void EquipArmor(BaseArmor armor)
         {
             TryRemoveArmor();
-            
+
             _armor = armor;
             OnArmorEquipped?.OnNext(_armor);
         }
 
         private void TryRemoveWeapon()
         {
-            if(!_weapon)
+            if (!_weapon)
                 return;
-            
+
             OnWeaponRemoved?.OnNext(_weapon);
         }
-        
+
         private void TryRemoveArmor()
         {
-            if(!_armor)
+            if (!_armor)
                 return;
-            
+
             OnArmorRemoved?.OnNext(_armor);
         }
     }

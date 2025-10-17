@@ -1,19 +1,22 @@
 using System.Collections.Generic;
-using Gameplay.Buffs.DefensiveCore;
-using Gameplay.Buffs.OffensiveCore;
-using Gameplay.Buffs.StatBuffsCore;
+using Gameplay.StatusEffects.Buffs.DefensiveCore;
+using Gameplay.StatusEffects.Buffs.OffensiveCore;
+using Gameplay.StatusEffects.Buffs.StatBuffsCore;
+using Gameplay.StatusEffects.Debuffs;
 using UnityEngine;
 
 namespace Gameplay.Equipment
 {
     public abstract class BaseEquipmentPiece : BaseGameItem
     {
-        [SerializeField, Space] private List<OffensiveBuffData> _offensiveBuffs;
+        [SerializeField] [Space] private List<OffensiveStatusEffectData> _offensiveBuffs;
         [SerializeField] private List<DefensiveBuffData> _defensiveBuffs;
         [SerializeField] private List<StatBuffData> _statBuffs;
-        
-        public List<OffensiveBuffData> OffensiveBuffs => _offensiveBuffs;
+        [SerializeField] private List<StatDebuffData> _statDebuffs;
+
+        public List<OffensiveStatusEffectData> OffensiveBuffs => _offensiveBuffs;
         public List<DefensiveBuffData> DefensiveBuffs => _defensiveBuffs;
         public List<StatBuffData> StatBuffs => _statBuffs;
+        public List<StatDebuffData> StatDebuffs => _statDebuffs;
     }
 }

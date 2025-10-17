@@ -5,7 +5,6 @@ using Data;
 using Gameplay.Configs;
 using Gameplay.Dungeon.Animations;
 using Gameplay.Dungeon.Data;
-using Gameplay.Services;
 using UnityEngine;
 using Zenject;
 
@@ -16,15 +15,15 @@ namespace Gameplay.Dungeon.Rooms
     {
         [SerializeField] private DoorAnimator _doorAnimator;
         [SerializeField] private List<DecisionDoor> _doors;
+        private BaseConfigProvider<GameplayConfig> _configProvider;
 
         private DungeonBranchingController _dungeonBranchingController;
-        private BaseConfigProvider<GameplayConfig> _configProvider;
         private DungeonBranchingSelector _dungeonBranchingSelector;
 
         public override RoomType RoomType => RoomType.Decision;
-        
+
         [Inject]
-        private void Construct(DungeonBranchingController dungeonBranchingController, 
+        private void Construct(DungeonBranchingController dungeonBranchingController,
             BaseConfigProvider<GameplayConfig> configProvider,
             DungeonBranchingSelector dungeonBranchingSelector)
         {
@@ -41,19 +40,19 @@ namespace Gameplay.Dungeon.Rooms
         public override void SetupRoom()
         {
             var doorTypes = _dungeonBranchingSelector.RoomsForSelection;
-            for (int i = 0; i < doorTypes.Count; i++)
+            for (var i = 0; i < doorTypes.Count; i++)
             {
                 var door = _doors[i];
                 var config = _configProvider.GetConfig<DungeonRoomsDatabase>();
-                
-                if(config.TryGetRoomData(doorTypes[i], out var data)) 
+
+                if (config.TryGetRoomData(doorTypes[i], out var data))
                     door.SetDoorIcon(data.Icon);
-            } 
+            }
         }
 
         public override async UniTask ClearRoom()
         {
-            int doorIndex =  await _dungeonBranchingController.WaitForDecision();
+            var doorIndex = await _dungeonBranchingController.WaitForDecision();
             await _doorAnimator.PlayOpenAnimation(doorIndex);
         }
     }

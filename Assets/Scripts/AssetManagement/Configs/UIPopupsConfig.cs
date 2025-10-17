@@ -10,11 +10,11 @@ namespace AssetManagement.Configs
     {
         [SerializeField] private List<BasePopup> _prefabs;
 
-        private Dictionary<Type, BasePopup> _popupsDict = new ();
+        private readonly Dictionary<Type, BasePopup> _popupsDict = new();
 
         private void OnEnable()
         {
-            foreach (var prefab in _prefabs) 
+            foreach (var prefab in _prefabs)
                 _popupsDict.Add(prefab.GetType(), prefab);
         }
 
@@ -25,7 +25,7 @@ namespace AssetManagement.Configs
                 result = popup as T;
                 return true;
             }
-            
+
             throw new Exception("Popup of type " + typeof(T).Name + " is not registered");
         }
     }

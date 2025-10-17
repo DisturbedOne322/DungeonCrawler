@@ -4,6 +4,5 @@ namespace UI.Gameplay
 {
     public class ActiveStancesDisplay : MonoBehaviour
     {
-        
     }
 }

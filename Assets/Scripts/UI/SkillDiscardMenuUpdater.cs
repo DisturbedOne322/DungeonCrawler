@@ -1,19 +1,16 @@
-using StateMachine.BattleMenu;
 using UI.BattleMenu;
 
 namespace UI
 {
     public class SkillDiscardMenuUpdater : MenuItemsUpdater
     {
-        private bool _newSkillSelected = false;
-        private int _prevSelectedIndex = 0;
+        private bool _newSkillSelected;
+        private int _prevSelectedIndex;
+        public MenuItemData NewSkillData { get; private set; }
 
-        private MenuItemData _newSkillData;
-        public MenuItemData NewSkillData => _newSkillData;
-        
         public void SetNewSkill(MenuItemData newSkillData)
         {
-            _newSkillData = newSkillData;
+            NewSkillData = newSkillData;
             _newSkillSelected = false;
             SelectedIndex = 0;
             _prevSelectedIndex = SelectedIndex;
@@ -23,10 +20,10 @@ namespace UI
         {
             if (_newSkillSelected)
             {
-                _newSkillData.OnSelected?.Invoke();
+                NewSkillData.OnSelected?.Invoke();
                 return;
             }
-            
+
             MenuItems[SelectedIndex].OnSelected?.Invoke();
         }
 
@@ -64,7 +61,7 @@ namespace UI
         {
             SelectedIndex = _prevSelectedIndex;
             _newSkillSelected = false;
-            _newSkillData.IsHighlighted.Value = false;
+            NewSkillData.IsHighlighted.Value = false;
             ResetSelection();
         }
 
@@ -75,7 +72,7 @@ namespace UI
 
             SelectedIndex = -1;
             ApplyHighlight();
-            _newSkillData.IsHighlighted.Value = true;
+            NewSkillData.IsHighlighted.Value = true;
         }
     }
 }

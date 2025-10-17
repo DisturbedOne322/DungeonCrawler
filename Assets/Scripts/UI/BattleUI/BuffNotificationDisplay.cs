@@ -1,5 +1,3 @@
-using Constants;
-using Gameplay.Combat;
 using Gameplay.Combat.Services;
 using Gameplay.Facades;
 using Gameplay.Units;
@@ -20,32 +18,22 @@ namespace UI.BattleUI
         [SerializeField] private TextDisplay _textDisplay;
 
         private CombatEventsBus _combatEventsBus;
-        private PlayerUnit _playerUnit;
-        
-        private CompositeDisposable _unitSubscriptions;
         private CompositeDisposable _combatSubscriptions;
-        
-        [Inject]
-        private void Construct(CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
-        {
-            _combatEventsBus = combatEventsBus;
-            _playerUnit = playerUnit;
-        }
-        
+        private PlayerUnit _playerUnit;
+
+        private CompositeDisposable _unitSubscriptions;
+
         private void Awake()
         {
-            _combatSubscriptions = new();
-            _combatSubscriptions.Add(_combatEventsBus.OnCombatStarted.Subscribe((enemy) =>
+            _combatSubscriptions = new CompositeDisposable();
+            _combatSubscriptions.Add(_combatEventsBus.OnCombatStarted.Subscribe(enemy =>
             {
-                _unitSubscriptions = new();
+                _unitSubscriptions = new CompositeDisposable();
                 SubscribeToUnit(_playerUnit);
                 SubscribeToUnit(enemy);
             }));
-            
-            _combatSubscriptions.Add(_combatEventsBus.OnCombatEnded.Subscribe(_ =>
-            {
-                _unitSubscriptions.Dispose();
-            }));
+
+            _combatSubscriptions.Add(_combatEventsBus.OnCombatEnded.Subscribe(_ => { _unitSubscriptions.Dispose(); }));
         }
 
         private void OnDestroy()
@@ -53,9 +41,16 @@ namespace UI.BattleUI
             _combatSubscriptions.Dispose();
         }
 
+        [Inject]
+        private void Construct(CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
+        {
+            _combatEventsBus = combatEventsBus;
+            _playerUnit = playerUnit;
+        }
+
         private void SubscribeToUnit(IGameUnit gameUnit)
         {
-            string unitName = gameUnit.EntityName;
+            var unitName = gameUnit.EntityName;
             var buffsData = gameUnit.UnitBuffsData;
 
             /*_unitSubscriptions.Add(

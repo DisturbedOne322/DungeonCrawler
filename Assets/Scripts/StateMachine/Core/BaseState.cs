@@ -17,6 +17,8 @@ namespace StateMachine.Core
         public abstract UniTask ExitState();
 
         protected UniTask GoToState<T>() where T : TState
-            => StateMachine.GoToState<T>();
+        {
+            return StateMachine.GoToState<T>();
+        }
     }
 }

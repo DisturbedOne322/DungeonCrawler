@@ -6,7 +6,7 @@ namespace Gameplay.Units
     public class EnemyUnitData : UnitData
     {
         [SerializeField] private int _experienceBonus;
-        
+
         public int ExperienceBonus => _experienceBonus;
     }
 }

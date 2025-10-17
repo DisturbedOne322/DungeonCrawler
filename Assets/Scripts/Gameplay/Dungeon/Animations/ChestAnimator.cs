@@ -8,13 +8,16 @@ namespace Gameplay.Dungeon.Animations
     {
         [SerializeField] private Transform _pivot;
         [SerializeField] private float _animTime;
-        
+
         public async UniTask PlayOpenAnimation()
         {
             _pivot.transform.DORotate(new Vector3(145, 0, 0), _animTime);
             await UniTask.WaitForSeconds(_animTime);
         }
-        
-        public void ResetChest() => _pivot.transform.rotation = Quaternion.identity;
+
+        public void ResetChest()
+        {
+            _pivot.transform.rotation = Quaternion.identity;
+        }
     }
 }

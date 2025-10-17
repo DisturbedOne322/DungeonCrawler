@@ -13,18 +13,18 @@ namespace UI
         [SerializeField] private RectTransform _area;
         [SerializeField] private VerticalLayoutGroup _layoutGroup;
         [SerializeField] private float _visibilityCheckOffset = 5;
+        private readonly Vector3[] _itemCorners = new Vector3[4];
+
+        private readonly Vector3[] _parentCorners = new Vector3[4];
+        private float _areaHeight;
 
         private RectTransform _content;
-        
+        private float _itemHeight;
+
         private List<BaseMenuItemView> _menuItems;
         private MenuItemsUpdater _menuItemsUpdater;
 
-        private readonly Vector3[] _parentCorners = new Vector3[4];
-        private readonly Vector3[] _itemCorners = new Vector3[4];
-
         private float _parentYPos;
-        private float _areaHeight;
-        private float _itemHeight;
 
         private int _prevItemIndex;
 
@@ -33,7 +33,7 @@ namespace UI
             yield return null;
 
             _content = _layoutGroup.GetComponent<RectTransform>();
-            
+
             _areaHeight = _area.rect.height;
             _area.GetWorldCorners(_parentCorners);
         }
@@ -48,9 +48,9 @@ namespace UI
 
         private void UpdateView()
         {
-            if(!_menuItemsUpdater.IsSelectionValid())
+            if (!_menuItemsUpdater.IsSelectionValid())
                 return;
-            
+
             var activeItemId = _menuItemsUpdater.GetSelectedIndex();
             var item = _menuItems[activeItemId];
 
@@ -58,7 +58,7 @@ namespace UI
             {
                 if (_itemHeight == 0)
                     _itemHeight = ((RectTransform)item.transform).rect.height;
-                
+
                 var localPos = _area.InverseTransformPoint(item.transform.position);
 
                 _parentYPos = GetTargetPos(activeItemId, localPos.y);
@@ -66,7 +66,7 @@ namespace UI
                 _content.DOKill();
                 _content.DOAnchorPosY(_parentYPos, 0.25f).SetEase(Ease.OutCubic);
             }
-            
+
             _prevItemIndex = activeItemId;
         }
 
@@ -87,44 +87,47 @@ namespace UI
 
         private float GetTargetPos(int currentIndex, float localY)
         {
-            int firstIndex = _menuItemsUpdater.GetFirstSelectableIndex();
-            int lastIndex = _menuItemsUpdater.GetLastSelectableIndex();
-            
+            var firstIndex = _menuItemsUpdater.GetFirstSelectableIndex();
+            var lastIndex = _menuItemsUpdater.GetLastSelectableIndex();
+
             if (currentIndex == firstIndex && _prevItemIndex == lastIndex)
                 return 0;
 
             if (currentIndex == lastIndex && _prevItemIndex == firstIndex)
             {
-                int inactiveLastItems = _menuItems.Count - lastIndex - 1;
-                
+                var inactiveLastItems = _menuItems.Count - lastIndex - 1;
+
                 float offset = 0;
-                while (offset < _areaHeight) 
+                while (offset < _areaHeight)
                     offset += GetStep();
-                
-                if(offset != 0)
+
+                if (offset != 0)
                     offset -= GetStep();
-                
+
                 return _content.rect.height - offset - GetStep() * inactiveLastItems;
             }
 
-            int indexIncrease = Mathf.Abs(currentIndex - _prevItemIndex);
+            var indexIncrease = Mathf.Abs(currentIndex - _prevItemIndex);
             if (indexIncrease != 1)
             {
                 if (currentIndex > _prevItemIndex)
                     return _parentYPos + indexIncrease * GetStep();
-                
+
                 return _parentYPos - indexIncrease * GetStep();
             }
-            
+
             if (localY - _itemHeight < -_areaHeight / 2f)
                 _parentYPos += GetStep();
-            
+
             if (localY + _itemHeight > _areaHeight / 2f)
                 _parentYPos -= GetStep();
-            
+
             return _parentYPos;
         }
-        
-        private float GetStep() => _itemHeight + _layoutGroup.spacing;
+
+        private float GetStep()
+        {
+            return _itemHeight + _layoutGroup.spacing;
+        }
     }
 }

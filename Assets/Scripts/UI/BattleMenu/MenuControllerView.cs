@@ -1,24 +1,34 @@
 using System.Collections.Generic;
 using StateMachine.BattleMenu;
+using UniRx;
 using UnityEngine;
 using Zenject;
-using UniRx;
 
 namespace UI.BattleMenu
 {
     public class MenuControllerView : MonoBehaviour
     {
         [SerializeField] private RectTransform _pagesParent;
-        
-        private BattleMenuStateMachine _stateMachine;
-        private MenuItemViewFactory _menuFactory;
-        
-        private CompositeDisposable _disposables;
+
+        private readonly Dictionary<BattleMenuState, MenuPageView> _pagePool = new();
 
         private MenuPageView _currentPage;
-        
-        private Dictionary<BattleMenuState, MenuPageView> _pagePool = new();
-        
+
+        private CompositeDisposable _disposables;
+        private MenuItemViewFactory _menuFactory;
+
+        private BattleMenuStateMachine _stateMachine;
+
+        private void Awake()
+        {
+            Subscribe();
+        }
+
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
+
         [Inject]
         private void Construct(BattleMenuStateMachine stateMachine, MenuItemViewFactory menuFactory)
         {
@@ -26,21 +36,11 @@ namespace UI.BattleMenu
             _menuFactory = menuFactory;
         }
 
-        private void Awake()
-        {
-            Subscribe();
-        }
-
         private void Subscribe()
         {
-            _disposables = new();
+            _disposables = new CompositeDisposable();
             _disposables.Add(_stateMachine.OnStateChanged.Subscribe(OpenMenu));
             _disposables.Add(_stateMachine.ActionSelected.Subscribe(_ => DestroyAllMenus()));
-        }
-
-        private void OnDestroy()
-        {
-            _disposables.Dispose();
         }
 
         private void OpenMenu(BattleMenuState state)
@@ -53,7 +53,7 @@ namespace UI.BattleMenu
                 _currentPage.gameObject.SetActive(true);
                 return;
             }
-            
+
             CreateMenu(state);
         }
 
@@ -64,21 +64,21 @@ namespace UI.BattleMenu
             _currentPage = _menuFactory.CreatePage();
             _currentPage.transform.SetParent(_pagesParent, false);
             _currentPage.SetItems(_menuFactory.CreateViewsForData(updater.MenuItems), updater);
-            
+
             _pagePool.TryAdd(state, _currentPage);
         }
 
         private void CloseCurrentMenu()
         {
-            if (_currentPage) 
+            if (_currentPage)
                 _currentPage.gameObject.SetActive(false);
         }
 
         private void DestroyAllMenus()
         {
-            foreach (var view in _pagePool.Values) 
+            foreach (var view in _pagePool.Values)
                 Destroy(view.gameObject);
-            
+
             _currentPage = null;
             _pagePool.Clear();
         }

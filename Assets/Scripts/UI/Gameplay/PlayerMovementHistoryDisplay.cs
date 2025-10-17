@@ -4,7 +4,6 @@ using Data;
 using DG.Tweening;
 using Gameplay.Configs;
 using Gameplay.Dungeon.Data;
-using Gameplay.Services;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -19,9 +18,9 @@ namespace UI.Gameplay
         [SerializeField] private float _scaleUpDuration = 0.2f;
         [SerializeField] private float _scaleDownDuration = 0.15f;
 
-        private BaseConfigProvider<GameplayConfig> _configProvider;
-
         private readonly LinkedList<RoomIconDisplay> _activeDisplays = new();
+
+        private BaseConfigProvider<GameplayConfig> _configProvider;
 
         [Inject]
         private void Construct(PlayerMovementHistory history, BaseConfigProvider<GameplayConfig> configProvider)
@@ -40,8 +39,8 @@ namespace UI.Gameplay
 
         private void ShowRoomDisplay(RoomType roomType)
         {
-            RoomIconDisplay display = _activeDisplays.Last.Value;
-            
+            var display = _activeDisplays.Last.Value;
+
             _activeDisplays.RemoveLast();
 
             display.transform.DOScale(Vector3.zero, _scaleDownDuration).OnComplete(() =>
@@ -50,13 +49,13 @@ namespace UI.Gameplay
 
                 if (!config.TryGetRoomData(roomType, out var roomData))
                     return;
-                
+
                 display.SetIcon(roomData.Icon);
                 display.transform.localScale = Vector3.zero;
                 display.transform.SetAsFirstSibling();
                 AnimateScaleUp(display);
             });
-            
+
             _activeDisplays.AddFirst(display);
         }
 

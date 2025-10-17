@@ -1,4 +1,3 @@
-using System;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
 using StateMachine.BattleMenu;
@@ -9,7 +8,7 @@ namespace Gameplay.Combat.SkillSelection
     public class PlayerActionSelectionProvider : ActionSelectionProvider
     {
         private readonly BattleMenuStateMachine _battleMenuStateMachine;
-        
+
         public PlayerActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData,
             BattleMenuStateMachine battleMenuStateMachine) : base(unitSkillsData, unitInventoryData)
         {
@@ -21,11 +20,11 @@ namespace Gameplay.Combat.SkillSelection
             var tcs = new UniTaskCompletionSource<BaseCombatAction>();
 
             _battleMenuStateMachine.OpenBattleMenu();
-            
-            IDisposable disposable = _battleMenuStateMachine.ActionSelected.Subscribe(action => tcs.TrySetResult(action));
 
-            BaseCombatAction selectedSkill = await tcs.Task;
-            
+            var disposable = _battleMenuStateMachine.ActionSelected.Subscribe(action => tcs.TrySetResult(action));
+
+            var selectedSkill = await tcs.Task;
+
             disposable.Dispose();
 
             return selectedSkill;

@@ -7,8 +7,14 @@ namespace Gameplay.Services
     {
         private readonly DiContainer _container;
 
-        public ContainerFactory(DiContainer container) => _container = container;
+        public ContainerFactory(DiContainer container)
+        {
+            _container = container;
+        }
 
-        public T Create<T>(GameObject prefab) => _container.InstantiatePrefabForComponent<T>(prefab);
+        public T Create<T>(GameObject prefab)
+        {
+            return _container.InstantiatePrefabForComponent<T>(prefab);
+        }
     }
 }

@@ -5,24 +5,29 @@ namespace Gameplay.Player
 {
     public class PlayerInputProvider : IDisposable
     {
-        private readonly PlayerInputActions _inputActions = new ();
+        private readonly PlayerInputActions _inputActions = new();
+        public readonly Subject<Unit> OnGoForward = new();
 
         public readonly Subject<Unit> OnGoLeft = new();
-        public readonly Subject<Unit> OnGoForward = new();
         public readonly Subject<Unit> OnGoRight = new();
-        
-        public readonly Subject<Unit> OnUiUp = new();
-        public readonly Subject<Unit> OnUiDown = new();
-        public readonly Subject<Unit> OnUiSubmit = new();
         public readonly Subject<Unit> OnUiBack = new();
+        public readonly Subject<Unit> OnUiDown = new();
         public readonly Subject<Unit> OnUiLeft = new();
         public readonly Subject<Unit> OnUiRight = new();
-        
+        public readonly Subject<Unit> OnUiSubmit = new();
+
+        public readonly Subject<Unit> OnUiUp = new();
+
         public PlayerInputProvider()
         {
             SubscribeMovementActions();
 
             SubscribeUiActions();
+        }
+
+        public void Dispose()
+        {
+            _inputActions.Disable();
         }
 
         private void SubscribeMovementActions()
@@ -44,23 +49,18 @@ namespace Gameplay.Player
 
         public void EnableMovementInput(bool enable)
         {
-            if(enable)
+            if (enable)
                 _inputActions.Decision.Enable();
             else
                 _inputActions.Decision.Disable();
         }
-        
+
         public void EnableUiInput(bool enable)
         {
-            if(enable)
+            if (enable)
                 _inputActions.UI.Enable();
             else
                 _inputActions.UI.Disable();
-        }
-        
-        public void Dispose()
-        {
-            _inputActions.Disable();
         }
     }
 }

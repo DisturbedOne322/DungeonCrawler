@@ -11,19 +11,23 @@ namespace AssetManagement.AssetProviders
 {
     public class AssetLoader : IAssetLoader, IDisposable
     {
-        private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new ();
+        private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new();
 
-        private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new ();
+        private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new();
 
-        public async UniTask Initialize() => await Addressables.InitializeAsync();
+        public async UniTask Initialize()
+        {
+            await Addressables.InitializeAsync();
+        }
 
-        public async UniTask<List<Object>> LoadByLabel(List<string> labels, Addressables.MergeMode mergeMode = Addressables.MergeMode.Union)
+        public async UniTask<List<Object>> LoadByLabel(List<string> labels,
+            Addressables.MergeMode mergeMode = Addressables.MergeMode.Union)
         {
             var loadedAssets = new List<Object>();
 
             var locations = await Addressables.LoadResourceLocationsAsync(
                 labels, mergeMode);
-            
+
             try
             {
                 await UniTask.WhenAll(locations.Select(async location =>
@@ -39,13 +43,14 @@ namespace AssetManagement.AssetProviders
 
             return loadedAssets;
         }
-        
-        public async UniTask<Dictionary<string, GameObject>> LoadPrefabsByLabel(List<string> labels, Addressables.MergeMode mergeMode = Addressables.MergeMode.Union)
+
+        public async UniTask<Dictionary<string, GameObject>> LoadPrefabsByLabel(List<string> labels,
+            Addressables.MergeMode mergeMode = Addressables.MergeMode.Union)
         {
             var result = new Dictionary<string, GameObject>();
 
             var locations = await Addressables.LoadResourceLocationsAsync(labels, mergeMode);
-    
+
             try
             {
                 await UniTask.WhenAll(locations.Select(async location =>
@@ -61,16 +66,23 @@ namespace AssetManagement.AssetProviders
 
             return result;
         }
-        
+
         public async UniTask<T> Load<T>(string address) where T : class
         {
-            if (_completedCache.TryGetValue(address, out AsyncOperationHandle completedHandle))
+            if (_completedCache.TryGetValue(address, out var completedHandle))
                 return completedHandle.Result as T;
 
-            return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(address), cacheKey: address);
+            return await RunWithCacheOnComplete(Addressables.LoadAssetAsync<T>(address), address);
         }
-        
-        private async UniTask<T> RunWithCacheOnComplete<T>(AsyncOperationHandle<T> handle, string cacheKey) where T : class
+
+        public void Dispose()
+        {
+            _completedCache.Clear();
+            _handles.Clear();
+        }
+
+        private async UniTask<T> RunWithCacheOnComplete<T>(AsyncOperationHandle<T> handle, string cacheKey)
+            where T : class
         {
             handle.Completed += completeHandle => { _completedCache[cacheKey] = completeHandle; };
 
@@ -81,19 +93,13 @@ namespace AssetManagement.AssetProviders
 
         private void AddHandle<T>(string key, AsyncOperationHandle handle) where T : class
         {
-            if (!_handles.TryGetValue(key, out List<AsyncOperationHandle> resourceHandles))
+            if (!_handles.TryGetValue(key, out var resourceHandles))
             {
                 resourceHandles = new List<AsyncOperationHandle>();
                 _handles[key] = resourceHandles;
             }
 
             resourceHandles.Add(handle);
-        }
-
-        public void Dispose()
-        {
-            _completedCache.Clear();
-            _handles.Clear();
         }
     }
 }

@@ -7,10 +7,13 @@ namespace AssetManagement.AssetProviders.Core
     {
         protected IAssetLoader AssetLoader;
 
-        public BasePrefabProvider(IAssetLoader assetLoader) => AssetLoader = assetLoader;
+        public BasePrefabProvider(IAssetLoader assetLoader)
+        {
+            AssetLoader = assetLoader;
+        }
 
         public abstract UniTask Initialize();
-        public abstract GameObject GetPrefab(string assetName);
         public abstract void Dispose();
+        public abstract GameObject GetPrefab(string assetName);
     }
 }

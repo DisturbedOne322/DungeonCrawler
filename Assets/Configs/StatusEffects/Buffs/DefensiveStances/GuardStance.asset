@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152f1db9bc64402388cdf628f1430f40, type: 3}
+  m_Name: GuardStance
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  _name: Guard Stance
+  _description: Reduces the damage taken during next turn by 50%.
+  _statusEffectDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
+  _triggerType: 1
+  _statusEffectReapplyType: 0
+  _maxStacks: 1
+  _priority: 2
+  _damageMultiplier: 0.5

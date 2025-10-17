@@ -7,7 +7,6 @@ namespace StateMachine.App
     {
         public AppStateMachine(IEnumerable<BaseAppState> states) : base(states)
         {
-            
         }
     }
 }

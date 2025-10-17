@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Data;
 using UniRx;
 
 namespace Gameplay.Player
@@ -14,26 +12,29 @@ namespace Gameplay.Player
         {
             _playerInputProvider = playerInputProvider;
         }
-        
-        public async UniTask<int> MakeDecision() => await WaitForPlayerInput();
+
+        public async UniTask<int> MakeDecision()
+        {
+            return await WaitForPlayerInput();
+        }
 
         private async UniTask<int> WaitForPlayerInput()
         {
-            CancellationTokenSource cts = new CancellationTokenSource();
-            
+            var cts = new CancellationTokenSource();
+
             _playerInputProvider.EnableMovementInput(true);
-            
+
             var leftTask = _playerInputProvider.OnGoLeft.First().ToUniTask(cancellationToken: cts.Token);
             var forwardTask = _playerInputProvider.OnGoForward.First().ToUniTask(cancellationToken: cts.Token);
             var rightTask = _playerInputProvider.OnGoRight.First().ToUniTask(cancellationToken: cts.Token);
-            
+
             var completed = await UniTask.WhenAny(leftTask, forwardTask, rightTask);
 
             cts.Cancel();
             cts.Dispose();
-            
+
             _playerInputProvider.EnableMovementInput(false);
-            
+
             return completed.winArgumentIndex;
         }
     }

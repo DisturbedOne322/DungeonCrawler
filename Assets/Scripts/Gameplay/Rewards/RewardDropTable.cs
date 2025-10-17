@@ -7,7 +7,7 @@ namespace Gameplay.Rewards
     public class RewardDropTable : ScriptableObject
     {
         [SerializeField] private List<DropEntry> _entriesList;
-        
+
         public List<DropEntry> EntriesList => _entriesList;
     }
 }

@@ -8,14 +8,14 @@ using UniRx;
 
 namespace StateMachine.BattleMenu
 {
-    public class BattleMenuStateMachine 
+    public class BattleMenuStateMachine
         : StateMachine<BattleMenuState, BattleMenuStateMachine>
     {
         private readonly PlayerInputProvider _playerInputProvider;
-        
+
         public readonly Subject<BaseCombatAction> ActionSelected = new();
 
-        public BattleMenuStateMachine(IEnumerable<BattleMenuState> states, 
+        public BattleMenuStateMachine(IEnumerable<BattleMenuState> states,
             PlayerInputProvider playerInputProvider,
             CombatEventsBus combatEventsBus) :
             base(states)
@@ -40,13 +40,13 @@ namespace StateMachine.BattleMenu
 
         private void LoadMenus()
         {
-            foreach (var typeStateKv in States) 
+            foreach (var typeStateKv in States)
                 typeStateKv.Value.LoadMenuItems();
         }
 
         private void ResetMenus()
         {
-            foreach (var typeStateKv in States) 
+            foreach (var typeStateKv in States)
                 typeStateKv.Value.MenuItemsUpdater.ResetSelection(false);
         }
     }

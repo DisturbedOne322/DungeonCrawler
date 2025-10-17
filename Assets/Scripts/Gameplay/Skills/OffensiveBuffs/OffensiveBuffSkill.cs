@@ -9,11 +9,13 @@ namespace Gameplay.Skills.OffensiveBuffs
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.CombatBuffsService.AddOffensiveBuffTo(combatService.ActiveUnit, OffensiveBuffData);
+            combatService.CombatBuffsService.AddOffensiveBuffTo(combatService.ActiveUnit, _offensiveStatusEffectData);
             return UniTask.CompletedTask;
         }
 
-        public override bool CanUse(CombatService combatService) =>
-            !combatService.ActiveUnit.UnitActiveBuffsData.IsOffensiveBuffActive(OffensiveBuffData);
+        public override bool CanUse(CombatService combatService)
+        {
+            return !combatService.ActiveUnit.UnitActiveBuffsData.IsOffensiveBuffActive(_offensiveStatusEffectData);
+        }
     }
 }

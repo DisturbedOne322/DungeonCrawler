@@ -7,15 +7,6 @@ namespace UI.BattleMenu
 {
     public class MenuItemData
     {
-        public string Label { get; }
-        public string Description { get; }
-        public Func<bool> IsSelectable { get; }
-        public Action OnSelected { get; }
-        public int Quantity { get; }
-        public MenuItemType Type { get; }
-
-        public ReactiveProperty<bool> IsHighlighted { get; } = new ReactiveProperty<bool>();
-
         public MenuItemData(
             string label,
             Func<bool> isSelectable,
@@ -31,6 +22,15 @@ namespace UI.BattleMenu
             Description = description;
             Quantity = quantity;
         }
+
+        public string Label { get; }
+        public string Description { get; }
+        public Func<bool> IsSelectable { get; }
+        public Action OnSelected { get; }
+        public int Quantity { get; }
+        public MenuItemType Type { get; }
+
+        public ReactiveProperty<bool> IsHighlighted { get; } = new();
 
         public static MenuItemData ForSkill(
             BaseSkill skill,
@@ -68,9 +68,9 @@ namespace UI.BattleMenu
             Action onSelected,
             string description = null)
         {
-            return new MenuItemData(label, 
-                isSelectable, 
-                onSelected, 
+            return new MenuItemData(label,
+                isSelectable,
+                onSelected,
                 MenuItemType.Submenu,
                 description);
         }

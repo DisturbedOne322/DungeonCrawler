@@ -1,10 +1,12 @@
-using Gameplay.Buffs.DefensiveCore;
+using Gameplay.StatusEffects.Buffs.DefensiveCore;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Skills.Core
 {
     public abstract class DefensiveBuffSkill : BaseSkill
     {
-        [SerializeField] protected DefensiveBuffData DefensiveBuffData;
+        [FormerlySerializedAs("_defensiveStatusEffectData")] [FormerlySerializedAs("DefensiveBuffData")] [SerializeField]
+        protected DefensiveBuffData _defensiveBuffData;
     }
 }

@@ -10,9 +10,14 @@ namespace Gameplay.Skills.SkillCosts
     {
         [SerializeField] private int _manaCost;
 
-        public bool CanPay(CombatService combatService) 
-            => combatService.ActiveUnit.UnitManaData.CurrentMana.Value >= _manaCost;
+        public bool CanPay(CombatService combatService)
+        {
+            return combatService.ActiveUnit.UnitManaData.CurrentMana.Value >= _manaCost;
+        }
 
-        public void Pay(CombatService combatService) => combatService.ActiveUnit.UnitManaController.UseMana(_manaCost);
+        public void Pay(CombatService combatService)
+        {
+            combatService.ActiveUnit.UnitManaController.UseMana(_manaCost);
+        }
     }
 }

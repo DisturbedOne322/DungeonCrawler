@@ -1,9 +1,9 @@
 using Gameplay.Combat.Data;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using UniRx;
 
 namespace UI
 {
@@ -11,28 +11,27 @@ namespace UI
     {
         [SerializeField] private Slider _slider;
         [SerializeField] private TextMeshProUGUI _healthText;
-        
-        [Inject]
-        private UnitHealthData _healthData;
+
+        [Inject] private UnitHealthData _healthData;
 
         private void Awake()
         {
             SetHealthDisplay();
-            
+
             _healthData.CurrentHealth.Subscribe(_ => SetHealthDisplay()).AddTo(gameObject);
             _healthData.MaxHealth.Subscribe(_ => SetHealthDisplay()).AddTo(gameObject);
         }
 
         private void SetHealthDisplay()
         {
-            int health = _healthData.CurrentHealth.Value;
-            int maxHealth = _healthData.MaxHealth.Value;
-            
+            var health = _healthData.CurrentHealth.Value;
+            var maxHealth = _healthData.MaxHealth.Value;
+
             _healthText.text = health + "/" + maxHealth;
 
             if (maxHealth > 0)
             {
-                float fillPercent = health * 1f / maxHealth;
+                var fillPercent = health * 1f / maxHealth;
                 _slider.value = fillPercent;
             }
         }

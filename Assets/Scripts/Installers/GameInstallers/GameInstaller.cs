@@ -1,12 +1,12 @@
 using Bootstrap;
 using Data;
 using Gameplay;
-using Gameplay.Buffs;
-using Gameplay.Buffs.Services;
-using Gameplay.Combat;
 using Gameplay.Combat.Services;
 using Gameplay.Experience;
 using Gameplay.Player;
+using Gameplay.StatusEffects.Buffs.Services;
+using Gameplay.StatusEffects.Buffs.StatBuffsCore;
+using Gameplay.StatusEffects.Debuffs;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;
@@ -16,15 +16,15 @@ namespace Installers.GameInstallers
     public class GameInstaller : MonoInstaller
     {
         [SerializeField] private PlayerUnit _prefab;
-        
+
         public override void InstallBindings()
         {
             Container.Bind<PlayerUnit>().FromComponentInNewPrefab(_prefab).AsSingle();
-            
+
             Container.BindInterfacesAndSelfTo<GameplayBootstrapper>().AsSingle();
-            
+
             Container.Bind<PlayerInitializer>().AsSingle();
-            
+
             BindCombat();
 
             BindProgression();
@@ -39,8 +39,13 @@ namespace Installers.GameInstallers
             Container.Bind<CombatService>().AsSingle();
             Container.Bind<CombatEventsBus>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
+            
             Container.Bind<CombatBuffsService>().AsSingle();
+            Container.Bind<CombatDebuffsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<CombatBuffsApplicationService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CombatDebuffsApplicationService>().AsSingle().NonLazy();
+
+            Container.Bind<UnitStatsModificationService>().AsSingle();
             Container.Bind<BuffsCalculationService>().AsSingle();
         }
 

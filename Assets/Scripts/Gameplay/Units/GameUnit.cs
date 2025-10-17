@@ -1,6 +1,6 @@
 using Animations;
 using Gameplay.Combat;
-using Gameplay.Combat.Data; 
+using Gameplay.Combat.Data;
 using Gameplay.Combat.SkillSelection;
 using Gameplay.Equipment;
 using Gameplay.Facades;
@@ -14,89 +14,90 @@ namespace Gameplay.Units
     {
         [SerializeField] private EvadeAnimator _evadeAnimator;
         [SerializeField] private AttackAnimator _attackAnimator;
-        
-        private UnitHealthData _healthData;
-        private UnitHealthController _unitHealthController;
-        
-        private UnitManaData _manaData;
-        private UnitManaController _unitManaController;
-        
-        private ActionSelectionProvider _actionSelectionProvider;
-        private UnitStatsData _unitStatsData;
-        private UnitBonusStatsData _unitBonusStatsData;
-        private UnitSkillsData _unitSkillsData;
-        private UnitBuffsData _unitBuffsData;
-        private UnitActiveBuffsData _unitActiveBuffsData;
-        private UnitInventoryData _unitInventoryData;
-        private UnitEquipmentData _unitEquipmentData;
 
-        private string _unitName;
-        
         public Vector3 Position => transform.position;
-        
-        public UnitHealthData UnitHealthData => _healthData;
-        public UnitManaData UnitManaData => _manaData;
-        public UnitHealthController UnitHealthController => _unitHealthController;
-        public UnitManaController UnitManaController => _unitManaController;
-        public ActionSelectionProvider ActionSelectionProvider => _actionSelectionProvider;
-        public UnitStatsData UnitStatsData => _unitStatsData;
-        public UnitBonusStatsData UnitBonusStatsData => _unitBonusStatsData;
-        public UnitSkillsData UnitSkillsData => _unitSkillsData;
-        public UnitBuffsData UnitBuffsData => _unitBuffsData;
-        public UnitActiveBuffsData UnitActiveBuffsData => _unitActiveBuffsData;
-        public UnitInventoryData UnitInventoryData => _unitInventoryData;
-        public UnitEquipmentData UnitEquipmentData => _unitEquipmentData;
+
+        public UnitHealthData UnitHealthData { get; private set; }
+
+        public UnitManaData UnitManaData { get; private set; }
+
+        public UnitHealthController UnitHealthController { get; private set; }
+
+        public UnitManaController UnitManaController { get; private set; }
+
+        public ActionSelectionProvider ActionSelectionProvider { get; private set; }
+
+        public UnitStatsData UnitStatsData { get; private set; }
+
+        public UnitBonusStatsData UnitBonusStatsData { get; private set; }
+
+        public UnitSkillsData UnitSkillsData { get; private set; }
+
+        public UnitBuffsData UnitBuffsData { get; private set; }
+        public UnitDebuffsData UnitDebuffsData { get; private set; }
+
+        public UnitActiveBuffsData UnitActiveBuffsData { get; private set; }
+
+        public UnitActiveDebuffsData UnitActiveDebuffsData { get; private set; }
+
+        public UnitInventoryData UnitInventoryData { get; private set; }
+
+        public UnitEquipmentData UnitEquipmentData { get; private set; }
 
         public EvadeAnimator EvadeAnimator => _evadeAnimator;
         public AttackAnimator AttackAnimator => _attackAnimator;
-        
-        public string EntityName => _unitName;
-        
+
+        public string EntityName { get; private set; }
+
         [Inject]
         private void Construct(UnitHealthData unitHealthData,
-            UnitHealthController unitHealthController, 
+            UnitHealthController unitHealthController,
             UnitManaData unitManaData,
             UnitManaController unitManaController,
             ActionSelectionProvider actionSelectionProvider,
-            UnitStatsData unitStatsData, 
+            UnitStatsData unitStatsData,
             UnitBonusStatsData unitBonusStatsData,
             UnitSkillsData unitSkillsData,
             UnitBuffsData unitBuffsData,
+            UnitDebuffsData unitDebuffsesData,
             UnitActiveBuffsData unitActiveBuffsData,
+            UnitActiveDebuffsData unitActiveDebuffsData,
             UnitInventoryData unitInventoryData,
             UnitEquipmentData unitEquipmentData)
         {
-            _healthData = unitHealthData;
-            _unitHealthController = unitHealthController;
-            _manaData = unitManaData;
-            _unitManaController = unitManaController;
-            _actionSelectionProvider = actionSelectionProvider;
-            _unitStatsData = unitStatsData;
-            _unitBonusStatsData = unitBonusStatsData;
-            _unitSkillsData = unitSkillsData;
-            _unitBuffsData = unitBuffsData;
-            _unitActiveBuffsData = unitActiveBuffsData;
-            _unitInventoryData = unitInventoryData;
-            _unitEquipmentData = unitEquipmentData;
+            UnitHealthData = unitHealthData;
+            UnitHealthController = unitHealthController;
+            UnitManaData = unitManaData;
+            UnitManaController = unitManaController;
+            ActionSelectionProvider = actionSelectionProvider;
+            UnitStatsData = unitStatsData;
+            UnitBonusStatsData = unitBonusStatsData;
+            UnitSkillsData = unitSkillsData;
+            UnitBuffsData = unitBuffsData;
+            UnitDebuffsData = unitDebuffsesData;
+            UnitActiveBuffsData = unitActiveBuffsData;
+            UnitActiveDebuffsData = unitActiveDebuffsData;
+            UnitInventoryData = unitInventoryData;
+            UnitEquipmentData = unitEquipmentData;
         }
 
         public void InitializeUnit(UnitData unitData)
         {
-            _unitName = unitData.Name;
-            
-            _healthData.Initialize(unitData.MaxHp);
-            _manaData.Initialize(unitData.MaxMp);
-            
-            _unitStatsData.SetStats(unitData.UnitBaseStats);
-            
-            _unitSkillsData.AssignSkills(unitData);
-            _unitInventoryData.AddItems(unitData.Items);
-            
-            if(unitData.BaseWeapon)
-                _unitEquipmentData.EquipWeapon(unitData.BaseWeapon);
-            
-            if(unitData.BaseArmor)
-                _unitEquipmentData.EquipArmor(unitData.BaseArmor);
+            EntityName = unitData.Name;
+
+            UnitHealthData.Initialize(unitData.MaxHp);
+            UnitManaData.Initialize(unitData.MaxMp);
+
+            UnitStatsData.SetStats(unitData.UnitStartingStats);
+
+            UnitSkillsData.AssignSkills(unitData);
+            UnitInventoryData.AddItems(unitData.Items);
+
+            if (unitData.BaseWeapon)
+                UnitEquipmentData.EquipWeapon(unitData.BaseWeapon);
+
+            if (unitData.BaseArmor)
+                UnitEquipmentData.EquipArmor(unitData.BaseArmor);
         }
     }
 }

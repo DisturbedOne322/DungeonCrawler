@@ -7,9 +7,9 @@ namespace StateMachine.App
 {
     public class GameplayAppState : BaseAppState
     {
-        private readonly SceneTransitionController _sceneTransitionController;
         private readonly AssetProvidersController _assetProvidersController;
-        
+        private readonly SceneTransitionController _sceneTransitionController;
+
         public GameplayAppState(
             SceneTransitionController sceneTransitionController,
             AssetProvidersController assetProvidersController)
@@ -17,7 +17,7 @@ namespace StateMachine.App
             _sceneTransitionController = sceneTransitionController;
             _assetProvidersController = assetProvidersController;
         }
-        
+
         public override async UniTask EnterState()
         {
             await _assetProvidersController.Initialize();
@@ -27,7 +27,7 @@ namespace StateMachine.App
         public override async UniTask ExitState()
         {
             _assetProvidersController.Dispose();
-            
+
             await _sceneTransitionController.LoadNextScene(ConstSceneNames.MainMenuScene);
         }
     }

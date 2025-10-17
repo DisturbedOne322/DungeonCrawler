@@ -12,8 +12,8 @@ namespace AssetManagement.Scenes
     public class SceneTransitionController
     {
         private AsyncOperationHandle<SceneInstance> _currentHandle;
-        private string _prevSceneName = null;
-        
+        private string _prevSceneName;
+
         public async UniTask LoadNextScene(string nextSceneName, bool unloadLoadingScene = true)
         {
             await LoadLoadingScene();
@@ -47,11 +47,11 @@ namespace AssetManagement.Scenes
                 LoadingDisplay.Instance.SetProgress(_currentHandle.PercentComplete);
                 await UniTask.NextFrame();
             }
-            
+
             await _currentHandle.Result.ActivateAsync();
             SceneManager.SetActiveScene(_currentHandle.Result.Scene);
         }
-        
+
         private async UniTask UnloadPrevScene()
         {
             if (FirstSceneSwitch())
@@ -59,7 +59,10 @@ namespace AssetManagement.Scenes
             else
                 await SceneManager.UnloadSceneAsync(_prevSceneName);
         }
-        
-        private bool FirstSceneSwitch() => _prevSceneName is null;
+
+        private bool FirstSceneSwitch()
+        {
+            return _prevSceneName is null;
+        }
     }
 }

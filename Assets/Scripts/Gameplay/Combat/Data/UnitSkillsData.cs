@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Gameplay.Skills.Core;
 using Gameplay.Units;
 using ModestTree;
@@ -8,25 +7,29 @@ namespace Gameplay.Combat.Data
 {
     public class UnitSkillsData
     {
-        private BaseSkill _basicAttackSkill;
-        public BaseSkill BasicAttackSkill => _basicAttackSkill;
+        public BaseSkill BasicAttackSkill { get; private set; }
 
-        private BaseSkill _guardSkill;
-        public BaseSkill GuardSkill => _guardSkill;
-        
-        public ReactiveCollection<BaseSkill> Skills => _skills;
-        private readonly ReactiveCollection<BaseSkill> _skills = new();
+        public BaseSkill GuardSkill { get; private set; }
+
+        public ReactiveCollection<BaseSkill> Skills { get; } = new();
 
         public void AssignSkills(UnitData data)
         {
-            _skills.Clear();
-            _skills.AllocFreeAddRange(data.SkillSet);
-            
-            _basicAttackSkill = data.BasicAttackSkill;
-            _guardSkill = data.GuardSkill;
+            Skills.Clear();
+            Skills.AllocFreeAddRange(data.SkillSet);
+
+            BasicAttackSkill = data.BasicAttackSkill;
+            GuardSkill = data.GuardSkill;
         }
 
-        public void AddSkill(BaseSkill skill) => _skills.Add(skill);
-        public void RemoveSkill(BaseSkill skill) => _skills.Remove(skill);
+        public void AddSkill(BaseSkill skill)
+        {
+            Skills.Add(skill);
+        }
+
+        public void RemoveSkill(BaseSkill skill)
+        {
+            Skills.Remove(skill);
+        }
     }
 }

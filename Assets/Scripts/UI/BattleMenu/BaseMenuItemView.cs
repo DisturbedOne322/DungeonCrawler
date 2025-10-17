@@ -1,5 +1,4 @@
 using System;
-using StateMachine.BattleMenu;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -13,7 +12,12 @@ namespace UI.BattleMenu
         [SerializeField] private Image _background;
 
         private IDisposable _disposable;
-        
+
+        private void OnDestroy()
+        {
+            _disposable.Dispose();
+        }
+
         public void Bind(MenuItemData data)
         {
             _text.text = data.Label;
@@ -26,11 +30,6 @@ namespace UI.BattleMenu
                     else
                         SetSelectionColor(isOn);
                 });
-        }
-
-        private void OnDestroy()
-        {
-            _disposable.Dispose();
         }
 
         private void SetLocked()

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Data;
 using DG.Tweening;
 using Gameplay;
-using Gameplay.Combat;
 using Gameplay.Consumables;
 using Gameplay.Skills.Core;
 using Gameplay.Units;
@@ -26,12 +24,17 @@ namespace UI.Gameplay
         [SerializeField] private float _fadeInTime;
         [SerializeField] private float _stayTime;
         [SerializeField] private float _fadeOutTime;
-
-        private Sequence _sequence;
         private readonly CompositeDisposable _disposables = new();
 
         private readonly Queue<Action> _rewardQueue = new();
         private bool _isPlaying;
+
+        private Sequence _sequence;
+
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
 
         [Inject]
         private void Construct(PlayerUnit playerUnit)
@@ -42,8 +45,6 @@ namespace UI.Gameplay
             SubscribeToWeaponAddEvent(playerUnit);
             SubscribeToArmorAddEvent(playerUnit);
         }
-
-        private void OnDestroy() => _disposables.Dispose();
 
         private void SubscribeToConsumablesAddEvents(PlayerUnit playerUnit)
         {
@@ -80,29 +81,28 @@ namespace UI.Gameplay
                     .Pairwise()
                     .Subscribe(pair =>
                     {
-                        int prev = pair.Previous;
-                        int current = pair.Current;
-                        int added = current - prev;
+                        var prev = pair.Previous;
+                        var current = pair.Current;
+                        var added = current - prev;
 
                         if (added > 0)
                             EnqueueReward(() => ShowCoinReward(null, added));
                     })
             );
-
         }
 
         private void SubscribeToWeaponAddEvent(PlayerUnit playerUnit)
         {
             _disposables.Add(
-                playerUnit.UnitEquipmentData.OnWeaponEquipped.Subscribe(weapon => 
+                playerUnit.UnitEquipmentData.OnWeaponEquipped.Subscribe(weapon =>
                     EnqueueReward(() => ShowEquipmentReward(weapon)))
-                );
+            );
         }
-        
+
         private void SubscribeToArmorAddEvent(PlayerUnit playerUnit)
         {
             _disposables.Add(
-                playerUnit.UnitEquipmentData.OnArmorEquipped.Subscribe(armor => 
+                playerUnit.UnitEquipmentData.OnArmorEquipped.Subscribe(armor =>
                     EnqueueReward(() => ShowEquipmentReward(armor)))
             );
         }
@@ -110,7 +110,7 @@ namespace UI.Gameplay
         private void EnqueueReward(Action showAction)
         {
             _rewardQueue.Enqueue(showAction);
-            
+
             if (!_isPlaying)
                 PlayNextReward();
         }
@@ -128,12 +128,25 @@ namespace UI.Gameplay
             action.Invoke();
         }
 
-        private void ShowSkillReward(BaseSkill skill) => ShowReward(skill.Icon, $"YOU LEARNED:\n{skill.Name}");
+        private void ShowSkillReward(BaseSkill skill)
+        {
+            ShowReward(skill.Icon, $"YOU LEARNED:\n{skill.Name}");
+        }
 
-        private void ShowItemReward(BaseConsumable consumable, int amount) => ShowReward(consumable.Icon, $"YOU GOT:\n{consumable.Name}", amount);
+        private void ShowItemReward(BaseConsumable consumable, int amount)
+        {
+            ShowReward(consumable.Icon, $"YOU GOT:\n{consumable.Name}", amount);
+        }
 
-        private void ShowCoinReward(Sprite sprite, int amount) => ShowReward(sprite, "YOU FOUND COINS!", amount);
-        private void ShowEquipmentReward(BaseGameItem item) => ShowReward(item.Icon, $"YOU GOT: \n {item.Name}");
+        private void ShowCoinReward(Sprite sprite, int amount)
+        {
+            ShowReward(sprite, "YOU FOUND COINS!", amount);
+        }
+
+        private void ShowEquipmentReward(BaseGameItem item)
+        {
+            ShowReward(item.Icon, $"YOU GOT: \n {item.Name}");
+        }
 
         private void ShowReward(Sprite icon, string tip, int amount = 0)
         {

@@ -1,17 +1,15 @@
 using System.Threading.Tasks;
-using AssetManagement.AssetProviders.Core;
 using Controllers;
 using Cysharp.Threading.Tasks;
 using Data.UI;
-using Gameplay.Buffs.Core;
-using Gameplay.Buffs.DefensiveCore;
-using Gameplay.Buffs.OffensiveCore;
-using Gameplay.Buffs.StatBuffsCore;
 using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Player;
 using Gameplay.Skills.Core;
+using Gameplay.StatusEffects.Buffs.DefensiveCore;
+using Gameplay.StatusEffects.Buffs.OffensiveCore;
+using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -19,8 +17,8 @@ namespace Gameplay.Rewards
 {
     public class RewardDistributor
     {
-        private readonly PlayerUnit _player;
         private readonly EquipmentChangeController _equipmentChangeController;
+        private readonly PlayerUnit _player;
         private readonly SkillDiscardController _skillDiscardController;
         private readonly PlayerSkillSlotsManager _skillSlotsManager;
 
@@ -32,12 +30,12 @@ namespace Gameplay.Rewards
             _skillDiscardController = skillDiscardController;
             _skillSlotsManager = skillSlotsManager;
         }
-        
+
         public async UniTask GiveRewardToPlayer(DropEntry dropEntry)
         {
             if (dropEntry == null)
                 return;
-            
+
             switch (dropEntry.Item)
             {
                 case BaseWeapon weapon:
@@ -56,18 +54,18 @@ namespace Gameplay.Rewards
                     _player.UnitInventoryData.AddItems(consumable, dropEntry.Amount);
                     break;
 
-                case OffensiveBuffData offensiveBuff:
+                case OffensiveStatusEffectData offensiveBuff:
                     _player.UnitBuffsData.OffensiveBuffs.Add(offensiveBuff);
                     break;
-                
+
                 case DefensiveBuffData defensiveBuff:
                     _player.UnitBuffsData.DefensiveBuffs.Add(defensiveBuff);
                     break;
-                
+
                 case StatBuffData statBuffData:
                     _player.UnitBuffsData.StatBuffs.Add(statBuffData);
                     break;
-                
+
                 default:
                     Debug.LogWarning($"Unhandled reward type: {dropEntry.Item.name}");
                     break;
@@ -79,11 +77,13 @@ namespace Gameplay.Rewards
             if (_player.UnitEquipmentData.TryGetEquippedWeapon(out var currentWeapon))
             {
                 var choice = await _equipmentChangeController.MakeEquipmentChoice(currentWeapon, newWeapon);
-                if(choice == EquipmentSelectChoice.Change)
+                if (choice == EquipmentSelectChoice.Change)
                     _player.UnitEquipmentData.EquipWeapon(newWeapon);
             }
             else
+            {
                 _player.UnitEquipmentData.EquipWeapon(newWeapon);
+            }
         }
 
         private async UniTask ProcessArmorReward(BaseArmor newArmor)
@@ -91,11 +91,13 @@ namespace Gameplay.Rewards
             if (_player.UnitEquipmentData.TryGetEquippedArmor(out var currentArmor))
             {
                 var choice = await _equipmentChangeController.MakeEquipmentChoice(currentArmor, newArmor);
-                if(choice == EquipmentSelectChoice.Change)
+                if (choice == EquipmentSelectChoice.Change)
                     _player.UnitEquipmentData.EquipArmor(newArmor);
             }
             else
+            {
                 _player.UnitEquipmentData.EquipArmor(newArmor);
+            }
         }
 
         private async Task ProcessSkillReward(BaseSkill skill)
@@ -105,7 +107,7 @@ namespace Gameplay.Rewards
                 _player.UnitSkillsData.AddSkill(skill);
                 return;
             }
-            
+
             var skillToDiscard = await _skillDiscardController.MakeSkillDiscardChoice(skill);
             if (skillToDiscard != skill)
             {

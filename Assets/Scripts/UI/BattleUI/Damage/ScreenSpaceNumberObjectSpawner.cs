@@ -1,13 +1,10 @@
-using Constants;
-using Data;
-using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Services;
 using Gameplay.Units;
 using Helpers;
+using UniRx;
 using UnityEngine;
 using Zenject;
-using UniRx;
 
 namespace UI.BattleUI.Damage
 {
@@ -22,27 +19,27 @@ namespace UI.BattleUI.Damage
             combatEventsBus.OnHitDealt.Subscribe(ShowDamageNumber).AddTo(gameObject);
             combatEventsBus.OnHealed.Subscribe(ShowHealNumber).AddTo(gameObject);
         }
-        
+
         public override void ShowDamageNumber(HitEventData data)
         {
-            if(data.Target is not PlayerUnit)
+            if (data.Target is not PlayerUnit)
                 return;
-            
+
             ShowText(data.HitData.Damage, ColorHelpers.GetDamageTypeColor(data), '-');
         }
-        
+
         public override void ShowHealNumber(HealEventData data)
         {
-            if(data.Target is not PlayerUnit)
+            if (data.Target is not PlayerUnit)
                 return;
-            
+
             ShowText(data.Amount, ColorHelpers.GetHealColor(), '+');
         }
 
         private void ShowText(int amount, Color color, char prefix)
         {
             var view = Pool.Get();
-            
+
             view.transform.SetParent(_spawnPoint, false);
             view.transform.localPosition = Random.insideUnitCircle * _spawnRadius;
 

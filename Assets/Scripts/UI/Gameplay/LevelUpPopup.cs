@@ -14,24 +14,21 @@ namespace UI.Gameplay
         [SerializeField] private VerticalLayoutGroup _namesParent;
         [SerializeField] private VerticalLayoutGroup _statsParent;
         [SerializeField] private TextMeshProUGUI _pointsLeftText;
-        
+
         public void SetTable(Dictionary<BaseMenuItemView, StatIncreaseView> table)
         {
             foreach (var kv in table)
             {
-                kv.Key.transform.SetParent(_namesParent.transform,false);
-                kv.Value.transform.SetParent(_statsParent.transform,false);
+                kv.Key.transform.SetParent(_namesParent.transform, false);
+                kv.Value.transform.SetParent(_statsParent.transform, false);
             }
         }
 
         public void SetReactivePointsLeft(ReactiveProperty<int> reactivePoints)
         {
-            int maxPoints = reactivePoints.Value;
-            
-            reactivePoints.Subscribe(value =>
-            {
-                _pointsLeftText.text = value + "/" + maxPoints;
-            }).AddTo(gameObject);
+            var maxPoints = reactivePoints.Value;
+
+            reactivePoints.Subscribe(value => { _pointsLeftText.text = value + "/" + maxPoints; }).AddTo(gameObject);
         }
     }
 }

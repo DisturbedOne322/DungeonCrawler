@@ -20,7 +20,7 @@ namespace Installers.UnitInstallers
             Container.Bind<BattleMenuState>().To<MainBattleMenuState>().AsSingle();
             Container.Bind<BattleMenuState>().To<SkillSelectBattleMenuState>().AsSingle();
             Container.Bind<BattleMenuState>().To<ItemSelectBattleMenuState>().AsSingle();
-            
+
             Container.Bind<MenuItemsUpdater>().AsTransient();
         }
     }

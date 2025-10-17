@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Gameplay.Combat;
 using Gameplay.Combat.Services;
 using Gameplay.Player;
 using Gameplay.Units;
@@ -12,19 +11,19 @@ namespace StateMachine.BattleMenu
 {
     public abstract class BattleMenuState : BaseState<BattleMenuState, BattleMenuStateMachine>
     {
+        protected readonly CombatService CombatService;
+
+        public readonly MenuItemsUpdater MenuItemsUpdater;
         protected readonly PlayerUnit Player;
         protected readonly PlayerInputProvider PlayerInputProvider;
-        protected readonly CombatService CombatService;
-        
-        public readonly MenuItemsUpdater MenuItemsUpdater;
+
+        protected CompositeDisposable Disposables;
 
         protected List<MenuItemData> MenuItems = new();
-        
-        protected CompositeDisposable Disposables;
-        
-        public BattleMenuState(PlayerUnit player, 
-            PlayerInputProvider playerInputProvider, 
-            MenuItemsUpdater menuItemsUpdater, 
+
+        public BattleMenuState(PlayerUnit player,
+            PlayerInputProvider playerInputProvider,
+            MenuItemsUpdater menuItemsUpdater,
             CombatService combatService)
         {
             Player = player;
@@ -49,7 +48,10 @@ namespace StateMachine.BattleMenu
         public abstract void LoadMenuItems();
 
         protected abstract void SubscribeToInputEvents();
-        
-        private void UnsubscribeFromInputEvents() => Disposables?.Dispose();
+
+        private void UnsubscribeFromInputEvents()
+        {
+            Disposables?.Dispose();
+        }
     }
 }

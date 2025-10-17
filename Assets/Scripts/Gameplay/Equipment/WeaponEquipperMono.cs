@@ -9,9 +9,9 @@ namespace Gameplay.Equipment
     {
         [SerializeField] private Transform _pivotPoint;
 
-        private GameObject _equippedWeapon;
-        
         private UnitEquipmentData _equipmentData;
+
+        private GameObject _equippedWeapon;
 
         [Inject]
         private void Construct(UnitEquipmentData equipmentData)
@@ -22,7 +22,7 @@ namespace Gameplay.Equipment
 
         private void EquipWeapon(BaseWeapon weapon)
         {
-            if(_equippedWeapon)
+            if (_equippedWeapon)
                 UnequipPreviousWeapon();
 
             var prefab = weapon.Prefab;

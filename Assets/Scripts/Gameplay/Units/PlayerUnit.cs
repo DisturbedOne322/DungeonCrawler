@@ -7,7 +7,7 @@ namespace Gameplay.Units
     {
         [SerializeField] private PlayerMoveAnimator _playerMoveAnimator;
         [SerializeField] private Transform _cameraPivot;
-        
+
         public PlayerMoveAnimator PlayerMoveAnimator => _playerMoveAnimator;
         public Transform CameraPivot => _cameraPivot;
     }

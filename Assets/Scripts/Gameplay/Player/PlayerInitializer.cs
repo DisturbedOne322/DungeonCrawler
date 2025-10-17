@@ -12,11 +12,11 @@ namespace Gameplay.Player
         {
             _configProvider = configProvider;
         }
-        
+
         public void InitializePlayer(PlayerUnit player)
         {
             var config = _configProvider.GetConfig<PlayerCharactersDatabase>();
-            
+
             var data = config.Database[0];
             player.InitializeUnit(data);
         }

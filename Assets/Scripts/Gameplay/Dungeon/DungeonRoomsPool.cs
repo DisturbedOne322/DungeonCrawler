@@ -8,12 +8,11 @@ namespace Gameplay.Dungeon
 {
     public class DungeonRoomsPool : IDisposable
     {
-        private readonly GameplayData _gameplayData;
-        private readonly DungeonLayoutProvider _dungeonLayoutProvider;
-        
-        private readonly Dictionary<RoomType, List<DungeonRoom>> _dictionary = new ();
-        
+        private readonly Dictionary<RoomType, List<DungeonRoom>> _dictionary = new();
+
         private readonly IDisposable _disposable;
+        private readonly DungeonLayoutProvider _dungeonLayoutProvider;
+        private readonly GameplayData _gameplayData;
 
         public DungeonRoomsPool(GameplayData gameplayData, DungeonLayoutProvider dungeonLayoutProvider)
         {
@@ -21,7 +20,12 @@ namespace Gameplay.Dungeon
 
             _disposable = gameplayData.PlayerPositionIndex.Subscribe(TryReturnRoomToPool);
         }
-        
+
+        public void Dispose()
+        {
+            _disposable.Dispose();
+        }
+
         public bool TryGetRoom(RoomType roomType, out DungeonRoom room)
         {
             if (_dictionary.TryGetValue(roomType, out var list) && list.Count > 0)
@@ -31,27 +35,25 @@ namespace Gameplay.Dungeon
                 room.gameObject.SetActive(true);
                 return true;
             }
-                
+
             room = null;
             return false;
         }
 
         private void TryReturnRoomToPool(int playerIndex)
         {
-            int roomIndex = playerIndex - 2;
-            
+            var roomIndex = playerIndex - 2;
+
             if (!_dungeonLayoutProvider.TryGetRoom(roomIndex, out var room))
                 return;
 
             room.ResetRoom();
             room.gameObject.SetActive(false);
-            
-            if(_dictionary.TryGetValue(room.RoomType, out var list))
+
+            if (_dictionary.TryGetValue(room.RoomType, out var list))
                 list.Add(room);
             else
-                _dictionary.Add(room.RoomType, new () { room });
+                _dictionary.Add(room.RoomType, new List<DungeonRoom> { room });
         }
-
-        public void Dispose() => _disposable.Dispose();
     }
 }

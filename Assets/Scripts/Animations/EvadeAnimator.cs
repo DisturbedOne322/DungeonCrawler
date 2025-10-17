@@ -10,34 +10,34 @@ namespace Animations
         [SerializeField] private float _rotateAngle = 30f;
         [SerializeField] private float _evadeDuration = 0.2f;
         [SerializeField] private float _returnDuration = 0.25f;
-        
+
         [SerializeField] private Ease _evadeEase = Ease.OutQuad;
         [SerializeField] private Ease _returnEase = Ease.InOutQuad;
 
-        private bool _inAnimation = false;
-        
+        private bool _inAnimation;
+
         public async UniTask PlayEvadeAnimation()
         {
-            if(_inAnimation)
+            if (_inAnimation)
                 return;
 
             _inAnimation = true;
-            
-            int direction = Random.value > 0.5f ? 1 : -1;
 
-            Vector3 originalPos = transform.localPosition;
-            Quaternion originalRot = transform.localRotation;
+            var direction = Random.value > 0.5f ? 1 : -1;
 
-            Vector3 targetPos = originalPos + transform.right * (direction * _evadeDistance);
-            Quaternion targetRot = Quaternion.Euler(
+            var originalPos = transform.localPosition;
+            var originalRot = transform.localRotation;
+
+            var targetPos = originalPos + transform.right * (direction * _evadeDistance);
+            var targetRot = Quaternion.Euler(
                 originalRot.eulerAngles.x,
-                originalRot.eulerAngles.y + (_rotateAngle * direction),
+                originalRot.eulerAngles.y + _rotateAngle * direction,
                 originalRot.eulerAngles.z
             );
 
             transform.DOKill();
 
-            Sequence seq = DOTween.Sequence();
+            var seq = DOTween.Sequence();
 
             seq.Append(transform.DOLocalMove(targetPos, _evadeDuration)
                 .SetEase(_evadeEase));
@@ -50,7 +50,7 @@ namespace Animations
                 .SetEase(_returnEase));
 
             await seq.AsyncWaitForCompletion().AsUniTask();
-            
+
             _inAnimation = false;
         }
     }

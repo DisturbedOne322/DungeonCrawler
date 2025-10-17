@@ -5,11 +5,11 @@ namespace Gameplay.Dungeon
 {
     public class DungeonGenerator
     {
-        private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly DungeonFactory _dungeonFactory;
+        private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly DungeonPositioner _dungeonPositioner;
 
-        private DungeonGenerator(DungeonLayoutProvider dungeonLayoutProvider, 
+        private DungeonGenerator(DungeonLayoutProvider dungeonLayoutProvider,
             DungeonFactory dungeonFactory, DungeonPositioner dungeonPositioner)
         {
             _dungeonLayoutProvider = dungeonLayoutProvider;
@@ -23,12 +23,12 @@ namespace Gameplay.Dungeon
             CreateCorridors();
             CreateRoom(RoomType.Decision);
         }
-        
+
         private void CreateCorridors()
         {
-            int corridorsAmount = 4;
+            var corridorsAmount = 4;
 
-            for (int i = 0; i < corridorsAmount; i++) 
+            for (var i = 0; i < corridorsAmount; i++)
                 CreateRoom(RoomType.Corridor);
         }
 
@@ -36,7 +36,7 @@ namespace Gameplay.Dungeon
         {
             var room = _dungeonFactory.CreateArea(roomType);
             room.SetupRoom();
-            
+
             _dungeonLayoutProvider.AddRoom(room);
             _dungeonPositioner.PlaceRoom(room);
         }

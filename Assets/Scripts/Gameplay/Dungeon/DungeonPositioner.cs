@@ -1,5 +1,4 @@
 using Constants;
-using Data;
 using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ namespace Gameplay.Dungeon
     {
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
 
-        private float _xOffset = 0;
+        private float _xOffset;
 
         public DungeonPositioner(DungeonLayoutProvider dungeonLayoutProvider)
         {
@@ -18,16 +17,16 @@ namespace Gameplay.Dungeon
 
         public void PlaceRoom(DungeonRoom room)
         {
-            int roomsCount = _dungeonLayoutProvider.RoomsCount;
-            
-            float posZ = roomsCount * GameplayConstants.RoomSize.y;
-            
+            var roomsCount = _dungeonLayoutProvider.RoomsCount;
+
+            var posZ = roomsCount * GameplayConstants.RoomSize.y;
+
             room.transform.position = new Vector3(_xOffset, 0, posZ);
         }
 
         public void AddXOffsetFromChoice(int choiceIndex)
         {
-            choiceIndex --;
+            choiceIndex--;
             _xOffset += choiceIndex * GameplayConstants.RoomSize.x;
         }
     }

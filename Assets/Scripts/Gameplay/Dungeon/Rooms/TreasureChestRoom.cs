@@ -11,9 +11,9 @@ namespace Gameplay.Dungeon.Rooms
     public class TreasureChestRoom : StopRoom
     {
         [SerializeField] private ChestAnimator _chestAnimator;
-        
+
         private BalanceService _balanceService;
-        
+
         public override RoomType RoomType => RoomType.TreasureChest;
 
         [Inject]
@@ -24,7 +24,7 @@ namespace Gameplay.Dungeon.Rooms
 
         public override void ResetRoom()
         {
-            _chestAnimator.ResetChest();   
+            _chestAnimator.ResetChest();
         }
 
         public override async UniTask ClearRoom()

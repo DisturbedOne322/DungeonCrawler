@@ -1,5 +1,4 @@
 using Gameplay;
-using Gameplay.Combat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

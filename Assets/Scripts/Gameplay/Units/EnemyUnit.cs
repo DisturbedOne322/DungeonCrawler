@@ -9,19 +9,21 @@ namespace Gameplay.Units
         [SerializeField] private Transform _pivot;
         [SerializeField] private float _animTime;
 
-        private int _experienceBonus;
-        public int ExperienceBonus => _experienceBonus;
-        
+        public int ExperienceBonus { get; private set; }
+
         private void OnEnable()
         {
-            _pivot.transform.rotation = Quaternion.Euler(new Vector3(90, 0 ,0));
+            _pivot.transform.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         }
-        
-        public void SetExperienceBonus(int experienceBonus) => _experienceBonus = experienceBonus;
-        
+
+        public void SetExperienceBonus(int experienceBonus)
+        {
+            ExperienceBonus = experienceBonus;
+        }
+
         public async UniTask PlayAppearAnimation()
         {
-            _pivot.DORotate(new Vector3(0,0,0), _animTime).SetEase(Ease.OutBounce);
+            _pivot.DORotate(new Vector3(0, 0, 0), _animTime).SetEase(Ease.OutBounce);
             await UniTask.WaitForSeconds(_animTime);
         }
     }

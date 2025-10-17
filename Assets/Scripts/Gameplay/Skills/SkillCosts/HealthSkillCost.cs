@@ -10,7 +10,7 @@ namespace Gameplay.Skills.SkillCosts
     public class HealthSkillCost : ISkillCost
     {
         [SerializeField] private SkillData _selfDamageData;
-        
+
         public bool CanPay(CombatService combatService)
         {
             return combatService.ActiveUnit.UnitHealthController.HasEnoughHp(_selfDamageData.BaseDamage);

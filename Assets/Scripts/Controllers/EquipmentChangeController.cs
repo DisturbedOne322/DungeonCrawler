@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Data.UI;
 using Gameplay;
-using Gameplay.Combat;
 using UI;
 using UI.Gameplay;
 
@@ -18,7 +17,7 @@ namespace Controllers
 
         public async UniTask<EquipmentSelectChoice> MakeEquipmentChoice(BaseGameItem oldItem, BaseGameItem newItem)
         {
-            UniTaskCompletionSource<EquipmentSelectChoice> tcs = new ();
+            UniTaskCompletionSource<EquipmentSelectChoice> tcs = new();
 
             var popup = _uiFactory.CreatePopup<EquipmentChangeConfirmPopup>();
             popup.SetData(oldItem, newItem);
@@ -27,8 +26,8 @@ namespace Controllers
             popup.OnChangePressed += () => tcs.TrySetResult(EquipmentSelectChoice.Change);
 
             popup.ShowPopup().Forget();
-            
-            var result =  await tcs.Task;
+
+            var result = await tcs.Task;
             await popup.HidePopup();
 
             return result;

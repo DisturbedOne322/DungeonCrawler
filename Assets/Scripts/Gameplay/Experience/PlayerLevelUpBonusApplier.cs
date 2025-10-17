@@ -6,8 +6,8 @@ namespace Gameplay.Experience
 {
     public class PlayerLevelUpBonusApplier
     {
-        private readonly PlayerUnit _player;
         private readonly BaseConfigProvider<GameplayConfig> _configProvider;
+        private readonly PlayerUnit _player;
 
         public PlayerLevelUpBonusApplier(PlayerUnit player, BaseConfigProvider<GameplayConfig> configProvider)
         {
@@ -18,9 +18,9 @@ namespace Gameplay.Experience
         public void ApplyLevelUpBonus()
         {
             var config = _configProvider.GetConfig<PlayerLevelUpBuffsConfig>();
-            int healthBonus = config.HealthBonus;
+            var healthBonus = config.HealthBonus;
 
-            int maxHp = _player.UnitHealthData.MaxHealth.Value;
+            var maxHp = _player.UnitHealthData.MaxHealth.Value;
             _player.UnitHealthController.SetNewMaxHealth(maxHp + healthBonus);
         }
     }

@@ -1,6 +1,3 @@
-using Constants;
-using Data;
-using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Services;
 using Gameplay.Units;
@@ -14,7 +11,7 @@ namespace UI.BattleUI.Damage
     public class WorldSpaceNumberObjectSpawner : NumberObjectSpawner
     {
         [SerializeField] private Canvas _canvas;
-        
+
         [SerializeField] private float _zSpawnOffet;
         [SerializeField] private float _spawnRadius;
 
@@ -23,21 +20,21 @@ namespace UI.BattleUI.Damage
         {
             combatEventsBus.OnHitDealt.Subscribe(ShowDamageNumber).AddTo(gameObject);
         }
-        
+
         public override void ShowDamageNumber(HitEventData data)
         {
-            if(data.Target is PlayerUnit)
+            if (data.Target is PlayerUnit)
                 return;
-            
+
             var enemyPos = data.Target.Position;
             ShowText(enemyPos, data.HitData.Damage, ColorHelpers.GetDamageTypeColor(data), '-');
         }
 
         public override void ShowHealNumber(HealEventData data)
         {
-            if(data.Target is PlayerUnit)
+            if (data.Target is PlayerUnit)
                 return;
-            
+
             var enemyPos = data.Target.Position;
             ShowText(enemyPos, data.Amount, ColorHelpers.GetHealColor(), '+');
         }
@@ -48,7 +45,7 @@ namespace UI.BattleUI.Damage
 
             var offset = Random.insideUnitSphere * _spawnRadius;
             offset.z = _zSpawnOffet;
-            
+
             var spawnPos = pos + offset;
 
             view.transform.SetParent(_canvas.transform, false);

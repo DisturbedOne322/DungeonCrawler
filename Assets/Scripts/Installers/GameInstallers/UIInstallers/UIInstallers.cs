@@ -12,7 +12,7 @@ namespace Installers.GameInstallers.UIInstallers
             Container.Bind<EquipmentChangeController>().AsSingle();
             Container.Bind<SkillDiscardController>().AsSingle();
             Container.Bind<MenuItemViewFactory>().AsSingle();
-            
+
             Container.Bind<UIFactory>().FromComponentInHierarchy().AsSingle();
         }
     }

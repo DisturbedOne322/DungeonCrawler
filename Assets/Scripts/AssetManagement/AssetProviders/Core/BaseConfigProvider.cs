@@ -7,10 +7,14 @@ namespace AssetManagement.AssetProviders.Core
     {
         protected IAssetLoader AssetLoader;
 
-        public BaseConfigProvider(IAssetLoader assetLoader) => AssetLoader = assetLoader;
+        public BaseConfigProvider(IAssetLoader assetLoader)
+        {
+            AssetLoader = assetLoader;
+        }
 
-        public abstract T GetConfig<T>() where T : TConfigType;
         public abstract UniTask Initialize();
         public abstract void Dispose();
+
+        public abstract T GetConfig<T>() where T : TConfigType;
     }
 }

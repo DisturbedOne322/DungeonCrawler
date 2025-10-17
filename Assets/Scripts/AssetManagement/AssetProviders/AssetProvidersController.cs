@@ -7,29 +7,29 @@ namespace AssetManagement.AssetProviders
     public class AssetProvidersController
     {
         private readonly IAssetLoader _assetLoader;
-        private readonly List<IAssetProvider> _assetProviders = new ();
+        private readonly List<IAssetProvider> _assetProviders = new();
 
         public AssetProvidersController(List<IAssetProvider> assetProviders, IAssetLoader assetLoader)
         {
             _assetLoader = assetLoader;
-            foreach (var assetProvider in assetProviders) 
+            foreach (var assetProvider in assetProviders)
                 _assetProviders.Add(assetProvider);
         }
 
         public async UniTask Initialize()
         {
-            UniTask[] initializeTasks = new UniTask[_assetProviders.Count];
+            var initializeTasks = new UniTask[_assetProviders.Count];
 
-            for (int i = 0; i < _assetProviders.Count; i++) 
+            for (var i = 0; i < _assetProviders.Count; i++)
                 initializeTasks[i] = _assetProviders[i].Initialize();
-            
+
             await UniTask.WhenAll(initializeTasks);
         }
 
         public void Dispose()
         {
             _assetLoader.Dispose();
-            foreach (var assetProvider in _assetProviders) 
+            foreach (var assetProvider in _assetProviders)
                 assetProvider.Dispose();
         }
     }

@@ -9,7 +9,7 @@ namespace Gameplay.Skills.SkillCosts
     public class CoinsSkillCost : ISkillCost
     {
         [SerializeField] private int _cost;
-        
+
         public bool CanPay(CombatService combatService)
         {
             return combatService.ActiveUnit.UnitInventoryData.Coins.Value >= _cost;

@@ -21,4 +21,6 @@ MonoBehaviour:
   _statBuffs:
   - {fileID: 11400000, guid: a829b295d78db63498d20de271588c22, type: 2}
   - {fileID: 11400000, guid: 7d0d013baf597d445bcf353a7cf049b0, type: 2}
+  _statDebuffs:
+  - {fileID: 11400000, guid: 479686d0ad2ba7342aeb46f8c02a5e4e, type: 2}
   _prefab: {fileID: 8449004803641222730, guid: 5cdf1ac831646004288735c99ac51e4a, type: 3}

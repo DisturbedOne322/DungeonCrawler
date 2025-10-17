@@ -5,9 +5,9 @@ namespace Gameplay.Combat.SkillSelection
 {
     public abstract class ActionSelectionProvider
     {
-        protected UnitSkillsData UnitSkillsData;
         protected UnitInventoryData UnitInventoryData;
-        
+        protected UnitSkillsData UnitSkillsData;
+
         public ActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData)
         {
             UnitSkillsData = unitSkillsData;

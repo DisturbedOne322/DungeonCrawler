@@ -8,8 +8,7 @@ namespace Gameplay.Skills.Core
     public class SkillScalingData
     {
         public StatType StatType;
-        
-        [Min(0.01f)]
-        public float Scaling = 1f;
+
+        [Min(0.01f)] public float Scaling = 1f;
     }
 }

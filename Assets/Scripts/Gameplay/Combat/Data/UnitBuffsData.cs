@@ -1,15 +1,14 @@
-using Gameplay.Buffs;
-using Gameplay.Buffs.DefensiveCore;
-using Gameplay.Buffs.OffensiveCore;
-using Gameplay.Buffs.StatBuffsCore;
+using Gameplay.StatusEffects.Buffs.DefensiveCore;
+using Gameplay.StatusEffects.Buffs.OffensiveCore;
+using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using UniRx;
 
 namespace Gameplay.Combat.Data
 {
     public class UnitBuffsData
     {
-        public readonly ReactiveCollection<OffensiveBuffData> OffensiveBuffs = new ();
-        public readonly ReactiveCollection<DefensiveBuffData> DefensiveBuffs = new ();
-        public readonly ReactiveCollection<StatBuffData> StatBuffs = new ();
+        public readonly ReactiveCollection<DefensiveBuffData> DefensiveBuffs = new();
+        public readonly ReactiveCollection<OffensiveStatusEffectData> OffensiveBuffs = new();
+        public readonly ReactiveCollection<StatBuffData> StatBuffs = new();
     }
 }

@@ -3,14 +3,13 @@ using AssetManagement.AssetProviders;
 using Constants;
 using Gameplay.Services;
 using UnityEngine;
-using Zenject;
 
 namespace UI.BattleMenu
 {
     public class MenuItemViewFactory
     {
-        private readonly UIPrefabsProvider _uiPrefabsProvider;
         private readonly ContainerFactory _factory;
+        private readonly UIPrefabsProvider _uiPrefabsProvider;
 
         public MenuItemViewFactory(ContainerFactory factory, UIPrefabsProvider uiPrefabsProvider)
         {
@@ -18,15 +17,16 @@ namespace UI.BattleMenu
             _uiPrefabsProvider = uiPrefabsProvider;
         }
 
-        public MenuPageView CreatePage() => 
-            _factory.Create<MenuPageView>(GetPrefab(ConstPrefabs.MenuPagePrefab));
+        public MenuPageView CreatePage()
+        {
+            return _factory.Create<MenuPageView>(GetPrefab(ConstPrefabs.MenuPagePrefab));
+        }
 
         public List<BaseMenuItemView> CreateViewsForData(List<MenuItemData> dataList)
         {
-            List<BaseMenuItemView> views = new List<BaseMenuItemView>();
+            var views = new List<BaseMenuItemView>();
 
             foreach (var data in dataList)
-            {
                 switch (data.Type)
                 {
                     case MenuItemType.Submenu:
@@ -39,38 +39,40 @@ namespace UI.BattleMenu
                         views.Add(CreateItemMenuItem(data));
                         break;
                 }
-            }
-            
+
             return views;
         }
-        
+
         public BaseMenuItemView CreateMenuItem(MenuItemData data)
         {
             var view = _factory.Create<BaseMenuItemView>(GetPrefab(ConstPrefabs.MenuItemViewPrefab));
             view.Bind(data);
-            
+
             return view;
         }
-        
+
         private SkillMenuItemView CreateSkillMenuItem(MenuItemData data)
         {
             var view = _factory.Create<SkillMenuItemView>(GetPrefab(ConstPrefabs.SkillMenuItemPrefab));
             view.Bind(data);
             view.SetDescription(data.Description);
-            
+
             return view;
         }
-        
+
         private ItemMenuItemView CreateItemMenuItem(MenuItemData data)
         {
             var view = _factory.Create<ItemMenuItemView>(GetPrefab(ConstPrefabs.ItemMenuItemViewPrefab));
             view.Bind(data);
             view.SetDescription(data.Description);
             view.SetQuantity(data.Quantity);
-            
+
             return view;
         }
-        
-        private GameObject GetPrefab(string name) => _uiPrefabsProvider.GetPrefab(name);
+
+        private GameObject GetPrefab(string name)
+        {
+            return _uiPrefabsProvider.GetPrefab(name);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Gameplay.Dungeon.Data
         [SerializeField] private DungeonRoom _prefab;
         [SerializeField] private Sprite _icon;
         [SerializeField] private RewardDropTable _rewardDropTable;
-        
+
         public DungeonRoom RoomPrefab => _prefab;
         public Sprite Icon => _icon;
         public RewardDropTable RewardDropTable => _rewardDropTable;

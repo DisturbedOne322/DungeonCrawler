@@ -1,7 +1,5 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Combat;
 using Gameplay.Combat.Services;
-using Gameplay.Skills.Core;
 using UnityEngine;
 
 namespace Gameplay.Skills.DefensiveBuffs
@@ -11,13 +9,15 @@ namespace Gameplay.Skills.DefensiveBuffs
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.CombatBuffsService.AddDefensiveBuffTo(combatService.ActiveUnit, 
-                DefensiveBuffData);
-            
+            combatService.CombatBuffsService.AddDefensiveBuffTo(combatService.ActiveUnit,
+                _defensiveBuffData);
+
             return UniTask.CompletedTask;
         }
 
-        public override bool CanUse(CombatService combatService) => 
-            !combatService.ActiveUnit.UnitActiveBuffsData.IsDefensiveBuffActive(DefensiveBuffData);
+        public override bool CanUse(CombatService combatService)
+        {
+            return !combatService.ActiveUnit.UnitActiveBuffsData.IsDefensiveBuffActive(_defensiveBuffData);
+        }
     }
 }

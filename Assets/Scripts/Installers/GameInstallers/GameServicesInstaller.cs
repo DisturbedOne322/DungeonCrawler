@@ -12,12 +12,12 @@ namespace Installers.GameInstallers
         {
             Container.Bind<ContainerFactory>().AsSingle();
             Container.Bind<EnemyFactory>().AsSingle();
-            
+
             Container.Bind<NumberObjectsPool>().AsTransient();
             Container.Bind<NumberObjectsAnimator>().AsSingle();
-            
+
             Container.Bind<BalanceService>().AsSingle();
-            
+
             Container.Bind<RewardDistributor>().AsSingle();
             Container.Bind<RewardSelectorService>().AsSingle();
             Container.Bind<RoomDropsService>().AsSingle();

@@ -10,24 +10,24 @@ namespace Gameplay.Player
 {
     public class PlayerSkillSlotsManager : IDisposable
     {
-        private readonly PlayerUnit _playerUnit;
-        private readonly ExperienceData _experienceData;
         private readonly BaseConfigProvider<GameplayConfig> _configProvider;
 
         private readonly IDisposable _disposable;
-        
-        private int _previousSlots = 0;
-        
-        public readonly Subject<int> OnSkillSlotsAdded = new ();
-        
+        private readonly ExperienceData _experienceData;
+        private readonly PlayerUnit _playerUnit;
+
+        public readonly Subject<int> OnSkillSlotsAdded = new();
+
+        private int _previousSlots;
+
         public PlayerSkillSlotsManager(PlayerUnit playerUnit,
-            ExperienceData experienceData, 
+            ExperienceData experienceData,
             BaseConfigProvider<GameplayConfig> configProvider)
         {
             _playerUnit = playerUnit;
             _experienceData = experienceData;
             _configProvider = configProvider;
-            
+
             _disposable = experienceData.OnLevelUp.Subscribe(ProcessLevelUp);
         }
 
@@ -36,18 +36,24 @@ namespace Gameplay.Player
             _disposable.Dispose();
         }
 
-        public int GetPlayerSkillSlots() => GetSkillSlotsForLevel(_experienceData.CurrentLevel);
+        public int GetPlayerSkillSlots()
+        {
+            return GetSkillSlotsForLevel(_experienceData.CurrentLevel);
+        }
 
-        public bool HasFreeSkillSlot() => GetPlayerSkillSlots() > _playerUnit.UnitSkillsData.Skills.Count;
+        public bool HasFreeSkillSlot()
+        {
+            return GetPlayerSkillSlots() > _playerUnit.UnitSkillsData.Skills.Count;
+        }
 
         private void ProcessLevelUp(int level)
         {
-            int skillSlots = GetSkillSlotsForLevel(level);
-            
-            if(_previousSlots == 0)
+            var skillSlots = GetSkillSlotsForLevel(level);
+
+            if (_previousSlots == 0)
                 _previousSlots = skillSlots;
 
-            if (_previousSlots >= skillSlots) 
+            if (_previousSlots >= skillSlots)
                 return;
 
             OnSkillSlotsAdded?.OnNext(skillSlots - _previousSlots);
@@ -58,9 +64,9 @@ namespace Gameplay.Player
         {
             var config = _configProvider.GetConfig<PlayerSkillSlotUnlockConfig>();
 
-            int skillSlots = config.StartingSkillSlots;
+            var skillSlots = config.StartingSkillSlots;
             skillSlots += config.AdditionalSkillSlotLevelThresholds.Count(threshold => level >= threshold);
-            
+
             return skillSlots;
         }
     }

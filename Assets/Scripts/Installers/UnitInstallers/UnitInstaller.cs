@@ -1,7 +1,7 @@
-using Gameplay.Buffs.Services;
 using Gameplay.Combat;
 using Gameplay.Combat.Data;
 using Gameplay.Equipment;
+using Gameplay.StatusEffects.Buffs.Services;
 using Zenject;
 
 namespace Installers.UnitInstallers
@@ -11,18 +11,20 @@ namespace Installers.UnitInstallers
         public override void InstallBindings()
         {
             Container.Bind<UnitHealthData>().AsSingle();
-            Container.Bind<UnitHealthController>().AsSingle();    
-            
+            Container.Bind<UnitHealthController>().AsSingle();
+
             Container.Bind<UnitManaData>().AsSingle();
             Container.Bind<UnitManaController>().AsSingle();
-            
+
             Container.Bind<UnitSkillsData>().AsSingle();
             Container.Bind<UnitInventoryData>().AsSingle();
             Container.Bind<UnitStatsData>().AsSingle();
             Container.Bind<UnitBonusStatsData>().AsSingle();
             Container.Bind<UnitBuffsData>().AsSingle();
+            Container.Bind<UnitDebuffsData>().AsSingle();
             Container.Bind<WeaponBuffApplier>().AsSingle().NonLazy();
             Container.Bind<UnitActiveBuffsData>().AsSingle();
+            Container.Bind<UnitActiveDebuffsData>().AsSingle();
             Container.Bind<UnitEquipmentData>().AsSingle();
         }
     }

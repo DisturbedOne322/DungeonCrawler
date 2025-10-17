@@ -7,11 +7,10 @@ namespace Gameplay.Combat.SkillSelection
     {
         private readonly UnitHealthData _unitHealthData;
         private readonly UnitStatsData _unitStatsData;
-        
-        public AIActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData) : 
+
+        public AIActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData) :
             base(unitSkillsData, unitInventoryData)
         {
-            
         }
 
         public override async UniTask<BaseCombatAction> SelectAction()

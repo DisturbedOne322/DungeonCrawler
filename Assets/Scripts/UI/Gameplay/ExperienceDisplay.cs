@@ -15,7 +15,7 @@ namespace UI.Gameplay
 
         private Sequence _experienceSequence;
         private Sequence _levelUpSequence;
-        
+
         [Inject]
         private void Construct(ExperienceData experienceData)
         {
@@ -27,16 +27,16 @@ namespace UI.Gameplay
         {
             _experienceSequence?.Kill();
             _experienceSequence = DOTween.Sequence();
-            
+
             _experienceText.text = $"+{amount} EXP";
             _experienceText.transform.localScale = Vector3.zero;
-            
+
             _experienceSequence.Append(_experienceText.transform.DOScale(Vector3.one, 0.35f).SetEase(Ease.InOutBounce));
             _experienceSequence.AppendInterval(1f);
             _experienceSequence.Append(_experienceText.transform.DOScale(Vector3.zero, 0.7f).SetEase(Ease.OutCubic));
             _experienceSequence.SetLink(gameObject);
         }
-        
+
         private void ShowLevelUp(int currentLevel)
         {
             _currentLevelText.text = "LVL: " + currentLevel;
@@ -47,10 +47,10 @@ namespace UI.Gameplay
         {
             _levelUpSequence?.Kill();
             _levelUpSequence = DOTween.Sequence();
-            
+
             _levelUpText.text = "LVL ++";
             _levelUpText.transform.localScale = Vector3.zero;
-            
+
             _levelUpSequence.Append(_levelUpText.transform.DOScale(Vector3.one, 0.35f).SetEase(Ease.InOutBounce));
             _levelUpSequence.AppendInterval(1f);
             _levelUpSequence.Append(_levelUpText.transform.DOScale(Vector3.zero, 0.7f).SetEase(Ease.OutCubic));

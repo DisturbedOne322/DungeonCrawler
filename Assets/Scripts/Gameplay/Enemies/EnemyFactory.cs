@@ -15,18 +15,18 @@ namespace Gameplay.Enemies
             _configProvider = configProvider;
             _containerFactory = containerFactory;
         }
-        
+
         public EnemyUnit CreateEnemy()
         {
             var enemyDatabase = _configProvider.GetConfig<EnemyDatabase>();
-            
+
             var data = enemyDatabase.Database[0];
             var prefab = data.Prefab.gameObject;
             var unit = _containerFactory.Create<EnemyUnit>(prefab);
-            
+
             unit.InitializeUnit(data);
             unit.SetExperienceBonus(data.ExperienceBonus);
-            
+
             return unit;
         }
     }

@@ -4,6 +4,9 @@ namespace Helpers
 {
     public static class FormattingHelper
     {
-        public static string FormatStat(int stat) => stat + "/" + StatConstants.MaxStatPoints;
+        public static string FormatStat(int stat)
+        {
+            return stat + "/" + StatConstants.MaxStatPoints;
+        }
     }
 }

@@ -4,26 +4,26 @@ namespace Gameplay.Combat.Data
 {
     public class HitDataStream
     {
-        private readonly SkillData _baseSkillData;
+        public int MaxHits;
 
         public int MinHits;
-        public int MaxHits;
-        
-        public SkillData BaseSkillData => _baseSkillData;
-        public List<HitData> Hits { get; } = new();
-        
+
         public HitDataStream(SkillData skillData)
         {
-            _baseSkillData = skillData;
-            
+            BaseSkillData = skillData;
+
             MinHits = skillData.MinHits;
             MaxHits = skillData.MaxHits;
         }
 
+        public SkillData BaseSkillData { get; }
+
+        public List<HitData> Hits { get; } = new();
+
         public void CreateHitDataList(int hits)
         {
-            for (int i = 0; i < hits; i++) 
-                Hits.Add(new(_baseSkillData, i));
+            for (var i = 0; i < hits; i++)
+                Hits.Add(new HitData(BaseSkillData, i));
         }
     }
 }

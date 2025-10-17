@@ -22,9 +22,9 @@ namespace Gameplay.Dungeon.Data
 
         public bool TryGetRoomData(RoomType type, out RoomData roomData)
         {
-            if(_roomDataMap.TryGetValue(type, out roomData))
+            if (_roomDataMap.TryGetValue(type, out roomData))
                 return true;
-            
+
             throw new KeyNotFoundException($"No room data found for type {type}");
         }
     }

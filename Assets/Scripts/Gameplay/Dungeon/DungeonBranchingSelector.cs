@@ -8,27 +8,25 @@ namespace Gameplay.Dungeon
     {
         private readonly PlayerMovementHistory _playerMovementHistory;
 
-        private List<RoomType> _roomsForSelection = new(3);
-        
-        public List<RoomType> RoomsForSelection => _roomsForSelection;
-        
         public DungeonBranchingSelector(PlayerMovementHistory playerMovementHistory)
         {
             _playerMovementHistory = playerMovementHistory;
         }
 
+        public List<RoomType> RoomsForSelection { get; } = new(3);
+
         public void PrepareSelection()
         {
-            _roomsForSelection.Clear();
-            
-            _roomsForSelection.Add(SelectRandomRoom());
-            _roomsForSelection.Add(SelectRandomRoom());
-            _roomsForSelection.Add(SelectRandomRoom());
+            RoomsForSelection.Clear();
+
+            RoomsForSelection.Add(SelectRandomRoom());
+            RoomsForSelection.Add(SelectRandomRoom());
+            RoomsForSelection.Add(SelectRandomRoom());
         }
 
         private RoomType SelectRandomRoom()
         {
-            int randomIndex = Random.Range(2, 4);
+            var randomIndex = Random.Range(2, 4);
             return (RoomType)randomIndex;
         }
     }

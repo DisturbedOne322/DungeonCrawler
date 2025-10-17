@@ -9,11 +9,11 @@ namespace Gameplay.Player
         [SerializeField] private float _breathingSpeed = 2f;
 
         private Tween _breathingTween;
-        
+
         private void Start()
         {
             _breathingTween = transform.DOLocalMoveY(
-                    transform.localPosition.y + _breathingAmplitude, 
+                    transform.localPosition.y + _breathingAmplitude,
                     1f / _breathingSpeed
                 )
                 .SetEase(Ease.InOutSine)

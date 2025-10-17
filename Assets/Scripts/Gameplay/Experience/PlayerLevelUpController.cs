@@ -5,10 +5,10 @@ namespace Gameplay.Experience
     public class PlayerLevelUpController
     {
         private readonly ExperienceData _experienceData;
-        private readonly PlayerStatDistributionController _playerStatDistributionController;
         private readonly PlayerLevelUpBonusApplier _playerLevelUpBonusApplier;
-        
-        public PlayerLevelUpController(ExperienceData experienceData, 
+        private readonly PlayerStatDistributionController _playerStatDistributionController;
+
+        public PlayerLevelUpController(ExperienceData experienceData,
             PlayerStatDistributionController playerStatDistributionController,
             PlayerLevelUpBonusApplier playerLevelUpBonusApplier)
         {

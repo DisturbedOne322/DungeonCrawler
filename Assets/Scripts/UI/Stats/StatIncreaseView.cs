@@ -1,5 +1,4 @@
 using Constants;
-using Data;
 using Helpers;
 using TMPro;
 using UniRx;
@@ -13,7 +12,10 @@ namespace UI.Stats
         [SerializeField] private Slider _statSlider;
         [SerializeField] private TextMeshProUGUI _statText;
 
-        public void Initialize(ReactiveProperty<int> statProperty) => statProperty.Subscribe(UpdateView).AddTo(gameObject);
+        public void Initialize(ReactiveProperty<int> statProperty)
+        {
+            statProperty.Subscribe(UpdateView).AddTo(gameObject);
+        }
 
         private void UpdateView(int stat)
         {

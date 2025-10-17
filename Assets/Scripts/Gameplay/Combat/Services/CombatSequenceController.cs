@@ -11,7 +11,7 @@ namespace Gameplay.Combat.Services
         private readonly CombatData _combatData;
         private readonly CombatService _combatService;
         private readonly PlayerExperienceService _playerExperienceService;
-        
+
         public CombatSequenceController(CombatData combatData, CombatService combatService,
             PlayerExperienceService playerExperienceService)
         {
@@ -23,7 +23,7 @@ namespace Gameplay.Combat.Services
         public async UniTask StartCombat(EnemyUnit enemyUnit)
         {
             _combatService.StartCombat(enemyUnit);
-            
+
             while (!IsCombatOver())
             {
                 _combatService.StartTurn();
@@ -32,8 +32,8 @@ namespace Gameplay.Combat.Services
             }
 
             _combatService.EndCombat();
-            
-            if(IsUnitDead(enemyUnit))
+
+            if (IsUnitDead(enemyUnit))
                 await _playerExperienceService.AddExperience(enemyUnit.ExperienceBonus);
         }
 
@@ -44,9 +44,15 @@ namespace Gameplay.Combat.Services
             var action = await currentUnit.ActionSelectionProvider.SelectAction();
             await action.UseAction(_combatService);
         }
-        
-        private bool IsCombatOver() => IsUnitDead(_combatData.Enemy) || IsUnitDead(_combatData.Player);
 
-        private bool IsUnitDead(IEntity unit) => unit.UnitHealthData.IsDead.Value;
+        private bool IsCombatOver()
+        {
+            return IsUnitDead(_combatData.Enemy) || IsUnitDead(_combatData.Player);
+        }
+
+        private bool IsUnitDead(IEntity unit)
+        {
+            return unit.UnitHealthData.IsDead.Value;
+        }
     }
 }

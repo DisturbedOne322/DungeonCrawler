@@ -7,18 +7,18 @@ namespace UI.Core
     public class TextDisplay : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _text;
-        
+
         [SerializeField] private FadeOptions _fadeIn;
-        [SerializeField, Min(0.01f)] private float _stayDuration;
+        [SerializeField] [Min(0.01f)] private float _stayDuration;
         [SerializeField] private FadeOptions _fadeOut;
-        
+
         private Sequence _sequence;
 
         public void ShowText(string text)
         {
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
-            
+
             _text.text = text;
             ResetAlpha();
 

@@ -4,6 +4,6 @@ namespace Gameplay.Combat.Data
     {
         Physical,
         Magical,
-        Absolute,
+        Absolute
     }
 }
