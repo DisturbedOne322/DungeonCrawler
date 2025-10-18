@@ -92,13 +92,5 @@ namespace Gameplay.StatusEffects.Buffs.Core
 
             GetActiveBuffs(buffTarget).Add(CreateBuffInstance(buffData, buffTarget));
         }
-
-        private bool IsValidActionExpiration(StatusEffectExpirationType effectExpirationType)
-        {
-            return effectExpirationType is
-                StatusEffectExpirationType.NextAbsoluteAction or
-                StatusEffectExpirationType.NextMagicalAction or
-                StatusEffectExpirationType.NextPhysicalAction;
-        }
     }
 }

@@ -4,6 +4,7 @@ using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Skills.Core;
+using Gameplay.StatusEffects.Core;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -24,6 +25,8 @@ namespace Gameplay.Units
         [SerializeField] [Space] private List<BaseSkill> _skillSet;
         [SerializeField] private List<BaseConsumable> _items;
 
+        [SerializeReference] private List<BaseStatusEffectData> _list;
+        
         [SerializeField] [Space] private BaseWeapon _baseWeapon;
         [SerializeField] private BaseArmor _baseArmor;
 
