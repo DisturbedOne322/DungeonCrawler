@@ -12,11 +12,9 @@ namespace Gameplay.Facades
         UnitManaData UnitManaData { get; }
         UnitStatsData UnitStatsData { get; }
         UnitBonusStatsData UnitBonusStatsData { get; }
-        UnitBuffsData UnitBuffsData { get; }
-        UnitDebuffsData UnitDebuffsData { get; }
+        UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; }
         UnitEquipmentData UnitEquipmentData { get; }
-        UnitActiveBuffsData UnitActiveBuffsData { get; }
-        UnitActiveDebuffsData UnitActiveDebuffsData { get; }
+        UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; }
         UnitHealthController UnitHealthController { get; }
         UnitManaController UnitManaController { get; }
         Vector3 Position { get; }

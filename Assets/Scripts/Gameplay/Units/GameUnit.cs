@@ -33,13 +33,10 @@ namespace Gameplay.Units
 
         public UnitSkillsData UnitSkillsData { get; private set; }
 
-        public UnitBuffsData UnitBuffsData { get; private set; }
-        public UnitDebuffsData UnitDebuffsData { get; private set; }
+        public UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; private set; }
 
-        public UnitActiveBuffsData UnitActiveBuffsData { get; private set; }
-
-        public UnitActiveDebuffsData UnitActiveDebuffsData { get; private set; }
-
+        public UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; private set; }
+        
         public UnitInventoryData UnitInventoryData { get; private set; }
 
         public UnitEquipmentData UnitEquipmentData { get; private set; }
@@ -58,10 +55,8 @@ namespace Gameplay.Units
             UnitStatsData unitStatsData,
             UnitBonusStatsData unitBonusStatsData,
             UnitSkillsData unitSkillsData,
-            UnitBuffsData unitBuffsData,
-            UnitDebuffsData unitDebuffsesData,
-            UnitActiveBuffsData unitActiveBuffsData,
-            UnitActiveDebuffsData unitActiveDebuffsData,
+            UnitHeldStatusEffectsData unitHeldStatusEffectsData,
+            UnitActiveStatusEffectsData unitActiveStatusEffectsData,
             UnitInventoryData unitInventoryData,
             UnitEquipmentData unitEquipmentData)
         {
@@ -73,10 +68,8 @@ namespace Gameplay.Units
             UnitStatsData = unitStatsData;
             UnitBonusStatsData = unitBonusStatsData;
             UnitSkillsData = unitSkillsData;
-            UnitBuffsData = unitBuffsData;
-            UnitDebuffsData = unitDebuffsesData;
-            UnitActiveBuffsData = unitActiveBuffsData;
-            UnitActiveDebuffsData = unitActiveDebuffsData;
+            UnitHeldStatusEffectsData = unitHeldStatusEffectsData;
+            UnitActiveStatusEffectsData = unitActiveStatusEffectsData;
             UnitInventoryData = unitInventoryData;
             UnitEquipmentData = unitEquipmentData;
         }

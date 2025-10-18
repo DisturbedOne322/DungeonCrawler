@@ -1,6 +1,6 @@
 using Gameplay.Facades;
 
-namespace Gameplay.Combat.Data
+namespace Gameplay.Combat.Data.Events
 {
     public struct EvadeEventData
     {

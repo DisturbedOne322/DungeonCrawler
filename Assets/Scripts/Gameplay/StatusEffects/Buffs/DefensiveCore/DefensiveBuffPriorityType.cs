@@ -4,6 +4,6 @@ namespace Gameplay.StatusEffects.Buffs.DefensiveCore
     {
         Subtractive = 0,
         Divisive = 1,
-        Stance = 2
+        Stance = 2,
     }
 }

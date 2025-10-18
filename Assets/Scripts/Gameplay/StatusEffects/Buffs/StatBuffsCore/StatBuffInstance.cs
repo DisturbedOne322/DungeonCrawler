@@ -1,4 +1,5 @@
 using Data;
+using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
 
 namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
@@ -18,6 +19,20 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
                 StatusEffectData = buffDataData,
                 ValueChange = valueChange
             };
+        }
+
+        public override void Apply(IEntity activeUnit, IEntity otherUnit)
+        {
+            AffectedUnit = activeUnit;
+            
+            ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, ValueChange);
+            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
+        }
+
+        public override void Revert()
+        {
+            UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
+            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);        
         }
     }
 }

@@ -1,3 +1,4 @@
+using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
 
 namespace Gameplay.StatusEffects.Buffs.DefensiveCore
@@ -18,5 +19,13 @@ namespace Gameplay.StatusEffects.Buffs.DefensiveCore
                 DefensiveBuffData = buffData
             };
         }
+
+        public override void Apply(IEntity activeUnit, IEntity otherUnit)
+        {
+            AffectedUnit = activeUnit;
+            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
+        }
+
+        public override void Revert() => AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
     }
 }

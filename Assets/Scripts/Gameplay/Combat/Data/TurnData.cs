@@ -6,5 +6,6 @@ namespace Gameplay.Combat.Data
     {
         public int TurnCount;
         public IGameUnit ActiveUnit;
+        public IGameUnit OtherUnit;
     }
 }

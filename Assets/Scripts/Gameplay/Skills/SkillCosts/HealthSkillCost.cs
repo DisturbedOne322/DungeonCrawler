@@ -18,7 +18,7 @@ namespace Gameplay.Skills.SkillCosts
 
         public void Pay(CombatService combatService)
         {
-            var stream = combatService.CreateFinalHitsStream(_selfDamageData);
+            var stream = combatService.CreateHitsStream(_selfDamageData);
             combatService.DealDamageToActiveUnit(stream, 0);
         }
     }

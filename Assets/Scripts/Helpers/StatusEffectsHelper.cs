@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Combat.Data;
-using Gameplay.StatusEffects.Buffs.ReapplyStrategies;
 using Gameplay.StatusEffects.Core;
+using Gameplay.StatusEffects.ReapplyStrategies;
 
 namespace Helpers
 {

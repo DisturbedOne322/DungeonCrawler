@@ -5,6 +5,7 @@ namespace Gameplay.Combat.Data
     public struct SkillUsedData
     {
         public IGameUnit Attacker;
+        public IGameUnit Target;
         public SkillData SkillData;
     }
 }

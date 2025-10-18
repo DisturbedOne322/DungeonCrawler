@@ -1,6 +1,6 @@
 using Gameplay.StatusEffects.Core;
 
-namespace Gameplay.StatusEffects.Buffs.ReapplyStrategies
+namespace Gameplay.StatusEffects.ReapplyStrategies
 {
     public class ReapplyExtendDurationStrategy : IStatusEffectReapplyStrategy
     {

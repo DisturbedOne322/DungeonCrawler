@@ -1,7 +1,7 @@
 using Gameplay.StatusEffects.Core;
 using UnityEngine;
 
-namespace Gameplay.StatusEffects.Buffs.ReapplyStrategies
+namespace Gameplay.StatusEffects.ReapplyStrategies
 {
     public class ReapplyStackStrategy : IStatusEffectReapplyStrategy
     {

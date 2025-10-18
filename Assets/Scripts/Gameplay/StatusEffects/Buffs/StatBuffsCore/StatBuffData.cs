@@ -10,14 +10,14 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
         [SerializeField] private StatType _buffedStatType;
 
         public StatType BuffedStatType => _buffedStatType;
+        
+        protected abstract float GetBuffDelta();
 
-        public StatBuffInstance CreateBuffInstance(IEntity unit)
+        public override BaseStatusEffectInstance CreateInstance()
         {
-            var buffDelta = GetBuffDelta(unit);
+            var buffDelta = GetBuffDelta();
             var instance = StatBuffInstance.Create(this, buffDelta);
             return instance;
         }
-
-        protected abstract float GetBuffDelta(IEntity unit);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Gameplay.StatusEffects.Buffs.OffensiveBuffs
 {
     [CreateAssetMenu(fileName = "ChargeStance", menuName = "Gameplay/Buffs/OffensiveBuffs/ChargeStance")]
-    public class ChargeStance : OffensiveBuffData
+    public class ChargeStance : HitBuffData
     {
         [SerializeField] [Min(1)] private float _damageMultiplier;
 

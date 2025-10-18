@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gameplay.StatusEffects.Buffs.OffensiveBuffs
 {
     [CreateAssetMenu(fileName = "FlatAttackBuff", menuName = "Gameplay/Buffs/OffensiveBuffs/FlatAttackBuff")]
-    public class FlatAttackBuff : OffensiveBuffData
+    public class FlatAttackBuff : HitBuffData
     {
         [SerializeField] private int _damageIncrease;
 

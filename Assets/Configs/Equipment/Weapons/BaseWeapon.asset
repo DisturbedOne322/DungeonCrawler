@@ -15,9 +15,5 @@ MonoBehaviour:
   _icon: {fileID: 0}
   _name: Wooden Sword
   _description: 
-  _offensiveBuffs: []
-  _defensiveBuffs: []
-  _statBuffs:
-  - {fileID: 11400000, guid: 9723e17e83286f34dbe804bfdc7afea2, type: 2}
-  _statDebuffs: []
+  _statusEffects: []
   _prefab: {fileID: 8449004803641222730, guid: 5cdf1ac831646004288735c99ac51e4a, type: 3}

@@ -20,11 +20,9 @@ namespace Installers.UnitInstallers
             Container.Bind<UnitInventoryData>().AsSingle();
             Container.Bind<UnitStatsData>().AsSingle();
             Container.Bind<UnitBonusStatsData>().AsSingle();
-            Container.Bind<UnitBuffsData>().AsSingle();
-            Container.Bind<UnitDebuffsData>().AsSingle();
+            Container.Bind<UnitHeldStatusEffectsData>().AsSingle();
             Container.Bind<WeaponBuffApplier>().AsSingle().NonLazy();
-            Container.Bind<UnitActiveBuffsData>().AsSingle();
-            Container.Bind<UnitActiveDebuffsData>().AsSingle();
+            Container.Bind<UnitActiveStatusEffectsData>().AsSingle();
             Container.Bind<UnitEquipmentData>().AsSingle();
         }
     }

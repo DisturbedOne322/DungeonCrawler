@@ -1,7 +1,9 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
+using Gameplay.Combat.Data.Events;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.Services;
+using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using Random = UnityEngine.Random;
 
@@ -15,12 +17,12 @@ namespace Gameplay.Combat.Services
         private readonly CombatFormulaService _combatFormulaService;
 
         public CombatService(CombatData combatData, CombatFormulaService combatFormulaService,
-            CombatBuffsService combatBuffsService, BuffsCalculationService buffsCalculationService,
+            CombatStatusEffectsService combatStatusEffectsService, BuffsCalculationService buffsCalculationService,
             CombatEventsBus combatEventsBus)
         {
             _combatData = combatData;
             _combatFormulaService = combatFormulaService;
-            CombatBuffsService = combatBuffsService;
+            CombatStatusEffectsService = combatStatusEffectsService;
             _buffsCalculationService = buffsCalculationService;
             _combatEventsBus = combatEventsBus;
         }
@@ -30,7 +32,7 @@ namespace Gameplay.Combat.Services
 
         public int TurnCount => _combatData.TurnCount;
 
-        public CombatBuffsService CombatBuffsService { get; }
+        public CombatStatusEffectsService CombatStatusEffectsService { get; }
 
         public bool IsPlayerTurn() => ActiveUnit is PlayerUnit;
 
@@ -51,7 +53,8 @@ namespace Gameplay.Combat.Services
             _combatEventsBus.InvokeTurnStarted(new TurnData
             {
                 TurnCount = TurnCount,
-                ActiveUnit = ActiveUnit
+                ActiveUnit = ActiveUnit,
+                OtherUnit = OtherUnit,
             });
         }
 
@@ -70,13 +73,15 @@ namespace Gameplay.Combat.Services
 
         public void DealDamageToOtherUnit(HitDataStream hitDataStream, int index) => DealDamageToUnit(ActiveUnit, OtherUnit, hitDataStream, index);
 
-        public HitDataStream CreateFinalHitsStream(SkillData skillData)
+        public HitDataStream CreateHitsStream(SkillData skillData)
         {
             HitDataStream hitDataStream = new(skillData);
 
             var hits = Random.Range(hitDataStream.MinHits, hitDataStream.MaxHits);
             hitDataStream.CreateHitDataList(hits);
 
+            _buffsCalculationService.BuffHitStream(ActiveUnit, hitDataStream);
+            
             return hitDataStream;
         }
 
@@ -90,6 +95,7 @@ namespace Gameplay.Combat.Services
                 _combatEventsBus.InvokeSkillUsed(new SkillUsedData
                 {
                     Attacker = attacker,
+                    Target = target,
                     SkillData = hitDataStream.BaseSkillData
                 });
 

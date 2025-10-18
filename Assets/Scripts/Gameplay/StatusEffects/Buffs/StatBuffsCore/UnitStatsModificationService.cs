@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 {
-    public class UnitStatsModificationService
+    public static class UnitStatsModificationService
     {
-        public float ModifyStat(IEntity unit, StatType statType, float delta)
+        public static float ModifyStat(IEntity unit, StatType statType, float delta)
         {
             if (TryModifyBaseStat(unit, statType, delta, out var applied)) return applied;
             if (TryModifyBonusStat(unit, statType, delta, out applied)) return applied;
@@ -17,7 +17,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             throw new Exception($"{statType} is unhandled");
         }
 
-        private bool TryModifyBaseStat(IEntity unit, StatType type, float delta, out float applied)
+        private static bool TryModifyBaseStat(IEntity unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var stats = unit.UnitStatsData;
@@ -49,7 +49,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return false;
         }
 
-        private bool TryModifyBonusStat(IEntity unit, StatType type, float delta, out float applied)
+        private static bool TryModifyBonusStat(IEntity unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var bonus = unit.UnitBonusStatsData;
@@ -80,7 +80,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return false;
         }
 
-        private bool TryModifySpecialStat(IEntity unit, StatType type, float delta, out float applied)
+        private static bool TryModifySpecialStat(IEntity unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var intDelta = Mathf.RoundToInt(delta);
@@ -99,7 +99,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return false;
         }
 
-        private float ModifyHealth(IEntity unit, int delta)
+        private static float ModifyHealth(IEntity unit, int delta)
         {
             var healthData = unit.UnitHealthData;
             var healthController = unit.UnitHealthController;
@@ -116,7 +116,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return appliedInt;
         }
 
-        private float ModifyMana(IEntity unit, int delta)
+        private static float ModifyMana(IEntity unit, int delta)
         {
             var manaData = unit.UnitManaData;
             var manaController = unit.UnitManaController;
@@ -132,7 +132,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return appliedInt;
         }
 
-        private float ApplyIntClamped(ReactiveProperty<int> prop, int intDelta, int minValue)
+        private static float ApplyIntClamped(ReactiveProperty<int> prop, int intDelta, int minValue)
         {
             int old = prop.Value;
             var requestedNew = old + intDelta;
@@ -141,7 +141,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return newVal - old;
         }
 
-        private float ApplyFloatClamped(ReactiveProperty<float> prop, float delta, float minValue)
+        private static float ApplyFloatClamped(ReactiveProperty<float> prop, float delta, float minValue)
         {
             float old = prop.Value;
             var newVal = Mathf.Max(minValue, old + delta);

@@ -1,4 +1,4 @@
-using Gameplay.Facades;
+using Gameplay.StatusEffects.Debuffs.Core;
 using UnityEngine;
 
 namespace Gameplay.StatusEffects.Debuffs.StatDebuffs
@@ -8,6 +8,6 @@ namespace Gameplay.StatusEffects.Debuffs.StatDebuffs
     {
         [SerializeField, Min(1)] private int _debuffValue = 1;
 
-        protected override float GetDebuffDelta(IEntity unit) => _debuffValue;
+        protected override float GetDebuffDelta() => _debuffValue;
     }
 }

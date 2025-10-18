@@ -1,5 +1,6 @@
 using System;
 using Gameplay.Combat.Data;
+using Gameplay.Combat.Data.Events;
 using Gameplay.Facades;
 using UniRx;
 

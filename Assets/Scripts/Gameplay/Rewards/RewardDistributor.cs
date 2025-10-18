@@ -10,6 +10,7 @@ using Gameplay.Skills.Core;
 using Gameplay.StatusEffects.Buffs.DefensiveCore;
 using Gameplay.StatusEffects.Buffs.OffensiveCore;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
+using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -54,18 +55,10 @@ namespace Gameplay.Rewards
                     _player.UnitInventoryData.AddItems(consumable, dropEntry.Amount);
                     break;
 
-                case OffensiveBuffData offensiveBuff:
-                    _player.UnitBuffsData.OffensiveBuffs.Add(offensiveBuff);
+                case BaseStatusEffectData statusEffect:
+                    _player.UnitHeldStatusEffectsData.Add(statusEffect);
                     break;
-
-                case DefensiveBuffData defensiveBuff:
-                    _player.UnitBuffsData.DefensiveBuffs.Add(defensiveBuff);
-                    break;
-
-                case StatBuffData statBuffData:
-                    _player.UnitBuffsData.StatBuffs.Add(statBuffData);
-                    break;
-
+                
                 default:
                     Debug.LogWarning($"Unhandled reward type: {dropEntry.Item.name}");
                     break;

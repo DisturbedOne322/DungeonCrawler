@@ -1,21 +1,19 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Services;
+using Gameplay.Skills.Core;
 using UnityEngine;
 
 namespace Gameplay.Skills.OffensiveBuffs
 {
     [CreateAssetMenu(fileName = "OffensiveBuffSkill", menuName = "Gameplay/Skills/Buffs/OffensiveBuffSkill")]
-    public class OffensiveBuffSkill : Core.OffensiveBuffSkill
+    public class OffensiveBuffSkill : BaseOffensiveBuffSkill
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.CombatBuffsService.AddOffensiveBuffTo(combatService.ActiveUnit, _offensiveBuffData);
+            combatService.CombatStatusEffectsService.AddOffensiveBuff(_hitBuffData);
             return UniTask.CompletedTask;
         }
 
-        public override bool CanUse(CombatService combatService)
-        {
-            return !combatService.ActiveUnit.UnitActiveBuffsData.IsOffensiveBuffActive(_offensiveBuffData);
-        }
+        public override bool CanUse(CombatService combatService) => !combatService.ActiveUnit.UnitActiveStatusEffectsData.IsStatusEffectActive(_hitBuffData);
     }
 }

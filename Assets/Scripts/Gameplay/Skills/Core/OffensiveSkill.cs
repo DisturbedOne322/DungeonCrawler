@@ -21,7 +21,7 @@ namespace Gameplay.Skills.Core
 
             var task = StartAnimation(combatService);
 
-            var hitsStream = combatService.CreateFinalHitsStream(GetSkillData(combatService.ActiveUnit));
+            var hitsStream = combatService.CreateHitsStream(GetSkillData(combatService.ActiveUnit));
             var hitsCount = hitsStream.Hits.Count;
 
             var animStartTime = _skillAnimationData.SwingTiming;

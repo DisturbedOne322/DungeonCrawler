@@ -1,4 +1,3 @@
-using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using UnityEngine;
 
@@ -9,9 +8,6 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffs
     {
         [SerializeField] [Min(1)] private int _increaseAmount;
 
-        protected override float GetBuffDelta(IEntity unit)
-        {
-            return _increaseAmount;
-        }
+        protected override float GetBuffDelta() => _increaseAmount;
     }
 }

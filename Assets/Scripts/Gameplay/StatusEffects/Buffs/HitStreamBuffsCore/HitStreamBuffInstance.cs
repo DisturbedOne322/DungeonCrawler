@@ -1,0 +1,32 @@
+using Gameplay.Facades;
+using Gameplay.StatusEffects.Core;
+
+namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
+{
+    public class HitStreamBuffInstance : BaseStatusEffectInstance
+    {
+        public HitStreamBuffData HitStreamBuffData;
+        public HitStreamBuffPriorityType PriorityType;
+
+        public static HitStreamBuffInstance Create(HitStreamBuffData buffData)
+        {
+            return new HitStreamBuffInstance
+            {
+                TurnDurationLeft = buffData.StatusEffectDurationData.TurnDurations,
+                EffectExpirationType = buffData.StatusEffectDurationData.EffectExpirationType,
+                StatusEffectData = buffData,
+                PriorityType = buffData.Priority,
+                HitStreamBuffData = buffData
+            };
+        }
+        
+        public override void Apply(IEntity activeUnit, IEntity otherUnit)
+        {
+            AffectedUnit = activeUnit;
+
+            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
+        }
+
+        public override void Revert() => AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+    }
+}

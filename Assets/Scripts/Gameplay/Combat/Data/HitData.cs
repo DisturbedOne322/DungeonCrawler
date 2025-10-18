@@ -3,14 +3,24 @@ namespace Gameplay.Combat.Data
     public class HitData
     {
         public readonly int HitIndex;
-        public float CritChance;
 
-        //stats that get buffed
         public int Damage;
+        
+        public float CritChance;
+        public bool CanCrit;
 
-        //result stats
-        public DamageType DamageType;
         public float HitChance;
+        public bool IsUnavoidable;
+
+        public float PenetrationRatio;
+        public bool IsPiercing;
+
+        public DamageType DamageType;
+        
+        public bool CanBeBuffed;
+
+        public bool ConsumeStance;
+        
         public bool IsCritical;
         public bool Missed;
 
@@ -19,10 +29,20 @@ namespace Gameplay.Combat.Data
             HitIndex = index;
 
             Damage = skillData.BaseDamage;
-            HitChance = skillData.BaseHitChance;
+            
             CritChance = skillData.BaseCritChance;
+            CanCrit = skillData.CanCrit;
+            
+            HitChance = skillData.BaseHitChance;
+            IsUnavoidable = skillData.IsUnavoidable;
+            
+            PenetrationRatio = skillData.PenetrationRatio;
+            IsPiercing = skillData.IsPiercing;
 
             DamageType = skillData.DamageType;
+            
+            CanBeBuffed = skillData.CanBeBuffed;
+            ConsumeStance = skillData.ConsumeStance;
         }
     }
 }
