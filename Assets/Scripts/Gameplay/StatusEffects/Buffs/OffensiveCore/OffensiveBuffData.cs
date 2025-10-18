@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.StatusEffects.Buffs.OffensiveCore
 {
-    public abstract class OffensiveStatusEffectData : BaseStatusEffectData, IOffensiveBuff
+    public abstract class OffensiveBuffData : BaseStatusEffectData, IOffensiveBuff
     {
         [SerializeField] private OffensiveBuffPriorityType _priority;
 

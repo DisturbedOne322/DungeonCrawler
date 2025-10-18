@@ -11,10 +11,10 @@ namespace Gameplay.Combat.Data
         public readonly List<OffensiveBuffInstance> ActiveOffensiveBuffs = new();
         public readonly List<StatBuffInstance> ActiveStatBuffs = new();
 
-        public bool IsOffensiveBuffActive(OffensiveStatusEffectData statusEffect)
+        public bool IsOffensiveBuffActive(OffensiveBuffData buff)
         {
             for (var i = 0; i < ActiveOffensiveBuffs.Count; i++)
-                if (ActiveOffensiveBuffs[i].StatusEffectData == statusEffect)
+                if (ActiveOffensiveBuffs[i].StatusEffectData == buff)
                     return true;
 
             return false;
@@ -22,7 +22,7 @@ namespace Gameplay.Combat.Data
 
         public bool IsDefensiveBuffActive(DefensiveBuffData buff)
         {
-            for (var i = 0; i < ActiveOffensiveBuffs.Count; i++)
+            for (var i = 0; i < ActiveDefensiveBuffs.Count; i++)
                 if (ActiveDefensiveBuffs[i].StatusEffectData == buff)
                     return true;
 

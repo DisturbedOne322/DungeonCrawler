@@ -4,18 +4,18 @@ namespace Gameplay.StatusEffects.Buffs.OffensiveCore
 {
     public class OffensiveBuffInstance : BaseStatusEffectInstance
     {
-        public OffensiveStatusEffectData OffensiveStatusEffectData;
+        public OffensiveBuffData OffensiveBuffData;
         public OffensiveBuffPriorityType PriorityType;
 
-        public static OffensiveBuffInstance Create(OffensiveStatusEffectData statusEffectData)
+        public static OffensiveBuffInstance Create(OffensiveBuffData buffData)
         {
             return new OffensiveBuffInstance
             {
-                TurnDurationLeft = statusEffectData.StatusEffectDurationData.TurnDurations,
-                EffectExpirationType = statusEffectData.StatusEffectDurationData.EffectExpirationType,
-                PriorityType = statusEffectData.Priority,
-                StatusEffectData = statusEffectData,
-                OffensiveStatusEffectData = statusEffectData
+                TurnDurationLeft = buffData.StatusEffectDurationData.TurnDurations,
+                EffectExpirationType = buffData.StatusEffectDurationData.EffectExpirationType,
+                PriorityType = buffData.Priority,
+                StatusEffectData = buffData,
+                OffensiveBuffData = buffData
             };
         }
     }

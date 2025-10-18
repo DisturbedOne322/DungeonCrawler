@@ -5,8 +5,8 @@ namespace Gameplay.StatusEffects.Buffs.Services
 {
     public class BuffsCalculationService
     {
-        private readonly DefensiveBuffCalculationProcessor _defensiveProcessor = new();
         private readonly OffensiveBuffCalculationProcessor _offensiveProcessor = new();
+        private readonly DefensiveBuffCalculationProcessor _defensiveProcessor = new();
 
         public void BuffOutgoingDamage(in DamageContext damageContext)
         {

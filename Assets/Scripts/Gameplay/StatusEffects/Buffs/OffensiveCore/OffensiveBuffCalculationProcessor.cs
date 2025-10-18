@@ -19,7 +19,7 @@ namespace Gameplay.StatusEffects.Buffs.OffensiveCore
         protected override int ApplyBuff(OffensiveBuffInstance offensiveBuff, int damage,
             in DamageContext damageContext)
         {
-            return offensiveBuff.OffensiveStatusEffectData.ModifyOutgoingDamage(damage, damageContext);
+            return offensiveBuff.OffensiveBuffData.ModifyOutgoingDamage(damage, damageContext);
         }
 
         protected override OffensiveBuffPriorityType GetPriorityType(OffensiveBuffInstance offensiveBuff)

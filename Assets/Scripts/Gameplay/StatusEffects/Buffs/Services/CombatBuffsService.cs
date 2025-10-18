@@ -28,9 +28,9 @@ namespace Gameplay.StatusEffects.Buffs.Services
             };
         }
 
-        public void AddOffensiveBuffTo(IGameUnit buffTarget, OffensiveStatusEffectData statusEffectData)
+        public void AddOffensiveBuffTo(IGameUnit buffTarget, OffensiveBuffData buffData)
         {
-            _offensiveBuffProcessor.AddBuffTo(buffTarget, statusEffectData);
+            _offensiveBuffProcessor.AddBuffTo(buffTarget, buffData);
         }
 
         public void AddDefensiveBuffTo(IGameUnit buffTarget, DefensiveBuffData buffData)

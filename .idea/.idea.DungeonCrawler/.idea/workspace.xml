@@ -6,33 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Skills/OffensiveSkills/StatScalingSkill.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Skills/OffensiveSkills/StatScalingSkill.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/OffensiveBuffs/OnHitFlatAttackBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/OffensiveBuffs/OnHitFlatAttackBuff.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/OffensiveBuffs/PermanentFlatAttackBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/OffensiveBuffs/PermanentFlatAttackBuff.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/CrirRateBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/CrirRateBuff.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/CritDamageBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/CritDamageBuff.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/SimpleStatBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/SimpleStatBuff.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Debuffs/StatDebuffs/SimpleIntStatDebuffData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Debuffs/StatDebuffs/SimpleIntStatDebuffData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextAbsoluteActionDuration.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextAbsoluteActionDuration.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextMagicalActionDuration.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextMagicalActionDuration.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextPhysicalActionDuration.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextPhysicalActionDuration.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextTurnDuration.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/NextTurnDuration.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/ThreeTurnDuration.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/ThreeTurnDuration.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/TwoTurnDuration.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/DurationTypes/TwoTurnDuration.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Units/PlayerCharacters/PlayerUnitData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Units/PlayerCharacters/PlayerUnitData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/SkillData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/SkillData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitBonusStatsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitBonusStatsData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatFormulaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatFormulaService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/UnitHealthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/UnitHealthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/UnitManaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/UnitManaController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerLevelUpBonusApplier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerLevelUpBonusApplier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/StatBuffsCore/StatBuffProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/StatBuffsCore/StatBuffProcessor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/StatBuffsCore/UnitStatsModificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/StatBuffsCore/UnitStatsModificationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/CombatDebuffsApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/CombatDebuffsApplicationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffsProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffsProcessor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/UnitStatsHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/UnitStatsHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitActiveBuffsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitActiveBuffsData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitBuffsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitBuffsData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/BaseEquipmentPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/BaseEquipmentPiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDistributor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDistributor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/Core/OffensiveBuffSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/Core/OffensiveBuffSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/OffensiveBuffs/OffensiveBuffSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/OffensiveBuffs/OffensiveBuffSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/ChargeStance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/ChargeStance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/FlatAttackStatusEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/FlatAttackBuff.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/FlatAttackStatusEffect.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/FlatAttackBuff.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffCalculationProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffCalculationProcessor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffProcessor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveStatusEffectData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveStatusEffectData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/CombatBuffsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/CombatBuffsService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +161,8 @@
       <workItem from="1760461349357" duration="10351000" />
       <workItem from="1760550193881" duration="11445000" />
       <workItem from="1760634955542" duration="14157000" />
-      <workItem from="1760710490383" duration="12211000" />
+      <workItem from="1760710490383" duration="12332000" />
+      <workItem from="1760777893041" duration="3082000" />
     </task>
     <servers />
   </component>

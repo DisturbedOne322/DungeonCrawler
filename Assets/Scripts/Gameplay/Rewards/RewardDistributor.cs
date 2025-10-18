@@ -54,7 +54,7 @@ namespace Gameplay.Rewards
                     _player.UnitInventoryData.AddItems(consumable, dropEntry.Amount);
                     break;
 
-                case OffensiveStatusEffectData offensiveBuff:
+                case OffensiveBuffData offensiveBuff:
                     _player.UnitBuffsData.OffensiveBuffs.Add(offensiveBuff);
                     break;
 

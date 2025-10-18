@@ -5,9 +5,9 @@ using UniRx;
 
 namespace Gameplay.StatusEffects.Buffs.OffensiveCore
 {
-    public class OffensiveBuffProcessor : BaseBuffProcessor<OffensiveStatusEffectData, OffensiveBuffInstance>
+    public class OffensiveBuffProcessor : BaseBuffProcessor<OffensiveBuffData, OffensiveBuffInstance>
     {
-        protected override ReactiveCollection<OffensiveStatusEffectData> GetBuffData(IEntity buffTarget)
+        protected override ReactiveCollection<OffensiveBuffData> GetBuffData(IEntity buffTarget)
         {
             return buffTarget.UnitBuffsData.OffensiveBuffs;
         }
@@ -17,10 +17,10 @@ namespace Gameplay.StatusEffects.Buffs.OffensiveCore
             return buffTarget.UnitActiveBuffsData.ActiveOffensiveBuffs;
         }
 
-        protected override OffensiveBuffInstance CreateBuffInstance(OffensiveStatusEffectData statusEffectData,
+        protected override OffensiveBuffInstance CreateBuffInstance(OffensiveBuffData buffData,
             IEntity buffTarget)
         {
-            return OffensiveBuffInstance.Create(statusEffectData);
+            return OffensiveBuffInstance.Create(buffData);
         }
 
         protected override void RemoveBuffInstance(IEntity buffTarget,
