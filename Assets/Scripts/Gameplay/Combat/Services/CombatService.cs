@@ -15,16 +15,18 @@ namespace Gameplay.Combat.Services
         private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEventsBus;
         private readonly CombatFormulaService _combatFormulaService;
+        private readonly UnitRegenerationService _unitRegenerationService;
 
         public CombatService(CombatData combatData, CombatFormulaService combatFormulaService,
             CombatStatusEffectsService combatStatusEffectsService, BuffsCalculationService buffsCalculationService,
-            CombatEventsBus combatEventsBus)
+            CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService)
         {
             _combatData = combatData;
             _combatFormulaService = combatFormulaService;
             CombatStatusEffectsService = combatStatusEffectsService;
             _buffsCalculationService = buffsCalculationService;
             _combatEventsBus = combatEventsBus;
+            _unitRegenerationService = unitRegenerationService;
         }
 
         public IGameUnit ActiveUnit => _combatData.ActiveUnit;
@@ -50,6 +52,8 @@ namespace Gameplay.Combat.Services
         public void StartTurn()
         {
             _combatData.UpdateCurrentTurnUnit();
+            _unitRegenerationService.RegenerateUnitInBattle(ActiveUnit);
+            
             _combatEventsBus.InvokeTurnStarted(new TurnData
             {
                 TurnCount = TurnCount,

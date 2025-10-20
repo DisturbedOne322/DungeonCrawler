@@ -1,6 +1,7 @@
 using Bootstrap;
 using Data;
 using Gameplay;
+using Gameplay.Combat;
 using Gameplay.Combat.Services;
 using Gameplay.Experience;
 using Gameplay.Player;
@@ -46,6 +47,7 @@ namespace Installers.GameInstallers
             Container.BindInterfacesAndSelfTo<StatusEffectsApplicationService>().AsSingle().NonLazy();
 
             Container.Bind<BuffsCalculationService>().AsSingle();
+            Container.Bind<UnitRegenerationService>().AsSingle();
         }
 
         private void BindProgression()

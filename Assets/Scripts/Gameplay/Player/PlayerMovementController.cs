@@ -1,6 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Data;
+using Gameplay.Combat;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Rooms;
 using Gameplay.Units;
@@ -12,6 +13,7 @@ namespace Gameplay.Player
         private const float MoveTimePerMeter = 0.01f;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly GameplayData _gameplayData;
+        private readonly UnitRegenerationService _unitRegenerationService;
 
         private readonly PlayerMoveAnimator _moveAnimator;
         private readonly PlayerMovementHistory _playerMovementHistory;
@@ -19,12 +21,14 @@ namespace Gameplay.Player
         public PlayerMovementController(PlayerUnit playerUnit,
             DungeonLayoutProvider dungeonLayoutProvider,
             PlayerMovementHistory playerMovementHistory,
-            GameplayData gameplayData)
+            GameplayData gameplayData,
+            UnitRegenerationService unitRegenerationService)
         {
             _moveAnimator = playerUnit.PlayerMoveAnimator;
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _playerMovementHistory = playerMovementHistory;
             _gameplayData = gameplayData;
+            _unitRegenerationService = unitRegenerationService;
         }
 
         public StopRoom GetNextStopRoom()
@@ -74,6 +78,7 @@ namespace Gameplay.Player
                 {
                     _playerMovementHistory.AddRoom(room.RoomType);
                     SetPositionIndex(index);
+                    _unitRegenerationService.RegeneratePlayerOutOfBattle();
                 }, isLast);
             }
 
