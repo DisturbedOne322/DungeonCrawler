@@ -77,6 +77,8 @@ namespace Gameplay.Combat.Services
         {
             HitDataStream hitDataStream = new(skillData);
 
+            _buffsCalculationService.ApplyStructuralHitStreamBuffs(ActiveUnit, hitDataStream);
+            
             var hits = Random.Range(hitDataStream.MinHits, hitDataStream.MaxHits);
             hitDataStream.CreateHitDataList(hits);
 

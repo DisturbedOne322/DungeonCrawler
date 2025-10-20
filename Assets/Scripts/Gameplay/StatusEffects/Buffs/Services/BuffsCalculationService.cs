@@ -12,6 +12,11 @@ namespace Gameplay.StatusEffects.Buffs.Services
         private readonly HitBuffApplicationService _hitProcessor = new();
         private readonly DefensiveHitBuffApplicationService _defensiveHitProcessor = new();
 
+        public void ApplyStructuralHitStreamBuffs(IEntity attacker, HitDataStream hitDataStream)
+        {
+            _hitStreamBuffApplicationService.ApplyStructuralHitStreamBuffs(attacker, hitDataStream);
+        }
+        
         public void BuffHitStream(IEntity attacker, HitDataStream hitDataStream)
         {
             _hitStreamBuffApplicationService.ApplyHitStreamBuffs(attacker, hitDataStream);

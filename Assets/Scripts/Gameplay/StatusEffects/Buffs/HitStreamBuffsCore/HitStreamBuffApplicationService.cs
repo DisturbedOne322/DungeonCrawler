@@ -25,7 +25,14 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
             }
         }
 
-        public void ApplyHitStreamBuffs(IEntity attacker, HitDataStream hitDataStream)
+        public void ApplyStructuralHitStreamBuffs(IEntity attacker, HitDataStream hitDataStream) => ApplyHitStreamBuffsFiltered(attacker, hitDataStream, p => p == HitStreamBuffPriorityType.StructuralChange);
+
+        public void ApplyHitStreamBuffs(IEntity attacker, HitDataStream hitDataStream) => ApplyHitStreamBuffsFiltered(attacker, hitDataStream, p => p != HitStreamBuffPriorityType.StructuralChange);
+
+        private void ApplyHitStreamBuffsFiltered(
+            IEntity attacker, 
+            HitDataStream hitDataStream, 
+            Func<HitStreamBuffPriorityType, bool> filter)
         {
             var buffs = attacker.UnitActiveStatusEffectsData.ActiveHitStreamBuffs;
             if (buffs.Count == 0)
@@ -36,21 +43,19 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
 
             foreach (var buff in buffs)
             {
-                var priorityEnum = buff.PriorityType;
-                var priorityInt = _priorityCache[priorityEnum];
+                if (!filter(buff.PriorityType))
+                    continue;
 
-                _buffsByPriority[priorityInt].Add(buff);
+                _buffsByPriority[(int)buff.PriorityType].Add(buff);
             }
-
+            
             foreach (var kv in _buffsByPriority)
             foreach (var buff in kv.Value)
                 for (var i = 0; i < buff.Stacks; i++)
                     ApplyBuff(hitDataStream, buff);
         }
+
         
-        private void ApplyBuff(HitDataStream hitDataStream, HitStreamBuffInstance buff)
-        {
-            buff.HitStreamBuffData.ModifyHitStream(hitDataStream);
-        }
+        private void ApplyBuff(HitDataStream hitDataStream, HitStreamBuffInstance buff) => buff.HitStreamBuffData.ModifyHitStream(hitDataStream);
     }
 }
