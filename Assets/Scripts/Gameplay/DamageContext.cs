@@ -8,14 +8,12 @@ namespace Gameplay
         public IGameUnit Attacker { get; }
         public IGameUnit Defender { get; }
         public HitData HitData { get; }
-        public SkillData SkillData { get; }
 
-        public DamageContext(IGameUnit attacker, IGameUnit defender, HitData hitData, SkillData skillData)
+        public DamageContext(IGameUnit attacker, IGameUnit defender, HitData hitData)
         {
             Attacker = attacker;
             Defender = defender;
             HitData = hitData;
-            SkillData = skillData;
         }
     }
 }

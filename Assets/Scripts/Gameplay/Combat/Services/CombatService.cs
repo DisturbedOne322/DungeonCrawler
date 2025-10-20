@@ -96,7 +96,7 @@ namespace Gameplay.Combat.Services
                 {
                     Attacker = attacker,
                     Target = target,
-                    SkillData = hitDataStream.BaseSkillData
+                    HitDataStream = hitDataStream
                 });
 
             if (hit.Missed)
@@ -116,7 +116,7 @@ namespace Gameplay.Combat.Services
         {
             var hitData = hitsStream.Hits[hitIndex];
 
-            var damageContext = new DamageContext(attacker, defender, hitData, hitsStream.BaseSkillData);
+            var damageContext = new DamageContext(attacker, defender, hitData);
 
             if (Missed(attacker, defender, damageContext))
             {
@@ -130,7 +130,7 @@ namespace Gameplay.Combat.Services
                 return;
             }
 
-            hitData.IsCritical = IsCritical(attacker, damageContext);
+            SetCritical(attacker, damageContext);
 
             _buffsCalculationService.BuffOutgoingDamage(damageContext);
             _buffsCalculationService.DebuffIncomingDamage(damageContext);
@@ -140,10 +140,15 @@ namespace Gameplay.Combat.Services
             _combatFormulaService.ReduceDamageByStats(defender, damageContext);
         }
 
-        private bool IsCritical(IGameUnit caster, in DamageContext damageContext)
+        private void SetCritical(IGameUnit caster, in DamageContext damageContext)
         {
+            var hitData = damageContext.HitData;
+            
+            if(hitData.IsCritical != null)
+                return;
+            
             var finalCritChance = _combatFormulaService.GetFinalCritChance(caster, damageContext);
-            return Random.value < finalCritChance;
+            hitData.IsCritical = Random.value < finalCritChance;
         }
 
         private bool Missed(IEntity attacker, IEntity defender, in DamageContext damageContext)

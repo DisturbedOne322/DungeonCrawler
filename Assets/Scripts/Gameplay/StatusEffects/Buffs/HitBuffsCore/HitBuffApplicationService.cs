@@ -13,7 +13,7 @@ namespace Gameplay.StatusEffects.Buffs.OffensiveCore
 
         protected override bool CanApplyBuffs(in DamageContext damageContext)
         {
-            return damageContext.SkillData.CanBeBuffed;
+            return damageContext.HitData.CanBeBuffed;
         }
 
         protected override int ApplyBuff(HitBuffInstance hitBuff, int damage,

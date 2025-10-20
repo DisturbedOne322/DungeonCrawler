@@ -5,47 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffApplicationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffApplicationService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffApplicationService.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffInstance.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffInstance.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffPriorityType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/HitStreamBuffPriorityType.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/IHitStreamBuff.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitStreamBuffsCore/IHitStreamBuff.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitActiveStatusEffectsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitActiveStatusEffectsData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitHeldStatusEffectsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitHeldStatusEffectsData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitDataStream.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/HitDataStream.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/SkillUsedData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/SkillUsedData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatEventsBus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatEventsBus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatFormulaService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatFormulaService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Services/CombatService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/Core/BaseOffensiveBuffSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/Core/BaseOffensiveBuffSkill.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/Core/OffensiveSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/Core/OffensiveSkill.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/OffensiveBuffs/OffensiveBuffSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/OffensiveBuffs/OffensiveBuffSkill.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/SkillCosts/HealthSkillCost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Skills/SkillCosts/HealthSkillCost.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Core/BaseBuffCalculationProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Core/BaseHitBuffApplicationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Core/BaseBuffCalculationProcessor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Core/BaseHitBuffApplicationService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/DefensiveCore/DefensiveBuffCalculationProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/DefensiveCore/DefensiveHitBuffApplicationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/DefensiveCore/DefensiveBuffCalculationProcessor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/DefensiveCore/DefensiveHitBuffApplicationService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/DefensiveCore/DefensiveBuffPriorityType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/DefensiveCore/DefensiveBuffPriorityType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/ChargeStance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/ChargeStance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/FlatAttackBuff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/FlatAttackBuff.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/IOffensiveBuff.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/IHitBuff.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/IOffensiveBuff.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/IHitBuff.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffCalculationProcessor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffCalculationProcessor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffApplicationService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffInstance.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffInstance.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffPriorityType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffPriorityType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveCore/OffensiveBuffPriorityType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffPriorityType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/BuffsCalculationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/BuffsCalculationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/CombatStatusEffectsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/CombatStatusEffectsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/DamageContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/DamageContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/HitBuffsCore/HitBuffApplicationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/StatusEffectsApplicationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/StatusEffectsApplicationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/StatusEffectExpirationType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/StatusEffectExpirationType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/ColorHelpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/ColorHelpers.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +76,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/new-status-effect-system&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -187,6 +158,8 @@
       <workItem from="1760634955542" duration="14157000" />
       <workItem from="1760710490383" duration="12332000" />
       <workItem from="1760777893041" duration="11609000" />
+      <workItem from="1760881899869" duration="2599000" />
+      <workItem from="1760975925833" duration="2575000" />
     </task>
     <servers />
   </component>

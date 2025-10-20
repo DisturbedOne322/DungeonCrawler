@@ -8,12 +8,16 @@ namespace Gameplay.Combat.Data
 
         public int MinHits;
 
+        public bool ConsumeStance;
+
         public HitDataStream(SkillData skillData)
         {
             BaseSkillData = skillData;
 
             MinHits = skillData.MinHits;
             MaxHits = skillData.MaxHits;
+
+            ConsumeStance = skillData.ConsumeStance;
         }
 
         public SkillData BaseSkillData { get; }

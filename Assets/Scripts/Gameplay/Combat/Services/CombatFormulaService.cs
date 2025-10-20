@@ -31,13 +31,13 @@ namespace Gameplay.Combat.Services
 
         public void ApplyFinalDamageMultiplier(in DamageContext damageContext)
         {
-            if (damageContext.HitData.IsCritical)
+            if (damageContext.HitData.IsCritical.Value)
                 ApplyCriticalDamageMultiplier(damageContext);
         }
 
         public float GetFinalCritChance(IEntity attacker, in DamageContext damageContext)
         {
-            if (!damageContext.SkillData.CanCrit)
+            if (!damageContext.HitData.CanCrit)
                 return -1;
 
             var finalCritChance = 0f;
@@ -50,14 +50,14 @@ namespace Gameplay.Combat.Services
             var chanceFromLuck = Mathf.Clamp(luck, 0, StatConstants.MaxStatPoints) * _config.MaxLuckCritInfluence /
                                  StatConstants.MaxStatPoints;
             
-            finalCritChance = damageContext.SkillData.BaseCritChance +
+            finalCritChance = damageContext.HitData.CritChance +
                               attacker.UnitBonusStatsData.CritChanceBonus.Value + chanceFromDex + chanceFromLuck;
             return Mathf.Clamp01(finalCritChance);
         }
 
         public float GetHitChance(IEntity attacker, IEntity defender, in DamageContext damageContext)
         {
-            if (damageContext.SkillData.IsUnavoidable)
+            if (damageContext.HitData.IsUnavoidable)
                 return 1;
 
             var hitData = damageContext.HitData;

@@ -18,10 +18,8 @@ namespace Gameplay.Combat.Data
         public DamageType DamageType;
         
         public bool CanBeBuffed;
-
-        public bool ConsumeStance;
         
-        public bool IsCritical;
+        public bool? IsCritical;
         public bool Missed;
 
         public HitData(SkillData skillData, int index)
@@ -42,7 +40,6 @@ namespace Gameplay.Combat.Data
             DamageType = skillData.DamageType;
             
             CanBeBuffed = skillData.CanBeBuffed;
-            ConsumeStance = skillData.ConsumeStance;
         }
     }
 }

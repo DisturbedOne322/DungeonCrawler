@@ -98,7 +98,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillUsedData.Attacker, skillUsedData.Target, StatusEffectTriggerType.SkillUsed);
 
-            if (!skillUsedData.SkillData.ConsumeStance)
+            if (!skillUsedData.HitDataStream)
                 return;
             
             var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillUsedData.SkillData.DamageType);
@@ -113,7 +113,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.Hit);
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.DamageTaken);
 
-            if (data.HitData.IsCritical)
+            if (data.HitData.IsCritical.Value)
                 _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.CriticalHit);
 
             var triggerType = StatusEffectsHelper.GetBuffTriggerForDamageType(data.HitData.DamageType);

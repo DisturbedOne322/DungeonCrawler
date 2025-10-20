@@ -6,6 +6,7 @@ namespace Gameplay.StatusEffects.Core
         NextPhysicalAction,
         NextMagicalAction,
         NextAbsoluteAction,
-        TurnCount
+        TurnCount,
+        CombatEnd
     }
 }

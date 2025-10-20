@@ -6,6 +6,6 @@ namespace Gameplay.Combat.Data
     {
         public IGameUnit Attacker;
         public IGameUnit Target;
-        public SkillData SkillData;
+        public HitDataStream HitDataStream;
     }
 }
