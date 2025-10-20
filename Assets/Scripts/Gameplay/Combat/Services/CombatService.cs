@@ -71,7 +71,10 @@ namespace Gameplay.Combat.Services
 
         public void DealDamageToActiveUnit(HitDataStream hitDataStream, int index) => DealDamageToUnit(ActiveUnit, ActiveUnit, hitDataStream, index);
 
+        public void DealDamageToActiveUnit(HitData hitData) => DealDamageToUnit(ActiveUnit, ActiveUnit, hitData);
+        
         public void DealDamageToOtherUnit(HitDataStream hitDataStream, int index) => DealDamageToUnit(ActiveUnit, OtherUnit, hitDataStream, index);
+        public void DealDamageToOtherUnit(HitData hitData) => DealDamageToUnit(ActiveUnit, OtherUnit, hitData);
 
         public HitDataStream CreateHitsStream(SkillData skillData)
         {
@@ -89,10 +92,9 @@ namespace Gameplay.Combat.Services
 
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitDataStream hitDataStream, int index)
         {
-            ProcessHitData(attacker, target, hitDataStream, index);
-
-            var hit = hitDataStream.Hits[index];
-
+            var hitData = hitDataStream.Hits[index];
+            DealDamageToUnit(attacker, target, hitData);
+            
             if (index == hitDataStream.Hits.Count - 1)
                 _combatEventsBus.InvokeSkillUsed(new SkillUsedData
                 {
@@ -100,24 +102,27 @@ namespace Gameplay.Combat.Services
                     Target = target,
                     HitDataStream = hitDataStream
                 });
-
-            if (hit.Missed)
+        }
+        
+        private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitData hitData)
+        {
+            ProcessHitData(attacker, target, hitData);
+            
+            if (hitData.Missed)
                 return;
 
-            target.UnitHealthController.TakeDamage(hit.Damage);
+            target.UnitHealthController.TakeDamage(hitData.Damage);
 
             _combatEventsBus.InvokeHitDealt(new HitEventData
             {
                 Attacker = attacker,
                 Target = target,
-                HitData = hit
+                HitData = hitData
             });
         }
 
-        private void ProcessHitData(IGameUnit attacker, IGameUnit defender, HitDataStream hitsStream, int hitIndex)
+        private void ProcessHitData(IGameUnit attacker, IGameUnit defender, HitData hitData)
         {
-            var hitData = hitsStream.Hits[hitIndex];
-
             var damageContext = new DamageContext(attacker, defender, hitData);
 
             if (Missed(attacker, defender, damageContext))
