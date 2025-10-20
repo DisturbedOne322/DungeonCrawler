@@ -9,6 +9,8 @@ namespace Gameplay.Combat.Data
         public int MinHits;
 
         public bool ConsumeStance;
+        
+        public DamageType DamageType;
 
         public HitDataStream(SkillData skillData)
         {
@@ -18,6 +20,8 @@ namespace Gameplay.Combat.Data
             MaxHits = skillData.MaxHits;
 
             ConsumeStance = skillData.ConsumeStance;
+            
+            DamageType = skillData.DamageType;
         }
 
         public SkillData BaseSkillData { get; }

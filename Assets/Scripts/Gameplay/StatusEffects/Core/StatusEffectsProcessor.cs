@@ -62,8 +62,13 @@ namespace Gameplay.StatusEffects.Core
         {
             var allEffects = activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
 
-            foreach (var effect in allEffects) 
+            foreach (var effect in allEffects)
+            {
+                if(effect.EffectExpirationType == StatusEffectExpirationType.Permanent)
+                    continue;
+                
                 effect.Revert();
+            }
         }
         
         private void AddStatusEffect(IEntity activeUnit, IEntity otherUnit, 

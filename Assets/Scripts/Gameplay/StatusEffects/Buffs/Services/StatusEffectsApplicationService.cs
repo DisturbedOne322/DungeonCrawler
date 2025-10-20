@@ -98,10 +98,10 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillUsedData.Attacker, skillUsedData.Target, StatusEffectTriggerType.SkillUsed);
 
-            if (!skillUsedData.HitDataStream)
+            if (!skillUsedData.HitDataStream.ConsumeStance)
                 return;
             
-            var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillUsedData.SkillData.DamageType);
+            var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillUsedData.HitDataStream.DamageType);
             _statusEffectsProcessor.RemoveStatusEffectsOnAction(skillUsedData.Attacker, expirationType);
         }
 

@@ -66,16 +66,6 @@ namespace Gameplay.Combat.Data
             return false;
         }
 
-        public void ClearAll()
-        {
-            AllActiveStatusEffects.Clear();
-            ActiveDefensiveBuffs.Clear();
-            ActiveOffensiveBuffs.Clear();
-            ActiveStatBuffs.Clear();
-            ActiveStatDebuffs.Clear();
-            ActiveHitStreamBuffs.Clear();
-        }
-
         private bool IsStatusEffectActive<T>(List<T> activeStatusEffects,
             BaseStatusEffectData searchedStatusEffect) where T : BaseStatusEffectInstance
         {
