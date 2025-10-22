@@ -1,7 +1,9 @@
 using System;
+using AssetManagement.AssetProviders.Core;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Combat;
+using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Rooms;
 using Gameplay.Units;
@@ -10,10 +12,10 @@ namespace Gameplay.Player
 {
     public class PlayerMovementController
     {
-        private const float MoveTimePerMeter = 0.01f;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly GameplayData _gameplayData;
         private readonly UnitRegenerationService _unitRegenerationService;
+        private readonly BaseConfigProvider<GameplayConfig> _configProvider;
 
         private readonly PlayerMoveAnimator _moveAnimator;
         private readonly PlayerMovementHistory _playerMovementHistory;
@@ -22,13 +24,15 @@ namespace Gameplay.Player
             DungeonLayoutProvider dungeonLayoutProvider,
             PlayerMovementHistory playerMovementHistory,
             GameplayData gameplayData,
-            UnitRegenerationService unitRegenerationService)
+            UnitRegenerationService unitRegenerationService,
+            BaseConfigProvider<GameplayConfig> configProvider)
         {
             _moveAnimator = playerUnit.PlayerMoveAnimator;
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _playerMovementHistory = playerMovementHistory;
             _gameplayData = gameplayData;
             _unitRegenerationService = unitRegenerationService;
+            _configProvider = configProvider;
         }
 
         public StopRoom GetNextStopRoom()
@@ -69,7 +73,7 @@ namespace Gameplay.Player
                 var moveData = new MovementData
                 {
                     TargetPos = room.PlayerStandPoint.position,
-                    MoveTimePerMeter = MoveTimePerMeter
+                    MoveTimePerMeter = _configProvider.GetConfig<PlayerMovementConfig>().MoveTimePerMeter,
                 };
 
                 var index = currentIndex;

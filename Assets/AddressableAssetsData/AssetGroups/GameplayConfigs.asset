@@ -45,6 +45,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameplayConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c980a553fbb8954ab71ccd83f69fe10
+    m_Address: Assets/Configs/Addressables/Gameplay/Player Movement Config.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71f6cd32d31e22347a87011fca39cb18
     m_Address: Player Experience Requiremented Config
     m_ReadOnly: 0
