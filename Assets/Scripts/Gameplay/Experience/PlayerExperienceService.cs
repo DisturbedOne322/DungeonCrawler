@@ -19,15 +19,15 @@ namespace Gameplay.Experience
 
         public async UniTask AddExperience(int experience)
         {
-            _experienceData.AddExperience(experience);
-
             var currentLevel = _experienceData.CurrentLevel;
-            var currentExp = _experienceData.CurrentExperience;
+            var nextExp = _experienceData.CurrentExperience + experience;
 
             var targetExp = _experienceRequirementsProvider.GetXpRequiredForLevel(currentLevel + 1);
 
-            if (currentExp >= targetExp)
+            if (nextExp >= targetExp)
                 await _playerLevelUpController.ProcessLevelUp();
+            
+            _experienceData.AddExperience(experience);
         }
     }
 }

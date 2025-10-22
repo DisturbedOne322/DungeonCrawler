@@ -18,7 +18,7 @@ MonoBehaviour:
     enemy
   _skillAnimationData: {fileID: 11400000, guid: c3c0820717aca144fbd6a60c66f9b48e, type: 2}
   _skillData:
-    BaseDamage: 50
+    BaseDamage: 200
     DamageType: 0
     MinHits: 1
     MaxHits: 1

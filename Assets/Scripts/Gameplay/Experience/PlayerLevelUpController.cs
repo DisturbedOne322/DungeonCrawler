@@ -19,9 +19,9 @@ namespace Gameplay.Experience
 
         public async UniTask ProcessLevelUp()
         {
-            _experienceData.IncrementLevel();
-            _playerLevelUpBonusApplier.ApplyLevelUpBonus();
             await _playerStatDistributionController.DistributeStatPoints();
+            _playerLevelUpBonusApplier.ApplyLevelUpBonus();
+            _experienceData.IncrementLevel();
         }
     }
 }

@@ -62,11 +62,12 @@ namespace Gameplay.StatusEffects.Core
         {
             var allEffects = activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
 
-            foreach (var effect in allEffects)
+            for (var index = allEffects.Count - 1; index >= 0; index--)
             {
-                if(effect.EffectExpirationType == StatusEffectExpirationType.Permanent)
+                var effect = allEffects[index];
+                if (effect.EffectExpirationType == StatusEffectExpirationType.Permanent)
                     continue;
-                
+
                 effect.Revert();
             }
         }

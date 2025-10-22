@@ -1081,6 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 1910897593051744348, guid: 49933912bf4a4554aad2b93a46169324, type: 3}
+  _poolSize: 10
   _canvas: {fileID: 1839586626}
   _zSpawnOffet: -0.05
   _spawnRadius: 0.5
@@ -1639,6 +1640,10 @@ PrefabInstance:
     - target: {fileID: 6967208411696583478, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
       propertyPath: m_Name
       value: BuffNotificationDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967208411696583478, guid: 982b8d7fd22cf1b4ebafedf41122b132, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
