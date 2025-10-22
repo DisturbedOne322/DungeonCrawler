@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53748f515246a4ac050fe055357409, type: 3}
   m_Name: CrirRateBuff
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _name: Guaranteed crit hit
-  _description: +100 crit rate on next hit. Triggered on hit
-  _statusEffectDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
-  _triggerType: 2
+  _description: +100% crit rate on next hit. Triggered on hit
+  _statusEffectDurationData: {fileID: 11400000, guid: 8ca47516fb0a168429a6a296ff5d838f, type: 2}
+  _triggerType: 15
   _statusEffectReapplyType: 1
   _maxStacks: 1
   _buffedStatType: 7

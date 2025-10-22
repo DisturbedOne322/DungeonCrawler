@@ -31,7 +31,7 @@ namespace Gameplay.Combat.Services
 
         public void ApplyFinalDamageMultiplier(in DamageContext damageContext)
         {
-            if (damageContext.HitData.IsCritical.Value)
+            if (damageContext.HitData.IsCritical)
                 ApplyCriticalDamageMultiplier(damageContext);
         }
 

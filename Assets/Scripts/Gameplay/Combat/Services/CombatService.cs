@@ -5,6 +5,7 @@ using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
+using Helpers;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat.Services
@@ -115,10 +116,13 @@ namespace Gameplay.Combat.Services
             if (hitData.Missed)
                 return;
 
+            float hpPercentBeforeHit = HealthHelper.GetHealthPercent(target);
+            
             target.UnitHealthController.TakeDamage(hitData.Damage);
 
             _combatEventsBus.InvokeHitDealt(new HitEventData
             {
+                HealthPercentBeforeHit = hpPercentBeforeHit,
                 Attacker = attacker,
                 Target = target,
                 HitData = hitData
@@ -155,7 +159,7 @@ namespace Gameplay.Combat.Services
         {
             var hitData = damageContext.HitData;
             
-            if(hitData.IsCritical != null)
+            if(hitData.IsCritical)
                 return;
             
             var finalCritChance = _combatFormulaService.GetFinalCritChance(caster, damageContext);

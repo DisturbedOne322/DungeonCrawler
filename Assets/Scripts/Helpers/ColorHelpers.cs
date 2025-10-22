@@ -13,9 +13,9 @@ namespace Helpers
             switch (damageType)
             {
                 case DamageType.Physical:
-                    return data.HitData.IsCritical.Value ? Color.red : Color.white;
+                    return data.HitData.IsCritical ? Color.red : Color.white;
                 case DamageType.Magical:
-                    return data.HitData.IsCritical.Value ? Color.cyan : Color.blue;
+                    return data.HitData.IsCritical ? Color.cyan : Color.blue;
             }
 
             return Color.white;

@@ -19,7 +19,7 @@ namespace Gameplay.Combat.Data
         
         public bool CanBeBuffed;
         
-        public bool? IsCritical;
+        public bool IsCritical;
         public bool Missed;
 
         public HitData(SkillData skillData, int index)

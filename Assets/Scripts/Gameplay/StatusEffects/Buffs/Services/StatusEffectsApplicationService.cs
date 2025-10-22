@@ -113,11 +113,17 @@ namespace Gameplay.StatusEffects.Buffs.Services
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.Hit);
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.DamageTaken);
 
-            if (data.HitData.IsCritical.Value)
+            if (data.HitData.IsCritical)
                 _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.CriticalHit);
 
             var triggerType = StatusEffectsHelper.GetBuffTriggerForDamageType(data.HitData.DamageType);
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, triggerType);
+            
+            if(HealthHelper.DroppedBelowMediumHealth(data))
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.MediumHealth);
+            
+            if(HealthHelper.DroppedBelowCriticalHealth(data))
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.CriticalHealth);
         }
 
         private void ProcessHealed(HealEventData data)
