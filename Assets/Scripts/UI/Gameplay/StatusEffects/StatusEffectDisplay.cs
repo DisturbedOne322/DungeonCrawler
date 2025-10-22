@@ -33,7 +33,7 @@ namespace UI.Gameplay
             if (ShouldShowStacks(instance))
             {
                 _stacksText.gameObject.SetActive(true);
-                _stacksSubscription = instance.Stacks.Subscribe(_ => UpdateStacks(instance));
+                _stacksSubscription = instance.Stacks.Subscribe(UpdateStacks);
             }
             else
                 _stacksText.gameObject.SetActive(false);
@@ -44,26 +44,20 @@ namespace UI.Gameplay
             if (ShouldShowDuration(instance))
             {
                 _turnsLeftText.gameObject.SetActive(true);
-                _turnsLeftSubscription = instance.TurnDurationLeft.Subscribe(_ => UpdateDuration(instance));
+                _turnsLeftSubscription = instance.TurnDurationLeft.Subscribe(UpdateDuration);
             }
             else
                 _turnsLeftText.gameObject.SetActive(false);
         }
 
-        private void UpdateStacks(BaseStatusEffectInstance instance)
-        {
-            int stacks = instance.Stacks.Value;
-            _stacksText.text = "X" + stacks;
-        }
+        private void UpdateStacks(int stacks) => _stacksText.text = "X" + stacks;
 
-        private void UpdateDuration(BaseStatusEffectInstance instance)
+        private void UpdateDuration(int duration)
         {
-            int turnsLeft = instance.TurnDurationLeft.Value;
-            
-            if(turnsLeft == 1)
-                _turnsLeftText.text = instance.TurnDurationLeft.Value + " turn.";
+            if(duration == 1)
+                _turnsLeftText.text = duration + " turn.";
             else
-                _turnsLeftText.text = instance.TurnDurationLeft.Value + " turns.";
+                _turnsLeftText.text = duration + " turns.";
         }
 
         private bool ShouldShowStacks(BaseStatusEffectInstance instance) => 
