@@ -1,4 +1,4 @@
-using Gameplay.StatusEffects.Buffs.OffensiveCore;
+using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using UnityEngine;
 using UnityEngine.Serialization;
 

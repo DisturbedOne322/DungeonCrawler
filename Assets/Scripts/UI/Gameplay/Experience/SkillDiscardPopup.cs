@@ -3,7 +3,7 @@ using UI.BattleMenu;
 using UI.Core;
 using UnityEngine;
 
-namespace UI.Gameplay
+namespace UI.Gameplay.Experience
 {
     public class SkillDiscardPopup : BasePopup
     {

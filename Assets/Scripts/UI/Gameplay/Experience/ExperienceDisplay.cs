@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace UI.Gameplay
+namespace UI.Gameplay.Experience
 {
     public class ExperienceDisplay : MonoBehaviour
     {

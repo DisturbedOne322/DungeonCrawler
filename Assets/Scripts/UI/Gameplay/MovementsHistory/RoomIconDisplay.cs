@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Gameplay
+namespace UI.Gameplay.MovementsHistory
 {
     public class RoomIconDisplay : MonoBehaviour
     {

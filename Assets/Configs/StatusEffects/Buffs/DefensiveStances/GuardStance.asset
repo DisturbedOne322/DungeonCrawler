@@ -15,7 +15,7 @@ MonoBehaviour:
   _icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   _name: Guard Stance
   _description: Reduces the damage taken during next turn by 50%.
-  _statusEffectDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
+  _statusEffectDurationData: {fileID: 11400000, guid: 3e97f8fc1262a8341951112a6c2bfdb2, type: 2}
   _triggerType: 1
   _statusEffectReapplyType: 0
   _maxStacks: 1

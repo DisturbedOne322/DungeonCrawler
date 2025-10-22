@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Gameplay
+namespace UI.Gameplay.StatusEffects
 {
     public class StatusEffectDisplay : MonoBehaviour
     {

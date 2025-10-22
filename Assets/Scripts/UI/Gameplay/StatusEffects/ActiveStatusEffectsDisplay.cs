@@ -1,14 +1,13 @@
-using System;
 using System.Collections.Generic;
 using Gameplay.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using Pools;
+using UniRx;
 using UnityEngine;
 using Zenject;
-using UniRx;
 
-namespace UI.Gameplay
+namespace UI.Gameplay.StatusEffects
 {
     public class ActiveStatusEffectsDisplay : MonoBehaviour
     {

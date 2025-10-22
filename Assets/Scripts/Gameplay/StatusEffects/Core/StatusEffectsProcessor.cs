@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using Gameplay.Facades;
 using Helpers;
-using UnityEngine;
 
 namespace Gameplay.StatusEffects.Core
 {
@@ -32,11 +30,11 @@ namespace Gameplay.StatusEffects.Core
                 
                 if (instance.EffectExpirationType != StatusEffectExpirationType.TurnCount)
                     continue;
-
-                instance.TurnDurationLeft.Value--;
                 
                 if (instance.TurnDurationLeft.Value == 0) 
                     instance.Revert();
+                
+                instance.TurnDurationLeft.Value--;
             }
         }
 

@@ -1,6 +1,6 @@
 using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Buffs.DefensiveCore;
-using Gameplay.StatusEffects.Buffs.OffensiveCore;
+using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 
 namespace Gameplay.StatusEffects.Core
 {

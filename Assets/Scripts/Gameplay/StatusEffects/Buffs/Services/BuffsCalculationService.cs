@@ -1,8 +1,8 @@
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.DefensiveCore;
+using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using Gameplay.StatusEffects.Buffs.HitStreamBuffsCore;
-using Gameplay.StatusEffects.Buffs.OffensiveCore;
 
 namespace Gameplay.StatusEffects.Buffs.Services
 {

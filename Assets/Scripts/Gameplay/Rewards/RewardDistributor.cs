@@ -8,7 +8,6 @@ using Gameplay.Equipment.Weapons;
 using Gameplay.Player;
 using Gameplay.Skills.Core;
 using Gameplay.StatusEffects.Buffs.DefensiveCore;
-using Gameplay.StatusEffects.Buffs.OffensiveCore;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;

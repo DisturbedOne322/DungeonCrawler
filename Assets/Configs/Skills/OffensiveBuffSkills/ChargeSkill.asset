@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b084eac871b540618bfada73d99d872d, type: 3}
   m_Name: ChargeSkill
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _name: Charge stance
   _description: Doubles the next physical attack damage.
-  OffensiveBuffData: {fileID: 11400000, guid: efdd2c6366aef764281f16cf12fa0b9e, type: 2}
+  _hitBuffData: {fileID: 11400000, guid: efdd2c6366aef764281f16cf12fa0b9e, type: 2}

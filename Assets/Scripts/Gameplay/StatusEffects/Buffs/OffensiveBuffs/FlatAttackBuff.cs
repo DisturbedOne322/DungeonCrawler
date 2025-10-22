@@ -1,4 +1,4 @@
-using Gameplay.StatusEffects.Buffs.OffensiveCore;
+using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using UnityEngine;
 
 namespace Gameplay.StatusEffects.Buffs.OffensiveBuffs

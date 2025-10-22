@@ -1,7 +1,7 @@
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
 
-namespace Gameplay.StatusEffects.Buffs.OffensiveCore
+namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
 {
     public class HitBuffInstance : BaseStatusEffectInstance
     {

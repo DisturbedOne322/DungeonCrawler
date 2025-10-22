@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Gameplay.StatusEffects.Buffs.Core;
 
-namespace Gameplay.StatusEffects.Buffs.OffensiveCore
+namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
 {
     public class HitBuffApplicationService : BaseHitBuffApplicationService<HitBuffInstance,
         HitBuffPriorityType>

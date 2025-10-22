@@ -1,4 +1,4 @@
-namespace Gameplay.StatusEffects.Buffs.OffensiveCore
+namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
 {
     public enum HitBuffPriorityType
     {

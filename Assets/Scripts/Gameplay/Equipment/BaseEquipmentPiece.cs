@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Gameplay.StatusEffects.Buffs.DefensiveCore;
-using Gameplay.StatusEffects.Buffs.OffensiveCore;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.Debuffs;

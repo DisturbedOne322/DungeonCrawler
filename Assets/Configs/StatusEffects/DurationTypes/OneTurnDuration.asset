@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 465836ffe61d4d81856f36cacc6ff4e8, type: 3}
-  m_Name: NextTurnDuration
+  m_Name: OneTurnDuration
   m_EditorClassIdentifier: 
   _effectExpirationType: 4
-  _turnDurations: 0
+  _turnDurations: 1

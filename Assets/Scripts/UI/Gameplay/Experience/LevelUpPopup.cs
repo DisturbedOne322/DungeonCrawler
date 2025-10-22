@@ -7,7 +7,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Gameplay
+namespace UI.Gameplay.Experience
 {
     public class LevelUpPopup : BasePopup
     {

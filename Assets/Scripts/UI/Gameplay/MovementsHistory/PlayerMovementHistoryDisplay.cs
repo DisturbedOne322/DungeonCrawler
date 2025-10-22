@@ -8,7 +8,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace UI.Gameplay
+namespace UI.Gameplay.MovementsHistory
 {
     public class PlayerMovementHistoryDisplay : MonoBehaviour
     {
