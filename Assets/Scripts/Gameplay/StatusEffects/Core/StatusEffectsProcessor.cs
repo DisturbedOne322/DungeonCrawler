@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Gameplay.Facades;
 using Helpers;
+using UnityEngine;
 
 namespace Gameplay.StatusEffects.Core
 {
@@ -28,16 +29,14 @@ namespace Gameplay.StatusEffects.Core
             for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
             {
                 var instance = activeStatusEffects[i];
+                
                 if (instance.EffectExpirationType != StatusEffectExpirationType.TurnCount)
                     continue;
 
-                if (instance.TurnDurationLeft == 0)
-                {
-                    instance.Revert();
-                    continue;
-                }
-
                 instance.TurnDurationLeft--;
+                
+                if (instance.TurnDurationLeft == 0) 
+                    instance.Revert();
             }
         }
 
