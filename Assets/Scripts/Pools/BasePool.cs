@@ -20,9 +20,9 @@ namespace Pools
             _factory = factory;
         }
 
-        public void Initialize(T prefab, int poolSize)
+        public void Initialize(T prefab, int poolSize = 10)
         {
-            _parent = new GameObject($"[{typeof(T).ToString().ToUpper()} POOL]").transform;
+            _parent = new GameObject($"[{typeof(T)} POOL]").transform;
 
             _prefab = prefab;
 
