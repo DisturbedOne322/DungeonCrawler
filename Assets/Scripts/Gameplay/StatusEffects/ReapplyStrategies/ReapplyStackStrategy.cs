@@ -7,11 +7,11 @@ namespace Gameplay.StatusEffects.ReapplyStrategies
     {
         public void ReapplyStatusEffect(BaseStatusEffectInstance instance, BaseStatusEffectData data)
         {
-            var stacksCurrent = instance.Stacks;
+            var stacksCurrent = instance.Stacks.Value;
             var maxStacks = data.MaxStacks;
 
             stacksCurrent = Mathf.Min(maxStacks, stacksCurrent + 1);
-            instance.Stacks = stacksCurrent;
+            instance.Stacks.Value = stacksCurrent;
         }
     }
 }

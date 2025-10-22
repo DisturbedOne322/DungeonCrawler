@@ -48,11 +48,14 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
 
                 _buffsByPriority[(int)buff.PriorityType].Add(buff);
             }
-            
+
             foreach (var kv in _buffsByPriority)
             foreach (var buff in kv.Value)
-                for (var i = 0; i < buff.Stacks; i++)
+            {
+                int stacks = buff.Stacks.Value;
+                for (var i = 0; i < stacks; i++)
                     ApplyBuff(hitDataStream, buff);
+            }
         }
 
         

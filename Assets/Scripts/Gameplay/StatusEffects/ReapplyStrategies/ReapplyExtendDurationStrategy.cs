@@ -6,7 +6,7 @@ namespace Gameplay.StatusEffects.ReapplyStrategies
     {
         public void ReapplyStatusEffect(BaseStatusEffectInstance instance, BaseStatusEffectData data)
         {
-            instance.TurnDurationLeft++;
+            instance.TurnDurationLeft.Value++;
         }
     }
 }

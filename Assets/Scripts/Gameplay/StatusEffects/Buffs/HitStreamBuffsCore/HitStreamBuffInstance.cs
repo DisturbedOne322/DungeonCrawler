@@ -12,7 +12,7 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
         {
             return new HitStreamBuffInstance
             {
-                TurnDurationLeft = buffData.StatusEffectDurationData.TurnDurations,
+                TurnDurationLeft = new(buffData.StatusEffectDurationData.TurnDurations),
                 EffectExpirationType = buffData.StatusEffectDurationData.EffectExpirationType,
                 StatusEffectData = buffData,
                 PriorityType = buffData.Priority,

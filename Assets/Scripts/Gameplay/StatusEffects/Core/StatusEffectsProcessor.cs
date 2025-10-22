@@ -33,9 +33,9 @@ namespace Gameplay.StatusEffects.Core
                 if (instance.EffectExpirationType != StatusEffectExpirationType.TurnCount)
                     continue;
 
-                instance.TurnDurationLeft--;
+                instance.TurnDurationLeft.Value--;
                 
-                if (instance.TurnDurationLeft == 0) 
+                if (instance.TurnDurationLeft.Value == 0) 
                     instance.Revert();
             }
         }

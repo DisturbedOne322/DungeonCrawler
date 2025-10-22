@@ -1,13 +1,14 @@
 using Gameplay.Facades;
+using UniRx;
 
 namespace Gameplay.StatusEffects.Core
 {
     public abstract class BaseStatusEffectInstance
     {
         public StatusEffectExpirationType EffectExpirationType;
-        public int Stacks = 1;
+        public IntReactiveProperty Stacks = new(1);
         public BaseStatusEffectData StatusEffectData;
-        public int TurnDurationLeft;
+        public IntReactiveProperty TurnDurationLeft;
         protected IEntity AffectedUnit;
         
         public abstract void Apply(IEntity activeUnit, IEntity otherUnit);

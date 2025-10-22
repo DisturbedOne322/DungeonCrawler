@@ -12,7 +12,7 @@ namespace Gameplay.StatusEffects.Buffs.DefensiveCore
         {
             return new DefensiveBuffInstance
             {
-                TurnDurationLeft = buffData.StatusEffectDurationData.TurnDurations,
+                TurnDurationLeft = new(buffData.StatusEffectDurationData.TurnDurations),
                 EffectExpirationType = buffData.StatusEffectDurationData.EffectExpirationType,
                 PriorityType = buffData.Priority,
                 StatusEffectData = buffData,

@@ -13,7 +13,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
         {
             return new StatBuffInstance
             {
-                TurnDurationLeft = buffDataData.StatusEffectDurationData.TurnDurations,
+                TurnDurationLeft = new(buffDataData.StatusEffectDurationData.TurnDurations),
                 EffectExpirationType = buffDataData.StatusEffectDurationData.EffectExpirationType,
                 StatType = buffDataData.BuffedStatType,
                 StatusEffectData = buffDataData,
