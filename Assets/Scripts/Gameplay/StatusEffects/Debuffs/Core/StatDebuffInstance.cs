@@ -1,7 +1,9 @@
+using System;
 using Data;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
+using UnityEngine;
 
 namespace Gameplay.StatusEffects.Debuffs.Core
 {
@@ -26,6 +28,9 @@ namespace Gameplay.StatusEffects.Debuffs.Core
 
         public override void Apply(IEntity activeUnit, IEntity otherUnit)
         {
+            if (otherUnit == null)
+                throw new Exception("TRIED TO APPLY STATUS EFFECT TO A NULL UNIT");
+            
             AffectedUnit = otherUnit;
             
             ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
@@ -34,6 +39,9 @@ namespace Gameplay.StatusEffects.Debuffs.Core
 
         public override void Revert()
         {
+            if(AffectedUnit == null)
+                return;
+            
             UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
             AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
         }

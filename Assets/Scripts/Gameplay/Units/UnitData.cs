@@ -6,7 +6,6 @@ using Gameplay.Equipment.Weapons;
 using Gameplay.Skills.Core;
 using Gameplay.StatusEffects.Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Units
 {

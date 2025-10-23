@@ -5,24 +5,25 @@ using Gameplay.Equipment;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.StatusEffects.Core;
+using Gameplay.Units;
 using UniRx;
 
 namespace Gameplay.StatusEffects.Buffs.Services
 {
     public class EquipmentStatusEffectApplier : IDisposable
     {
+        private readonly GameUnit _unit;
         private readonly CompositeDisposable _compositeDisposable = new();
         private readonly UnitHeldStatusEffectsData _unitHeldStatusEffectsData;
-        private readonly UnitActiveStatusEffectsData _unitActiveStatusEffectsData;
 
         private readonly Dictionary<BaseStatusEffectData, BaseStatusEffectInstance> _appliedStatusEffects = new();
         
-        public EquipmentStatusEffectApplier(UnitHeldStatusEffectsData unitHeldStatusEffectsData, 
-            UnitActiveStatusEffectsData unitActiveStatusEffectsData,
+        public EquipmentStatusEffectApplier(GameUnit unit,
+            UnitHeldStatusEffectsData unitHeldStatusEffectsData, 
             UnitEquipmentData unitEquipmentData)
         {
+            _unit = unit;
             _unitHeldStatusEffectsData = unitHeldStatusEffectsData;
-            _unitActiveStatusEffectsData = unitActiveStatusEffectsData;
 
             _compositeDisposable.Add(unitEquipmentData.OnWeaponEquipped.Subscribe(EquipStatusEffectsFromWeapon));
             _compositeDisposable.Add(unitEquipmentData.OnArmorEquipped.Subscribe(EquipBuffsFromArmor));
@@ -66,7 +67,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 return;
 
             var instance = data.CreateInstance();
-            _unitActiveStatusEffectsData.AddStatusEffect(instance);
+            instance.Apply(_unit, null);
             
             _appliedStatusEffects.Add(data, instance);
         }
@@ -77,9 +78,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 return;
 
             var instance = _appliedStatusEffects[data];
-            _unitActiveStatusEffectsData.RemoveStatusEffect(instance);
-            
-            _appliedStatusEffects.Remove(data);
+            instance.Revert();
         }
 
         private bool IsPermanentStatusEffect(BaseStatusEffectData data)
