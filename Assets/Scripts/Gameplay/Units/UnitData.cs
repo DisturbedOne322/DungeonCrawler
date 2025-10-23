@@ -16,29 +16,33 @@ namespace Gameplay.Units
         [SerializeField] private string _name;
         [SerializeField] [Space] private GameUnit _prefab;
 
-        [SerializeField] private int _maxHp;
+        [SerializeField, Space] private int _maxHp;
         [SerializeField] private int _maxMp;
-
         [SerializeField] private UnitStartingStats _unitStartingStats;
+        
         [SerializeField] [Space] private BaseSkill _basicAttackSkill;
         [SerializeField] private BaseSkill _guardSkill;
-        [SerializeField] [Space] private List<BaseSkill> _skillSet;
+        [SerializeField] private List<BaseSkill> _skillSet;
         [SerializeField] private List<BaseConsumable> _items;
-
-        [SerializeReference] private List<BaseStatusEffectData> _list;
+        [SerializeField] private List<BaseStatusEffectData> _statusEffects;
         
         [SerializeField] [Space] private BaseWeapon _baseWeapon;
         [SerializeField] private BaseArmor _baseArmor;
 
         public string Name => _name;
         public GameUnit Prefab => _prefab;
+        
         public int MaxHp => _maxHp;
         public int MaxMp => _maxMp;
         public UnitStartingStats UnitStartingStats => _unitStartingStats;
+        
         public BaseSkill BasicAttackSkill => _basicAttackSkill;
         public BaseSkill GuardSkill => _guardSkill;
+        
         public List<BaseSkill> SkillSet => _skillSet;
         public List<BaseConsumable> Items => _items;
+        public List<BaseStatusEffectData> StatusEffects => _statusEffects;
+        
         public BaseWeapon BaseWeapon => _baseWeapon;
         public BaseArmor BaseArmor => _baseArmor;
     }

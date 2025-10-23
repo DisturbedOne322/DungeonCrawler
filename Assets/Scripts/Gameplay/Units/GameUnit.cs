@@ -86,6 +86,9 @@ namespace Gameplay.Units
             UnitSkillsData.AssignSkills(unitData);
             UnitInventoryData.AddItems(unitData.Items);
 
+            foreach (var statusEffectData in unitData.StatusEffects) 
+                UnitHeldStatusEffectsData.Add(statusEffectData);
+
             if (unitData.BaseWeapon)
                 UnitEquipmentData.EquipWeapon(unitData.BaseWeapon);
 
