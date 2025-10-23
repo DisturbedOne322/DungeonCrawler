@@ -1,6 +1,7 @@
 using Gameplay.Dungeon.Rooms;
 using Gameplay.Rewards;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Dungeon.Data
 {
@@ -10,9 +11,9 @@ namespace Gameplay.Dungeon.Data
         [SerializeField] private DungeonRoom _prefab;
         [SerializeField] private Sprite _icon;
         [SerializeField] private RewardDropTable _rewardDropTable;
-
+        
         public DungeonRoom RoomPrefab => _prefab;
         public Sprite Icon => _icon;
-        public RewardDropTable RewardDropTable => _rewardDropTable;
+        public RewardDropTable RewardDropTable => _rewardDropTable; 
     }
 }

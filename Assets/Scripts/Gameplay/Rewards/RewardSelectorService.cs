@@ -29,9 +29,9 @@ namespace Gameplay.Rewards
             RemovePlayerArmorFromSelection(_player.UnitEquipmentData, rewards);
             RemovePlayerSkillsFromSelection(_player.UnitSkillsData, rewards);
             RemoveStatusEffectsFromSelection(_player.UnitHeldStatusEffectsData, rewards);
-            
+
             if (rewards.Count == 0)
-                return null;
+                return dropTable.FallbackItem;
 
             var itemReward = SelectWeightedRandom(rewards);
             return itemReward;

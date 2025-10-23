@@ -16,3 +16,7 @@ MonoBehaviour:
   - _item: {fileID: 11400000, guid: 2b7b80a3081412d45bc410d4c637a3d0, type: 2}
     _weight: 1
     _amount: 1
+  _fallbackItem:
+    _item: {fileID: 11400000, guid: db590dec01973f04aa3da3e5592a7866, type: 2}
+    _weight: 0
+    _amount: 1

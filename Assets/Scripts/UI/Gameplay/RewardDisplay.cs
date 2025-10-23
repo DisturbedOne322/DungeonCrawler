@@ -77,7 +77,6 @@ namespace UI.Gameplay
         {
             _disposables.Add(
                 playerUnit.UnitInventoryData.Coins
-                    .SkipLatestValueOnSubscribe()
                     .Pairwise()
                     .Subscribe(pair =>
                     {

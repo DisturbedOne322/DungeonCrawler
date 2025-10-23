@@ -7,7 +7,7 @@ namespace Gameplay.Combat.Data
 {
     public class UnitInventoryData
     {
-        public ReactiveProperty<int> Coins = new();
+        public readonly ReactiveProperty<int> Coins = new();
         public ReactiveCollection<BaseConsumable> Consumables { get; } = new();
 
         public void AddItems(List<BaseConsumable> items)

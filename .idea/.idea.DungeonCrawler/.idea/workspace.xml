@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatBuffsApplier.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatBuffsApplier.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/CoinsItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/CoinsItem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/BaseEquipmentPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/BaseEquipmentPiece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatBuffsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatsIncreaseData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatBuffsData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatsIncreaseData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/UnitInstallers/UnitInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/UnitInstallers/UnitInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/DropTables/CombatRoomDropTable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/DropTables/CombatRoomDropTable.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/DropTables/TreasureRoomDropTable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/DropTables/TreasureRoomDropTable.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/Rooms/CombatRoomData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/Rooms/CombatRoomData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitInventoryData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitInventoryData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Data/RoomData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Data/RoomData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/TreasureChestRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/TreasureChestRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/DropEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/DropEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDistributor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDistributor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDropTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDropTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardSelectorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardSelectorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Gameplay/RewardDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Gameplay/RewardDisplay.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

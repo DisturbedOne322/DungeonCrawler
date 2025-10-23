@@ -58,6 +58,11 @@ namespace Gameplay.Rewards
                     _player.UnitHeldStatusEffectsData.Add(statusEffect);
                     break;
                 
+                case CoinsItem coinsItem:
+                    int amount = Random.Range(coinsItem.MinAmount, coinsItem.MaxAmount);
+                    _player.UnitInventoryData.Coins.Value += amount;
+                    break;
+                
                 default:
                     Debug.LogWarning($"Unhandled reward type: {dropEntry.Item.name}");
                     break;
