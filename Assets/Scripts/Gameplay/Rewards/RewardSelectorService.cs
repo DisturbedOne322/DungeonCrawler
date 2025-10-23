@@ -27,7 +27,8 @@ namespace Gameplay.Rewards
             RemovePlayerWeaponFromSelection(_player.UnitEquipmentData, rewards);
             RemovePlayerArmorFromSelection(_player.UnitEquipmentData, rewards);
             RemovePlayerSkillsFromSelection(_player.UnitSkillsData, rewards);
-
+            RemoveStatusEffectsFromSelection(_player.UnitHeldStatusEffectsData, rewards);
+            
             if (rewards.Count == 0)
                 return null;
 
@@ -35,46 +36,60 @@ namespace Gameplay.Rewards
             return itemReward;
         }
 
-        private void RemovePlayerSkillsFromSelection(UnitSkillsData skillsData, List<DropEntry> skillDrops)
+        private void RemovePlayerSkillsFromSelection(UnitSkillsData skillsData, List<DropEntry> allRewards)
         {
-            for (var i = skillDrops.Count - 1; i >= 0; i--)
+            for (var i = allRewards.Count - 1; i >= 0; i--)
             {
-                var reward = skillDrops[i];
+                var reward = allRewards[i];
                 if (skillsData.Skills.Contains(reward.Item))
-                    skillDrops.RemoveAt(i);
+                    allRewards.RemoveAt(i);
             }
         }
 
         private void RemovePlayerWeaponFromSelection(UnitEquipmentData playerEquipmentData,
-            List<DropEntry> weaponRewards)
+            List<DropEntry> allRewards)
         {
             if (!playerEquipmentData.TryGetEquippedWeapon(out var playerWeapon))
                 return;
 
-            for (var i = weaponRewards.Count - 1; i >= 0; i--)
+            for (var i = allRewards.Count - 1; i >= 0; i--)
             {
-                var reward = weaponRewards[i];
+                var reward = allRewards[i];
                 if (reward.Item == playerWeapon)
-                    weaponRewards.RemoveAt(i);
+                    allRewards.RemoveAt(i);
             }
         }
 
-        private void RemovePlayerArmorFromSelection(UnitEquipmentData playerEquipmentData, List<DropEntry> armorRewards)
+        private void RemovePlayerArmorFromSelection(UnitEquipmentData playerEquipmentData, List<DropEntry> allRewards)
         {
             if (!playerEquipmentData.TryGetEquippedArmor(out var playerArmor))
                 return;
 
-            for (var i = armorRewards.Count - 1; i >= 0; i--)
+            for (var i = allRewards.Count - 1; i >= 0; i--)
             {
-                var reward = armorRewards[i];
+                var reward = allRewards[i];
                 if (reward.Item == playerArmor)
-                    armorRewards.RemoveAt(i);
+                    allRewards.RemoveAt(i);
+            }
+        }
+        
+        private void RemoveStatusEffectsFromSelection(UnitHeldStatusEffectsData statusEffectsData, List<DropEntry> allRewards)
+        {
+            for (var i = allRewards.Count - 1; i >= 0; i--)
+            {
+                var reward = allRewards[i];
+                if (statusEffectsData.All.Contains(reward.Item))
+                    allRewards.RemoveAt(i);
             }
         }
 
         private DropEntry SelectWeightedRandom(List<DropEntry> entries)
         {
-            var totalWeight = entries.Sum(e => e.Weight);
+            var totalWeight = 0;
+            
+            foreach (var e in entries) 
+                totalWeight += e.Weight;
+
             var roll = _rng.Next(0, totalWeight);
 
             foreach (var entry in entries)
