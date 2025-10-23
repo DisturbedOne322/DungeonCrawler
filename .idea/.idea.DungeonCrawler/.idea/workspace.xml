@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/BalanceDisplayPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/BalanceDisplayPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/ExperienceDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/ExperienceDisplay.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/RewardsDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/RewardsDisplay.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitHeldStatusEffectsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitHeldStatusEffectsData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/StatusEffectTriggerType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/StatusEffectTriggerType.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +152,7 @@
       <workItem from="1760881899869" duration="2599000" />
       <workItem from="1760975925833" duration="8671000" />
       <workItem from="1761161639226" duration="9721000" />
-      <workItem from="1761239463795" duration="6851000" />
+      <workItem from="1761239463795" duration="7973000" />
     </task>
     <servers />
   </component>

@@ -5,12 +5,13 @@ using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.Debuffs.Core;
 using UniRx;
-using UnityEngine;
 
 namespace Gameplay.Combat.Data
 {
     public class UnitHeldStatusEffectsData
     {
+        private readonly UnitActiveStatusEffectsData _activeStatusEffects;
+        
         private readonly ReactiveCollection<BaseStatusEffectData> _all = new();
         private readonly List<DefensiveBuffData> _defensive = new();
         private readonly List<HitBuffData> _offensive = new();
@@ -23,6 +24,11 @@ namespace Gameplay.Combat.Data
         public IReadOnlyList<StatBuffData> StatBuffs => _statBuffs;
         public IReadOnlyList<StatDebuffData> StatDebuffs => _statDebuffs;
 
+        public UnitHeldStatusEffectsData(UnitActiveStatusEffectsData activeStatusEffects)
+        {
+            _activeStatusEffects = activeStatusEffects;
+        }
+        
         public void Add(BaseStatusEffectData data)
         {
             if (!data)
@@ -37,6 +43,8 @@ namespace Gameplay.Combat.Data
                 case StatBuffData statBuff: _statBuffs.Add(statBuff); break;
                 case StatDebuffData statDebuff: _statDebuffs.Add(statDebuff); break;
             }
+
+            TryActivatePermanentStatusEffect(data);
         }
 
         public void Remove(BaseStatusEffectData data)
@@ -62,6 +70,17 @@ namespace Gameplay.Combat.Data
             _offensive.Clear();
             _statBuffs.Clear();
             _statDebuffs.Clear();
+        }
+
+        private void TryActivatePermanentStatusEffect(BaseStatusEffectData data)
+        {
+            if(data.StatusEffectDurationData.EffectExpirationType != StatusEffectExpirationType.Permanent)
+                return;
+            
+            if(data.TriggerType != StatusEffectTriggerType.OnObtained)
+                return;
+            
+            _activeStatusEffects.AddStatusEffect(data.CreateInstance());
         }
     }
 }
