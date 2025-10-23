@@ -43,8 +43,6 @@ namespace Gameplay.Combat.Data
                 case StatBuffData statBuff: _statBuffs.Add(statBuff); break;
                 case StatDebuffData statDebuff: _statDebuffs.Add(statDebuff); break;
             }
-
-            TryActivatePermanentStatusEffect(data);
         }
 
         public void Remove(BaseStatusEffectData data)
@@ -70,17 +68,6 @@ namespace Gameplay.Combat.Data
             _offensive.Clear();
             _statBuffs.Clear();
             _statDebuffs.Clear();
-        }
-
-        private void TryActivatePermanentStatusEffect(BaseStatusEffectData data)
-        {
-            if(data.StatusEffectDurationData.EffectExpirationType != StatusEffectExpirationType.Permanent)
-                return;
-            
-            if(data.TriggerType != StatusEffectTriggerType.OnObtained)
-                return;
-            
-            _activeStatusEffects.AddStatusEffect(data.CreateInstance());
         }
     }
 }

@@ -16,8 +16,8 @@ MonoBehaviour:
   _name: Permanent Flat Attack Buff
   _description: Increases any damage instance by 10 points.
   _statusEffectDurationData: {fileID: 11400000, guid: 8ca47516fb0a168429a6a296ff5d838f, type: 2}
-  _triggerType: 0
-  _statusEffectReapplyType: 0
+  _triggerType: 16
+  _statusEffectReapplyType: 2
   _maxStacks: 2
   _priority: 0
   _damageIncrease: 10

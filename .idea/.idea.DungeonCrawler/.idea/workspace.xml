@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Addressables/Gameplay/Player Level Up Buffs Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Addressables/Gameplay/Player Level Up Buffs Config.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/OffensiveBuffs/PermanentFlatAttackBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/OffensiveBuffs/PermanentFlatAttackBuff.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/CrirRateBuff.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/StatusEffects/Buffs/StatBuffs/CrirRateBuff.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitHeldStatusEffectsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitHeldStatusEffectsData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/StatusEffectTriggerType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/StatusEffectTriggerType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardSelectorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardSelectorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/WeaponBuffApplier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/WeaponBuffApplier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/UnitInstallers/UnitInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/UnitInstallers/UnitInstaller.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +158,7 @@
       <workItem from="1760881899869" duration="2599000" />
       <workItem from="1760975925833" duration="8671000" />
       <workItem from="1761161639226" duration="9721000" />
-      <workItem from="1761239463795" duration="7973000" />
+      <workItem from="1761239463795" duration="9192000" />
     </task>
     <servers />
   </component>

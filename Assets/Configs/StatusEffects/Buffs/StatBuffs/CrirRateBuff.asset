@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _name: Guaranteed crit hit
-  _description: +100% crit rate on next hit. Triggered on hit
+  _description: +100% crit rate.
   _statusEffectDurationData: {fileID: 11400000, guid: 8ca47516fb0a168429a6a296ff5d838f, type: 2}
-  _triggerType: 15
+  _triggerType: 16
   _statusEffectReapplyType: 1
   _maxStacks: 1
   _buffedStatType: 7

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Player Level Up Buffs Config
   m_EditorClassIdentifier: 
   _healthBonus: 10
+  _manaBonus: 5

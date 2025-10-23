@@ -21,7 +21,7 @@ namespace Installers.UnitInstallers
             Container.Bind<UnitStatsData>().AsSingle();
             Container.Bind<UnitBonusStatsData>().AsSingle();
             Container.Bind<UnitHeldStatusEffectsData>().AsSingle();
-            Container.Bind<WeaponBuffApplier>().AsSingle().NonLazy();
+            Container.Bind<EquipmentStatusEffectApplier>().AsSingle().NonLazy();
             Container.Bind<UnitActiveStatusEffectsData>().AsSingle();
             Container.Bind<UnitEquipmentData>().AsSingle();
         }

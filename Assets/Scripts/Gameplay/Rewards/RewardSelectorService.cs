@@ -1,9 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Combat.Data;
 using Gameplay.Equipment;
 using Gameplay.Units;
+using UnityEngine;
+using Random = System.Random;
 
 namespace Gameplay.Rewards
 {
@@ -78,6 +79,7 @@ namespace Gameplay.Rewards
             for (var i = allRewards.Count - 1; i >= 0; i--)
             {
                 var reward = allRewards[i];
+                
                 if (statusEffectsData.All.Contains(reward.Item))
                     allRewards.RemoveAt(i);
             }
