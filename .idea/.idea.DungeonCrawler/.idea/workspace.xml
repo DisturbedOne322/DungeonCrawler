@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatBuffsData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatBuffsData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatBuffsApplier.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatBuffsApplier.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Enemies/EnemyPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Enemies/EnemyPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitStartingStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/Data/UnitStartingStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Equipment/Weapons/BaseWeapon.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/BaseEquipmentPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/BaseEquipmentPiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatBuffsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatsIncreaseData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatBuffsData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/EquipmentStatsIncreaseData.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/UnitInstallers/UnitInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/UnitInstallers/UnitInstaller.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

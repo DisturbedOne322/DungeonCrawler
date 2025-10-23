@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using Gameplay.Combat.Data;
 using Gameplay.Equipment;
-using Gameplay.Equipment.Armor;
-using Gameplay.Equipment.Weapons;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using UniRx;
@@ -25,22 +23,14 @@ namespace Gameplay.StatusEffects.Buffs.Services
             _unit = unit;
             _unitHeldStatusEffectsData = unitHeldStatusEffectsData;
 
-            _compositeDisposable.Add(unitEquipmentData.OnWeaponEquipped.Subscribe(EquipStatusEffectsFromWeapon));
-            _compositeDisposable.Add(unitEquipmentData.OnArmorEquipped.Subscribe(EquipBuffsFromArmor));
-            _compositeDisposable.Add(unitEquipmentData.OnWeaponRemoved.Subscribe(RemoveBuffsFromWeapon));
-            _compositeDisposable.Add(unitEquipmentData.OnArmorRemoved.Subscribe(RemoveBuffsFromArmor));
+            _compositeDisposable.Add(unitEquipmentData.OnWeaponEquipped.Subscribe(EquipStatusEffectsFromEquipment));
+            _compositeDisposable.Add(unitEquipmentData.OnArmorEquipped.Subscribe(EquipStatusEffectsFromEquipment));
+            _compositeDisposable.Add(unitEquipmentData.OnWeaponRemoved.Subscribe(RemoveStatusEffectsFromEquipment));
+            _compositeDisposable.Add(unitEquipmentData.OnArmorRemoved.Subscribe(RemoveStatusEffectsFromEquipment));
         }
 
         public void Dispose() => _compositeDisposable.Dispose();
-
-        private void EquipStatusEffectsFromWeapon(BaseWeapon weapon) => EquipStatusEffectsFromEquipment(weapon);
-
-        private void EquipBuffsFromArmor(BaseArmor armor) => EquipStatusEffectsFromEquipment(armor);
-
-        private void RemoveBuffsFromWeapon(BaseWeapon weapon) => RemoveBuffsFromEquipment(weapon);
-
-        private void RemoveBuffsFromArmor(BaseArmor armor) => RemoveBuffsFromEquipment(armor);
-
+        
         private void EquipStatusEffectsFromEquipment(BaseEquipmentPiece equipmentPiece)
         {
             foreach (var statusEffect in equipmentPiece.StatusEffects)
@@ -51,7 +41,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 }
         }
 
-        private void RemoveBuffsFromEquipment(BaseEquipmentPiece equipmentPiece)
+        private void RemoveStatusEffectsFromEquipment(BaseEquipmentPiece equipmentPiece)
         {
             foreach (var statusEffect in equipmentPiece.StatusEffects)
                 if (statusEffect)
@@ -79,6 +69,8 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
             var instance = _appliedStatusEffects[data];
             instance.Revert();
+
+            _appliedStatusEffects.Remove(data);
         }
 
         private bool IsPermanentStatusEffect(BaseStatusEffectData data)
@@ -86,10 +78,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             if(data.StatusEffectDurationData.EffectExpirationType != StatusEffectExpirationType.Permanent)
                 return false;
             
-            if(data.TriggerType != StatusEffectTriggerType.OnObtained)
-                return false;
-
-            return true;
+            return data.TriggerType == StatusEffectTriggerType.OnObtained;
         }
     }
 }

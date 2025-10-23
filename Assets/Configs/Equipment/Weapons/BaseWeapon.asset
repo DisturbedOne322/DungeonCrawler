@@ -17,4 +17,10 @@ MonoBehaviour:
   _description: 
   _statusEffects:
   - {fileID: 11400000, guid: a829b295d78db63498d20de271588c22, type: 2}
+  _statsIncreaseData:
+    _constitution: 50
+    _strength: 0
+    _dexterity: 0
+    _intelligence: 0
+    _luck: 0
   _prefab: {fileID: 8449004803641222730, guid: 5cdf1ac831646004288735c99ac51e4a, type: 3}
