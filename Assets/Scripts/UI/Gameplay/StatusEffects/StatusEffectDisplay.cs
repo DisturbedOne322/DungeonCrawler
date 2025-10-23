@@ -12,6 +12,7 @@ namespace UI.Gameplay.StatusEffects
         [SerializeField] private Image _statusEffectIcon;
         [SerializeField] private TextMeshProUGUI _stacksText;
         [SerializeField] private TextMeshProUGUI _turnsLeftText;
+        [SerializeField] private TextMeshProUGUI _effectNameText;
         
         private IDisposable _stacksSubscription;
         private IDisposable _turnsLeftSubscription;
@@ -20,6 +21,7 @@ namespace UI.Gameplay.StatusEffects
 
         public void SetData(BaseStatusEffectInstance instance)
         {
+            _effectNameText.text = instance.StatusEffectData.Name;
             Dispose();
             SetIcon(instance);
             InitStacksDisplay(instance);

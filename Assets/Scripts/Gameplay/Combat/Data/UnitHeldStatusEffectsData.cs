@@ -3,20 +3,21 @@ using Gameplay.StatusEffects.Buffs.DefensiveCore;
 using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
-using Gameplay.StatusEffects.Debuffs;
 using Gameplay.StatusEffects.Debuffs.Core;
+using UniRx;
+using UnityEngine;
 
 namespace Gameplay.Combat.Data
 {
     public class UnitHeldStatusEffectsData
     {
-        private readonly List<BaseStatusEffectData> _all = new();
+        private readonly ReactiveCollection<BaseStatusEffectData> _all = new();
         private readonly List<DefensiveBuffData> _defensive = new();
         private readonly List<HitBuffData> _offensive = new();
         private readonly List<StatBuffData> _statBuffs = new();
         private readonly List<StatDebuffData> _statDebuffs = new();
 
-        public IReadOnlyList<BaseStatusEffectData> All => _all;
+        public ReactiveCollection<BaseStatusEffectData> All => _all;
         public IReadOnlyList<DefensiveBuffData> DefensiveBuffs => _defensive;
         public IReadOnlyList<HitBuffData> OffensiveBuffs => _offensive;
         public IReadOnlyList<StatBuffData> StatBuffs => _statBuffs;

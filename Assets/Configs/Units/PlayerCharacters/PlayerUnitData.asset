@@ -17,11 +17,11 @@ MonoBehaviour:
   _maxHp: 100
   _maxMp: 50
   _unitStartingStats:
-    _constitution: 1
-    _strength: 1
-    _dexterity: 1
-    _intelligence: 1
-    _luck: 1
+    _constitution: 10
+    _strength: 10
+    _dexterity: 10
+    _intelligence: 10
+    _luck: 10
   _basicAttackSkill: {fileID: 11400000, guid: 7e1b90634e6a97d45a1605e05edfbe4d, type: 2}
   _guardSkill: {fileID: 11400000, guid: 5a2ec0e93c678fb42b0087f73304518c, type: 2}
   _skillSet:
