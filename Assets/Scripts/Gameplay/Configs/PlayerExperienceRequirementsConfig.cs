@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gameplay.Configs
@@ -5,12 +6,16 @@ namespace Gameplay.Configs
     [CreateAssetMenu(menuName = "Gameplay/Configs/PlayerExperienceRequirementsConfig")]
     public class PlayerExperienceRequirementsConfig : GameplayConfig
     {
-        private const int BaseExperience = 100;
-        private const float BaseValue = 1.1f;
+        [SerializeField] private List<int> _levelRequirements = new();
 
         public int GetXpRequiredForLevel(int level)
         {
-            return (int)(BaseExperience * Mathf.Pow(BaseValue, level - 1));
+            level--;
+            
+            if (level >= _levelRequirements.Count || level < 0)
+                return 0;
+            
+            return _levelRequirements[level];
         }
     }
 }

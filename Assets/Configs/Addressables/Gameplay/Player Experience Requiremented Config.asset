@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd76b66a307b41e19bd41cbed5bc0219, type: 3}
   m_Name: Player Experience Requiremented Config
   m_EditorClassIdentifier: 
+  _levelRequirements: 000000003200000064000000d0070000

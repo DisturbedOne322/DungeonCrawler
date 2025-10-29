@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Gameplay.Experience
 {
@@ -19,15 +20,39 @@ namespace Gameplay.Experience
 
         public async UniTask AddExperience(int experience)
         {
-            var currentLevel = _experienceData.CurrentLevel;
-            var nextExp = _experienceData.CurrentExperience + experience;
+            int currentLevel = _experienceData.CurrentLevel;
+            int currentXp = _experienceData.CurrentExperience + experience;
 
-            var targetExp = _experienceRequirementsProvider.GetXpRequiredForLevel(currentLevel + 1);
-
-            if (nextExp >= targetExp)
-                await _playerLevelUpController.ProcessLevelUp();
-            
             _experienceData.AddExperience(experience);
+
+            while (true)
+            {
+                int nextLevelReq = _experienceRequirementsProvider.GetXpRequiredForLevel(currentLevel + 1);
+
+                if (currentXp < nextLevelReq)
+                    break;
+
+                _experienceData.SetProgress(0);
+                
+                await _playerLevelUpController.ProcessLevelUp();
+                
+                _experienceData.SetProgress(1);
+                currentLevel++;
+            }
+
+            _experienceData.SetProgress(CalculateExperienceProgress());
+        }
+
+        private float CalculateExperienceProgress()
+        {
+            int currentLevel = _experienceData.CurrentLevel;
+            int xp = _experienceData.CurrentExperience;
+
+            int currentLevelReq = _experienceRequirementsProvider.GetXpRequiredForLevel(currentLevel);
+            int nextLevelReq = _experienceRequirementsProvider.GetXpRequiredForLevel(currentLevel + 1);
+
+            float progress = (xp - currentLevelReq) / (float)(nextLevelReq - currentLevelReq);
+            return Mathf.Clamp01(progress);
         }
     }
 }

@@ -22,7 +22,7 @@ MonoBehaviour:
     MinHits: 2
     MaxHits: 8
     BaseCritChance: 0.5
-    CanCrit: 0
+    CanCrit: 1
     BaseHitChance: 1
     IsUnavoidable: 0
     PenetrationRatio: 0
