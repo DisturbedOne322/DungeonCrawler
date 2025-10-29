@@ -322,4 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6abda293c054fa587acc0e0efc64d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _balanceText: {fileID: 1186539336244426970}
+  _currentBalanceText: {fileID: 1186539336244426970}
+  _newBalanceText: {fileID: 4707108260056041674}
+  _fadeDuration: 0.25
+  _transferDuration: 1.5
