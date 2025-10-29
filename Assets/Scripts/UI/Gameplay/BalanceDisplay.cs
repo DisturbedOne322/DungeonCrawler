@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using DG.Tweening;
 using Gameplay.Units;
 using TMPro;
@@ -16,6 +17,7 @@ namespace UI.Gameplay
         [SerializeField] private float _transferDuration = 1.5f;
         
         private Sequence _sequence;
+        private readonly StringBuilder _builder = new(8);
         
         private IDisposable _disposable;
         
@@ -28,9 +30,12 @@ namespace UI.Gameplay
                 {
                     var prev = pair.Previous;
                     var current = pair.Current;
-                    var added = current - prev;
+                    var delta = current - prev;
 
-                    ShowBalanceChange(current, added);
+                    if (delta != 0)
+                        ShowBalanceChange(current, delta);
+                    else
+                        _currentBalanceText.text = current.ToString();
                 });
         }
 
@@ -39,44 +44,44 @@ namespace UI.Gameplay
             _disposable.Dispose();
         }
 
-        private void ShowBalanceChange(int newBalance, int addedBalance)
+        private void ShowBalanceChange(int newBalance, int delta)
         {
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
 
-            int startBalance = newBalance - addedBalance;
-            int displayedCurrent = startBalance;
-            int displayedAdded = addedBalance;
+            int startBalance = newBalance - delta;
+            int absDelta = Mathf.Abs(delta);
+            bool isGain = delta > 0;
 
-            // Initialize visuals
             _currentBalanceText.text = startBalance.ToString();
-            _newBalanceText.text = $"+{addedBalance}";
-            _newBalanceText.alpha = 0;
+            _newBalanceText.alpha = 0f;
+            UpdateChangeText(isGain, absDelta);
 
-            // Fade in "+X"
             _sequence.Append(_newBalanceText.DOFade(1f, _fadeDuration));
 
-            // Animate value transfer
             _sequence.Append(
                 DOTween.To(() => 0f, t =>
-                {
-                    // `t` goes from 0 → 1 during the transfer
-                    displayedAdded = Mathf.RoundToInt(addedBalance * (1f - t));
-                    displayedCurrent = Mathf.RoundToInt(startBalance + addedBalance * t);
+                    {
+                        int displayedChange = Mathf.RoundToInt(absDelta * (1f - t));
+                        int displayedBalance = Mathf.RoundToInt(startBalance + delta * t);
 
-                    _newBalanceText.text = $"+{displayedAdded}";
-                    _currentBalanceText.text = displayedCurrent.ToString();
-                }, 1f, _transferDuration)
+                        UpdateChangeText(isGain, displayedChange);
+                        _currentBalanceText.SetText(displayedBalance.ToString());
+                    }, 1f, _transferDuration)
+                    .SetEase(Ease.OutQuad)
             );
 
-            // Fade out "+0"
             _sequence.Append(_newBalanceText.DOFade(0f, _fadeDuration));
 
-            _sequence.OnComplete(() =>
-            {
-                _newBalanceText.text = string.Empty;
-                _currentBalanceText.text = newBalance.ToString();
-            });
+            _sequence.OnComplete(() => _newBalanceText.text = string.Empty);
+        }
+
+        private void UpdateChangeText(bool isGain, int value)
+        {
+            _builder.Clear();
+            _builder.Append(isGain ? '+' : '-');
+            _builder.Append(value);
+            _newBalanceText.SetText(_builder);
         }
     }
 }
