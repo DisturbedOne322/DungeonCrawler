@@ -11,7 +11,7 @@ namespace Gameplay.Dungeon.Animations
 
         public async UniTask PlayOpenAnimation()
         {
-            _pivot.transform.DORotate(new Vector3(145, 0, 0), _animTime);
+            _pivot.transform.DORotate(new Vector3(145, 0, 0), _animTime).SetLink(gameObject);
             await UniTask.WaitForSeconds(_animTime);
         }
 

@@ -17,7 +17,8 @@ namespace Gameplay.Player
                     1f / _breathingSpeed
                 )
                 .SetEase(Ease.InOutSine)
-                .SetLoops(-1, LoopType.Yoyo);
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetLink(gameObject);
         }
 
         private void OnDestroy()

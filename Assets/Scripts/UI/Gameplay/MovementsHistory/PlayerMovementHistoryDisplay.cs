@@ -33,7 +33,8 @@ namespace UI.Gameplay.MovementsHistory
                 _activeDisplays.AddLast(display);
             }
 
-            history.RoomsHistory.ObserveAdd().Subscribe(newRoom => { ShowRoomDisplay(newRoom.Value); })
+            history.RoomsHistory.ObserveAdd().
+                Subscribe(newRoom => { ShowRoomDisplay(newRoom.Value); })
                 .AddTo(gameObject);
         }
 
@@ -53,15 +54,11 @@ namespace UI.Gameplay.MovementsHistory
                 display.SetIcon(roomData.Icon);
                 display.transform.localScale = Vector3.zero;
                 display.transform.SetAsFirstSibling();
-                AnimateScaleUp(display);
-            });
+                display.transform.DOScale(Vector3.one, _scaleUpDuration).SetEase(Ease.OutBack).SetLink(gameObject);
+            }).SetLink(gameObject);
 
             _activeDisplays.AddFirst(display);
         }
-
-        private void AnimateScaleUp(RoomIconDisplay display)
-        {
-            display.transform.DOScale(Vector3.one, _scaleUpDuration).SetEase(Ease.OutBack);
-        }
+        
     }
 }

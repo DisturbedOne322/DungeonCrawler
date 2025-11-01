@@ -24,6 +24,7 @@ namespace UI.Notifications
             _sequence.Append(_rectTransform.DOAnchorPosX(-width, fadeIn.FadeDuration).SetEase(fadeIn.Ease));
             _sequence.AppendInterval(_fadeInOutOptions.StayTime);
             _sequence.Append(_rectTransform.DOAnchorPosX(0, fadeOut.FadeDuration).SetEase(fadeOut.Ease));
+            _sequence.SetLink(gameObject);
 
             await _sequence.AsyncWaitForCompletion().AsUniTask().AttachExternalCancellation(token);
         }

@@ -12,7 +12,7 @@ namespace Gameplay.Dungeon.Animations
 
         public async UniTask PlayOpenAnimation(int doorIndex)
         {
-            _doorPivots[doorIndex].transform.DORotate(new Vector3(0, 90, 0), _doorOpenTime);
+            _doorPivots[doorIndex].transform.DORotate(new Vector3(0, 90, 0), _doorOpenTime).SetLink(gameObject);
             await UniTask.WaitForSeconds(_doorOpenTime);
         }
 

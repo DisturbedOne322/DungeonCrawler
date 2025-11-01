@@ -67,7 +67,9 @@ namespace Gameplay.Player
                     MoveTimePerMeter = movementData.MoveTimePerMeter
                 };
 
-                tween = transform.DOMove(horizontalMovePos, GetMoveTime(moveData)).SetEase(Ease.InOutQuad);
+                tween = transform.DOMove(horizontalMovePos, GetMoveTime(moveData))
+                    .SetEase(Ease.InOutQuad)
+                    .SetLink(gameObject);
 
                 return true;
             }
@@ -78,7 +80,11 @@ namespace Gameplay.Player
 
         private Tween Move(MovementData data, Action callback, Ease ease)
         {
-            Tween tween = transform.DOMove(data.TargetPos, GetMoveTime(data)).SetEase(ease).OnStart(callback.Invoke);
+            Tween tween = transform.DOMove(data.TargetPos, GetMoveTime(data))
+                .SetEase(ease)
+                .OnStart(callback.Invoke)
+                .SetLink(gameObject);
+            
             return tween;
         }
 

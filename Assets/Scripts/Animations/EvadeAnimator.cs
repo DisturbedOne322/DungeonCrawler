@@ -49,6 +49,8 @@ namespace Animations
             seq.Join(transform.DOLocalRotateQuaternion(originalRot, _returnDuration)
                 .SetEase(_returnEase));
 
+            seq.SetLink(gameObject);
+
             await seq.AsyncWaitForCompletion().AsUniTask();
 
             _inAnimation = false;
