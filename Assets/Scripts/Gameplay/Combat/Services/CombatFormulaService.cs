@@ -15,17 +15,13 @@ namespace Gameplay.Combat.Services
             _config = gameplayConfigsProvider.GetConfig<CombatFormulasConfig>();
         }
 
-        public void ReduceDamageByStats(IEntity unit, in DamageContext damageContext)
+        public void ReduceDamageByStats(in DamageContext damageContext)
         {
-            var constitutionStat = unit.UnitStatsData.Constitution.Value;
-            var damageReductionModifier = 1 - Mathf.Clamp(constitutionStat, 1, StatConstants.MaxStatPoints)
-                * _config.MaxConstitutionInfluence
-                / StatConstants.MaxStatPoints;
+            var damageReductionModifier = GetDamageReductionFinal(damageContext);
 
-            var constitutionReducedDamage = damageContext.HitData.Damage * damageReductionModifier;
-
-            var clampedDamage = Mathf.Max(Mathf.RoundToInt(constitutionReducedDamage), 0);
-
+            var reducedDamage = damageContext.HitData.Damage * damageReductionModifier;
+            var clampedDamage = Mathf.Max(Mathf.RoundToInt(reducedDamage), 0);
+            
             damageContext.HitData.Damage = clampedDamage;
         }
 
@@ -78,6 +74,22 @@ namespace Gameplay.Combat.Services
             return Mathf.Clamp01(finalHitChance);
         }
 
+        private float GetDamageReductionFinal(in DamageContext damageContext)
+        {
+            var attacker = damageContext.Attacker;
+            float penRatio = attacker.UnitBonusStatsData.PenetrationRatio.Value;
+            
+            var defender = damageContext.Defender;
+            
+            var constitutionStat = defender.UnitStatsData.Constitution.Value;
+            float constitutionInfluence = constitutionStat
+                                          * _config.MaxConstitutionInfluence
+                                          / StatConstants.MaxStatPoints;
+
+            var damageReductionModifier = 1 - constitutionInfluence * (1 - penRatio);
+            return damageReductionModifier;
+        }
+        
         private float GetAttackerEffectiveHit(IEntity unit)
         {
             var stats = unit.UnitStatsData;

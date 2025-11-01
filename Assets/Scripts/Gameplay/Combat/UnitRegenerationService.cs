@@ -1,3 +1,4 @@
+using Constants;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UnityEngine;
@@ -6,9 +7,6 @@ namespace Gameplay.Combat
 {
     public class UnitRegenerationService
     {
-        private const float InBattleRegenMultiplier = 1f;
-        private const float OutOfBattleRegenMultiplier = 0.2f;
-
         private readonly PlayerUnit _playerUnit;
 
         public UnitRegenerationService(PlayerUnit playerUnit)
@@ -16,9 +14,9 @@ namespace Gameplay.Combat
             _playerUnit = playerUnit;
         }
         
-        public void RegenerateUnitInBattle(IEntity unit) => RegenerateUnit(unit, InBattleRegenMultiplier);
+        public void RegenerateUnitInBattle(IEntity unit) => RegenerateUnit(unit, 1);
 
-        public void RegeneratePlayerOutOfBattle() => RegenerateUnit(_playerUnit, OutOfBattleRegenMultiplier);
+        public void RegeneratePlayerOutOfBattle() => RegenerateUnit(_playerUnit, GameplayConstants.RegenerationRateOutOfCombat);
 
         private void RegenerateUnit(IEntity unit, float multiplier)
         {

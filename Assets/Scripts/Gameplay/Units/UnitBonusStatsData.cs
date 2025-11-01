@@ -12,9 +12,7 @@ namespace Gameplay.Units
         public ReactiveProperty<int> ManaRegenBonus;
 
         public ReactiveProperty<float> PenetrationRatio;
-
-        public ReactiveProperty<int> Defense;
-
+        
         public void SetData(UnitStartingBonusStats statsData)
         {
             CritChanceBonus = new(statsData.CriticalChance);
@@ -22,7 +20,6 @@ namespace Gameplay.Units
             HealthRegenBonus = new(statsData.HealthRegen);
             ManaRegenBonus = new(statsData.ManaRegen);
             PenetrationRatio = new(statsData.PenetrationRatio);
-            Defense = new(statsData.Defense);
         }
     }
 }

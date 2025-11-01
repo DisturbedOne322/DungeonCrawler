@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Gameplay.Combat.Data;
 using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;

@@ -11,8 +11,6 @@ namespace Data
         Luck,
         CriticalChance,
         CriticalDamage,
-        AttackMultiplier,
-        DefenseMultiplier,
         HealthRegen,
         ManaRegen,
         PenetrationRatio

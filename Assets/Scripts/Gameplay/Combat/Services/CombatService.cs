@@ -145,24 +145,24 @@ namespace Gameplay.Combat.Services
                 return;
             }
 
-            SetCritical(attacker, damageContext);
+            SetCritical(damageContext);
 
             _buffsCalculationService.BuffOutgoingDamage(damageContext);
             _buffsCalculationService.DebuffIncomingDamage(damageContext);
 
             _combatFormulaService.ApplyFinalDamageMultiplier(damageContext);
 
-            _combatFormulaService.ReduceDamageByStats(defender, damageContext);
+            _combatFormulaService.ReduceDamageByStats(damageContext);
         }
 
-        private void SetCritical(IGameUnit caster, in DamageContext damageContext)
+        private void SetCritical(in DamageContext damageContext)
         {
             var hitData = damageContext.HitData;
             
             if(hitData.IsCritical)
                 return;
             
-            var finalCritChance = _combatFormulaService.GetFinalCritChance(caster, damageContext);
+            var finalCritChance = _combatFormulaService.GetFinalCritChance(damageContext.Attacker, damageContext);
             hitData.IsCritical = Random.value < finalCritChance;
         }
 
