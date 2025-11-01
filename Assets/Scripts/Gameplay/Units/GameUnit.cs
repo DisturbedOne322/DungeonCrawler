@@ -82,6 +82,7 @@ namespace Gameplay.Units
             UnitManaData.Initialize(unitData.MaxMp);
 
             UnitStatsData.SetStats(unitData.UnitStartingStats);
+            UnitBonusStatsData.SetData(unitData.UnitStartingBonusStats);
 
             UnitSkillsData.AssignSkills(unitData);
             UnitInventoryData.AddItems(unitData.Items);
