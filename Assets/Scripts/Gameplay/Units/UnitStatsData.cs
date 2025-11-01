@@ -1,6 +1,6 @@
 using UniRx;
 
-namespace Gameplay.Combat.Data
+namespace Gameplay.Units
 {
     public class UnitStatsData
     {
@@ -12,11 +12,11 @@ namespace Gameplay.Combat.Data
 
         public void SetStats(UnitStartingStats stats)
         {
-            Constitution = new ReactiveProperty<int>(stats.Constitution);
-            Strength = new ReactiveProperty<int>(stats.Strength);
-            Dexterity = new ReactiveProperty<int>(stats.Dexterity);
-            Intelligence = new ReactiveProperty<int>(stats.Intelligence);
-            Luck = new ReactiveProperty<int>(stats.Luck);
+            Constitution = new (stats.Constitution);
+            Strength = new (stats.Strength);
+            Dexterity = new (stats.Dexterity);
+            Intelligence = new (stats.Intelligence);
+            Luck = new (stats.Luck);
         }
     }
 }

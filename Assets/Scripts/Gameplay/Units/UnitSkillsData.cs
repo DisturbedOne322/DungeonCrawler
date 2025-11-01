@@ -1,9 +1,8 @@
 using Gameplay.Skills.Core;
-using Gameplay.Units;
 using ModestTree;
 using UniRx;
 
-namespace Gameplay.Combat.Data
+namespace Gameplay.Units
 {
     public class UnitSkillsData
     {

@@ -1,5 +1,6 @@
 using Gameplay.Combat.Data;
 using Gameplay.Equipment;
+using Gameplay.Units;
 
 namespace Gameplay.Facades
 {

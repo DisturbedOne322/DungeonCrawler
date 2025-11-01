@@ -1,11 +1,11 @@
-using Gameplay.Combat.Data;
+using Gameplay.Units;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace UI
+namespace UI.UnitData
 {
     public class UnitManaDisplay : MonoBehaviour
     {

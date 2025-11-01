@@ -7,7 +7,7 @@ using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.Debuffs.Core;
 using UniRx;
 
-namespace Gameplay.Combat.Data
+namespace Gameplay.Units
 {
     public class UnitActiveStatusEffectsData
     {

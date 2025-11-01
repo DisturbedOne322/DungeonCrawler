@@ -1,6 +1,6 @@
 using UniRx;
 
-namespace Gameplay.Combat.Data
+namespace Gameplay.Units
 {
     public class UnitHealthData
     {

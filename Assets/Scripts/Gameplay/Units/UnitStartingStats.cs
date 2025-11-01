@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Gameplay.Combat.Data
+namespace Gameplay.Units
 {
     [Serializable]
     public class UnitStartingStats

@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: BaseArmor
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _name: 
-  _description: 
-  _offensiveBuff: {fileID: 11400000, guid: 60ac70939a8e3b8489ef3a61cb7f4272, type: 2}
-  _defensiveBuff: {fileID: 0}
+  _name: Test Armor
+  _description: Test Armor
+  _statusEffects: []
+  _statsIncreaseData:
+    _constitution: 0
+    _strength: 0
+    _dexterity: 0
+    _intelligence: 0
+    _luck: 0

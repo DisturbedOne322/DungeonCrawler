@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
+using Gameplay.Units;
 using StateMachine.BattleMenu;
 using UniRx;
 

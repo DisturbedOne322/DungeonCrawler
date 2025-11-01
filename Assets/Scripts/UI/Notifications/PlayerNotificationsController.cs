@@ -25,10 +25,10 @@ namespace UI.Notifications
         [Inject]
         private void Construct(PlayerUnit unit, PlayerSkillSlotsManager playerSkillSlotsManager)
         {
-            Subscribe(unit.UnitSkillsData.Skills.ObserveAdd(), e => EnqueueSkillNotification(e.Value));
+            Subscribe(unit.UnitSkillsData.Skills.ObserveAdd(), EnqueueSkillNotification);
             Subscribe(unit.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
             Subscribe(unit.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
-            Subscribe(unit.UnitHeldStatusEffectsData.All.ObserveAdd(), e => EnqueueStatusEffectNotification(e.Value));
+            Subscribe(unit.UnitHeldStatusEffectsData.All.ObserveAdd(), EnqueueStatusEffectNotification);
             Subscribe(playerSkillSlotsManager.OnSkillSlotsAdded, EnqueueSkillSlotNotification);
             SubscribeConsumables(unit);
         }
@@ -52,10 +52,10 @@ namespace UI.Notifications
                 .AddTo(_disposables);
         }
         
-        private void EnqueueSkillNotification(BaseSkill skill)
+        private void EnqueueSkillNotification(CollectionAddEvent<BaseSkill> @event)
         {
             EnqueueNotification(new NotificationData(
-                () => _gameItemNotificationDisplay.SetData(skill),
+                () => _gameItemNotificationDisplay.SetData(@event.Value),
                 _gameItemNotificationDisplay.Show)
             );
         }
@@ -68,10 +68,10 @@ namespace UI.Notifications
             );
         }
 
-        private void EnqueueStatusEffectNotification(BaseStatusEffectData statusEffectData)
+        private void EnqueueStatusEffectNotification(CollectionAddEvent<BaseStatusEffectData> @event)
         {
             EnqueueNotification(new NotificationData(
-                () => _gameItemNotificationDisplay.SetData(statusEffectData),
+                () => _gameItemNotificationDisplay.SetData(@event.Value),
                 _gameItemNotificationDisplay.Show)
             );
         }
