@@ -127,7 +127,8 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 
             var appliedInt = newMax - oldMax;
 
-            if (appliedInt != 0) manaController.IncreaseMaxMana(appliedInt);
+            if (appliedInt != 0) 
+                manaController.IncreaseMaxMana(appliedInt);
 
             return appliedInt;
         }
