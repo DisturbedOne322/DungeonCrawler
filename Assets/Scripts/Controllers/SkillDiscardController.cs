@@ -58,12 +58,12 @@ namespace Controllers
             SubscribeToInputEvents();
             ShowPopup();
 
-            _playerInputProvider.EnableUiInput(true);
+            _playerInputProvider.AddUiInputOwner();
         }
 
         private void Dispose()
         {
-            _playerInputProvider.EnableUiInput(false);
+            _playerInputProvider.RemoveUiInputOwner();
             _disposables.Dispose();
         }
 

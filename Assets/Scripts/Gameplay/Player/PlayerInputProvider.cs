@@ -1,5 +1,6 @@
 using System;
 using UniRx;
+using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -7,9 +8,9 @@ namespace Gameplay.Player
     {
         private readonly PlayerInputActions _inputActions = new();
         public readonly Subject<Unit> OnGoForward = new();
-
         public readonly Subject<Unit> OnGoLeft = new();
         public readonly Subject<Unit> OnGoRight = new();
+        
         public readonly Subject<Unit> OnUiBack = new();
         public readonly Subject<Unit> OnUiDown = new();
         public readonly Subject<Unit> OnUiLeft = new();
@@ -18,10 +19,11 @@ namespace Gameplay.Player
 
         public readonly Subject<Unit> OnUiUp = new();
 
+        private int _uiOwnersCount = 0;
+
         public PlayerInputProvider()
         {
             SubscribeMovementActions();
-
             SubscribeUiActions();
         }
 
@@ -55,12 +57,24 @@ namespace Gameplay.Player
                 _inputActions.Decision.Disable();
         }
 
-        public void EnableUiInput(bool enable)
+        public void AddUiInputOwner()
         {
-            if (enable)
+            _uiOwnersCount++;  
+            if (_uiOwnersCount == 1)
                 _inputActions.UI.Enable();
-            else
+        }
+        
+        public void RemoveUiInputOwner()
+        {
+            _uiOwnersCount--;
+            if(_uiOwnersCount == 0)
                 _inputActions.UI.Disable();
+
+            if (_uiOwnersCount < 0)
+            {
+                Debug.LogError("TRIED TO DISABLE UI INPUT WITH NO OWNERS!");
+                _uiOwnersCount = 0;
+            }
         }
     }
 }

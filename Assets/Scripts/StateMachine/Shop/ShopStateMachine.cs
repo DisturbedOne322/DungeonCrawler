@@ -9,20 +9,16 @@ namespace StateMachine.Shop
 {
     public class ShopStateMachine : StateMachine<BaseShopState, ShopStateMachine>
     {
-        private readonly PlayerInputProvider _playerInputProvider;
-        
         public Subject<Unit> OnShopExit = new();
 
-        public ShopStateMachine(IEnumerable<BaseShopState> states, 
-            PlayerInputProvider playerInputProvider) : base(states)
+        public ShopStateMachine(IEnumerable<BaseShopState> states) : base(states)
         {
-            _playerInputProvider = playerInputProvider;
+            
         }
 
         public void OpenShopMenu()
         {
             LoadMenus();
-            _playerInputProvider.EnableUiInput(true);
             GoToState<MainShopState>().Forget();
         }
 

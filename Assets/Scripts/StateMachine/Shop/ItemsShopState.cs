@@ -1,12 +1,11 @@
 using Cysharp.Threading.Tasks;
-using Gameplay;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
 using Gameplay.Shop;
-using Gameplay.Units;
 using UI.BattleMenu;
 using UniRx;
+using UnityEngine;
 
 namespace StateMachine.Shop
 {
@@ -15,6 +14,8 @@ namespace StateMachine.Shop
         protected readonly ShopItemsProvider ShopItemsProvider;
         protected readonly BalanceService BalanceService;
         private readonly RewardDistributor _rewardDistributor;
+
+        private bool _isInputLocked = false;
         
         protected ItemsShopState(
             PlayerInputProvider playerInputProvider, 
@@ -33,17 +34,41 @@ namespace StateMachine.Shop
         {
             Disposables = new ();
 
-            Disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));
-            Disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
-            Disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
-            Disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ => StateMachine.GoToPrevState().Forget()));
+            Disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ =>
+            {
+                if(!_isInputLocked)
+                    MenuItemsUpdater.ExecuteSelection();
+            }));
+            
+            Disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ =>
+            {
+                if(!_isInputLocked)
+                    MenuItemsUpdater.UpdateSelection(-1);
+            }));
+            
+            Disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ =>
+            {
+                if(!_isInputLocked)
+                    MenuItemsUpdater.UpdateSelection(+1);
+            }));
+            
+            Disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ =>
+            {
+                Debug.Log("BACK!!!!");
+                if(!_isInputLocked)
+                    StateMachine.GoToPrevState().Forget();
+            }));
         }
         
         protected async UniTask PurchaseItem(ShopItemModel model)
         {
+            _isInputLocked = true;
             await _rewardDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
+
             BalanceService.AddBalance(-model.ItemData.Price);
             model.DecreaseAmount(1);
+
+            _isInputLocked = false;
         }
         
         protected virtual bool IsSelectable(ShopItemModel model)
