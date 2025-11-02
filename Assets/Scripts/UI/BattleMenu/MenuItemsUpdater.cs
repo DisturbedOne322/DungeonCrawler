@@ -70,7 +70,6 @@ namespace UI.BattleMenu
                 return;
 
             MenuItems[SelectedIndex].OnSelected?.Invoke();
-            UpdateItemsSelectable();
         }
         
         private void UpdateItemsSelectable()

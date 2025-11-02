@@ -1,6 +1,6 @@
 namespace Gameplay.Facades
 {
-    public interface IGameUnit : ICombatant, IInventoryHolder
+    public interface IGameUnit : ICombatant
     {
     }
 }

@@ -3,20 +3,25 @@ using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
 using Gameplay.Shop;
+using Gameplay.Units;
+using Helpers;
 using UI.BattleMenu;
 
 namespace StateMachine.Shop
 {
     public class StatusEffectsShopState : ItemsShopState
     {
+        private readonly PlayerUnit _player;
         public StatusEffectsShopState(
             PlayerInputProvider playerInputProvider, 
             MenuItemsUpdater menuItemsUpdater, 
             ShopItemsProvider shopItemsProvider, 
             BalanceService balanceService, 
-            RewardDistributor rewardDistributor) : 
+            RewardDistributor rewardDistributor,
+            PlayerUnit player) : 
             base(playerInputProvider, menuItemsUpdater, shopItemsProvider, balanceService, rewardDistributor)
         {
+            _player = player;
         }
 
         public override void InitMenuItems()
@@ -32,6 +37,14 @@ namespace StateMachine.Shop
                         () => PurchaseItem(model).Forget()
                     ));
             }
+        }
+
+        protected override bool IsSelectable(ShopItemModel model)
+        {
+            bool canPurchase = base.IsSelectable(model);
+            bool isAlreadyPurchased = UnitInventoryHelper.HasSkill(_player, model.ItemData.Item);
+            
+            return canPurchase && !isAlreadyPurchased;
         }
     }
 }

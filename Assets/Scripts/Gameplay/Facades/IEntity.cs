@@ -15,6 +15,7 @@ namespace Gameplay.Facades
         UnitBonusStatsData UnitBonusStatsData { get; }
         UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; }
         UnitEquipmentData UnitEquipmentData { get; }
+        UnitInventoryData UnitInventoryData { get; }
         UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; }
         UnitHealthController UnitHealthController { get; }
         UnitManaController UnitManaController { get; }

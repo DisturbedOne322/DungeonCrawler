@@ -96,5 +96,24 @@ namespace UI.BattleMenu
                 MenuItemType.Submenu,
                 description);
         }
+        
+        public static MenuItemData ForNavigationItem(
+            string label,
+            Action onSelected)
+        {
+            var data = new MenuItemData(label,
+                () => true,
+                onSelected,
+                MenuItemType.Submenu,
+                "")
+            {
+                IsSelectable =
+                {
+                    Value = true
+                }
+            };
+
+            return data;
+        }
     }
 }

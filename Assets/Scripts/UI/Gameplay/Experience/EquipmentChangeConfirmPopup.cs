@@ -1,8 +1,9 @@
 using System;
 using Gameplay;
 using UI.Core;
+using UI.Navigation;
 using UnityEngine;
-using UnityEngine.UI;
+using Zenject;
 
 namespace UI.Gameplay.Experience
 {
@@ -11,17 +12,27 @@ namespace UI.Gameplay.Experience
         [SerializeField] private ItemDataView _oldEquipData;
         [SerializeField] private ItemDataView _newEquipData;
 
-        [SerializeField] private Button _keepButton;
-        [SerializeField] private Button _changeButton;
+        [SerializeField, Separator, Space] private MenuItemDataMono _keepMenuItem;
+        [SerializeField] private MenuItemDataMono _changeMenuItem;
 
         public event Action OnKeepPressed;
         public event Action OnChangePressed;
+        
+        private HorizontalUINavigator _navigator;
 
-        protected override void InitializePopup()
+        [Inject]
+        private void Construct(HorizontalUINavigator uiNavigator)
         {
-            _keepButton.onClick.AddListener(() => OnKeepPressed?.Invoke());
+            _navigator = uiNavigator;
+            
+            uiNavigator.Initialize();
+            uiNavigator.AddMenuItem(_keepMenuItem, () => OnKeepPressed?.Invoke());
+            uiNavigator.AddMenuItem(_changeMenuItem, () => OnChangePressed?.Invoke());
+        }
 
-            _changeButton.onClick.AddListener(() => OnChangePressed?.Invoke());
+        private void OnDestroy()
+        {
+            _navigator.Dispose();
         }
 
         public void SetData(BaseGameItem oldItem, BaseGameItem newItem)

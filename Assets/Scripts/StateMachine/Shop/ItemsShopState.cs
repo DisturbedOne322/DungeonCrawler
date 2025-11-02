@@ -54,7 +54,6 @@ namespace StateMachine.Shop
             
             Disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ =>
             {
-                Debug.Log("BACK!!!!");
                 if(!_isInputLocked)
                     StateMachine.GoToPrevState().Forget();
             }));
