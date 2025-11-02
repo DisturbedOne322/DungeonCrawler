@@ -11,29 +11,29 @@ namespace UI.BattleMenu
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Image _background;
 
-        private CompositeDisposable _disposables;
+        protected CompositeDisposable Disposables;
 
         private void OnDestroy()
         {
-            _disposables.Dispose();
+            Disposables.Dispose();
         }
 
         public void Bind(MenuItemData data)
         {
             _text.text = data.Label;
-            _disposables = new();
+            Disposables = new();
             
             data.IsHighlighted
                 .Subscribe(isHighlighted =>
                 {
                     SetSelectionColor(isHighlighted, data.IsSelectable.Value);
-                }).AddTo(_disposables);
+                }).AddTo(Disposables);
             
             data.IsSelectable
                 .Subscribe(isSelectable =>
                 {
                     SetSelectionColor(data.IsHighlighted.Value, isSelectable);
-                }).AddTo(_disposables);
+                }).AddTo(Disposables);
         }
 
         private void SetSelectionColor(bool isHighlighted, bool canBeSelected)
@@ -50,6 +50,6 @@ namespace UI.BattleMenu
         private void SetLocked()
         {
             _background.color = Color.grey;
-        }
+        } 
     }
 }

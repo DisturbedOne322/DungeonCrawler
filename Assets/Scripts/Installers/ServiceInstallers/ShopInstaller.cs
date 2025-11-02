@@ -1,5 +1,6 @@
 using Gameplay.Shop;
 using StateMachine.Shop;
+using UI.BattleMenu;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +15,9 @@ namespace Installers.ServiceInstallers
             Container.Bind<ShopItemsConfig>().FromInstance(_shopItemsConfig).AsSingle();
 
             Container.Bind<ShopController>().AsSingle();
-            
+            Container.Bind<ShopItemsProvider>().AsSingle();
+            Container.Bind<MenuItemsUpdater>().AsTransient();
+
             Container.Bind<ShopStateMachine>().AsSingle();
             Container.Bind<BaseShopState>().To<MainShopState>().AsSingle();
             Container.Bind<BaseShopState>().To<ConsumablesShopState>().AsSingle();

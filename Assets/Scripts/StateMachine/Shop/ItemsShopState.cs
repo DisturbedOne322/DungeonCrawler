@@ -48,7 +48,7 @@ namespace StateMachine.Shop
         
         protected virtual bool IsSelectable(ShopItemModel model)
         {
-            return BalanceService.HasEnoughBalance(model.ItemData.Price);
+            return BalanceService.HasEnoughBalance(model.ItemData.Price) && model.AmountLeft.Value > 0;
         }
     }
 }

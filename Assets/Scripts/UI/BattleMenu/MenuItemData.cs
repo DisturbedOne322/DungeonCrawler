@@ -36,7 +36,23 @@ namespace UI.BattleMenu
             OriginalQuantity = amount;
         }
         
-        public static MenuItemData ForGameItem(
+        public static MenuItemData ForSkillItem(
+            BaseGameItem gameItem,
+            Func<bool> selectablePredicate,
+            Action onItemSelected,
+            int quantity = 1)
+        {
+            return new MenuItemData(
+                gameItem.Name,
+                selectablePredicate,
+                onItemSelected,
+                MenuItemType.Skill,
+                gameItem.Description,
+                quantity
+            );
+        }
+        
+        public static MenuItemData ForConsumableItem(
             BaseGameItem gameItem,
             Func<bool> selectablePredicate,
             Action onItemSelected,
@@ -47,6 +63,22 @@ namespace UI.BattleMenu
                 selectablePredicate,
                 onItemSelected,
                 MenuItemType.Consumable,
+                gameItem.Description,
+                quantity
+            );
+        }
+        
+        public static MenuItemData ForStatusEffectItem(
+            BaseGameItem gameItem,
+            Func<bool> selectablePredicate,
+            Action onItemSelected,
+            int quantity = 1)
+        {
+            return new MenuItemData(
+                gameItem.Name,
+                selectablePredicate,
+                onItemSelected,
+                MenuItemType.StatusEffect,
                 gameItem.Description,
                 quantity
             );

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2019136280053176455}
   - component: {fileID: 2306381227156808733}
   m_Layer: 0
-  m_Name: BattleMenuPagePrefab
+  m_Name: MenuPagePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

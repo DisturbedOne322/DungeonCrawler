@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - UIPrefab
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 849d1dde7fca4b444ad291d5dbf2531d
+    m_Address: ShopItemMenuItemViewPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIPrefab
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9e6ecd608b1a47438f9da3bf6dbc503
     m_Address: StatIncreaseDisplayPrefab
     m_ReadOnly: 0

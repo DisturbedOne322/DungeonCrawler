@@ -20,7 +20,7 @@ namespace Gameplay.Dungeon
             RoomsForSelection.Clear();
 
             RoomsForSelection.Add(SelectRandomRoom());
-            RoomsForSelection.Add(SelectRandomRoom());
+            RoomsForSelection.Add(RoomType.Shop);
             RoomsForSelection.Add(SelectRandomRoom());
         }
 

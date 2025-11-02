@@ -23,14 +23,14 @@ namespace StateMachine.BattleMenu
         public override void InitMenuItems()
         {
             MenuItems.Add(
-                MenuItemData.ForGameItem(
+                MenuItemData.ForSkillItem(
                     Player.UnitSkillsData.BasicAttackSkill,
                     () => true,
                     () => StateMachine.SelectAction(Player.UnitSkillsData.BasicAttackSkill))
             );
 
             MenuItems.Add(
-                MenuItemData.ForGameItem(
+                MenuItemData.ForSkillItem(
                     Player.UnitSkillsData.GuardSkill,
                     () => true,
                     () => StateMachine.SelectAction(Player.UnitSkillsData.GuardSkill))

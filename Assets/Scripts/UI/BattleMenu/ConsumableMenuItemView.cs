@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI.BattleMenu
 {
-    public class ItemMenuItemView : BaseMenuItemView
+    public class ConsumableMenuItemView : BaseMenuItemView
     {
         [SerializeField] private TextMeshProUGUI _descText;
         [SerializeField] private TextMeshProUGUI _quantityText;

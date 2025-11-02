@@ -9,7 +9,7 @@ namespace Gameplay.Shop
 
         public IShopItemData ItemData { get; }
 
-        public IObservable<int> AmountLeft => _amountLeft;
+        public IntReactiveProperty AmountLeft => _amountLeft;
 
         public ShopItemModel(IShopItemData itemData)
         {

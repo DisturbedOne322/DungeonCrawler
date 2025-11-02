@@ -5,7 +5,8 @@ namespace UI.BattleMenu
         Submenu,
         Skill,
         Consumable,
+        StatusEffect,
         Stat,
-        GameItem
+        ShopItem
     }
 }

@@ -1,49 +1,50 @@
 using System.Collections.Generic;
-using StateMachine.BattleMenu;
+using StateMachine.Shop;
+using UI.BattleMenu;
+using UI.Core;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace UI.BattleMenu
+namespace UI.Gameplay
 {
-    public class MenuControllerView : MonoBehaviour
+    public class ShopPopup : BasePopup
     {
         [SerializeField] private RectTransform _pagesParent;
 
-        private readonly Dictionary<BattleMenuState, MenuPageView> _pagePool = new();
+        private readonly Dictionary<BaseShopState, MenuPageView> _pagePool = new();
 
         private MenuPageView _currentPage;
 
         private CompositeDisposable _disposables;
         private MenuItemViewFactory _menuFactory;
 
-        private BattleMenuStateMachine _stateMachine;
-
-        private void Awake()
-        {
-            Subscribe();
-        }
-
+        private ShopStateMachine _stateMachine;
+        
         private void OnDestroy()
         {
             _disposables.Dispose();
         }
 
         [Inject]
-        private void Construct(BattleMenuStateMachine stateMachine, MenuItemViewFactory menuFactory)
+        private void Construct(MenuItemViewFactory menuFactory)
+        {
+            _menuFactory = menuFactory;
+        }
+
+        public void Initialize(ShopStateMachine stateMachine)
         {
             _stateMachine = stateMachine;
-            _menuFactory = menuFactory;
+            Subscribe();
         }
 
         private void Subscribe()
         {
             _disposables = new CompositeDisposable();
             _disposables.Add(_stateMachine.OnStateChanged.Subscribe(OpenMenu));
-            _disposables.Add(_stateMachine.ActionSelected.Subscribe(_ => DestroyAllMenus()));
         }
 
-        private void OpenMenu(BattleMenuState state)
+        private void OpenMenu(BaseShopState state)
         {
             CloseCurrentMenu();
 
@@ -57,10 +58,10 @@ namespace UI.BattleMenu
             CreateMenu(state);
         }
 
-        private void CreateMenu(BattleMenuState state)
+        private void CreateMenu(BaseShopState state)
         {
             var updater = state.MenuItemsUpdater;
-
+            
             _currentPage = _menuFactory.CreatePage();
             _currentPage.transform.SetParent(_pagesParent, false);
             _currentPage.SetItems(_menuFactory.CreateViewsForData(updater.MenuItems), updater);
@@ -72,15 +73,6 @@ namespace UI.BattleMenu
         {
             if (_currentPage)
                 _currentPage.gameObject.SetActive(false);
-        }
-
-        private void DestroyAllMenus()
-        {
-            foreach (var view in _pagePool.Values)
-                Destroy(view.gameObject);
-
-            _currentPage = null;
-            _pagePool.Clear();
         }
     }
 }

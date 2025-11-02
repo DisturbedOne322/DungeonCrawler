@@ -14,7 +14,7 @@ namespace Gameplay.Shop
             base(shopItemModel.ItemData.Item.Name, 
                 selectableFunc,
                 onSelected, 
-                MenuItemType.GameItem, 
+                MenuItemType.ShopItem, 
                 shopItemModel.ItemData.Item.Description, 
                 shopItemModel.ItemData.Amount)
         {

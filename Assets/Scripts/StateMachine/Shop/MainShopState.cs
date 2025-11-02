@@ -8,7 +8,7 @@ namespace StateMachine.Shop
 {
     public class MainShopState : BaseShopState
     {
-        private ShopItemsProvider _shopItemsProvider;
+        private readonly ShopItemsProvider _shopItemsProvider;
         
         public MainShopState(
             PlayerInputProvider playerInputProvider, 
@@ -19,11 +19,6 @@ namespace StateMachine.Shop
             _shopItemsProvider = shopItemsProvider;
         }
         
-        public override UniTask ExitState()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override void InitMenuItems()
         {
             MenuItems.Clear();

@@ -26,7 +26,7 @@ namespace StateMachine.BattleMenu
 
             foreach (var skill in skillsData.Skills)
                 MenuItems.Add(
-                    MenuItemData.ForGameItem(
+                    MenuItemData.ForSkillItem(
                         skill,
                         () => skill.CanUse(CombatService),
                         () => StateMachine.SelectAction(skill))

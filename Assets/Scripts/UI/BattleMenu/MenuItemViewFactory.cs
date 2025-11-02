@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AssetManagement.AssetProviders;
 using Constants;
 using Gameplay.Services;
+using Gameplay.Shop;
 using UnityEngine;
 
 namespace UI.BattleMenu
@@ -36,7 +37,10 @@ namespace UI.BattleMenu
                         views.Add(CreateSkillMenuItem(data));
                         break;
                     case MenuItemType.Consumable:
-                        views.Add(CreateItemMenuItem(data));
+                        views.Add(CreateConsumableMenuItem(data));
+                        break;
+                    case MenuItemType.ShopItem:
+                        views.Add(CreateShopItemMenuItem(data as ShopMenuItemData));
                         break;
                 }
 
@@ -60,12 +64,21 @@ namespace UI.BattleMenu
             return view;
         }
 
-        private ItemMenuItemView CreateItemMenuItem(MenuItemData data)
+        private ConsumableMenuItemView CreateConsumableMenuItem(MenuItemData data)
         {
-            var view = _factory.Create<ItemMenuItemView>(GetPrefab(ConstPrefabs.ItemMenuItemViewPrefab));
+            var view = _factory.Create<ConsumableMenuItemView>(GetPrefab(ConstPrefabs.ItemMenuItemViewPrefab));
             view.Bind(data);
             view.SetDescription(data.Description);
             view.SetQuantity(data.OriginalQuantity);
+
+            return view;
+        }
+        
+        private ShopItemMenuItemView CreateShopItemMenuItem(ShopMenuItemData data)
+        {
+            var view = _factory.Create<ShopItemMenuItemView>(GetPrefab(ConstPrefabs.ShopItemMenuItemViewPrefab));
+            view.Bind(data);
+            view.SetData(data);
 
             return view;
         }

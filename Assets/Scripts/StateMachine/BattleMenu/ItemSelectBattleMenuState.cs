@@ -38,7 +38,7 @@ namespace StateMachine.BattleMenu
                 var quantity = itemQuantityKv.Value;
 
                 MenuItems.Add(
-                    MenuItemData.ForGameItem(
+                    MenuItemData.ForConsumableItem(
                         item,
                         () => item.CanUse(CombatService),
                         () =>
