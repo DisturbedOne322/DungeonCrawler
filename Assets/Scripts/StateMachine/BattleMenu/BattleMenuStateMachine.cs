@@ -8,8 +8,7 @@ using UniRx;
 
 namespace StateMachine.BattleMenu
 {
-    public class BattleMenuStateMachine
-        : StateMachine<BattleMenuState, BattleMenuStateMachine>
+    public class BattleMenuStateMachine : StateMachine<BattleMenuState, BattleMenuStateMachine>
     {
         private readonly PlayerInputProvider _playerInputProvider;
 

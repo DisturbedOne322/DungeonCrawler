@@ -35,7 +35,7 @@ namespace UI.BattleMenu
                     case MenuItemType.Skill:
                         views.Add(CreateSkillMenuItem(data));
                         break;
-                    case MenuItemType.Item:
+                    case MenuItemType.Consumable:
                         views.Add(CreateItemMenuItem(data));
                         break;
                 }
@@ -65,7 +65,7 @@ namespace UI.BattleMenu
             var view = _factory.Create<ItemMenuItemView>(GetPrefab(ConstPrefabs.ItemMenuItemViewPrefab));
             view.Bind(data);
             view.SetDescription(data.Description);
-            view.SetQuantity(data.Quantity);
+            view.SetQuantity(data.OriginalQuantity);
 
             return view;
         }

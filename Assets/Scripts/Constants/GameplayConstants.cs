@@ -11,5 +11,7 @@ namespace Constants
         public static readonly Vector2 RoomSize = new(10f, 10f);
 
         public const float RegenerationRateOutOfCombat = 0.2f;
+
+        public const int MaxBalance = 999_999_999;
     }
 }

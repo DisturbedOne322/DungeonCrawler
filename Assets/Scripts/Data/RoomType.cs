@@ -5,6 +5,7 @@ namespace Data
         Corridor,
         Decision,
         TreasureChest,
-        Combat
+        Combat,
+        Shop
     }
 }

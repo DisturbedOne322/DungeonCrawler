@@ -20,19 +20,17 @@ namespace StateMachine.BattleMenu
         {
         }
 
-        public override void LoadMenuItems()
+        public override void InitMenuItems()
         {
-            MenuItems.Clear();
-
             MenuItems.Add(
-                MenuItemData.ForSkill(
+                MenuItemData.ForGameItem(
                     Player.UnitSkillsData.BasicAttackSkill,
                     () => true,
                     () => StateMachine.SelectAction(Player.UnitSkillsData.BasicAttackSkill))
             );
 
             MenuItems.Add(
-                MenuItemData.ForSkill(
+                MenuItemData.ForGameItem(
                     Player.UnitSkillsData.GuardSkill,
                     () => true,
                     () => StateMachine.SelectAction(Player.UnitSkillsData.GuardSkill))
@@ -51,8 +49,6 @@ namespace StateMachine.BattleMenu
                     () => Player.UnitInventoryData.Consumables.Count > 0,
                     () => StateMachine.GoToState<ItemSelectBattleMenuState>().Forget())
             );
-
-            MenuItemsUpdater.SetMenuItems(MenuItems);
         }
 
         protected override void SubscribeToInputEvents()

@@ -1,75 +1,65 @@
 using System;
-using Gameplay.Consumables;
-using Gameplay.Skills.Core;
+using Gameplay;
 using UniRx;
 
 namespace UI.BattleMenu
 {
     public class MenuItemData
     {
+        public string Label { get; }
+        public string Description { get; }
+
+        public Action OnSelected { get; }
+        public MenuItemType Type { get; }
+        
+        public int OriginalQuantity { get; }
+        
+        public Func<bool> SelectableFunc { get; }
+
+        public readonly BoolReactiveProperty IsSelectable = new();
+        public readonly BoolReactiveProperty IsHighlighted = new();
+        
         public MenuItemData(
             string label,
-            Func<bool> isSelectable,
+            Func<bool> selectableFunc,
             Action onSelected,
             MenuItemType type,
             string description = null,
-            int quantity = 1)
+            int amount = 1)
         {
             Label = label;
-            IsSelectable = isSelectable;
             OnSelected = onSelected;
             Type = type;
             Description = description;
-            Quantity = quantity;
+            
+            SelectableFunc = selectableFunc;
+            OriginalQuantity = amount;
         }
-
-        public string Label { get; }
-        public string Description { get; }
-        public Func<bool> IsSelectable { get; }
-        public Action OnSelected { get; }
-        public int Quantity { get; }
-        public MenuItemType Type { get; }
-
-        public ReactiveProperty<bool> IsHighlighted { get; } = new();
-
-        public static MenuItemData ForSkill(
-            BaseSkill skill,
-            Func<bool> isSelectable,
-            Action onSkillSelected)
-        {
-            return new MenuItemData(
-                skill.Name,
-                isSelectable,
-                onSkillSelected,
-                MenuItemType.Skill,
-                skill.Description
-            );
-        }
-
-        public static MenuItemData ForItem(
-            BaseConsumable consumable,
-            Func<bool> isSelectable,
+        
+        public static MenuItemData ForGameItem(
+            BaseGameItem gameItem,
+            Func<bool> selectablePredicate,
             Action onItemSelected,
-            int quantity)
+            int quantity = 1)
         {
             return new MenuItemData(
-                consumable.Name,
-                isSelectable,
+                gameItem.Name,
+                selectablePredicate,
                 onItemSelected,
-                MenuItemType.Item,
-                consumable.Description,
+                MenuItemType.Consumable,
+                gameItem.Description,
                 quantity
             );
         }
 
         public static MenuItemData ForSubmenu(
             string label,
-            Func<bool> isSelectable,
+            Func<bool> selectablePredicate,
             Action onSelected,
-            string description = null)
+            string description = "")
         {
             return new MenuItemData(label,
-                isSelectable,
+                selectablePredicate,
                 onSelected,
                 MenuItemType.Submenu,
                 description);

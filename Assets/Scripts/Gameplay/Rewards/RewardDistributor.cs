@@ -7,8 +7,6 @@ using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Player;
 using Gameplay.Skills.Core;
-using Gameplay.StatusEffects.Buffs.DefensiveCore;
-using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using UnityEngine;
@@ -36,7 +34,15 @@ namespace Gameplay.Rewards
             if (dropEntry == null)
                 return;
 
-            switch (dropEntry.Item)
+            await GiveRewardToPlayer(dropEntry.Item, dropEntry.Amount);
+        }
+        
+        public async UniTask GiveRewardToPlayer(BaseGameItem item, int amount)
+        {
+            if (!item)
+                return;
+
+            switch (item)
             {
                 case BaseWeapon weapon:
                     await ProcessWeaponReward(weapon);
@@ -51,7 +57,7 @@ namespace Gameplay.Rewards
                     break;
 
                 case BaseConsumable consumable:
-                    _player.UnitInventoryData.AddItems(consumable, dropEntry.Amount);
+                    _player.UnitInventoryData.AddItems(consumable, amount);
                     break;
 
                 case BaseStatusEffectData statusEffect:
@@ -59,12 +65,12 @@ namespace Gameplay.Rewards
                     break;
                 
                 case CoinsItem coinsItem:
-                    int amount = Random.Range(coinsItem.MinAmount, coinsItem.MaxAmount);
-                    _player.UnitInventoryData.Coins.Value += amount;
+                    int rand = Random.Range(coinsItem.MinAmount, coinsItem.MaxAmount);
+                    _player.UnitInventoryData.Coins.Value += rand;
                     break;
                 
                 default:
-                    Debug.LogWarning($"Unhandled reward type: {dropEntry.Item.name}");
+                    Debug.LogWarning($"Unhandled reward type: {item.name}");
                     break;
             }
         }

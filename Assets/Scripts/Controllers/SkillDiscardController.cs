@@ -82,13 +82,13 @@ namespace Controllers
 
             foreach (var skill in skillsData.Skills)
                 _playerSkills.Add(
-                    MenuItemData.ForSkill(
+                    MenuItemData.ForGameItem(
                         skill,
                         () => true,
                         () => _skillToDiscard = skill)
                 );
 
-            var newSkillData = MenuItemData.ForSkill(
+            var newSkillData = MenuItemData.ForGameItem(
                 newSkill,
                 () => true,
                 () => _skillToDiscard = newSkill);

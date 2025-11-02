@@ -20,21 +20,17 @@ namespace StateMachine.BattleMenu
         {
         }
 
-        public override void LoadMenuItems()
+        public override void InitMenuItems()
         {
-            MenuItems.Clear();
-
             var skillsData = Player.UnitSkillsData;
 
             foreach (var skill in skillsData.Skills)
                 MenuItems.Add(
-                    MenuItemData.ForSkill(
+                    MenuItemData.ForGameItem(
                         skill,
                         () => skill.CanUse(CombatService),
                         () => StateMachine.SelectAction(skill))
                 );
-
-            MenuItemsUpdater.SetMenuItems(MenuItems);
         }
 
         protected override void SubscribeToInputEvents()

@@ -1,3 +1,4 @@
+using Constants;
 using Gameplay.Units;
 
 namespace Gameplay.Services
@@ -13,21 +14,26 @@ namespace Gameplay.Services
 
         public bool TryPurchase(int price)
         {
-            if (GetBalance() < price)
+            if (!HasEnoughBalance(price))
                 return false;
 
             _playerUnit.UnitInventoryData.Coins.Value -= price;
             return true;
         }
+        
+        public bool HasEnoughBalance(int price) => GetBalance() >= price;
 
         public void AddBalance(int amount)
         {
-            _playerUnit.UnitInventoryData.Coins.Value += amount;
+            int balance = GetBalance();
+            balance += amount;
+
+            if (balance > GameplayConstants.MaxBalance)
+                balance = GameplayConstants.MaxBalance;
+            
+            _playerUnit.UnitInventoryData.Coins.Value = balance;
         }
 
-        public int GetBalance()
-        {
-            return _playerUnit.UnitInventoryData.Coins.Value;
-        }
+        public int GetBalance() => _playerUnit.UnitInventoryData.Coins.Value;
     }
 }

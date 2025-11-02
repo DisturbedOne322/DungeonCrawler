@@ -42,10 +42,12 @@ namespace UI.BattleMenu
             if (count == 0)
                 return;
 
+            UpdateItemsSelectable();
+
             SelectedIndex = FindNextSelectableIndex(increment);
             if (SelectedIndex == -1)
                 return;
-
+            
             ApplyHighlight();
         }
 
@@ -54,6 +56,8 @@ namespace UI.BattleMenu
             if (MenuItems == null)
                 return;
 
+            UpdateItemsSelectable();
+            
             if (!rememberSelection || !CheckSelectionValid())
                 SelectedIndex = FindFirstSelectableIndex();
 
@@ -66,16 +70,26 @@ namespace UI.BattleMenu
                 return;
 
             MenuItems[SelectedIndex].OnSelected?.Invoke();
+            UpdateItemsSelectable();
         }
-
+        
+        private void UpdateItemsSelectable()
+        {
+            for (int i = MenuItems.Count - 1; i >= 0; i--)
+            {
+                var item = MenuItems[i];
+                item.IsSelectable.Value = item.SelectableFunc.Invoke();
+            }
+        }
         protected void ApplyHighlight()
         {
             for (var i = 0; i < MenuItems.Count; i++)
             {
                 var item = MenuItems[i];
-                item.IsHighlighted.Value = i == SelectedIndex && item.IsSelectable();
+                bool shouldHighlight = i == SelectedIndex && item.IsSelectable.Value;
+                item.IsHighlighted.Value = shouldHighlight;
             }
-
+            
             OnViewChanged?.OnNext(default);
         }
 
@@ -84,7 +98,7 @@ namespace UI.BattleMenu
             var count = MenuItems.Count;
 
             for (var i = 0; i < count; i++)
-                if (MenuItems[i].IsSelectable())
+                if (MenuItems[i].IsSelectable.Value)
                     return i;
 
             return -1;
@@ -95,7 +109,7 @@ namespace UI.BattleMenu
             var count = MenuItems.Count;
 
             for (var i = count - 1; i >= 0; i--)
-                if (MenuItems[i].IsSelectable())
+                if (MenuItems[i].IsSelectable.Value)
                     return i;
 
             return -1;
@@ -112,7 +126,7 @@ namespace UI.BattleMenu
             for (var i = 0; i < count; i++)
             {
                 nextIndex = (nextIndex + increment + count) % count;
-                if (MenuItems[nextIndex].IsSelectable())
+                if (MenuItems[nextIndex].IsSelectable.Value)
                     return nextIndex;
             }
 
@@ -130,7 +144,7 @@ namespace UI.BattleMenu
             if (SelectedIndex < 0 || SelectedIndex >= MenuItems.Count)
                 return false;
 
-            return MenuItems[SelectedIndex].IsSelectable();
+            return MenuItems[SelectedIndex].IsSelectable.Value;
         }
     }
 }

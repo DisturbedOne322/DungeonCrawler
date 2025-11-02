@@ -4,7 +4,6 @@ using Constants;
 using Cysharp.Threading.Tasks;
 using Gameplay.Player;
 using UI.BattleMenu;
-using UI.Stats;
 using UniRx;
 
 namespace Gameplay.Experience
@@ -18,7 +17,7 @@ namespace Gameplay.Experience
 
         private List<int> _originalStats;
 
-        private StatDistributionMenuUpdater _statDistributionMenuUpdater;
+        private MenuItemsUpdater _menuItemsUpdater;
 
         private ReactiveProperty<int> _statPoints;
 
@@ -58,18 +57,18 @@ namespace Gameplay.Experience
 
         private void InitializeMenu(List<MenuItemData> menuItems)
         {
-            _statDistributionMenuUpdater = new StatDistributionMenuUpdater();
-            _statDistributionMenuUpdater.SetMenuItems(menuItems);
-            _statDistributionMenuUpdater.ResetSelection();
+            _menuItemsUpdater = new ();
+            _menuItemsUpdater.SetMenuItems(menuItems);
+            _menuItemsUpdater.ResetSelection();
         }
 
         private void SubscribeToInputEvents()
         {
             _disposables = new CompositeDisposable();
             _disposables.Add(
-                _playerInputProvider.OnUiDown.Subscribe(_ => _statDistributionMenuUpdater.UpdateSelection(+1)));
+                _playerInputProvider.OnUiDown.Subscribe(_ => _menuItemsUpdater.UpdateSelection(+1)));
             _disposables.Add(
-                _playerInputProvider.OnUiUp.Subscribe(_ => _statDistributionMenuUpdater.UpdateSelection(-1)));
+                _playerInputProvider.OnUiUp.Subscribe(_ => _menuItemsUpdater.UpdateSelection(-1)));
             _disposables.Add(_playerInputProvider.OnUiLeft.Subscribe(_ => TryIncreaseStat(-1)));
             _disposables.Add(_playerInputProvider.OnUiRight.Subscribe(_ => TryIncreaseStat(+1)));
         }
@@ -81,7 +80,7 @@ namespace Gameplay.Experience
 
         private void TryIncreaseStat(int increment)
         {
-            var selectedIndex = _statDistributionMenuUpdater.GetSelectedIndex();
+            var selectedIndex = _menuItemsUpdater.GetSelectedIndex();
 
             if (increment > 0 && _currentStats[selectedIndex].Value >= StatConstants.MaxStatPoints)
                 return;

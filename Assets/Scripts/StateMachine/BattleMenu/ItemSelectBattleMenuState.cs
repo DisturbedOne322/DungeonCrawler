@@ -22,10 +22,8 @@ namespace StateMachine.BattleMenu
         {
         }
 
-        public override void LoadMenuItems()
+        public override void InitMenuItems()
         {
-            MenuItems.Clear();
-
             var inventory = Player.UnitInventoryData;
 
             Dictionary<BaseConsumable, int> itemsDict = new();
@@ -40,7 +38,7 @@ namespace StateMachine.BattleMenu
                 var quantity = itemQuantityKv.Value;
 
                 MenuItems.Add(
-                    MenuItemData.ForItem(
+                    MenuItemData.ForGameItem(
                         item,
                         () => item.CanUse(CombatService),
                         () =>
@@ -51,8 +49,6 @@ namespace StateMachine.BattleMenu
                         quantity
                     ));
             }
-
-            MenuItemsUpdater.SetMenuItems(MenuItems);
         }
 
         protected override void SubscribeToInputEvents()

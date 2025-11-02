@@ -7,38 +7,32 @@ using StateMachine.Core;
 using UI.BattleMenu;
 using UniRx;
 
-namespace StateMachine.BattleMenu
+namespace StateMachine.Shop
 {
-    public abstract class BattleMenuState : BaseState<BattleMenuState, BattleMenuStateMachine>
+    public abstract class BaseShopState : BaseState<BaseShopState, ShopStateMachine>
     {
-        protected readonly CombatService CombatService;
-
         public readonly MenuItemsUpdater MenuItemsUpdater;
-        protected readonly PlayerUnit Player;
         protected readonly PlayerInputProvider PlayerInputProvider;
 
         protected CompositeDisposable Disposables;
 
         protected List<MenuItemData> MenuItems = new();
 
-        public BattleMenuState(PlayerUnit player,
+        public BaseShopState(
             PlayerInputProvider playerInputProvider,
-            MenuItemsUpdater menuItemsUpdater,
-            CombatService combatService)
+            MenuItemsUpdater menuItemsUpdater)
         {
-            Player = player;
             PlayerInputProvider = playerInputProvider;
             MenuItemsUpdater = menuItemsUpdater;
-            CombatService = combatService;
         }
-
+        
         public override UniTask EnterState()
         {
             SubscribeToInputEvents();
             MenuItemsUpdater.ResetSelection();
             return UniTask.CompletedTask;
         }
-
+        
         public override UniTask ExitState()
         {
             UnsubscribeFromInputEvents();
@@ -51,7 +45,7 @@ namespace StateMachine.BattleMenu
             InitMenuItems();
             MenuItemsUpdater.SetMenuItems(MenuItems);
         }
-
+        
         public abstract void InitMenuItems();
 
         protected abstract void SubscribeToInputEvents();
