@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Data;
 using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.RoomTypes;
 using UniRx;
 
 namespace Gameplay.Dungeon

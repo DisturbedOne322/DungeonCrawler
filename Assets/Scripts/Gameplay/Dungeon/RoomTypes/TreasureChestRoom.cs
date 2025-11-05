@@ -3,7 +3,7 @@ using Data;
 using Gameplay.Dungeon.Animations;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Rooms
+namespace Gameplay.Dungeon.RoomTypes
 {
     [RequireComponent(typeof(ChestAnimator))]
     public class TreasureChestRoom : StopRoom

@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 #endif
 
-namespace UnityUtils {
+namespace Extensions {
     public static class MathfExtension {
         #region Min
 

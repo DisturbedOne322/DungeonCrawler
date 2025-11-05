@@ -5,7 +5,7 @@ using Gameplay.Player;
 using UI;
 using UI.Gameplay.Experience;
 
-namespace Controllers
+namespace PopupControllers
 {
     public class EquipmentChangeController
     {
@@ -20,7 +20,6 @@ namespace Controllers
 
         public async UniTask<EquipmentSelectChoice> MakeEquipmentChoice(BaseGameItem oldItem, BaseGameItem newItem)
         {
-
             UniTaskCompletionSource<EquipmentSelectChoice> tcs = new();
 
             var popup = _uiFactory.CreatePopup<EquipmentChangeConfirmPopup>();

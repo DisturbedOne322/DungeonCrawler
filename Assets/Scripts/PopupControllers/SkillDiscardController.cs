@@ -5,11 +5,10 @@ using Gameplay.Skills.Core;
 using Gameplay.Units;
 using UI;
 using UI.BattleMenu;
-using UI.Gameplay;
 using UI.Gameplay.Experience;
 using UniRx;
 
-namespace Controllers
+namespace PopupControllers
 {
     public class SkillDiscardController
     {

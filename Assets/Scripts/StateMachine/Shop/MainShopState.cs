@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Dungeon.Rooms.Shop;
 using Gameplay.Player;
-using Gameplay.Shop;
 using UI.BattleMenu;
 using UniRx;
 

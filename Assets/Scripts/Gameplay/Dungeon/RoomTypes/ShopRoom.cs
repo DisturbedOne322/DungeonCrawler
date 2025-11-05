@@ -1,9 +1,9 @@
 using Cysharp.Threading.Tasks;
 using Data;
-using StateMachine.Shop;
+using PopupControllers;
 using Zenject;
 
-namespace Gameplay.Dungeon.Rooms
+namespace Gameplay.Dungeon.RoomTypes
 {
     public class ShopRoom : StopRoom
     {

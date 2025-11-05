@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Gameplay.Dungeon.Rooms.BaseSellableItems;
 
-namespace Gameplay.Shop
+namespace Gameplay.Dungeon.Rooms.Shop
 {
     public class ShopItemsProvider
     {
@@ -9,25 +10,24 @@ namespace Gameplay.Shop
         public ShopItemsProvider(ShopItemsConfig shopItemsConfig) => _shopItemsConfig = shopItemsConfig;
 
         public bool AnyConsumablesSold() => _shopItemsConfig.ConsumableItems.Count > 0;
-        public IReadOnlyList<ShopItemModel> CreateConsumablesForSale() => 
+        public IReadOnlyList<SoldItemModel> CreateConsumablesForSale() => 
             CreateItemsList(_shopItemsConfig.ConsumableItems);
         
         public bool AnyEquipmentSold() => _shopItemsConfig.EquipmentItems.Count > 0;
-        public IReadOnlyList<ShopItemModel> CreateEquipmentForSale() => 
+        public IReadOnlyList<SoldItemModel> CreateEquipmentForSale() => 
             CreateItemsList(_shopItemsConfig.EquipmentItems);
         
         public bool AnySkillsSold() => _shopItemsConfig.SkillItems.Count > 0;
-        public IReadOnlyList<ShopItemModel> CreateSkillsForSale() => 
+        public IReadOnlyList<SoldItemModel> CreateSkillsForSale() => 
             CreateItemsList(_shopItemsConfig.SkillItems);
         
         public bool AnyStatusEffectsSold() => _shopItemsConfig.StatusEffectItems.Count > 0;
-        public IReadOnlyList<ShopItemModel> CreateStatusEffectsForSale() => 
+        public IReadOnlyList<SoldItemModel> CreateStatusEffectsForSale() => 
             CreateItemsList(_shopItemsConfig.StatusEffectItems);
 
-        private IReadOnlyList<ShopItemModel> CreateItemsList<T>(IReadOnlyList<ShopItemData<T>> dataList)
-            where T : BaseGameItem
+        private IReadOnlyList<SoldItemModel> CreateItemsList(IReadOnlyList<ISellableItemData> dataList)
         {
-            List<ShopItemModel> items = new();
+            List<SoldItemModel> items = new();
 
             foreach (var data in dataList)
             {
@@ -40,8 +40,7 @@ namespace Gameplay.Shop
             return items;
         }
 
-        private bool TryCreateShopItemModel<T>(ShopItemData<T> data, out ShopItemModel model)
-            where T : BaseGameItem
+        private bool TryCreateShopItemModel(ISellableItemData data, out SoldItemModel model)
         {
             if (!data.Item)
             {
@@ -49,7 +48,7 @@ namespace Gameplay.Shop
                 return false;
             }
 
-            model = new ShopItemModel(data);
+            model = new SoldItemModel(data);
             return true;
         }
     }

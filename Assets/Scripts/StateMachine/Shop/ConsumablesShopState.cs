@@ -1,8 +1,9 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Dungeon.Rooms.BaseSellableItems;
+using Gameplay.Dungeon.Rooms.Shop;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
-using Gameplay.Shop;
 using UI.BattleMenu;
 
 namespace StateMachine.Shop
@@ -26,7 +27,7 @@ namespace StateMachine.Shop
             foreach (var model in itemsSelection)
             {
                 MenuItems.Add(
-                    new ShopMenuItemData(
+                    new SoldItemMenuItemData(
                         model,
                         () => IsSelectable(model), 
                         () => PurchaseItem(model).Forget()

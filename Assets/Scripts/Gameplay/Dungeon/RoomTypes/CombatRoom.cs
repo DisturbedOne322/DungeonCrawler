@@ -6,7 +6,7 @@ using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Dungeon.Rooms
+namespace Gameplay.Dungeon.RoomTypes
 {
     public class CombatRoom : StopRoom
     {

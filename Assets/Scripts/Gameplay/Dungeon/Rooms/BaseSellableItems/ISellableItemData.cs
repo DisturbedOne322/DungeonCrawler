@@ -1,6 +1,6 @@
-namespace Gameplay.Shop
+namespace Gameplay.Dungeon.Rooms.BaseSellableItems
 {
-    public interface IShopItemData
+    public interface ISellableItemData
     {
         BaseGameItem Item { get; }
         int Price { get; }

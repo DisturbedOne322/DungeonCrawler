@@ -5,6 +5,7 @@ using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Data;
 using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.RoomTypes;
 using UnityEngine;
 using Zenject;
 

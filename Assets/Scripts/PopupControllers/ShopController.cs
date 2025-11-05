@@ -1,11 +1,12 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Gameplay.Player;
+using StateMachine.Shop;
 using UI;
 using UI.Gameplay;
 using UniRx;
 
-namespace StateMachine.Shop
+namespace PopupControllers
 {
     public class ShopController
     {

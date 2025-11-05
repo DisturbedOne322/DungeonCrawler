@@ -6,6 +6,7 @@ namespace Data
         Decision,
         TreasureChest,
         Combat,
-        Shop
+        Shop,
+        Shrine
     }
 }

@@ -1,5 +1,5 @@
 using System;
-using Gameplay.Shop;
+using Gameplay.Dungeon.Rooms.BaseSellableItems;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -14,13 +14,13 @@ namespace UI.BattleMenu
         [SerializeField] private TextMeshProUGUI _amountText;
         [SerializeField] private TextMeshProUGUI _priceText;
         
-        public void SetData(ShopMenuItemData data)
+        public void SetData(SoldItemMenuItemData data)
         {
-            _image.sprite = data.ShopItemModel.ItemData.Item.Icon;
+            _image.sprite = data.SoldItemModel.ItemData.Item.Icon;
             _descText.SetText(data.Description);
-            _priceText.SetText(data.ShopItemModel.ItemData.Price.ToString());
+            _priceText.SetText(data.SoldItemModel.ItemData.Price.ToString());
 
-            data.ShopItemModel.AmountLeft.Subscribe(UpdateCountText).AddTo(Disposables);
+            data.SoldItemModel.AmountLeft.Subscribe(UpdateCountText).AddTo(Disposables);
         }
 
         private void UpdateCountText(int amount)

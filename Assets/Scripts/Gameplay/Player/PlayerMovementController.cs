@@ -6,6 +6,7 @@ using Gameplay.Combat;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.RoomTypes;
 using Gameplay.Units;
 
 namespace Gameplay.Player

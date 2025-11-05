@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UnityUtils {
+namespace Extensions {
     public static class RigidbodyExtensions {
         /// <summary>
         /// Changes the direction of the Rigidbody's velocity while maintaining its speed.

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
 using Constants;
+using Gameplay.Dungeon.Rooms.BaseSellableItems;
 using Gameplay.Services;
-using Gameplay.Shop;
+using UI.Menus;
 using UnityEngine;
 
 namespace UI.BattleMenu
@@ -40,7 +41,7 @@ namespace UI.BattleMenu
                         views.Add(CreateConsumableMenuItem(data));
                         break;
                     case MenuItemType.ShopItem:
-                        views.Add(CreateShopItemMenuItem(data as ShopMenuItemData));
+                        views.Add(CreateShopItemMenuItem(data as SoldItemMenuItemData));
                         break;
                 }
 
@@ -74,7 +75,7 @@ namespace UI.BattleMenu
             return view;
         }
         
-        private ShopItemMenuItemView CreateShopItemMenuItem(ShopMenuItemData data)
+        private ShopItemMenuItemView CreateShopItemMenuItem(SoldItemMenuItemData data)
         {
             var view = _factory.Create<ShopItemMenuItemView>(GetPrefab(ConstPrefabs.ShopItemMenuItemViewPrefab));
             view.Bind(data);

@@ -1,8 +1,9 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Dungeon.Rooms.BaseSellableItems;
+using Gameplay.Dungeon.Rooms.Shop;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
-using Gameplay.Shop;
 using Gameplay.Units;
 using Helpers;
 using UI.BattleMenu;
@@ -31,7 +32,7 @@ namespace StateMachine.Shop
             foreach (var model in itemsSelection)
             {
                 MenuItems.Add(
-                    new ShopMenuItemData(
+                    new SoldItemMenuItemData(
                         model,
                         () => IsSelectable(model), 
                         () => PurchaseItem(model).Forget()
@@ -39,7 +40,7 @@ namespace StateMachine.Shop
             }
         }
 
-        protected override bool IsSelectable(ShopItemModel model)
+        protected override bool IsSelectable(SoldItemModel model)
         {
             bool canPurchase = base.IsSelectable(model);
             bool isAlreadyPurchased = UnitInventoryHelper.HasSkill(_player, model.ItemData.Item);

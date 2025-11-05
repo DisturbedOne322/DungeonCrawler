@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace Gameplay.Dungeon.Rooms
+namespace Gameplay.Dungeon.RoomTypes
 {
     public abstract class StopRoom : DungeonRoom
     {

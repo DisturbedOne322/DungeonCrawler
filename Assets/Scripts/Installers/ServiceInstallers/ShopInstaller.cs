@@ -1,4 +1,5 @@
-using Gameplay.Shop;
+using Gameplay.Dungeon.Rooms.Shop;
+using PopupControllers;
 using StateMachine.Shop;
 using UI.BattleMenu;
 using UnityEngine;

@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-#if ENABLED_UNITY_URP
+﻿#if ENABLED_UNITY_URP
 using UnityEngine.Rendering;
 #endif
 
-namespace UnityUtils {
+namespace Extensions {
     public static class ResourcesUtils {
 #if ENABLED_UNITY_URP
         /// <summary>

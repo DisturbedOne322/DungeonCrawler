@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Configs;
 using Gameplay.Dungeon.Data;
 using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.RoomTypes;
 
 namespace Gameplay.Rewards
 {

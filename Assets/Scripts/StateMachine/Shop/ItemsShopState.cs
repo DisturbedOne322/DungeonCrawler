@@ -1,11 +1,11 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Dungeon.Rooms.BaseSellableItems;
+using Gameplay.Dungeon.Rooms.Shop;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
-using Gameplay.Shop;
 using UI.BattleMenu;
 using UniRx;
-using UnityEngine;
 
 namespace StateMachine.Shop
 {
@@ -59,7 +59,7 @@ namespace StateMachine.Shop
             }));
         }
         
-        protected async UniTask PurchaseItem(ShopItemModel model)
+        protected async UniTask PurchaseItem(SoldItemModel model)
         {
             _isInputLocked = true;
             await _rewardDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
@@ -70,7 +70,7 @@ namespace StateMachine.Shop
             _isInputLocked = false;
         }
         
-        protected virtual bool IsSelectable(ShopItemModel model)
+        protected virtual bool IsSelectable(SoldItemModel model)
         {
             return BalanceService.HasEnoughBalance(model.ItemData.Price) && model.AmountLeft.Value > 0;
         }

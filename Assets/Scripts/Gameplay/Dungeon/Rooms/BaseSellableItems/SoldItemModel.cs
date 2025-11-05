@@ -1,17 +1,16 @@
-using System;
 using UniRx;
 
-namespace Gameplay.Shop
+namespace Gameplay.Dungeon.Rooms.BaseSellableItems
 {
-    public class ShopItemModel
+    public class SoldItemModel
     {
         private readonly IntReactiveProperty _amountLeft;
 
-        public IShopItemData ItemData { get; }
+        public ISellableItemData ItemData { get; }
 
         public IntReactiveProperty AmountLeft => _amountLeft;
 
-        public ShopItemModel(IShopItemData itemData)
+        public SoldItemModel(ISellableItemData itemData)
         {
             ItemData = itemData;
             _amountLeft = new(itemData.Amount);

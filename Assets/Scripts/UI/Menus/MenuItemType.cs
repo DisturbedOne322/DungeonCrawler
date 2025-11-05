@@ -1,4 +1,4 @@
-namespace UI.BattleMenu
+namespace UI.Menus
 {
     public enum MenuItemType
     {

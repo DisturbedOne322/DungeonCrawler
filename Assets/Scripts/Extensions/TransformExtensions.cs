@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace UnityUtils {
+namespace Extensions {
     public static class TransformExtensions {
         /// <summary>
         /// Check if the transform is within a certain distance and optionally within a certain angle (FOV) from the target transform.

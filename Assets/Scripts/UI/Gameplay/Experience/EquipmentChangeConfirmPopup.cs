@@ -1,4 +1,5 @@
 using System;
+using Attributes;
 using Gameplay;
 using UI.Core;
 using UI.Navigation;

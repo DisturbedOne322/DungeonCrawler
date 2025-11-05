@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Threading.Tasks;
 
-namespace UnityUtils {
+namespace Extensions {
     public static class TaskExtensions {
         /// <summary>
         /// Wraps the provided object into a completed Task.

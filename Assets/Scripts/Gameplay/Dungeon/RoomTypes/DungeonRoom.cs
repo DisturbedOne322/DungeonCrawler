@@ -1,7 +1,7 @@
 using Data;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Rooms
+namespace Gameplay.Dungeon.RoomTypes
 {
     public abstract class DungeonRoom : MonoBehaviour
     {

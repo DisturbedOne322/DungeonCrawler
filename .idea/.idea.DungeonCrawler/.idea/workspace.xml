@@ -5,15 +5,120 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShrineRoom.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShrineRoom.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/SinglePurchaseRoom.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/SinglePurchaseRoom.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/BaseSellableItemsConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/BaseSellableItemsConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/ItemSellingController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/ItemSellingController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SellableItemsProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SellableItemsProvider.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SoldItemMenuItemData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shrine.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shrine/ShrineBuffsConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shrine/ShrineBuffsConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/SkillMasters.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShrineRoomInstaller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShrineRoomInstaller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/SinglePurchaseRoomInstaller.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/SinglePurchaseRoomInstaller.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/SingleTypePurchaseController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/SingleTypePurchaseController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/EquipmentChangeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/EquipmentChangeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/SkillDiscardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/SkillDiscardController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/SkillSelection/PlayerActionSelectionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/SkillSelection/PlayerActionSelectionProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerStatDistrubutionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerStatDistrubutionController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerInputProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerInputProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/ShopController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/ShopController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/UINavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/UINavigator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonRoomsDatabase.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonRoomsDatabase.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attributes/SeparatorAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attributes/SeparatorAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/EquipmentChangeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/EquipmentChangeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/EquipmentChangeController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/EquipmentChangeController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/ShopController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/ShopController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/ShopController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/ShopController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/SkillDiscardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/SkillDiscardController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/SkillDiscardController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/SkillDiscardController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/RoomType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/RoomType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataStructures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/Attributes/SeparatorDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/Attributes/SeparatorDrawer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/AsyncOperationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/AsyncOperationExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/CameraExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/CameraExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/ColorExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/ColorExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/DateTimeExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/DateTimeExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/EnumerableExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/EnumerableExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/EnumeratorExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/EnumeratorExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/GameObjectExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/GameObjectExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/LayerMaskExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/LayerMaskExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/ListExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/ListExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/MathfExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/MathfExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/NumberExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/NumberExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/PropertyPathExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/PropertyPathExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/QuaternionConversionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/QuaternionConversionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReflectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReflectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/RendererExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/RendererExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/ResourcesUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/ResourcesUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/RigidbodyExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/RigidbodyExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/StringExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/StringExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/TaskExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/TaskExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/TransformExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/TransformExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/UQueryBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/UQueryBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/Vector2Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/Vector2Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/Vector3Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/Vector3Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/VectorConversionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/VectorConversionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/VisualElementExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/VisualElementExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Data/RoomData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Data/RoomData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonBranchingSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonBranchingSelector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonLayoutProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonLayoutProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonPositioner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonPositioner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonRoomsPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonRoomsPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/CombatRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/CombatRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/CombatRoom.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/CombatRoom.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/CorridorRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/CorridorRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/CorridorRoom.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/CorridorRoom.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/DecisionRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/DecisionRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/DecisionRoom.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/DecisionRoom.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/DungeonRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/DungeonRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/DungeonRoom.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/DungeonRoom.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/ShopRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShopRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/ShopRoom.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShopRoom.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/StopRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/StopRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/StopRoom.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/StopRoom.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/TreasureChestRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/TreasureChestRoom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/TreasureChestRoom.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/TreasureChestRoom.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerStatDistributionTableBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerStatDistributionTableBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerMovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDistributor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RewardDistributor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RoomDropsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Rewards/RoomDropsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Services/DungeonFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Services/DungeonFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shop.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/IShopItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/ISellableItemData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/IShopItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/ISellableItemData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SellableItemData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SellableItemData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SoldItemModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemModel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SoldItemModel.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shop/ShopItemsConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemsConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shop/ShopItemsConfig.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shop/ShopItemsProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemsProvider.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shop/ShopItemsProvider.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopMenuItemData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopMenuItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SoldItemMenuItemData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/GameInstallers/UIInstallers/UIInstallers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/GameInstallers/UIInstallers/UIInstallers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShopInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShopInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/ConsumablesShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/ConsumablesShopState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/EquipmentShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/EquipmentShopState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/ItemsShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/ItemsShopState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/MainShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/MainShopState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/SkillsShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/SkillsShopState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/StatusEffectsShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/StatusEffectsShopState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/MenuItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/MenuItemData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/MenuItemViewFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/MenuItemViewFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/ShopItemMenuItemView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/ShopItemMenuItemView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Gameplay/Experience/EquipmentChangeConfirmPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Gameplay/Experience/EquipmentChangeConfirmPopup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menus/MenuItemType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Menus/MenuItemType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +137,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Constants/ConstPrefabs.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Constants/GameplayConstants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Constants/StatConstants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/ISellableItemData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BaseSellableItems/SellableItemData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/ExperienceData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/ExperienceRequirementsProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerExperienceService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopItemData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/OffensiveBuffs/ChargeStance.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Core/StatusEffectExpirationType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitHealthData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -167,7 +273,7 @@
       <workItem from="1762010282683" duration="18093000" />
       <workItem from="1762081846646" duration="5481000" />
       <workItem from="1762196970646" duration="5807000" />
-      <workItem from="1762366008000" duration="4124000" />
+      <workItem from="1762366008000" duration="9263000" />
     </task>
     <servers />
   </component>
