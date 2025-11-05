@@ -16,8 +16,8 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
         private readonly BalanceService _balanceService;
         private readonly MenuItemsUpdater _menuItemsUpdater;
         
-        private readonly UniTaskCompletionSource _cts = new();
-        private readonly CompositeDisposable _disposables = new();
+        private UniTaskCompletionSource _cts = new();
+        private CompositeDisposable _disposables = new();
         
         private bool _isInputLocked;
         
@@ -33,12 +33,16 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
             _balanceService = balanceService;
             _menuItemsUpdater = menuItemsUpdater;
         }
+
+        public void Initialize()
+        {
+            _cts = new();
+            InitItems();
+            SubscribeInput();
+        }
         
         public async UniTask ProcessSelling()
         {
-            InitItems();
-            SubscribeInput();
-
             await _cts.Task;
             _disposables.Dispose();
         }
@@ -64,6 +68,7 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
 
         private void SubscribeInput()
         {
+            _disposables = new();
             _disposables.Add(_playerInputProvider.OnUiSubmit.Subscribe(_ =>
             {
                 if(!_isInputLocked)

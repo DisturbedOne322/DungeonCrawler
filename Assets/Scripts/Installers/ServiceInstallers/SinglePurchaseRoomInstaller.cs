@@ -16,7 +16,7 @@ namespace Installers.ServiceInstallers
             Container.Bind<SingleTypePurchaseController>().AsSingle();
             Container.Bind<SellableItemsProvider>().AsSingle();
             Container.Bind<ItemSellingController>().AsSingle();
-            Container.Bind<MenuItemsUpdater>().AsTransient();
+            Container.Bind<MenuItemsUpdater>().AsSingle();
         }
     }
 }
