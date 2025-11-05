@@ -56,7 +56,6 @@ namespace Gameplay.Experience
         {
             _menuItemsUpdater = new ();
             _menuItemsUpdater.SetMenuItems(menuItems);
-            _menuItemsUpdater.ResetSelection();
         }
 
         private void SubscribeToInputEvents()

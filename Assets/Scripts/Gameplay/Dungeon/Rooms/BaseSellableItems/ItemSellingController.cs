@@ -3,6 +3,8 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
+using Gameplay.Units;
+using Helpers;
 using UI.BattleMenu;
 using UniRx;
 
@@ -15,6 +17,7 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
         private readonly RewardDistributor _rewardDistributor;
         private readonly BalanceService _balanceService;
         private readonly MenuItemsUpdater _menuItemsUpdater;
+        private readonly PlayerUnit _player;
         
         private UniTaskCompletionSource _cts = new();
         private CompositeDisposable _disposables = new();
@@ -25,13 +28,15 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
             SellableItemsProvider sellableItemsProvider,
             RewardDistributor rewardDistributor,
             BalanceService balanceService,
-            MenuItemsUpdater menuItemsUpdater)
+            MenuItemsUpdater menuItemsUpdater, 
+            PlayerUnit player)
         {
             _playerInputProvider = playerInputProvider;
             _sellableItemsProvider = sellableItemsProvider;
             _rewardDistributor = rewardDistributor;
             _balanceService = balanceService;
             _menuItemsUpdater = menuItemsUpdater;
+            _player = player;
         }
 
         public void Initialize()
@@ -107,7 +112,11 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
         
         private bool IsSelectable(SoldItemModel model)
         {
-            return _balanceService.HasEnoughBalance(model.ItemData.Price) && model.AmountLeft.Value > 0;
+            bool purchasable = _balanceService.HasEnoughBalance(model.ItemData.Price) && model.AmountLeft.Value > 0;
+            bool isAlreadyPurchased =
+                UnitInventoryHelper.HasItem(_player, model.ItemData.Item);
+            
+            return purchasable && !isAlreadyPurchased;
         }
     }
 }

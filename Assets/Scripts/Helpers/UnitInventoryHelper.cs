@@ -1,11 +1,33 @@
+using System;
 using Gameplay;
+using Gameplay.Equipment;
+using Gameplay.Equipment.Armor;
+using Gameplay.Equipment.Weapons;
 using Gameplay.Facades;
+using Gameplay.Skills.Core;
+using Gameplay.StatusEffects.Core;
 
 namespace Helpers
 {
     public static class UnitInventoryHelper
     {
-        public static bool HasSkill(IGameUnit unit, BaseGameItem searchedSkill)
+        public static bool HasItem(IGameUnit unit, BaseGameItem item)
+        {
+            switch (item)
+            {
+                case BaseSkill:
+                    return HasSkill(unit, item);
+                case BaseWeapon:
+                    return HasWeapon(unit, item);
+                case BaseArmor:
+                    return HasArmor(unit, item);
+                case BaseStatusEffectData:
+                    return HasStatusEffect(unit, item);
+            }
+
+            throw new Exception($"UNHANDLED ITEM TYPE {item.GetType()}");
+        }
+        private static bool HasSkill(IGameUnit unit, BaseGameItem searchedSkill)
         {
             var unitSkills = unit.UnitSkillsData.Skills;
             
@@ -25,7 +47,7 @@ namespace Helpers
             return false;
         }
         
-        public static bool HasStatusEffect(IGameUnit unit, BaseGameItem searchedStatusEffect)
+        private static bool HasStatusEffect(IGameUnit unit, BaseGameItem searchedStatusEffect)
         {
             var unitStatusEffects = unit.UnitHeldStatusEffectsData.All;
             
@@ -39,7 +61,7 @@ namespace Helpers
             return false;
         }
         
-        public static bool HasWeapon(IGameUnit unit, BaseGameItem searchedWeapon)
+        private static bool HasWeapon(IGameUnit unit, BaseGameItem searchedWeapon)
         {
             if(!unit.UnitEquipmentData.TryGetEquippedWeapon(out var weapon))
                 return false;
@@ -47,7 +69,7 @@ namespace Helpers
             return searchedWeapon == weapon;
         }
         
-        public static bool HasArmor(IGameUnit unit, BaseGameItem searchedArmor)
+        private static bool HasArmor(IGameUnit unit, BaseGameItem searchedArmor)
         {
             if(!unit.UnitEquipmentData.TryGetEquippedArmor(out var armor))
                 return false;

@@ -89,9 +89,8 @@ namespace PopupControllers
                 () => true,
                 () => _skillToDiscard = newSkill);
 
-            _skillDiscardMenuUpdater.SetMenuItems(_playerSkills);
             _skillDiscardMenuUpdater.SetNewSkill(newSkillData);
-            _skillDiscardMenuUpdater.ResetSelection();
+            _skillDiscardMenuUpdater.SetMenuItems(_playerSkills);
         }
 
         private void SubscribeToInputEvents()

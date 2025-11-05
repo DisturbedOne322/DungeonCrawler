@@ -22,7 +22,11 @@ namespace UI.BattleMenu
 
         public bool IsSelectionValid() => CheckSelectionValid();
 
-        public void SetMenuItems(List<MenuItemData> menuItems) => MenuItems = menuItems;
+        public void SetMenuItems(List<MenuItemData> menuItems, bool rememberSelection = true)
+        {
+            MenuItems = menuItems;
+            ResetSelection(rememberSelection);
+        }
 
         public void UpdateSelection(int increment)
         {
@@ -62,7 +66,6 @@ namespace UI.BattleMenu
             if (!CheckSelectionValid())
             {
                 SelectedIndex = FindClosestSelectableIndex();
-                Debug.Log(SelectedIndex);
                 ApplyHighlight();
             }
         }

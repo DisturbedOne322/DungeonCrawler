@@ -74,7 +74,7 @@ namespace Gameplay.Units
             UnitEquipmentData = unitEquipmentData;
         }
 
-        public void InitializeUnit(UnitData unitData)
+        public virtual void InitializeUnit(UnitData unitData)
         {
             EntityName = unitData.Name;
 
@@ -86,7 +86,7 @@ namespace Gameplay.Units
 
             UnitSkillsData.AssignSkills(unitData);
             UnitInventoryData.AddItems(unitData.Items);
-
+            
             foreach (var statusEffectData in unitData.StatusEffects) 
                 UnitHeldStatusEffectsData.Add(statusEffectData);
 

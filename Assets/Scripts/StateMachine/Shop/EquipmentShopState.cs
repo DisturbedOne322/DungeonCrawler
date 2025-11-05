@@ -44,8 +44,7 @@ namespace StateMachine.Shop
         {
             bool purchasable = base.IsSelectable(model);
             bool isAlreadyPurchased =
-                UnitInventoryHelper.HasArmor(_player, model.ItemData.Item) ||
-                UnitInventoryHelper.HasWeapon(_player, model.ItemData.Item);
+                UnitInventoryHelper.HasItem(_player, model.ItemData.Item);
             
             return purchasable && !isAlreadyPurchased;
         }

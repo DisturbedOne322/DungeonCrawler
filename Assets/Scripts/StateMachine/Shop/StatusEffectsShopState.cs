@@ -43,7 +43,7 @@ namespace StateMachine.Shop
         protected override bool IsSelectable(SoldItemModel model)
         {
             bool canPurchase = base.IsSelectable(model);
-            bool isAlreadyPurchased = UnitInventoryHelper.HasSkill(_player, model.ItemData.Item);
+            bool isAlreadyPurchased = UnitInventoryHelper.HasItem(_player, model.ItemData.Item);
             
             return canPurchase && !isAlreadyPurchased;
         }

@@ -41,7 +41,7 @@ namespace Gameplay.Rewards
             for (var i = allRewards.Count - 1; i >= 0; i--)
             {
                 var reward = allRewards[i];
-                if (UnitInventoryHelper.HasSkill(gameUnit, reward.Item))
+                if (UnitInventoryHelper.HasItem(gameUnit, reward.Item))
                     allRewards.RemoveAt(i);
             }
         }
@@ -52,7 +52,7 @@ namespace Gameplay.Rewards
             for (var i = allRewards.Count - 1; i >= 0; i--)
             {
                 var reward = allRewards[i];
-                if (UnitInventoryHelper.HasWeapon(unit, reward.Item))
+                if (UnitInventoryHelper.HasItem(unit, reward.Item))
                     allRewards.RemoveAt(i);
             }
         }
@@ -62,7 +62,7 @@ namespace Gameplay.Rewards
             for (var i = allRewards.Count - 1; i >= 0; i--)
             {
                 var reward = allRewards[i];
-                if (UnitInventoryHelper.HasArmor(unit, reward.Item))
+                if (UnitInventoryHelper.HasItem(unit, reward.Item))
                     allRewards.RemoveAt(i);
             }
         }
@@ -73,7 +73,7 @@ namespace Gameplay.Rewards
             {
                 var reward = allRewards[i];
                 
-                if (UnitInventoryHelper.HasStatusEffect(unit, reward.Item))
+                if (UnitInventoryHelper.HasItem(unit, reward.Item))
                     allRewards.RemoveAt(i);
             }
         }

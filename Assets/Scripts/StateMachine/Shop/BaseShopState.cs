@@ -40,8 +40,7 @@ namespace StateMachine.Shop
         {
             MenuItems.Clear();
             InitMenuItems();
-            MenuItemsUpdater.SetMenuItems(MenuItems);
-            MenuItemsUpdater.ResetSelection(false);
+            MenuItemsUpdater.SetMenuItems(MenuItems, false);
         }
         
         public abstract void InitMenuItems();
