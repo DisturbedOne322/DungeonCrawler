@@ -23,17 +23,15 @@ namespace Gameplay.Combat.SkillSelection
         {
             var tcs = new UniTaskCompletionSource<BaseCombatAction>();
 
-            _playerInputProvider.AddUiInputOwner();
             _battleMenuStateMachine.OpenBattleMenu();
 
             var disposable = _battleMenuStateMachine.ActionSelected.Subscribe(action => tcs.TrySetResult(action));
 
-            var selectedSkill = await tcs.Task;
-
+            var result = await _playerInputProvider.EnableUIInputUntil(tcs.Task);
+            
             disposable.Dispose();
-            _playerInputProvider.RemoveUiInputOwner();
 
-            return selectedSkill;
+            return result;
         }
     }
 }

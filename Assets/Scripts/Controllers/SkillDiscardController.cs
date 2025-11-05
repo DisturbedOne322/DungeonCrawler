@@ -41,7 +41,7 @@ namespace Controllers
         {
             Initialize(newSkill);
 
-            await UniTask.WaitUntil(() => _skillToDiscard != null);
+            await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _skillToDiscard != null));
 
             Dispose();
 
@@ -57,13 +57,10 @@ namespace Controllers
             CreateItemsSelection(newSkill);
             SubscribeToInputEvents();
             ShowPopup();
-
-            _playerInputProvider.AddUiInputOwner();
         }
 
         private void Dispose()
         {
-            _playerInputProvider.RemoveUiInputOwner();
             _disposables.Dispose();
         }
 

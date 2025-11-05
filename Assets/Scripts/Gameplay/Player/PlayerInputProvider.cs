@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 
@@ -57,14 +59,29 @@ namespace Gameplay.Player
                 _inputActions.Decision.Disable();
         }
 
-        public void AddUiInputOwner()
+        public async UniTask EnableUIInputUntil(UniTask task)
+        {
+            AddUiInputOwner();
+            await task;
+            RemoveUiInputOwner();
+        }
+        
+        public async UniTask<T> EnableUIInputUntil<T>(UniTask<T> task)
+        {
+            AddUiInputOwner();
+            var result = await task;
+            RemoveUiInputOwner();
+            return result;
+        }
+
+        private void AddUiInputOwner()
         {
             _uiOwnersCount++;  
             if (_uiOwnersCount == 1)
                 _inputActions.UI.Enable();
         }
         
-        public void RemoveUiInputOwner()
+        private void RemoveUiInputOwner()
         {
             _uiOwnersCount--;
             if(_uiOwnersCount == 0)

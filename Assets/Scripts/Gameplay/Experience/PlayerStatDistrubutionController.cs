@@ -35,11 +35,8 @@ namespace Gameplay.Experience
             InitializeMenu(playerStats.Keys.ToList());
             SubscribeToInputEvents();
 
-            _playerInputProvider.AddUiInputOwner();
-
-            await UniTask.WaitUntil(() => _statPoints.Value == 0);
-
-            _playerInputProvider.RemoveUiInputOwner();
+            await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _statPoints.Value == 0));
+            
             Dispose();
         }
 

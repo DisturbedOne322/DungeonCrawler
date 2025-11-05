@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReactiveExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReactiveExtensions.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/Shop/ShopItemsConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/Shop/ShopItemsConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Data/RoomData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Data/RoomData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonBranchingSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonBranchingSelector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/BaseShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/BaseShopState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/MainShopState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/MainShopState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/ShopStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine/Shop/ShopStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/MenuItemsUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/BattleMenu/MenuItemsUpdater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/EquipmentChangeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/EquipmentChangeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/SkillDiscardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/SkillDiscardController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/SkillSelection/PlayerActionSelectionProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Combat/SkillSelection/PlayerActionSelectionProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerStatDistrubutionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Experience/PlayerStatDistrubutionController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerInputProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerInputProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/ShopController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Shop/ShopController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/ShopController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/UINavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/UINavigator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +167,7 @@
       <workItem from="1762010282683" duration="18093000" />
       <workItem from="1762081846646" duration="5481000" />
       <workItem from="1762196970646" duration="5807000" />
-      <workItem from="1762366008000" duration="2656000" />
+      <workItem from="1762366008000" duration="4124000" />
     </task>
     <servers />
   </component>

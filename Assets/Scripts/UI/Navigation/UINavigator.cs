@@ -24,7 +24,6 @@ namespace UI.Navigation
 
         public void Initialize()
         {
-            PlayerInputProvider.AddUiInputOwner();
             PlayerInputProvider.OnUiSubmit.Subscribe(_ =>
             {
                 _menuItemsData[_selectedIndex].OnSelected.Invoke();
@@ -35,7 +34,6 @@ namespace UI.Navigation
 
         public void Dispose()
         {
-            PlayerInputProvider.RemoveUiInputOwner();
             Disposables.Dispose();
         }
 

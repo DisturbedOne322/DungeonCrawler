@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
 using Data.UI;
 using Gameplay;
+using Gameplay.Player;
 using UI;
-using UI.Gameplay;
 using UI.Gameplay.Experience;
 
 namespace Controllers
@@ -10,14 +10,17 @@ namespace Controllers
     public class EquipmentChangeController
     {
         private readonly UIFactory _uiFactory;
+        private readonly PlayerInputProvider _playerInputProvider;
 
-        public EquipmentChangeController(UIFactory uiFactory)
+        public EquipmentChangeController(UIFactory uiFactory, PlayerInputProvider playerInputProvider)
         {
             _uiFactory = uiFactory;
+            _playerInputProvider = playerInputProvider;
         }
 
         public async UniTask<EquipmentSelectChoice> MakeEquipmentChoice(BaseGameItem oldItem, BaseGameItem newItem)
         {
+
             UniTaskCompletionSource<EquipmentSelectChoice> tcs = new();
 
             var popup = _uiFactory.CreatePopup<EquipmentChangeConfirmPopup>();
@@ -28,7 +31,8 @@ namespace Controllers
 
             popup.ShowPopup().Forget();
 
-            var result = await tcs.Task;
+            var result = await _playerInputProvider.EnableUIInputUntil(tcs.Task);
+            
             await popup.HidePopup();
 
             return result;

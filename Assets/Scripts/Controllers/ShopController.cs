@@ -29,7 +29,6 @@ namespace StateMachine.Shop
             var popup = _uiFactory.CreatePopup<ShopPopup>();
             popup.Initialize(_stateMachine);
             
-            _playerInputProvider.AddUiInputOwner();
             _stateMachine.OpenShopMenu();
             
             _disposable = _stateMachine.OnShopExit.Subscribe(_ =>
@@ -38,8 +37,7 @@ namespace StateMachine.Shop
                 _disposable.Dispose();
             });
             
-            await cts.Task;
-            _playerInputProvider.RemoveUiInputOwner();
+            await _playerInputProvider.EnableUIInputUntil(cts.Task);
 
             await popup.HidePopup();
         }
