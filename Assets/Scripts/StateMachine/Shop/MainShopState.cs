@@ -57,8 +57,6 @@ namespace StateMachine.Shop
                     () => true,
                     () => StateMachine.InvokeShopExit())
             );
-
-            MenuItemsUpdater.SetMenuItems(MenuItems);
         }
 
         protected override void SubscribeToInputEvents()

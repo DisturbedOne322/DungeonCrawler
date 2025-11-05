@@ -1,7 +1,6 @@
 using Gameplay.Dungeon.Rooms;
 using Gameplay.Rewards;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Dungeon.Data
 {

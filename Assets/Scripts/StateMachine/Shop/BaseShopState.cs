@@ -27,7 +27,6 @@ namespace StateMachine.Shop
         public override UniTask EnterState()
         {
             SubscribeToInputEvents();
-            MenuItemsUpdater.ResetSelection();
             return UniTask.CompletedTask;
         }
         
@@ -42,6 +41,7 @@ namespace StateMachine.Shop
             MenuItems.Clear();
             InitMenuItems();
             MenuItemsUpdater.SetMenuItems(MenuItems);
+            MenuItemsUpdater.ResetSelection(false);
         }
         
         public abstract void InitMenuItems();

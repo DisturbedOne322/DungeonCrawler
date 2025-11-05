@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Gameplay.Player;
 using StateMachine.Core;
 using UniRx;
-using UnityEngine;
 
 namespace StateMachine.Shop
 {

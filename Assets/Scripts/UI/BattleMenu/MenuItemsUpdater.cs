@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UniRx;
+using UnityEngine;
 
 namespace UI.BattleMenu
 {
@@ -15,25 +16,13 @@ namespace UI.BattleMenu
             return SelectedIndex;
         }
 
-        public int GetFirstSelectableIndex()
-        {
-            return FindFirstSelectableIndex();
-        }
+        public int GetFirstSelectableIndex() => FindFirstSelectableIndex();
 
-        public int GetLastSelectableIndex()
-        {
-            return FindLastSelectableIndex();
-        }
+        public int GetLastSelectableIndex() => FindLastSelectableIndex();
 
-        public bool IsSelectionValid()
-        {
-            return CheckSelectionValid();
-        }
+        public bool IsSelectionValid() => CheckSelectionValid();
 
-        public void SetMenuItems(List<MenuItemData> menuItems)
-        {
-            MenuItems = menuItems;
-        }
+        public void SetMenuItems(List<MenuItemData> menuItems) => MenuItems = menuItems;
 
         public void UpdateSelection(int increment)
         {
@@ -41,9 +30,7 @@ namespace UI.BattleMenu
 
             if (count == 0)
                 return;
-
-            UpdateItemsSelectable();
-
+            
             SelectedIndex = FindNextSelectableIndex(increment);
             if (SelectedIndex == -1)
                 return;
@@ -60,7 +47,7 @@ namespace UI.BattleMenu
             
             if (!rememberSelection || !CheckSelectionValid())
                 SelectedIndex = FindFirstSelectableIndex();
-
+            
             ApplyHighlight();
         }
 
@@ -70,6 +57,14 @@ namespace UI.BattleMenu
                 return;
 
             MenuItems[SelectedIndex].OnSelected?.Invoke();
+            
+            UpdateItemsSelectable();
+            if (!CheckSelectionValid())
+            {
+                SelectedIndex = FindClosestSelectableIndex();
+                Debug.Log(SelectedIndex);
+                ApplyHighlight();
+            }
         }
         
         private void UpdateItemsSelectable()
@@ -85,11 +80,24 @@ namespace UI.BattleMenu
             for (var i = 0; i < MenuItems.Count; i++)
             {
                 var item = MenuItems[i];
-                bool shouldHighlight = i == SelectedIndex && item.IsSelectable.Value;
+                bool shouldHighlight = i == SelectedIndex;
                 item.IsHighlighted.Value = shouldHighlight;
             }
             
             OnViewChanged?.OnNext(default);
+        }
+
+        private int FindClosestSelectableIndex()
+        {
+            int current = SelectedIndex;
+
+            int nextClosest = FindNextSelectableIndex(+1);
+            int prevClosest = FindNextSelectableIndex(-1);
+
+            if (Mathf.Abs(current - nextClosest) > Mathf.Abs(current - prevClosest))
+                return prevClosest;
+            
+            return nextClosest;
         }
 
         private int FindFirstSelectableIndex()

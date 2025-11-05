@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: ShopItemsConfig
   m_EditorClassIdentifier: 
   _consumableItems:
-  - _item: {fileID: 11400000, guid: 38607ef3b4f273c4cbff5d30b1a16cd3, type: 2}
-    _price: 25
-    _amount: 10
   - _item: {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
-    _price: 10
-    _amount: 10
+    _price: 1
+    _amount: 2
+  - _item: {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
+    _price: 1
+    _amount: 3
+  - _item: {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
+    _price: 1
+    _amount: 5
+  - _item: {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
+    _price: 1
+    _amount: 3
   _equipmentItems:
   - _item: {fileID: 11400000, guid: 5e11bfc90a9f49148b5a11e64c92969d, type: 2}
     _price: 50
