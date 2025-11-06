@@ -13,14 +13,14 @@ using UnityEngine;
 
 namespace Gameplay.Rewards
 {
-    public class RewardDistributor
+    public class ItemsDistributor
     {
         private readonly EquipmentChangeController _equipmentChangeController;
         private readonly PlayerUnit _player;
         private readonly SkillDiscardController _skillDiscardController;
         private readonly PlayerSkillSlotsManager _skillSlotsManager;
 
-        public RewardDistributor(PlayerUnit player, EquipmentChangeController equipmentChangeController,
+        public ItemsDistributor(PlayerUnit player, EquipmentChangeController equipmentChangeController,
             SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager)
         {
             _player = player;

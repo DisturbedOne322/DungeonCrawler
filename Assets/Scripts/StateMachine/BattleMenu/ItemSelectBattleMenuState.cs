@@ -5,7 +5,6 @@ using Gameplay.Consumables;
 using Gameplay.Player;
 using Gameplay.Units;
 using UI.BattleMenu;
-using UniRx;
 
 namespace StateMachine.BattleMenu
 {
@@ -50,15 +49,10 @@ namespace StateMachine.BattleMenu
                     ));
             }
         }
-
-        protected override void SubscribeToInputEvents()
-        {
-            Disposables = new CompositeDisposable();
-
-            Disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));
-            Disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
-            Disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
-            Disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ => StateMachine.GoToPrevState().Forget()));
-        }
+        
+        public override void OnUISubmit() => MenuItemsUpdater.ExecuteSelection();
+        public override void OnUIUp() => MenuItemsUpdater.UpdateSelection(-1);
+        public override void OnUIDown() => MenuItemsUpdater.UpdateSelection(+1);
+        public override void OnUIBack() => StateMachine.GoToPrevState().Forget();
     }
 }

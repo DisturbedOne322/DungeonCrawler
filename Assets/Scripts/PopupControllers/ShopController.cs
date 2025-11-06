@@ -38,7 +38,7 @@ namespace PopupControllers
                 _disposable.Dispose();
             });
             
-            await _playerInputProvider.EnableUIInputUntil(cts.Task);
+            await cts.Task;
 
             await popup.HidePopup();
         }

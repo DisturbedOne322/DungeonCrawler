@@ -18,9 +18,9 @@ namespace StateMachine.Shop
             MenuItemsUpdater menuItemsUpdater, 
             ShopItemsProvider shopItemsProvider, 
             BalanceService balanceService, 
-            RewardDistributor rewardDistributor,
+            ItemsDistributor itemsDistributor,
             PlayerUnit player) : 
-            base(playerInputProvider, menuItemsUpdater, shopItemsProvider, balanceService, rewardDistributor)
+            base(playerInputProvider, menuItemsUpdater, shopItemsProvider, balanceService, itemsDistributor)
         {
             _player = player;
         }

@@ -58,14 +58,9 @@ namespace StateMachine.Shop
                     () => StateMachine.InvokeShopExit())
             );
         }
-
-        protected override void SubscribeToInputEvents()
-        {
-            Disposables = new ();
-
-            Disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ => MenuItemsUpdater.ExecuteSelection()));
-            Disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ => MenuItemsUpdater.UpdateSelection(-1)));
-            Disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ => MenuItemsUpdater.UpdateSelection(+1)));
-        }
+        
+        public override void OnUISubmit() => MenuItemsUpdater.ExecuteSelection();
+        public override void OnUIUp() => MenuItemsUpdater.UpdateSelection(-1);
+        public override void OnUIDown() => MenuItemsUpdater.UpdateSelection(+1);
     }
 }

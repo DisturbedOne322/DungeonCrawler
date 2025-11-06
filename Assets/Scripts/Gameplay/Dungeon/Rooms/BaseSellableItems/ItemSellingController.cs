@@ -6,34 +6,30 @@ using Gameplay.Services;
 using Gameplay.Units;
 using Helpers;
 using UI.BattleMenu;
-using UniRx;
 
 namespace Gameplay.Dungeon.Rooms.BaseSellableItems
 {
-    public class ItemSellingController
+    public class ItemSellingController : BaseUIInputHandler
     {
         private readonly PlayerInputProvider _playerInputProvider;
         private readonly SellableItemsProvider _sellableItemsProvider;
-        private readonly RewardDistributor _rewardDistributor;
+        private readonly ItemsDistributor _itemsDistributor;
         private readonly BalanceService _balanceService;
         private readonly MenuItemsUpdater _menuItemsUpdater;
         private readonly PlayerUnit _player;
         
         private UniTaskCompletionSource _cts = new();
-        private CompositeDisposable _disposables = new();
-        
-        private bool _isInputLocked;
         
         public ItemSellingController(PlayerInputProvider playerInputProvider, 
             SellableItemsProvider sellableItemsProvider,
-            RewardDistributor rewardDistributor,
+            ItemsDistributor itemsDistributor,
             BalanceService balanceService,
             MenuItemsUpdater menuItemsUpdater, 
             PlayerUnit player)
         {
             _playerInputProvider = playerInputProvider;
             _sellableItemsProvider = sellableItemsProvider;
-            _rewardDistributor = rewardDistributor;
+            _itemsDistributor = itemsDistributor;
             _balanceService = balanceService;
             _menuItemsUpdater = menuItemsUpdater;
             _player = player;
@@ -42,16 +38,12 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
         public void Initialize()
         {
             _cts = new();
+            _playerInputProvider.AddUiInputOwner(this);
             InitItems();
-            SubscribeInput();
         }
         
-        public async UniTask ProcessSelling()
-        {
-            await _cts.Task;
-            _disposables.Dispose();
-        }
-        
+        public async UniTask ProcessSelling() => await _cts.Task;
+
         private void InitItems()
         {
             var itemsSelection = _sellableItemsProvider.GetSellableItems();
@@ -71,43 +63,21 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
             _menuItemsUpdater.SetMenuItems(items);
         }
 
-        private void SubscribeInput()
+        public override void OnUISubmit() => _menuItemsUpdater.ExecuteSelection();
+        public override void OnUIUp() => _menuItemsUpdater.UpdateSelection(-1);
+        public override void OnUIDown() => _menuItemsUpdater.UpdateSelection(+1);
+        public override void OnUIBack()
         {
-            _disposables = new();
-            _disposables.Add(_playerInputProvider.OnUiSubmit.Subscribe(_ =>
-            {
-                if(!_isInputLocked)
-                    _menuItemsUpdater.ExecuteSelection();
-            }));
-            
-            _disposables.Add(_playerInputProvider.OnUiUp.Subscribe(_ =>
-            {
-                if(!_isInputLocked)
-                    _menuItemsUpdater.UpdateSelection(-1);
-            }));
-            
-            _disposables.Add(_playerInputProvider.OnUiDown.Subscribe(_ =>
-            {
-                if(!_isInputLocked)
-                    _menuItemsUpdater.UpdateSelection(+1);
-            }));
-            
-            _disposables.Add(_playerInputProvider.OnUiBack.Subscribe(_ =>
-            {
-                if (!_isInputLocked)
-                    _cts.TrySetResult();
-            }));
+            _playerInputProvider.RemoveUiInputOwner(this);
+            _cts.TrySetResult();
         }
-        
+
         private async UniTask PurchaseItem(SoldItemModel model)
         {
-            _isInputLocked = true;
-            await _rewardDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
+            await _itemsDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
 
             _balanceService.AddBalance(-model.ItemData.Price);
             model.DecreaseAmount(1);
-
-            _isInputLocked = false;
         }
         
         private bool IsSelectable(SoldItemModel model)

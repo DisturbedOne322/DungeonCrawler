@@ -9,17 +9,15 @@ using UniRx;
 
 namespace StateMachine.BattleMenu
 {
-    public abstract class BattleMenuState : BaseState<BattleMenuState, BattleMenuStateMachine>
+    public abstract class BattleMenuState : BaseState<BattleMenuState, BattleMenuStateMachine>, IUiInputHandler
     {
         protected readonly CombatService CombatService;
+        protected readonly PlayerUnit Player;
+        protected readonly List<MenuItemData> MenuItems = new();
 
         public readonly MenuItemsUpdater MenuItemsUpdater;
-        protected readonly PlayerUnit Player;
-        protected readonly PlayerInputProvider PlayerInputProvider;
 
-        protected CompositeDisposable Disposables;
-
-        protected List<MenuItemData> MenuItems = new();
+        private readonly PlayerInputProvider _playerInputProvider;
 
         public BattleMenuState(PlayerUnit player,
             PlayerInputProvider playerInputProvider,
@@ -27,7 +25,7 @@ namespace StateMachine.BattleMenu
             CombatService combatService)
         {
             Player = player;
-            PlayerInputProvider = playerInputProvider;
+            _playerInputProvider = playerInputProvider;
             MenuItemsUpdater = menuItemsUpdater;
             CombatService = combatService;
         }
@@ -53,9 +51,20 @@ namespace StateMachine.BattleMenu
         }
 
         public abstract void InitMenuItems();
+        
+        private void SubscribeToInputEvents() => _playerInputProvider.AddUiInputOwner(this);
+        private void UnsubscribeFromInputEvents() => _playerInputProvider.RemoveUiInputOwner(this);
+        
+        public virtual void OnUISubmit() { }
 
-        protected abstract void SubscribeToInputEvents();
+        public virtual void OnUIBack() { }
 
-        private void UnsubscribeFromInputEvents() => Disposables?.Dispose();
+        public virtual void OnUIUp() { }
+
+        public virtual void OnUIDown() { }
+
+        public virtual void OnUILeft() { }
+
+        public virtual void OnUIRight() { }
     }
 }

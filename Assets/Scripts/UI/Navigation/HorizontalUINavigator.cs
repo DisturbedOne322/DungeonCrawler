@@ -1,5 +1,4 @@
 using Gameplay.Player;
-using UniRx;
 
 namespace UI.Navigation
 {
@@ -9,11 +8,8 @@ namespace UI.Navigation
         {
             
         }
-
-        protected override void SubscribeToPlayerInput()
-        {
-            PlayerInputProvider.OnUiLeft.Subscribe(_ => UpdateSelection(-1)).AddTo(Disposables);
-            PlayerInputProvider.OnUiRight.Subscribe(_ => UpdateSelection(+1)).AddTo(Disposables);
-        }
+        
+        public override void OnUILeft() => UpdateSelection(-1);
+        public override void OnUIRight() => UpdateSelection(+1);
     }
 }

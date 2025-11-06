@@ -6,11 +6,10 @@ using Gameplay.Units;
 using UI;
 using UI.BattleMenu;
 using UI.Gameplay.Experience;
-using UniRx;
 
 namespace PopupControllers
 {
-    public class SkillDiscardController
+    public class SkillDiscardController : BaseUIInputHandler
     {
         private readonly PlayerInputProvider _playerInputProvider;
 
@@ -18,9 +17,7 @@ namespace PopupControllers
         private readonly PlayerUnit _playerUnit;
         private readonly SkillDiscardMenuUpdater _skillDiscardMenuUpdater;
         private readonly UIFactory _uiFactory;
-
-        private CompositeDisposable _disposables;
-
+        
         private SkillDiscardPopup _skillDiscardPopup;
 
         private BaseSkill _skillToDiscard;
@@ -40,10 +37,8 @@ namespace PopupControllers
         {
             Initialize(newSkill);
 
-            await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _skillToDiscard != null));
-
-            Dispose();
-
+            await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _skillToDiscard != null), this);
+            
             await _skillDiscardPopup.HidePopup();
 
             return _skillToDiscard;
@@ -54,13 +49,7 @@ namespace PopupControllers
             _skillToDiscard = null;
 
             CreateItemsSelection(newSkill);
-            SubscribeToInputEvents();
             ShowPopup();
-        }
-
-        private void Dispose()
-        {
-            _disposables.Dispose();
         }
 
         private void ShowPopup()
@@ -92,20 +81,11 @@ namespace PopupControllers
             _skillDiscardMenuUpdater.SetNewSkill(newSkillData);
             _skillDiscardMenuUpdater.SetMenuItems(_playerSkills);
         }
-
-        private void SubscribeToInputEvents()
-        {
-            _disposables = new CompositeDisposable();
-
-            _disposables.Add(
-                _playerInputProvider.OnUiSubmit.Subscribe(_ => _skillDiscardMenuUpdater.ExecuteSelection()));
-            _disposables.Add(_playerInputProvider.OnUiUp.Subscribe(_ => _skillDiscardMenuUpdater.ProcessInput(-1, 0)));
-            _disposables.Add(
-                _playerInputProvider.OnUiDown.Subscribe(_ => _skillDiscardMenuUpdater.ProcessInput(+1, 0)));
-            _disposables.Add(
-                _playerInputProvider.OnUiLeft.Subscribe(_ => _skillDiscardMenuUpdater.ProcessInput(0, -1)));
-            _disposables.Add(
-                _playerInputProvider.OnUiRight.Subscribe(_ => _skillDiscardMenuUpdater.ProcessInput(0, +1)));
-        }
+        
+        public override void OnUISubmit() => _skillDiscardMenuUpdater.ExecuteSelection();
+        public override void OnUIUp() => _skillDiscardMenuUpdater.ProcessInput(-1, 0);
+        public override void OnUIDown() => _skillDiscardMenuUpdater.ProcessInput(+1, 0);
+        public override void OnUILeft() => _skillDiscardMenuUpdater.ProcessInput(0, -1);
+        public override void OnUIRight() => _skillDiscardMenuUpdater.ProcessInput(0, +1);
     }
 }

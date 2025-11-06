@@ -19,21 +19,11 @@ namespace UI.Gameplay.Experience
         public event Action OnKeepPressed;
         public event Action OnChangePressed;
         
-        private HorizontalUINavigator _navigator;
-
         [Inject]
         private void Construct(HorizontalUINavigator uiNavigator)
         {
-            _navigator = uiNavigator;
-            
-            uiNavigator.Initialize();
             uiNavigator.AddMenuItem(_keepMenuItem, () => OnKeepPressed?.Invoke());
             uiNavigator.AddMenuItem(_changeMenuItem, () => OnChangePressed?.Invoke());
-        }
-
-        private void OnDestroy()
-        {
-            _navigator.Dispose();
         }
 
         public void SetData(BaseGameItem oldItem, BaseGameItem newItem)

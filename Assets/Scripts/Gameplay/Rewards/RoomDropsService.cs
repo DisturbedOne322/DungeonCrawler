@@ -2,7 +2,6 @@ using AssetManagement.AssetProviders.Core;
 using Cysharp.Threading.Tasks;
 using Gameplay.Configs;
 using Gameplay.Dungeon.Data;
-using Gameplay.Dungeon.Rooms;
 using Gameplay.Dungeon.RoomTypes;
 
 namespace Gameplay.Rewards
@@ -10,14 +9,14 @@ namespace Gameplay.Rewards
     public class RoomDropsService
     {
         private readonly BaseConfigProvider<GameplayConfig> _configProvider;
-        private readonly RewardDistributor _rewardDistributor;
+        private readonly ItemsDistributor _itemsDistributor;
         private readonly RewardSelectorService _rewardSelectorService;
 
-        public RoomDropsService(RewardSelectorService rewardSelectorService, RewardDistributor rewardDistributor,
+        public RoomDropsService(RewardSelectorService rewardSelectorService, ItemsDistributor itemsDistributor,
             BaseConfigProvider<GameplayConfig> configProvider)
         {
             _rewardSelectorService = rewardSelectorService;
-            _rewardDistributor = rewardDistributor;
+            _itemsDistributor = itemsDistributor;
             _configProvider = configProvider;
         }
 
@@ -31,7 +30,7 @@ namespace Gameplay.Rewards
 
             var reward = _rewardSelectorService.SelectReward(roomData.RewardDropTable);
 
-            await _rewardDistributor.GiveRewardToPlayer(reward);
+            await _itemsDistributor.GiveRewardToPlayer(reward);
         }
     }
 }

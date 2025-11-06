@@ -7,20 +7,18 @@ using UniRx;
 
 namespace StateMachine.Shop
 {
-    public abstract class BaseShopState : BaseState<BaseShopState, ShopStateMachine>
+    public abstract class BaseShopState : BaseState<BaseShopState, ShopStateMachine>, IUiInputHandler
     {
         public readonly MenuItemsUpdater MenuItemsUpdater;
-        protected readonly PlayerInputProvider PlayerInputProvider;
-
-        protected CompositeDisposable Disposables;
-
+        private readonly PlayerInputProvider _playerInputProvider;
+        
         protected List<MenuItemData> MenuItems = new();
 
         public BaseShopState(
             PlayerInputProvider playerInputProvider,
             MenuItemsUpdater menuItemsUpdater)
         {
-            PlayerInputProvider = playerInputProvider;
+            _playerInputProvider = playerInputProvider;
             MenuItemsUpdater = menuItemsUpdater;
         }
         
@@ -45,8 +43,15 @@ namespace StateMachine.Shop
         
         public abstract void InitMenuItems();
 
-        protected abstract void SubscribeToInputEvents();
+        private void SubscribeToInputEvents() => _playerInputProvider.AddUiInputOwner(this);
 
-        private void UnsubscribeFromInputEvents() => Disposables?.Dispose();
+        private void UnsubscribeFromInputEvents() => _playerInputProvider.RemoveUiInputOwner(this);
+        
+        public virtual void OnUISubmit() { }
+        public virtual void OnUIBack() { }
+        public virtual void OnUIUp() { }
+        public virtual void OnUIDown() { }
+        public virtual void OnUILeft() { }
+        public virtual void OnUIRight() { }
     }
 }

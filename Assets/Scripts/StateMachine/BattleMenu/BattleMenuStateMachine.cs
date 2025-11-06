@@ -9,7 +9,6 @@ namespace StateMachine.BattleMenu
 {
     public class BattleMenuStateMachine : StateMachine<BattleMenuState, BattleMenuStateMachine>
     {
-
         public readonly Subject<BaseCombatAction> ActionSelected = new();
 
         public BattleMenuStateMachine(IEnumerable<BattleMenuState> states,

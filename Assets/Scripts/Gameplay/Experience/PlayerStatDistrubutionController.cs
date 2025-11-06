@@ -8,7 +8,7 @@ using UniRx;
 
 namespace Gameplay.Experience
 {
-    public class PlayerStatDistrubutionController
+    public class PlayerStatDistrubutionController : BaseUIInputHandler
     {
         private readonly PlayerInputProvider _playerInputProvider;
         private List<ReactiveProperty<int>> _currentStats;
@@ -33,11 +33,10 @@ namespace Gameplay.Experience
 
             InitializeStatsData(playerStats.Values.ToList());
             InitializeMenu(playerStats.Keys.ToList());
-            SubscribeToInputEvents();
 
-            await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _statPoints.Value == 0));
-            
-            Dispose();
+            _playerInputProvider.AddUiInputOwner(this);
+            await UniTask.WaitUntil(() => _statPoints.Value == 0);
+            _playerInputProvider.RemoveUiInputOwner(this);
         }
 
         private void InitializeStatsData(List<ReactiveProperty<int>> stats)
@@ -57,22 +56,11 @@ namespace Gameplay.Experience
             _menuItemsUpdater = new ();
             _menuItemsUpdater.SetMenuItems(menuItems);
         }
-
-        private void SubscribeToInputEvents()
-        {
-            _disposables = new CompositeDisposable();
-            _disposables.Add(
-                _playerInputProvider.OnUiDown.Subscribe(_ => _menuItemsUpdater.UpdateSelection(+1)));
-            _disposables.Add(
-                _playerInputProvider.OnUiUp.Subscribe(_ => _menuItemsUpdater.UpdateSelection(-1)));
-            _disposables.Add(_playerInputProvider.OnUiLeft.Subscribe(_ => TryIncreaseStat(-1)));
-            _disposables.Add(_playerInputProvider.OnUiRight.Subscribe(_ => TryIncreaseStat(+1)));
-        }
-
-        private void Dispose()
-        {
-            _disposables.Dispose();
-        }
+        
+        public override void OnUIDown() => _menuItemsUpdater.UpdateSelection(+1);
+        public override void OnUIUp() => _menuItemsUpdater.UpdateSelection(-1);
+        public override void OnUILeft() => TryIncreaseStat(-1);
+        public override void OnUIRight() => TryIncreaseStat(+1);
 
         private void TryIncreaseStat(int increment)
         {

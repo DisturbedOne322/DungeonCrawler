@@ -5,7 +5,6 @@ using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
 using UI.BattleMenu;
-using UniRx;
 
 namespace StateMachine.Shop
 {
@@ -13,7 +12,7 @@ namespace StateMachine.Shop
     {
         protected readonly ShopItemsProvider ShopItemsProvider;
         protected readonly BalanceService BalanceService;
-        private readonly RewardDistributor _rewardDistributor;
+        private readonly ItemsDistributor _itemsDistributor;
 
         private bool _isInputLocked = false;
         
@@ -22,47 +21,23 @@ namespace StateMachine.Shop
             MenuItemsUpdater menuItemsUpdater,
             ShopItemsProvider shopItemsProvider,
             BalanceService balanceService,
-            RewardDistributor rewardDistributor) : 
+            ItemsDistributor itemsDistributor) : 
             base(playerInputProvider, menuItemsUpdater)
         {
             ShopItemsProvider = shopItemsProvider;
             BalanceService = balanceService;
-            _rewardDistributor = rewardDistributor;
+            _itemsDistributor = itemsDistributor;
         }
-        
-        protected override void SubscribeToInputEvents()
-        {
-            Disposables = new ();
 
-            Disposables.Add(PlayerInputProvider.OnUiSubmit.Subscribe(_ =>
-            {
-                if(!_isInputLocked)
-                    MenuItemsUpdater.ExecuteSelection();
-            }));
-            
-            Disposables.Add(PlayerInputProvider.OnUiUp.Subscribe(_ =>
-            {
-                if(!_isInputLocked)
-                    MenuItemsUpdater.UpdateSelection(-1);
-            }));
-            
-            Disposables.Add(PlayerInputProvider.OnUiDown.Subscribe(_ =>
-            {
-                if(!_isInputLocked)
-                    MenuItemsUpdater.UpdateSelection(+1);
-            }));
-            
-            Disposables.Add(PlayerInputProvider.OnUiBack.Subscribe(_ =>
-            {
-                if(!_isInputLocked)
-                    StateMachine.GoToPrevState().Forget();
-            }));
-        }
+        public override void OnUISubmit() => MenuItemsUpdater.ExecuteSelection();
+        public override void OnUIUp() => MenuItemsUpdater.UpdateSelection(-1);
+        public override void OnUIDown() => MenuItemsUpdater.UpdateSelection(+1);
+        public override void OnUIBack() => StateMachine.GoToPrevState().Forget();
         
         protected async UniTask PurchaseItem(SoldItemModel model)
         {
             _isInputLocked = true;
-            await _rewardDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
+            await _itemsDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
 
             BalanceService.AddBalance(-model.ItemData.Price);
             model.DecreaseAmount(1);

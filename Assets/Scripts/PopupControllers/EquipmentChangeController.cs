@@ -30,7 +30,7 @@ namespace PopupControllers
 
             popup.ShowPopup().Forget();
 
-            var result = await _playerInputProvider.EnableUIInputUntil(tcs.Task);
+            var result = await tcs.Task;
             
             await popup.HidePopup();
 

@@ -1,6 +1,7 @@
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Extensions;
 using UniRx;
 using UnityEngine;
 
@@ -13,16 +14,17 @@ namespace Gameplay.Player
         public readonly Subject<Unit> OnGoLeft = new();
         public readonly Subject<Unit> OnGoRight = new();
         
+        /*
         public readonly Subject<Unit> OnUiBack = new();
         public readonly Subject<Unit> OnUiDown = new();
+        public readonly Subject<Unit> OnUiUp = new();
         public readonly Subject<Unit> OnUiLeft = new();
         public readonly Subject<Unit> OnUiRight = new();
         public readonly Subject<Unit> OnUiSubmit = new();
-
-        public readonly Subject<Unit> OnUiUp = new();
-
-        private int _uiOwnersCount = 0;
-
+        */
+        
+        private readonly Stack<IUiInputHandler> _uiInputHandlers = new();
+        
         public PlayerInputProvider()
         {
             SubscribeMovementActions();
@@ -43,12 +45,12 @@ namespace Gameplay.Player
 
         private void SubscribeUiActions()
         {
-            _inputActions.UI.Up.performed += ctx => OnUiUp.OnNext(Unit.Default);
-            _inputActions.UI.Down.performed += ctx => OnUiDown.OnNext(Unit.Default);
-            _inputActions.UI.Submit.performed += ctx => OnUiSubmit.OnNext(Unit.Default);
-            _inputActions.UI.Back.performed += ctx => OnUiBack.OnNext(Unit.Default);
-            _inputActions.UI.Left.performed += ctx => OnUiLeft.OnNext(Unit.Default);
-            _inputActions.UI.Right.performed += ctx => OnUiRight.OnNext(Unit.Default);
+            _inputActions.UI.Up.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIUp();
+            _inputActions.UI.Down.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIDown();
+            _inputActions.UI.Submit.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUISubmit();
+            _inputActions.UI.Back.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIBack();
+            _inputActions.UI.Left.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUILeft();
+            _inputActions.UI.Right.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIRight();
         }
 
         public void EnableMovementInput(bool enable)
@@ -59,39 +61,43 @@ namespace Gameplay.Player
                 _inputActions.Decision.Disable();
         }
 
-        public async UniTask EnableUIInputUntil(UniTask task)
+        public async UniTask EnableUIInputUntil(UniTask task, IUiInputHandler handler)
         {
-            AddUiInputOwner();
+            AddUiInputOwner(handler);
             await task;
-            RemoveUiInputOwner();
+            RemoveUiInputOwner(handler);
         }
         
-        public async UniTask<T> EnableUIInputUntil<T>(UniTask<T> task)
+        public async UniTask<T> EnableUIInputUntil<T>(UniTask<T> task, IUiInputHandler handler)
         {
-            AddUiInputOwner();
+            AddUiInputOwner(handler);
             var result = await task;
-            RemoveUiInputOwner();
+            RemoveUiInputOwner(handler);
             return result;
         }
 
-        private void AddUiInputOwner()
+        public void AddUiInputOwner(IUiInputHandler inputHandler)
         {
-            _uiOwnersCount++;  
-            if (_uiOwnersCount == 1)
+            _uiInputHandlers.Push(inputHandler);
+            if (_uiInputHandlers.Count == 1)
                 _inputActions.UI.Enable();
         }
         
-        private void RemoveUiInputOwner()
+        public void RemoveUiInputOwner(IUiInputHandler inputHandler)
         {
-            _uiOwnersCount--;
-            if(_uiOwnersCount == 0)
-                _inputActions.UI.Disable();
-
-            if (_uiOwnersCount < 0)
+            if (_uiInputHandlers.Count == 0)
             {
-                Debug.LogError("TRIED TO DISABLE UI INPUT WITH NO OWNERS!");
-                _uiOwnersCount = 0;
+                Debug.LogWarning("Tried to remove UI input handler when stack is empty");
+                return;
             }
+
+            if (_uiInputHandlers.Peek() == inputHandler)
+                _uiInputHandlers.Pop();
+            else
+                Debug.LogWarning("Tried to pop non-top UI handler (possible mismatched calls)");
+
+            if (_uiInputHandlers.Count == 0)
+                _inputActions.UI.Disable();
         }
     }
 }

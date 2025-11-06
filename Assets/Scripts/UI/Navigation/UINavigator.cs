@@ -2,15 +2,12 @@ using System;
 using System.Collections.Generic;
 using Gameplay.Player;
 using UI.BattleMenu;
-using UniRx;
-using UnityEngine;
 
 namespace UI.Navigation
 {
-    public abstract class UINavigator
+    public abstract class UINavigator : BaseUIInputHandler
     {
-        protected readonly PlayerInputProvider PlayerInputProvider;
-        protected readonly CompositeDisposable Disposables = new ();
+        private readonly PlayerInputProvider _playerInputProvider;
 
         private readonly List<MenuItemData> _menuItemsData = new();
 
@@ -19,22 +16,14 @@ namespace UI.Navigation
         
         public UINavigator(PlayerInputProvider playerInputProvider)
         {
-            PlayerInputProvider = playerInputProvider;
+            _playerInputProvider = playerInputProvider;
+            _playerInputProvider.AddUiInputOwner(this);
         }
 
-        public void Initialize()
+        public override void OnUISubmit()
         {
-            PlayerInputProvider.OnUiSubmit.Subscribe(_ =>
-            {
-                _menuItemsData[_selectedIndex].OnSelected.Invoke();
-            }).AddTo(Disposables);
-            
-            SubscribeToPlayerInput();
-        }
-
-        public void Dispose()
-        {
-            Disposables.Dispose();
+            _menuItemsData[_selectedIndex].OnSelected.Invoke();
+            _playerInputProvider.RemoveUiInputOwner(this);
         }
 
         public void AddMenuItem(MenuItemDataMono menuItem, Action callback)
@@ -67,7 +56,5 @@ namespace UI.Navigation
 
             return nextIndex;
         }
-
-        protected abstract void SubscribeToPlayerInput();
     }
 }
