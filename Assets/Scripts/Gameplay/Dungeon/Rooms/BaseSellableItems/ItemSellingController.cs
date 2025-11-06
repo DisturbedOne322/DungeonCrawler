@@ -38,11 +38,10 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
         public void Initialize()
         {
             _cts = new();
-            _playerInputProvider.AddUiInputOwner(this);
             InitItems();
         }
         
-        public async UniTask ProcessSelling() => await _cts.Task;
+        public async UniTask ProcessSelling() => await _playerInputProvider.EnableUIInputUntil(_cts.Task, this);
 
         private void InitItems()
         {
@@ -66,11 +65,7 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
         public override void OnUISubmit() => _menuItemsUpdater.ExecuteSelection();
         public override void OnUIUp() => _menuItemsUpdater.UpdateSelection(-1);
         public override void OnUIDown() => _menuItemsUpdater.UpdateSelection(+1);
-        public override void OnUIBack()
-        {
-            _playerInputProvider.RemoveUiInputOwner(this);
-            _cts.TrySetResult();
-        }
+        public override void OnUIBack() => _cts.TrySetResult();
 
         private async UniTask PurchaseItem(SoldItemModel model)
         {

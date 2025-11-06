@@ -32,14 +32,14 @@ namespace StateMachine.BattleMenu
 
         public override UniTask EnterState()
         {
-            SubscribeToInputEvents();
+            _playerInputProvider.AddUiInputOwner(this);
             MenuItemsUpdater.ResetSelection();
             return UniTask.CompletedTask;
         }
 
         public override UniTask ExitState()
         {
-            UnsubscribeFromInputEvents();
+            _playerInputProvider.RemoveUiInputOwner(this);
             return UniTask.CompletedTask;
         }
 
@@ -51,9 +51,6 @@ namespace StateMachine.BattleMenu
         }
 
         public abstract void InitMenuItems();
-        
-        private void SubscribeToInputEvents() => _playerInputProvider.AddUiInputOwner(this);
-        private void UnsubscribeFromInputEvents() => _playerInputProvider.RemoveUiInputOwner(this);
         
         public virtual void OnUISubmit() { }
 

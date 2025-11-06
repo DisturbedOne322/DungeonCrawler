@@ -34,9 +34,7 @@ namespace Gameplay.Experience
             InitializeStatsData(playerStats.Values.ToList());
             InitializeMenu(playerStats.Keys.ToList());
 
-            _playerInputProvider.AddUiInputOwner(this);
-            await UniTask.WaitUntil(() => _statPoints.Value == 0);
-            _playerInputProvider.RemoveUiInputOwner(this);
+            await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _statPoints.Value == 0), this);
         }
 
         private void InitializeStatsData(List<ReactiveProperty<int>> stats)
