@@ -19,7 +19,7 @@ MonoBehaviour:
   _skillData:
     BaseDamage: 1
     DamageType: 0
-    MinHits: 2
+    MinHits: 8
     MaxHits: 8
     BaseCritChance: 0.5
     CanCrit: 1
@@ -30,11 +30,7 @@ MonoBehaviour:
     CanBeBuffed: 1
     ConsumeStance: 1
   _costs: []
-  _scalingsList:
-  - StatType: 3
-    Scaling: 0.1
-  - StatType: 4
-    Scaling: 0.1
+  _scalingsList: []
   references:
     version: 2
     RefIds: []

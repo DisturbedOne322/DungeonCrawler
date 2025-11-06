@@ -38,7 +38,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: 38607ef3b4f273c4cbff5d30b1a16cd3, type: 2}
-  _statusEffects: []
+  _statusEffects:
+  - {fileID: 11400000, guid: 60ac70939a8e3b8489ef3a61cb7f4272, type: 2}
   _baseWeapon: {fileID: 11400000, guid: 5e11bfc90a9f49148b5a11e64c92969d, type: 2}
   _baseArmor: {fileID: 11400000, guid: 94fd4053e9861cc4fb9ec8897e733740, type: 2}
   _startingBalance: 1000

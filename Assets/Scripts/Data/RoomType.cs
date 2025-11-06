@@ -7,6 +7,8 @@ namespace Data
         TreasureChest,
         Combat,
         Shop,
-        Shrine
+        Shrine,
+        PhysicalMaster,
+        MagicMaster
     }
 }
