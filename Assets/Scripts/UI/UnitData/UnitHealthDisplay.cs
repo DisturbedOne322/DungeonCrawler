@@ -12,10 +12,10 @@ namespace UI.UnitData
         [SerializeField] private Slider _slider;
         [SerializeField] private TextMeshProUGUI _healthText;
 
+        private readonly CompositeDisposable _disposables = new();
+
         [Inject] private UnitHealthData _healthData;
 
-        private readonly CompositeDisposable _disposables = new();
-        
         private void Awake()
         {
             UpdateHealthDisplay();
@@ -41,7 +41,7 @@ namespace UI.UnitData
                 _slider.value = 0;
                 return;
             }
-            
+
             var fillPercent = health * 1f / maxHealth;
             _slider.value = fillPercent;
         }

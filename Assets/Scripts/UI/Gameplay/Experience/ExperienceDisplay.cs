@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Gameplay.Experience;
 using TMPro;
@@ -13,15 +12,20 @@ namespace UI.Gameplay.Experience
     {
         [SerializeField] private TextMeshProUGUI _currentLevelText;
         [SerializeField] private TextMeshProUGUI _experienceText;
-        
+
         [SerializeField] private Slider _progressSlider;
         [SerializeField] private float _progressAnimDuration = 0.33f;
-        
+
+        private readonly CompositeDisposable _disposables = new();
+
         private Sequence _experienceSequence;
         private Sequence _progressSequence;
 
-        private readonly CompositeDisposable _disposables = new();
-        
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
+
         [Inject]
         private void Construct(ExperienceData experienceData)
         {
@@ -30,13 +34,8 @@ namespace UI.Gameplay.Experience
             experienceData.OnProgressChanged.Subscribe(ShowProgress).AddTo(_disposables);
         }
 
-        private void OnDestroy()
-        {
-            _disposables.Dispose();
-        }
-
         private void ShowExperienceGained(int amount)
-        { 
+        {
             _experienceSequence?.Kill();
             _experienceSequence = DOTween.Sequence();
 
@@ -57,22 +56,22 @@ namespace UI.Gameplay.Experience
         private void ShowProgress(float newProgress)
         {
             _progressSequence?.Kill();
-            
-            float currentProgress = _progressSlider.value;
+
+            var currentProgress = _progressSlider.value;
 
             _progressSequence = DOTween.Sequence();
             _progressSequence.SetLink(gameObject);
             _progressSequence.SetEase(Ease.InOutCirc);
-            
+
             if (newProgress > currentProgress)
             {
                 _progressSequence.Append(_progressSlider.DOValue(newProgress, _progressAnimDuration));
                 return;
             }
 
-            float t1 = _progressAnimDuration * (1 - currentProgress);
-            float t2 = _progressAnimDuration * newProgress;
-            
+            var t1 = _progressAnimDuration * (1 - currentProgress);
+            var t2 = _progressAnimDuration * newProgress;
+
             _progressSequence.Append(_progressSlider.DOValue(1, t1));
             _progressSequence.Append(_progressSlider.DOValue(newProgress, t2));
         }

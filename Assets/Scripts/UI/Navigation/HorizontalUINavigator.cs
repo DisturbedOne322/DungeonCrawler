@@ -6,10 +6,16 @@ namespace UI.Navigation
     {
         public HorizontalUINavigator(PlayerInputProvider playerInputProvider) : base(playerInputProvider)
         {
-            
         }
-        
-        public override void OnUILeft() => UpdateSelection(-1);
-        public override void OnUIRight() => UpdateSelection(+1);
+
+        public override void OnUILeft()
+        {
+            UpdateSelection(-1);
+        }
+
+        public override void OnUIRight()
+        {
+            UpdateSelection(+1);
+        }
     }
 }

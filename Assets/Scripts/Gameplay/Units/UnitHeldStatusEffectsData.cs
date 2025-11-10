@@ -11,30 +11,30 @@ namespace Gameplay.Units
     public class UnitHeldStatusEffectsData
     {
         private readonly UnitActiveStatusEffectsData _activeStatusEffects;
-        
-        private readonly ReactiveCollection<BaseStatusEffectData> _all = new();
+
         private readonly List<DefensiveBuffData> _defensive = new();
         private readonly List<HitBuffData> _offensive = new();
         private readonly List<StatBuffData> _statBuffs = new();
         private readonly List<StatDebuffData> _statDebuffs = new();
 
-        public ReactiveCollection<BaseStatusEffectData> All => _all;
+        public UnitHeldStatusEffectsData(UnitActiveStatusEffectsData activeStatusEffects)
+        {
+            _activeStatusEffects = activeStatusEffects;
+        }
+
+        public ReactiveCollection<BaseStatusEffectData> All { get; } = new();
+
         public IReadOnlyList<DefensiveBuffData> DefensiveBuffs => _defensive;
         public IReadOnlyList<HitBuffData> OffensiveBuffs => _offensive;
         public IReadOnlyList<StatBuffData> StatBuffs => _statBuffs;
         public IReadOnlyList<StatDebuffData> StatDebuffs => _statDebuffs;
 
-        public UnitHeldStatusEffectsData(UnitActiveStatusEffectsData activeStatusEffects)
-        {
-            _activeStatusEffects = activeStatusEffects;
-        }
-        
         public void Add(BaseStatusEffectData data)
         {
             if (!data)
                 return;
 
-            _all.Add(data);
+            All.Add(data);
 
             switch (data)
             {
@@ -50,7 +50,7 @@ namespace Gameplay.Units
             if (!data)
                 return;
 
-            _all.Remove(data);
+            All.Remove(data);
 
             switch (data)
             {
@@ -63,7 +63,7 @@ namespace Gameplay.Units
 
         public void Clear()
         {
-            _all.Clear();
+            All.Clear();
             _defensive.Clear();
             _offensive.Clear();
             _statBuffs.Clear();

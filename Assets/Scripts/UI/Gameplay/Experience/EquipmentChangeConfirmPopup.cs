@@ -13,12 +13,12 @@ namespace UI.Gameplay.Experience
         [SerializeField] private ItemDataView _oldEquipData;
         [SerializeField] private ItemDataView _newEquipData;
 
-        [SerializeField, Separator, Space] private MenuItemDataMono _keepMenuItem;
+        [SerializeField] [Separator] [Space] private MenuItemDataMono _keepMenuItem;
         [SerializeField] private MenuItemDataMono _changeMenuItem;
 
         public event Action OnKeepPressed;
         public event Action OnChangePressed;
-        
+
         [Inject]
         private void Construct(HorizontalUINavigator uiNavigator)
         {

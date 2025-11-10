@@ -18,6 +18,6 @@ namespace Gameplay.StatusEffects.Core
         OtherUnitHealed,
         CriticalHealth,
         MediumHealth,
-        OnObtained,
+        OnObtained
     }
 }

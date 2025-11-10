@@ -17,7 +17,7 @@ namespace PopupControllers
         private readonly PlayerUnit _playerUnit;
         private readonly SkillDiscardMenuUpdater _skillDiscardMenuUpdater;
         private readonly UIFactory _uiFactory;
-        
+
         private SkillDiscardPopup _skillDiscardPopup;
 
         private BaseSkill _skillToDiscard;
@@ -38,7 +38,7 @@ namespace PopupControllers
             Initialize(newSkill);
 
             await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _skillToDiscard != null), this);
-            
+
             await _skillDiscardPopup.HidePopup();
 
             return _skillToDiscard;
@@ -81,11 +81,30 @@ namespace PopupControllers
             _skillDiscardMenuUpdater.SetNewSkill(newSkillData);
             _skillDiscardMenuUpdater.SetMenuItems(_playerSkills);
         }
-        
-        public override void OnUISubmit() => _skillDiscardMenuUpdater.ExecuteSelection();
-        public override void OnUIUp() => _skillDiscardMenuUpdater.ProcessInput(-1, 0);
-        public override void OnUIDown() => _skillDiscardMenuUpdater.ProcessInput(+1, 0);
-        public override void OnUILeft() => _skillDiscardMenuUpdater.ProcessInput(0, -1);
-        public override void OnUIRight() => _skillDiscardMenuUpdater.ProcessInput(0, +1);
+
+        public override void OnUISubmit()
+        {
+            _skillDiscardMenuUpdater.ExecuteSelection();
+        }
+
+        public override void OnUIUp()
+        {
+            _skillDiscardMenuUpdater.ProcessInput(-1, 0);
+        }
+
+        public override void OnUIDown()
+        {
+            _skillDiscardMenuUpdater.ProcessInput(+1, 0);
+        }
+
+        public override void OnUILeft()
+        {
+            _skillDiscardMenuUpdater.ProcessInput(0, -1);
+        }
+
+        public override void OnUIRight()
+        {
+            _skillDiscardMenuUpdater.ProcessInput(0, +1);
+        }
     }
 }

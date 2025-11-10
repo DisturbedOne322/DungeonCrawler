@@ -49,9 +49,20 @@ namespace StateMachine.BattleMenu
                     () => StateMachine.GoToState<ItemSelectBattleMenuState>().Forget())
             );
         }
-        
-        public override void OnUISubmit() => MenuItemsUpdater.ExecuteSelection();
-        public override void OnUIUp() => MenuItemsUpdater.UpdateSelection(-1);
-        public override void OnUIDown() => MenuItemsUpdater.UpdateSelection(+1);
+
+        public override void OnUISubmit()
+        {
+            MenuItemsUpdater.ExecuteSelection();
+        }
+
+        public override void OnUIUp()
+        {
+            MenuItemsUpdater.UpdateSelection(-1);
+        }
+
+        public override void OnUIDown()
+        {
+            MenuItemsUpdater.UpdateSelection(+1);
+        }
     }
 }

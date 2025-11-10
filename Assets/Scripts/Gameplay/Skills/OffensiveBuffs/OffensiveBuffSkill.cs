@@ -14,6 +14,9 @@ namespace Gameplay.Skills.OffensiveBuffs
             return UniTask.CompletedTask;
         }
 
-        public override bool CanUse(CombatService combatService) => !combatService.ActiveUnit.UnitActiveStatusEffectsData.IsStatusEffectActive(_hitBuffData);
+        public override bool CanUse(CombatService combatService)
+        {
+            return !combatService.ActiveUnit.UnitActiveStatusEffectsData.IsStatusEffectActive(_hitBuffData);
+        }
     }
 }

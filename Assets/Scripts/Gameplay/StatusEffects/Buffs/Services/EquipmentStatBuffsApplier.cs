@@ -7,9 +7,9 @@ namespace Gameplay.StatusEffects.Buffs.Services
 {
     public class EquipmentStatBuffsApplier : IDisposable
     {
-        private readonly GameUnit _unit;
         private readonly CompositeDisposable _compositeDisposable = new();
-        
+        private readonly GameUnit _unit;
+
         public EquipmentStatBuffsApplier(GameUnit unit,
             UnitEquipmentData unitEquipmentData)
         {
@@ -25,7 +25,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             _compositeDisposable.Dispose();
         }
-        
+
         private void AddStatIncreasesFromEquipment(BaseEquipmentPiece equipmentPiece)
         {
             var statBuffs = equipmentPiece.StatsIncreaseData;

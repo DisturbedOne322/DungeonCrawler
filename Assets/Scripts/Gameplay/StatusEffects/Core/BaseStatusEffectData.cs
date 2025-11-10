@@ -13,7 +13,7 @@ namespace Gameplay.StatusEffects.Core
         public StatusEffectTriggerType TriggerType => _triggerType;
         public StatusEffectReapplyType StatusEffectReapplyType => _statusEffectReapplyType;
         public int MaxStacks => _maxStacks;
-        
+
         public abstract BaseStatusEffectInstance CreateInstance();
     }
 }

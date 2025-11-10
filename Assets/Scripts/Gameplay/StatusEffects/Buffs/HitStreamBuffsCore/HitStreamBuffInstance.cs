@@ -1,5 +1,6 @@
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
+using UniRx;
 
 namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
 {
@@ -12,14 +13,14 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
         {
             return new HitStreamBuffInstance
             {
-                TurnDurationLeft = new(buffData.StatusEffectDurationData.TurnDurations),
+                TurnDurationLeft = new IntReactiveProperty(buffData.StatusEffectDurationData.TurnDurations),
                 EffectExpirationType = buffData.StatusEffectDurationData.EffectExpirationType,
                 StatusEffectData = buffData,
                 PriorityType = buffData.Priority,
                 HitStreamBuffData = buffData
             };
         }
-        
+
         public override void Apply(IEntity activeUnit, IEntity otherUnit)
         {
             AffectedUnit = activeUnit;
@@ -27,6 +28,9 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
         }
 
-        public override void Revert() => AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+        public override void Revert()
+        {
+            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+        }
     }
 }

@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Player;
 using Gameplay.Units;
 using StateMachine.BattleMenu;
 using UniRx;
@@ -25,7 +24,7 @@ namespace Gameplay.Combat.SkillSelection
             var disposable = _battleMenuStateMachine.ActionSelected.Subscribe(action => tcs.TrySetResult(action));
 
             var result = await tcs.Task;
-            
+
             disposable.Dispose();
 
             return result;

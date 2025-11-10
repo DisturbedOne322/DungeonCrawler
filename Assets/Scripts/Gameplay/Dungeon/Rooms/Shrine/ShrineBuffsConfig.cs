@@ -9,7 +9,7 @@ namespace Gameplay.Dungeon.Rooms.Shrine
     public class ShrineBuffsConfig : BaseSellableItemsConfig
     {
         [SerializeField] private List<SellableItemData<BaseStatusEffectData>> _statusEffectItems;
-        
+
         public override IReadOnlyList<ISellableItemData> ItemsForSale => _statusEffectItems;
     }
 }

@@ -7,8 +7,15 @@ namespace UI.Navigation
         public VerticalUiNavigator(PlayerInputProvider playerInputProvider) : base(playerInputProvider)
         {
         }
-        
-        public override void OnUIDown() => UpdateSelection(+1);
-        public override void OnUIUp() => UpdateSelection(-1);
+
+        public override void OnUIDown()
+        {
+            UpdateSelection(+1);
+        }
+
+        public override void OnUIUp()
+        {
+            UpdateSelection(-1);
+        }
     }
 }

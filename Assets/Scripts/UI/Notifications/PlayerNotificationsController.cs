@@ -19,9 +19,19 @@ namespace UI.Notifications
         [SerializeField] private SkillSlotsNotificationDisplay _skillSlotsNotificationDisplay;
         [SerializeField] private ConsumableNotificationDisplay _consumableNotificationDisplay;
 
-        private readonly CompositeDisposable _disposables = new ();
+        private readonly CompositeDisposable _disposables = new();
         private NotificationsPlayer _notificationsPlayer;
-        
+
+        private void Awake()
+        {
+            _notificationsPlayer = new NotificationsPlayer(gameObject.GetCancellationTokenOnDestroy());
+        }
+
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
+
         [Inject]
         private void Construct(PlayerUnit unit, PlayerSkillSlotsManager playerSkillSlotsManager)
         {
@@ -33,11 +43,10 @@ namespace UI.Notifications
             SubscribeConsumables(unit);
         }
 
-        private void Awake() => _notificationsPlayer = new(gameObject.GetCancellationTokenOnDestroy());
-
-        private void OnDestroy() => _disposables.Dispose();
-
-        private void Subscribe<T>(IObservable<T> stream, Action<T> handler) => stream.Subscribe(handler).AddTo(_disposables);
+        private void Subscribe<T>(IObservable<T> stream, Action<T> handler)
+        {
+            stream.Subscribe(handler).AddTo(_disposables);
+        }
 
         private void SubscribeConsumables(PlayerUnit unit)
         {
@@ -45,13 +54,14 @@ namespace UI.Notifications
                 .ObserveAdd()
                 .Buffer(TimeSpan.FromMilliseconds(50))
                 .Where(buffer => buffer.Count > 0)
-                .Subscribe(addEvents => {
+                .Subscribe(addEvents =>
+                {
                     foreach (var g in addEvents.GroupBy(ev => ev.Value))
                         EnqueueConsumableNotification(g.Key, g.Count());
                 })
                 .AddTo(_disposables);
         }
-        
+
         private void EnqueueSkillNotification(CollectionAddEvent<BaseSkill> @event)
         {
             EnqueueNotification(new NotificationData(
@@ -79,7 +89,7 @@ namespace UI.Notifications
         private void EnqueueConsumableNotification(BaseConsumable consumable, int amount)
         {
             EnqueueNotification(new NotificationData(
-                    () => _consumableNotificationDisplay.SetData(consumable, amount),
+                () => _consumableNotificationDisplay.SetData(consumable, amount),
                 _consumableNotificationDisplay.Show)
             );
         }
@@ -92,6 +102,9 @@ namespace UI.Notifications
             );
         }
 
-        private void EnqueueNotification(NotificationData notification) => _notificationsPlayer.EnqueueNotification(notification);
+        private void EnqueueNotification(NotificationData notification)
+        {
+            _notificationsPlayer.EnqueueNotification(notification);
+        }
     }
 }

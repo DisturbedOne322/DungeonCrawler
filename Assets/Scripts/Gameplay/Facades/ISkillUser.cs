@@ -1,4 +1,3 @@
-using Gameplay.Combat.Data;
 using Gameplay.Combat.SkillSelection;
 using Gameplay.Units;
 

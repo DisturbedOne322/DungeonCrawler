@@ -13,18 +13,21 @@ namespace UI.Popups
     {
         [SerializeField] private TextMeshProUGUI _messageText;
 
-        [SerializeField, Separator, Space] private MenuItemDataMono _noItem;
+        [SerializeField] [Separator] [Space] private MenuItemDataMono _noItem;
         [SerializeField] private MenuItemDataMono _yesItem;
 
         public event Action<ConfirmChoice> OnDecisionMade;
-        
+
         [Inject]
         private void Construct(HorizontalUINavigator uiNavigator)
         {
             uiNavigator.AddMenuItem(_noItem, () => OnDecisionMade?.Invoke(ConfirmChoice.Deny));
             uiNavigator.AddMenuItem(_yesItem, () => OnDecisionMade?.Invoke(ConfirmChoice.Accept));
         }
-        
-        public void SetMessage(string message) => _messageText.text = message;
+
+        public void SetMessage(string message)
+        {
+            _messageText.text = message;
+        }
     }
 }

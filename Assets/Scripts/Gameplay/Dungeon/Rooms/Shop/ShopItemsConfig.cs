@@ -15,7 +15,7 @@ namespace Gameplay.Dungeon.Rooms.Shop
         [SerializeField] private List<SellableItemData<BaseEquipmentPiece>> _equipmentItems;
         [SerializeField] private List<SellableItemData<BaseSkill>> _skillItems;
         [SerializeField] private List<SellableItemData<BaseStatusEffectData>> _statusEffectItems;
-        
+
         public IReadOnlyList<ISellableItemData> ConsumableItems => _consumableItems;
         public IReadOnlyList<ISellableItemData> EquipmentItems => _equipmentItems;
         public IReadOnlyList<ISellableItemData> SkillItems => _skillItems;

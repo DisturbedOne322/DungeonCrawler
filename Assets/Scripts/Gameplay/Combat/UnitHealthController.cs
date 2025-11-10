@@ -1,4 +1,3 @@
-using Gameplay.Combat.Data;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ namespace Gameplay.Combat
     public class UnitHealthController
     {
         private readonly UnitHealthData _unitHealthData;
-        
+
         public UnitHealthController(UnitHealthData unitHealthData)
         {
             _unitHealthData = unitHealthData;
@@ -17,14 +16,14 @@ namespace Gameplay.Combat
         {
             var oldMaxHealth = Mathf.Max(1, _unitHealthData.MaxHealth.Value);
             var currentHealth = _unitHealthData.CurrentHealth.Value;
-            
+
             var currentHealthRatio = (float)currentHealth / oldMaxHealth;
 
             var newMaxHealth = oldMaxHealth + delta;
-            
-            if (newMaxHealth < 0) 
+
+            if (newMaxHealth < 0)
                 newMaxHealth = 1;
-            
+
             _unitHealthData.MaxHealth.Value = newMaxHealth;
             _unitHealthData.CurrentHealth.Value = Mathf.Clamp(
                 Mathf.RoundToInt(currentHealthRatio * newMaxHealth),

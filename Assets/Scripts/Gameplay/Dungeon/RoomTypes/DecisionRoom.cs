@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
-using AssetManagement.AssetProviders.Core;
-using AssetManagement.Configs;
 using Cysharp.Threading.Tasks;
 using Data;
-using Gameplay.Configs;
 using Gameplay.Dungeon.Animations;
 using Gameplay.Dungeon.Data;
 using UnityEngine;
@@ -20,8 +17,8 @@ namespace Gameplay.Dungeon.RoomTypes
 
         private DungeonBranchingController _dungeonBranchingController;
         private DungeonBranchingSelector _dungeonBranchingSelector;
-        private GameplayConfigsProvider _gameplayConfigProvider;
         private DungeonVisualsConfigProvider _dungeonVisualsConfigProvider;
+        private GameplayConfigsProvider _gameplayConfigProvider;
 
         public override RoomType RoomType => RoomType.Decision;
 
@@ -46,7 +43,7 @@ namespace Gameplay.Dungeon.RoomTypes
         {
             var roomsDatabase = _gameplayConfigProvider.GetConfig<DungeonRoomsDatabase>();
             var visualsDatabase = _dungeonVisualsConfigProvider.GetConfig();
-            
+
             var doorTypes = _dungeonBranchingSelector.RoomsForSelection;
             for (var i = 0; i < doorTypes.Count; i++)
             {
@@ -54,10 +51,10 @@ namespace Gameplay.Dungeon.RoomTypes
 
                 if (!roomsDatabase.TryGetRoom(doorTypes[i], out var data))
                     continue;
-                
-                if(!visualsDatabase.TryGetRoomIcon(data.RoomType, out var icon))
+
+                if (!visualsDatabase.TryGetRoomIcon(data.RoomType, out var icon))
                     continue;
-                
+
                 door.SetDoorIcon(icon);
             }
         }

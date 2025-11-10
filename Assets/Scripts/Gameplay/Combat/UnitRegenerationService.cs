@@ -13,19 +13,25 @@ namespace Gameplay.Combat
         {
             _playerUnit = playerUnit;
         }
-        
-        public void RegenerateUnitInBattle(IEntity unit) => RegenerateUnit(unit, 1);
 
-        public void RegeneratePlayerOutOfBattle() => RegenerateUnit(_playerUnit, GameplayConstants.RegenerationRateOutOfCombat);
+        public void RegenerateUnitInBattle(IEntity unit)
+        {
+            RegenerateUnit(unit, 1);
+        }
+
+        public void RegeneratePlayerOutOfBattle()
+        {
+            RegenerateUnit(_playerUnit, GameplayConstants.RegenerationRateOutOfCombat);
+        }
 
         private void RegenerateUnit(IEntity unit, float multiplier)
         {
             var healthRegen = unit.UnitBonusStatsData.HealthRegenBonus.Value;
             var manaRegen = unit.UnitBonusStatsData.ManaRegenBonus.Value;
-            
+
             healthRegen = Mathf.CeilToInt(healthRegen * multiplier);
             manaRegen = Mathf.CeilToInt(manaRegen * multiplier);
-            
+
             unit.UnitHealthController.Heal(healthRegen);
             unit.UnitManaController.RegenerateMana(manaRegen);
         }

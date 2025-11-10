@@ -1,4 +1,3 @@
-using Gameplay.Combat.Data;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -17,11 +16,11 @@ namespace Gameplay.Combat
         {
             var currentMana = _unitManaData.CurrentMana.Value;
             var currentMaxMana = Mathf.Max(1, _unitManaData.MaxMana.Value);
-            
+
             var currentManaRatio = (float)currentMana / currentMaxMana;
 
             currentMaxMana += delta;
-            
+
             _unitManaData.MaxMana.Value = currentMaxMana;
             _unitManaData.CurrentMana.Value = Mathf.Clamp(
                 Mathf.RoundToInt(currentManaRatio * currentMaxMana),

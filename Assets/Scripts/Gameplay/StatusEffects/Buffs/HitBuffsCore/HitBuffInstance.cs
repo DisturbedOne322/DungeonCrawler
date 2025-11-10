@@ -1,5 +1,6 @@
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
+using UniRx;
 
 namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
 {
@@ -12,7 +13,7 @@ namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
         {
             return new HitBuffInstance
             {
-                TurnDurationLeft = new(buffData.StatusEffectDurationData.TurnDurations),
+                TurnDurationLeft = new IntReactiveProperty(buffData.StatusEffectDurationData.TurnDurations),
                 EffectExpirationType = buffData.StatusEffectDurationData.EffectExpirationType,
                 PriorityType = buffData.Priority,
                 StatusEffectData = buffData,
@@ -26,6 +27,9 @@ namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
         }
 
-        public override void Revert() => AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+        public override void Revert()
+        {
+            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+        }
     }
 }

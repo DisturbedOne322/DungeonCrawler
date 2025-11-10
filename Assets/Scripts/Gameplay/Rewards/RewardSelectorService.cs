@@ -46,7 +46,7 @@ namespace Gameplay.Rewards
             }
         }
 
-        private void RemovePlayerWeaponFromSelection(IGameUnit unit,  
+        private void RemovePlayerWeaponFromSelection(IGameUnit unit,
             List<DropEntry> allRewards)
         {
             for (var i = allRewards.Count - 1; i >= 0; i--)
@@ -57,7 +57,7 @@ namespace Gameplay.Rewards
             }
         }
 
-        private void RemovePlayerArmorFromSelection(IGameUnit unit,  List<DropEntry> allRewards)
+        private void RemovePlayerArmorFromSelection(IGameUnit unit, List<DropEntry> allRewards)
         {
             for (var i = allRewards.Count - 1; i >= 0; i--)
             {
@@ -66,13 +66,13 @@ namespace Gameplay.Rewards
                     allRewards.RemoveAt(i);
             }
         }
-        
+
         private void RemoveStatusEffectsFromSelection(IGameUnit unit, List<DropEntry> allRewards)
         {
             for (var i = allRewards.Count - 1; i >= 0; i--)
             {
                 var reward = allRewards[i];
-                
+
                 if (UnitInventoryHelper.HasItem(unit, reward.Item))
                     allRewards.RemoveAt(i);
             }
@@ -81,8 +81,8 @@ namespace Gameplay.Rewards
         private DropEntry SelectWeightedRandom(List<DropEntry> entries)
         {
             var totalWeight = 0;
-            
-            foreach (var e in entries) 
+
+            foreach (var e in entries)
                 totalWeight += e.Weight;
 
             var roll = _rng.Next(0, totalWeight);

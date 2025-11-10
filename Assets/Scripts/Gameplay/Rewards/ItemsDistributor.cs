@@ -36,7 +36,7 @@ namespace Gameplay.Rewards
 
             await GiveRewardToPlayer(dropEntry.Item, dropEntry.Amount);
         }
-        
+
         public async UniTask GiveRewardToPlayer(BaseGameItem item, int amount)
         {
             if (!item)
@@ -63,12 +63,12 @@ namespace Gameplay.Rewards
                 case BaseStatusEffectData statusEffect:
                     _player.UnitHeldStatusEffectsData.Add(statusEffect);
                     break;
-                
+
                 case CoinsItem coinsItem:
-                    int rand = Random.Range(coinsItem.MinAmount, coinsItem.MaxAmount);
+                    var rand = Random.Range(coinsItem.MinAmount, coinsItem.MaxAmount);
                     _player.UnitInventoryData.Coins.Value += rand;
                     break;
-                
+
                 default:
                     Debug.LogWarning($"Unhandled reward type: {item.name}");
                     break;

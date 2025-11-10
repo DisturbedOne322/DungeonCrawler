@@ -6,7 +6,8 @@ namespace AssetManagement.AssetProviders
 {
     public class DungeonVisualsConfigProvider : NamedConfigProvider<DungeonVisualsConfig>
     {
-        public DungeonVisualsConfigProvider(IAssetLoader assetLoader) : base(assetLoader, ConstConfigs.DungeonVisualsConfig)
+        public DungeonVisualsConfigProvider(IAssetLoader assetLoader) : base(assetLoader,
+            ConstConfigs.DungeonVisualsConfig)
         {
         }
     }

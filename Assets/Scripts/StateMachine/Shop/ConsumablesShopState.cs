@@ -11,11 +11,11 @@ namespace StateMachine.Shop
     public class ConsumablesShopState : ItemsShopState
     {
         public ConsumablesShopState(
-            PlayerInputProvider playerInputProvider, 
-            MenuItemsUpdater menuItemsUpdater, 
-            ShopItemsProvider shopItemsProvider, 
-            BalanceService balanceService, 
-            ItemsDistributor itemsDistributor) : 
+            PlayerInputProvider playerInputProvider,
+            MenuItemsUpdater menuItemsUpdater,
+            ShopItemsProvider shopItemsProvider,
+            BalanceService balanceService,
+            ItemsDistributor itemsDistributor) :
             base(playerInputProvider, menuItemsUpdater, shopItemsProvider, balanceService, itemsDistributor)
         {
         }
@@ -25,14 +25,12 @@ namespace StateMachine.Shop
             var itemsSelection = ShopItemsProvider.CreateConsumablesForSale();
 
             foreach (var model in itemsSelection)
-            {
                 MenuItems.Add(
                     new SoldItemMenuItemData(
                         model,
-                        () => IsSelectable(model), 
+                        () => IsSelectable(model),
                         () => PurchaseItem(model).Forget()
-                        ));
-            }
+                    ));
         }
     }
 }

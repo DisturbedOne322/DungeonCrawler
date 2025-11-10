@@ -74,7 +74,7 @@ namespace UI.BattleMenu
 
             return view;
         }
-        
+
         private ShopItemMenuItemView CreateShopItemMenuItem(SoldItemMenuItemData data)
         {
             var view = _factory.Create<ShopItemMenuItemView>(GetPrefab(ConstPrefabs.ShopItemMenuItemViewPrefab));

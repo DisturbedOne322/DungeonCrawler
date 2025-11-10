@@ -56,8 +56,8 @@ namespace Gameplay.StatusEffects.Buffs.Core
             foreach (var kv in _buffsByPriority)
             foreach (var buff in kv.Value)
             {
-                int stacks = buff.Stacks.Value;
-                
+                var stacks = buff.Stacks.Value;
+
                 for (var i = 0; i < stacks; i++)
                     result = ApplyBuff(buff, result, damageContext);
             }

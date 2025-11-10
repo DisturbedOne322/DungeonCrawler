@@ -84,7 +84,7 @@ namespace Gameplay.Player
                 .SetEase(ease)
                 .OnStart(callback.Invoke)
                 .SetLink(gameObject);
-            
+
             return tween;
         }
 

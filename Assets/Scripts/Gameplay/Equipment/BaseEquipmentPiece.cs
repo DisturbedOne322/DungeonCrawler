@@ -8,7 +8,7 @@ namespace Gameplay.Equipment
     {
         [SerializeField] [Space] private List<BaseStatusEffectData> _statusEffects;
         [SerializeField] private EquipmentStatsIncreaseData _statsIncreaseData;
-        
+
         public List<BaseStatusEffectData> StatusEffects => _statusEffects;
         public EquipmentStatsIncreaseData StatsIncreaseData => _statsIncreaseData;
     }

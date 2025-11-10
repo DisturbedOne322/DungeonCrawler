@@ -10,13 +10,12 @@ namespace Gameplay.Player
 {
     public class PlayerSkillSlotsManager : IDisposable
     {
+        private readonly PlayerSkillSlotUnlockConfig _config;
         private readonly IDisposable _disposable;
         private readonly ExperienceData _experienceData;
         private readonly PlayerUnit _playerUnit;
 
         public readonly Subject<int> OnSkillSlotsAdded = new();
-
-        private readonly PlayerSkillSlotUnlockConfig _config;
 
         private int _previousSlots;
 

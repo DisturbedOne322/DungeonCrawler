@@ -31,10 +31,25 @@ namespace StateMachine.BattleMenu
                         () => StateMachine.SelectAction(skill))
                 );
         }
-        
-        public override void OnUISubmit() => MenuItemsUpdater.ExecuteSelection();
-        public override void OnUIUp() => MenuItemsUpdater.UpdateSelection(-1);
-        public override void OnUIDown() => MenuItemsUpdater.UpdateSelection(+1);
-        public override void OnUIBack() => StateMachine.GoToPrevState().Forget();
+
+        public override void OnUISubmit()
+        {
+            MenuItemsUpdater.ExecuteSelection();
+        }
+
+        public override void OnUIUp()
+        {
+            MenuItemsUpdater.UpdateSelection(-1);
+        }
+
+        public override void OnUIDown()
+        {
+            MenuItemsUpdater.UpdateSelection(+1);
+        }
+
+        public override void OnUIBack()
+        {
+            StateMachine.GoToPrevState().Forget();
+        }
     }
 }

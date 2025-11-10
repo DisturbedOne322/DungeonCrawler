@@ -1,6 +1,5 @@
 using Animations;
 using Gameplay.Combat;
-using Gameplay.Combat.Data;
 using Gameplay.Combat.SkillSelection;
 using Gameplay.Equipment;
 using Gameplay.Facades;
@@ -36,7 +35,7 @@ namespace Gameplay.Units
         public UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; private set; }
 
         public UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; private set; }
-        
+
         public UnitInventoryData UnitInventoryData { get; private set; }
 
         public UnitEquipmentData UnitEquipmentData { get; private set; }
@@ -86,8 +85,8 @@ namespace Gameplay.Units
 
             UnitSkillsData.AssignSkills(unitData);
             UnitInventoryData.AddItems(unitData.Items);
-            
-            foreach (var statusEffectData in unitData.StatusEffects) 
+
+            foreach (var statusEffectData in unitData.StatusEffects)
                 UnitHeldStatusEffectsData.Add(statusEffectData);
 
             if (unitData.BaseWeapon)

@@ -5,19 +5,17 @@ using Gameplay.Player;
 using Gameplay.Units;
 using StateMachine.Core;
 using UI.BattleMenu;
-using UniRx;
 
 namespace StateMachine.BattleMenu
 {
     public abstract class BattleMenuState : BaseState<BattleMenuState, BattleMenuStateMachine>, IUiInputHandler
     {
+        private readonly PlayerInputProvider _playerInputProvider;
         protected readonly CombatService CombatService;
-        protected readonly PlayerUnit Player;
         protected readonly List<MenuItemData> MenuItems = new();
 
         public readonly MenuItemsUpdater MenuItemsUpdater;
-
-        private readonly PlayerInputProvider _playerInputProvider;
+        protected readonly PlayerUnit Player;
 
         public BattleMenuState(PlayerUnit player,
             PlayerInputProvider playerInputProvider,
@@ -28,6 +26,30 @@ namespace StateMachine.BattleMenu
             _playerInputProvider = playerInputProvider;
             MenuItemsUpdater = menuItemsUpdater;
             CombatService = combatService;
+        }
+
+        public virtual void OnUISubmit()
+        {
+        }
+
+        public virtual void OnUIBack()
+        {
+        }
+
+        public virtual void OnUIUp()
+        {
+        }
+
+        public virtual void OnUIDown()
+        {
+        }
+
+        public virtual void OnUILeft()
+        {
+        }
+
+        public virtual void OnUIRight()
+        {
         }
 
         public override UniTask EnterState()
@@ -51,17 +73,5 @@ namespace StateMachine.BattleMenu
         }
 
         public abstract void InitMenuItems();
-        
-        public virtual void OnUISubmit() { }
-
-        public virtual void OnUIBack() { }
-
-        public virtual void OnUIUp() { }
-
-        public virtual void OnUIDown() { }
-
-        public virtual void OnUILeft() { }
-
-        public virtual void OnUIRight() { }
     }
 }

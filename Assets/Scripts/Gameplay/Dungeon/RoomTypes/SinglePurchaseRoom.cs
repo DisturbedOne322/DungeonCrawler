@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Player;
 using PopupControllers;
 using Zenject;
 
@@ -14,7 +13,7 @@ namespace Gameplay.Dungeon.RoomTypes
         {
             _shopController = shopController;
         }
-        
+
         public override async UniTask ClearRoom()
         {
             await _shopController.RunShop();

@@ -15,12 +15,17 @@ namespace UI.Gameplay
         [SerializeField] private TextMeshProUGUI _newBalanceText;
         [SerializeField] private float _fadeDuration = 0.25f;
         [SerializeField] private float _transferDuration = 1.5f;
-        
-        private Sequence _sequence;
         private readonly StringBuilder _builder = new(8);
-        
+
         private IDisposable _disposable;
-        
+
+        private Sequence _sequence;
+
+        private void OnDestroy()
+        {
+            _disposable.Dispose();
+        }
+
         [Inject]
         private void Construct(PlayerUnit playerUnit)
         {
@@ -39,19 +44,14 @@ namespace UI.Gameplay
                 });
         }
 
-        private void OnDestroy()
-        {
-            _disposable.Dispose();
-        }
-
         private void ShowBalanceChange(int newBalance, int delta)
         {
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
 
-            int startBalance = newBalance - delta;
-            int absDelta = Mathf.Abs(delta);
-            bool isGain = delta > 0;
+            var startBalance = newBalance - delta;
+            var absDelta = Mathf.Abs(delta);
+            var isGain = delta > 0;
 
             _currentBalanceText.text = startBalance.ToString();
             _newBalanceText.alpha = 0f;
@@ -62,8 +62,8 @@ namespace UI.Gameplay
             _sequence.Append(
                 DOTween.To(() => 0f, t =>
                     {
-                        int displayedChange = Mathf.RoundToInt(absDelta * (1f - t));
-                        int displayedBalance = Mathf.RoundToInt(startBalance + delta * t);
+                        var displayedChange = Mathf.RoundToInt(absDelta * (1f - t));
+                        var displayedBalance = Mathf.RoundToInt(startBalance + delta * t);
 
                         UpdateChangeText(isGain, displayedChange);
                         _currentBalanceText.SetText(displayedBalance.ToString());

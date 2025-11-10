@@ -31,20 +31,44 @@ namespace Gameplay.Combat.Services
         public IObservable<TurnData> OnTurnEnded => _onTurnEnded;
 
 
-        public void InvokeCombatStarted(IGameUnit enemy) => _onCombatStarted.OnNext(enemy);
+        public void InvokeCombatStarted(IGameUnit enemy)
+        {
+            _onCombatStarted.OnNext(enemy);
+        }
 
-        public void InvokeCombatEnded(IGameUnit enemy) => _onCombatEnded.OnNext(enemy);
+        public void InvokeCombatEnded(IGameUnit enemy)
+        {
+            _onCombatEnded.OnNext(enemy);
+        }
 
-        public void InvokeHitDealt(HitEventData data) => _onHitDealt.OnNext(data);
+        public void InvokeHitDealt(HitEventData data)
+        {
+            _onHitDealt.OnNext(data);
+        }
 
-        public void InvokeSkillUsed(SkillUsedData data) => _onSkillUsed.OnNext(data);
+        public void InvokeSkillUsed(SkillUsedData data)
+        {
+            _onSkillUsed.OnNext(data);
+        }
 
-        public void InvokeHealed(HealEventData data) => _onHealed.OnNext(data);
+        public void InvokeHealed(HealEventData data)
+        {
+            _onHealed.OnNext(data);
+        }
 
-        public void InvokeEvaded(EvadeEventData eventData) => _onEvaded.OnNext(eventData);
+        public void InvokeEvaded(EvadeEventData eventData)
+        {
+            _onEvaded.OnNext(eventData);
+        }
 
-        public void InvokeTurnStarted(TurnData data) => _onTurnStarted.OnNext(data);
+        public void InvokeTurnStarted(TurnData data)
+        {
+            _onTurnStarted.OnNext(data);
+        }
 
-        public void InvokeTurnEnded(TurnData data) => _onTurnEnded.OnNext(data);
+        public void InvokeTurnEnded(TurnData data)
+        {
+            _onTurnEnded.OnNext(data);
+        }
     }
 }

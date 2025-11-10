@@ -13,13 +13,14 @@ namespace StateMachine.Shop
     public class EquipmentShopState : ItemsShopState
     {
         private readonly PlayerUnit _player;
-        public EquipmentShopState( 
-            PlayerInputProvider playerInputProvider, 
-            MenuItemsUpdater menuItemsUpdater, 
-            ShopItemsProvider shopItemsProvider, 
-            BalanceService balanceService, 
+
+        public EquipmentShopState(
+            PlayerInputProvider playerInputProvider,
+            MenuItemsUpdater menuItemsUpdater,
+            ShopItemsProvider shopItemsProvider,
+            BalanceService balanceService,
             ItemsDistributor itemsDistributor,
-            PlayerUnit player) : 
+            PlayerUnit player) :
             base(playerInputProvider, menuItemsUpdater, shopItemsProvider, balanceService, itemsDistributor)
         {
             _player = player;
@@ -30,22 +31,20 @@ namespace StateMachine.Shop
             var itemsSelection = ShopItemsProvider.CreateEquipmentForSale();
 
             foreach (var model in itemsSelection)
-            {
                 MenuItems.Add(
                     new SoldItemMenuItemData(
                         model,
-                        () => IsSelectable(model), 
+                        () => IsSelectable(model),
                         () => PurchaseItem(model).Forget()
                     ));
-            }
         }
 
         protected override bool IsSelectable(SoldItemModel model)
         {
-            bool purchasable = base.IsSelectable(model);
-            bool isAlreadyPurchased =
+            var purchasable = base.IsSelectable(model);
+            var isAlreadyPurchased =
                 UnitInventoryHelper.HasItem(_player, model.ItemData.Item);
-            
+
             return purchasable && !isAlreadyPurchased;
         }
     }

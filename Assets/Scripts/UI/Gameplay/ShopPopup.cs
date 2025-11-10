@@ -20,7 +20,7 @@ namespace UI.Gameplay
         private MenuItemViewFactory _menuFactory;
 
         private ShopStateMachine _stateMachine;
-        
+
         private void OnDestroy()
         {
             _disposables.Dispose();
@@ -61,7 +61,7 @@ namespace UI.Gameplay
         private void CreateMenu(BaseShopState state)
         {
             var updater = state.MenuItemsUpdater;
-            
+
             _currentPage = _menuFactory.CreatePage();
             _currentPage.transform.SetParent(_pagesParent, false);
             _currentPage.SetItems(_menuFactory.CreateViewsForData(updater.MenuItems), updater);

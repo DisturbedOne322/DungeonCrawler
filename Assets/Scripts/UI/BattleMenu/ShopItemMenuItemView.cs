@@ -1,4 +1,3 @@
-using System;
 using Gameplay.Dungeon.Rooms.BaseSellableItems;
 using TMPro;
 using UniRx;
@@ -13,7 +12,7 @@ namespace UI.BattleMenu
         [SerializeField] private TextMeshProUGUI _descText;
         [SerializeField] private TextMeshProUGUI _amountText;
         [SerializeField] private TextMeshProUGUI _priceText;
-        
+
         public void SetData(SoldItemMenuItemData data)
         {
             _image.sprite = data.SoldItemModel.ItemData.Item.Icon;

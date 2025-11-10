@@ -12,7 +12,7 @@ namespace Gameplay.StatusEffects.Core
         {
             _combatData = combatData;
         }
-        
+
         public void AddOffensiveBuff(HitBuffData buffData)
         {
             buffData.CreateInstance().Apply(_combatData.ActiveUnit, _combatData.OtherUnit);

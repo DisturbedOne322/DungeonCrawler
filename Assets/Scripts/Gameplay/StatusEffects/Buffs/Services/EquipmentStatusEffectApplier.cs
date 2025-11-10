@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Gameplay.Combat.Data;
 using Gameplay.Equipment;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
@@ -10,14 +9,13 @@ namespace Gameplay.StatusEffects.Buffs.Services
 {
     public class EquipmentStatusEffectApplier : IDisposable
     {
-        private readonly GameUnit _unit;
+        private readonly Dictionary<BaseStatusEffectData, BaseStatusEffectInstance> _appliedStatusEffects = new();
         private readonly CompositeDisposable _compositeDisposable = new();
+        private readonly GameUnit _unit;
         private readonly UnitHeldStatusEffectsData _unitHeldStatusEffectsData;
 
-        private readonly Dictionary<BaseStatusEffectData, BaseStatusEffectInstance> _appliedStatusEffects = new();
-        
         public EquipmentStatusEffectApplier(GameUnit unit,
-            UnitHeldStatusEffectsData unitHeldStatusEffectsData, 
+            UnitHeldStatusEffectsData unitHeldStatusEffectsData,
             UnitEquipmentData unitEquipmentData)
         {
             _unit = unit;
@@ -29,8 +27,11 @@ namespace Gameplay.StatusEffects.Buffs.Services
             _compositeDisposable.Add(unitEquipmentData.OnArmorRemoved.Subscribe(RemoveStatusEffectsFromEquipment));
         }
 
-        public void Dispose() => _compositeDisposable.Dispose();
-        
+        public void Dispose()
+        {
+            _compositeDisposable.Dispose();
+        }
+
         private void EquipStatusEffectsFromEquipment(BaseEquipmentPiece equipmentPiece)
         {
             foreach (var statusEffect in equipmentPiece.StatusEffects)
@@ -50,21 +51,21 @@ namespace Gameplay.StatusEffects.Buffs.Services
                     TryRemovePermanentStatusEffect(statusEffect);
                 }
         }
-        
+
         private void TryApplyPermanentStatusEffect(BaseStatusEffectData data)
         {
-            if(!IsPermanentStatusEffect(data))
+            if (!IsPermanentStatusEffect(data))
                 return;
 
             var instance = data.CreateInstance();
             instance.Apply(_unit, null);
-            
+
             _appliedStatusEffects.Add(data, instance);
         }
-        
+
         private void TryRemovePermanentStatusEffect(BaseStatusEffectData data)
         {
-            if(!IsPermanentStatusEffect(data))
+            if (!IsPermanentStatusEffect(data))
                 return;
 
             var instance = _appliedStatusEffects[data];
@@ -75,9 +76,9 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
         private bool IsPermanentStatusEffect(BaseStatusEffectData data)
         {
-            if(data.StatusEffectDurationData.EffectExpirationType != StatusEffectExpirationType.Permanent)
+            if (data.StatusEffectDurationData.EffectExpirationType != StatusEffectExpirationType.Permanent)
                 return false;
-            
+
             return data.TriggerType == StatusEffectTriggerType.OnObtained;
         }
     }

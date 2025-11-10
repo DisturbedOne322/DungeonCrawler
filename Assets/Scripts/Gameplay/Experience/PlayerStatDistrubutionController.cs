@@ -15,9 +15,9 @@ namespace Gameplay.Experience
 
         private CompositeDisposable _disposables;
 
-        private List<int> _originalStats;
-
         private MenuItemsUpdater _menuItemsUpdater;
+
+        private List<int> _originalStats;
 
         private ReactiveProperty<int> _statPoints;
 
@@ -51,14 +51,29 @@ namespace Gameplay.Experience
 
         private void InitializeMenu(List<MenuItemData> menuItems)
         {
-            _menuItemsUpdater = new ();
+            _menuItemsUpdater = new MenuItemsUpdater();
             _menuItemsUpdater.SetMenuItems(menuItems);
         }
-        
-        public override void OnUIDown() => _menuItemsUpdater.UpdateSelection(+1);
-        public override void OnUIUp() => _menuItemsUpdater.UpdateSelection(-1);
-        public override void OnUILeft() => TryIncreaseStat(-1);
-        public override void OnUIRight() => TryIncreaseStat(+1);
+
+        public override void OnUIDown()
+        {
+            _menuItemsUpdater.UpdateSelection(+1);
+        }
+
+        public override void OnUIUp()
+        {
+            _menuItemsUpdater.UpdateSelection(-1);
+        }
+
+        public override void OnUILeft()
+        {
+            TryIncreaseStat(-1);
+        }
+
+        public override void OnUIRight()
+        {
+            TryIncreaseStat(+1);
+        }
 
         private void TryIncreaseStat(int increment)
         {

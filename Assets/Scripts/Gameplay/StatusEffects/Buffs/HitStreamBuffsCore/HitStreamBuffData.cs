@@ -10,8 +10,11 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
 
         public HitStreamBuffPriorityType Priority => _priority;
 
-        public override BaseStatusEffectInstance CreateInstance() => HitStreamBuffInstance.Create(this);
-
         public abstract void ModifyHitStream(HitDataStream hitDataStream);
+
+        public override BaseStatusEffectInstance CreateInstance()
+        {
+            return HitStreamBuffInstance.Create(this);
+        }
     }
 }

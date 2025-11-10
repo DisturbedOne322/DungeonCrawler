@@ -1,6 +1,7 @@
 using Data;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
+using UniRx;
 
 namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 {
@@ -13,7 +14,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
         {
             return new StatBuffInstance
             {
-                TurnDurationLeft = new(buffDataData.StatusEffectDurationData.TurnDurations),
+                TurnDurationLeft = new IntReactiveProperty(buffDataData.StatusEffectDurationData.TurnDurations),
                 EffectExpirationType = buffDataData.StatusEffectDurationData.EffectExpirationType,
                 StatType = buffDataData.BuffedStatType,
                 StatusEffectData = buffDataData,
@@ -24,7 +25,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
         public override void Apply(IEntity activeUnit, IEntity otherUnit)
         {
             AffectedUnit = activeUnit;
-            
+
             ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, ValueChange);
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
         }
@@ -32,7 +33,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
         public override void Revert()
         {
             UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
-            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);        
+            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
         }
     }
 }

@@ -10,11 +10,11 @@ namespace Gameplay.Units
 
         public PlayerMoveAnimator PlayerMoveAnimator => _playerMoveAnimator;
         public Transform CameraPivot => _cameraPivot;
-        
+
         public override void InitializeUnit(UnitData unitData)
         {
             base.InitializeUnit(unitData);
-            
+
             if (unitData is PlayerUnitData playerUnitData)
                 UnitInventoryData.Coins.Value += playerUnitData.StartingBalance;
         }

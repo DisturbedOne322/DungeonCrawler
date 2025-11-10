@@ -1,9 +1,7 @@
 using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.Core;
-using AssetManagement.Configs;
 using AssetManagement.Scenes;
 using Bootstrap;
-using Gameplay.Configs;
 using StateMachine.App;
 using Zenject;
 

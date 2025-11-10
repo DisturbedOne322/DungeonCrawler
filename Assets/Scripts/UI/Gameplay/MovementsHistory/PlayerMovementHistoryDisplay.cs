@@ -3,10 +3,9 @@ using AssetManagement.AssetProviders;
 using AssetManagement.Configs;
 using Data;
 using DG.Tweening;
-using Gameplay.Dungeon.Data;
+using UniRx;
 using UnityEngine;
 using Zenject;
-using UniRx;
 
 namespace UI.Gameplay.MovementsHistory
 {
@@ -26,15 +25,14 @@ namespace UI.Gameplay.MovementsHistory
         private void Construct(PlayerMovementHistory history, DungeonVisualsConfigProvider dungeonVisualsConfigProvider)
         {
             _dungeonVisualsConfig = dungeonVisualsConfigProvider.GetConfig();
-            
+
             for (var i = 0; i < _maximumRoomsHistory; i++)
             {
                 var display = Instantiate(_roomIconDisplay, _parent);
                 _activeDisplays.AddLast(display);
             }
 
-            history.RoomsHistory.ObserveAdd().
-                Subscribe(newRoom => { ShowRoomDisplay(newRoom.Value); })
+            history.RoomsHistory.ObserveAdd().Subscribe(newRoom => { ShowRoomDisplay(newRoom.Value); })
                 .AddTo(gameObject);
         }
 
@@ -48,7 +46,7 @@ namespace UI.Gameplay.MovementsHistory
             {
                 if (_dungeonVisualsConfig.TryGetRoomIcon(roomType, out var roomIcon))
                     display.SetIcon(roomIcon);
-                
+
                 display.transform.localScale = Vector3.zero;
                 display.transform.SetAsFirstSibling();
                 display.transform.DOScale(Vector3.one, _scaleUpDuration).SetEase(Ease.OutBack).SetLink(gameObject);
@@ -56,6 +54,5 @@ namespace UI.Gameplay.MovementsHistory
 
             _activeDisplays.AddFirst(display);
         }
-        
     }
 }

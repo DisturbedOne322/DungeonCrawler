@@ -11,7 +11,6 @@ namespace StateMachine.Shop
 
         public ShopStateMachine(IEnumerable<BaseShopState> states) : base(states)
         {
-            
         }
 
         public void OpenShopMenu()

@@ -1,5 +1,4 @@
 using Gameplay.Combat;
-using Gameplay.Combat.Data;
 using Gameplay.Equipment;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.Units;
@@ -11,11 +10,11 @@ namespace Installers.UnitInstallers
     public class UnitInstaller : MonoInstaller
     {
         [SerializeField] private GameUnit _gameUnit;
-        
+
         public override void InstallBindings()
         {
             Container.BindInstance(_gameUnit).AsSingle();
-            
+
             Container.Bind<UnitHealthData>().AsSingle();
             Container.Bind<UnitHealthController>().AsSingle();
 
@@ -29,7 +28,7 @@ namespace Installers.UnitInstallers
             Container.Bind<UnitHeldStatusEffectsData>().AsSingle();
             Container.Bind<UnitActiveStatusEffectsData>().AsSingle();
             Container.Bind<UnitEquipmentData>().AsSingle();
-            
+
             Container.Bind<EquipmentStatusEffectApplier>().AsSingle().NonLazy();
             Container.Bind<EquipmentStatBuffsApplier>().AsSingle().NonLazy();
         }

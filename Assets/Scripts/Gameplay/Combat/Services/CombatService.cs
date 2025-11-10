@@ -37,7 +37,10 @@ namespace Gameplay.Combat.Services
 
         public CombatStatusEffectsService CombatStatusEffectsService { get; }
 
-        public bool IsPlayerTurn() => ActiveUnit is PlayerUnit;
+        public bool IsPlayerTurn()
+        {
+            return ActiveUnit is PlayerUnit;
+        }
 
         public void StartCombat(EnemyUnit enemy)
         {
@@ -54,12 +57,12 @@ namespace Gameplay.Combat.Services
         {
             _combatData.UpdateCurrentTurnUnit();
             _unitRegenerationService.RegenerateUnitInBattle(ActiveUnit);
-            
+
             _combatEventsBus.InvokeTurnStarted(new TurnData
             {
                 TurnCount = TurnCount,
                 ActiveUnit = ActiveUnit,
-                OtherUnit = OtherUnit,
+                OtherUnit = OtherUnit
             });
         }
 
@@ -72,26 +75,42 @@ namespace Gameplay.Combat.Services
             });
         }
 
-        public void HealActiveUnit(int amount) => HealUnit(ActiveUnit, amount);
+        public void HealActiveUnit(int amount)
+        {
+            HealUnit(ActiveUnit, amount);
+        }
 
-        public void DealDamageToActiveUnit(HitDataStream hitDataStream, int index) => DealDamageToUnit(ActiveUnit, ActiveUnit, hitDataStream, index);
+        public void DealDamageToActiveUnit(HitDataStream hitDataStream, int index)
+        {
+            DealDamageToUnit(ActiveUnit, ActiveUnit, hitDataStream, index);
+        }
 
-        public void DealDamageToActiveUnit(HitData hitData) => DealDamageToUnit(ActiveUnit, ActiveUnit, hitData);
-        
-        public void DealDamageToOtherUnit(HitDataStream hitDataStream, int index) => DealDamageToUnit(ActiveUnit, OtherUnit, hitDataStream, index);
-        public void DealDamageToOtherUnit(HitData hitData) => DealDamageToUnit(ActiveUnit, OtherUnit, hitData);
+        public void DealDamageToActiveUnit(HitData hitData)
+        {
+            DealDamageToUnit(ActiveUnit, ActiveUnit, hitData);
+        }
+
+        public void DealDamageToOtherUnit(HitDataStream hitDataStream, int index)
+        {
+            DealDamageToUnit(ActiveUnit, OtherUnit, hitDataStream, index);
+        }
+
+        public void DealDamageToOtherUnit(HitData hitData)
+        {
+            DealDamageToUnit(ActiveUnit, OtherUnit, hitData);
+        }
 
         public HitDataStream CreateHitsStream(SkillData skillData)
         {
             HitDataStream hitDataStream = new(skillData);
 
             _buffsCalculationService.ApplyStructuralHitStreamBuffs(ActiveUnit, hitDataStream);
-            
+
             var hits = Random.Range(hitDataStream.MinHits, hitDataStream.MaxHits);
             hitDataStream.CreateHitDataList(hits);
 
             _buffsCalculationService.BuffHitStream(ActiveUnit, hitDataStream);
-            
+
             return hitDataStream;
         }
 
@@ -99,7 +118,7 @@ namespace Gameplay.Combat.Services
         {
             var hitData = hitDataStream.Hits[index];
             DealDamageToUnit(attacker, target, hitData);
-            
+
             if (index == hitDataStream.Hits.Count - 1)
                 _combatEventsBus.InvokeSkillUsed(new SkillUsedData
                 {
@@ -108,16 +127,16 @@ namespace Gameplay.Combat.Services
                     HitDataStream = hitDataStream
                 });
         }
-        
+
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitData hitData)
         {
             ProcessHitData(attacker, target, hitData);
-            
+
             if (hitData.Missed)
                 return;
 
-            float hpPercentBeforeHit = HealthHelper.GetHealthPercent(target);
-            
+            var hpPercentBeforeHit = HealthHelper.GetHealthPercent(target);
+
             target.UnitHealthController.TakeDamage(hitData.Damage);
 
             _combatEventsBus.InvokeHitDealt(new HitEventData
@@ -137,10 +156,10 @@ namespace Gameplay.Combat.Services
             {
                 hitData.Missed = true;
                 defender.EvadeAnimator.PlayEvadeAnimation().Forget();
-                _combatEventsBus.InvokeEvaded(new()
+                _combatEventsBus.InvokeEvaded(new EvadeEventData
                 {
                     Attacker = attacker,
-                    Target = defender,
+                    Target = defender
                 });
                 return;
             }
@@ -158,10 +177,10 @@ namespace Gameplay.Combat.Services
         private void SetCritical(in DamageContext damageContext)
         {
             var hitData = damageContext.HitData;
-            
-            if(hitData.IsCritical)
+
+            if (hitData.IsCritical)
                 return;
-            
+
             var finalCritChance = _combatFormulaService.GetFinalCritChance(damageContext.Attacker, damageContext);
             hitData.IsCritical = Random.value < finalCritChance;
         }
@@ -177,9 +196,9 @@ namespace Gameplay.Combat.Services
             target.UnitHealthController.Heal(amount);
 
             _combatEventsBus.InvokeHealed(new HealEventData
-            { 
+            {
                 Target = target,
-                Amount = amount,
+                Amount = amount
             });
         }
     }

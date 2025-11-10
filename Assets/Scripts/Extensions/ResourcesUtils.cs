@@ -2,8 +2,10 @@
 using UnityEngine.Rendering;
 #endif
 
-namespace Extensions {
-    public static class ResourcesUtils {
+namespace Extensions
+{
+    public static class ResourcesUtils
+    {
 #if ENABLED_UNITY_URP
         /// <summary>
         /// Load volume profile from given path.

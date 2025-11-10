@@ -26,23 +26,23 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             switch (type)
             {
                 case StatType.Constitution:
-                    applied = ApplyIntClamped(stats.Constitution, intDelta, minValue: 1);
+                    applied = ApplyIntClamped(stats.Constitution, intDelta, 1);
                     return true;
 
                 case StatType.Strength:
-                    applied = ApplyIntClamped(stats.Strength, intDelta, minValue: 1);
+                    applied = ApplyIntClamped(stats.Strength, intDelta, 1);
                     return true;
 
                 case StatType.Dexterity:
-                    applied = ApplyIntClamped(stats.Dexterity, intDelta, minValue: 1);
+                    applied = ApplyIntClamped(stats.Dexterity, intDelta, 1);
                     return true;
 
                 case StatType.Intelligence:
-                    applied = ApplyIntClamped(stats.Intelligence, intDelta, minValue: 1);
+                    applied = ApplyIntClamped(stats.Intelligence, intDelta, 1);
                     return true;
 
                 case StatType.Luck:
-                    applied = ApplyIntClamped(stats.Luck, intDelta, minValue: 1);
+                    applied = ApplyIntClamped(stats.Luck, intDelta, 1);
                     return true;
             }
 
@@ -57,23 +57,23 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             switch (type)
             {
                 case StatType.CriticalChance:
-                    applied = ApplyFloatClamped(bonus.CritChanceBonus, delta, minValue: 0f);
+                    applied = ApplyFloatClamped(bonus.CritChanceBonus, delta, 0f);
                     return true;
 
                 case StatType.CriticalDamage:
-                    applied = ApplyFloatClamped(bonus.CritDamageBonus, delta, minValue: 0f);
+                    applied = ApplyFloatClamped(bonus.CritDamageBonus, delta, 0f);
                     return true;
 
                 case StatType.HealthRegen:
-                    applied = ApplyIntClamped(bonus.HealthRegenBonus, Mathf.RoundToInt(delta), minValue: 0);
+                    applied = ApplyIntClamped(bonus.HealthRegenBonus, Mathf.RoundToInt(delta), 0);
                     return true;
 
                 case StatType.ManaRegen:
-                    applied = ApplyIntClamped(bonus.ManaRegenBonus, Mathf.RoundToInt(delta), minValue: 0);
+                    applied = ApplyIntClamped(bonus.ManaRegenBonus, Mathf.RoundToInt(delta), 0);
                     return true;
 
                 case StatType.PenetrationRatio:
-                    applied = ApplyFloatClamped(bonus.PenetrationRatio, delta, minValue: 0f);
+                    applied = ApplyFloatClamped(bonus.PenetrationRatio, delta, 0f);
                     return true;
             }
 
@@ -127,7 +127,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 
             var appliedInt = newMax - oldMax;
 
-            if (appliedInt != 0) 
+            if (appliedInt != 0)
                 manaController.IncreaseMaxMana(appliedInt);
 
             return appliedInt;
@@ -135,7 +135,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 
         private static float ApplyIntClamped(ReactiveProperty<int> prop, int intDelta, int minValue)
         {
-            int old = prop.Value;
+            var old = prop.Value;
             var requestedNew = old + intDelta;
             var newVal = Mathf.Max(minValue, requestedNew);
             prop.Value = newVal;
@@ -144,7 +144,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 
         private static float ApplyFloatClamped(ReactiveProperty<float> prop, float delta, float minValue)
         {
-            float old = prop.Value;
+            var old = prop.Value;
             var newVal = Mathf.Max(minValue, old + delta);
             prop.Value = newVal;
             return newVal - old;

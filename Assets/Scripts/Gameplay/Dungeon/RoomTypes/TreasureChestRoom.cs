@@ -9,9 +9,9 @@ namespace Gameplay.Dungeon.RoomTypes
     public class TreasureChestRoom : StopRoom
     {
         [SerializeField] private ChestAnimator _chestAnimator;
-        
+
         public override RoomType RoomType => RoomType.TreasureChest;
-        
+
         public override void ResetRoom()
         {
             _chestAnimator.ResetChest();

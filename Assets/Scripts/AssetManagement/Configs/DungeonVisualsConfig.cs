@@ -5,17 +5,18 @@ using UnityEngine;
 
 namespace AssetManagement.Configs
 {
-    [CreateAssetMenu(fileName = "DungeonVisualsDatabaseConfig", menuName = "Visuals/Dungeon/DungeonVisualsDatabaseConfig")]
+    [CreateAssetMenu(fileName = "DungeonVisualsDatabaseConfig",
+        menuName = "Visuals/Dungeon/DungeonVisualsDatabaseConfig")]
     public class DungeonVisualsConfig : BaseConfig
     {
-        [SerializedDictionary("ROOM TYPE", "ROOM ICON")]
-        [SerializeField] private SerializedDictionary<RoomType, Sprite> _typeToIconDict;
+        [SerializedDictionary("ROOM TYPE", "ROOM ICON")] [SerializeField]
+        private SerializedDictionary<RoomType, Sprite> _typeToIconDict;
 
         public bool TryGetRoomIcon(RoomType roomType, out Sprite icon)
         {
-            if(!_typeToIconDict.TryGetValue(roomType, out icon) || !icon)
+            if (!_typeToIconDict.TryGetValue(roomType, out icon) || !icon)
                 throw new Exception($"No icon registered for room type {roomType}");
-            
+
             return true;
         }
     }

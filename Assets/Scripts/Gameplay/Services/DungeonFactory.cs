@@ -5,7 +5,6 @@ using Data;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Data;
-using Gameplay.Dungeon.Rooms;
 using Gameplay.Dungeon.RoomTypes;
 using UnityEngine;
 using Zenject;
@@ -16,9 +15,9 @@ namespace Gameplay.Services
     {
         private readonly BaseConfigProvider<GameplayConfig> _configProvider;
         private readonly ContainerFactory _containerFactory;
-        private readonly DungeonRoomsPool _roomsPool;
-        
+
         private readonly DungeonRoomsDatabase _dungeonRoomsDatabase;
+        private readonly DungeonRoomsPool _roomsPool;
 
         private Transform _parent;
 
@@ -27,7 +26,7 @@ namespace Gameplay.Services
         {
             _containerFactory = containerFactory;
             _roomsPool = roomsPool;
-            
+
             _dungeonRoomsDatabase = configsProvider.GetConfig<DungeonRoomsDatabase>();
         }
 

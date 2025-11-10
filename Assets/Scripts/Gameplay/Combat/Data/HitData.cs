@@ -4,41 +4,41 @@ namespace Gameplay.Combat.Data
     {
         public readonly int HitIndex;
 
-        public int Damage;
-        
-        public float CritChance;
+        public bool CanBeBuffed;
         public bool CanCrit;
 
-        public float HitChance;
-        public bool IsUnavoidable;
+        public float CritChance;
 
-        public float PenetrationRatio;
-        public bool IsPiercing;
+        public int Damage;
 
         public DamageType DamageType;
-        
-        public bool CanBeBuffed;
-        
+
+        public float HitChance;
+
         public bool IsCritical;
+        public bool IsPiercing;
+        public bool IsUnavoidable;
         public bool Missed;
+
+        public float PenetrationRatio;
 
         public HitData(SkillData skillData, int index)
         {
             HitIndex = index;
 
             Damage = skillData.BaseDamage;
-            
+
             CritChance = skillData.BaseCritChance;
             CanCrit = skillData.CanCrit;
-            
+
             HitChance = skillData.BaseHitChance;
             IsUnavoidable = skillData.IsUnavoidable;
-            
+
             PenetrationRatio = skillData.PenetrationRatio;
             IsPiercing = skillData.IsPiercing;
 
             DamageType = skillData.DamageType;
-            
+
             CanBeBuffed = skillData.CanBeBuffed;
         }
     }

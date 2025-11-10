@@ -11,7 +11,7 @@ namespace AssetManagement.AssetProviders
     {
         private readonly Dictionary<Type, TConfigType> _configsDict = new();
         private readonly List<string> _labels;
-        
+
         public LabeledConfigsProvider(IAssetLoader assetLoader, params string[] labels) : base(assetLoader)
         {
             _labels = new List<string>(labels);

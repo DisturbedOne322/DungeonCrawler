@@ -7,8 +7,8 @@ namespace AssetManagement.AssetProviders
 {
     public class NamedConfigProvider<TConfigType> : BaseConfigProvider<TConfigType> where TConfigType : BaseConfig
     {
-        private TConfigType _loadedConfig;
         private readonly string _configName;
+        private TConfigType _loadedConfig;
 
         public NamedConfigProvider(IAssetLoader assetLoader, string configName)
             : base(assetLoader)
@@ -27,6 +27,9 @@ namespace AssetManagement.AssetProviders
                 Addressables.Release(_loadedConfig);
         }
 
-        public TConfigType GetConfig() => _loadedConfig;
+        public TConfigType GetConfig()
+        {
+            return _loadedConfig;
+        }
     }
 }

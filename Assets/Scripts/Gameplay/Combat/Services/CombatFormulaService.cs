@@ -21,7 +21,7 @@ namespace Gameplay.Combat.Services
 
             var reducedDamage = damageContext.HitData.Damage * damageReductionModifier;
             var clampedDamage = Mathf.Max(Mathf.RoundToInt(reducedDamage), 0);
-            
+
             damageContext.HitData.Damage = clampedDamage;
         }
 
@@ -45,7 +45,7 @@ namespace Gameplay.Combat.Services
                                 StatConstants.MaxStatPoints;
             var chanceFromLuck = Mathf.Clamp(luck, 0, StatConstants.MaxStatPoints) * _config.MaxLuckCritInfluence /
                                  StatConstants.MaxStatPoints;
-            
+
             finalCritChance = damageContext.HitData.CritChance +
                               attacker.UnitBonusStatsData.CritChanceBonus.Value + chanceFromDex + chanceFromLuck;
             return Mathf.Clamp01(finalCritChance);
@@ -77,19 +77,19 @@ namespace Gameplay.Combat.Services
         private float GetDamageReductionFinal(in DamageContext damageContext)
         {
             var attacker = damageContext.Attacker;
-            float penRatio = attacker.UnitBonusStatsData.PenetrationRatio.Value;
-            
+            var penRatio = attacker.UnitBonusStatsData.PenetrationRatio.Value;
+
             var defender = damageContext.Defender;
-            
+
             var constitutionStat = defender.UnitStatsData.Constitution.Value;
-            float constitutionInfluence = constitutionStat
-                                          * _config.MaxConstitutionInfluence
-                                          / StatConstants.MaxStatPoints;
+            var constitutionInfluence = constitutionStat
+                                        * _config.MaxConstitutionInfluence
+                                        / StatConstants.MaxStatPoints;
 
             var damageReductionModifier = 1 - constitutionInfluence * (1 - penRatio);
             return damageReductionModifier;
         }
-        
+
         private float GetAttackerEffectiveHit(IEntity unit)
         {
             var stats = unit.UnitStatsData;

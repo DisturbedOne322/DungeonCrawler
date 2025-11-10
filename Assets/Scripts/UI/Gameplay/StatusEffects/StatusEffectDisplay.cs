@@ -13,11 +13,14 @@ namespace UI.Gameplay.StatusEffects
         [SerializeField] private TextMeshProUGUI _stacksText;
         [SerializeField] private TextMeshProUGUI _turnsLeftText;
         [SerializeField] private TextMeshProUGUI _effectNameText;
-        
+
         private IDisposable _stacksSubscription;
         private IDisposable _turnsLeftSubscription;
 
-        private void OnDestroy() => Dispose();
+        private void OnDestroy()
+        {
+            Dispose();
+        }
 
         public void SetData(BaseStatusEffectInstance instance)
         {
@@ -28,7 +31,10 @@ namespace UI.Gameplay.StatusEffects
             InitDurationDisplay(instance);
         }
 
-        private void SetIcon(BaseStatusEffectInstance instance) => _statusEffectIcon.sprite = instance.StatusEffectData.Icon;
+        private void SetIcon(BaseStatusEffectInstance instance)
+        {
+            _statusEffectIcon.sprite = instance.StatusEffectData.Icon;
+        }
 
         private void InitStacksDisplay(BaseStatusEffectInstance instance)
         {
@@ -38,7 +44,9 @@ namespace UI.Gameplay.StatusEffects
                 _stacksSubscription = instance.Stacks.Subscribe(UpdateStacks);
             }
             else
+            {
                 _stacksText.gameObject.SetActive(false);
+            }
         }
 
         private void InitDurationDisplay(BaseStatusEffectInstance instance)
@@ -49,24 +57,33 @@ namespace UI.Gameplay.StatusEffects
                 _turnsLeftSubscription = instance.TurnDurationLeft.Subscribe(UpdateDuration);
             }
             else
+            {
                 _turnsLeftText.gameObject.SetActive(false);
+            }
         }
 
-        private void UpdateStacks(int stacks) => _stacksText.text = "X" + stacks;
+        private void UpdateStacks(int stacks)
+        {
+            _stacksText.text = "X" + stacks;
+        }
 
         private void UpdateDuration(int duration)
         {
-            if(duration == 1)
+            if (duration == 1)
                 _turnsLeftText.text = duration + " turn.";
             else
                 _turnsLeftText.text = duration + " turns.";
         }
 
-        private bool ShouldShowStacks(BaseStatusEffectInstance instance) => 
-            instance.StatusEffectData.MaxStacks > 1;
-        
-        private bool ShouldShowDuration(BaseStatusEffectInstance instance) => 
-            instance.EffectExpirationType == StatusEffectExpirationType.TurnCount;
+        private bool ShouldShowStacks(BaseStatusEffectInstance instance)
+        {
+            return instance.StatusEffectData.MaxStacks > 1;
+        }
+
+        private bool ShouldShowDuration(BaseStatusEffectInstance instance)
+        {
+            return instance.EffectExpirationType == StatusEffectExpirationType.TurnCount;
+        }
 
         private void Dispose()
         {

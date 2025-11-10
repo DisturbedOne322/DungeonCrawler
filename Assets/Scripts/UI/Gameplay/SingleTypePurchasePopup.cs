@@ -10,10 +10,10 @@ namespace UI.Gameplay
     {
         [SerializeField] private TextMeshProUGUI _shopNameText;
         [SerializeField] private RectTransform _pageParent;
-        
+
         private MenuItemsUpdater _menuItemsUpdater;
         private MenuItemViewFactory _menuItemViewFactory;
-        
+
         [Inject]
         private void Construct(MenuItemViewFactory menuItemViewFactory)
         {
@@ -24,12 +24,15 @@ namespace UI.Gameplay
         {
             _menuItemsUpdater = menuItemsUpdater;
             CreateMenu();
-            
+
             SetName(popupName);
         }
-        
-        public void SetName(string shopName) => _shopNameText.text = shopName;
-        
+
+        public void SetName(string shopName)
+        {
+            _shopNameText.text = shopName;
+        }
+
         private void CreateMenu()
         {
             var page = _menuItemViewFactory.CreatePage();

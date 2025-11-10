@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -21,19 +20,15 @@ namespace UI.BattleMenu
         public void Bind(MenuItemData data)
         {
             _text.text = data.Label;
-            Disposables = new();
-            
+            Disposables = new CompositeDisposable();
+
             data.IsHighlighted
-                .Subscribe(isHighlighted =>
-                {
-                    SetSelectionColor(isHighlighted, data.IsSelectable.Value);
-                }).AddTo(Disposables);
-            
+                .Subscribe(isHighlighted => { SetSelectionColor(isHighlighted, data.IsSelectable.Value); })
+                .AddTo(Disposables);
+
             data.IsSelectable
-                .Subscribe(isSelectable =>
-                {
-                    SetSelectionColor(data.IsHighlighted.Value, isSelectable);
-                }).AddTo(Disposables);
+                .Subscribe(isSelectable => { SetSelectionColor(data.IsHighlighted.Value, isSelectable); })
+                .AddTo(Disposables);
         }
 
         private void SetSelectionColor(bool isHighlighted, bool canBeSelected)
@@ -43,13 +38,13 @@ namespace UI.BattleMenu
                 SetLocked();
                 return;
             }
-            
+
             _background.color = isHighlighted ? Color.green : Color.white;
         }
 
         private void SetLocked()
         {
             _background.color = Color.grey;
-        } 
+        }
     }
 }

@@ -13,12 +13,12 @@ namespace Gameplay.StatusEffects.Buffs.Services
 {
     public class StatusEffectsApplicationService : IDisposable, IInitializable
     {
-        private readonly StatusEffectsProcessor _statusEffectsProcessor;
+        private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEvents;
 
         private readonly CompositeDisposable _disposables = new();
         private readonly PlayerUnit _playerUnit;
-        private readonly CombatData _combatData;
+        private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
         [Inject]
         public StatusEffectsApplicationService(
@@ -75,8 +75,10 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
         private void ProcessCombatStart(IGameUnit enemy)
         {
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(_playerUnit, enemy, StatusEffectTriggerType.CombatStart);
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(enemy, _playerUnit, StatusEffectTriggerType.CombatStart);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(_playerUnit, enemy,
+                StatusEffectTriggerType.CombatStart);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(enemy, _playerUnit,
+                StatusEffectTriggerType.CombatStart);
         }
 
         private void ProcessCombatEnded(IGameUnit enemy)
@@ -96,11 +98,12 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
         private void ProcessSkillUsed(SkillUsedData skillUsedData)
         {
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillUsedData.Attacker, skillUsedData.Target, StatusEffectTriggerType.SkillUsed);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillUsedData.Attacker, skillUsedData.Target,
+                StatusEffectTriggerType.SkillUsed);
 
             if (!skillUsedData.HitDataStream.ConsumeStance)
                 return;
-            
+
             var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillUsedData.HitDataStream.DamageType);
             _statusEffectsProcessor.RemoveStatusEffectsOnAction(skillUsedData.Attacker, expirationType);
         }
@@ -111,19 +114,23 @@ namespace Gameplay.StatusEffects.Buffs.Services
             var otherUnit = data.Target;
 
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.Hit);
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.DamageTaken);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
+                StatusEffectTriggerType.DamageTaken);
 
             if (data.HitData.IsCritical)
-                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.CriticalHit);
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit,
+                    StatusEffectTriggerType.CriticalHit);
 
             var triggerType = StatusEffectsHelper.GetBuffTriggerForDamageType(data.HitData.DamageType);
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, triggerType);
-            
-            if(HealthHelper.DroppedBelowMediumHealth(data))
-                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.MediumHealth);
-            
-            if(HealthHelper.DroppedBelowCriticalHealth(data))
-                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.CriticalHealth);
+
+            if (HealthHelper.DroppedBelowMediumHealth(data))
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
+                    StatusEffectTriggerType.MediumHealth);
+
+            if (HealthHelper.DroppedBelowCriticalHealth(data))
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
+                    StatusEffectTriggerType.CriticalHealth);
         }
 
         private void ProcessHealed(HealEventData data)
@@ -131,8 +138,10 @@ namespace Gameplay.StatusEffects.Buffs.Services
             var activeUnit = data.Target;
             var otherUnit = _combatData.OtherUnit;
 
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.ActiveUnitHealed);
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit,activeUnit, StatusEffectTriggerType.OtherUnitHealed);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit,
+                StatusEffectTriggerType.ActiveUnitHealed);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
+                StatusEffectTriggerType.OtherUnitHealed);
         }
 
         private void ProcessEvaded(EvadeEventData eventData)

@@ -20,20 +20,26 @@ namespace Gameplay.Services
             _playerUnit.UnitInventoryData.Coins.Value -= price;
             return true;
         }
-        
-        public bool HasEnoughBalance(int price) => GetBalance() >= price;
+
+        public bool HasEnoughBalance(int price)
+        {
+            return GetBalance() >= price;
+        }
 
         public void AddBalance(int amount)
         {
-            int balance = GetBalance();
+            var balance = GetBalance();
             balance += amount;
 
             if (balance > GameplayConstants.MaxBalance)
                 balance = GameplayConstants.MaxBalance;
-            
+
             _playerUnit.UnitInventoryData.Coins.Value = balance;
         }
 
-        public int GetBalance() => _playerUnit.UnitInventoryData.Coins.Value;
+        public int GetBalance()
+        {
+            return _playerUnit.UnitInventoryData.Coins.Value;
+        }
     }
 }

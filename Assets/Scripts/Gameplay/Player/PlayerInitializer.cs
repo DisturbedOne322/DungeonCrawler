@@ -6,7 +6,7 @@ namespace Gameplay.Player
     public class PlayerInitializer
     {
         private readonly PlayerCharactersDatabase _charactersDatabase;
-        
+
         public PlayerInitializer(GameplayConfigsProvider configProvider)
         {
             _charactersDatabase = configProvider.GetConfig<PlayerCharactersDatabase>();

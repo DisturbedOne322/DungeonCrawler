@@ -7,17 +7,16 @@ namespace Gameplay.Rewards
 {
     public class RoomDropsService
     {
+        private readonly DungeonRoomsDatabase _dungeonRoomsDatabase;
         private readonly ItemsDistributor _itemsDistributor;
         private readonly RewardSelectorService _rewardSelectorService;
-        
-        private readonly DungeonRoomsDatabase _dungeonRoomsDatabase;
 
         public RoomDropsService(RewardSelectorService rewardSelectorService, ItemsDistributor itemsDistributor,
             GameplayConfigsProvider configsProvider)
         {
             _rewardSelectorService = rewardSelectorService;
             _itemsDistributor = itemsDistributor;
-            
+
             _dungeonRoomsDatabase = configsProvider.GetConfig<DungeonRoomsDatabase>();
         }
 

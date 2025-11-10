@@ -2,16 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace UI.Notifications
 {
     public class NotificationsPlayer
     {
+        private readonly CancellationToken _destroyToken;
         private readonly Queue<NotificationData> _notificationsQueue = new();
 
-        private readonly CancellationToken _destroyToken;
-        
         private bool _isPlaying;
 
         public NotificationsPlayer(CancellationToken destroyToken)
@@ -23,7 +21,7 @@ namespace UI.Notifications
         {
             _notificationsQueue.Enqueue(notification);
 
-            if (!_isPlaying) 
+            if (!_isPlaying)
                 PlayNotification().Forget();
         }
 
@@ -32,7 +30,7 @@ namespace UI.Notifications
             while (HasNotificationsPending())
             {
                 _isPlaying = true;
-                
+
                 if (_destroyToken.IsCancellationRequested)
                     break;
 
@@ -52,6 +50,9 @@ namespace UI.Notifications
             _isPlaying = false;
         }
 
-        private bool HasNotificationsPending() => _notificationsQueue.Count > 0 && !_destroyToken.IsCancellationRequested;
+        private bool HasNotificationsPending()
+        {
+            return _notificationsQueue.Count > 0 && !_destroyToken.IsCancellationRequested;
+        }
     }
 }

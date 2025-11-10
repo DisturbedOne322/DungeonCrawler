@@ -8,9 +8,12 @@ namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
         [SerializeField] private HitBuffPriorityType _priority;
 
         public HitBuffPriorityType Priority => _priority;
-        
-        public override BaseStatusEffectInstance CreateInstance() => HitBuffInstance.Create(this);
-        
+
         public abstract int ModifyOutgoingDamage(int currentDamage, in DamageContext ctx);
+
+        public override BaseStatusEffectInstance CreateInstance()
+        {
+            return HitBuffInstance.Create(this);
+        }
     }
 }

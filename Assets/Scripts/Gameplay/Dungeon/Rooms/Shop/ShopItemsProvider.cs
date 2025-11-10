@@ -7,23 +7,50 @@ namespace Gameplay.Dungeon.Rooms.Shop
     {
         private readonly ShopItemsConfig _shopItemsConfig;
 
-        public ShopItemsProvider(ShopItemsConfig shopItemsConfig) => _shopItemsConfig = shopItemsConfig;
+        public ShopItemsProvider(ShopItemsConfig shopItemsConfig)
+        {
+            _shopItemsConfig = shopItemsConfig;
+        }
 
-        public bool AnyConsumablesSold() => _shopItemsConfig.ConsumableItems.Count > 0;
-        public IReadOnlyList<SoldItemModel> CreateConsumablesForSale() => 
-            CreateItemsList(_shopItemsConfig.ConsumableItems);
-        
-        public bool AnyEquipmentSold() => _shopItemsConfig.EquipmentItems.Count > 0;
-        public IReadOnlyList<SoldItemModel> CreateEquipmentForSale() => 
-            CreateItemsList(_shopItemsConfig.EquipmentItems);
-        
-        public bool AnySkillsSold() => _shopItemsConfig.SkillItems.Count > 0;
-        public IReadOnlyList<SoldItemModel> CreateSkillsForSale() => 
-            CreateItemsList(_shopItemsConfig.SkillItems);
-        
-        public bool AnyStatusEffectsSold() => _shopItemsConfig.StatusEffectItems.Count > 0;
-        public IReadOnlyList<SoldItemModel> CreateStatusEffectsForSale() => 
-            CreateItemsList(_shopItemsConfig.StatusEffectItems);
+        public bool AnyConsumablesSold()
+        {
+            return _shopItemsConfig.ConsumableItems.Count > 0;
+        }
+
+        public IReadOnlyList<SoldItemModel> CreateConsumablesForSale()
+        {
+            return CreateItemsList(_shopItemsConfig.ConsumableItems);
+        }
+
+        public bool AnyEquipmentSold()
+        {
+            return _shopItemsConfig.EquipmentItems.Count > 0;
+        }
+
+        public IReadOnlyList<SoldItemModel> CreateEquipmentForSale()
+        {
+            return CreateItemsList(_shopItemsConfig.EquipmentItems);
+        }
+
+        public bool AnySkillsSold()
+        {
+            return _shopItemsConfig.SkillItems.Count > 0;
+        }
+
+        public IReadOnlyList<SoldItemModel> CreateSkillsForSale()
+        {
+            return CreateItemsList(_shopItemsConfig.SkillItems);
+        }
+
+        public bool AnyStatusEffectsSold()
+        {
+            return _shopItemsConfig.StatusEffectItems.Count > 0;
+        }
+
+        public IReadOnlyList<SoldItemModel> CreateStatusEffectsForSale()
+        {
+            return CreateItemsList(_shopItemsConfig.StatusEffectItems);
+        }
 
         private IReadOnlyList<SoldItemModel> CreateItemsList(IReadOnlyList<ISellableItemData> dataList)
         {

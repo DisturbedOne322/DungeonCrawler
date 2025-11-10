@@ -1,7 +1,5 @@
 using System;
 using AssetManagement.AssetProviders;
-using AssetManagement.AssetProviders.Core;
-using AssetManagement.Configs;
 using Gameplay.Services;
 using UI.Core;
 using UnityEngine;

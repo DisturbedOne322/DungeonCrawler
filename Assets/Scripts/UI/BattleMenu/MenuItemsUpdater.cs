@@ -16,11 +16,20 @@ namespace UI.BattleMenu
             return SelectedIndex;
         }
 
-        public int GetFirstSelectableIndex() => FindFirstSelectableIndex();
+        public int GetFirstSelectableIndex()
+        {
+            return FindFirstSelectableIndex();
+        }
 
-        public int GetLastSelectableIndex() => FindLastSelectableIndex();
+        public int GetLastSelectableIndex()
+        {
+            return FindLastSelectableIndex();
+        }
 
-        public bool IsSelectionValid() => CheckSelectionValid();
+        public bool IsSelectionValid()
+        {
+            return CheckSelectionValid();
+        }
 
         public void SetMenuItems(List<MenuItemData> menuItems, bool rememberSelection = true)
         {
@@ -34,11 +43,11 @@ namespace UI.BattleMenu
 
             if (count == 0)
                 return;
-            
+
             SelectedIndex = FindNextSelectableIndex(increment);
             if (SelectedIndex == -1)
                 return;
-            
+
             ApplyHighlight();
         }
 
@@ -48,10 +57,10 @@ namespace UI.BattleMenu
                 return;
 
             UpdateItemsSelectable();
-            
+
             if (!rememberSelection || !CheckSelectionValid())
                 SelectedIndex = FindFirstSelectableIndex();
-            
+
             ApplyHighlight();
         }
 
@@ -61,7 +70,7 @@ namespace UI.BattleMenu
                 return;
 
             MenuItems[SelectedIndex].OnSelected?.Invoke();
-            
+
             UpdateItemsSelectable();
             if (!CheckSelectionValid())
             {
@@ -69,37 +78,38 @@ namespace UI.BattleMenu
                 ApplyHighlight();
             }
         }
-        
+
         private void UpdateItemsSelectable()
         {
-            for (int i = MenuItems.Count - 1; i >= 0; i--)
+            for (var i = MenuItems.Count - 1; i >= 0; i--)
             {
                 var item = MenuItems[i];
                 item.IsSelectable.Value = item.SelectableFunc.Invoke();
             }
         }
+
         protected void ApplyHighlight()
         {
             for (var i = 0; i < MenuItems.Count; i++)
             {
                 var item = MenuItems[i];
-                bool shouldHighlight = i == SelectedIndex;
+                var shouldHighlight = i == SelectedIndex;
                 item.IsHighlighted.Value = shouldHighlight;
             }
-            
+
             OnViewChanged?.OnNext(default);
         }
 
         private int FindClosestSelectableIndex()
         {
-            int current = SelectedIndex;
+            var current = SelectedIndex;
 
-            int nextClosest = FindNextSelectableIndex(+1);
-            int prevClosest = FindNextSelectableIndex(-1);
+            var nextClosest = FindNextSelectableIndex(+1);
+            var prevClosest = FindNextSelectableIndex(-1);
 
             if (Mathf.Abs(current - nextClosest) > Mathf.Abs(current - prevClosest))
                 return prevClosest;
-            
+
             return nextClosest;
         }
 

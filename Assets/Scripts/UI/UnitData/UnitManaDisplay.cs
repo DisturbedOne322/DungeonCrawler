@@ -12,10 +12,10 @@ namespace UI.UnitData
         [SerializeField] private Slider _slider;
         [SerializeField] private TextMeshProUGUI _manaText;
 
+        private readonly CompositeDisposable _disposables = new();
+
         [Inject] private UnitManaData _manaData;
 
-        private readonly CompositeDisposable _disposables = new ();
-        
         private void Awake()
         {
             _manaData.CurrentMana.Subscribe(_ => UpdateManaDisplay()).AddTo(_disposables);
@@ -39,7 +39,7 @@ namespace UI.UnitData
                 _slider.value = 0;
                 return;
             }
-            
+
             var fillPercent = mana * 1f / maxMana;
             _slider.value = fillPercent;
         }

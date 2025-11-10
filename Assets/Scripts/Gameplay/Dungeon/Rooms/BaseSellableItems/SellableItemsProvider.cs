@@ -10,12 +10,17 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
         {
             _itemsForSaleConfig = itemsForSaleConfig;
         }
-        
-        public bool AnyItemsSold() => _itemsForSaleConfig.ItemsForSale.Count > 0;
 
-        public IReadOnlyList<SoldItemModel> GetSellableItems() => 
-            CreateItemsList(_itemsForSaleConfig.ItemsForSale);
-        
+        public bool AnyItemsSold()
+        {
+            return _itemsForSaleConfig.ItemsForSale.Count > 0;
+        }
+
+        public IReadOnlyList<SoldItemModel> GetSellableItems()
+        {
+            return CreateItemsList(_itemsForSaleConfig.ItemsForSale);
+        }
+
         private IReadOnlyList<SoldItemModel> CreateItemsList(IReadOnlyList<ISellableItemData> dataList)
         {
             List<SoldItemModel> items = new();

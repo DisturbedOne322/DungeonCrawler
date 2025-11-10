@@ -7,19 +7,10 @@ namespace UI.BattleMenu
 {
     public class MenuItemData
     {
-        public string Label { get; }
-        public string Description { get; }
-
-        public Action OnSelected { get; }
-        public MenuItemType Type { get; }
-        
-        public int OriginalQuantity { get; }
-        
-        public Func<bool> SelectableFunc { get; }
+        public readonly BoolReactiveProperty IsHighlighted = new();
 
         public readonly BoolReactiveProperty IsSelectable = new();
-        public readonly BoolReactiveProperty IsHighlighted = new();
-        
+
         public MenuItemData(
             string label,
             Func<bool> selectableFunc,
@@ -32,11 +23,21 @@ namespace UI.BattleMenu
             OnSelected = onSelected;
             Type = type;
             Description = description;
-            
+
             SelectableFunc = selectableFunc;
             OriginalQuantity = amount;
         }
-        
+
+        public string Label { get; }
+        public string Description { get; }
+
+        public Action OnSelected { get; }
+        public MenuItemType Type { get; }
+
+        public int OriginalQuantity { get; }
+
+        public Func<bool> SelectableFunc { get; }
+
         public static MenuItemData ForSkillItem(
             BaseGameItem gameItem,
             Func<bool> selectablePredicate,
@@ -52,7 +53,7 @@ namespace UI.BattleMenu
                 quantity
             );
         }
-        
+
         public static MenuItemData ForConsumableItem(
             BaseGameItem gameItem,
             Func<bool> selectablePredicate,
@@ -68,7 +69,7 @@ namespace UI.BattleMenu
                 quantity
             );
         }
-        
+
         public static MenuItemData ForStatusEffectItem(
             BaseGameItem gameItem,
             Func<bool> selectablePredicate,
@@ -97,7 +98,7 @@ namespace UI.BattleMenu
                 MenuItemType.Submenu,
                 description);
         }
-        
+
         public static MenuItemData ForNavigationItem(
             string label,
             Action onSelected)

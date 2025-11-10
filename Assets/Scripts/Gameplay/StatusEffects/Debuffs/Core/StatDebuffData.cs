@@ -9,7 +9,7 @@ namespace Gameplay.StatusEffects.Debuffs.Core
         [SerializeField] private StatType _debuffedStatType;
 
         public StatType DebuffedStatType => _debuffedStatType;
-        
+
         public override BaseStatusEffectInstance CreateInstance()
         {
             var buffDelta = GetDebuffDelta();

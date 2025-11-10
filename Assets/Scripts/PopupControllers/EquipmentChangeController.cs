@@ -9,8 +9,8 @@ namespace PopupControllers
 {
     public class EquipmentChangeController
     {
-        private readonly UIFactory _uiFactory;
         private readonly PlayerInputProvider _playerInputProvider;
+        private readonly UIFactory _uiFactory;
 
         public EquipmentChangeController(UIFactory uiFactory, PlayerInputProvider playerInputProvider)
         {
@@ -31,7 +31,7 @@ namespace PopupControllers
             popup.ShowPopup().Forget();
 
             var result = await tcs.Task;
-            
+
             await popup.HidePopup();
 
             return result;

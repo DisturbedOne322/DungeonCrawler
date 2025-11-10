@@ -12,14 +12,13 @@ namespace Gameplay.Player
 {
     public class PlayerMovementController
     {
+        private readonly PlayerMovementConfig _config;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly GameplayData _gameplayData;
-        private readonly UnitRegenerationService _unitRegenerationService;
 
         private readonly PlayerMoveAnimator _moveAnimator;
         private readonly PlayerMovementHistory _playerMovementHistory;
-
-        private readonly PlayerMovementConfig _config;
+        private readonly UnitRegenerationService _unitRegenerationService;
 
         public PlayerMovementController(PlayerUnit playerUnit,
             DungeonLayoutProvider dungeonLayoutProvider,
@@ -75,7 +74,7 @@ namespace Gameplay.Player
                 var moveData = new MovementData
                 {
                     TargetPos = room.PlayerStandPoint.position,
-                    MoveTimePerMeter = _config.MoveTimePerMeter,
+                    MoveTimePerMeter = _config.MoveTimePerMeter
                 };
 
                 var index = currentIndex;

@@ -8,11 +8,17 @@ namespace StateMachine.Core
     {
         protected TMachine StateMachine { get; private set; }
 
-        void IState<TMachine>.SetStateMachine(TMachine machine) => StateMachine = machine;
+        void IState<TMachine>.SetStateMachine(TMachine machine)
+        {
+            StateMachine = machine;
+        }
 
         public abstract UniTask EnterState();
         public abstract UniTask ExitState();
 
-        protected UniTask GoToState<T>() where T : TState => StateMachine.GoToState<T>();
+        protected UniTask GoToState<T>() where T : TState
+        {
+            return StateMachine.GoToState<T>();
+        }
     }
 }

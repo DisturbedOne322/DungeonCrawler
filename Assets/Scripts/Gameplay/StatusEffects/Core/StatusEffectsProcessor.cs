@@ -5,35 +5,36 @@ namespace Gameplay.StatusEffects.Core
 {
     public class StatusEffectsProcessor
     {
-        public void EnableStatusEffectsOnTrigger(IEntity activeUnit, IEntity otherUnit, StatusEffectTriggerType triggerType)
+        public void EnableStatusEffectsOnTrigger(IEntity activeUnit, IEntity otherUnit,
+            StatusEffectTriggerType triggerType)
         {
             var heldStatusEffects = activeUnit.UnitHeldStatusEffectsData.All;
-            
+
             for (var i = heldStatusEffects.Count - 1; i >= 0; i--)
             {
                 var statusEffect = heldStatusEffects[i];
                 if (statusEffect.TriggerType != triggerType)
                     continue;
-                
+
                 AddStatusEffect(activeUnit, otherUnit, statusEffect);
             }
         }
-        
+
         public void ProcessTurn(IEntity activeUnit)
         {
-            var activeStatusEffects = 
+            var activeStatusEffects =
                 activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
-            
+
             for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
             {
                 var instance = activeStatusEffects[i];
-                
+
                 if (instance.EffectExpirationType != StatusEffectExpirationType.TurnCount)
                     continue;
-                
-                if (instance.TurnDurationLeft.Value == 0) 
+
+                if (instance.TurnDurationLeft.Value == 0)
                     instance.Revert();
-                
+
                 instance.TurnDurationLeft.Value--;
             }
         }
@@ -44,7 +45,7 @@ namespace Gameplay.StatusEffects.Core
                 return;
 
             var activeStatusEffects = activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
-            
+
             for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
             {
                 var statusEffect = activeStatusEffects[i];
@@ -54,7 +55,7 @@ namespace Gameplay.StatusEffects.Core
                 statusEffect.Revert();
             }
         }
-        
+
         public void ClearAllStatusEffects(IEntity activeUnit)
         {
             var allEffects = activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
@@ -68,15 +69,15 @@ namespace Gameplay.StatusEffects.Core
                 effect.Revert();
             }
         }
-        
-        private void AddStatusEffect(IEntity activeUnit, IEntity otherUnit, 
+
+        private void AddStatusEffect(IEntity activeUnit, IEntity otherUnit,
             BaseStatusEffectData statusEffectData)
         {
-            bool isIndependent = statusEffectData.StatusEffectReapplyType.HasFlag(StatusEffectReapplyType.Independent);
+            var isIndependent = statusEffectData.StatusEffectReapplyType.HasFlag(StatusEffectReapplyType.Independent);
 
-            var activeStatusEffects = 
+            var activeStatusEffects =
                 activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
-            
+
             if (!isIndependent)
                 for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
                 {

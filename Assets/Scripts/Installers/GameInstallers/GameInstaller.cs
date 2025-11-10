@@ -6,9 +6,7 @@ using Gameplay.Combat.Services;
 using Gameplay.Experience;
 using Gameplay.Player;
 using Gameplay.StatusEffects.Buffs.Services;
-using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
-using Gameplay.StatusEffects.Debuffs;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;
@@ -41,7 +39,7 @@ namespace Installers.GameInstallers
             Container.Bind<CombatService>().AsSingle();
             Container.Bind<CombatEventsBus>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
-            
+
             Container.Bind<CombatStatusEffectsService>().AsSingle();
             Container.Bind<StatusEffectsProcessor>().AsSingle();
             Container.BindInterfacesAndSelfTo<StatusEffectsApplicationService>().AsSingle().NonLazy();

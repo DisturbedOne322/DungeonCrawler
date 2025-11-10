@@ -8,6 +8,9 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffs
     {
         [SerializeField] [Min(1)] private int _increaseAmount;
 
-        protected override float GetBuffDelta() => _increaseAmount;
+        protected override float GetBuffDelta()
+        {
+            return _increaseAmount;
+        }
     }
 }

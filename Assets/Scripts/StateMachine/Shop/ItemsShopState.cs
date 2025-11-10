@@ -10,18 +10,18 @@ namespace StateMachine.Shop
 {
     public abstract class ItemsShopState : BaseShopState
     {
-        protected readonly ShopItemsProvider ShopItemsProvider;
-        protected readonly BalanceService BalanceService;
         private readonly ItemsDistributor _itemsDistributor;
+        protected readonly BalanceService BalanceService;
+        protected readonly ShopItemsProvider ShopItemsProvider;
 
-        private bool _isInputLocked = false;
-        
+        private bool _isInputLocked;
+
         protected ItemsShopState(
-            PlayerInputProvider playerInputProvider, 
+            PlayerInputProvider playerInputProvider,
             MenuItemsUpdater menuItemsUpdater,
             ShopItemsProvider shopItemsProvider,
             BalanceService balanceService,
-            ItemsDistributor itemsDistributor) : 
+            ItemsDistributor itemsDistributor) :
             base(playerInputProvider, menuItemsUpdater)
         {
             ShopItemsProvider = shopItemsProvider;
@@ -29,11 +29,26 @@ namespace StateMachine.Shop
             _itemsDistributor = itemsDistributor;
         }
 
-        public override void OnUISubmit() => MenuItemsUpdater.ExecuteSelection();
-        public override void OnUIUp() => MenuItemsUpdater.UpdateSelection(-1);
-        public override void OnUIDown() => MenuItemsUpdater.UpdateSelection(+1);
-        public override void OnUIBack() => StateMachine.GoToPrevState().Forget();
-        
+        public override void OnUISubmit()
+        {
+            MenuItemsUpdater.ExecuteSelection();
+        }
+
+        public override void OnUIUp()
+        {
+            MenuItemsUpdater.UpdateSelection(-1);
+        }
+
+        public override void OnUIDown()
+        {
+            MenuItemsUpdater.UpdateSelection(+1);
+        }
+
+        public override void OnUIBack()
+        {
+            StateMachine.GoToPrevState().Forget();
+        }
+
         protected async UniTask PurchaseItem(SoldItemModel model)
         {
             _isInputLocked = true;
@@ -44,7 +59,7 @@ namespace StateMachine.Shop
 
             _isInputLocked = false;
         }
-        
+
         protected virtual bool IsSelectable(SoldItemModel model)
         {
             return BalanceService.HasEnoughBalance(model.ItemData.Price) && model.AmountLeft.Value > 0;

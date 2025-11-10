@@ -1,4 +1,3 @@
-using Gameplay.Combat.Data;
 using Gameplay.Combat.Data.Events;
 using Gameplay.Combat.Services;
 using Gameplay.Units;

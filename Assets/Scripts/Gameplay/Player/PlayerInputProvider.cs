@@ -15,7 +15,7 @@ namespace Gameplay.Player
         public readonly Subject<Unit> OnGoForward = new();
         public readonly Subject<Unit> OnGoLeft = new();
         public readonly Subject<Unit> OnGoRight = new();
-        
+
         public PlayerInputProvider()
         {
             SubscribeMovementActions();
@@ -58,7 +58,7 @@ namespace Gameplay.Player
             await task;
             RemoveUiInputOwner(handler);
         }
-        
+
         public async UniTask<T> EnableUIInputUntil<T>(UniTask<T> task, IUiInputHandler handler)
         {
             AddUiInputOwner(handler);
@@ -73,7 +73,7 @@ namespace Gameplay.Player
             if (_uiInputHandlers.Count == 1)
                 _inputActions.UI.Enable();
         }
-        
+
         public void RemoveUiInputOwner(IUiInputHandler inputHandler)
         {
             if (_uiInputHandlers.Count == 0)
@@ -91,6 +91,9 @@ namespace Gameplay.Player
                 _inputActions.UI.Disable();
         }
 
-        private IUiInputHandler GetActiveUiOwner() => _uiInputHandlers.PeekOrNull();
+        private IUiInputHandler GetActiveUiOwner()
+        {
+            return _uiInputHandlers.PeekOrNull();
+        }
     }
 }

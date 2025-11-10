@@ -7,13 +7,12 @@ namespace UI.Navigation
 {
     public abstract class UINavigator : BaseUIInputHandler
     {
+        private readonly List<MenuItemData> _menuItemsData = new();
         private readonly PlayerInputProvider _playerInputProvider;
 
-        private readonly List<MenuItemData> _menuItemsData = new();
+        private int _prevIndex;
+        private int _selectedIndex;
 
-        private int _prevIndex = 0;
-        private int _selectedIndex = 0;
-        
         public UINavigator(PlayerInputProvider playerInputProvider)
         {
             _playerInputProvider = playerInputProvider;
@@ -30,7 +29,7 @@ namespace UI.Navigation
         {
             var data = menuItem.CreateData(callback);
             _menuItemsData.Add(data);
-            
+
             if (_menuItemsData.Count == 1)
                 data.IsHighlighted.Value = true;
         }
@@ -41,15 +40,15 @@ namespace UI.Navigation
 
             _selectedIndex = WrapIndex(increment);
             _menuItemsData[_selectedIndex].IsHighlighted.Value = true;
-            
+
             _prevIndex = _selectedIndex;
         }
 
         private int WrapIndex(int increment)
         {
-            int nextIndex = _selectedIndex + increment;
-            
-            if(nextIndex < 0)
+            var nextIndex = _selectedIndex + increment;
+
+            if (nextIndex < 0)
                 nextIndex = _menuItemsData.Count - 1;
             else if (nextIndex >= _menuItemsData.Count)
                 nextIndex = 0;

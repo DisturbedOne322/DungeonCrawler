@@ -1,7 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Gameplay.Dungeon.Rooms.BaseSellableItems;
-using Gameplay.Player;
 using UI;
 using UI.BattleMenu;
 using UI.Gameplay;
@@ -10,11 +9,11 @@ namespace PopupControllers
 {
     public class SingleTypePurchaseController
     {
-        private readonly UIFactory _uiFactory;
         private readonly ItemSellingController _itemSellingController;
         private readonly MenuItemsUpdater _menuItemsUpdater;
+        private readonly UIFactory _uiFactory;
         private IDisposable _disposable;
-        
+
         public SingleTypePurchaseController(UIFactory uiFactory,
             ItemSellingController itemSellingController, MenuItemsUpdater menuItemsUpdater)
         {
@@ -26,10 +25,10 @@ namespace PopupControllers
         public async UniTask RunShop()
         {
             _itemSellingController.Initialize();
-            
+
             var popup = _uiFactory.CreatePopup<SingleTypePurchasePopup>();
             popup.Initialize(_menuItemsUpdater, "SHRINE");
-            
+
             await _itemSellingController.ProcessSelling();
 
             await popup.HidePopup();

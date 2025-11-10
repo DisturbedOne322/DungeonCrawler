@@ -6,20 +6,20 @@ namespace Gameplay.Units
     {
         public ReactiveProperty<float> CritChanceBonus;
         public ReactiveProperty<float> CritDamageBonus;
-        
+
         public ReactiveProperty<int> HealthRegenBonus;
 
         public ReactiveProperty<int> ManaRegenBonus;
 
         public ReactiveProperty<float> PenetrationRatio;
-        
+
         public void SetData(UnitStartingBonusStats statsData)
         {
-            CritChanceBonus = new(statsData.CriticalChance);
-            CritDamageBonus = new(statsData.CriticalDamageBonus);
-            HealthRegenBonus = new(statsData.HealthRegen);
-            ManaRegenBonus = new(statsData.ManaRegen);
-            PenetrationRatio = new(statsData.PenetrationRatio);
+            CritChanceBonus = new ReactiveProperty<float>(statsData.CriticalChance);
+            CritDamageBonus = new ReactiveProperty<float>(statsData.CriticalDamageBonus);
+            HealthRegenBonus = new ReactiveProperty<int>(statsData.HealthRegen);
+            ManaRegenBonus = new ReactiveProperty<int>(statsData.ManaRegen);
+            PenetrationRatio = new ReactiveProperty<float>(statsData.PenetrationRatio);
         }
     }
 }

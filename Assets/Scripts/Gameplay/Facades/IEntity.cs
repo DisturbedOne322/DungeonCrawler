@@ -1,5 +1,4 @@
 using Gameplay.Combat;
-using Gameplay.Combat.Data;
 using Gameplay.Equipment;
 using Gameplay.Units;
 using UnityEngine;

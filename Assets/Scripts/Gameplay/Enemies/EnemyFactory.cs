@@ -1,6 +1,4 @@
 using AssetManagement.AssetProviders;
-using AssetManagement.AssetProviders.Core;
-using Gameplay.Configs;
 using Gameplay.Services;
 using Gameplay.Units;
 
@@ -10,7 +8,7 @@ namespace Gameplay.Enemies
     {
         private readonly ContainerFactory _containerFactory;
         private readonly EnemyDatabase _enemyDatabase;
-        
+
         private EnemyFactory(GameplayConfigsProvider configProvider, ContainerFactory containerFactory)
         {
             _enemyDatabase = configProvider.GetConfig<EnemyDatabase>();

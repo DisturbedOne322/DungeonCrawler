@@ -56,7 +56,7 @@ namespace Helpers
                 if (type.HasFlag(pair.Key))
                     pair.Value.ReapplyStatusEffect(instance, data);
         }
-        
+
         public static bool IsExpirationTypeActionBased(StatusEffectExpirationType effectExpirationType)
         {
             return effectExpirationType is

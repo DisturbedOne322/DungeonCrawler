@@ -12,17 +12,17 @@ namespace Gameplay.Units
     public class UnitActiveStatusEffectsData
     {
         public readonly List<DefensiveBuffInstance> ActiveDefensiveBuffs = new();
+        public readonly List<HitStreamBuffInstance> ActiveHitStreamBuffs = new();
         public readonly List<HitBuffInstance> ActiveOffensiveBuffs = new();
         public readonly List<StatBuffInstance> ActiveStatBuffs = new();
         public readonly List<StatDebuffInstance> ActiveStatDebuffs = new();
-        public readonly List<HitStreamBuffInstance> ActiveHitStreamBuffs = new();
 
         public readonly ReactiveCollection<BaseStatusEffectInstance> AllActiveStatusEffects = new();
-        
+
         public void AddStatusEffect(BaseStatusEffectInstance effect)
         {
             AllActiveStatusEffects.Add(effect);
-            
+
             switch (effect)
             {
                 case DefensiveBuffInstance defBuff: ActiveDefensiveBuffs.Add(defBuff); break;
@@ -36,7 +36,7 @@ namespace Gameplay.Units
         public void RemoveStatusEffect(BaseStatusEffectInstance effect)
         {
             AllActiveStatusEffects.Remove(effect);
-            
+
             switch (effect)
             {
                 case DefensiveBuffInstance defBuff: ActiveDefensiveBuffs.Remove(defBuff); break;
@@ -70,10 +70,8 @@ namespace Gameplay.Units
             BaseStatusEffectData searchedStatusEffect) where T : BaseStatusEffectInstance
         {
             foreach (var statusEffect in activeStatusEffects)
-            {
                 if (statusEffect.StatusEffectData == searchedStatusEffect)
                     return true;
-            }
 
             return false;
         }
