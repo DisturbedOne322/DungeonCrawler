@@ -1,3 +1,4 @@
+using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.Core;
 using Gameplay.Configs;
 using Gameplay.Services;
@@ -7,20 +8,18 @@ namespace Gameplay.Enemies
 {
     public class EnemyFactory
     {
-        private readonly BaseConfigProvider<GameplayConfig> _configProvider;
         private readonly ContainerFactory _containerFactory;
-
-        private EnemyFactory(BaseConfigProvider<GameplayConfig> configProvider, ContainerFactory containerFactory)
+        private readonly EnemyDatabase _enemyDatabase;
+        
+        private EnemyFactory(GameplayConfigsProvider configProvider, ContainerFactory containerFactory)
         {
-            _configProvider = configProvider;
+            _enemyDatabase = configProvider.GetConfig<EnemyDatabase>();
             _containerFactory = containerFactory;
         }
 
         public EnemyUnit CreateEnemy()
         {
-            var enemyDatabase = _configProvider.GetConfig<EnemyDatabase>();
-
-            var data = enemyDatabase.Database[0];
+            var data = _enemyDatabase.Database[0];
             var prefab = data.Prefab.gameObject;
             var unit = _containerFactory.Create<EnemyUnit>(prefab);
 

@@ -1,4 +1,4 @@
-using AssetManagement.AssetProviders.Core;
+using AssetManagement.AssetProviders;
 using Constants;
 using Gameplay.Configs;
 using Gameplay.Facades;
@@ -10,7 +10,7 @@ namespace Gameplay.Combat.Services
     {
         private readonly CombatFormulasConfig _config;
 
-        public CombatFormulaService(BaseConfigProvider<GameplayConfig> gameplayConfigsProvider)
+        public CombatFormulaService(GameplayConfigsProvider gameplayConfigsProvider)
         {
             _config = gameplayConfigsProvider.GetConfig<CombatFormulasConfig>();
         }

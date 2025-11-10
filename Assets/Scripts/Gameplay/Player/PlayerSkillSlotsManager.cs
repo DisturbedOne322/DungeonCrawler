@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using AssetManagement.AssetProviders.Core;
+using AssetManagement.AssetProviders;
 using Gameplay.Configs;
 using Gameplay.Experience;
 using Gameplay.Units;
@@ -10,23 +10,23 @@ namespace Gameplay.Player
 {
     public class PlayerSkillSlotsManager : IDisposable
     {
-        private readonly BaseConfigProvider<GameplayConfig> _configProvider;
-
         private readonly IDisposable _disposable;
         private readonly ExperienceData _experienceData;
         private readonly PlayerUnit _playerUnit;
 
         public readonly Subject<int> OnSkillSlotsAdded = new();
 
+        private readonly PlayerSkillSlotUnlockConfig _config;
+
         private int _previousSlots;
 
         public PlayerSkillSlotsManager(PlayerUnit playerUnit,
             ExperienceData experienceData,
-            BaseConfigProvider<GameplayConfig> configProvider)
+            GameplayConfigsProvider gameplayConfigsProvider)
         {
             _playerUnit = playerUnit;
             _experienceData = experienceData;
-            _configProvider = configProvider;
+            _config = gameplayConfigsProvider.GetConfig<PlayerSkillSlotUnlockConfig>();
 
             _disposable = experienceData.OnLevelUp.Subscribe(ProcessLevelUp);
         }
@@ -62,10 +62,8 @@ namespace Gameplay.Player
 
         private int GetSkillSlotsForLevel(int level)
         {
-            var config = _configProvider.GetConfig<PlayerSkillSlotUnlockConfig>();
-
-            var skillSlots = config.StartingSkillSlots;
-            skillSlots += config.AdditionalSkillSlotLevelThresholds.Count(threshold => level >= threshold);
+            var skillSlots = _config.StartingSkillSlots;
+            skillSlots += _config.AdditionalSkillSlotLevelThresholds.Count(threshold => level >= threshold);
 
             return skillSlots;
         }

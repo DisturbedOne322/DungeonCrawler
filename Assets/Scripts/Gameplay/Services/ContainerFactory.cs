@@ -12,9 +12,8 @@ namespace Gameplay.Services
             _container = container;
         }
 
-        public T Create<T>(GameObject prefab)
-        {
-            return _container.InstantiatePrefabForComponent<T>(prefab);
-        }
+        public T Create<T>(GameObject prefab) => _container.InstantiatePrefabForComponent<T>(prefab);
+        public T Create<T>(T prefab) where T : Component=> _container.InstantiatePrefabForComponent<T>(prefab);
+        public GameObject Create(GameObject prefab) => _container.InstantiatePrefab(prefab);
     }
 }

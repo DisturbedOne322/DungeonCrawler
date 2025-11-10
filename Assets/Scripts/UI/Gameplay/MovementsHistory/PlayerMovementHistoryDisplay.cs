@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using AssetManagement.AssetProviders.Core;
+using AssetManagement.AssetProviders;
+using AssetManagement.Configs;
 using Data;
 using DG.Tweening;
-using Gameplay.Configs;
 using Gameplay.Dungeon.Data;
-using UniRx;
 using UnityEngine;
 using Zenject;
+using UniRx;
 
 namespace UI.Gameplay.MovementsHistory
 {
@@ -20,13 +20,13 @@ namespace UI.Gameplay.MovementsHistory
 
         private readonly LinkedList<RoomIconDisplay> _activeDisplays = new();
 
-        private BaseConfigProvider<GameplayConfig> _configProvider;
+        private DungeonVisualsConfig _dungeonVisualsConfig;
 
         [Inject]
-        private void Construct(PlayerMovementHistory history, BaseConfigProvider<GameplayConfig> configProvider)
+        private void Construct(PlayerMovementHistory history, DungeonVisualsConfigProvider dungeonVisualsConfigProvider)
         {
-            _configProvider = configProvider;
-
+            _dungeonVisualsConfig = dungeonVisualsConfigProvider.GetConfig();
+            
             for (var i = 0; i < _maximumRoomsHistory; i++)
             {
                 var display = Instantiate(_roomIconDisplay, _parent);
@@ -46,12 +46,9 @@ namespace UI.Gameplay.MovementsHistory
 
             display.transform.DOScale(Vector3.zero, _scaleDownDuration).OnComplete(() =>
             {
-                var config = _configProvider.GetConfig<DungeonRoomsDatabase>();
-
-                if (!config.TryGetRoomData(roomType, out var roomData))
-                    return;
-
-                display.SetIcon(roomData.Icon);
+                if (_dungeonVisualsConfig.TryGetRoomIcon(roomType, out var roomIcon))
+                    display.SetIcon(roomIcon);
+                
                 display.transform.localScale = Vector3.zero;
                 display.transform.SetAsFirstSibling();
                 display.transform.DOScale(Vector3.one, _scaleUpDuration).SetEase(Ease.OutBack).SetLink(gameObject);

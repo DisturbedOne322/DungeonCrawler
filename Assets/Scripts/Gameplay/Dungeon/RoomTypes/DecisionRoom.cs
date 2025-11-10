@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.Core;
+using AssetManagement.Configs;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Configs;
@@ -15,21 +17,24 @@ namespace Gameplay.Dungeon.RoomTypes
     {
         [SerializeField] private DoorAnimator _doorAnimator;
         [SerializeField] private List<DecisionDoor> _doors;
-        private BaseConfigProvider<GameplayConfig> _configProvider;
 
         private DungeonBranchingController _dungeonBranchingController;
         private DungeonBranchingSelector _dungeonBranchingSelector;
+        private GameplayConfigsProvider _gameplayConfigProvider;
+        private DungeonVisualsConfigProvider _dungeonVisualsConfigProvider;
 
         public override RoomType RoomType => RoomType.Decision;
 
         [Inject]
         private void Construct(DungeonBranchingController dungeonBranchingController,
-            BaseConfigProvider<GameplayConfig> configProvider,
-            DungeonBranchingSelector dungeonBranchingSelector)
+            DungeonBranchingSelector dungeonBranchingSelector,
+            GameplayConfigsProvider gameplayConfigsProvider,
+            DungeonVisualsConfigProvider dungeonVisualsConfigProvider)
         {
             _dungeonBranchingController = dungeonBranchingController;
-            _configProvider = configProvider;
             _dungeonBranchingSelector = dungeonBranchingSelector;
+            _gameplayConfigProvider = gameplayConfigsProvider;
+            _dungeonVisualsConfigProvider = dungeonVisualsConfigProvider;
         }
 
         public override void ResetRoom()
@@ -39,14 +44,21 @@ namespace Gameplay.Dungeon.RoomTypes
 
         public override void SetupRoom()
         {
+            var roomsDatabase = _gameplayConfigProvider.GetConfig<DungeonRoomsDatabase>();
+            var visualsDatabase = _dungeonVisualsConfigProvider.GetConfig();
+            
             var doorTypes = _dungeonBranchingSelector.RoomsForSelection;
             for (var i = 0; i < doorTypes.Count; i++)
             {
                 var door = _doors[i];
-                var config = _configProvider.GetConfig<DungeonRoomsDatabase>();
 
-                if (config.TryGetRoomData(doorTypes[i], out var data))
-                    door.SetDoorIcon(data.Icon);
+                if (!roomsDatabase.TryGetRoom(doorTypes[i], out var data))
+                    continue;
+                
+                if(!visualsDatabase.TryGetRoomIcon(data.RoomType, out var icon))
+                    continue;
+                
+                door.SetDoorIcon(icon);
             }
         }
 

@@ -1,4 +1,5 @@
 using System;
+using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.Core;
 using Data;
 using Gameplay.Configs;
@@ -16,15 +17,18 @@ namespace Gameplay.Services
         private readonly BaseConfigProvider<GameplayConfig> _configProvider;
         private readonly ContainerFactory _containerFactory;
         private readonly DungeonRoomsPool _roomsPool;
+        
+        private readonly DungeonRoomsDatabase _dungeonRoomsDatabase;
 
         private Transform _parent;
 
         private DungeonFactory(ContainerFactory containerFactory, DungeonRoomsPool roomsPool,
-            BaseConfigProvider<GameplayConfig> configProvider)
+            GameplayConfigsProvider configsProvider)
         {
             _containerFactory = containerFactory;
             _roomsPool = roomsPool;
-            _configProvider = configProvider;
+            
+            _dungeonRoomsDatabase = configsProvider.GetConfig<DungeonRoomsDatabase>();
         }
 
         public void Initialize()
@@ -37,18 +41,17 @@ namespace Gameplay.Services
             if (_roomsPool.TryGetRoom(roomType, out var room))
                 return room;
 
-            var roomData = GetRoomData(roomType);
-            var newRoom = _containerFactory.Create<DungeonRoom>(roomData.RoomPrefab.gameObject);
+            var roomData = GetRoom(roomType);
+            var newRoom = _containerFactory.Create(roomData);
 
             newRoom.transform.SetParent(_parent);
 
             return newRoom;
         }
 
-        public RoomData GetRoomData(RoomType roomType)
+        public DungeonRoom GetRoom(RoomType roomType)
         {
-            var config = _configProvider.GetConfig<DungeonRoomsDatabase>();
-            if (config.TryGetRoomData(roomType, out var data))
+            if (_dungeonRoomsDatabase.TryGetRoom(roomType, out var data))
                 return data;
 
             throw new Exception($"No room data found of type {roomType}");

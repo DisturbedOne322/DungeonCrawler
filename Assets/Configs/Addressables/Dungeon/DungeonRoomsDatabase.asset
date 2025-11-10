@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DungeonRoomsDatabase
   m_EditorClassIdentifier: 
   _roomDataList:
-  - {fileID: 11400000, guid: 5b1b1c61b04f98c44bdad083066367ad, type: 2}
-  - {fileID: 11400000, guid: dbdc9d93dfea65c4cb88d19bfb1df27c, type: 2}
-  - {fileID: 11400000, guid: 389883a8b16f4e544888b245ef93636c, type: 2}
-  - {fileID: 11400000, guid: e30f832c6c5d7b741a3ae74b191eddbe, type: 2}
-  - {fileID: 11400000, guid: 7172280cb37a0864c8f5bf6a5ec36240, type: 2}
-  - {fileID: 11400000, guid: 27b60583636f80e41b2aff3b1b5df31f, type: 2}
-  - {fileID: 11400000, guid: 506df947706dbbb408517a5a4b403a86, type: 2}
-  - {fileID: 11400000, guid: 1538da952ee5f844db21dd0a49cf8653, type: 2}
+  - {fileID: 7354510653329677606, guid: 6b9d4c928510e704385ec4b0a5391690, type: 3}
+  - {fileID: 4668317362049676833, guid: 0cfbdb06b46ac514ca73efcb276195bf, type: 3}
+  - {fileID: 8534237822389979477, guid: 6d97641b30ed5844582876e2d430b40a, type: 3}
+  - {fileID: 5275043797574747036, guid: 3f6d1a824aac86a4c90f1dceafcc1ef2, type: 3}
+  - {fileID: 5834657320169493496, guid: 76e80343303919546acb9eb1cb33c297, type: 3}
+  - {fileID: 2722920199331185074, guid: fe2b727e0eab594409e35ce74dd4fbf4, type: 3}
+  - {fileID: 7790308800320090778, guid: 85a87fa112144ad4c92f788fe1451a38, type: 3}
+  - {fileID: -5770067048453911217, guid: cad8cf7f2d76f704fbf411e41b086f74, type: 3}

@@ -1,20 +1,20 @@
-using AssetManagement.AssetProviders.Core;
+using AssetManagement.AssetProviders;
 using Gameplay.Configs;
 
 namespace Gameplay.Experience
 {
     public class ExperienceRequirementsProvider
     {
-        private readonly BaseConfigProvider<GameplayConfig> _configProvider;
+        private readonly PlayerExperienceRequirementsConfig _config;
 
-        public ExperienceRequirementsProvider(BaseConfigProvider<GameplayConfig> configProvider)
+        public ExperienceRequirementsProvider(GameplayConfigsProvider configProvider)
         {
-            _configProvider = configProvider;
+            _config = configProvider.GetConfig<PlayerExperienceRequirementsConfig>();
         }
 
         public int GetXpRequiredForLevel(int level)
         {
-            return _configProvider.GetConfig<PlayerExperienceRequirementsConfig>().GetXpRequiredForLevel(level);
+            return _config.GetXpRequiredForLevel(level);
         }
     }
 }

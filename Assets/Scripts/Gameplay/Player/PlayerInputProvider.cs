@@ -10,20 +10,11 @@ namespace Gameplay.Player
     public class PlayerInputProvider : IDisposable
     {
         private readonly PlayerInputActions _inputActions = new();
+        private readonly Stack<IUiInputHandler> _uiInputHandlers = new();
+
         public readonly Subject<Unit> OnGoForward = new();
         public readonly Subject<Unit> OnGoLeft = new();
         public readonly Subject<Unit> OnGoRight = new();
-        
-        /*
-        public readonly Subject<Unit> OnUiBack = new();
-        public readonly Subject<Unit> OnUiDown = new();
-        public readonly Subject<Unit> OnUiUp = new();
-        public readonly Subject<Unit> OnUiLeft = new();
-        public readonly Subject<Unit> OnUiRight = new();
-        public readonly Subject<Unit> OnUiSubmit = new();
-        */
-        
-        private readonly Stack<IUiInputHandler> _uiInputHandlers = new();
         
         public PlayerInputProvider()
         {
@@ -45,12 +36,12 @@ namespace Gameplay.Player
 
         private void SubscribeUiActions()
         {
-            _inputActions.UI.Up.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIUp();
-            _inputActions.UI.Down.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIDown();
-            _inputActions.UI.Submit.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUISubmit();
-            _inputActions.UI.Back.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIBack();
-            _inputActions.UI.Left.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUILeft();
-            _inputActions.UI.Right.performed += _ => _uiInputHandlers.PeekOrNull()?.OnUIRight();
+            _inputActions.UI.Up.performed += _ => GetActiveUiOwner()?.OnUIUp();
+            _inputActions.UI.Down.performed += _ => GetActiveUiOwner()?.OnUIDown();
+            _inputActions.UI.Submit.performed += _ => GetActiveUiOwner()?.OnUISubmit();
+            _inputActions.UI.Back.performed += _ => GetActiveUiOwner()?.OnUIBack();
+            _inputActions.UI.Left.performed += _ => GetActiveUiOwner()?.OnUILeft();
+            _inputActions.UI.Right.performed += _ => GetActiveUiOwner()?.OnUIRight();
         }
 
         public void EnableMovementInput(bool enable)
@@ -99,5 +90,7 @@ namespace Gameplay.Player
             if (_uiInputHandlers.Count == 0)
                 _inputActions.UI.Disable();
         }
+
+        private IUiInputHandler GetActiveUiOwner() => _uiInputHandlers.PeekOrNull();
     }
 }

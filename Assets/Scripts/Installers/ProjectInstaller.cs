@@ -33,17 +33,10 @@ namespace Installers
 
             Container.Bind<IAssetLoader>().To<AssetLoader>().AsSingle();
 
-            Container.Bind(typeof(IAssetProvider), typeof(BaseConfigProvider<GameplayConfig>))
-                .To<GameplayConfigsProvider>()
-                .AsSingle();
-
-            Container.Bind(typeof(IAssetProvider), typeof(BaseConfigProvider<UIPopupsConfig>))
-                .To<UIPopupsConfigProvider>()
-                .AsSingle();
-
-            Container.Bind(typeof(IAssetProvider), typeof(UIPrefabsProvider))
-                .To<UIPrefabsProvider>()
-                .AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayConfigsProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIPopupsConfigProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIPrefabsProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DungeonVisualsConfigProvider>().AsSingle();
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Data;
 using Gameplay.Configs;
+using Gameplay.Dungeon.RoomTypes;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.Data
@@ -9,18 +10,16 @@ namespace Gameplay.Dungeon.Data
     [CreateAssetMenu(fileName = "DungeonRoomsDatabase", menuName = "Gameplay/Dungeon/Data/DungeonRoomsDatabase")]
     public class DungeonRoomsDatabase : GameplayConfig
     {
-        [SerializeField] private List<RoomData> _roomDataList;
+        [SerializeField] private List<DungeonRoom> _roomDataList;
 
-        private Dictionary<RoomType, RoomData> _roomDataMap;
+        private Dictionary<RoomType, DungeonRoom> _roomDataMap;
 
         private void OnEnable()
         {
-            _roomDataMap = _roomDataList
-                .Where(d => d?.RoomPrefab != null)
-                .ToDictionary(d => d.RoomPrefab.RoomType, d => d);
+            _roomDataMap = _roomDataList.ToDictionary(d => d.RoomType, d => d);
         }
 
-        public bool TryGetRoomData(RoomType type, out RoomData roomData)
+        public bool TryGetRoom(RoomType type, out DungeonRoom roomData)
         {
             if (_roomDataMap.TryGetValue(type, out roomData))
                 return true;

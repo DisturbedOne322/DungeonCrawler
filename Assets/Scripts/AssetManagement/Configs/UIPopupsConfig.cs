@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AssetManagement.Configs
 {
-    [CreateAssetMenu(fileName = "UIPopupsConfig", menuName = "Addressables/UI/PopupsConfig")]
+    [CreateAssetMenu(fileName = "UIPopupsConfig", menuName = "Visuals/UI/PopupsConfig")]
     public class UIPopupsConfig : BaseConfig
     {
         [SerializeField] private List<BasePopup> _prefabs;
