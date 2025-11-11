@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using Extensions;
 using Gameplay.StatusEffects.Buffs.DefensiveCore;
 using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.Debuffs.Core;
 using UniRx;
+using UnityEngine;
 
 namespace Gameplay.Units
 {
@@ -29,6 +31,12 @@ namespace Gameplay.Units
         public IReadOnlyList<StatBuffData> StatBuffs => _statBuffs;
         public IReadOnlyList<StatDebuffData> StatDebuffs => _statDebuffs;
 
+        public void AssignStartingStatusEffects(List<BaseStatusEffectData> statusEffects)
+        {
+            foreach (var effectData in statusEffects) 
+                Add(effectData);
+        }
+        
         public void Add(BaseStatusEffectData data)
         {
             if (!data)

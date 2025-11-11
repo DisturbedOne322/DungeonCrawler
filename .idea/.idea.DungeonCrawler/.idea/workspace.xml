@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/DebuffTarget.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/DebuffTarget.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonVisualsDatabaseConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonVisualsDatabaseConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReactiveExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReactiveExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Buffs/Services/EquipmentStatusEffectApplier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/StatusEffects/Debuffs/Core/StatDebuffInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReactiveExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/ReactiveExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/UnitEquipmentData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Equipment/UnitEquipmentData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/GameUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/GameUnit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitHeldStatusEffectsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitHeldStatusEffectsData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitInventoryData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitInventoryData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitSkillsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Units/UnitSkillsData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Notifications/PlayerNotificationsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Notifications/PlayerNotificationsController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +173,7 @@
       <workItem from="1762366008000" duration="12767000" />
       <workItem from="1762454105957" duration="11452000" />
       <workItem from="1762802614276" duration="9916000" />
-      <workItem from="1762893393530" duration="1957000" />
+      <workItem from="1762893393530" duration="4114000" />
     </task>
     <servers />
   </component>

@@ -1,3 +1,4 @@
+using Extensions;
 using Gameplay.Skills.Core;
 using ModestTree;
 using UniRx;
@@ -12,7 +13,7 @@ namespace Gameplay.Units
 
         public ReactiveCollection<BaseSkill> Skills { get; } = new();
 
-        public void AssignSkills(UnitData data)
+        public void AssignStartingSkills(UnitData data)
         {
             Skills.Clear();
             Skills.AllocFreeAddRange(data.SkillSet);

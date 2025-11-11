@@ -21,10 +21,13 @@ namespace UI.Notifications
 
         private readonly CompositeDisposable _disposables = new();
         private NotificationsPlayer _notificationsPlayer;
+        
+        private PlayerUnit _player;
+        private PlayerSkillSlotsManager _skillSlotsManager;
 
         private void Awake()
         {
-            _notificationsPlayer = new NotificationsPlayer(gameObject.GetCancellationTokenOnDestroy());
+            _notificationsPlayer = new (gameObject.GetCancellationTokenOnDestroy());
         }
 
         private void OnDestroy()
@@ -33,14 +36,21 @@ namespace UI.Notifications
         }
 
         [Inject]
-        private void Construct(PlayerUnit unit, PlayerSkillSlotsManager playerSkillSlotsManager)
+        private void Construct(PlayerUnit player, PlayerSkillSlotsManager playerSkillSlotsManager)
         {
-            Subscribe(unit.UnitSkillsData.Skills.ObserveAdd(), EnqueueSkillNotification);
-            Subscribe(unit.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
-            Subscribe(unit.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
-            Subscribe(unit.UnitHeldStatusEffectsData.All.ObserveAdd(), EnqueueStatusEffectNotification);
-            Subscribe(playerSkillSlotsManager.OnSkillSlotsAdded, EnqueueSkillSlotNotification);
-            SubscribeConsumables(unit);
+            _player = player;
+            _skillSlotsManager = playerSkillSlotsManager;
+        }
+
+        //in start to subscribe only after player receives starting inventory
+        private void Start()
+        {
+            Subscribe(_player.UnitSkillsData.Skills.ObserveAdd(), EnqueueSkillNotification);
+            Subscribe(_player.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
+            Subscribe(_player.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
+            Subscribe(_player.UnitHeldStatusEffectsData.All.ObserveAdd(), EnqueueStatusEffectNotification);
+            Subscribe(_skillSlotsManager.OnSkillSlotsAdded, EnqueueSkillSlotNotification);
+            SubscribeConsumables(_player);
         }
 
         private void Subscribe<T>(IObservable<T> stream, Action<T> handler)
