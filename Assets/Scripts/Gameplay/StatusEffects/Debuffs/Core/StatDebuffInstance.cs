@@ -10,7 +10,6 @@ namespace Gameplay.StatusEffects.Debuffs.Core
     public class StatDebuffInstance : BaseStatusEffectInstance
     {
         public StatDebuffData StatDebuffData;
-        public StatType StatType;
         public float ValueChange;
 
         public static StatDebuffInstance Create(StatDebuffData buffDataData, float valueChange)
@@ -19,7 +18,6 @@ namespace Gameplay.StatusEffects.Debuffs.Core
             {
                 TurnDurationLeft = new IntReactiveProperty(buffDataData.StatusEffectDurationData.TurnDurations),
                 EffectExpirationType = buffDataData.StatusEffectDurationData.EffectExpirationType,
-                StatType = buffDataData.DebuffedStatType,
                 StatusEffectData = buffDataData,
                 StatDebuffData = buffDataData,
                 ValueChange = valueChange
@@ -28,12 +26,12 @@ namespace Gameplay.StatusEffects.Debuffs.Core
 
         public override void Apply(IEntity activeUnit, IEntity otherUnit)
         {
-            if (otherUnit == null)
+            AffectedUnit = StatDebuffData.DebuffTarget == DebuffTarget.ThisUnit ? activeUnit : otherUnit;
+            
+            if (AffectedUnit == null)
                 throw new Exception("TRIED TO APPLY STATUS EFFECT TO A NULL UNIT");
 
-            AffectedUnit = otherUnit;
-
-            ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
+            ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
         }
 
@@ -42,7 +40,7 @@ namespace Gameplay.StatusEffects.Debuffs.Core
             if (AffectedUnit == null)
                 return;
 
-            UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
+            UnitStatsModificationService.ModifyStat(AffectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
             AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
         }
     }

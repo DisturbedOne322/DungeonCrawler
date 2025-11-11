@@ -15,18 +15,18 @@ MonoBehaviour:
   _typeToIconDict:
     _serializedList:
     - Key: 0
-      Value: {fileID: 0}
+      Value: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     - Key: 1
-      Value: {fileID: 0}
+      Value: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     - Key: 2
-      Value: {fileID: 0}
+      Value: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - Key: 3
-      Value: {fileID: 0}
+      Value: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     - Key: 4
-      Value: {fileID: 0}
+      Value: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - Key: 5
-      Value: {fileID: 0}
+      Value: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
     - Key: 6
-      Value: {fileID: 0}
+      Value: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - Key: 7
-      Value: {fileID: 0}
+      Value: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}

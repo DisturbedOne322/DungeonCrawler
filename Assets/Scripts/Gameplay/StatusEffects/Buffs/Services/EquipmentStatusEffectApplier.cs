@@ -21,10 +21,11 @@ namespace Gameplay.StatusEffects.Buffs.Services
             _unit = unit;
             _unitHeldStatusEffectsData = unitHeldStatusEffectsData;
 
-            _compositeDisposable.Add(unitEquipmentData.OnWeaponEquipped.Subscribe(EquipStatusEffectsFromEquipment));
-            _compositeDisposable.Add(unitEquipmentData.OnArmorEquipped.Subscribe(EquipStatusEffectsFromEquipment));
-            _compositeDisposable.Add(unitEquipmentData.OnWeaponRemoved.Subscribe(RemoveStatusEffectsFromEquipment));
-            _compositeDisposable.Add(unitEquipmentData.OnArmorRemoved.Subscribe(RemoveStatusEffectsFromEquipment));
+            unitEquipmentData.OnWeaponEquipped.Subscribe(EquipStatusEffectsFromEquipment).AddTo(_compositeDisposable);
+            unitEquipmentData.OnArmorEquipped.Subscribe(EquipStatusEffectsFromEquipment).AddTo(_compositeDisposable);
+            
+            unitEquipmentData.OnWeaponRemoved.Subscribe(RemoveStatusEffectsFromEquipment).AddTo(_compositeDisposable);
+            unitEquipmentData.OnArmorRemoved.Subscribe(RemoveStatusEffectsFromEquipment).AddTo(_compositeDisposable);
         }
 
         public void Dispose()
@@ -38,7 +39,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 if (statusEffect)
                 {
                     _unitHeldStatusEffectsData.Add(statusEffect);
-                    TryApplyPermanentStatusEffect(statusEffect);
+                    TryApplyPermanentStatusEffectOnObtain(statusEffect);
                 }
         }
 
@@ -52,7 +53,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 }
         }
 
-        private void TryApplyPermanentStatusEffect(BaseStatusEffectData data)
+        private void TryApplyPermanentStatusEffectOnObtain(BaseStatusEffectData data)
         {
             if (!IsPermanentStatusEffect(data))
                 return;
