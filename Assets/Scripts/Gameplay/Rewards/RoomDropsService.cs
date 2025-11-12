@@ -32,7 +32,7 @@ namespace Gameplay.Rewards
             if(reward == null)
                 return;
             
-            await _itemsDistributor.GiveRewardToPlayer(reward.Item, reward.Amount, RewardContext.Loot);
+            await _itemsDistributor.GiveRewardToPlayer(reward.Item, reward.Amount, ItemObtainContext.Loot);
         }
     }
 }

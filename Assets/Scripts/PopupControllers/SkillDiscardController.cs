@@ -1,110 +1,36 @@
-using System.Collections.Generic;
+using System;
 using Cysharp.Threading.Tasks;
-using Gameplay.Player;
+using Gameplay.Rewards;
 using Gameplay.Skills.Core;
-using Gameplay.Units;
-using UI;
-using UI.BattleMenu;
-using UI.Gameplay.Experience;
+using PopupControllers.SkillDiscarding;
 
 namespace PopupControllers
 {
-    public class SkillDiscardController : BaseUIInputHandler
+    public class SkillDiscardController
     {
-        private readonly PlayerInputProvider _playerInputProvider;
-
-        private readonly List<MenuItemData> _playerSkills = new();
-        private readonly PlayerUnit _playerUnit;
-        private readonly SkillDiscardMenuUpdater _skillDiscardMenuUpdater;
-        private readonly UIFactory _uiFactory;
-
-        private SkillDiscardPopup _skillDiscardPopup;
+        private readonly LootSkillDiscardStrategy _lootSkillDiscardStrategy;
+        private readonly PurchasedSkillDiscardStrategy _purchasedSkillDiscardStrategy;
 
         private BaseSkill _skillToDiscard;
 
-        public SkillDiscardController(UIFactory uiFactory,
-            PlayerInputProvider playerInputProvider,
-            PlayerUnit playerUnit)
+        public SkillDiscardController(LootSkillDiscardStrategy lootSkillDiscardStrategy,
+            PurchasedSkillDiscardStrategy purchasedSkillDiscardStrategy)
         {
-            _uiFactory = uiFactory;
-            _playerInputProvider = playerInputProvider;
-            _playerUnit = playerUnit;
-
-            _skillDiscardMenuUpdater = new SkillDiscardMenuUpdater();
+            _lootSkillDiscardStrategy = lootSkillDiscardStrategy;
+            _purchasedSkillDiscardStrategy = purchasedSkillDiscardStrategy;
         }
 
-        public async UniTask<BaseSkill> MakeSkillDiscardChoice(BaseSkill newSkill)
+        public async UniTask<BaseSkill> MakeSkillDiscardChoice(BaseSkill newSkill, ItemObtainContext context)
         {
-            Initialize(newSkill);
-
-            await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _skillToDiscard != null), this);
-
-            await _skillDiscardPopup.HidePopup();
-
-            return _skillToDiscard;
-        }
-
-        private void Initialize(BaseSkill newSkill)
-        {
-            _skillToDiscard = null;
-
-            CreateItemsSelection(newSkill);
-            ShowPopup();
-        }
-
-        private void ShowPopup()
-        {
-            _skillDiscardPopup = _uiFactory.CreatePopup<SkillDiscardPopup>();
-            _skillDiscardPopup.SetData(_skillDiscardMenuUpdater);
-            _skillDiscardPopup.ShowPopup().Forget();
-        }
-
-        private void CreateItemsSelection(BaseSkill newSkill)
-        {
-            _playerSkills.Clear();
-
-            var skillsData = _playerUnit.UnitSkillsData;
-
-            foreach (var skill in skillsData.Skills)
-                _playerSkills.Add(
-                    MenuItemData.ForSkillItem(
-                        skill,
-                        () => true,
-                        () => _skillToDiscard = skill)
-                );
-
-            var newSkillData = MenuItemData.ForSkillItem(
-                newSkill,
-                () => true,
-                () => _skillToDiscard = newSkill);
-
-            _skillDiscardMenuUpdater.SetNewSkill(newSkillData);
-            _skillDiscardMenuUpdater.SetMenuItems(_playerSkills);
-        }
-
-        public override void OnUISubmit()
-        {
-            _skillDiscardMenuUpdater.ExecuteSelection();
-        }
-
-        public override void OnUIUp()
-        {
-            _skillDiscardMenuUpdater.ProcessInput(-1, 0);
-        }
-
-        public override void OnUIDown()
-        {
-            _skillDiscardMenuUpdater.ProcessInput(+1, 0);
-        }
-
-        public override void OnUILeft()
-        {
-            _skillDiscardMenuUpdater.ProcessInput(0, -1);
-        }
-
-        public override void OnUIRight()
-        {
-            _skillDiscardMenuUpdater.ProcessInput(0, +1);
+            switch (context)
+            {
+                case ItemObtainContext.Loot:
+                    return await _lootSkillDiscardStrategy.MakeSkillDiscardChoice(newSkill);
+                case ItemObtainContext.Purchase:
+                    return await _purchasedSkillDiscardStrategy.MakeSkillDiscardChoice(newSkill);
+                default:
+                    throw new Exception($"Unhandled item obtain context {context}");
+            }
         }
     }
 }

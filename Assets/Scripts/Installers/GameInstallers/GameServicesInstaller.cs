@@ -1,6 +1,8 @@
 using Gameplay.Enemies;
 using Gameplay.Rewards;
 using Gameplay.Services;
+using PopupControllers;
+using PopupControllers.SkillDiscarding;
 using UI.BattleUI.Damage;
 using Zenject;
 
@@ -23,6 +25,12 @@ namespace Installers.GameInstallers
             Container.Bind<LootDistributionStrategy>().AsSingle();
             Container.Bind<RewardSelectorService>().AsSingle();
             Container.Bind<RoomDropsService>().AsSingle();
+            
+            Container.Bind<EquipmentChangeController>().AsSingle();
+            
+            Container.Bind<SkillDiscardController>().AsSingle();
+            Container.Bind<LootSkillDiscardStrategy>().AsSingle();
+            Container.Bind<PurchasedSkillDiscardStrategy>().AsSingle();
         }
     }
 }

@@ -1,4 +1,3 @@
-using PopupControllers;
 using UI;
 using UI.BattleMenu;
 using UI.Navigation;
@@ -10,14 +9,13 @@ namespace Installers.GameInstallers.UIInstallers
     {
         public override void InstallBindings()
         {
-            Container.Bind<EquipmentChangeController>().AsSingle();
-            Container.Bind<SkillDiscardController>().AsSingle();
             Container.Bind<MenuItemViewFactory>().AsSingle();
 
             Container.Bind<HorizontalUINavigator>().AsTransient();
             Container.Bind<VerticalUiNavigator>().AsTransient();
 
             Container.Bind<UIFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<PopupsRegistry>().AsSingle();
         }
     }
 }

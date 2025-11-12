@@ -59,7 +59,7 @@ namespace Gameplay.Rewards
                 return;
             }
 
-            var skillToDiscard = await _skillDiscardController.MakeSkillDiscardChoice(skill);
+            var skillToDiscard = await _skillDiscardController.MakeSkillDiscardChoice(skill, ItemObtainContext.Loot);
             if (skillToDiscard != skill)
             {
                 Player.UnitSkillsData.RemoveSkill(skillToDiscard);

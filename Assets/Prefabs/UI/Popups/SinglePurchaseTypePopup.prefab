@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 6827376802798932613}
   - component: {fileID: 3151110311643534612}
   m_Layer: 0
-  m_Name: ShrinePopupPrefab
+  m_Name: SinglePurchaseTypePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

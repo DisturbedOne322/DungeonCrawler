@@ -15,14 +15,14 @@ namespace Gameplay.Rewards
             _lootDistributionStrategy = lootDistributionStrategy;
         }
         
-        public async UniTask GiveRewardToPlayer(BaseGameItem item, int amount, RewardContext rewardContext)
+        public async UniTask GiveRewardToPlayer(BaseGameItem item, int amount, ItemObtainContext itemObtainContext)
         {
-            switch (rewardContext)
+            switch (itemObtainContext)
             {
-                case RewardContext.Loot:
+                case ItemObtainContext.Loot:
                     await _lootDistributionStrategy.DistributeItem(item, amount);
                     break;
-                case RewardContext.Purchase:
+                case ItemObtainContext.Purchase:
                     await _purchaseDistributionStrategy.DistributeItem(item, amount);
                     break;
                 default:

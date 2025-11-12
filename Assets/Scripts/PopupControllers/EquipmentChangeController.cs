@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Data.UI;
 using Gameplay;
-using Gameplay.Player;
 using UI;
 using UI.Gameplay.Experience;
 
@@ -9,13 +8,11 @@ namespace PopupControllers
 {
     public class EquipmentChangeController
     {
-        private readonly PlayerInputProvider _playerInputProvider;
         private readonly UIFactory _uiFactory;
 
-        public EquipmentChangeController(UIFactory uiFactory, PlayerInputProvider playerInputProvider)
+        public EquipmentChangeController(UIFactory uiFactory)
         {
             _uiFactory = uiFactory;
-            _playerInputProvider = playerInputProvider;
         }
 
         public async UniTask<EquipmentSelectChoice> MakeEquipmentChoice(BaseGameItem oldItem, BaseGameItem newItem)

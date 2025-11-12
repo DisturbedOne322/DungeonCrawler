@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace UI.Gameplay.Experience
 {
-    public class SkillDiscardPopup : BasePopup
+    public class SkillLootDiscardPopup : BasePopup
     {
         [SerializeField] private RectTransform _oldSkillsParent;
         [SerializeField] private RectTransform _newSkillParent;

@@ -9,24 +9,18 @@ namespace AssetManagement.Configs
     public class UIPopupsConfig : BaseConfig
     {
         [SerializeField] private List<BasePopup> _prefabs;
+        
+        public IReadOnlyList<BasePopup> Prefabs => _prefabs;
 
-        private readonly Dictionary<Type, BasePopup> _popupsDict = new();
-
-        private void OnEnable()
+        private void OnValidate()
         {
+            Dictionary<Type, BasePopup> popupsDict = new ();
+
             foreach (var prefab in _prefabs)
-                _popupsDict.Add(prefab.GetType(), prefab);
-        }
-
-        public bool TryGetPopup<T>(out T result) where T : BasePopup
-        {
-            if (_popupsDict.TryGetValue(typeof(T), out var popup))
             {
-                result = popup as T;
-                return true;
+                if(!popupsDict.TryAdd(prefab.GetType(), prefab))
+                    Debug.LogError($"Prefab for type {prefab.GetType()} already exists");
             }
-
-            throw new Exception("Popup of type " + typeof(T).Name + " is not registered");
         }
     }
 }

@@ -52,7 +52,7 @@ namespace StateMachine.Shop
         protected async UniTask PurchaseItem(PurchasedItemModel model)
         {
             _isInputLocked = true;
-            await _itemsDistributor.GiveRewardToPlayer(model.ItemData.Item, 1, RewardContext.Purchase);
+            await _itemsDistributor.GiveRewardToPlayer(model.ItemData.Item, 1, ItemObtainContext.Purchase);
 
             BalanceService.AddBalance(-model.ItemData.Price);
             model.DecreaseAmount(1);

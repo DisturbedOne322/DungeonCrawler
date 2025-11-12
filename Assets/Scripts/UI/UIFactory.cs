@@ -10,24 +10,21 @@ namespace UI
     public class UIFactory : MonoBehaviour
     {
         [SerializeField] private Canvas _canvas;
+        
         private ContainerFactory _factory;
-
-        private UIPopupsConfigProvider _uiPopupsConfigProvider;
+        private PopupsRegistry _popupsRegistry;
 
         [Inject]
-        private void Construct(ContainerFactory factory, UIPopupsConfigProvider uiPopupsConfigProvider)
+        private void Construct(ContainerFactory factory, PopupsRegistry popupsRegistry)
         {
             _factory = factory;
-            _uiPopupsConfigProvider = uiPopupsConfigProvider;
+            _popupsRegistry = popupsRegistry;
         }
 
         public T CreatePopup<T>() where T : BasePopup
         {
-            var config = _uiPopupsConfigProvider.GetConfig();
-
-            if (!config.TryGetPopup<T>(out var prefab))
-                throw new Exception($"Could not find popup {typeof(T)}");
-
+            var prefab = _popupsRegistry.GetPopupPrefab<T>();
+            
             var popup = _factory.Create<T>(prefab.gameObject);
             popup.transform.SetParent(_canvas.transform, false);
             return popup;

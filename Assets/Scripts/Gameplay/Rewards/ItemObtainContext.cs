@@ -1,6 +1,6 @@
 namespace Gameplay.Rewards
 {
-    public enum RewardContext
+    public enum ItemObtainContext
     {
         Loot,
         Purchase
