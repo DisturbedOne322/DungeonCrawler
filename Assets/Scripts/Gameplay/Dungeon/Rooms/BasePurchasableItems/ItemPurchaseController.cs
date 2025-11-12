@@ -85,7 +85,7 @@ namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 
         private async UniTask PurchaseItem(PurchasedItemModel model)
         {
-            await _itemsDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
+            await _itemsDistributor.GiveRewardToPlayer(model.ItemData.Item, 1, RewardContext.Purchase);
 
             _balanceService.AddBalance(-model.ItemData.Price);
             model.DecreaseAmount(1);

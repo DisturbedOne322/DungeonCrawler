@@ -19,6 +19,8 @@ namespace Installers.GameInstallers
             Container.Bind<BalanceService>().AsSingle();
 
             Container.Bind<ItemsDistributor>().AsSingle();
+            Container.Bind<PurchaseDistributionStrategy>().AsSingle();
+            Container.Bind<LootDistributionStrategy>().AsSingle();
             Container.Bind<RewardSelectorService>().AsSingle();
             Container.Bind<RoomDropsService>().AsSingle();
         }

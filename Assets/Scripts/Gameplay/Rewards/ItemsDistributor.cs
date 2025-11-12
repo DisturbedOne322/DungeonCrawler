@@ -1,121 +1,32 @@
-using System.Threading.Tasks;
+using System;
 using Cysharp.Threading.Tasks;
-using Data.UI;
-using Gameplay.Consumables;
-using Gameplay.Equipment.Armor;
-using Gameplay.Equipment.Weapons;
-using Gameplay.Player;
-using Gameplay.Skills.Core;
-using Gameplay.StatusEffects.Core;
-using Gameplay.Units;
-using PopupControllers;
-using UnityEngine;
 
 namespace Gameplay.Rewards
 {
     public class ItemsDistributor
     {
-        private readonly EquipmentChangeController _equipmentChangeController;
-        private readonly PlayerUnit _player;
-        private readonly SkillDiscardController _skillDiscardController;
-        private readonly PlayerSkillSlotsManager _skillSlotsManager;
-
-        public ItemsDistributor(PlayerUnit player, EquipmentChangeController equipmentChangeController,
-            SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager)
+        private readonly PurchaseDistributionStrategy _purchaseDistributionStrategy;
+        private readonly LootDistributionStrategy _lootDistributionStrategy;
+        
+        public ItemsDistributor(PurchaseDistributionStrategy purchaseStrategy, 
+            LootDistributionStrategy lootDistributionStrategy)
         {
-            _player = player;
-            _equipmentChangeController = equipmentChangeController;
-            _skillDiscardController = skillDiscardController;
-            _skillSlotsManager = skillSlotsManager;
+            _purchaseDistributionStrategy = purchaseStrategy;
+            _lootDistributionStrategy = lootDistributionStrategy;
         }
-
-        public async UniTask GiveRewardToPlayer(DropEntry dropEntry)
+        
+        public async UniTask GiveRewardToPlayer(BaseGameItem item, int amount, RewardContext rewardContext)
         {
-            if (dropEntry == null)
-                return;
-
-            await GiveRewardToPlayer(dropEntry.Item, dropEntry.Amount);
-        }
-
-        public async UniTask GiveRewardToPlayer(BaseGameItem item, int amount)
-        {
-            if (!item)
-                return;
-
-            switch (item)
+            switch (rewardContext)
             {
-                case BaseWeapon weapon:
-                    await ProcessWeaponReward(weapon);
+                case RewardContext.Loot:
+                    await _lootDistributionStrategy.DistributeItem(item, amount);
                     break;
-
-                case BaseArmor armor:
-                    await ProcessArmorReward(armor);
+                case RewardContext.Purchase:
+                    await _purchaseDistributionStrategy.DistributeItem(item, amount);
                     break;
-
-                case BaseSkill skill:
-                    await ProcessSkillReward(skill);
-                    break;
-
-                case BaseConsumable consumable:
-                    _player.UnitInventoryData.AddItems(consumable, amount);
-                    break;
-
-                case BaseStatusEffectData statusEffect:
-                    _player.UnitHeldStatusEffectsData.Add(statusEffect);
-                    break;
-
-                case CoinsItem coinsItem:
-                    var rand = Random.Range(coinsItem.MinAmount, coinsItem.MaxAmount);
-                    _player.UnitInventoryData.Coins.Value += rand;
-                    break;
-
                 default:
-                    Debug.LogWarning($"Unhandled reward type: {item.name}");
-                    break;
-            }
-        }
-
-        private async UniTask ProcessWeaponReward(BaseWeapon newWeapon)
-        {
-            if (_player.UnitEquipmentData.TryGetEquippedWeapon(out var currentWeapon))
-            {
-                var choice = await _equipmentChangeController.MakeEquipmentChoice(currentWeapon, newWeapon);
-                if (choice == EquipmentSelectChoice.Change)
-                    _player.UnitEquipmentData.EquipWeapon(newWeapon);
-            }
-            else
-            {
-                _player.UnitEquipmentData.EquipWeapon(newWeapon);
-            }
-        }
-
-        private async UniTask ProcessArmorReward(BaseArmor newArmor)
-        {
-            if (_player.UnitEquipmentData.TryGetEquippedArmor(out var currentArmor))
-            {
-                var choice = await _equipmentChangeController.MakeEquipmentChoice(currentArmor, newArmor);
-                if (choice == EquipmentSelectChoice.Change)
-                    _player.UnitEquipmentData.EquipArmor(newArmor);
-            }
-            else
-            {
-                _player.UnitEquipmentData.EquipArmor(newArmor);
-            }
-        }
-
-        private async Task ProcessSkillReward(BaseSkill skill)
-        {
-            if (_skillSlotsManager.HasFreeSkillSlot())
-            {
-                _player.UnitSkillsData.AddSkill(skill);
-                return;
-            }
-
-            var skillToDiscard = await _skillDiscardController.MakeSkillDiscardChoice(skill);
-            if (skillToDiscard != skill)
-            {
-                _player.UnitSkillsData.RemoveSkill(skillToDiscard);
-                _player.UnitSkillsData.AddSkill(skill);
+                    throw new Exception("Unhandled reward context");
             }
         }
     }

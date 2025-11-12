@@ -29,7 +29,10 @@ namespace Gameplay.Rewards
 
             var reward = _rewardSelectorService.SelectReward(roomData.RewardDropTable);
 
-            await _itemsDistributor.GiveRewardToPlayer(reward);
+            if(reward == null)
+                return;
+            
+            await _itemsDistributor.GiveRewardToPlayer(reward.Item, reward.Amount, RewardContext.Loot);
         }
     }
 }
