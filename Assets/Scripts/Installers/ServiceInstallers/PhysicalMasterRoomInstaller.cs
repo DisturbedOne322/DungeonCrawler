@@ -1,4 +1,4 @@
-using Gameplay.Dungeon.Rooms.BaseSellableItems;
+using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 using Gameplay.Dungeon.Rooms.SkillRoom;
 using UnityEngine;
 
@@ -8,6 +8,6 @@ namespace Installers.ServiceInstallers
     {
         [SerializeField] private PhysicalSkillsMasterConfig _physicalSkillsMasterConfig;
 
-        protected override BaseSellableItemsConfig ItemsConfig => _physicalSkillsMasterConfig;
+        protected override BasePurchasableItemsConfig ItemsConfig => _physicalSkillsMasterConfig;
     }
 }

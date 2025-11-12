@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 
-namespace Gameplay.Dungeon.Rooms.BaseSellableItems
+namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 {
-    public class SellableItemsProvider
+    public class PurchasableItemsProvider
     {
-        private readonly BaseSellableItemsConfig _itemsForSaleConfig;
+        private readonly BasePurchasableItemsConfig _itemsForSaleConfig;
 
-        public SellableItemsProvider(BaseSellableItemsConfig itemsForSaleConfig)
+        public PurchasableItemsProvider(BasePurchasableItemsConfig itemsForSaleConfig)
         {
             _itemsForSaleConfig = itemsForSaleConfig;
         }
@@ -16,14 +16,14 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
             return _itemsForSaleConfig.ItemsForSale.Count > 0;
         }
 
-        public IReadOnlyList<SoldItemModel> GetSellableItems()
+        public IReadOnlyList<PurchasedItemModel> GetSellableItems()
         {
             return CreateItemsList(_itemsForSaleConfig.ItemsForSale);
         }
 
-        private IReadOnlyList<SoldItemModel> CreateItemsList(IReadOnlyList<ISellableItemData> dataList)
+        private IReadOnlyList<PurchasedItemModel> CreateItemsList(IReadOnlyList<IPurchasableItemData> dataList)
         {
-            List<SoldItemModel> items = new();
+            List<PurchasedItemModel> items = new();
 
             foreach (var data in dataList)
             {
@@ -36,7 +36,7 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
             return items;
         }
 
-        private bool TryCreateShopItemModel(ISellableItemData data, out SoldItemModel model)
+        private bool TryCreateShopItemModel(IPurchasableItemData data, out PurchasedItemModel model)
         {
             if (!data.Item)
             {
@@ -44,7 +44,7 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
                 return false;
             }
 
-            model = new SoldItemModel(data);
+            model = new PurchasedItemModel(data);
             return true;
         }
     }

@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Rooms.BaseSellableItems
+namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 {
     [Serializable]
-    public class SellableItemData<T> : ISellableItemData where T : BaseGameItem
+    public class PurchasableItemData<T> : IPurchasableItemData where T : BaseGameItem
     {
         [SerializeField] private T _item;
 

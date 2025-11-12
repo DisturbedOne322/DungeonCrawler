@@ -1,5 +1,4 @@
 using System;
-using Data;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;

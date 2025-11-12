@@ -7,28 +7,28 @@ using Gameplay.Units;
 using Helpers;
 using UI.BattleMenu;
 
-namespace Gameplay.Dungeon.Rooms.BaseSellableItems
+namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 {
-    public class ItemSellingController : BaseUIInputHandler
+    public class ItemPurchaseController : BaseUIInputHandler
     {
         private readonly BalanceService _balanceService;
         private readonly ItemsDistributor _itemsDistributor;
         private readonly MenuItemsUpdater _menuItemsUpdater;
         private readonly PlayerUnit _player;
         private readonly PlayerInputProvider _playerInputProvider;
-        private readonly SellableItemsProvider _sellableItemsProvider;
+        private readonly PurchasableItemsProvider _purchasableItemsProvider;
 
         private UniTaskCompletionSource _cts = new();
 
-        public ItemSellingController(PlayerInputProvider playerInputProvider,
-            SellableItemsProvider sellableItemsProvider,
+        public ItemPurchaseController(PlayerInputProvider playerInputProvider,
+            PurchasableItemsProvider purchasableItemsProvider,
             ItemsDistributor itemsDistributor,
             BalanceService balanceService,
             MenuItemsUpdater menuItemsUpdater,
             PlayerUnit player)
         {
             _playerInputProvider = playerInputProvider;
-            _sellableItemsProvider = sellableItemsProvider;
+            _purchasableItemsProvider = purchasableItemsProvider;
             _itemsDistributor = itemsDistributor;
             _balanceService = balanceService;
             _menuItemsUpdater = menuItemsUpdater;
@@ -48,13 +48,13 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
 
         private void InitItems()
         {
-            var itemsSelection = _sellableItemsProvider.GetSellableItems();
+            var itemsSelection = _purchasableItemsProvider.GetSellableItems();
 
             List<MenuItemData> items = new();
 
             foreach (var model in itemsSelection)
                 items.Add(
-                    new SoldItemMenuItemData(
+                    new PurchasedItemMenuItemData(
                         model,
                         () => IsSelectable(model),
                         () => PurchaseItem(model).Forget()
@@ -83,7 +83,7 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
             _cts.TrySetResult();
         }
 
-        private async UniTask PurchaseItem(SoldItemModel model)
+        private async UniTask PurchaseItem(PurchasedItemModel model)
         {
             await _itemsDistributor.GiveRewardToPlayer(model.ItemData.Item, 1);
 
@@ -91,7 +91,7 @@ namespace Gameplay.Dungeon.Rooms.BaseSellableItems
             model.DecreaseAmount(1);
         }
 
-        private bool IsSelectable(SoldItemModel model)
+        private bool IsSelectable(PurchasedItemModel model)
         {
             var purchasable = _balanceService.HasEnoughBalance(model.ItemData.Price) && model.AmountLeft.Value > 0;
             var isAlreadyPurchased =

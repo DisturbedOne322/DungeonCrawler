@@ -1,16 +1,16 @@
 using UniRx;
 
-namespace Gameplay.Dungeon.Rooms.BaseSellableItems
+namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 {
-    public class SoldItemModel
+    public class PurchasedItemModel
     {
-        public SoldItemModel(ISellableItemData itemData)
+        public PurchasedItemModel(IPurchasableItemData itemData)
         {
             ItemData = itemData;
             AmountLeft = new IntReactiveProperty(itemData.Amount);
         }
 
-        public ISellableItemData ItemData { get; }
+        public IPurchasableItemData ItemData { get; }
 
         public IntReactiveProperty AmountLeft { get; }
 

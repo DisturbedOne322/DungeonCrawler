@@ -1,4 +1,4 @@
-using Gameplay.Dungeon.Rooms.BaseSellableItems;
+using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 using Gameplay.Dungeon.Rooms.Shrine;
 using UnityEngine;
 
@@ -8,6 +8,6 @@ namespace Installers.ServiceInstallers
     {
         [SerializeField] private ShrineBuffsConfig _shrineBuffsConfig;
 
-        protected override BaseSellableItemsConfig ItemsConfig => _shrineBuffsConfig;
+        protected override BasePurchasableItemsConfig ItemsConfig => _shrineBuffsConfig;
     }
 }

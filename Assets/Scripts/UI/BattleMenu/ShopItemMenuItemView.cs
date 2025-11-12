@@ -1,4 +1,4 @@
-using Gameplay.Dungeon.Rooms.BaseSellableItems;
+using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -13,13 +13,13 @@ namespace UI.BattleMenu
         [SerializeField] private TextMeshProUGUI _amountText;
         [SerializeField] private TextMeshProUGUI _priceText;
 
-        public void SetData(SoldItemMenuItemData data)
+        public void SetData(PurchasedItemMenuItemData data)
         {
-            _image.sprite = data.SoldItemModel.ItemData.Item.Icon;
+            _image.sprite = data.PurchasedItemModel.ItemData.Item.Icon;
             _descText.SetText(data.Description);
-            _priceText.SetText(data.SoldItemModel.ItemData.Price.ToString());
+            _priceText.SetText(data.PurchasedItemModel.ItemData.Price.ToString());
 
-            data.SoldItemModel.AmountLeft.Subscribe(UpdateCountText).AddTo(Disposables);
+            data.PurchasedItemModel.AmountLeft.Subscribe(UpdateCountText).AddTo(Disposables);
         }
 
         private void UpdateCountText(int amount)

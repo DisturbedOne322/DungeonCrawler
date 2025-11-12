@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Dungeon.Rooms.BaseSellableItems;
+using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 
 namespace Gameplay.Dungeon.Rooms.Shop
 {
@@ -17,7 +17,7 @@ namespace Gameplay.Dungeon.Rooms.Shop
             return _shopItemsConfig.ConsumableItems.Count > 0;
         }
 
-        public IReadOnlyList<SoldItemModel> CreateConsumablesForSale()
+        public IReadOnlyList<PurchasedItemModel> CreateConsumablesForSale()
         {
             return CreateItemsList(_shopItemsConfig.ConsumableItems);
         }
@@ -27,7 +27,7 @@ namespace Gameplay.Dungeon.Rooms.Shop
             return _shopItemsConfig.EquipmentItems.Count > 0;
         }
 
-        public IReadOnlyList<SoldItemModel> CreateEquipmentForSale()
+        public IReadOnlyList<PurchasedItemModel> CreateEquipmentForSale()
         {
             return CreateItemsList(_shopItemsConfig.EquipmentItems);
         }
@@ -37,7 +37,7 @@ namespace Gameplay.Dungeon.Rooms.Shop
             return _shopItemsConfig.SkillItems.Count > 0;
         }
 
-        public IReadOnlyList<SoldItemModel> CreateSkillsForSale()
+        public IReadOnlyList<PurchasedItemModel> CreateSkillsForSale()
         {
             return CreateItemsList(_shopItemsConfig.SkillItems);
         }
@@ -47,14 +47,14 @@ namespace Gameplay.Dungeon.Rooms.Shop
             return _shopItemsConfig.StatusEffectItems.Count > 0;
         }
 
-        public IReadOnlyList<SoldItemModel> CreateStatusEffectsForSale()
+        public IReadOnlyList<PurchasedItemModel> CreateStatusEffectsForSale()
         {
             return CreateItemsList(_shopItemsConfig.StatusEffectItems);
         }
 
-        private IReadOnlyList<SoldItemModel> CreateItemsList(IReadOnlyList<ISellableItemData> dataList)
+        private IReadOnlyList<PurchasedItemModel> CreateItemsList(IReadOnlyList<IPurchasableItemData> dataList)
         {
-            List<SoldItemModel> items = new();
+            List<PurchasedItemModel> items = new();
 
             foreach (var data in dataList)
             {
@@ -67,7 +67,7 @@ namespace Gameplay.Dungeon.Rooms.Shop
             return items;
         }
 
-        private bool TryCreateShopItemModel(ISellableItemData data, out SoldItemModel model)
+        private bool TryCreateShopItemModel(IPurchasableItemData data, out PurchasedItemModel model)
         {
             if (!data.Item)
             {
@@ -75,7 +75,7 @@ namespace Gameplay.Dungeon.Rooms.Shop
                 return false;
             }
 
-            model = new SoldItemModel(data);
+            model = new PurchasedItemModel(data);
             return true;
         }
     }
