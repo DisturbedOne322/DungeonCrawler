@@ -11,27 +11,32 @@ namespace Gameplay.Player
     {
         private readonly PlayerInputActions _inputActions = new();
         private readonly Stack<IUiInputHandler> _uiInputHandlers = new();
-
+        
         public readonly Subject<Unit> OnGoForward = new();
         public readonly Subject<Unit> OnGoLeft = new();
         public readonly Subject<Unit> OnGoRight = new();
 
+        public readonly Subject<Unit> OnPause = new();
+        
         public PlayerInputProvider()
         {
             SubscribeMovementActions();
             SubscribeUiActions();
+            SubscribeGameEvents();
+            
+            _inputActions.Game.Enable();
         }
 
         public void Dispose()
         {
-            _inputActions.Disable();
+            _inputActions.Dispose();
         }
 
         private void SubscribeMovementActions()
         {
-            _inputActions.Decision.GoLeft.performed += ctx => OnGoLeft.OnNext(Unit.Default);
-            _inputActions.Decision.GoForward.performed += ctx => OnGoForward.OnNext(Unit.Default);
-            _inputActions.Decision.GoRight.performed += ctx => OnGoRight.OnNext(Unit.Default);
+            _inputActions.Movement.GoLeft.performed += ctx => OnGoLeft.OnNext(Unit.Default);
+            _inputActions.Movement.GoForward.performed += ctx => OnGoForward.OnNext(Unit.Default);
+            _inputActions.Movement.GoRight.performed += ctx => OnGoRight.OnNext(Unit.Default);
         }
 
         private void SubscribeUiActions()
@@ -44,12 +49,17 @@ namespace Gameplay.Player
             _inputActions.UI.Right.performed += _ => GetActiveUiOwner()?.OnUIRight();
         }
 
+        private void SubscribeGameEvents()
+        {
+            _inputActions.Game.Pause.performed += _ => OnPause.OnNext(Unit.Default);
+        }
+
         public void EnableMovementInput(bool enable)
         {
             if (enable)
-                _inputActions.Decision.Enable();
+                _inputActions.Movement.Enable();
             else
-                _inputActions.Decision.Disable();
+                _inputActions.Movement.Disable();
         }
 
         public async UniTask EnableUIInputUntil(UniTask task, IUiInputHandler handler)

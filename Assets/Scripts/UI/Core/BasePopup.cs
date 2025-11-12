@@ -22,13 +22,14 @@ namespace UI.Core
             await _popupAnimator.PlayHideAnim(DestroyPopup);
         }
 
-        public void DestroyPopup()
+        private void DestroyPopup()
         {
             Destroy(gameObject);
         }
 
         protected virtual void InitializePopup()
         {
+            
         }
     }
 }

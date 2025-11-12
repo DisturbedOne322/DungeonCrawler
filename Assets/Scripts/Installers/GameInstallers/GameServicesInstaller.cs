@@ -1,4 +1,6 @@
+using Gameplay;
 using Gameplay.Enemies;
+using Gameplay.Pause;
 using Gameplay.Rewards;
 using Gameplay.Services;
 using PopupControllers;
@@ -31,6 +33,9 @@ namespace Installers.GameInstallers
             Container.Bind<SkillDiscardController>().AsSingle();
             Container.Bind<LootSkillDiscardStrategy>().AsSingle();
             Container.Bind<PurchasedSkillDiscardStrategy>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<PauseController>().AsSingle().NonLazy();
+            Container.Bind<TimeScaleController>().AsSingle();
         }
     }
 }
