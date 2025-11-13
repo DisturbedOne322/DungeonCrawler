@@ -1,5 +1,4 @@
 using System;
-using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Player;
 using UI;
