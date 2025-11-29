@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Player;
 using UI;
@@ -13,21 +14,19 @@ namespace Gameplay.Pause
         private readonly PlayerInputProvider _playerInputProvider;
         private readonly GameplayData _gameplayData;
         private readonly TimeScaleController _timeScaleController;
-        private readonly UIFactory _uiFactory;
+        private readonly PausePopupController _pausePopupController;
 
         private IDisposable _subscription;
         
-        private PausePopup _pausePopup;
-        
         public PauseController(PlayerInputProvider playerInputProvider,
             GameplayData gameplayData,
-            TimeScaleController timeScaleController,
-            UIFactory uiFactory)
+            TimeScaleController timeScaleController, 
+            PausePopupController pausePopupController)
         {
             _playerInputProvider = playerInputProvider;
             _gameplayData = gameplayData;
             _timeScaleController = timeScaleController;
-            _uiFactory = uiFactory;
+            _pausePopupController = pausePopupController;
         }
 
         public void Initialize()
@@ -49,12 +48,12 @@ namespace Gameplay.Pause
             if (currentState == GameState.Paused)
             {
                 _timeScaleController.Pause();
-                _pausePopup = _uiFactory.CreatePopup<PausePopup>();
+                _pausePopupController.OpenPopup();
             }
             else
             {
+                _pausePopupController.ClosePopup();
                 _timeScaleController.Unpause();
-                _pausePopup?.HidePopup();
             }
         }
 

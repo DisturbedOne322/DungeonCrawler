@@ -5,23 +5,18 @@ using UI.Core;
 using UI.Stats;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Gameplay.Experience
 {
     public class LevelUpPopup : BasePopup
     {
-        [SerializeField] private VerticalLayoutGroup _namesParent;
-        [SerializeField] private VerticalLayoutGroup _statsParent;
         [SerializeField] private TextMeshProUGUI _pointsLeftText;
 
+        [SerializeField] private UITable _uiTable;
+        
         public void SetTable(Dictionary<BaseMenuItemView, StatIncreaseView> table)
         {
-            foreach (var kv in table)
-            {
-                kv.Key.transform.SetParent(_namesParent.transform, false);
-                kv.Value.transform.SetParent(_statsParent.transform, false);
-            }
+            _uiTable.SetTable(table);
         }
 
         public void SetReactivePointsLeft(ReactiveProperty<int> reactivePoints)

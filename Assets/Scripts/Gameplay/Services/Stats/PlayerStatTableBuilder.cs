@@ -9,31 +9,36 @@ using UniRx;
 
 namespace Gameplay.Experience
 {
-    public class PlayerStatDistributionTableBuilder
+    public class PlayerStatTableBuilder
     {
         private readonly ContainerFactory _containerFactory;
         private readonly MenuItemViewFactory _menuFactory;
         private readonly UIPrefabsProvider _uiPrefabsProvider;
+        private readonly PlayerStatsProvider _playerStatProvider;
 
-        public PlayerStatDistributionTableBuilder(UIPrefabsProvider uiPrefabsProvider,
-            ContainerFactory containerFactory, MenuItemViewFactory menuFactory)
+        public PlayerStatTableBuilder(UIPrefabsProvider uiPrefabsProvider,
+            ContainerFactory containerFactory, MenuItemViewFactory menuFactory,
+            PlayerStatsProvider playerStatProvider)
         {
             _uiPrefabsProvider = uiPrefabsProvider;
             _containerFactory = containerFactory;
             _menuFactory = menuFactory;
+            _playerStatProvider = playerStatProvider;
         }
 
-        public List<MenuItemData> CreateItemDataList(List<string> statNames)
+        public Dictionary<MenuItemData, ReactiveProperty<int>> CreateMenuItems()
         {
-            List<MenuItemData> menuItems = new();
+            Dictionary<MenuItemData, ReactiveProperty<int>> menuItems = new();
 
-            foreach (var name in statNames)
+            var playerStats = _playerStatProvider.GetPlayerStats();
+            
+            foreach (var name in playerStats.Keys)
                 menuItems.Add(new MenuItemData(
                     name,
                     () => true,
                     () => { },
                     MenuItemType.Stat
-                ));
+                ), playerStats[name]);
 
             return menuItems;
         }

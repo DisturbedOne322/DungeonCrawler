@@ -8,7 +8,7 @@ namespace Editor
         private const string BootstrapScenePath = "Assets/Scenes/MainMenuScene.unity";
         private const string GameplayScenePath = "Assets/Scenes/GameplayScene.unity";
 
-        [MenuItem("Play/Play From Bootstrap Scene %#e")]
+        [MenuItem("Play/Play From Bootstrap Scene %#t")]
         public static void PlayFromBootstrapScene()
         {
             if (EditorApplication.isPlaying)
@@ -24,7 +24,7 @@ namespace Editor
             }
         }
 
-        [MenuItem("Play/Open Test Scene %#t")]
+        [MenuItem("Play/Open Test Scene %#y")]
         public static void OpenGameplayScene() => EditorSceneManager.OpenScene(GameplayScenePath);
     }
 }

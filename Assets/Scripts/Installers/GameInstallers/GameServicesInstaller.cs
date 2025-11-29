@@ -36,6 +36,7 @@ namespace Installers.GameInstallers
 
             Container.BindInterfacesAndSelfTo<PauseController>().AsSingle().NonLazy();
             Container.Bind<TimeScaleController>().AsSingle();
+            Container.Bind<PausePopupController>().AsSingle();
         }
     }
 }

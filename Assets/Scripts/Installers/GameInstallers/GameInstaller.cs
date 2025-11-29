@@ -54,8 +54,9 @@ namespace Installers.GameInstallers
             Container.Bind<ExperienceRequirementsProvider>().AsSingle();
             Container.Bind<ExperienceData>().AsSingle();
             Container.Bind<PlayerStatDistributionController>().AsSingle();
-            Container.Bind<PlayerStatDistributionTableBuilder>().AsSingle();
+            Container.Bind<PlayerStatTableBuilder>().AsSingle();
             Container.Bind<PlayerStatDistrubutionController>().AsSingle();
+            Container.Bind<PlayerStatsProvider>().AsSingle();
             Container.Bind<PlayerSkillSlotsManager>().AsSingle();
             Container.Bind<PlayerLevelUpBonusApplier>().AsSingle();
             Container.Bind<PlayerLevelUpController>().AsSingle();
