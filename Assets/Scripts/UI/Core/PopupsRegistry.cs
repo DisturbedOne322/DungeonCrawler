@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using AssetManagement.AssetProviders;
-using UI.Core;
+using AssetManagement.AssetProviders.ConfigProviders;
 
-namespace UI
+namespace UI.Core
 {
     public class PopupsRegistry
     {

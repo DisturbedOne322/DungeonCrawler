@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UI.BattleMenu;
 using UI.Core;
+using UI.Menus.MenuItemViews;
 using UI.Stats;
 using UniRx;
 using UnityEngine;

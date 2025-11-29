@@ -2,6 +2,7 @@ using Gameplay.Dungeon.Rooms.Shop;
 using PopupControllers;
 using StateMachine.Shop;
 using UI.BattleMenu;
+using UI.Menus;
 using UnityEngine;
 using Zenject;
 

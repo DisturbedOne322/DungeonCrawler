@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon.Animations;

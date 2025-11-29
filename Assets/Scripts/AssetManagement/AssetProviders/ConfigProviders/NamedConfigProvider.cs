@@ -3,7 +3,7 @@ using AssetManagement.Configs;
 using Cysharp.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 
-namespace AssetManagement.AssetProviders
+namespace AssetManagement.AssetProviders.ConfigProviders
 {
     public class NamedConfigProvider<TConfigType> : BaseConfigProvider<TConfigType> where TConfigType : BaseConfig
     {

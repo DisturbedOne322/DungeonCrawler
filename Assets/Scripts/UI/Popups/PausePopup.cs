@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UI.BattleMenu;
 using UI.Core;
+using UI.Menus.MenuItemViews;
 using UI.Stats;
 using UnityEngine;
 

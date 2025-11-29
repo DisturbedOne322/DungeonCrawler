@@ -1,9 +1,8 @@
 using System;
 using Gameplay;
-using UI.Menus;
 using UniRx;
 
-namespace UI.BattleMenu
+namespace UI.Menus.Data
 {
     public class MenuItemData
     {

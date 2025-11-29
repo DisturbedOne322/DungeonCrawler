@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UI.BattleMenu;
+using UI.Menus;
+using UI.Menus.MenuItemViews;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;

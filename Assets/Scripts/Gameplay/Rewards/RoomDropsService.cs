@@ -1,4 +1,5 @@
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Gameplay.Dungeon.Data;
 using Gameplay.Dungeon.RoomTypes;

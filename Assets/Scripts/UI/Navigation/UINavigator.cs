@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Gameplay.Player;
 using UI.BattleMenu;
+using UI.Menus.Data;
 
 namespace UI.Navigation
 {

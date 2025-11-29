@@ -4,11 +4,11 @@ using Constants;
 using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 using Gameplay.Services;
 using UI.Core;
-using UI.Menus;
+using UI.Menus.Data;
 using UI.Menus.MenuItemViews;
 using UnityEngine;
 
-namespace UI.BattleMenu
+namespace UI.Menus
 {
     public class MenuItemViewFactory
     {
@@ -63,7 +63,7 @@ namespace UI.BattleMenu
 
         public StatusEffectMenuItemView CreateStatusEffectMenuItem(StatusEffectMenuItemData data)
         {
-            var view =  _factory.Create<StatusEffectMenuItemView>(GetPrefab<StatusEffectMenuItemView>());
+            var view = _factory.Create<StatusEffectMenuItemView>(GetPrefab<StatusEffectMenuItemView>());
             view.Bind(data);
             view.SetDescription(data.Description);
             view.SetIcon(data.StatusEffect.Icon);

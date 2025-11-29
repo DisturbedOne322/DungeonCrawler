@@ -1,4 +1,5 @@
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using Constants;
 using Gameplay.Configs;
 using Gameplay.Facades;

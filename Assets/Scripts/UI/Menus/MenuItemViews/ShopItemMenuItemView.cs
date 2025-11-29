@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.BattleMenu
+namespace UI.Menus.MenuItemViews
 {
     public class ShopItemMenuItemView : BaseMenuItemView
     {

@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using UI.Menus.MenuItemViews;
 using UnityEngine;
 
-namespace UI.BattleMenu
+namespace UI.Menus
 {
     public class MenuPageView : MonoBehaviour
     {

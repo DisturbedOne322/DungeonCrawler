@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using UI.BattleMenu;
+using UI.Menus.MenuItemViews;
 
 namespace UI.Core
 {

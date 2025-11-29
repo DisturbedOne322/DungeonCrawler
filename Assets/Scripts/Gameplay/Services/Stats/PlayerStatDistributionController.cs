@@ -1,13 +1,10 @@
-using System.Collections.Generic;
 using Constants;
 using Cysharp.Threading.Tasks;
-using Gameplay.Units;
 using UI;
-using UI.BattleMenu;
 using UI.Gameplay.Experience;
 using UniRx;
 
-namespace Gameplay.Experience
+namespace Gameplay.Services.Stats
 {
     public class PlayerStatDistributionController
     {

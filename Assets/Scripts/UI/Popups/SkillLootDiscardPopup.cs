@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using UI.BattleMenu;
 using UI.Core;
+using UI.Menus.MenuItemViews;
 using UnityEngine;
 
-namespace UI.Gameplay.Experience
+namespace UI.Gameplay
 {
     public class SkillLootDiscardPopup : BasePopup
     {

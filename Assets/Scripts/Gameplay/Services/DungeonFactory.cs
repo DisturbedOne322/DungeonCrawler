@@ -1,5 +1,6 @@
 using System;
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using AssetManagement.AssetProviders.Core;
 using Data;
 using Gameplay.Configs;

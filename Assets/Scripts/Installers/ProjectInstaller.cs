@@ -1,4 +1,5 @@
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using AssetManagement.AssetProviders.Core;
 using AssetManagement.Scenes;
 using Bootstrap;

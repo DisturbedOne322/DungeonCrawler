@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using AssetManagement.Configs;
 using Data;
 using DG.Tweening;

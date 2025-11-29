@@ -1,4 +1,6 @@
 using UI.BattleMenu;
+using UI.Menus;
+using UI.Menus.Data;
 
 namespace UI
 {

@@ -1,5 +1,7 @@
 using System;
 using UI.BattleMenu;
+using UI.Menus.Data;
+using UI.Menus.MenuItemViews;
 using UnityEngine;
 
 namespace UI.Navigation

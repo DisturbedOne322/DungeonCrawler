@@ -1,4 +1,5 @@
 using AssetManagement.AssetProviders;
+using AssetManagement.AssetProviders.ConfigProviders;
 using Gameplay.Configs;
 
 namespace Gameplay.Experience

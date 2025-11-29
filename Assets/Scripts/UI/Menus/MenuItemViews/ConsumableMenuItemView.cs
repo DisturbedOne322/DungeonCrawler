@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace UI.BattleMenu
+namespace UI.Menus.MenuItemViews
 {
     public class ConsumableMenuItemView : BaseMenuItemView
     {

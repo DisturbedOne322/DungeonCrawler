@@ -1,10 +1,10 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Experience;
 using Gameplay.Player;
+using Gameplay.Services.Stats;
 using UI;
 using UI.Popups;
 
-namespace Gameplay.Pause
+namespace PopupControllers.Pause
 {
     public class PausePopupController : BaseUIInputHandler
     {

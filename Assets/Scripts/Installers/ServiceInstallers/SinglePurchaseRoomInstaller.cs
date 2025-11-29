@@ -1,6 +1,6 @@
 using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 using PopupControllers;
-using UI.BattleMenu;
+using UI.Menus;
 using Zenject;
 
 namespace Installers.ServiceInstallers

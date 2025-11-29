@@ -2,6 +2,8 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Dungeon.Rooms.Shop;
 using Gameplay.Player;
 using UI.BattleMenu;
+using UI.Menus;
+using UI.Menus.Data;
 
 namespace StateMachine.Shop
 {

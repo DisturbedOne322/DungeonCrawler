@@ -2,6 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Player;
+using PopupControllers.Pause;
 using UI;
 using UI.Popups;
 using UniRx;

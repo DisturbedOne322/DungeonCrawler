@@ -3,18 +3,17 @@ using System.Linq;
 using Constants;
 using Cysharp.Threading.Tasks;
 using Gameplay.Player;
-using UI.BattleMenu;
+using UI.Menus;
+using UI.Menus.Data;
 using UniRx;
 
-namespace Gameplay.Experience
+namespace Gameplay.Services.Stats
 {
     public class PlayerStatDistrubutionController : BaseUIInputHandler
     {
         private readonly PlayerInputProvider _playerInputProvider;
         private List<ReactiveProperty<int>> _currentStats;
-
-        private CompositeDisposable _disposables;
-
+        
         private MenuItemsUpdater _menuItemsUpdater;
 
         private List<int> _originalStats;

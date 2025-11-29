@@ -6,6 +6,8 @@ using Gameplay.Units;
 using UI;
 using UI.BattleMenu;
 using UI.Gameplay;
+using UI.Menus;
+using UI.Menus.Data;
 
 namespace PopupControllers.SkillDiscarding
 {

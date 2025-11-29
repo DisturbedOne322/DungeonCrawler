@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UI.BattleMenu;
+using UI.Menus.MenuItemViews;
 using UnityEngine;
 
 namespace AssetManagement.Configs

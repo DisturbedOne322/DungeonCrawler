@@ -1,9 +1,10 @@
 using TMPro;
+using UI.Menus.Data;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.BattleMenu
+namespace UI.Menus.MenuItemViews
 {
     public class BaseMenuItemView : MonoBehaviour
     {

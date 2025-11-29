@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
 using Constants;
-using Gameplay.Services;
-using UI.BattleMenu;
 using UI.Menus;
+using UI.Menus.Data;
+using UI.Menus.MenuItemViews;
 using UI.Stats;
 using UniRx;
 
-namespace Gameplay.Experience
+namespace Gameplay.Services.Stats
 {
     public class PlayerStatTableBuilder
     {

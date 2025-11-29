@@ -5,6 +5,7 @@ using Gameplay.Combat;
 using Gameplay.Combat.Services;
 using Gameplay.Experience;
 using Gameplay.Player;
+using Gameplay.Services.Stats;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;

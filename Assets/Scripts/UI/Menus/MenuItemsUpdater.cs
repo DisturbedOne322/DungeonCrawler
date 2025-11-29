@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using UI.Menus.Data;
 using UniRx;
 using UnityEngine;
 
-namespace UI.BattleMenu
+namespace UI.Menus
 {
     public class MenuItemsUpdater
     {

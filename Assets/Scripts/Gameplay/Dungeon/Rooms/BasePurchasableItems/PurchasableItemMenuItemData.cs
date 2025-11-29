@@ -1,6 +1,7 @@
 using System;
 using UI.BattleMenu;
 using UI.Menus;
+using UI.Menus.Data;
 
 namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 {

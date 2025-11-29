@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Gameplay.Units;
 using UniRx;
 
-namespace Gameplay.Experience
+namespace Gameplay.Services.Stats
 {
     public class PlayerStatsProvider
     {

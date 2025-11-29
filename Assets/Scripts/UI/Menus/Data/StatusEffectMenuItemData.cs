@@ -1,8 +1,7 @@
 using System;
 using Gameplay;
-using UI.BattleMenu;
 
-namespace UI.Menus.MenuItemViews
+namespace UI.Menus.Data
 {
     public class StatusEffectMenuItemData : MenuItemData
     {

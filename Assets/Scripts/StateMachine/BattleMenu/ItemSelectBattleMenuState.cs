@@ -5,6 +5,8 @@ using Gameplay.Consumables;
 using Gameplay.Player;
 using Gameplay.Units;
 using UI.BattleMenu;
+using UI.Menus;
+using UI.Menus.Data;
 
 namespace StateMachine.BattleMenu
 {
