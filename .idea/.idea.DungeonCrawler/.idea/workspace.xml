@@ -5,29 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Animations/MenuPageSelectAnimator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Animations/MenuPageSelectAnimator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/BaseDisplayMenuView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/BaseDisplayMenuView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/PlayerStatsMenuView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/PlayerStatsMenuView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/PageMenuItemDataMono.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/PageMenuItemDataMono.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/EquipmentChangePopupPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/EquipmentChangePopupPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/PausePopup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/PausePopup.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/Pause/PausePopupController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PopupControllers/Pause/PausePopupController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Gameplay/Experience/EquipmentChangeConfirmPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Gameplay/Experience/EquipmentChangeConfirmPopup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/BaseInventoryDisplayMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/BaseInventoryDisplayMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/BaseInventoryMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/BaseInventoryMenuView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/Consumables/ConsumablesMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/Consumables/ConsumablesMenuView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/Equipment/EquipmentMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/Equipment/EquipmentMenuView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/Skills/SkillsHeldMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/Skills/SkillsHeldMenuView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/StatusEffects/StatusEffectsHeldMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InventoryDisplay/StatusEffects/StatusEffectsHeldMenuView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MenuItemsScroller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MenuItemsScroller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/MenuItemDataMono.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/MenuItemDataMono.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/UINavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Navigation/UINavigator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Popups/ConfirmPopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Popups/ConfirmPopup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Popups/PausePopup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Popups/PausePopup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +198,7 @@
       <workItem from="1762802614276" duration="9916000" />
       <workItem from="1762893393530" duration="4147000" />
       <workItem from="1762973836316" duration="9760000" />
-      <workItem from="1764426827400" duration="21088000" />
+      <workItem from="1764426827400" duration="21421000" />
     </task>
     <servers />
   </component>

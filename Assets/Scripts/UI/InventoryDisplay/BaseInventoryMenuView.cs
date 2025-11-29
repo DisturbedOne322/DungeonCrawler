@@ -1,4 +1,5 @@
 using System;
+using Animations;
 using UI.Menus;
 using UniRx;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace UI.InventoryDisplay
     public abstract class BaseInventoryMenuView : BaseDisplayMenuView
     {
         [SerializeField] protected MenuPageView MenuPageView;
+        [SerializeField] private MenuPageSelectAnimator _animator;
         
         protected BaseInventoryDisplayMenu DisplayMenu;
 
@@ -20,8 +22,16 @@ namespace UI.InventoryDisplay
 
         private void OnDestroy() => _disposable?.Dispose();
 
-        public override void Select() => DisplayMenu.TakeControls();
+        public override void Select()
+        {
+            DisplayMenu.TakeControls();
+            _animator.Select(Image);
+        }
 
-        public override void Deselect() => DisplayMenu.RemoveControls();
+        public override void Deselect()
+        {
+            DisplayMenu.RemoveControls();
+            _animator.Deselect(Image);
+        }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7647074754641654059}
   - component: {fileID: 7717610566076151478}
   - component: {fileID: 2726065949512243828}
+  - component: {fileID: 2731963915526872101}
   m_Layer: 0
   m_Name: InventoryPageViewPrefab
   m_TagString: Untagged
@@ -88,3 +89,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2731963915526872101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027262352753007084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7392b56dbc694584a691649957e5e1a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animTime: 0.2
+  _selectColor: {r: 1, g: 1, b: 1, a: 0.019607844}
+  _deselectColor: {r: 0, g: 0, b: 0, a: 0}
