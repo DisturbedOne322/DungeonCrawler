@@ -40,16 +40,14 @@ namespace UI.Menus.Data
         public static MenuItemData ForSkillItem(
             BaseGameItem gameItem,
             Func<bool> selectablePredicate,
-            Action onItemSelected,
-            int quantity = 1)
+            Action onItemSelected)
         {
             return new MenuItemData(
                 gameItem.Name,
                 selectablePredicate,
                 onItemSelected,
                 MenuItemType.Skill,
-                gameItem.Description,
-                quantity
+                gameItem.Description
             );
         }
 

@@ -2,6 +2,7 @@ using UI;
 using UI.BattleMenu;
 using UI.Core;
 using UI.InventoryDisplay;
+using UI.InventoryDisplay.Consumables;
 using UI.Menus;
 using UI.Navigation;
 using Zenject;
@@ -21,7 +22,9 @@ namespace Installers.GameInstallers.UIInstallers
             Container.Bind<PopupsRegistry>().AsSingle();
             Container.Bind<MenuItemPrefabsRegistry>().AsSingle();
             
-            Container.Bind<StatusEffectsHeldMenuController>().AsSingle();
+            Container.Bind<ConsumablesHeldMenu>().AsSingle();
+            Container.Bind<SkillsHeldMenu>().AsSingle();
+            Container.Bind<StatusEffectsHeldDisplayMenu>().AsSingle();
             Container.Bind<StatusEffectsHeldViewFactory>().AsSingle();
         }
     }

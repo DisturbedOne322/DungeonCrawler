@@ -70,6 +70,26 @@ namespace UI.Menus
             return view;
         }
 
+        public List<BaseMenuItemView> CreateSkillMenuItems(List<MenuItemData> dataList)
+        {
+            List<BaseMenuItemView> result = new ();
+            
+            foreach (var data in dataList)
+                result.Add(CreateSkillMenuItem(data));
+
+            return result;
+        }
+        
+        public List<BaseMenuItemView> CreateConsumableMenuItems(List<MenuItemData> dataList)
+        {
+            List<BaseMenuItemView> result = new ();
+            
+            foreach (var data in dataList)
+                result.Add(CreateConsumableMenuItem(data));
+
+            return result;
+        }
+
         private SkillMenuItemView CreateSkillMenuItem(MenuItemData data)
         {
             var view = _factory.Create<SkillMenuItemView>(GetPrefab<SkillMenuItemView>());

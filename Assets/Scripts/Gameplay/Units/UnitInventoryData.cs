@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Extensions;
 using Gameplay.Consumables;
 using ModestTree;
 using UniRx;
