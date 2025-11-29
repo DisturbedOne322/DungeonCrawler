@@ -10,21 +10,17 @@ namespace PopupControllers.Pause
     {
         private readonly UIFactory _uiFactory;
         private readonly PlayerStatTableBuilder  _playerStatTableBuilder;
-        private readonly PlayerInputProvider _playerInputProvider;
 
         private PausePopup _activePopup;
         
-        public PausePopupController(UIFactory uiFactory, PlayerStatTableBuilder playerStatTableBuilder, 
-            PlayerInputProvider playerInputProvider)
+        public PausePopupController(UIFactory uiFactory, PlayerStatTableBuilder playerStatTableBuilder)
         {
             _uiFactory = uiFactory;
             _playerStatTableBuilder = playerStatTableBuilder;
-            _playerInputProvider = playerInputProvider;
         }
 
         public void OpenPopup()
         {
-            _playerInputProvider.AddUiInputOwner(this);
             _activePopup = _uiFactory.CreatePopup<PausePopup>();
             _activePopup.SetStats(_playerStatTableBuilder.GetStatsTable(_playerStatTableBuilder.CreateMenuItems()));
         }
@@ -32,7 +28,6 @@ namespace PopupControllers.Pause
         public void ClosePopup()
         {
             _activePopup.HidePopup().Forget();
-            _playerInputProvider.RemoveUiInputOwner(this);
         }
     }
 }
