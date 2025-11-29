@@ -21,8 +21,17 @@ namespace UI.Popups
         [Inject]
         private void Construct(HorizontalUINavigator uiNavigator)
         {
-            uiNavigator.AddMenuItem(_noItem, () => OnDecisionMade?.Invoke(ConfirmChoice.Deny));
-            uiNavigator.AddMenuItem(_yesItem, () => OnDecisionMade?.Invoke(ConfirmChoice.Accept));
+            uiNavigator.AddMenuItem(_noItem, () =>
+            {
+                OnDecisionMade?.Invoke(ConfirmChoice.Deny);
+                uiNavigator.RemoveControl();
+            });
+            
+            uiNavigator.AddMenuItem(_yesItem, () =>
+            {
+                OnDecisionMade?.Invoke(ConfirmChoice.Accept);
+                uiNavigator.RemoveControl();
+            });
         }
 
         public void SetMessage(string message)

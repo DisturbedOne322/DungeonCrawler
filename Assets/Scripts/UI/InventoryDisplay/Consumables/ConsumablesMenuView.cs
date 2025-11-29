@@ -20,6 +20,8 @@ namespace UI.InventoryDisplay.Consumables
 
             var views = _factory.CreateConsumableMenuItems(menu.Items);
             MenuPageView.SetItems(views, menu.ItemsUpdater);
+            
+            base.Initialize();
         }
     }
 }

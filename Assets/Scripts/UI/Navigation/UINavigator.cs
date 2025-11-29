@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Gameplay.Player;
-using UI.BattleMenu;
 using UI.Menus.Data;
 
 namespace UI.Navigation
@@ -17,13 +16,12 @@ namespace UI.Navigation
         public UINavigator(PlayerInputProvider playerInputProvider)
         {
             _playerInputProvider = playerInputProvider;
-            _playerInputProvider.AddUiInputOwner(this);
+            TakeControl();
         }
 
         public override void OnUISubmit()
         {
             _menuItemsData[_selectedIndex].OnSelected.Invoke();
-            _playerInputProvider.RemoveUiInputOwner(this);
         }
 
         public void AddMenuItem(MenuItemDataMono menuItem, Action callback)
@@ -34,6 +32,10 @@ namespace UI.Navigation
             if (_menuItemsData.Count == 1)
                 data.IsHighlighted.Value = true;
         }
+        
+        public void TakeControl() => _playerInputProvider.AddUiInputOwner(this);
+ 
+        public void RemoveControl() =>  _playerInputProvider.RemoveUiInputOwner(this);
 
         protected void UpdateSelection(int increment)
         {

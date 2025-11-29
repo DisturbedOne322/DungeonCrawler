@@ -3,6 +3,7 @@ using Gameplay.Player;
 using Gameplay.Units;
 using UI.Menus;
 using UI.Menus.Data;
+using UniRx;
 
 namespace UI.InventoryDisplay
 {
@@ -13,6 +14,8 @@ namespace UI.InventoryDisplay
 
         protected readonly MenuItemsUpdater ItemsUpdater = new();
         protected readonly List<MenuItemData> Items = new();
+
+        public Subject<Unit> OnBack = new();
 
         protected BaseInventoryDisplayMenu(PlayerUnit player, PlayerInputProvider inputProvider)
         {
@@ -25,6 +28,7 @@ namespace UI.InventoryDisplay
 
         public override void OnUIUp() => ItemsUpdater.UpdateSelection(-1);
         public override void OnUIDown() => ItemsUpdater.UpdateSelection(+1);
+        public override void OnUIBack() => OnBack?.OnNext(Unit.Default);
 
         public Menu CreateMenu()
         {

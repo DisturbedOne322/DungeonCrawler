@@ -5,7 +5,7 @@ using Zenject;
 
 namespace UI.InventoryDisplay
 {
-    public class EquipmentMenuView : MonoBehaviour
+    public class EquipmentMenuView : BaseDisplayMenuView
     {
         [SerializeField] private EquipmentView _weaponDataView;
         [SerializeField] private EquipmentView _armorDataView;
@@ -18,7 +18,7 @@ namespace UI.InventoryDisplay
             _playerUnit = playerUnit;
         }
 
-        private void Start()
+        protected override void Initialize()
         {
             DisplayWeapon();
             DisplayArmor();

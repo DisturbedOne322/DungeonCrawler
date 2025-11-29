@@ -155,7 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e0c85477b142758d8d5a4adb5999ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstSelected: {fileID: 3541616662082853545}
   _popupAnimator: {fileID: 5192961966842724420}
   _oldEquipData: {fileID: 71680819860071991}
   _newEquipData: {fileID: 2725345523304231478}
@@ -1102,7 +1101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5948377152081813365, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_fontSize
-      value: 27.75
+      value: 34.8
       objectReference: {fileID: 0}
     - target: {fileID: 8958961302407124514, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1259,7 +1258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5948377152081813365, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_fontSize
-      value: 27.75
+      value: 34.8
       objectReference: {fileID: 0}
     - target: {fileID: 8958961302407124514, guid: 80fbe91d6fdab384a8bd141f9f5011d3, type: 3}
       propertyPath: m_AnchorMax.x

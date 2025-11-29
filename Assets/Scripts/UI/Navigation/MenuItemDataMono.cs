@@ -1,5 +1,4 @@
 using System;
-using UI.BattleMenu;
 using UI.Menus.Data;
 using UI.Menus.MenuItemViews;
 using UnityEngine;
@@ -11,7 +10,7 @@ namespace UI.Navigation
     {
         [SerializeField] private string _name;
         [SerializeField] private BaseMenuItemView _baseMenuItemView;
-
+        
         public MenuItemData CreateData(Action callback)
         {
             var data = MenuItemData.ForNavigationItem(
@@ -20,7 +19,13 @@ namespace UI.Navigation
             );
 
             _baseMenuItemView.Bind(data);
+            ProcessAdditionalBindings(data);
             return data;
+        }
+
+        protected virtual void ProcessAdditionalBindings(MenuItemData data)
+        {
+            
         }
     }
 }

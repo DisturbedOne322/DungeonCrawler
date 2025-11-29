@@ -66,7 +66,9 @@ namespace UI
                 _parentYPos = GetTargetPos(activeItemId, localPos.y);
 
                 _content.DOKill();
-                _content.DOAnchorPosY(_parentYPos, 0.25f).SetEase(Ease.OutCubic);
+                _content.DOAnchorPosY(_parentYPos, 0.25f).
+                    SetEase(Ease.OutCubic).
+                    SetUpdate(true);
             }
 
             _prevItemIndex = activeItemId;

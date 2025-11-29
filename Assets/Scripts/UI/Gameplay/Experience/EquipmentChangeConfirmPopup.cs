@@ -22,8 +22,17 @@ namespace UI.Gameplay.Experience
         [Inject]
         private void Construct(HorizontalUINavigator uiNavigator)
         {
-            uiNavigator.AddMenuItem(_keepMenuItem, () => OnKeepPressed?.Invoke());
-            uiNavigator.AddMenuItem(_changeMenuItem, () => OnChangePressed?.Invoke());
+            uiNavigator.AddMenuItem(_keepMenuItem, () =>
+            {
+                uiNavigator.RemoveControl();
+                OnKeepPressed?.Invoke();
+            });
+            
+            uiNavigator.AddMenuItem(_changeMenuItem, () =>
+            {
+                uiNavigator.RemoveControl();
+                OnChangePressed?.Invoke();
+            });
         }
 
         public void SetData(BaseGameItem oldItem, BaseGameItem newItem)

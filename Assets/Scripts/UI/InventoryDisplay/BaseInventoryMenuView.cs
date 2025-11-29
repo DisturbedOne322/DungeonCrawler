@@ -1,29 +1,27 @@
+using System;
 using UI.Menus;
+using UniRx;
 using UnityEngine;
 
 namespace UI.InventoryDisplay
 {
-    public abstract class BaseInventoryMenuView : MonoBehaviour
+    public abstract class BaseInventoryMenuView : BaseDisplayMenuView
     {
         [SerializeField] protected MenuPageView MenuPageView;
-
-        protected BaseInventoryDisplayMenu DisplayMenu;
         
-        private void Start()
+        protected BaseInventoryDisplayMenu DisplayMenu;
+
+        private IDisposable _disposable;
+        
+        protected override void Initialize()
         {
-            Initialize();
+            _disposable = DisplayMenu.OnBack.Subscribe(_ => InvokeOnBack());
         }
 
-        protected abstract void Initialize();
+        private void OnDestroy() => _disposable?.Dispose();
 
-        public void Select()
-        {
-            DisplayMenu.TakeControls();
-        }
+        public override void Select() => DisplayMenu.TakeControls();
 
-        public void Deselect()
-        {
-            DisplayMenu.RemoveControls();
-        }
+        public override void Deselect() => DisplayMenu.RemoveControls();
     }
 }

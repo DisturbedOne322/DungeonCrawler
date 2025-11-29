@@ -18,6 +18,8 @@ namespace UI.InventoryDisplay
             var menu = DisplayMenu.CreateMenu();
             var views = _factory.CreateViews(menu.Items);
             MenuPageView.SetItems(views, menu.ItemsUpdater);
+            
+            base.Initialize();
         }
     }
 }
