@@ -33,6 +33,7 @@ namespace Installers
 
             Container.BindInterfacesAndSelfTo<GameplayConfigsProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIPopupsConfigProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MenuItemPrefabsConfigProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIPrefabsProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<DungeonVisualsConfigProvider>().AsSingle();
         }

@@ -45,12 +45,15 @@ namespace Pools
             return result;
         }
 
-        public virtual void Return(T view)
+        public virtual void Return(T view, bool reparent = true)
         {
             view.gameObject.SetActive(false);
 
             _activeElements.Remove(view);
             _pool.Push(view);
+            
+            if(reparent)
+                view.transform.SetParent(_parent);
         }
 
         public void ReturnAll()

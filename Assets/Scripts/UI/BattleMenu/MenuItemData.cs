@@ -70,22 +70,6 @@ namespace UI.BattleMenu
             );
         }
 
-        public static MenuItemData ForStatusEffectItem(
-            BaseGameItem gameItem,
-            Func<bool> selectablePredicate,
-            Action onItemSelected,
-            int quantity = 1)
-        {
-            return new MenuItemData(
-                gameItem.Name,
-                selectablePredicate,
-                onItemSelected,
-                MenuItemType.StatusEffect,
-                gameItem.Description,
-                quantity
-            );
-        }
-
         public static MenuItemData ForSubmenu(
             string label,
             Func<bool> selectablePredicate,

@@ -26,7 +26,7 @@ namespace StateMachine.Shop
 
             foreach (var model in itemsSelection)
                 MenuItems.Add(
-                    new PurchasedItemMenuItemData(
+                    new PurchasableItemMenuItemData(
                         model,
                         () => IsSelectable(model),
                         () => PurchaseItem(model).Forget()

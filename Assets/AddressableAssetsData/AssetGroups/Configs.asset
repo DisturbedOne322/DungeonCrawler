@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af8901e57ca6e4c4f8d8b9359e8de493
+    m_Address: MenuItemPrefabsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef8cd503718e141498b654e72bf47de4
     m_Address: DungeonVisualsConfig
     m_ReadOnly: 0

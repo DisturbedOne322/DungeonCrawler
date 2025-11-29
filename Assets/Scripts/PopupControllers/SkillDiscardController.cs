@@ -27,7 +27,7 @@ namespace PopupControllers
                 case ItemObtainContext.Loot:
                     return await _lootSkillDiscardStrategy.MakeSkillDiscardChoice(newSkill);
                 case ItemObtainContext.Purchase:
-                    return await _purchasedSkillDiscardStrategy.MakeSkillDiscardChoice(newSkill);
+                    return await _purchasedSkillDiscardStrategy.MakeSkillDiscardChoice(null);
                 default:
                     throw new Exception($"Unhandled item obtain context {context}");
             }

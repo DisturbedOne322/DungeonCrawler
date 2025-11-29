@@ -34,7 +34,7 @@ namespace PopupControllers.SkillDiscarding
 
         public async UniTask<BaseSkill> MakeSkillDiscardChoice(BaseSkill newSkill)
         {
-            Initialize(newSkill);
+            Initialize();
 
             await _playerInputProvider.EnableUIInputUntil(UniTask.WaitUntil(() => _skillToDiscard != null), this);
 
@@ -43,11 +43,11 @@ namespace PopupControllers.SkillDiscarding
             return _skillToDiscard;
         }
 
-        private void Initialize(BaseSkill newSkill)
+        private void Initialize()
         {
             _skillToDiscard = null;
 
-            CreateItemsSelection(newSkill);
+            CreateItemsSelection();
             ShowPopup();
         }
 
@@ -58,7 +58,7 @@ namespace PopupControllers.SkillDiscarding
             _popup.ShowPopup().Forget();
         }
 
-        private void CreateItemsSelection(BaseSkill newSkill)
+        private void CreateItemsSelection()
         {
             List<MenuItemData> playerSkills = new();
 

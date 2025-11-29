@@ -13,7 +13,7 @@ namespace UI.BattleMenu
         [SerializeField] private TextMeshProUGUI _amountText;
         [SerializeField] private TextMeshProUGUI _priceText;
 
-        public void SetData(PurchasedItemMenuItemData data)
+        public void SetData(PurchasableItemMenuItemData data)
         {
             _image.sprite = data.PurchasedItemModel.ItemData.Item.Icon;
             _descText.SetText(data.Description);

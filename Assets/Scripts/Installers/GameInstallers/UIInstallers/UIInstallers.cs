@@ -1,5 +1,6 @@
 using UI;
 using UI.BattleMenu;
+using UI.Core;
 using UI.Navigation;
 using Zenject;
 
@@ -16,6 +17,7 @@ namespace Installers.GameInstallers.UIInstallers
 
             Container.Bind<UIFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PopupsRegistry>().AsSingle();
+            Container.Bind<MenuItemPrefabsRegistry>().AsSingle();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 
             foreach (var model in itemsSelection)
                 items.Add(
-                    new PurchasedItemMenuItemData(
+                    new PurchasableItemMenuItemData(
                         model,
                         () => IsSelectable(model),
                         () => PurchaseItem(model).Forget()

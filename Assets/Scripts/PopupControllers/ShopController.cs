@@ -10,7 +10,6 @@ namespace PopupControllers
 {
     public class ShopController
     {
-        private readonly PlayerInputProvider _playerInputProvider;
         private readonly ShopStateMachine _stateMachine;
         private readonly UIFactory _uiFactory;
 
@@ -21,7 +20,6 @@ namespace PopupControllers
         {
             _stateMachine = stateMachine;
             _uiFactory = uiFactory;
-            _playerInputProvider = playerInputProvider;
         }
 
         public async UniTask RunShop()

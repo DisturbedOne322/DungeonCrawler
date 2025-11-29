@@ -4,9 +4,9 @@ using UI.Menus;
 
 namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 {
-    public class PurchasedItemMenuItemData : MenuItemData
+    public class PurchasableItemMenuItemData : MenuItemData
     {
-        public PurchasedItemMenuItemData(PurchasedItemModel purchasedItemModel,
+        public PurchasableItemMenuItemData(PurchasedItemModel purchasedItemModel,
             Func<bool> selectableFunc,
             Action onSelected) :
             base(purchasedItemModel.ItemData.Item.Name,
