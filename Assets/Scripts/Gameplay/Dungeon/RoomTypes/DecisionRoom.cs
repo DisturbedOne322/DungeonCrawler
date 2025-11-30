@@ -49,11 +49,8 @@ namespace Gameplay.Dungeon.RoomTypes
             for (var i = 0; i < doorTypes.Count; i++)
             {
                 var door = _doors[i];
-
-                if (!roomsDatabase.TryGetRoom(doorTypes[i], out var data))
-                    continue;
-
-                if (!visualsDatabase.TryGetRoomIcon(data.RoomType, out var icon))
+                
+                if (!visualsDatabase.TryGetRoomIcon(doorTypes[i], out var icon))
                     continue;
 
                 door.SetDoorIcon(icon);

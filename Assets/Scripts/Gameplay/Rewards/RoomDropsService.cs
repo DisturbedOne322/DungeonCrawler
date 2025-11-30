@@ -23,12 +23,7 @@ namespace Gameplay.Rewards
 
         public async UniTask GiveRewardToPlayer(DungeonRoom room)
         {
-            var roomType = room.RoomType;
-
-            if (!_dungeonRoomsDatabase.TryGetRoom(roomType, out var roomData))
-                return;
-
-            var reward = _rewardSelectorService.SelectReward(roomData.RewardDropTable);
+            var reward = _rewardSelectorService.SelectReward(room.RewardDropTable);
 
             if(reward == null)
                 return;

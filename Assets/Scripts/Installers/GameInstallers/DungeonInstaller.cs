@@ -1,4 +1,5 @@
 using Gameplay.Dungeon;
+using Gameplay.Dungeon.Data;
 using Gameplay.Services;
 using Zenject;
 
@@ -13,6 +14,7 @@ namespace Installers.GameInstallers
             Container.Bind<DungeonBranchingSelector>().AsSingle();
             Container.Bind<DungeonPositioner>().AsSingle();
             Container.Bind<DungeonLayoutProvider>().AsSingle();
+            Container.Bind<DungeonRoomsProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<DungeonRoomsPool>().AsSingle();
             Container.BindInterfacesAndSelfTo<DungeonFactory>().AsSingle();
         }

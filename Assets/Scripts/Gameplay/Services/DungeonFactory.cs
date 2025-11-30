@@ -17,18 +17,18 @@ namespace Gameplay.Services
         private readonly BaseConfigProvider<GameplayConfig> _configProvider;
         private readonly ContainerFactory _containerFactory;
 
-        private readonly DungeonRoomsDatabase _dungeonRoomsDatabase;
+        private readonly DungeonRoomsProvider _dungeonRoomsProvider;
         private readonly DungeonRoomsPool _roomsPool;
 
         private Transform _parent;
 
         private DungeonFactory(ContainerFactory containerFactory, DungeonRoomsPool roomsPool,
-            GameplayConfigsProvider configsProvider)
+            DungeonRoomsProvider roomsProvider)
         {
             _containerFactory = containerFactory;
             _roomsPool = roomsPool;
 
-            _dungeonRoomsDatabase = configsProvider.GetConfig<DungeonRoomsDatabase>();
+            _dungeonRoomsProvider = roomsProvider;
         }
 
         public void Initialize()
@@ -51,7 +51,7 @@ namespace Gameplay.Services
 
         public DungeonRoom GetRoom(RoomType roomType)
         {
-            if (_dungeonRoomsDatabase.TryGetRoom(roomType, out var data))
+            if (_dungeonRoomsProvider.TryGetRoom(roomType, out var data))
                 return data;
 
             throw new Exception($"No room data found of type {roomType}");
