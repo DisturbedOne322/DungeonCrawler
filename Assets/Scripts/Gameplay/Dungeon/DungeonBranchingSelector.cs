@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using Gameplay.Dungeon.Data;
 using UnityEngine;
@@ -8,7 +9,6 @@ namespace Gameplay.Dungeon
     public class DungeonBranchingSelector
     {
         private const int RoomsForSelectionCount = 3;
-        private const float FatigueStrengthPerPick = 0.25f;
         
         private readonly DungeonRoomsProvider _dungeonRoomsProvider;
 
@@ -89,15 +89,13 @@ namespace Gameplay.Dungeon
 
         private void ResetUnusedRoomTypes()
         {
-            foreach (var pair in _selectionHistory)
+            foreach (var roomType in _selectionHistory.Keys.ToList())
             {
-                var type = pair.Key;
-
                 bool wasSelected = false;
                 
                 foreach (var selectedRoom in RoomsForSelection)
                 {
-                    if (selectedRoom.RoomType == type)
+                    if (selectedRoom.RoomType == roomType)
                     {
                         wasSelected = true;
                         break;
@@ -105,7 +103,7 @@ namespace Gameplay.Dungeon
                 }
                 
                 if(!wasSelected) 
-                    _selectionHistory[type] = 0;
+                    _selectionHistory[roomType] = 0;
             }
         }
         
