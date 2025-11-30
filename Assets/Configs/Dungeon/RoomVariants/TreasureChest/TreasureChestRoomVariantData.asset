@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f91a339f0bf40c1b5327a8b2063364e, type: 3}
+  m_Name: TreasureChestRoomVariantData
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7491394401190662960, guid: 3f6d1a824aac86a4c90f1dceafcc1ef2, type: 3}
+  _minDepth: 0
+  _maxDepth: 10
+  _rewardDropTable: {fileID: 11400000, guid: 40974e44eab654d46ae6a95f43081129, type: 2}

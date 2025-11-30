@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomTypes
 {
+    [DisallowMultipleComponent]
     public abstract class DungeonRoom : MonoBehaviour
     {
         [SerializeField] private Transform _playerStandPoint;

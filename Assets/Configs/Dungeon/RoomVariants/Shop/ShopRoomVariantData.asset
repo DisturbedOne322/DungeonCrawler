@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d19040bcdb64fd9a87333ce6eee0829, type: 3}
+  m_Name: ShopRoomVariantData
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 9171519878567692849, guid: 85a87fa112144ad4c92f788fe1451a38, type: 3}
+  _minDepth: 0
+  _maxDepth: 10
+  _rewardDropTable: {fileID: 0}
+  _config: {fileID: 0}

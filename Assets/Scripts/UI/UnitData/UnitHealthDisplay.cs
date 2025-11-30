@@ -14,7 +14,8 @@ namespace UI.UnitData
 
         private readonly CompositeDisposable _disposables = new();
 
-        [Inject] private UnitHealthData _healthData;
+        [Inject] 
+        private UnitHealthData _healthData;
 
         private void Awake()
         {

@@ -3741,7 +3741,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 497702847669756953, guid: ec8fed9fcc959cb46b55935dda8bb5f4, type: 3}
       propertyPath: m_ChildForceExpandHeight
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1118917953083698134, guid: ec8fed9fcc959cb46b55935dda8bb5f4, type: 3}
       propertyPath: m_SizeDelta.y
