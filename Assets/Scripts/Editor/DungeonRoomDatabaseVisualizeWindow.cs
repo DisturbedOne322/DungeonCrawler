@@ -101,7 +101,6 @@ namespace Editor
                         new Vector3(rect.x, rect.y)
                     });
 
-                    // Text
                     GUIStyle textStyle = new GUIStyle(EditorStyles.boldLabel)
                     {
                         alignment = TextAnchor.MiddleCenter,
@@ -115,7 +114,6 @@ namespace Editor
 
                     if (rect.height < totalLabelsH)
                     {
-                        // fallback: single-line compact
                         EditorGUI.LabelField(rect, $"D:{variant.MinDepth}-{variant.MaxDepth}  W:{variant.Weight}", textStyle);
                     }
                     else
@@ -128,7 +126,6 @@ namespace Editor
                         EditorGUI.LabelField(weightRect, $"Weight: {variant.Weight}", textStyle);
                     }
 
-                    // Click to select
                     if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
                     {
                         Selection.activeObject = variant;

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Data;
 using Gameplay.Dungeon.Data;
 using UnityEngine;
@@ -9,16 +8,16 @@ namespace Gameplay.Dungeon
     public class DungeonBranchingSelector
     {
         private const int RoomsForSelectionCount = 3;
+        private const float FatigueStrengthPerPick = 0.25f;
         
-        private readonly PlayerMovementHistory _playerMovementHistory;
         private readonly DungeonRoomsProvider _dungeonRoomsProvider;
 
         public List<RoomVariantData> RoomsForSelection { get; } = new(RoomsForSelectionCount);
 
-        public DungeonBranchingSelector(PlayerMovementHistory playerMovementHistory,
-            DungeonRoomsProvider dungeonRoomsProvider)
+        private readonly Dictionary<RoomType, int> _selectionHistory = new ();
+
+        public DungeonBranchingSelector(DungeonRoomsProvider dungeonRoomsProvider)
         {
-            _playerMovementHistory = playerMovementHistory;
             _dungeonRoomsProvider = dungeonRoomsProvider;
         }
 
@@ -36,13 +35,16 @@ namespace Gameplay.Dungeon
             while (RoomsForSelection.Count < RoomsForSelectionCount && candidates.Count > 0)
             {
                 RoomVariantData picked = WeightedPickFromList(candidates);
-                if (picked == null)
-                    break;
 
                 RoomsForSelection.Add(picked);
-
+                
+                if(!_selectionHistory.TryAdd(picked.RoomType, 1))
+                    _selectionHistory[picked.RoomType]++;
+                
                 RemoveAllOfType(candidates, picked.RoomType);
             }
+
+            ResetUnusedRoomTypes();
         }
 
         private RoomVariantData WeightedPickFromList(List<RoomVariantData> list)
@@ -52,24 +54,61 @@ namespace Gameplay.Dungeon
             if (size == 0)
                 return null;
 
-            int totalWeight = 0;
-            for (int i = 0; i < size; i++)
-                totalWeight += list[i].Weight;
+            float totalWeight = 0;
+            for (int i = 0; i < size; i++) 
+                totalWeight += GetWeight(list[i]);
 
-            int roll = Random.Range(0, totalWeight);
+            float roll = Random.Range(0, totalWeight);
 
             for (int i = 0; i < size; i++)
             {
+                float weight = GetWeight(list[i]);
+                
                 RoomVariantData data = list[i];
-                if (roll < data.Weight)
+                if (roll < weight)
                     return data;
 
-                roll -= data.Weight;
+                roll -= weight;
             }
 
             return list[^1];
         }
 
+        private float GetWeight(RoomVariantData data)
+        {
+            var type = data.RoomType;
+            int picks = 0;
+            _selectionHistory.TryGetValue(type, out picks);
+
+            if (picks == 0)
+                return data.Weight;
+
+            float penalty = 1f / (1f + Mathf.Exp(-1.0f * (picks - 1 - 1f)));
+            return data.Weight * (1f - penalty);
+        }
+
+        private void ResetUnusedRoomTypes()
+        {
+            foreach (var pair in _selectionHistory)
+            {
+                var type = pair.Key;
+
+                bool wasSelected = false;
+                
+                foreach (var selectedRoom in RoomsForSelection)
+                {
+                    if (selectedRoom.RoomType == type)
+                    {
+                        wasSelected = true;
+                        break;
+                    };
+                }
+                
+                if(!wasSelected) 
+                    _selectionHistory[type] = 0;
+            }
+        }
+        
         private void RemoveAllOfType(List<RoomVariantData> list, RoomType type)
         {
             for (int i = list.Count - 1; i >= 0; i--)
