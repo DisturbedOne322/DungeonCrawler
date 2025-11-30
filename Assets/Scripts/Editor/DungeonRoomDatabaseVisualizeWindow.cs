@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Gameplay.Dungeon;
 using Gameplay.Dungeon.Data;
 using UnityEditor;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Editor
     public class DungeonRoomDatabaseVisualizeWindow : EditorWindow
     {
         private DungeonRoomsDatabase _database;
+        private Vector2 _scrollPos;
 
         private readonly Dictionary<RoomType, Color> _columnColors = new()
         {
@@ -22,8 +24,6 @@ namespace Editor
             { RoomType.PhysicalMaster, new Color(0.6f, 0.3f, 1f) },
             { RoomType.MagicMaster, new Color(1f, 0.3f, 1f) },
         };
-
-        private Vector2 _scrollPos;
 
         [MenuItem("Tools/Dungeon Rooms Visualizer")]
         public static void ShowWindow()
@@ -38,17 +38,14 @@ namespace Editor
             _database = (DungeonRoomsDatabase)EditorGUILayout.ObjectField("Dungeon Database", _database,
                 typeof(DungeonRoomsDatabase), false);
 
-            if (_database == null)
-                return;
+            if (_database == null) return;
 
             var rooms = _database.Rooms;
-            if (rooms == null || rooms.Count == 0)
-                return;
+            if (rooms == null) rooms = new List<RoomVariantData>();
 
             // Calculate overall max depth
-            int overallMaxDepth = rooms.Max(r => r.MaxDepth);
+            int overallMaxDepth = rooms.Count > 0 ? rooms.Max(r => r.MaxDepth) : 10;
 
-            // Setup scroll view
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
             float windowWidth = position.width - 20;
@@ -57,16 +54,10 @@ namespace Editor
 
             Rect graphRect = GUILayoutUtility.GetRect(windowWidth, graphHeight);
 
-            // Draw columns per RoomType
             int roomTypeIndex = 0;
             foreach (RoomType type in System.Enum.GetValues(typeof(RoomType)))
             {
                 var variants = rooms.Where(r => r.RoomType == type).ToList();
-                if (variants.Count == 0)
-                {
-                    roomTypeIndex++;
-                    continue;
-                }
 
                 Rect columnRect = new Rect(
                     graphRect.x + columnWidth * roomTypeIndex,
@@ -77,7 +68,7 @@ namespace Editor
 
                 EditorGUI.DrawRect(columnRect, new Color(0.1f, 0.1f, 0.1f, 0.1f));
 
-                // Draw each room variant as a rectangle
+                // Draw each room variant
                 foreach (var variant in variants)
                 {
                     float yMin = columnRect.y + graphHeight * ((float)variant.MinDepth / overallMaxDepth);
@@ -86,10 +77,9 @@ namespace Editor
 
                     Rect rect = new Rect(columnRect.x + 5, yMin, columnWidth - 10, height);
 
-                    // Draw colored box
                     EditorGUI.DrawRect(rect, _columnColors[type]);
 
-                    // Draw outline
+                    // Outline
                     Handles.color = Color.black;
                     Handles.DrawAAPolyLine(2f, new Vector3[]
                     {
@@ -100,24 +90,34 @@ namespace Editor
                         new Vector3(rect.x, rect.y)
                     });
 
-                    // Draw text
+                    // Text
                     GUIStyle textStyle = new GUIStyle(EditorStyles.boldLabel)
                     {
                         alignment = TextAnchor.MiddleCenter,
                         normal = { textColor = Color.black },
                         fontSize = 11
                     };
-
                     EditorGUI.LabelField(rect, $"{variant.MinDepth}-{variant.MaxDepth}", textStyle);
+
+                    // Click to select
+                    if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
+                    {
+                        Selection.activeObject = variant;
+                        Event.current.Use();
+                    }
                 }
 
-                // Draw column label
+                // Column label
                 Rect labelRect = new Rect(columnRect.x, columnRect.y + graphHeight + 5, columnWidth, 20);
-                GUIStyle labelStyle = new GUIStyle(EditorStyles.boldLabel)
-                {
-                    alignment = TextAnchor.MiddleCenter
-                };
+                GUIStyle labelStyle = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter };
                 EditorGUI.LabelField(labelRect, type.ToString(), labelStyle);
+
+                // Create button
+                Rect buttonRect = new Rect(columnRect.x, columnRect.y + graphHeight + 25, columnWidth, 20);
+                if (GUI.Button(buttonRect, "Create " + type + " Variant"))
+                {
+                    DungeonRoomVariantCreator.ShowWindow(type, _database);
+                }
 
                 roomTypeIndex++;
             }

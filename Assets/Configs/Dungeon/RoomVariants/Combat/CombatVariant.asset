@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: daf6929e0cc346e387ac04b7ac728e51, type: 3}
-  m_Name: CombatRoomVariantData 1
+  m_Name: CombatVariant
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 9171519878567692849, guid: 6b9d4c928510e704385ec4b0a5391690, type: 3}
+  _prefab: {fileID: 0}
   _minDepth: 11
   _maxDepth: 20
   _rewardDropTable: {fileID: 0}
-  _enemiesSelection:
-  - {fileID: 11400000, guid: b85a98c9d7f89a74c9ec27e0abfdc416, type: 2}
+  _enemiesSelection: []
