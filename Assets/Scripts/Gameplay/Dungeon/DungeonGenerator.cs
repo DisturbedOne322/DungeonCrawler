@@ -1,4 +1,3 @@
-using Data;
 using Gameplay.Dungeon.Data;
 using Gameplay.Services;
 
@@ -24,14 +23,14 @@ namespace Gameplay.Dungeon
         public void CreateFirstMapSection()
         {
             CreateCorridors();
-            CreateRoom(GetRoomData(RoomType.Decision));
+            CreateDecisionRoom();
         }
         
         public void CreateNextMapSection(RoomVariantData firstRoom)
         {
             CreateRoom(firstRoom);
             CreateCorridors();
-            CreateRoom(GetRoomData(RoomType.Decision));
+            CreateDecisionRoom();
         }
 
         private void CreateCorridors()
@@ -39,8 +38,12 @@ namespace Gameplay.Dungeon
             var corridorsAmount = 4;
 
             for (var i = 0; i < corridorsAmount; i++)
-                CreateRoom(GetRoomData(RoomType.Corridor));
+                CreateCorridor();
         }
+
+        private void CreateDecisionRoom() => CreateRoom(_dungeonRoomsProvider.GetDecisionRoomData());
+
+        private void CreateCorridor() => CreateRoom(_dungeonRoomsProvider.GetCorridorRoomData());
 
         private void CreateRoom(RoomVariantData roomData)
         {
@@ -52,7 +55,5 @@ namespace Gameplay.Dungeon
             _dungeonLayoutProvider.AddRoom(room);
             _dungeonPositioner.PlaceRoom(room);
         }
-
-        private RoomVariantData GetRoomData(RoomType roomType) => _dungeonRoomsProvider.GetRoomData(roomType);
     }
 }

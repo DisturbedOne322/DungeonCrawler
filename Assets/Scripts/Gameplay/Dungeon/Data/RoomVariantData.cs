@@ -11,13 +11,15 @@ namespace Gameplay.Dungeon
         [SerializeField] private GameObject _prefab;
         [SerializeField, Min(0)] private int _minDepth = 0;
         [SerializeField] private int _maxDepth = 10;
+        [SerializeField, Min(1)] private int _weight = 1;
         [SerializeField] private RewardDropTable _rewardDropTable;
-        
+
         public abstract RoomType RoomType { get; }
         
         public GameObject Prefab => _prefab;
         public int MinDepth => _minDepth;
         public int MaxDepth => _maxDepth;
+        public int Weight => _weight;
         public RewardDropTable RewardDropTable => _rewardDropTable;
 
         public abstract void ApplyToRoom(DungeonRoom room);

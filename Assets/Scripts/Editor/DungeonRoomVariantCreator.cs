@@ -13,6 +13,7 @@ namespace Editor
         private RoomType _roomType;
         private int _minDepth = 0;
         private int _maxDepth = 10;
+        private int _weight = 1;
 
         private GameObject _prefab;
         private RewardDropTable _rewardDropTable;
@@ -33,6 +34,7 @@ namespace Editor
             EditorGUILayout.LabelField($"Create new {_roomType} Variant", EditorStyles.boldLabel);
             _minDepth = EditorGUILayout.IntField("Min Depth", _minDepth);
             _maxDepth = EditorGUILayout.IntField("Max Depth", _maxDepth);
+            _weight = EditorGUILayout.IntField("Weight", _weight);
             
             _prefab = EditorGUILayout.ObjectField("Prefab", _prefab, typeof(GameObject), false) as GameObject;
             _rewardDropTable = EditorGUILayout.ObjectField("Reward Drop Table", _rewardDropTable, typeof(RewardDropTable), false) as RewardDropTable;
@@ -83,10 +85,12 @@ namespace Editor
             SerializedProperty prefabProp = so.FindProperty("_prefab");
             SerializedProperty minProp = so.FindProperty("_minDepth");
             SerializedProperty maxProp = so.FindProperty("_maxDepth");
+            SerializedProperty weightProp = so.FindProperty("_weight");
             SerializedProperty dropTableProp = so.FindProperty("_rewardDropTable");
 
             minProp.intValue = _minDepth;
             maxProp.intValue = _maxDepth;
+            weightProp.intValue = _weight;
             
             if(_prefab)
                 prefabProp.objectReferenceValue = _prefab;
