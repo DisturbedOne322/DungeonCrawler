@@ -97,7 +97,25 @@ namespace Editor
                         normal = { textColor = Color.black },
                         fontSize = 11
                     };
-                    EditorGUI.LabelField(rect, $"{variant.MinDepth}-{variant.MaxDepth}", textStyle);
+                    
+                    float labelHeight = 14f;
+                    float spacing = 6f;
+                    float totalLabelsH = labelHeight * 2 + spacing;
+
+                    if (rect.height < totalLabelsH)
+                    {
+                        // fallback: single-line compact
+                        EditorGUI.LabelField(rect, $"D:{variant.MinDepth}-{variant.MaxDepth}  W:{variant.Weight}", textStyle);
+                    }
+                    else
+                    {
+                        float startY = rect.y + (rect.height - totalLabelsH) * 0.5f;
+                        Rect depthRect = new Rect(rect.x + 2f, startY, rect.width - 4f, labelHeight);
+                        Rect weightRect = new Rect(rect.x + 2f, startY + labelHeight + spacing, rect.width - 4f, labelHeight);
+
+                        EditorGUI.LabelField(depthRect, $"Depth: {variant.MinDepth}-{variant.MaxDepth}", textStyle);
+                        EditorGUI.LabelField(weightRect, $"Weight: {variant.Weight}", textStyle);
+                    }
 
                     // Click to select
                     if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
