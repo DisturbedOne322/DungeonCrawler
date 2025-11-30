@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Data;
 using Gameplay.Dungeon.RoomTypes;
+using UnityEngine;
 
 namespace Gameplay.Dungeon.Data
 {
@@ -9,7 +10,7 @@ namespace Gameplay.Dungeon.Data
     {
         private readonly DungeonRoomsDatabase _dungeonRoomsDatabase;
         
-        private readonly Dictionary<RoomType, List<DungeonRoom>> _roomDataMap = new();
+        private readonly Dictionary<RoomType, List<RoomVariantData>> _roomDataMap = new();
 
         public DungeonRoomsProvider(GameplayConfigsProvider configsProvider)
         {
@@ -17,14 +18,22 @@ namespace Gameplay.Dungeon.Data
             MapRoomVariantsToTypes();
         }
 
-        public bool TryGetRoom(RoomType type, out DungeonRoom roomData)
+        public List<RoomVariantData> GetRoomsSelection(RoomType roomType)
+        {
+            if (!_roomDataMap.TryGetValue(roomType, out var selection))
+            {
+                Debug.LogError("No room variants  found for type " + roomType);
+                return null;
+            }
+            
+            return selection;
+        }
+        
+        public RoomVariantData GetRoomData(RoomType type)
         {
             if (_roomDataMap.TryGetValue(type, out var list))
-            {
-                roomData = list[0];
-                return true;
-            }
-
+                return list[0];
+            
             throw new KeyNotFoundException($"No room data found for type {type}");
         }
 
@@ -37,8 +46,7 @@ namespace Gameplay.Dungeon.Data
                 if(!_roomDataMap.ContainsKey(type))
                     _roomDataMap.Add(type, new ());
                 
-                var prefab =  roomVariantData.Prefab;
-                _roomDataMap[type].Add(prefab.GetComponent<DungeonRoom>());
+                _roomDataMap[type].Add(roomVariantData);
             }
         }
     }

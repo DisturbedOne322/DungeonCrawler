@@ -13,5 +13,11 @@ namespace Gameplay.Dungeon.Data
         public ShrineBuffsConfig Config => _config;
         
         public override RoomType RoomType => RoomType.Shrine;
+        
+        public override void ApplyToRoom(DungeonRoom room)
+        {
+            var shrineRoom = room as ShrineRoom;
+            shrineRoom?.SetData(this);
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace Gameplay.Player
 
                 _moveAnimator.AppendSequence(moveData, () =>
                 {
-                    _playerMovementHistory.AddRoom(room.RoomType);
+                    _playerMovementHistory.AddRoom(room.RoomData.RoomType);
                     SetPositionIndex(index);
                     _unitRegenerationService.RegeneratePlayerOutOfBattle();
                 }, isLast);

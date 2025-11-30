@@ -12,5 +12,11 @@ namespace Gameplay.Dungeon.Data
         [SerializeField] private List<EnemyUnitData> _enemiesSelection;
         
         public override RoomType RoomType => RoomType.Combat;
+        
+        public override void ApplyToRoom(DungeonRoom room)
+        {
+            var combatRoom = room as CombatRoom;
+            combatRoom?.SetData(this);
+        }
     }
 }

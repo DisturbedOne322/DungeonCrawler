@@ -13,5 +13,11 @@ namespace Gameplay.Dungeon.Data
         public ShopItemsConfig Config => _config;
         
         public override RoomType RoomType => RoomType.Shop;
+        
+        public override void ApplyToRoom(DungeonRoom room)
+        {
+            var shopRoom = room as ShopRoom;
+            shopRoom?.SetData(this);
+        }
     }
 }

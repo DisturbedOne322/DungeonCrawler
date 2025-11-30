@@ -40,7 +40,7 @@ namespace Gameplay
         public async UniTask StartRun()
         {
             _dungeonBranchingSelector.PrepareSelection();
-            _dungeonGenerator.CreateNextMapSection(RoomType.Corridor);
+            _dungeonGenerator.CreateFirstMapSection();
             _playerMovementController.PositionPlayer();
 
             while (IsPlayerAlive())

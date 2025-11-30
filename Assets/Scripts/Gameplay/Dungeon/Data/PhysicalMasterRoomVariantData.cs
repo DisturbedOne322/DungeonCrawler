@@ -1,5 +1,6 @@
 using Data;
 using Gameplay.Dungeon.Rooms.SkillRoom;
+using Gameplay.Dungeon.RoomTypes;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.Data
@@ -12,5 +13,11 @@ namespace Gameplay.Dungeon.Data
         public PhysicalSkillsMasterConfig Config => _config;
         
         public override RoomType RoomType => RoomType.PhysicalMaster;
+        
+        public override void ApplyToRoom(DungeonRoom room)
+        {
+            var physRoom = room as PhysicalMasterRoom;
+            physRoom?.SetData(this);
+        }
     }
 }

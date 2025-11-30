@@ -12,5 +12,11 @@ namespace Gameplay.Dungeon.Data
         public MagicSkillsMasterConfig Config => _config;
         
         public override RoomType RoomType => RoomType.MagicMaster;
+        
+        public override void ApplyToRoom(DungeonRoom room)
+        {
+            var magicRoom = room as MagicMasterRoom;
+            magicRoom?.SetData(this);
+        }
     }
 }

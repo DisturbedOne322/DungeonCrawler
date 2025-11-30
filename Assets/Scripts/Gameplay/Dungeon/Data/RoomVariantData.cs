@@ -1,5 +1,6 @@
 using System;
 using Data;
+using Gameplay.Dungeon.RoomTypes;
 using Gameplay.Rewards;
 using Helpers;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
@@ -21,6 +22,8 @@ namespace Gameplay.Dungeon
         public int MaxDepth => _maxDepth;
         public RewardDropTable RewardDropTable => _rewardDropTable;
 
+        public abstract void ApplyToRoom(DungeonRoom room);
+        
         private void OnValidate()
         {
             if(_minDepth > _maxDepth)

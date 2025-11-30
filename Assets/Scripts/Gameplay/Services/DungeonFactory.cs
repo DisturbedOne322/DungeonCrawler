@@ -17,18 +17,14 @@ namespace Gameplay.Services
         private readonly BaseConfigProvider<GameplayConfig> _configProvider;
         private readonly ContainerFactory _containerFactory;
 
-        private readonly DungeonRoomsProvider _dungeonRoomsProvider;
         private readonly DungeonRoomsPool _roomsPool;
 
         private Transform _parent;
 
-        private DungeonFactory(ContainerFactory containerFactory, DungeonRoomsPool roomsPool,
-            DungeonRoomsProvider roomsProvider)
+        private DungeonFactory(ContainerFactory containerFactory, DungeonRoomsPool roomsPool)
         {
             _containerFactory = containerFactory;
             _roomsPool = roomsPool;
-
-            _dungeonRoomsProvider = roomsProvider;
         }
 
         public void Initialize()
@@ -36,25 +32,17 @@ namespace Gameplay.Services
             _parent = new GameObject("[ROOMS POOL]").transform;
         }
 
-        public DungeonRoom CreateArea(RoomType roomType)
+        public DungeonRoom CreateArea(RoomVariantData roomData)
         {
-            if (_roomsPool.TryGetRoom(roomType, out var room))
+            if (_roomsPool.TryGetRoom(roomData.RoomType, out var room))
                 return room;
 
-            var roomData = GetRoom(roomType);
-            var newRoom = _containerFactory.Create(roomData);
+            var roomPrefab = roomData.Prefab;
+            var newRoom = _containerFactory.Create(roomPrefab);
 
             newRoom.transform.SetParent(_parent);
 
-            return newRoom;
-        }
-
-        public DungeonRoom GetRoom(RoomType roomType)
-        {
-            if (_dungeonRoomsProvider.TryGetRoom(roomType, out var data))
-                return data;
-
-            throw new Exception($"No room data found of type {roomType}");
+            return newRoom.GetComponent<DungeonRoom>();
         }
     }
 }

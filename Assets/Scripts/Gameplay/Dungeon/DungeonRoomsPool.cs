@@ -50,10 +50,12 @@ namespace Gameplay.Dungeon
             room.ResetRoom();
             room.gameObject.SetActive(false);
 
-            if (_dictionary.TryGetValue(room.RoomType, out var list))
+            var roomType = room.RoomData.RoomType;
+            
+            if (_dictionary.TryGetValue(roomType, out var list))
                 list.Add(room);
             else
-                _dictionary.Add(room.RoomType, new List<DungeonRoom> { room });
+                _dictionary.Add(roomType, new List<DungeonRoom> { room });
         }
     }
 }

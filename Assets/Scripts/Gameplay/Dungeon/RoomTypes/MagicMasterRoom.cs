@@ -1,9 +1,13 @@
 using Data;
+using Gameplay.Dungeon.Data;
 
 namespace Gameplay.Dungeon.RoomTypes
 {
     public class MagicMasterRoom : SinglePurchaseRoom
     {
-        public override RoomType RoomType => RoomType.MagicMaster;
+        private MagicMasterRoomVariantData _roomData;
+        public override RoomVariantData RoomData => _roomData;
+        
+        public void SetData(MagicMasterRoomVariantData data) => _roomData = data;
     }
 }

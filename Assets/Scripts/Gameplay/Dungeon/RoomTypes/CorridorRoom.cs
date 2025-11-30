@@ -1,9 +1,10 @@
-using Data;
-
 namespace Gameplay.Dungeon.RoomTypes
 {
     public class CorridorRoom : DungeonRoom
     {
-        public override RoomType RoomType => RoomType.Corridor;
+        private RoomVariantData _roomData;
+        public override RoomVariantData RoomData => _roomData;
+        
+        public void SetData(RoomVariantData data) => _roomData = data;
     }
 }

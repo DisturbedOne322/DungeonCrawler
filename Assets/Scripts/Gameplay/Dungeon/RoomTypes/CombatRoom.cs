@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
-using Data;
 using Gameplay.Combat.Services;
+using Gameplay.Dungeon.Data;
 using Gameplay.Enemies;
 using Gameplay.Units;
 using UnityEngine;
@@ -17,8 +17,9 @@ namespace Gameplay.Dungeon.RoomTypes
         private EnemyUnit _enemy;
         private EnemyFactory _enemyFactory;
 
-        public override RoomType RoomType => RoomType.Combat;
-
+        private CombatRoomVariantData _roomData;
+        public override RoomVariantData RoomData => _roomData;
+        
         [Inject]
         private void Construct(CombatSequenceController combatSequenceController, EnemyFactory enemyFactory)
         {
@@ -26,6 +27,8 @@ namespace Gameplay.Dungeon.RoomTypes
             _enemyFactory = enemyFactory;
         }
 
+        public void SetData(CombatRoomVariantData data) => _roomData = data;
+        
         public override void SetupRoom()
         {
             _enemy = _enemyFactory.CreateEnemy();

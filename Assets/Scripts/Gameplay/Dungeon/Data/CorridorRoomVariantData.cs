@@ -8,5 +8,11 @@ namespace Gameplay.Dungeon.Data
     public class CorridorRoomVariantData : RoomVariantData
     {
         public override RoomType RoomType => RoomType.Corridor;
+        
+        public override void ApplyToRoom(DungeonRoom room)
+        {
+            var corridorRoom = room as CorridorRoom;
+            corridorRoom?.SetData(this);
+        }
     }
 }
