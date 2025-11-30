@@ -31,7 +31,7 @@ namespace Gameplay.Dungeon.RoomTypes
         
         public override void SetupRoom()
         {
-            _enemy = _enemyFactory.CreateEnemy();
+            _enemy = _enemyFactory.CreateEnemy(_roomData);
 
             _enemy.transform.SetParent(_enemySpawnPoint, false);
             _enemy.transform.localPosition = Vector3.zero;

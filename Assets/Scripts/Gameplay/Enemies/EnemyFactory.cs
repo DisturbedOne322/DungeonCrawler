@@ -1,29 +1,33 @@
 using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.ConfigProviders;
+using Gameplay.Dungeon.Data;
 using Gameplay.Services;
 using Gameplay.Units;
+using UnityEngine;
 
 namespace Gameplay.Enemies
 {
     public class EnemyFactory
     {
         private readonly ContainerFactory _containerFactory;
-        private readonly EnemyDatabase _enemyDatabase;
 
-        private EnemyFactory(GameplayConfigsProvider configProvider, ContainerFactory containerFactory)
+        private EnemyFactory(ContainerFactory containerFactory)
         {
-            _enemyDatabase = configProvider.GetConfig<EnemyDatabase>();
             _containerFactory = containerFactory;
         }
 
-        public EnemyUnit CreateEnemy()
+        public EnemyUnit CreateEnemy(CombatRoomVariantData roomData)
         {
-            var data = _enemyDatabase.Database[0];
-            var prefab = data.Prefab.gameObject;
+            var enemySelection = roomData.EnemiesSelection;
+
+            int enemyIndex = Random.Range(0, enemySelection.Count);
+            var enemyData = enemySelection[enemyIndex];
+            
+            var prefab = enemyData.Prefab.gameObject;
             var unit = _containerFactory.Create<EnemyUnit>(prefab);
 
-            unit.InitializeUnit(data);
-            unit.SetExperienceBonus(data.ExperienceBonus);
+            unit.InitializeUnit(enemyData);
+            unit.SetExperienceBonus(enemyData.ExperienceBonus);
 
             return unit;
         }

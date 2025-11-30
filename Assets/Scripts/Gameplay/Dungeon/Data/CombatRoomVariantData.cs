@@ -11,6 +11,8 @@ namespace Gameplay.Dungeon.Data
     {
         [SerializeField] private List<EnemyUnitData> _enemiesSelection;
         
+        public List<EnemyUnitData> EnemiesSelection => _enemiesSelection;
+        
         public override RoomType RoomType => RoomType.Combat;
         
         public override void ApplyToRoom(DungeonRoom room)
