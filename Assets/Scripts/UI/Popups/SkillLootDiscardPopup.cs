@@ -3,7 +3,7 @@ using UI.Core;
 using UI.Menus.MenuItemViews;
 using UnityEngine;
 
-namespace UI.Gameplay
+namespace UI.Popups
 {
     public class SkillLootDiscardPopup : BasePopup
     {

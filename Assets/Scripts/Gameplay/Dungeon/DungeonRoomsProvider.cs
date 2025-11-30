@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Data;
+using Gameplay.Dungeon.Data;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon
 {
     public class DungeonRoomsProvider
     {

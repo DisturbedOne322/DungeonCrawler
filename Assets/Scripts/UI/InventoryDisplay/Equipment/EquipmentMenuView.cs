@@ -1,9 +1,8 @@
-using System;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace UI.InventoryDisplay
+namespace UI.InventoryDisplay.Equipment
 {
     public class EquipmentMenuView : BaseDisplayMenuView
     {

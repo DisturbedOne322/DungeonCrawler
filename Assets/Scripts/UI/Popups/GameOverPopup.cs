@@ -3,7 +3,7 @@ using UI.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Gameplay
+namespace UI.Popups
 {
     public class GameOverPopup : BasePopup
     {

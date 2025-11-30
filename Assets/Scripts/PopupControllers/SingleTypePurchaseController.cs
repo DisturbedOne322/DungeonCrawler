@@ -5,6 +5,7 @@ using UI;
 using UI.BattleMenu;
 using UI.Gameplay;
 using UI.Menus;
+using UI.Popups;
 
 namespace PopupControllers
 {

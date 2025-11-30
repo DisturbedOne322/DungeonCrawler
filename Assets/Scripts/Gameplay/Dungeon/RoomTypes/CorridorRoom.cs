@@ -1,3 +1,5 @@
+using Gameplay.Dungeon.Data;
+
 namespace Gameplay.Dungeon.RoomTypes
 {
     public class CorridorRoom : DungeonRoom

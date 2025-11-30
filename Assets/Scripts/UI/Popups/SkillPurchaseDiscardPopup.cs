@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using UI.BattleMenu;
 using UI.Core;
 using UI.Menus;
 using UI.Menus.MenuItemViews;
 using UnityEngine;
 
-namespace UI.Gameplay
+namespace UI.Popups
 {
     public class SkillPurchaseDiscardPopup : BasePopup
     {

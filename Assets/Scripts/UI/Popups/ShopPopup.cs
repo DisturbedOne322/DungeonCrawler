@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using StateMachine.Shop;
-using UI.BattleMenu;
 using UI.Core;
 using UI.Menus;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace UI.Gameplay
+namespace UI.Popups
 {
     public class ShopPopup : BasePopup
     {

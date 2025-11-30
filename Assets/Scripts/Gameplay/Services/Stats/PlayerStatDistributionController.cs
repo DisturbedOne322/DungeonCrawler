@@ -2,6 +2,7 @@ using Constants;
 using Cysharp.Threading.Tasks;
 using UI;
 using UI.Gameplay.Experience;
+using UI.Popups;
 using UniRx;
 
 namespace Gameplay.Services.Stats

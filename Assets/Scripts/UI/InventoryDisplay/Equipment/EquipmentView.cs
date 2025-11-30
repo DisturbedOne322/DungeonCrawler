@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.InventoryDisplay
+namespace UI.InventoryDisplay.Equipment
 {
     public class EquipmentView : MonoBehaviour
     {

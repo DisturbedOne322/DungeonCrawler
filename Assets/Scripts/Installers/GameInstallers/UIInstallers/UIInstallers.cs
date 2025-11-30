@@ -3,6 +3,8 @@ using UI.BattleMenu;
 using UI.Core;
 using UI.InventoryDisplay;
 using UI.InventoryDisplay.Consumables;
+using UI.InventoryDisplay.Skills;
+using UI.InventoryDisplay.StatusEffects;
 using UI.Menus;
 using UI.Navigation;
 using Zenject;

@@ -1,8 +1,7 @@
 using UI.Menus;
-using UnityEngine;
 using Zenject;
 
-namespace UI.InventoryDisplay
+namespace UI.InventoryDisplay.Skills
 {
     public class SkillsHeldMenuView : BaseInventoryMenuView
     {

@@ -1,11 +1,10 @@
 using TMPro;
-using UI.BattleMenu;
 using UI.Core;
 using UI.Menus;
 using UnityEngine;
 using Zenject;
 
-namespace UI.Gameplay
+namespace UI.Popups
 {
     public class SingleTypePurchasePopup : BasePopup
     {

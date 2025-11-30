@@ -1,3 +1,4 @@
+using Gameplay.Dungeon.Data;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomTypes

@@ -4,6 +4,7 @@ using Gameplay.Player;
 using StateMachine.Shop;
 using UI;
 using UI.Gameplay;
+using UI.Popups;
 using UniRx;
 
 namespace PopupControllers

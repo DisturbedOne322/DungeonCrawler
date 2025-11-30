@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace UI.InventoryDisplay
+namespace UI.InventoryDisplay.StatusEffects
 {
     public class StatusEffectsHeldMenuView : BaseInventoryMenuView
     {

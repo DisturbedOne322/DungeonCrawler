@@ -2,7 +2,6 @@ using Data;
 using Gameplay.Dungeon.Rooms.Shrine;
 using Gameplay.Dungeon.RoomTypes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Dungeon.Data
 {

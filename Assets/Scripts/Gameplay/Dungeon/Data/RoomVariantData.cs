@@ -4,7 +4,7 @@ using Gameplay.Rewards;
 using Helpers;
 using UnityEngine;
 
-namespace Gameplay.Dungeon
+namespace Gameplay.Dungeon.Data
 {
     public abstract class RoomVariantData : ScriptableObject
     {

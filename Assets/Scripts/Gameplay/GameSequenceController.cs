@@ -7,6 +7,7 @@ using Gameplay.Units;
 using StateMachine.App;
 using UI;
 using UI.Gameplay;
+using UI.Popups;
 
 namespace Gameplay
 {

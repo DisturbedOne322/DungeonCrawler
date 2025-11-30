@@ -3,7 +3,7 @@ using Gameplay.Player;
 using Gameplay.Units;
 using UI.Menus.Data;
 
-namespace UI.InventoryDisplay
+namespace UI.InventoryDisplay.StatusEffects
 {
     public class StatusEffectsHeldDisplayMenu : BaseInventoryDisplayMenu
     {

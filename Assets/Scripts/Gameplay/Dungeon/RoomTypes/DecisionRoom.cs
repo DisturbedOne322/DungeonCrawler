@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Gameplay.Dungeon.Animations;
+using Gameplay.Dungeon.Data;
 using UnityEngine;
 using Zenject;
 

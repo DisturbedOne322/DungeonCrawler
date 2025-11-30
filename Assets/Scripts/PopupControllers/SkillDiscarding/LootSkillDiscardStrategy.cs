@@ -8,6 +8,7 @@ using UI.BattleMenu;
 using UI.Gameplay;
 using UI.Gameplay.Experience;
 using UI.Menus.Data;
+using UI.Popups;
 
 namespace PopupControllers.SkillDiscarding
 {

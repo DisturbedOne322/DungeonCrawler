@@ -3,7 +3,7 @@ using UI.Menus;
 using UI.Menus.Data;
 using UI.Menus.MenuItemViews;
 
-namespace UI.InventoryDisplay
+namespace UI.InventoryDisplay.StatusEffects
 {
     public class StatusEffectsHeldViewFactory
     {
