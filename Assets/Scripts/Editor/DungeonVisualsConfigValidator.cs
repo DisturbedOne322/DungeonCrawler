@@ -37,7 +37,9 @@ namespace Editor
                 _config,
                 typeof(DungeonVisualsConfig),
                 false);
-            if (EditorGUI.EndChangeCheck()) ValidateConfig();
+            
+            if (EditorGUI.EndChangeCheck()) 
+                ValidateConfig();
 
             if (_config == null)
             {

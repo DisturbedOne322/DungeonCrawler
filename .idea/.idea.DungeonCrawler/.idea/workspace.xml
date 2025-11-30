@@ -7,31 +7,18 @@
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonRoomsDatabase.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonRoomsDatabase.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonVisualsDatabaseConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Addressables/Dungeon/DungeonVisualsDatabaseConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatVariant.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatVariant.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatRoomVariantData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatVariant.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatVariant.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Corridor/CorridorVariant.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Corridor/CorridorVariant.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Decision/DecisionRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Decision/DecisionRoomVariantData.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/MagicalMaster/MagicMasterRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/MagicalMaster/MagicMasterRoomVariantData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/Shop/MagicSkillsMasterConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/Shop/MagicSkillsMasterConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/Shop/PhysicalSkillsMasterConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/Shop/PhysicalSkillsMasterConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/MagicMasterRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/MagicMasterRoom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/PhysicalMasterRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/PhysicalMasterRoom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/ShopRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/ShopRoom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/ShrineRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/Dungeon/Rooms/ShopRooms/ShrineRoom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/MagicMasterRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/MagicMasterRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/PhysicalMasterRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/PhysicalMasterRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShopRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShopRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShrineRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/ShrineRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/SinglePurchaseRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomTypes/SinglePurchaseRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BasePurchasableItems/PurchasableItemsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/BasePurchasableItems/PurchasableItemsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shop/ShopItemsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/Rooms/Shop/ShopItemsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/MagicMasterRoomInstaller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/MagicMasterRoomInstaller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/PhysicalMasterRoomInstaller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/PhysicalMasterRoomInstaller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShopInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShopInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShrineRoomInstaller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/ShrineRoomInstaller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/SinglePurchaseRoomInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/ServiceInstallers/SinglePurchaseRoomInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/PhysicalMaster/PhysicalMasterRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/PhysicalMaster/PhysicalMasterRoomVariantData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Shop/ShopRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Shop/ShopRoomVariantData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Shrine/ShrineRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Shrine/ShrineRoomVariantData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/TreasureChest/TreasureChestRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/TreasureChest/TreasureChestRoomVariantData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/DungeonRoomDatabaseVisualizeWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/DungeonRoomDatabaseVisualizeWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/DungeonVisualsConfigValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/DungeonVisualsConfigValidator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

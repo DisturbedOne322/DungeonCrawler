@@ -38,7 +38,13 @@ namespace Editor
             _database = (DungeonRoomsDatabase)EditorGUILayout.ObjectField("Dungeon Database", _database,
                 typeof(DungeonRoomsDatabase), false);
 
-            if (_database == null) return;
+            if (_database == null)
+            {
+                FindConfig();
+                
+                if (_database == null)
+                    return;
+            }
 
             var rooms = _database.Rooms;
             if (rooms == null) rooms = new List<RoomVariantData>();
@@ -50,7 +56,12 @@ namespace Editor
 
             float windowWidth = position.width - 20;
             float columnWidth = windowWidth / System.Enum.GetValues(typeof(RoomType)).Length;
-            float graphHeight = 400f;
+            
+            float availableHeight = position.height - 100f;  
+            if (availableHeight < 100f) 
+                availableHeight = 100f;
+
+            float graphHeight = availableHeight * 0.9f;
 
             Rect graphRect = GUILayoutUtility.GetRect(windowWidth, graphHeight);
 
@@ -141,6 +152,24 @@ namespace Editor
             }
 
             EditorGUILayout.EndScrollView();
+        }
+        
+        private void FindConfig()
+        {
+            var guids = AssetDatabase.FindAssets("t:DungeonRoomsDatabase");
+
+            if (guids.Length == 0)
+            {
+                _database = null;
+                Debug.LogError("No DungeonRoomsDatabase found in project.");
+                return;
+            }
+
+            if (guids.Length > 1)
+                Debug.LogWarning("Multiple DungeonRoomsDatabase assets found. Using the first one.");
+
+            var path = AssetDatabase.GUIDToAssetPath(guids[0]);
+            _database = AssetDatabase.LoadAssetAtPath<DungeonRoomsDatabase>(path);
         }
     }
 }
