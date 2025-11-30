@@ -1,24 +1,25 @@
 using System.Collections.Generic;
+using Gameplay.Dungeon.RoomTypes;
 
 namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
 {
     public class PurchasableItemsProvider
     {
-        private readonly BasePurchasableItemsConfig _itemsForSaleConfig;
+        private readonly SinglePurchaseRoom _purchaseRoom;
 
-        public PurchasableItemsProvider(BasePurchasableItemsConfig itemsForSaleConfig)
+        public PurchasableItemsProvider(SinglePurchaseRoom purchaseRoom)
         {
-            _itemsForSaleConfig = itemsForSaleConfig;
+            _purchaseRoom = purchaseRoom;
         }
 
         public bool AnyItemsSold()
         {
-            return _itemsForSaleConfig.ItemsForSale.Count > 0;
+            return _purchaseRoom.Config.ItemsForSale.Count > 0;
         }
 
         public IReadOnlyList<PurchasedItemModel> GetSellableItems()
         {
-            return CreateItemsList(_itemsForSaleConfig.ItemsForSale);
+            return CreateItemsList(_purchaseRoom.Config.ItemsForSale);
         }
 
         private IReadOnlyList<PurchasedItemModel> CreateItemsList(IReadOnlyList<IPurchasableItemData> dataList)

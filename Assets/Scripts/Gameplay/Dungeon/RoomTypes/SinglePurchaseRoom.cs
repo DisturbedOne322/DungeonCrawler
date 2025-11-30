@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 using PopupControllers;
 using Zenject;
 
@@ -8,6 +9,8 @@ namespace Gameplay.Dungeon.RoomTypes
     {
         private SingleTypePurchaseController _shopController;
 
+        public abstract BasePurchasableItemsConfig Config { get; }
+        
         [Inject]
         private void Construct(SingleTypePurchaseController shopController)
         {

@@ -65,10 +65,10 @@ PrefabInstance:
       addedObject: {fileID: 5976675057253708598}
     - targetCorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 486300614399353640}
+      addedObject: {fileID: 5834657320169493496}
     - targetCorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5834657320169493496}
+      addedObject: {fileID: 903336673473199998}
   m_SourcePrefab: {fileID: 100100000, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
 --- !u!4 &7590132495121820892 stripped
 Transform:
@@ -94,23 +94,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 486300614399353640}
+  - {fileID: 903336673473199998}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!114 &486300614399353640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9171519878567692849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070f10d3dc3b41deb6c6f77887a75eb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _magicSkillsMasterConfig: {fileID: 11400000, guid: 0b3eed727aa35764c903590f45d504e0, type: 2}
 --- !u!114 &5834657320169493496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,3 +111,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStandPoint: {fileID: 7590132495121820892}
+--- !u!114 &903336673473199998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9171519878567692849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad39d95d255949628dcba1ef5f079c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _singlePurchaseRoom: {fileID: 5834657320169493496}

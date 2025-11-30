@@ -1,55 +1,56 @@
 using System.Collections.Generic;
 using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.RoomTypes;
 
 namespace Gameplay.Dungeon.Rooms.Shop
 {
     public class ShopItemsProvider
     {
-        private readonly ShopItemsConfig _shopItemsConfig;
+        private readonly ShopRoom _shopRoom;
 
-        public ShopItemsProvider(ShopItemsConfig shopItemsConfig)
+        public ShopItemsProvider(ShopRoom shopRoom)
         {
-            _shopItemsConfig = shopItemsConfig;
+            _shopRoom = shopRoom;
         }
 
         public bool AnyConsumablesSold()
         {
-            return _shopItemsConfig.ConsumableItems.Count > 0;
+            return _shopRoom.Config.ConsumableItems.Count > 0;
         }
 
         public IReadOnlyList<PurchasedItemModel> CreateConsumablesForSale()
         {
-            return CreateItemsList(_shopItemsConfig.ConsumableItems);
+            return CreateItemsList(_shopRoom.Config.ConsumableItems);
         }
 
         public bool AnyEquipmentSold()
         {
-            return _shopItemsConfig.EquipmentItems.Count > 0;
+            return _shopRoom.Config.EquipmentItems.Count > 0;
         }
 
         public IReadOnlyList<PurchasedItemModel> CreateEquipmentForSale()
         {
-            return CreateItemsList(_shopItemsConfig.EquipmentItems);
+            return CreateItemsList(_shopRoom.Config.EquipmentItems);
         }
 
         public bool AnySkillsSold()
         {
-            return _shopItemsConfig.SkillItems.Count > 0;
+            return _shopRoom.Config.SkillItems.Count > 0;
         }
 
         public IReadOnlyList<PurchasedItemModel> CreateSkillsForSale()
         {
-            return CreateItemsList(_shopItemsConfig.SkillItems);
+            return CreateItemsList(_shopRoom.Config.SkillItems);
         }
 
         public bool AnyStatusEffectsSold()
         {
-            return _shopItemsConfig.StatusEffectItems.Count > 0;
+            return _shopRoom.Config.StatusEffectItems.Count > 0;
         }
 
         public IReadOnlyList<PurchasedItemModel> CreateStatusEffectsForSale()
         {
-            return CreateItemsList(_shopItemsConfig.StatusEffectItems);
+            return CreateItemsList(_shopRoom.Config.StatusEffectItems);
         }
 
         private IReadOnlyList<PurchasedItemModel> CreateItemsList(IReadOnlyList<IPurchasableItemData> dataList)

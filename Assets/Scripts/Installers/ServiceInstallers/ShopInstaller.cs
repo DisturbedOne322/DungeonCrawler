@@ -1,7 +1,7 @@
 using Gameplay.Dungeon.Rooms.Shop;
+using Gameplay.Dungeon.RoomTypes;
 using PopupControllers;
 using StateMachine.Shop;
-using UI.BattleMenu;
 using UI.Menus;
 using UnityEngine;
 using Zenject;
@@ -10,11 +10,11 @@ namespace Installers.ServiceInstallers
 {
     public class ShopInstaller : MonoInstaller
     {
-        [SerializeField] private ShopItemsConfig _shopItemsConfig;
+        [SerializeField] private ShopRoom _shopRoom;
 
         public override void InstallBindings()
         {
-            Container.Bind<ShopItemsConfig>().FromInstance(_shopItemsConfig).AsSingle();
+            Container.Bind<ShopRoom>().FromInstance(_shopRoom).AsSingle();
 
             Container.Bind<ShopController>().AsSingle();
             Container.Bind<ShopItemsProvider>().AsSingle();

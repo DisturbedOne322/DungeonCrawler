@@ -62,10 +62,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7790308800320090778}
+      addedObject: {fileID: 5976675057253708598}
     - targetCorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5976675057253708598}
+      addedObject: {fileID: 7790308800320090778}
     - targetCorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7029250737082056037}
@@ -80,19 +80,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
   m_PrefabInstance: {fileID: 1885760432647804147}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7790308800320090778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9171519878567692849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d756f2aa1354b969d498a6161542b0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerStandPoint: {fileID: 7590132495121820892}
 --- !u!114 &5976675057253708598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +98,19 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &7790308800320090778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9171519878567692849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d756f2aa1354b969d498a6161542b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStandPoint: {fileID: 7590132495121820892}
 --- !u!114 &7029250737082056037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d24cd234c34e3a82f31b2b9ab1378a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shopItemsConfig: {fileID: 11400000, guid: c233178665fae784ebbcab09a9a39a15, type: 2}
+  _shopRoom: {fileID: 7790308800320090778}

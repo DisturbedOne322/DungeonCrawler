@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.Rooms.Shop;
 using PopupControllers;
 using Zenject;
 
@@ -13,6 +14,8 @@ namespace Gameplay.Dungeon.RoomTypes
         private ShopRoomVariantData _roomData;
         public override RoomVariantData RoomData => _roomData;
 
+        public ShopItemsConfig Config => _roomData.Config;
+        
         [Inject]
         private void Construct(ShopController shopController)
         {

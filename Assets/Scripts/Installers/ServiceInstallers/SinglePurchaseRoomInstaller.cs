@@ -1,17 +1,19 @@
 using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.RoomTypes;
 using PopupControllers;
 using UI.Menus;
+using UnityEngine;
 using Zenject;
 
 namespace Installers.ServiceInstallers
 {
-    public abstract class SinglePurchaseRoomInstaller : MonoInstaller
+    public class SinglePurchaseRoomInstaller : MonoInstaller
     {
-        protected abstract BasePurchasableItemsConfig ItemsConfig { get; }
-
+        [SerializeField] private SinglePurchaseRoom _singlePurchaseRoom;
+        
         public override void InstallBindings()
         {
-            Container.Bind<BasePurchasableItemsConfig>().FromInstance(ItemsConfig).AsSingle();
+            Container.Bind<SinglePurchaseRoom>().FromInstance(_singlePurchaseRoom).AsSingle();
 
             Container.Bind<SingleTypePurchaseController>().AsSingle();
             Container.Bind<PurchasableItemsProvider>().AsSingle();

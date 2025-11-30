@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34db83af36a84dcc99322d694de8025f, type: 3}
   m_Name: MagicSkillsMasterConfig
   m_EditorClassIdentifier: 
-  _skillsForSale: []
+  _skillsForSale:
+  - _item: {fileID: 11400000, guid: c8626eaaea3e4dd46af25de239bde580, type: 2}
+    _price: 100
+    _amount: 1
+  - _item: {fileID: 11400000, guid: 0858c102f24ad3a48b80d507b5807b4d, type: 2}
+    _price: 200
+    _amount: 1
