@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 6317620238034989084}
   - component: {fileID: 7918078239672213771}
   m_Layer: 0
-  m_Name: WalkCanvas
+  m_Name: NormalCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,17 +159,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6317620238034989084}
     m_Modifications:
-    - target: {fileID: 2275336048583182489, guid: 18ea634a7d639734f8fc2df799646a83, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 2275336048583182489, guid: 18ea634a7d639734f8fc2df799646a83, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 3219664549150315815, guid: 18ea634a7d639734f8fc2df799646a83, type: 3}
       propertyPath: m_Name
-      value: PlayerMovementHistroyDisplay
+      value: PlayerMovementHistoryDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 4599276090538480106, guid: 18ea634a7d639734f8fc2df799646a83, type: 3}
       propertyPath: m_Pivot.x

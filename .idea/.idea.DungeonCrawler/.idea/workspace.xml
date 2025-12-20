@@ -6,7 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonBranchingSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/DungeonBranchingSelector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatRoomVariantData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Configs/Dungeon/RoomVariants/Combat/CombatRoomVariantData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gameplay/PlayerPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/ScreenDamageNumberDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/ScreenDamageNumberDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/WorldDamageNumberDisplayPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Damage/WorldDamageNumberDisplayPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/BalanceDisplayPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/BalanceDisplayPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/ExperienceDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/ExperienceDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/GameStateUIUnabler.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/GameStateUIUnabler.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/PlayerActiveStatusEffectsDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/PlayerActiveStatusEffectsDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/PlayerMovementHistroyDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Gameplay/PlayerMovementHistroyDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/ItemDataDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/ItemDataDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Player/PlayerHealthDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Player/PlayerHealthDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Player/PlayerManaDisplay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Player/PlayerManaDisplay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/EquipmentChangePopupPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/EquipmentChangePopupPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/GameOverPopup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/GameOverPopup.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/LevelUpPopupPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/LevelUpPopupPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/LootSkillDiscardPopupPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/LootSkillDiscardPopupPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/PurchaseSkillDiscardPopup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Popups/PurchaseSkillDiscardPopup.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameplayScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,6 +230,7 @@
       <workItem from="1762893393530" duration="4147000" />
       <workItem from="1762973836316" duration="9760000" />
       <workItem from="1764426827400" duration="21421000" />
+      <workItem from="1766240106005" duration="4264000" />
     </task>
     <servers />
   </component>
