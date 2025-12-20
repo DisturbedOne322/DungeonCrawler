@@ -28,7 +28,6 @@ namespace Helpers
                 { StatusEffectReapplyType.None, new ReapplyIgnoreStrategy() },
                 { StatusEffectReapplyType.Stack, new ReapplyStackStrategy() },
                 { StatusEffectReapplyType.ExtendDuration, new ReapplyExtendDurationStrategy() },
-                { StatusEffectReapplyType.LowerDuration, new ReapplyLowerDurationStrategy() },
                 { StatusEffectReapplyType.RefreshDuration, new ReapplyRefreshDurationStrategy() }
             };
 
@@ -48,13 +47,13 @@ namespace Helpers
             throw new ArgumentException("Unknown damage type: " + damageType);
         }
 
-        public static void ReapplyStatusEffect(BaseStatusEffectInstance instance, BaseStatusEffectData data)
+        public static void ReapplyStatusEffect(BaseStatusEffectInstance instance)
         {
-            var type = data.StatusEffectReapplyType;
+            var type = instance.StatusEffectData.StatusEffectReapplyType;
 
             foreach (var pair in BuffReapplyStrategies)
                 if (type.HasFlag(pair.Key))
-                    pair.Value.ReapplyStatusEffect(instance, data);
+                    pair.Value.ReapplyStatusEffect(instance);
         }
 
         public static bool IsExpirationTypeActionBased(StatusEffectExpirationType effectExpirationType)

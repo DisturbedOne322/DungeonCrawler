@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
 using Data.Constants;
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using Gameplay.Services;
 using UI.Core;
 using UI.Menus.Data;

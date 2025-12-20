@@ -1,9 +1,9 @@
 using Data;
-using Gameplay.Dungeon.Rooms.Shrine;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.ShopRooms.Shrine;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon.RoomVariants
 {
     [CreateAssetMenu(fileName = "ShrineRoomVariantData", menuName = "Gameplay/Dungeon/Data/ShrineRoomVariantData")] 
     public class ShrineRoomVariantData : RoomVariantData

@@ -1,5 +1,4 @@
 using Gameplay.Dungeon;
-using Gameplay.Dungeon.Data;
 using Gameplay.Services;
 using Zenject;
 

@@ -6,7 +6,7 @@ using Data;
 using Gameplay.Combat;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;

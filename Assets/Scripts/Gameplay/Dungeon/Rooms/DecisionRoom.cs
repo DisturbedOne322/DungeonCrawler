@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Gameplay.Dungeon.Animations;
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Dungeon.RoomTypes
+namespace Gameplay.Dungeon.Rooms
 {
     [RequireComponent(typeof(DoorAnimator))]
     public class DecisionRoom : StopRoom

@@ -1,7 +1,7 @@
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.RoomTypes
+namespace Gameplay.Dungeon.Rooms
 {
     [DisallowMultipleComponent]
     public abstract class DungeonRoom : MonoBehaviour

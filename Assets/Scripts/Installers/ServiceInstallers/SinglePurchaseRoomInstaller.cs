@@ -1,5 +1,5 @@
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using PopupControllers;
 using UI.Menus;
 using UnityEngine;

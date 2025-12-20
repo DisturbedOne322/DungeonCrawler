@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Data;
 using Gameplay.Dungeon;
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using UnityEditor;
 using UnityEngine;
 

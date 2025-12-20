@@ -1,6 +1,6 @@
 using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.ConfigProviders;
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Services;
 using Gameplay.Units;
 using UnityEngine;

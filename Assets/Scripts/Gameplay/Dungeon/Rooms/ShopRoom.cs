@@ -1,11 +1,10 @@
 using Cysharp.Threading.Tasks;
-using Data;
-using Gameplay.Dungeon.Data;
-using Gameplay.Dungeon.Rooms.Shop;
+using Gameplay.Dungeon.RoomVariants;
+using Gameplay.Dungeon.ShopRooms.Shop;
 using PopupControllers;
 using Zenject;
 
-namespace Gameplay.Dungeon.RoomTypes
+namespace Gameplay.Dungeon.Rooms
 {
     public class ShopRoom : StopRoom
     {

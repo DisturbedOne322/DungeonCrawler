@@ -5,10 +5,10 @@ namespace Gameplay.StatusEffects.ReapplyStrategies
 {
     public class ReapplyStackStrategy : IStatusEffectReapplyStrategy
     {
-        public void ReapplyStatusEffect(BaseStatusEffectInstance instance, BaseStatusEffectData data)
+        public void ReapplyStatusEffect(BaseStatusEffectInstance instance)
         {
             var stacksCurrent = instance.Stacks.Value;
-            var maxStacks = data.MaxStacks;
+            var maxStacks = instance.StatusEffectData.MaxStacks;
 
             stacksCurrent = Mathf.Min(maxStacks, stacksCurrent + 1);
             instance.Stacks.Value = stacksCurrent;

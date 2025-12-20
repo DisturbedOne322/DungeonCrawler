@@ -1,9 +1,9 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using PopupControllers;
 using Zenject;
 
-namespace Gameplay.Dungeon.RoomTypes
+namespace Gameplay.Dungeon.Rooms
 {
     public abstract class SinglePurchaseRoom : StopRoom
     {

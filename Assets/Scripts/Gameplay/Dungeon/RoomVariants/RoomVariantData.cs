@@ -1,10 +1,10 @@
 using Data;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 using Gameplay.Rewards;
 using Helpers;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon.RoomVariants
 {
     public abstract class RoomVariantData : ScriptableObject
     {

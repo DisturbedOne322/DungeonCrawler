@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Debuffs.Core;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Dungeon.RoomTypes
+namespace Gameplay.Dungeon.Rooms
 {
     public class TrapRoom : StopRoom
     {

@@ -1,10 +1,10 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Dungeon.Animations;
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Units;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.RoomTypes
+namespace Gameplay.Dungeon.Rooms
 {
     [RequireComponent(typeof(ChestAnimator))]
     public class TreasureChestRoom : StopRoom

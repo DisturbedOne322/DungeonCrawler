@@ -1,8 +1,8 @@
 using Data;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon.RoomVariants
 {
     [CreateAssetMenu(fileName = "CorridorRoomVariantData", menuName = "Gameplay/Dungeon/Data/CorridorRoomVariantData")]
     public class CorridorRoomVariantData : RoomVariantData

@@ -1,4 +1,4 @@
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Services;
 
 namespace Gameplay.Dungeon

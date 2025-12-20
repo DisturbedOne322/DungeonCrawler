@@ -4,9 +4,9 @@ namespace Gameplay.StatusEffects.ReapplyStrategies
 {
     public class ReapplyRefreshDurationStrategy : IStatusEffectReapplyStrategy
     {
-        public void ReapplyStatusEffect(BaseStatusEffectInstance instance, BaseStatusEffectData data)
+        public void ReapplyStatusEffect(BaseStatusEffectInstance instance)
         {
-            var turns = data.StatusEffectDurationData.Duration;
+            var turns = instance.StatusEffectData.StatusEffectDurationData.Duration;
             instance.DurationLeft.Value = turns;
         }
     }

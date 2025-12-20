@@ -5,8 +5,8 @@ using AssetManagement.AssetProviders.Core;
 using Data;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
-using Gameplay.Dungeon.Data;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.RoomVariants;
 using UnityEngine;
 using Zenject;
 

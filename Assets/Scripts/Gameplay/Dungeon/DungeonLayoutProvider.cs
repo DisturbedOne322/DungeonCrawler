@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 
 namespace Gameplay.Dungeon
 {

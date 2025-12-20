@@ -112,7 +112,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                     var activeBuff = activeStatusEffects[i];
                     if (activeBuff.StatusEffectData == statusEffectData)
                     {
-                        StatusEffectsHelper.ReapplyStatusEffect(activeBuff, statusEffectData);
+                        StatusEffectsHelper.ReapplyStatusEffect(activeBuff);
                         return;
                     }
                 }

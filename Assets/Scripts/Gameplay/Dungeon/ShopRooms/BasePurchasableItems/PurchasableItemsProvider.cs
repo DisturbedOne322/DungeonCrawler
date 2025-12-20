@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 
-namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
+namespace Gameplay.Dungeon.ShopRooms.BasePurchasableItems
 {
     public class PurchasableItemsProvider
     {

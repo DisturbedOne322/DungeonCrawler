@@ -1,4 +1,4 @@
-namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
+namespace Gameplay.Dungeon.ShopRooms.BasePurchasableItems
 {
     public interface IPurchasableItemData
     {

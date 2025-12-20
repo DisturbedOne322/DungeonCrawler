@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using Data;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 using Gameplay.Units;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon.RoomVariants
 {
     [CreateAssetMenu(fileName = "CombatRoomVariantData", menuName = "Gameplay/Dungeon/Data/CombatRoomVariantData")]
     public class CombatRoomVariantData : RoomVariantData

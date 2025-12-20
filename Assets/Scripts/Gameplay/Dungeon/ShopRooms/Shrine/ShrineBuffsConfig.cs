@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using Gameplay.StatusEffects.Core;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Rooms.Shrine
+namespace Gameplay.Dungeon.ShopRooms.Shrine
 {
     [CreateAssetMenu(fileName = "ShrineBuffsConfig", menuName = "Gameplay/Shop/Shrine Buffs Config")]
     public class ShrineBuffsConfig : BasePurchasableItemsConfig

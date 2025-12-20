@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
+namespace Gameplay.Dungeon.ShopRooms.BasePurchasableItems
 {
     [Serializable]
     public class PurchasableItemData<T> : IPurchasableItemData where T : BaseGameItem

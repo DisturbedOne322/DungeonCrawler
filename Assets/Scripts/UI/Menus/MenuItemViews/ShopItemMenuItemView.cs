@@ -1,4 +1,4 @@
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using TMPro;
 using UniRx;
 using UnityEngine;

@@ -1,6 +1,6 @@
 using UniRx;
 
-namespace Gameplay.Dungeon.Rooms.BasePurchasableItems
+namespace Gameplay.Dungeon.ShopRooms.BasePurchasableItems
 {
     public class PurchasedItemModel
     {

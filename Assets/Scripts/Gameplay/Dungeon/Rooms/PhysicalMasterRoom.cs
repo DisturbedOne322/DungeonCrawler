@@ -1,8 +1,7 @@
-using Data;
-using Gameplay.Dungeon.Data;
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.RoomVariants;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 
-namespace Gameplay.Dungeon.RoomTypes
+namespace Gameplay.Dungeon.Rooms
 {
     public class PhysicalMasterRoom : SinglePurchaseRoom
     {

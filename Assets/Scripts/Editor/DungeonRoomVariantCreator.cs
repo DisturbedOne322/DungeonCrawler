@@ -1,7 +1,7 @@
 using System.IO;
 using Data;
 using Gameplay.Dungeon;
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Rewards;
 using UnityEditor;
 using UnityEngine;

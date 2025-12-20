@@ -4,7 +4,7 @@ namespace Gameplay.StatusEffects.ReapplyStrategies
 {
     public class ReapplyIgnoreStrategy : IStatusEffectReapplyStrategy
     {
-        public void ReapplyStatusEffect(BaseStatusEffectInstance instance, BaseStatusEffectData data)
+        public void ReapplyStatusEffect(BaseStatusEffectInstance instance)
         {
         }
     }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Data;
-using Gameplay.Dungeon.Data;
+using Gameplay.Dungeon.RoomVariants;
 
 namespace Gameplay.Dungeon
 {

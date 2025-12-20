@@ -1,9 +1,9 @@
 using Data;
-using Gameplay.Dungeon.Rooms.SkillRoom;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.ShopRooms.SkillRoom;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon.RoomVariants
 {
     [CreateAssetMenu(fileName = "MagicMasterRoomVariantData", menuName = "Gameplay/Dungeon/Data/MagicMasterRoomVariantData")]
     public class MagicMasterRoomVariantData : RoomVariantData

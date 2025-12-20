@@ -1,5 +1,5 @@
-using Gameplay.Dungeon.Rooms.Shop;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.ShopRooms.Shop;
 using PopupControllers;
 using StateMachine.Shop;
 using UI.Menus;

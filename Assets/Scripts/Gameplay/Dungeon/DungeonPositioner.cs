@@ -1,5 +1,5 @@
 using Data.Constants;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 
 namespace Gameplay.Dungeon

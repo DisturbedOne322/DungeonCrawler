@@ -1,9 +1,9 @@
 using Data;
-using Gameplay.Dungeon.Rooms.SkillRoom;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.ShopRooms.SkillRoom;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon.RoomVariants
 {
     [CreateAssetMenu(fileName = "PhysicalMasterRoomVariantData", menuName = "Gameplay/Dungeon/Data/PhysicalMasterRoomVariantData")]
     public class PhysicalMasterRoomVariantData : RoomVariantData

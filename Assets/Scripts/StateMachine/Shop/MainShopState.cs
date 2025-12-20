@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Dungeon.Rooms.Shop;
+using Gameplay.Dungeon.ShopRooms.Shop;
 using Gameplay.Player;
 using UI.BattleMenu;
 using UI.Menus;

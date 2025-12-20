@@ -1,10 +1,9 @@
 using Data;
-using Gameplay.Dungeon.Rooms.Shop;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.ShopRooms.Shop;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Gameplay.Dungeon.Data
+namespace Gameplay.Dungeon.RoomVariants
 {
     [CreateAssetMenu(fileName = "ShopRoomVariantData", menuName = "Gameplay/Dungeon/Data/ShopRoomVariantData")] 
     public class ShopRoomVariantData : RoomVariantData

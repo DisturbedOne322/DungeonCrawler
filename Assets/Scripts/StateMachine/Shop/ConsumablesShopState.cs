@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
-using Gameplay.Dungeon.Rooms.Shop;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
+using Gameplay.Dungeon.ShopRooms.Shop;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;

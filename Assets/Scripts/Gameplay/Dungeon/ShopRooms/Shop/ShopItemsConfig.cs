@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using Gameplay.Consumables;
-using Gameplay.Dungeon.Rooms.BasePurchasableItems;
+using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using Gameplay.Equipment;
 using Gameplay.Skills.Core;
 using Gameplay.StatusEffects.Core;
 using UnityEngine;
 
-namespace Gameplay.Dungeon.Rooms.Shop
+namespace Gameplay.Dungeon.ShopRooms.Shop
 {
     [CreateAssetMenu(fileName = "ShopItemsConfig", menuName = "Gameplay/Shop/Shop Items Config")]
     public class ShopItemsConfig : ScriptableObject

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Data;
-using Gameplay.Dungeon.RoomTypes;
+using Gameplay.Dungeon.Rooms;
 
 namespace Helpers
 {
