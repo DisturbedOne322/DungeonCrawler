@@ -55,9 +55,6 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
         private void TryApplyPermanentStatusEffectOnObtain(BaseStatusEffectData data)
         {
-            if (!IsPermanentStatusEffect(data))
-                return;
-
             var instance = data.CreateInstance();
             instance.Apply(_unit, null);
 
@@ -66,21 +63,10 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
         private void TryRemovePermanentStatusEffect(BaseStatusEffectData data)
         {
-            if (!IsPermanentStatusEffect(data))
-                return;
-
             var instance = _appliedStatusEffects[data];
             instance.Revert();
 
             _appliedStatusEffects.Remove(data);
-        }
-
-        private bool IsPermanentStatusEffect(BaseStatusEffectData data)
-        {
-            if (data.StatusEffectDurationData.EffectExpirationType != StatusEffectExpirationType.Permanent)
-                return false;
-
-            return data.TriggerType == StatusEffectTriggerType.OnObtained;
         }
     }
 }

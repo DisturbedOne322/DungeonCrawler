@@ -8,9 +8,9 @@ namespace Gameplay.StatusEffects.Buffs.Services
     public class EquipmentStatBuffsApplier : IDisposable
     {
         private readonly CompositeDisposable _compositeDisposable = new();
-        private readonly GameUnit _unit;
+        private readonly PlayerUnit _unit;
 
-        public EquipmentStatBuffsApplier(GameUnit unit,
+        public EquipmentStatBuffsApplier(PlayerUnit unit,
             UnitEquipmentData unitEquipmentData)
         {
             _unit = unit;

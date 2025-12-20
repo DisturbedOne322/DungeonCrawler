@@ -1,4 +1,4 @@
-using Constants;
+using Data.Constants;
 
 namespace Helpers
 {

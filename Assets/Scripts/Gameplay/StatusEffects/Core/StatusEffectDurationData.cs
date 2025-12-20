@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay.StatusEffects.Core
 {
@@ -6,9 +7,9 @@ namespace Gameplay.StatusEffects.Core
     public class StatusEffectDurationData : ScriptableObject
     {
         [SerializeField] private StatusEffectExpirationType _effectExpirationType;
-        [SerializeField] [Min(-1)] private int _turnDurations = -1;
+        [FormerlySerializedAs("_turnDurations")] [SerializeField] [Min(-1)] private int _duration = -1;
 
         public StatusEffectExpirationType EffectExpirationType => _effectExpirationType;
-        public int TurnDurations => _turnDurations;
+        public int Duration => _duration;
     }
 }

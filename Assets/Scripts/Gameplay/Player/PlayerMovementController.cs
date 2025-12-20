@@ -7,6 +7,8 @@ using Gameplay.Combat;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.RoomTypes;
+using Gameplay.StatusEffects.Buffs.Services;
+using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 
 namespace Gameplay.Player
@@ -20,19 +22,22 @@ namespace Gameplay.Player
         private readonly PlayerMoveAnimator _moveAnimator;
         private readonly PlayerMovementHistory _playerMovementHistory;
         private readonly UnitRegenerationService _unitRegenerationService;
+        private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
         public PlayerMovementController(PlayerUnit playerUnit,
             DungeonLayoutProvider dungeonLayoutProvider,
             PlayerMovementHistory playerMovementHistory,
             GameplayData gameplayData,
             UnitRegenerationService unitRegenerationService,
-            GameplayConfigsProvider configsProvider)
+            GameplayConfigsProvider configsProvider,
+            StatusEffectsProcessor statusEffectsProcessor)
         {
             _moveAnimator = playerUnit.PlayerMoveAnimator;
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _playerMovementHistory = playerMovementHistory;
             _gameplayData = gameplayData;
             _unitRegenerationService = unitRegenerationService;
+            _statusEffectsProcessor = statusEffectsProcessor;
 
             _config = configsProvider.GetConfig<PlayerMovementConfig>();
         }
@@ -84,7 +89,9 @@ namespace Gameplay.Player
                 {
                     _playerMovementHistory.AddRoom(room.RoomData.RoomType);
                     SetPositionIndex(index);
+                    
                     _unitRegenerationService.RegeneratePlayerOutOfBattle();
+                    _statusEffectsProcessor.ProcessDepthIncrease();
                 }, isLast);
             }
 

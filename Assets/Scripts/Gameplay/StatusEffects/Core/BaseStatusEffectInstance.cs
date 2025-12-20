@@ -9,7 +9,7 @@ namespace Gameplay.StatusEffects.Core
         public StatusEffectExpirationType EffectExpirationType;
         public IntReactiveProperty Stacks = new(1);
         public BaseStatusEffectData StatusEffectData;
-        public IntReactiveProperty TurnDurationLeft;
+        public IntReactiveProperty DurationLeft;
 
         public abstract void Apply(IEntity activeUnit, IEntity otherUnit);
         public abstract void Revert();

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
-using Constants;
+using Data.Constants;
 using UI.Menus;
 using UI.Menus.Data;
 using UI.Menus.MenuItemViews;

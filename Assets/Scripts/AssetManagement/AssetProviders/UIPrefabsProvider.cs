@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders.Core;
-using Constants;
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 

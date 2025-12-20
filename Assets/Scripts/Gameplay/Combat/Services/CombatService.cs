@@ -193,7 +193,7 @@ namespace Gameplay.Combat.Services
 
         private void HealUnit(IGameUnit target, int amount)
         {
-            target.UnitHealthController.Heal(amount);
+            target.UnitHealthController.AddHealth(amount);
 
             _combatEventsBus.InvokeHealed(new HealEventData
             {

@@ -1,4 +1,4 @@
-namespace Constants
+namespace Data.Constants
 {
     public class ConstConfigs
     {

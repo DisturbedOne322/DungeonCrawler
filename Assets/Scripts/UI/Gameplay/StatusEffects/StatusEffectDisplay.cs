@@ -54,7 +54,7 @@ namespace UI.Gameplay.StatusEffects
             if (ShouldShowDuration(instance))
             {
                 _turnsLeftText.gameObject.SetActive(true);
-                _turnsLeftSubscription = instance.TurnDurationLeft.Subscribe(UpdateDuration);
+                _turnsLeftSubscription = instance.DurationLeft.Subscribe(UpdateDuration);
             }
             else
             {

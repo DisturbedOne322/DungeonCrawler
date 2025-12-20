@@ -6,8 +6,8 @@ namespace Gameplay.StatusEffects.ReapplyStrategies
     {
         public void ReapplyStatusEffect(BaseStatusEffectInstance instance, BaseStatusEffectData data)
         {
-            var turns = data.StatusEffectDurationData.TurnDurations;
-            instance.TurnDurationLeft.Value = turns;
+            var turns = data.StatusEffectDurationData.Duration;
+            instance.DurationLeft.Value = turns;
         }
     }
 }

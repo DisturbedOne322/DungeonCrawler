@@ -15,7 +15,7 @@ namespace Gameplay.StatusEffects.Debuffs.Core
         {
             return new StatDebuffInstance
             {
-                TurnDurationLeft = new IntReactiveProperty(buffDataData.StatusEffectDurationData.TurnDurations),
+                DurationLeft = new IntReactiveProperty(buffDataData.StatusEffectDurationData.Duration),
                 EffectExpirationType = buffDataData.StatusEffectDurationData.EffectExpirationType,
                 StatusEffectData = buffDataData,
                 StatDebuffData = buffDataData,

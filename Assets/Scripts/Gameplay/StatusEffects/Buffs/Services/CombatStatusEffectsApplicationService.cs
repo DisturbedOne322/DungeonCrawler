@@ -11,7 +11,7 @@ using Zenject;
 
 namespace Gameplay.StatusEffects.Buffs.Services
 {
-    public class StatusEffectsApplicationService : IDisposable, IInitializable
+    public class CombatStatusEffectsApplicationService : IDisposable, IInitializable
     {
         private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEvents;
@@ -21,7 +21,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
         private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
         [Inject]
-        public StatusEffectsApplicationService(
+        public CombatStatusEffectsApplicationService(
             PlayerUnit playerUnit,
             StatusEffectsProcessor statusEffectsProcessor,
             CombatEventsBus combatEvents,
@@ -94,6 +94,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
         private void ProcessTurnEnded(TurnData turn)
         {
+            
         }
 
         private void ProcessSkillUsed(SkillUsedData skillUsedData)

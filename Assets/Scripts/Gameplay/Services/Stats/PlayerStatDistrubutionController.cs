@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Constants;
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 using Gameplay.Player;
 using UI.Menus;
 using UI.Menus.Data;

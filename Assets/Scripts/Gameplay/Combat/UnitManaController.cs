@@ -38,10 +38,12 @@ namespace Gameplay.Combat
             _unitManaData.CurrentMana.Value = Mathf.Max(_unitManaData.CurrentMana.Value - amount, 0);
         }
 
-        public void RegenerateMana(int amount)
+        public void AddMana(int amount)
         {
-            _unitManaData.CurrentMana.Value =
-                Mathf.Min(_unitManaData.CurrentMana.Value + amount, _unitManaData.MaxMana.Value);
+            int current = _unitManaData.CurrentMana.Value;
+            current = Mathf.Clamp(current + amount, 0, _unitManaData.MaxMana.Value);
+
+            _unitManaData.CurrentMana.Value = current;
         }
     }
 }

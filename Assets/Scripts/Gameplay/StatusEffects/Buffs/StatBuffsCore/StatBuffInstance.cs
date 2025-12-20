@@ -14,7 +14,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
         {
             return new StatBuffInstance
             {
-                TurnDurationLeft = new IntReactiveProperty(buffDataData.StatusEffectDurationData.TurnDurations),
+                DurationLeft = new IntReactiveProperty(buffDataData.StatusEffectDurationData.Duration),
                 EffectExpirationType = buffDataData.StatusEffectDurationData.EffectExpirationType,
                 StatType = buffDataData.BuffedStatType,
                 StatusEffectData = buffDataData,

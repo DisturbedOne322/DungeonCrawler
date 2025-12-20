@@ -17,6 +17,7 @@ namespace Helpers
             {RoomType.Shrine, typeof(ShrineRoom)},
             {RoomType.PhysicalMaster, typeof(PhysicalMasterRoom)},
             {RoomType.MagicMaster, typeof(MagicMasterRoom)},
+            {RoomType.Trap, typeof(TrapRoom)},
         };
         
         public static Type GetExpectedType(RoomType roomType) => _typeDict[roomType];

@@ -1,5 +1,5 @@
 using AssetManagement.AssetProviders.Core;
-using Constants;
+using Data.Constants;
 using Gameplay.Configs;
 
 namespace AssetManagement.AssetProviders.ConfigProviders

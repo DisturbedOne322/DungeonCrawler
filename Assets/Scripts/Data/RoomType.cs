@@ -9,6 +9,7 @@ namespace Data
         Shop,
         Shrine,
         PhysicalMaster,
-        MagicMaster
+        MagicMaster,
+        Trap,
     }
 }

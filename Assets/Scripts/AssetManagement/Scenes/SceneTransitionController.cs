@@ -1,5 +1,5 @@
-using Constants;
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 using UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;

@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
-using Data;
 using Gameplay.Dungeon.Animations;
 using Gameplay.Dungeon.Data;
+using Gameplay.Units;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomTypes
@@ -10,6 +10,8 @@ namespace Gameplay.Dungeon.RoomTypes
     public class TreasureChestRoom : StopRoom
     {
         [SerializeField] private ChestAnimator _chestAnimator;
+        
+        private PlayerUnit _playerUnit;
         
         private TreasureChestRoomVariantData _roomData;
         public override RoomVariantData RoomData => _roomData;

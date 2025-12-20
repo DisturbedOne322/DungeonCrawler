@@ -1,10 +1,19 @@
 using Gameplay.Facades;
+using Gameplay.StatusEffects.Core;
+using Gameplay.Units;
 using Helpers;
 
-namespace Gameplay.StatusEffects.Core
+namespace Gameplay.StatusEffects.Buffs.Services
 {
     public class StatusEffectsProcessor
     {
+        private readonly PlayerUnit _playerUnit;
+
+        public StatusEffectsProcessor(PlayerUnit playerUnit)
+        {
+            _playerUnit = playerUnit;
+        }
+        
         public void EnableStatusEffectsOnTrigger(IEntity activeUnit, IEntity otherUnit,
             StatusEffectTriggerType triggerType)
         {
@@ -32,10 +41,29 @@ namespace Gameplay.StatusEffects.Core
                 if (instance.EffectExpirationType != StatusEffectExpirationType.TurnCount)
                     continue;
 
-                if (instance.TurnDurationLeft.Value == 0)
+                if (instance.DurationLeft.Value == 0)
                     instance.Revert();
 
-                instance.TurnDurationLeft.Value--;
+                instance.DurationLeft.Value--;
+            }
+        }
+
+        public void ProcessDepthIncrease()
+        {
+            var activeStatusEffects =
+                _playerUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
+
+            for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
+            {
+                var instance = activeStatusEffects[i];
+
+                if (instance.EffectExpirationType != StatusEffectExpirationType.DepthIncrease)
+                    continue;
+
+                if (instance.DurationLeft.Value == 0)
+                    instance.Revert();
+
+                instance.DurationLeft.Value--;
             }
         }
 

@@ -1,5 +1,5 @@
-using Constants;
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 using UI;
 using UI.Gameplay.Experience;
 using UI.Popups;

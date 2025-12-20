@@ -65,11 +65,11 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
                     return true;
 
                 case StatType.HealthRegen:
-                    applied = ApplyIntClamped(bonus.HealthRegenBonus, Mathf.RoundToInt(delta), 0);
+                    applied = ApplyInt(bonus.HealthRegenBonus, Mathf.RoundToInt(delta));
                     return true;
 
                 case StatType.ManaRegen:
-                    applied = ApplyIntClamped(bonus.ManaRegenBonus, Mathf.RoundToInt(delta), 0);
+                    applied = ApplyInt(bonus.ManaRegenBonus, Mathf.RoundToInt(delta));
                     return true;
 
                 case StatType.PenetrationRatio:
@@ -133,6 +133,14 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return appliedInt;
         }
 
+        private static float ApplyInt(ReactiveProperty<int> prop, int intDelta)
+        {
+            var old = prop.Value;
+            var requestedNew = old + intDelta;
+            prop.Value = requestedNew;
+            return requestedNew - old;
+        }
+        
         private static float ApplyIntClamped(ReactiveProperty<int> prop, int intDelta, int minValue)
         {
             var old = prop.Value;

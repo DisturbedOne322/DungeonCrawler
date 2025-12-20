@@ -13,7 +13,7 @@ namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
         {
             return new HitBuffInstance
             {
-                TurnDurationLeft = new IntReactiveProperty(buffData.StatusEffectDurationData.TurnDurations),
+                DurationLeft = new IntReactiveProperty(buffData.StatusEffectDurationData.Duration),
                 EffectExpirationType = buffData.StatusEffectDurationData.EffectExpirationType,
                 PriorityType = buffData.Priority,
                 StatusEffectData = buffData,

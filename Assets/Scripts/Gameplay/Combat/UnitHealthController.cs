@@ -44,13 +44,15 @@ namespace Gameplay.Combat
             _unitHealthData.CurrentHealth.Value = Mathf.Max(_unitHealthData.CurrentHealth.Value - amount, 0);
         }
 
-        public void Heal(int amount)
+        public void AddHealth(int amount)
         {
             if (_unitHealthData.IsDead.Value)
                 return;
 
-            _unitHealthData.CurrentHealth.Value = Mathf.Min(_unitHealthData.CurrentHealth.Value + amount,
-                _unitHealthData.MaxHealth.Value);
+            int current = _unitHealthData.CurrentHealth.Value;
+            current = Mathf.Clamp(current + amount, 1, _unitHealthData.MaxHealth.Value);
+
+            _unitHealthData.CurrentHealth.Value = current;
         }
     }
 }

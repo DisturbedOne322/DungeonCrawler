@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using AssetManagement.AssetProviders;
-using Constants;
+using Data.Constants;
 using Gameplay.Dungeon.Rooms.BasePurchasableItems;
 using Gameplay.Services;
 using UI.Core;

@@ -1,6 +1,6 @@
 using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.ConfigProviders;
-using Constants;
+using Data.Constants;
 using Gameplay.Configs;
 using Gameplay.Facades;
 using UnityEngine;

@@ -1,4 +1,4 @@
-using Constants;
+using Data.Constants;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UnityEngine;
@@ -16,24 +16,24 @@ namespace Gameplay.Combat
 
         public void RegenerateUnitInBattle(IEntity unit)
         {
-            RegenerateUnit(unit, 1);
+            RegenerateUnit(unit);
         }
 
         public void RegeneratePlayerOutOfBattle()
         {
-            RegenerateUnit(_playerUnit, GameplayConstants.RegenerationRateOutOfCombat);
+            RegenerateUnit(_playerUnit);
         }
 
-        private void RegenerateUnit(IEntity unit, float multiplier)
+        private void RegenerateUnit(IEntity unit)
         {
             var healthRegen = unit.UnitBonusStatsData.HealthRegenBonus.Value;
             var manaRegen = unit.UnitBonusStatsData.ManaRegenBonus.Value;
+            
+            healthRegen = Mathf.CeilToInt(healthRegen);
+            manaRegen = Mathf.CeilToInt(manaRegen);
 
-            healthRegen = Mathf.CeilToInt(healthRegen * multiplier);
-            manaRegen = Mathf.CeilToInt(manaRegen * multiplier);
-
-            unit.UnitHealthController.Heal(healthRegen);
-            unit.UnitManaController.RegenerateMana(manaRegen);
+            unit.UnitHealthController.AddHealth(healthRegen);
+            unit.UnitManaController.AddMana(manaRegen);
         }
     }
 }

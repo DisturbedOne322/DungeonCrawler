@@ -1,7 +1,7 @@
 using AssetManagement.AssetProviders;
 using AssetManagement.Scenes;
-using Constants;
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 
 namespace StateMachine.App
 {

@@ -1,6 +1,6 @@
 using AssetManagement.AssetProviders.Core;
 using AssetManagement.Configs;
-using Constants;
+using Data.Constants;
 
 namespace AssetManagement.AssetProviders.ConfigProviders
 {
