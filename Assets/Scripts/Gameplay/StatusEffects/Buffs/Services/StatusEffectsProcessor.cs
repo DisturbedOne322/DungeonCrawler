@@ -110,11 +110,18 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
                 {
                     var activeBuff = activeStatusEffects[i];
-                    if (activeBuff.StatusEffectData == statusEffectData)
+                    if (activeBuff.StatusEffectData != statusEffectData)
+                        continue;
+
+                    var expirationType = activeBuff.StatusEffectData.StatusEffectDurationData.EffectExpirationType;
+                    if (expirationType == StatusEffectExpirationType.Reapply)
                     {
-                        StatusEffectsHelper.ReapplyStatusEffect(activeBuff);
+                        activeBuff.Revert();
                         return;
                     }
+                    
+                    StatusEffectsHelper.ReapplyStatusEffect(activeBuff);
+                    return;
                 }
 
             statusEffectData.CreateInstance().Apply(activeUnit, otherUnit);

@@ -9,5 +9,6 @@ namespace Gameplay.StatusEffects.Core
         TurnCount,
         CombatEnd,
         DepthIncrease,
+        Reapply
     }
 }
