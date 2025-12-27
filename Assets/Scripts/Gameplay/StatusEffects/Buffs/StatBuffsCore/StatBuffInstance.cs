@@ -22,7 +22,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             };
         }
 
-        public override void Apply(IEntity activeUnit, IEntity otherUnit)
+        public override void Apply(IGameUnit activeUnit, IGameUnit otherUnit)
         {
             AffectedUnit = activeUnit;
 

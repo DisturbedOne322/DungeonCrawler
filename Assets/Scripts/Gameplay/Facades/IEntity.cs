@@ -1,5 +1,4 @@
 using Gameplay.Combat;
-using Gameplay.Equipment;
 using Gameplay.Units;
 using UnityEngine;
 
@@ -10,12 +9,6 @@ namespace Gameplay.Facades
         string EntityName { get; }
         UnitHealthData UnitHealthData { get; }
         UnitManaData UnitManaData { get; }
-        UnitStatsData UnitStatsData { get; }
-        UnitBonusStatsData UnitBonusStatsData { get; }
-        UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; }
-        UnitEquipmentData UnitEquipmentData { get; }
-        UnitInventoryData UnitInventoryData { get; }
-        UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; }
         UnitHealthController UnitHealthController { get; }
         UnitManaController UnitManaController { get; }
         Vector3 Position { get; }

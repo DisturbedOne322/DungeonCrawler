@@ -185,7 +185,7 @@ namespace Gameplay.Combat.Services
             hitData.IsCritical = Random.value < finalCritChance;
         }
 
-        private bool Missed(IEntity attacker, IEntity defender, in DamageContext damageContext)
+        private bool Missed(IGameUnit attacker, IGameUnit defender, in DamageContext damageContext)
         {
             var hitChance = _combatFormulaService.GetHitChance(attacker, defender, damageContext);
             return Random.value > hitChance;

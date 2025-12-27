@@ -60,7 +60,7 @@ namespace Gameplay.Skills.Core
             return combatService.ActiveUnit.AttackAnimator.PlayAnimation(_skillAnimationData.TpvAnimationClip);
         }
 
-        protected virtual SkillData GetSkillData(IEntity entity)
+        protected virtual SkillData GetSkillData(IGameUnit entity)
         {
             return _skillData;
         }

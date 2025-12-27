@@ -14,7 +14,7 @@ namespace Gameplay.Combat
             _playerUnit = playerUnit;
         }
 
-        public void RegenerateUnitInBattle(IEntity unit)
+        public void RegenerateUnitInBattle(IGameUnit unit)
         {
             RegenerateUnit(unit);
         }
@@ -24,7 +24,7 @@ namespace Gameplay.Combat
             RegenerateUnit(_playerUnit);
         }
 
-        private void RegenerateUnit(IEntity unit)
+        private void RegenerateUnit(IGameUnit unit)
         {
             var healthRegen = unit.UnitBonusStatsData.HealthRegenBonus.Value;
             var manaRegen = unit.UnitBonusStatsData.ManaRegenBonus.Value;

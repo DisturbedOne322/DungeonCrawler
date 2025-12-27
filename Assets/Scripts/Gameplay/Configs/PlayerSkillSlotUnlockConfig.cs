@@ -6,7 +6,7 @@ namespace Gameplay.Configs
     [CreateAssetMenu(fileName = "PlayerProgressionConfig", menuName = "Gameplay/Configs/PlayerProgressionConfig")]
     public class PlayerSkillSlotUnlockConfig : GameplayConfig
     {
-        [SerializeField] private int _startingSkillSlots = 3;
+        [SerializeField, Min(1)] private int _startingSkillSlots = 3;
         [SerializeField] private List<int> _additionalSkillSlotLevelThresholds;
 
         public int StartingSkillSlots => _startingSkillSlots;

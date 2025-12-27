@@ -5,13 +5,13 @@ namespace Gameplay.StatusEffects.Core
 {
     public abstract class BaseStatusEffectInstance
     {
-        protected IEntity AffectedUnit;
+        protected IGameUnit AffectedUnit;
         public StatusEffectExpirationType EffectExpirationType;
         public IntReactiveProperty Stacks = new(1);
         public BaseStatusEffectData StatusEffectData;
         public IntReactiveProperty DurationLeft;
 
-        public abstract void Apply(IEntity activeUnit, IEntity otherUnit);
+        public abstract void Apply(IGameUnit activeUnit, IGameUnit otherUnit);
         public abstract void Revert();
     }
 }

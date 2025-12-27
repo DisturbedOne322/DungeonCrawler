@@ -8,7 +8,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 {
     public static class UnitStatsModificationService
     {
-        public static float ModifyStat(IEntity unit, StatType statType, float delta)
+        public static float ModifyStat(IGameUnit unit, StatType statType, float delta)
         {
             if (TryModifyBaseStat(unit, statType, delta, out var applied)) return applied;
             if (TryModifyBonusStat(unit, statType, delta, out applied)) return applied;
@@ -17,7 +17,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             throw new Exception($"{statType} is unhandled");
         }
 
-        private static bool TryModifyBaseStat(IEntity unit, StatType type, float delta, out float applied)
+        private static bool TryModifyBaseStat(IGameUnit unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var stats = unit.UnitStatsData;
@@ -26,30 +26,30 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             switch (type)
             {
                 case StatType.Constitution:
-                    applied = ApplyIntClamped(stats.Constitution, intDelta, 1);
+                    applied = ApplyIntClamped(stats.ConstitutionProp, intDelta, 1);
                     return true;
 
                 case StatType.Strength:
-                    applied = ApplyIntClamped(stats.Strength, intDelta, 1);
+                    applied = ApplyIntClamped(stats.StrengthProp, intDelta, 1);
                     return true;
 
                 case StatType.Dexterity:
-                    applied = ApplyIntClamped(stats.Dexterity, intDelta, 1);
+                    applied = ApplyIntClamped(stats.DexterityProp, intDelta, 1);
                     return true;
 
                 case StatType.Intelligence:
-                    applied = ApplyIntClamped(stats.Intelligence, intDelta, 1);
+                    applied = ApplyIntClamped(stats.IntelligenceProp, intDelta, 1);
                     return true;
 
                 case StatType.Luck:
-                    applied = ApplyIntClamped(stats.Luck, intDelta, 1);
+                    applied = ApplyIntClamped(stats.LuckProp, intDelta, 1);
                     return true;
             }
 
             return false;
         }
 
-        private static bool TryModifyBonusStat(IEntity unit, StatType type, float delta, out float applied)
+        private static bool TryModifyBonusStat(IGameUnit unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var bonus = unit.UnitBonusStatsData;

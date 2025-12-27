@@ -25,18 +25,18 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
             }
         }
 
-        public void ApplyStructuralHitStreamBuffs(IEntity attacker, HitDataStream hitDataStream)
+        public void ApplyStructuralHitStreamBuffs(IGameUnit attacker, HitDataStream hitDataStream)
         {
             ApplyHitStreamBuffsFiltered(attacker, hitDataStream, p => p == HitStreamBuffPriorityType.StructuralChange);
         }
 
-        public void ApplyHitStreamBuffs(IEntity attacker, HitDataStream hitDataStream)
+        public void ApplyHitStreamBuffs(IGameUnit attacker, HitDataStream hitDataStream)
         {
             ApplyHitStreamBuffsFiltered(attacker, hitDataStream, p => p != HitStreamBuffPriorityType.StructuralChange);
         }
 
         private void ApplyHitStreamBuffsFiltered(
-            IEntity attacker,
+            IGameUnit attacker,
             HitDataStream hitDataStream,
             Func<HitStreamBuffPriorityType, bool> filter)
         {

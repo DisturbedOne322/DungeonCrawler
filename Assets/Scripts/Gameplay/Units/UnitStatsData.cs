@@ -4,19 +4,19 @@ namespace Gameplay.Units
 {
     public class UnitStatsData
     {
-        public ReactiveProperty<int> Constitution;
-        public ReactiveProperty<int> Dexterity;
-        public ReactiveProperty<int> Intelligence;
-        public ReactiveProperty<int> Luck;
-        public ReactiveProperty<int> Strength;
-
+        public ReactiveProperty<int> ConstitutionProp;
+        public ReactiveProperty<int> DexterityProp;
+        public ReactiveProperty<int> IntelligenceProp;
+        public ReactiveProperty<int> LuckProp;
+        public ReactiveProperty<int> StrengthProp;
+        
         public void SetStats(UnitStartingStats stats)
         {
-            Constitution = new ReactiveProperty<int>(stats.Constitution);
-            Strength = new ReactiveProperty<int>(stats.Strength);
-            Dexterity = new ReactiveProperty<int>(stats.Dexterity);
-            Intelligence = new ReactiveProperty<int>(stats.Intelligence);
-            Luck = new ReactiveProperty<int>(stats.Luck);
+            ConstitutionProp = new ReactiveProperty<int>(stats.Constitution);
+            StrengthProp = new ReactiveProperty<int>(stats.Strength);
+            DexterityProp = new ReactiveProperty<int>(stats.Dexterity);
+            IntelligenceProp = new ReactiveProperty<int>(stats.Intelligence);
+            LuckProp = new ReactiveProperty<int>(stats.Luck);
         }
     }
 }

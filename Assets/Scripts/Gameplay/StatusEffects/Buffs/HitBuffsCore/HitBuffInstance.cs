@@ -21,7 +21,7 @@ namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
             };
         }
 
-        public override void Apply(IEntity activeUnit, IEntity otherUnit)
+        public override void Apply(IGameUnit activeUnit, IGameUnit otherUnit)
         {
             AffectedUnit = activeUnit;
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);

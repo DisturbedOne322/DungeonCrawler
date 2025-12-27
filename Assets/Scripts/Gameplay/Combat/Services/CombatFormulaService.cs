@@ -1,4 +1,3 @@
-using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Data.Constants;
 using Gameplay.Configs;
@@ -32,15 +31,15 @@ namespace Gameplay.Combat.Services
                 ApplyCriticalDamageMultiplier(damageContext);
         }
 
-        public float GetFinalCritChance(IEntity attacker, in DamageContext damageContext)
+        public float GetFinalCritChance(IDamageSource attacker, in DamageContext damageContext)
         {
             if (!damageContext.HitData.CanCrit)
                 return -1;
 
             var finalCritChance = 0f;
 
-            var dex = attacker.UnitStatsData.Dexterity.Value;
-            var luck = attacker.UnitStatsData.Luck.Value;
+            var dex = attacker.UnitStatsData.DexterityProp.Value;
+            var luck = attacker.UnitStatsData.LuckProp.Value;
 
             var chanceFromDex = Mathf.Clamp(dex, 0, StatConstants.MaxStatPoints) * _config.MaxDexterityCritInfluence /
                                 StatConstants.MaxStatPoints;
@@ -52,12 +51,13 @@ namespace Gameplay.Combat.Services
             return Mathf.Clamp01(finalCritChance);
         }
 
-        public float GetHitChance(IEntity attacker, IEntity defender, in DamageContext damageContext)
+        public float GetHitChance(IDamageSource attacker, IGameUnit defender, in DamageContext damageContext)
         {
             if (damageContext.HitData.IsUnavoidable)
                 return 1;
 
             var hitData = damageContext.HitData;
+            
             var effectiveHitRatio = GetAttackerEffectiveHit(attacker);
             var effectiveEvasion = GetDefenderEffectiveEvasion(defender);
 
@@ -82,7 +82,7 @@ namespace Gameplay.Combat.Services
 
             var defender = damageContext.Defender;
 
-            var constitutionStat = defender.UnitStatsData.Constitution.Value;
+            var constitutionStat = defender.UnitStatsData.ConstitutionProp.Value;
             var constitutionInfluence = constitutionStat
                                         * _config.MaxConstitutionInfluence
                                         / StatConstants.MaxStatPoints;
@@ -91,19 +91,19 @@ namespace Gameplay.Combat.Services
             return damageReductionModifier;
         }
 
-        private float GetAttackerEffectiveHit(IEntity unit)
+        private float GetAttackerEffectiveHit(IDamageSource unit)
         {
             var stats = unit.UnitStatsData;
-            var effectiveDex = stats.Dexterity.Value * _config.AttackerDexterityInfluence;
-            var effectiveLuck = stats.Luck.Value * _config.AttackerLuckInfluence;
+            var effectiveDex = stats.DexterityProp.Value * _config.AttackerDexterityInfluence;
+            var effectiveLuck = stats.LuckProp.Value * _config.AttackerLuckInfluence;
             return effectiveDex + effectiveLuck;
         }
 
-        private float GetDefenderEffectiveEvasion(IEntity unit)
+        private float GetDefenderEffectiveEvasion(IDamageSource unit)
         {
             var stats = unit.UnitStatsData;
-            var effectiveDex = stats.Dexterity.Value * _config.DefenderDexterityInfluence;
-            var effectiveLuck = stats.Luck.Value * _config.DefenderLuckInfluence;
+            var effectiveDex = stats.DexterityProp.Value * _config.DefenderDexterityInfluence;
+            var effectiveLuck = stats.LuckProp.Value * _config.DefenderLuckInfluence;
             return effectiveDex + effectiveLuck;
         }
 

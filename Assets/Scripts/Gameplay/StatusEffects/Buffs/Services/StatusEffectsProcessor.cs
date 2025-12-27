@@ -14,7 +14,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             _playerUnit = playerUnit;
         }
         
-        public void EnableStatusEffectsOnTrigger(IEntity activeUnit, IEntity otherUnit,
+        public void EnableStatusEffectsOnTrigger(IGameUnit activeUnit, IGameUnit otherUnit,
             StatusEffectTriggerType triggerType)
         {
             var heldStatusEffects = activeUnit.UnitHeldStatusEffectsData.All;
@@ -29,7 +29,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             }
         }
 
-        public void ProcessTurn(IEntity activeUnit)
+        public void ProcessTurn(IGameUnit activeUnit)
         {
             var activeStatusEffects =
                 activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
@@ -67,7 +67,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             }
         }
 
-        public void RemoveStatusEffectsOnAction(IEntity activeUnit, StatusEffectExpirationType effectExpirationType)
+        public void RemoveStatusEffectsOnAction(IGameUnit activeUnit, StatusEffectExpirationType effectExpirationType)
         {
             if (!StatusEffectsHelper.IsExpirationTypeActionBased(effectExpirationType))
                 return;
@@ -84,7 +84,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             }
         }
 
-        public void ClearAllStatusEffects(IEntity activeUnit)
+        public void ClearAllStatusEffects(IGameUnit activeUnit)
         {
             var allEffects = activeUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
 
@@ -98,7 +98,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             }
         }
 
-        private void AddStatusEffect(IEntity activeUnit, IEntity otherUnit,
+        private void AddStatusEffect(IGameUnit activeUnit, IGameUnit otherUnit,
             BaseStatusEffectData statusEffectData)
         {
             var isIndependent = statusEffectData.StatusEffectReapplyType.HasFlag(StatusEffectReapplyType.Independent);

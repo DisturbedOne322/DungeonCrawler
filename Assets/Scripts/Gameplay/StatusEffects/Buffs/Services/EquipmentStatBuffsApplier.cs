@@ -42,11 +42,11 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             var unitStatsData = _unit.UnitStatsData;
 
-            unitStatsData.Constitution.Value += data.Constitution * multiplier;
-            unitStatsData.Dexterity.Value += data.Dexterity * multiplier;
-            unitStatsData.Intelligence.Value += data.Intelligence * multiplier;
-            unitStatsData.Luck.Value += data.Luck * multiplier;
-            unitStatsData.Strength.Value += data.Strength * multiplier;
+            unitStatsData.ConstitutionProp.Value += data.Constitution * multiplier;
+            unitStatsData.DexterityProp.Value += data.Dexterity * multiplier;
+            unitStatsData.IntelligenceProp.Value += data.Intelligence * multiplier;
+            unitStatsData.LuckProp.Value += data.Luck * multiplier;
+            unitStatsData.StrengthProp.Value += data.Strength * multiplier;
         }
     }
 }

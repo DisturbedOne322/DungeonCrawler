@@ -6,7 +6,7 @@ namespace Helpers
 {
     public static class UnitStatsHelper
     {
-        public static float GetStatValue(IEntity entity, StatType statType)
+        public static float GetStatValue(IGameUnit entity, StatType statType)
         {
             if (TryGetBaseStatValue(entity, statType, out var baseValue)) return baseValue;
             if (TryGetBonusStatValue(entity, statType, out var bonusValue)) return bonusValue;
@@ -15,7 +15,7 @@ namespace Helpers
             throw new Exception($"{statType} is unhandled");
         }
 
-        private static bool TryGetBaseStatValue(IEntity entity, StatType statType, out float value)
+        private static bool TryGetBaseStatValue(IGameUnit entity, StatType statType, out float value)
         {
             var stats = entity.UnitStatsData;
             value = 0f;
@@ -23,26 +23,26 @@ namespace Helpers
             switch (statType)
             {
                 case StatType.Constitution:
-                    value = stats.Constitution.Value;
+                    value = stats.ConstitutionProp.Value;
                     return true;
                 case StatType.Strength:
-                    value = stats.Strength.Value;
+                    value = stats.StrengthProp.Value;
                     return true;
                 case StatType.Dexterity:
-                    value = stats.Dexterity.Value;
+                    value = stats.DexterityProp.Value;
                     return true;
                 case StatType.Intelligence:
-                    value = stats.Intelligence.Value;
+                    value = stats.IntelligenceProp.Value;
                     return true;
                 case StatType.Luck:
-                    value = stats.Luck.Value;
+                    value = stats.LuckProp.Value;
                     return true;
             }
 
             return false;
         }
 
-        private static bool TryGetBonusStatValue(IEntity entity, StatType statType, out float value)
+        private static bool TryGetBonusStatValue(IGameUnit entity, StatType statType, out float value)
         {
             var bonus = entity.UnitBonusStatsData;
             value = 0f;
