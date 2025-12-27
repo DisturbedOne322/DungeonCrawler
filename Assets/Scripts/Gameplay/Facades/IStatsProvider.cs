@@ -2,7 +2,7 @@ using Gameplay.Units;
 
 namespace Gameplay.Facades
 {
-    public interface IDamageSource
+    public interface IStatsProvider
     {
         UnitStatsData UnitStatsData { get; }
         UnitBonusStatsData UnitBonusStatsData { get; }
