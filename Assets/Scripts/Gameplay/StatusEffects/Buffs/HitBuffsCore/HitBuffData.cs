@@ -1,3 +1,4 @@
+using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Core;
 using UnityEngine;
 

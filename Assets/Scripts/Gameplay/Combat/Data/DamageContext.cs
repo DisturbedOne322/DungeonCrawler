@@ -1,7 +1,6 @@
-using Gameplay.Combat.Data;
 using Gameplay.Facades;
 
-namespace Gameplay
+namespace Gameplay.Combat.Data
 {
     public readonly struct DamageContext
     {

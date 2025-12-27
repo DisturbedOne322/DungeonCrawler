@@ -1,3 +1,4 @@
+using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using UnityEngine;
 

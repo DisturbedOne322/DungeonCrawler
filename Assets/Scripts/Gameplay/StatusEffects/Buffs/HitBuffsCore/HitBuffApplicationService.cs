@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Buffs.Core;
 
 namespace Gameplay.StatusEffects.Buffs.HitBuffsCore

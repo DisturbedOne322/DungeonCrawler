@@ -4,7 +4,7 @@ using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Debuffs.Core;
 using UnityEngine;
 
-namespace Gameplay.Dungeon
+namespace Gameplay.Traps
 {
     [Serializable]
     public class TrapData

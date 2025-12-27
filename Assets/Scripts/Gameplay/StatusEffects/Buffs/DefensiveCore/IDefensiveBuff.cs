@@ -1,3 +1,5 @@
+using Gameplay.Combat.Data;
+
 namespace Gameplay.StatusEffects.Buffs.DefensiveCore
 {
     public interface IDefensiveBuff
