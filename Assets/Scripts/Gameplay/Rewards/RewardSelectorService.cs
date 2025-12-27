@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using AssetManagement.AssetProviders.ConfigProviders;
 using Gameplay.Facades;
 using Gameplay.Units;
 using Helpers;
@@ -10,11 +11,14 @@ namespace Gameplay.Rewards
     public class RewardSelectorService
     {
         private readonly PlayerUnit _player;
+        private readonly GameplayConfigsProvider _configProvider;
+        
         private readonly Random _rng = new();
 
-        public RewardSelectorService(PlayerUnit player)
+        public RewardSelectorService(PlayerUnit player, GameplayConfigsProvider configProvider)
         {
             _player = player;
+            _configProvider = configProvider;
         }
 
         public DropEntry SelectReward(RewardDropTable dropTable)
@@ -23,20 +27,21 @@ namespace Gameplay.Rewards
                 return null;
 
             var rewards = new List<DropEntry>(dropTable.EntriesList);
-
-            RemovePlayerWeaponFromSelection(_player, rewards);
-            RemovePlayerArmorFromSelection(_player, rewards);
-            RemovePlayerSkillsFromSelection(_player, rewards);
-            RemoveStatusEffectsFromSelection(_player, rewards);
-
+            
+            RemovePlayerItemsFromSelection(_player, rewards);
+            
             if (rewards.Count == 0)
                 return dropTable.FallbackItem;
 
-            var itemReward = SelectWeightedRandom(rewards);
+            var itemReward = SelectDrop(rewards);
+            
+            if(itemReward == null)
+                return dropTable.FallbackItem;
+            
             return itemReward;
         }
 
-        private void RemovePlayerSkillsFromSelection(IGameUnit gameUnit, List<DropEntry> allRewards)
+        private void RemovePlayerItemsFromSelection(IGameUnit gameUnit, List<DropEntry> allRewards)
         {
             for (var i = allRewards.Count - 1; i >= 0; i--)
             {
@@ -45,56 +50,49 @@ namespace Gameplay.Rewards
                     allRewards.RemoveAt(i);
             }
         }
-
-        private void RemovePlayerWeaponFromSelection(IGameUnit unit,
-            List<DropEntry> allRewards)
+        
+        private Dictionary<ItemRarity, List<DropEntry>> GroupByRarity(List<DropEntry> entries)
         {
-            for (var i = allRewards.Count - 1; i >= 0; i--)
-            {
-                var reward = allRewards[i];
-                if (UnitInventoryHelper.HasItem(unit, reward.Item))
-                    allRewards.RemoveAt(i);
-            }
+            return entries
+                .GroupBy(e => e.Item.Rarity)
+                .ToDictionary(g => g.Key, g => g.ToList());
         }
-
-        private void RemovePlayerArmorFromSelection(IGameUnit unit, List<DropEntry> allRewards)
+        
+        private ItemRarity RollRarity(int luck, IEnumerable<ItemRarity> availableRarities)
         {
-            for (var i = allRewards.Count - 1; i >= 0; i--)
+            var weighted = new List<(ItemRarity rarity, int weight)>();
+
+            var rarityLuckTable = _configProvider.GetConfig<LuckTableConfig>();
+            
+            foreach (var rarity in availableRarities)
             {
-                var reward = allRewards[i];
-                if (UnitInventoryHelper.HasItem(unit, reward.Item))
-                    allRewards.RemoveAt(i);
+                int weight = rarityLuckTable.GetWeight(rarity, luck);
+                if (weight > 0)
+                    weighted.Add((rarity, weight));
             }
-        }
 
-        private void RemoveStatusEffectsFromSelection(IGameUnit unit, List<DropEntry> allRewards)
-        {
-            for (var i = allRewards.Count - 1; i >= 0; i--)
+            int total = weighted.Sum(w => w.weight);
+            int roll = _rng.Next(0, total);
+
+            foreach (var entry in weighted)
             {
-                var reward = allRewards[i];
-
-                if (UnitInventoryHelper.HasItem(unit, reward.Item))
-                    allRewards.RemoveAt(i);
-            }
-        }
-
-        private DropEntry SelectWeightedRandom(List<DropEntry> entries)
-        {
-            var totalWeight = 0;
-
-            foreach (var e in entries)
-                totalWeight += e.Weight;
-
-            var roll = _rng.Next(0, totalWeight);
-
-            foreach (var entry in entries)
-            {
-                roll -= entry.Weight;
+                roll -= entry.weight;
                 if (roll < 0)
-                    return entry;
+                    return entry.rarity;
             }
 
-            return entries.Last();
+            return weighted.Last().rarity;
+        }
+        
+        private DropEntry SelectDrop(List<DropEntry> rewards)
+        {
+            int luck = _player.UnitStatsData.Luck.Value;
+
+            var grouped = GroupByRarity(rewards);
+            var rolledRarity = RollRarity(luck, grouped.Keys);
+
+            var candidates = grouped[rolledRarity];
+            return candidates[_rng.Next(candidates.Count)];
         }
     }
 }

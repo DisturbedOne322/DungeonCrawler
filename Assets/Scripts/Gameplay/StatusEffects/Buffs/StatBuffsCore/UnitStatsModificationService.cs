@@ -26,23 +26,23 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             switch (type)
             {
                 case StatType.Constitution:
-                    applied = ApplyIntClamped(stats.ConstitutionProp, intDelta, 1);
+                    applied = ApplyIntClamped(stats.Constitution, intDelta, 1);
                     return true;
 
                 case StatType.Strength:
-                    applied = ApplyIntClamped(stats.StrengthProp, intDelta, 1);
+                    applied = ApplyIntClamped(stats.Strength, intDelta, 1);
                     return true;
 
                 case StatType.Dexterity:
-                    applied = ApplyIntClamped(stats.DexterityProp, intDelta, 1);
+                    applied = ApplyIntClamped(stats.Dexterity, intDelta, 1);
                     return true;
 
                 case StatType.Intelligence:
-                    applied = ApplyIntClamped(stats.IntelligenceProp, intDelta, 1);
+                    applied = ApplyIntClamped(stats.Intelligence, intDelta, 1);
                     return true;
 
                 case StatType.Luck:
-                    applied = ApplyIntClamped(stats.LuckProp, intDelta, 1);
+                    applied = ApplyIntClamped(stats.Luck, intDelta, 1);
                     return true;
             }
 

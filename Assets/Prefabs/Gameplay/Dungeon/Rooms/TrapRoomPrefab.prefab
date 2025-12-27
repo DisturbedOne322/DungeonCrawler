@@ -123,4 +123,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerStandPoint: {fileID: 7123072106954278351}
   _trapPoint: {fileID: 2368874956731413105}
-  _trapPrefab: {fileID: 795850030900810168, guid: 6da237270bab38845be77df6482b8971, type: 3}

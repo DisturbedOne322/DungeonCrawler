@@ -1,3 +1,4 @@
+using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
@@ -14,7 +15,8 @@ namespace Gameplay.Rewards
         private readonly PlayerSkillSlotsManager _skillSlotsManager;
 
         public PurchaseDistributionStrategy(SkillDiscardController skillDiscardController, 
-            PlayerSkillSlotsManager skillSlotsManager, PlayerUnit playerUnit) : base(playerUnit)
+            PlayerSkillSlotsManager skillSlotsManager, PlayerUnit playerUnit,
+            GameplayConfigsProvider configsProvider) : base(playerUnit, configsProvider)
          {
             _skillDiscardController = skillDiscardController;
             _skillSlotsManager = skillSlotsManager;

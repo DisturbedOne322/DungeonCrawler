@@ -38,8 +38,8 @@ namespace Gameplay.Combat.Services
 
             var finalCritChance = 0f;
 
-            var dex = attacker.UnitStatsData.DexterityProp.Value;
-            var luck = attacker.UnitStatsData.LuckProp.Value;
+            var dex = attacker.UnitStatsData.Dexterity.Value;
+            var luck = attacker.UnitStatsData.Luck.Value;
 
             var chanceFromDex = Mathf.Clamp(dex, 0, StatConstants.MaxStatPoints) * _config.MaxDexterityCritInfluence /
                                 StatConstants.MaxStatPoints;
@@ -82,7 +82,7 @@ namespace Gameplay.Combat.Services
 
             var defender = damageContext.Defender;
 
-            var constitutionStat = defender.UnitStatsData.ConstitutionProp.Value;
+            var constitutionStat = defender.UnitStatsData.Constitution.Value;
             var constitutionInfluence = constitutionStat
                                         * _config.MaxConstitutionInfluence
                                         / StatConstants.MaxStatPoints;
@@ -94,16 +94,16 @@ namespace Gameplay.Combat.Services
         private float GetAttackerEffectiveHit(IStatProvider unit)
         {
             var stats = unit.UnitStatsData;
-            var effectiveDex = stats.DexterityProp.Value * _config.AttackerDexterityInfluence;
-            var effectiveLuck = stats.LuckProp.Value * _config.AttackerLuckInfluence;
+            var effectiveDex = stats.Dexterity.Value * _config.AttackerDexterityInfluence;
+            var effectiveLuck = stats.Luck.Value * _config.AttackerLuckInfluence;
             return effectiveDex + effectiveLuck;
         }
 
         private float GetDefenderEffectiveEvasion(IStatProvider unit)
         {
             var stats = unit.UnitStatsData;
-            var effectiveDex = stats.DexterityProp.Value * _config.DefenderDexterityInfluence;
-            var effectiveLuck = stats.LuckProp.Value * _config.DefenderLuckInfluence;
+            var effectiveDex = stats.Dexterity.Value * _config.DefenderDexterityInfluence;
+            var effectiveLuck = stats.Luck.Value * _config.DefenderLuckInfluence;
             return effectiveDex + effectiveLuck;
         }
 

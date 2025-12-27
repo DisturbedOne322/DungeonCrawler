@@ -26,6 +26,8 @@ namespace Gameplay.Dungeon.Rooms
         public override void SetupRoom()
         {
             _trapInstance = _factory.CreateTrap(_roomData);
+            _trapInstance.transform.SetParent(_trapPoint);
+            _trapInstance.transform.localPosition = Vector3.zero;
         }
 
         public override void ResetRoom()

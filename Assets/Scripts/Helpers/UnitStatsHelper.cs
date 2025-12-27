@@ -23,19 +23,19 @@ namespace Helpers
             switch (statType)
             {
                 case StatType.Constitution:
-                    value = stats.ConstitutionProp.Value;
+                    value = stats.Constitution.Value;
                     return true;
                 case StatType.Strength:
-                    value = stats.StrengthProp.Value;
+                    value = stats.Strength.Value;
                     return true;
                 case StatType.Dexterity:
-                    value = stats.DexterityProp.Value;
+                    value = stats.Dexterity.Value;
                     return true;
                 case StatType.Intelligence:
-                    value = stats.IntelligenceProp.Value;
+                    value = stats.Intelligence.Value;
                     return true;
                 case StatType.Luck:
-                    value = stats.LuckProp.Value;
+                    value = stats.Luck.Value;
                     return true;
             }
 

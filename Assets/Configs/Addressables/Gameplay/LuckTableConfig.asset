@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9848d2292064e3ca26187a4afe12fd0, type: 3}
+  m_Name: LuckTableConfig
+  m_EditorClassIdentifier: 
+  _minLuckWeights:
+    _serializedList:
+    - Key: 0
+      Value: 80
+    - Key: 1
+      Value: 20
+    - Key: 2
+      Value: 5
+    - Key: 3
+      Value: 1
+    - Key: 4
+      Value: 1
+  _maxLuckWeights:
+    _serializedList:
+    - Key: 0
+      Value: 1
+    - Key: 1
+      Value: 5
+    - Key: 2
+      Value: 30
+    - Key: 3
+      Value: 50
+    - Key: 4
+      Value: 20
+  _minLuckCoinDropChance:
+    MinRange: 0
+    MaxRange: 0.2
+  _maxLuckCoinDropChance:
+    MinRange: 0.95
+    MaxRange: 1

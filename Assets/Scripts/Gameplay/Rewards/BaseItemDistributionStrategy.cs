@@ -1,3 +1,4 @@
+using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
@@ -12,10 +13,12 @@ namespace Gameplay.Rewards
     public abstract class BaseItemDistributionStrategy: IItemDistributionStrategy
     {
         protected readonly PlayerUnit Player;
+        private readonly GameplayConfigsProvider _configsProvider;
 
-        public BaseItemDistributionStrategy(PlayerUnit player)
+        public BaseItemDistributionStrategy(PlayerUnit player, GameplayConfigsProvider configsProvider)
         {
             Player = player;
+            _configsProvider = configsProvider;
         }
         
         public async UniTask DistributeItem(BaseGameItem item, int amount)
@@ -71,10 +74,12 @@ namespace Gameplay.Rewards
             return UniTask.CompletedTask;
         }
 
-        protected virtual UniTask HandleCoins(CoinsItem coinsItem)
+        private UniTask HandleCoins(CoinsItem coinsItem)
         {
-            var rand = Random.Range(coinsItem.MinAmount, coinsItem.MaxAmount);
-            Player.UnitInventoryData.Coins.Value += rand;
+            var config = _configsProvider.GetConfig<LuckTableConfig>();
+            int reward = config.GetCoins(coinsItem, Player.UnitStatsData.Luck.Value);
+            
+            Player.UnitInventoryData.Coins.Value += reward;
             return UniTask.CompletedTask;
         }
     }

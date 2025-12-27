@@ -26,11 +26,11 @@ namespace Gameplay.Services.Stats
 
             Dictionary<string, ReactiveProperty<int>> playerStats = new();
 
-            playerStats[starNames[0]] = _player.UnitStatsData.ConstitutionProp;
-            playerStats[starNames[1]] = _player.UnitStatsData.StrengthProp;
-            playerStats[starNames[2]] = _player.UnitStatsData.DexterityProp;
-            playerStats[starNames[3]] = _player.UnitStatsData.IntelligenceProp;
-            playerStats[starNames[4]] = _player.UnitStatsData.LuckProp;
+            playerStats[starNames[0]] = _player.UnitStatsData.Constitution;
+            playerStats[starNames[1]] = _player.UnitStatsData.Strength;
+            playerStats[starNames[2]] = _player.UnitStatsData.Dexterity;
+            playerStats[starNames[3]] = _player.UnitStatsData.Intelligence;
+            playerStats[starNames[4]] = _player.UnitStatsData.Luck;
 
             return playerStats;
         }

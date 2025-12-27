@@ -1,3 +1,4 @@
+using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Data.UI;
 using Gameplay.Equipment.Armor;
@@ -16,7 +17,8 @@ namespace Gameplay.Rewards
         private readonly PlayerSkillSlotsManager _skillSlotsManager;
 
         public LootDistributionStrategy(EquipmentChangeController equipmentChangeController,
-            SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager, PlayerUnit playerUnit) : base(playerUnit)
+            SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager, 
+            PlayerUnit playerUnit, GameplayConfigsProvider configsProvider) : base(playerUnit, configsProvider)
         {
             _equipmentChangeController = equipmentChangeController;
             _skillDiscardController = skillDiscardController;
