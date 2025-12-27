@@ -6,6 +6,6 @@ namespace Gameplay.Facades
     public interface ISkillUser
     {
         UnitSkillsData UnitSkillsData { get; }
-        ActionSelectionProvider ActionSelectionProvider { get; }
+        BaseActionSelectionProvider BaseActionSelectionProvider { get; }
     }
 }

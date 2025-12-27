@@ -38,12 +38,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: 38607ef3b4f273c4cbff5d30b1a16cd3, type: 2}
-  _statusEffects:
-  - {fileID: 11400000, guid: a829b295d78db63498d20de271588c22, type: 2}
-  - {fileID: 11400000, guid: efdd2c6366aef764281f16cf12fa0b9e, type: 2}
-  - {fileID: 11400000, guid: f79d837017b9c634fa02fcd7fe34444d, type: 2}
-  - {fileID: 11400000, guid: 479686d0ad2ba7342aeb46f8c02a5e4e, type: 2}
-  - {fileID: 11400000, guid: 9723e17e83286f34dbe804bfdc7afea2, type: 2}
+  _statusEffects: []
   _baseWeapon: {fileID: 11400000, guid: 5e11bfc90a9f49148b5a11e64c92969d, type: 2}
   _baseArmor: {fileID: 11400000, guid: 94fd4053e9861cc4fb9ec8897e733740, type: 2}
   _startingBalance: 1000

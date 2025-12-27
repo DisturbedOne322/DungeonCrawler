@@ -41,7 +41,7 @@ namespace Gameplay.Combat.Services
         {
             var currentUnit = _combatData.ActiveUnit;
 
-            var action = await currentUnit.ActionSelectionProvider.SelectAction();
+            var action = await currentUnit.BaseActionSelectionProvider.SelectAction();
             await action.UseAction(_combatService);
         }
 

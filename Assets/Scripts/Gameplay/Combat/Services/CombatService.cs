@@ -15,19 +15,19 @@ namespace Gameplay.Combat.Services
         private readonly BuffsCalculationService _buffsCalculationService;
         private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEventsBus;
-        private readonly CombatFormulaService _combatFormulaService;
         private readonly UnitRegenerationService _unitRegenerationService;
+        private readonly HitProcessor _hitProcessor;
 
-        public CombatService(CombatData combatData, CombatFormulaService combatFormulaService,
+        public CombatService(CombatData combatData,
             CombatStatusEffectsService combatStatusEffectsService, BuffsCalculationService buffsCalculationService,
-            CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService)
+            CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService, HitProcessor hitProcessor)
         {
             _combatData = combatData;
-            _combatFormulaService = combatFormulaService;
             CombatStatusEffectsService = combatStatusEffectsService;
             _buffsCalculationService = buffsCalculationService;
             _combatEventsBus = combatEventsBus;
             _unitRegenerationService = unitRegenerationService;
+            _hitProcessor = hitProcessor;
         }
 
         public IGameUnit ActiveUnit => _combatData.ActiveUnit;
@@ -117,8 +117,9 @@ namespace Gameplay.Combat.Services
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitDataStream hitDataStream, int index)
         {
             var hitData = hitDataStream.Hits[index];
+            
             DealDamageToUnit(attacker, target, hitData);
-
+            
             if (index == hitDataStream.Hits.Count - 1)
                 _combatEventsBus.InvokeSkillUsed(new SkillUsedData
                 {
@@ -130,67 +131,9 @@ namespace Gameplay.Combat.Services
 
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitData hitData)
         {
-            ProcessHitData(attacker, target, hitData);
-
-            if (hitData.Missed)
-                return;
-
-            var hpPercentBeforeHit = HealthHelper.GetHealthPercent(target);
-
-            target.UnitHealthController.TakeDamage(hitData.Damage);
-
-            _combatEventsBus.InvokeHitDealt(new HitEventData
-            {
-                HealthPercentBeforeHit = hpPercentBeforeHit,
-                Attacker = attacker,
-                Target = target,
-                HitData = hitData
-            });
+            _hitProcessor.DealDamageToUnit(attacker, target, hitData);
         }
-
-        private void ProcessHitData(IGameUnit attacker, IGameUnit defender, HitData hitData)
-        {
-            var damageContext = new DamageContext(attacker, defender, hitData);
-
-            if (Missed(attacker, defender, damageContext))
-            {
-                hitData.Missed = true;
-                defender.EvadeAnimator.PlayEvadeAnimation().Forget();
-                _combatEventsBus.InvokeEvaded(new EvadeEventData
-                {
-                    Attacker = attacker,
-                    Target = defender
-                });
-                return;
-            }
-
-            SetCritical(damageContext);
-
-            _buffsCalculationService.BuffOutgoingDamage(damageContext);
-            _buffsCalculationService.DebuffIncomingDamage(damageContext);
-
-            _combatFormulaService.ApplyFinalDamageMultiplier(damageContext);
-
-            _combatFormulaService.ReduceDamageByStats(damageContext);
-        }
-
-        private void SetCritical(in DamageContext damageContext)
-        {
-            var hitData = damageContext.HitData;
-
-            if (hitData.IsCritical)
-                return;
-
-            var finalCritChance = _combatFormulaService.GetFinalCritChance(damageContext.Attacker, damageContext);
-            hitData.IsCritical = Random.value < finalCritChance;
-        }
-
-        private bool Missed(IGameUnit attacker, IGameUnit defender, in DamageContext damageContext)
-        {
-            var hitChance = _combatFormulaService.GetHitChance(attacker, defender, damageContext);
-            return Random.value > hitChance;
-        }
-
+        
         private void HealUnit(IGameUnit target, int amount)
         {
             target.UnitHealthController.AddHealth(amount);

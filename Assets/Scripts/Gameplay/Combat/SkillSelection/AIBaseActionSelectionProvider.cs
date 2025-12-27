@@ -3,12 +3,12 @@ using Gameplay.Units;
 
 namespace Gameplay.Combat.SkillSelection
 {
-    public class AIActionSelectionProvider : ActionSelectionProvider
+    public class AIBaseActionSelectionProvider : BaseActionSelectionProvider
     {
         private readonly UnitHealthData _unitHealthData;
         private readonly UnitStatsData _unitStatsData;
 
-        public AIActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData) :
+        public AIBaseActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData) :
             base(unitSkillsData, unitInventoryData)
         {
         }

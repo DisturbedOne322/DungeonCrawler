@@ -5,11 +5,11 @@ using UniRx;
 
 namespace Gameplay.Combat.SkillSelection
 {
-    public class PlayerActionSelectionProvider : ActionSelectionProvider
+    public class PlayerBaseActionSelectionProvider : BaseActionSelectionProvider
     {
         private readonly BattleMenuStateMachine _battleMenuStateMachine;
 
-        public PlayerActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData,
+        public PlayerBaseActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData,
             BattleMenuStateMachine battleMenuStateMachine) : base(unitSkillsData, unitInventoryData)
         {
             _battleMenuStateMachine = battleMenuStateMachine;

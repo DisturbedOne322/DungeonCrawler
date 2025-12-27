@@ -38,6 +38,7 @@ namespace Installers.GameInstallers
             Container.Bind<GameSequenceController>().AsSingle();
             Container.Bind<CombatSequenceController>().AsSingle();
             Container.Bind<CombatService>().AsSingle();
+            Container.Bind<HitProcessor>().AsSingle();
             Container.Bind<CombatEventsBus>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
 

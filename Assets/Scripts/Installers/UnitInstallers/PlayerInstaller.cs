@@ -10,7 +10,7 @@ namespace Installers.UnitInstallers
     {
         public override void InstallBindings()
         {
-            Container.Bind<ActionSelectionProvider>().To<PlayerActionSelectionProvider>().AsSingle();
+            Container.Bind<BaseActionSelectionProvider>().To<PlayerBaseActionSelectionProvider>().AsSingle();
 
             BindBattleMenu();
         }

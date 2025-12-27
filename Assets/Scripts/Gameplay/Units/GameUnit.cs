@@ -33,7 +33,7 @@ namespace Gameplay.Units
 
         public UnitHealthController UnitHealthController { get; private set; }
         public UnitManaController UnitManaController { get; private set; }
-        public ActionSelectionProvider ActionSelectionProvider { get; private set; }
+        public BaseActionSelectionProvider BaseActionSelectionProvider { get; private set; }
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace Gameplay.Units
             UnitHealthController unitHealthController,
             UnitManaData unitManaData,
             UnitManaController unitManaController,
-            ActionSelectionProvider actionSelectionProvider,
+            BaseActionSelectionProvider baseActionSelectionProvider,
             UnitStatsData unitStatsData,
             UnitBonusStatsData unitBonusStatsData,
             UnitSkillsData unitSkillsData,
@@ -61,7 +61,7 @@ namespace Gameplay.Units
             UnitHealthController = unitHealthController;
             UnitManaData = unitManaData;
             UnitManaController = unitManaController;
-            ActionSelectionProvider = actionSelectionProvider;
+            BaseActionSelectionProvider = baseActionSelectionProvider;
             UnitStatsData = unitStatsData;
             UnitBonusStatsData = unitBonusStatsData;
             UnitSkillsData = unitSkillsData;
