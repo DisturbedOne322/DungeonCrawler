@@ -17,9 +17,5 @@ MonoBehaviour:
   _maxDepth: 1000
   _weight: 10
   _rewardDropTable: {fileID: 0}
-  _trapRoomData:
-    MinDamage: 25
-    MaxDamage: 50
-    DamageChance: 0
-    Debuffs:
-    - {fileID: 11400000, guid: 01b3983bde2a4704785b5b77babeb0fd, type: 2}
+  _trapPrefabs:
+  - {fileID: 8707959303797605859, guid: 6da237270bab38845be77df6482b8971, type: 3}

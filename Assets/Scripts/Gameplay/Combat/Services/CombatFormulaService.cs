@@ -31,7 +31,7 @@ namespace Gameplay.Combat.Services
                 ApplyCriticalDamageMultiplier(damageContext);
         }
 
-        public float GetFinalCritChance(IStatsProvider attacker, in DamageContext damageContext)
+        public float GetFinalCritChance(IStatProvider attacker, in DamageContext damageContext)
         {
             if (!damageContext.HitData.CanCrit)
                 return -1;
@@ -51,7 +51,7 @@ namespace Gameplay.Combat.Services
             return Mathf.Clamp01(finalCritChance);
         }
 
-        public float GetHitChance(IStatsProvider attacker, IGameUnit defender, in DamageContext damageContext)
+        public float GetHitChance(IStatProvider attacker, IStatProvider defender, in DamageContext damageContext)
         {
             if (damageContext.HitData.IsUnavoidable)
                 return 1;
@@ -91,7 +91,7 @@ namespace Gameplay.Combat.Services
             return damageReductionModifier;
         }
 
-        private float GetAttackerEffectiveHit(IStatsProvider unit)
+        private float GetAttackerEffectiveHit(IStatProvider unit)
         {
             var stats = unit.UnitStatsData;
             var effectiveDex = stats.DexterityProp.Value * _config.AttackerDexterityInfluence;
@@ -99,7 +99,7 @@ namespace Gameplay.Combat.Services
             return effectiveDex + effectiveLuck;
         }
 
-        private float GetDefenderEffectiveEvasion(IStatsProvider unit)
+        private float GetDefenderEffectiveEvasion(IStatProvider unit)
         {
             var stats = unit.UnitStatsData;
             var effectiveDex = stats.DexterityProp.Value * _config.DefenderDexterityInfluence;

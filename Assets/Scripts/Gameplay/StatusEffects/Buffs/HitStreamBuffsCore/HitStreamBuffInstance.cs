@@ -21,7 +21,7 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
             };
         }
 
-        public override void Apply(IGameUnit activeUnit, IGameUnit otherUnit)
+        public override void Apply(ICombatant activeUnit, ICombatant otherUnit)
         {
             AffectedUnit = activeUnit;
 

@@ -6,23 +6,15 @@ using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.Debuffs.Core;
 using UniRx;
-using UnityEngine;
 
 namespace Gameplay.Units
 {
     public class UnitHeldStatusEffectsData
     {
-        private readonly UnitActiveStatusEffectsData _activeStatusEffects;
-
         private readonly List<DefensiveBuffData> _defensive = new();
         private readonly List<HitBuffData> _offensive = new();
         private readonly List<StatBuffData> _statBuffs = new();
         private readonly List<StatDebuffData> _statDebuffs = new();
-
-        public UnitHeldStatusEffectsData(UnitActiveStatusEffectsData activeStatusEffects)
-        {
-            _activeStatusEffects = activeStatusEffects;
-        }
 
         public ReactiveCollection<BaseStatusEffectData> All { get; } = new();
 

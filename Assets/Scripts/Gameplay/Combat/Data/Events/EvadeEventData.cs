@@ -4,7 +4,7 @@ namespace Gameplay.Combat.Data.Events
 {
     public struct EvadeEventData
     {
-        public IGameUnit Attacker;
+        public ICombatant Attacker;
         public IGameUnit Target;
     }
 }

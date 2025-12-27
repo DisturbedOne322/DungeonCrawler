@@ -8,7 +8,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 {
     public static class UnitStatsModificationService
     {
-        public static float ModifyStat(IGameUnit unit, StatType statType, float delta)
+        public static float ModifyStat(IStatProvider unit, StatType statType, float delta)
         {
             if (TryModifyBaseStat(unit, statType, delta, out var applied)) return applied;
             if (TryModifyBonusStat(unit, statType, delta, out applied)) return applied;
@@ -17,7 +17,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             throw new Exception($"{statType} is unhandled");
         }
 
-        private static bool TryModifyBaseStat(IGameUnit unit, StatType type, float delta, out float applied)
+        private static bool TryModifyBaseStat(IStatProvider unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var stats = unit.UnitStatsData;
@@ -49,7 +49,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return false;
         }
 
-        private static bool TryModifyBonusStat(IGameUnit unit, StatType type, float delta, out float applied)
+        private static bool TryModifyBonusStat(IStatProvider unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var bonus = unit.UnitBonusStatsData;
@@ -80,19 +80,22 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             return false;
         }
 
-        private static bool TryModifySpecialStat(IEntity unit, StatType type, float delta, out float applied)
+        private static bool TryModifySpecialStat(IStatProvider unit, StatType type, float delta, out float applied)
         {
             applied = 0f;
             var intDelta = Mathf.RoundToInt(delta);
 
+            if (unit is not IEntity entity) 
+                return false;
+
             switch (type)
             {
                 case StatType.Health:
-                    applied = ModifyHealth(unit, intDelta);
+                    applied = ModifyHealth(entity, intDelta);
                     return true;
 
                 case StatType.Mana:
-                    applied = ModifyMana(unit, intDelta);
+                    applied = ModifyMana(entity, intDelta);
                     return true;
             }
 

@@ -25,12 +25,12 @@ namespace Gameplay.Combat.Services
             _playerUnit = playerUnit;
         }
 
-        public void DealDamageToPlayer(IGameUnit damageSource, HitData hitData)
+        public void DealDamageToPlayer(ICombatant damageSource, HitData hitData)
         {
             DealDamageToUnit(damageSource, _playerUnit, hitData);
         }
 
-        public void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitData hitData)
+        public void DealDamageToUnit(ICombatant attacker, IGameUnit target, HitData hitData)
         {
             ProcessHitData(attacker, target, hitData);
 
@@ -50,7 +50,7 @@ namespace Gameplay.Combat.Services
             });
         }
 
-        private void ProcessHitData(IGameUnit attacker, IGameUnit defender, HitData hitData)
+        private void ProcessHitData(ICombatant attacker, IGameUnit defender, HitData hitData)
         {
             var damageContext = new DamageContext(attacker, defender, hitData);
             SetMissed(attacker, defender, damageContext);
@@ -87,7 +87,7 @@ namespace Gameplay.Combat.Services
             hitData.IsCritical = Random.value < finalCritChance;
         }
 
-        private void SetMissed(IGameUnit attacker, IGameUnit defender, in DamageContext damageContext)
+        private void SetMissed(ICombatant attacker, ICombatant defender, in DamageContext damageContext)
         {
             var hitData = damageContext.HitData;
             var hitChance = _combatFormulaService.GetHitChance(attacker, defender, damageContext);

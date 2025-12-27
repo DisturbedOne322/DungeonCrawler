@@ -21,7 +21,7 @@ namespace Gameplay.StatusEffects.Buffs.DefensiveCore
             };
         }
 
-        public override void Apply(IGameUnit activeUnit, IGameUnit otherUnit)
+        public override void Apply(ICombatant activeUnit, ICombatant otherUnit)
         {
             AffectedUnit = activeUnit;
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);

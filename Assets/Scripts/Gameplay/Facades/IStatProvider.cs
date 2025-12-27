@@ -2,7 +2,7 @@ using Gameplay.Units;
 
 namespace Gameplay.Facades
 {
-    public interface IStatsProvider
+    public interface IStatProvider
     {
         UnitStatsData UnitStatsData { get; }
         UnitBonusStatsData UnitBonusStatsData { get; }

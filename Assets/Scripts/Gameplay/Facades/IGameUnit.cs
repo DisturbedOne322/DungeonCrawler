@@ -5,7 +5,7 @@ using Gameplay.Visual;
 
 namespace Gameplay.Facades
 {
-    public interface IGameUnit : ICombatant
+    public interface IGameUnit : IEntity, ISkillUser, ICombatant
     {
         EvadeAnimator EvadeAnimator { get; }
         AttackAnimator AttackAnimator { get; }
