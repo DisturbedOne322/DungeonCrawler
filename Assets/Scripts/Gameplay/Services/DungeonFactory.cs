@@ -32,7 +32,7 @@ namespace Gameplay.Services
             _parent = new GameObject("[ROOMS POOL]").transform;
         }
 
-        public DungeonRoom CreateArea(RoomVariantData roomData)
+        public DungeonRoom CreateRoom(RoomVariantData roomData)
         {
             if (_roomsPool.TryGetRoom(roomData.RoomType, out var room))
                 return room;

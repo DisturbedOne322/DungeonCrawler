@@ -39,30 +39,23 @@ namespace Gameplay.Dungeon
             return selection;
         }
 
-        public RoomVariantData GetDecisionRoomData()
-        {
-            int currentDepth = _playerMovementHistory.Depth;
-            
-            var decisionRooms = _roomDataMap[RoomType.Decision];
-            
-            foreach (var decisionRoomData in decisionRooms)
-                if (IsValidDepth(decisionRoomData, currentDepth))
-                    return decisionRoomData;
-            
-            throw new KeyNotFoundException($"No acceptable room data found for type {RoomType.Decision}");
-        }
+        public RoomVariantData GetDecisionRoomData() =>GetRoomData(RoomType.Decision);
         
-        public RoomVariantData GetCorridorRoomData()
+        public RoomVariantData GetCorridorRoomData() => GetRoomData(RoomType.Corridor);
+
+        public TrapRoomVariantData GetTrapRoomData() => GetRoomData(RoomType.Trap) as TrapRoomVariantData;
+
+        private RoomVariantData GetRoomData(RoomType roomType)
         {
             int currentDepth = _playerMovementHistory.Depth;
             
-            var corridorRooms = _roomDataMap[RoomType.Corridor];
+            var rooms = _roomDataMap[roomType];
             
-            foreach (var corridorRoomData in corridorRooms)
-                if (IsValidDepth(corridorRoomData, currentDepth))
-                    return corridorRoomData;
+            foreach (var roomData in rooms)
+                if (IsValidDepth(roomData, currentDepth))
+                    return roomData;
             
-            throw new KeyNotFoundException($"No acceptable room data found for type {RoomType.Corridor}");
+            throw new KeyNotFoundException($"No acceptable room data found for type {roomType}");
         }
 
         private void MapRoomVariantsToTypes()
@@ -99,7 +92,7 @@ namespace Gameplay.Dungeon
 
         private bool IsValidRoomTypeForSelection(RoomType roomType)
         {
-            return roomType is not (RoomType.Corridor or RoomType.Decision);
+            return roomType is not (RoomType.Corridor or RoomType.Decision or RoomType.Trap);
         }
     }
 }
