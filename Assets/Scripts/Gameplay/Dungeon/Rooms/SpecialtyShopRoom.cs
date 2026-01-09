@@ -1,15 +1,19 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
+using Installers.ServiceInstallers;
 using PopupControllers;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Dungeon.Rooms
 {
-    public abstract class SinglePurchaseRoom : StopRoom
+    [RequireComponent(typeof(SpecialtyShopRoomInstaller))]
+    public abstract class SpecialtyShopRoom : VariantRoom<BaseSpecialtyShopRoomVariantData>
     {
         private SingleTypePurchaseController _shopController;
 
-        public abstract BasePurchasableItemsConfig Config { get; }
+        public BasePurchasableItemsConfig Config => RoomVariantData.Config;
         
         [Inject]
         private void Construct(SingleTypePurchaseController shopController)

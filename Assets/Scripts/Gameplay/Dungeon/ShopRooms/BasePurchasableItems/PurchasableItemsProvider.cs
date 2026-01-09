@@ -5,21 +5,21 @@ namespace Gameplay.Dungeon.ShopRooms.BasePurchasableItems
 {
     public class PurchasableItemsProvider
     {
-        private readonly SinglePurchaseRoom _purchaseRoom;
+        private readonly SpecialtyShopRoom _shopRoom;
 
-        public PurchasableItemsProvider(SinglePurchaseRoom purchaseRoom)
+        public PurchasableItemsProvider(SpecialtyShopRoom shopRoom)
         {
-            _purchaseRoom = purchaseRoom;
+            _shopRoom = shopRoom;
         }
 
         public bool AnyItemsSold()
         {
-            return _purchaseRoom.Config.ItemsForSale.Count > 0;
+            return _shopRoom.Config.ItemsForSale.Count > 0;
         }
 
         public IReadOnlyList<PurchasedItemModel> GetSellableItems()
         {
-            return CreateItemsList(_purchaseRoom.Config.ItemsForSale);
+            return CreateItemsList(_shopRoom.Config.ItemsForSale);
         }
 
         private IReadOnlyList<PurchasedItemModel> CreateItemsList(IReadOnlyList<IPurchasableItemData> dataList)

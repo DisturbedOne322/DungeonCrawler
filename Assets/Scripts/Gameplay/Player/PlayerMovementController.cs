@@ -7,9 +7,11 @@ using Gameplay.Combat;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
+using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -42,10 +44,10 @@ namespace Gameplay.Player
             _config = configsProvider.GetConfig<PlayerMovementConfig>();
         }
 
-        public StopRoom GetNextStopRoom()
+        public InteractiveRoom GetNextInteractiveRoom()
         {
-            if (_dungeonLayoutProvider.TryGetRoom(GetIndexOfStopArea(), out var room))
-                return room as StopRoom;
+            if (_dungeonLayoutProvider.TryGetRoom(GetIndexOfInteractiveRoom(), out var room))
+                return room as InteractiveRoom;
 
             return null;
         }
@@ -63,7 +65,7 @@ namespace Gameplay.Player
 
         public async UniTask MovePlayer()
         {
-            var targetIndex = GetIndexOfStopArea();
+            var targetIndex = GetIndexOfInteractiveRoom();
             var currentIndex = GetPositionIndex();
 
             _moveAnimator.CreateSequence();
@@ -98,13 +100,13 @@ namespace Gameplay.Player
             await _moveAnimator.ExecuteSequence();
         }
 
-        private int GetIndexOfStopArea()
+        private int GetIndexOfInteractiveRoom()
         {
             var startIndex = GetPositionIndex() + 1;
 
             var roomsCount = _dungeonLayoutProvider.RoomsCount;
             for (var i = startIndex; i < roomsCount; i++)
-                if (_dungeonLayoutProvider.TryGetRoom(i, out var room) && room is StopRoom)
+                if (_dungeonLayoutProvider.TryGetRoom(i, out var room) && room is InteractiveRoom)
                     return i;
 
             return roomsCount - 1;

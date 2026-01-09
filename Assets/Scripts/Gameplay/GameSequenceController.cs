@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Data;
 using Gameplay.Dungeon;
+using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Units;
@@ -8,6 +9,7 @@ using StateMachine.App;
 using UI;
 using UI.Gameplay;
 using UI.Popups;
+using UnityEngine;
 
 namespace Gameplay
 {
@@ -46,15 +48,15 @@ namespace Gameplay
 
             while (IsPlayerAlive())
             {
-                var stopRoom = _playerMovementController.GetNextStopRoom();
+                var targetRoom = _playerMovementController.GetNextInteractiveRoom();
 
                 await _playerMovementController.MovePlayer();
-
-                await stopRoom.PlayEnterSequence();
-                await stopRoom.ClearRoom();
+                
+                await targetRoom.PlayEnterSequence();
+                await targetRoom.ClearRoom();
 
                 if (IsPlayerAlive())
-                    await _roomDropsService.GiveRewardToPlayer(stopRoom);
+                    await _roomDropsService.GiveRewardToPlayer(targetRoom);
             }
 
             ShowGameOverPopup();

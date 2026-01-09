@@ -9,7 +9,7 @@ using Zenject;
 namespace Gameplay.Dungeon.Rooms
 {
     [RequireComponent(typeof(DoorAnimator))]
-    public class DecisionRoom : StopRoom
+    public class DecisionRoom : VariantRoom<DecisionRoomVariantData>
     {
         [SerializeField] private DoorAnimator _doorAnimator;
         [SerializeField] private List<DecisionDoor> _doors;
@@ -17,9 +17,6 @@ namespace Gameplay.Dungeon.Rooms
         private DungeonBranchingController _dungeonBranchingController;
         private DungeonBranchingSelector _dungeonBranchingSelector;
         private DungeonVisualsConfigProvider _dungeonVisualsConfigProvider;
-        
-        private RoomVariantData _roomData;
-        public override RoomVariantData RoomData => _roomData;
         
         [Inject]
         private void Construct(DungeonBranchingController dungeonBranchingController,
@@ -31,8 +28,6 @@ namespace Gameplay.Dungeon.Rooms
             _dungeonVisualsConfigProvider = dungeonVisualsConfigProvider;
         }
         
-        public void SetData(RoomVariantData data) => _roomData = data;
-
         public override void ResetRoom()
         {
             _doorAnimator.ResetDoors();

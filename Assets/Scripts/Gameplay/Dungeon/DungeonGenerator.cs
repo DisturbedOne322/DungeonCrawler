@@ -66,8 +66,8 @@ namespace Gameplay.Dungeon
         private void CreateRoom(RoomVariantData roomData)
         {
             var room = _dungeonFactory.CreateRoom(roomData);
-            
-            roomData.ApplyToRoom(room);
+
+            room.SetData(roomData);
             room.SetupRoom();
 
             _dungeonLayoutProvider.AddRoom(room);

@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Gameplay.Dungeon.Rooms
 {
-    public class CombatRoom : StopRoom
+    public class CombatRoom : VariantRoom<CombatRoomVariantData>
     {
         [SerializeField] private Transform _enemySpawnPoint;
 
@@ -16,9 +16,6 @@ namespace Gameplay.Dungeon.Rooms
 
         private EnemyUnit _enemy;
         private EnemyFactory _enemyFactory;
-
-        private CombatRoomVariantData _roomData;
-        public override RoomVariantData RoomData => _roomData;
         
         [Inject]
         private void Construct(CombatSequenceController combatSequenceController, EnemyFactory enemyFactory)
@@ -26,12 +23,10 @@ namespace Gameplay.Dungeon.Rooms
             _combatSequenceController = combatSequenceController;
             _enemyFactory = enemyFactory;
         }
-
-        public void SetData(CombatRoomVariantData data) => _roomData = data;
         
         public override void SetupRoom()
         {
-            _enemy = _enemyFactory.CreateEnemy(_roomData);
+            _enemy = _enemyFactory.CreateEnemy(RoomVariantData);
 
             _enemy.transform.SetParent(_enemySpawnPoint, false);
             _enemy.transform.localPosition = Vector3.zero;

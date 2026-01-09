@@ -1,5 +1,4 @@
 using Data;
-using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
@@ -8,11 +7,5 @@ namespace Gameplay.Dungeon.RoomVariants
     public class CorridorRoomVariantData : RoomVariantData
     {
         public override RoomType RoomType => RoomType.Corridor;
-        
-        public override void ApplyToRoom(DungeonRoom room)
-        {
-            var corridorRoom = room as CorridorRoom;
-            corridorRoom?.SetData(this);
-        }
     }
 }

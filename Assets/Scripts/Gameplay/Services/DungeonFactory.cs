@@ -1,8 +1,4 @@
-using System;
-using AssetManagement.AssetProviders;
-using AssetManagement.AssetProviders.ConfigProviders;
 using AssetManagement.AssetProviders.Core;
-using Data;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Rooms;
@@ -32,7 +28,7 @@ namespace Gameplay.Services
             _parent = new GameObject("[ROOMS POOL]").transform;
         }
 
-        public DungeonRoom CreateRoom(RoomVariantData roomData)
+        public DungeonRoom CreateRoom<T>(T roomData) where T : RoomVariantData
         {
             if (_roomsPool.TryGetRoom(roomData.RoomType, out var room))
                 return room;

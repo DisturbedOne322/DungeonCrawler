@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 
 namespace Gameplay.Dungeon.Rooms
 {
-    public abstract class StopRoom : DungeonRoom
+    public abstract class InteractiveRoom : DungeonRoom
     {
         public virtual UniTask PlayEnterSequence()
         {

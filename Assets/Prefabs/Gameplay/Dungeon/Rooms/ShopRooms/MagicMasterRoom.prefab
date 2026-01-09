@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad39d95d255949628dcba1ef5f079c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _singlePurchaseRoom: {fileID: 5834657320169493496}
+  specialtyShopRoom: {fileID: 5834657320169493496}

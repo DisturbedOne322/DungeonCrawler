@@ -6,14 +6,11 @@ using Zenject;
 
 namespace Gameplay.Dungeon.Rooms
 {
-    public class ShopRoom : StopRoom
+    public class ShopRoom : VariantRoom<ShopRoomVariantData>
     {
         private ShopController _shopController;
-
-        private ShopRoomVariantData _roomData;
-        public override RoomVariantData RoomData => _roomData;
-
-        public ShopItemsConfig Config => _roomData.Config;
+        
+        public ShopItemsConfig Config => RoomVariantData.Config;
         
         [Inject]
         private void Construct(ShopController shopController)
@@ -25,7 +22,5 @@ namespace Gameplay.Dungeon.Rooms
         {
             await _shopController.RunShop();
         }
-
-        public void SetData(ShopRoomVariantData data) => _roomData = data;
     }
 }

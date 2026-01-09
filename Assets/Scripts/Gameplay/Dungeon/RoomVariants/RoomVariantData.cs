@@ -1,5 +1,4 @@
 using Data;
-using Gameplay.Dungeon.Rooms;
 using Gameplay.Rewards;
 using Helpers;
 using UnityEngine;
@@ -21,8 +20,6 @@ namespace Gameplay.Dungeon.RoomVariants
         public int MaxDepth => _maxDepth;
         public int Weight => _weight;
         public RewardDropTable RewardDropTable => _rewardDropTable;
-
-        public abstract void ApplyToRoom(DungeonRoom room);
         
         private void OnValidate()
         {

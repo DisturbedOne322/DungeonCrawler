@@ -1,5 +1,4 @@
 using Data;
-using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
@@ -8,11 +7,5 @@ namespace Gameplay.Dungeon.RoomVariants
     public class DecisionRoomVariantData : RoomVariantData
     {
         public override RoomType RoomType => RoomType.Decision;
-        
-        public override void ApplyToRoom(DungeonRoom room)
-        {
-            var decisionRoom = room as DecisionRoom;
-            decisionRoom?.SetData(this);
-        }
     }
 }

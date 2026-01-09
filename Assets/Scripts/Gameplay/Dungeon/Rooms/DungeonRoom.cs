@@ -7,9 +7,8 @@ namespace Gameplay.Dungeon.Rooms
     public abstract class DungeonRoom : MonoBehaviour
     {
         [SerializeField] private Transform _playerStandPoint;
-
+        
         public abstract RoomVariantData RoomData { get; }
-
         public Transform PlayerStandPoint => _playerStandPoint;
         
         public virtual void ResetRoom()
@@ -21,5 +20,7 @@ namespace Gameplay.Dungeon.Rooms
         {
             
         }
+
+        public abstract void SetData(RoomVariantData data);
     }
 }

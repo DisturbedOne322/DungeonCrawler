@@ -6,16 +6,13 @@ using Zenject;
 
 namespace Gameplay.Dungeon.Rooms
 {
-    public class TrapRoom : StopRoom
+    public class TrapRoom : VariantRoom<TrapRoomVariantData>
     {
         [SerializeField] private Transform _trapPoint;
         
         private TrapFactory _factory;
         
         private TrapMono _trapInstance;
-
-        private TrapRoomVariantData _roomData;
-        public override RoomVariantData RoomData => _roomData;
 
         [Inject]
         private void Construct(TrapFactory factory)
@@ -25,7 +22,7 @@ namespace Gameplay.Dungeon.Rooms
         
         public override void SetupRoom()
         {
-            _trapInstance = _factory.CreateTrap(_roomData);
+            _trapInstance = _factory.CreateTrap(RoomVariantData);
             _trapInstance.transform.SetParent(_trapPoint);
             _trapInstance.transform.localPosition = Vector3.zero;
         }
@@ -35,9 +32,7 @@ namespace Gameplay.Dungeon.Rooms
             if(_trapInstance)
                 Destroy(_trapInstance.gameObject);
         }
-
-        public void SetData(TrapRoomVariantData data) => _roomData = data;
-
+        
         public override async UniTask ClearRoom()
         {
             await UniTask.WaitForSeconds(0.5f);

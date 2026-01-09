@@ -7,13 +7,12 @@ using Zenject;
 
 namespace Installers.ServiceInstallers
 {
-    public class SinglePurchaseRoomInstaller : MonoInstaller
+    [DisallowMultipleComponent]
+    public class SpecialtyShopRoomInstaller : MonoInstaller
     {
-        [SerializeField] private SinglePurchaseRoom _singlePurchaseRoom;
-        
         public override void InstallBindings()
         {
-            Container.Bind<SinglePurchaseRoom>().FromInstance(_singlePurchaseRoom).AsSingle();
+            Container.Bind<SpecialtyShopRoom>().FromInstance(GetComponent<SpecialtyShopRoom>()).AsSingle();
 
             Container.Bind<SingleTypePurchaseController>().AsSingle();
             Container.Bind<PurchasableItemsProvider>().AsSingle();
