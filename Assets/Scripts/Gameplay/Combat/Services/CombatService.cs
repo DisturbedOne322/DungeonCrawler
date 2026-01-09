@@ -116,6 +116,14 @@ namespace Gameplay.Combat.Services
 
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitDataStream hitDataStream, int index)
         {
+            if (index == 0)
+                _combatEventsBus.InvokeSkillCasted(new SkillCastedData()
+                {
+                    Attacker = attacker,
+                    Target = target,
+                    HitDataStream = hitDataStream
+                });
+            
             var hitData = hitDataStream.Hits[index];
             
             DealDamageToUnit(attacker, target, hitData);

@@ -60,6 +60,10 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 .Subscribe(ProcessHitDealt)
                 .AddTo(_disposables);
 
+            _combatEvents.OnSkillCasted
+                .Subscribe(ProcessSkillCasted)
+                .AddTo(_disposables);
+            
             _combatEvents.OnSkillUsed
                 .Subscribe(ProcessSkillUsed)
                 .AddTo(_disposables);
@@ -72,17 +76,20 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 .Subscribe(ProcessEvaded)
                 .AddTo(_disposables);
         }
-
+        
         private void ProcessCombatStart(IGameUnit enemy)
         {
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(_playerUnit, enemy,
-                StatusEffectTriggerType.CombatStart);
+                StatusEffectTriggerType.OnCombatStart);
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(enemy, _playerUnit,
-                StatusEffectTriggerType.CombatStart);
+                StatusEffectTriggerType.OnCombatStart);
         }
 
         private void ProcessCombatEnded(IGameUnit enemy)
         {
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(_playerUnit, enemy,
+                StatusEffectTriggerType.OnCombatEnd);
+            
             _statusEffectsProcessor.ClearAllStatusEffects(_playerUnit);
             _statusEffectsProcessor.ClearAllStatusEffects(enemy);
         }
@@ -97,16 +104,34 @@ namespace Gameplay.StatusEffects.Buffs.Services
             
         }
 
+        private void ProcessSkillCasted(SkillCastedData skillCastedData)
+        {
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillCastedData.Attacker, skillCastedData.Target,
+                StatusEffectTriggerType.OnSkillCasted);
+            
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillCastedData.Target, skillCastedData.Attacker,
+                StatusEffectTriggerType.OnOtherSkillCasted);
+
+            if (skillCastedData.HitDataStream.ConsumeStance)
+            {
+                var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillCastedData.HitDataStream.DamageType);
+                _statusEffectsProcessor.RemoveStatusEffectsOnAction(skillCastedData.Attacker, expirationType);
+            }
+        }
+        
         private void ProcessSkillUsed(SkillUsedData skillUsedData)
         {
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillUsedData.Attacker, skillUsedData.Target,
-                StatusEffectTriggerType.SkillUsed);
+                StatusEffectTriggerType.OnSkillUsed);
+            
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillUsedData.Target, skillUsedData.Attacker,
+                StatusEffectTriggerType.OnOtherSkillUsed);
 
-            if (!skillUsedData.HitDataStream.ConsumeStance)
-                return;
-
-            var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillUsedData.HitDataStream.DamageType);
-            _statusEffectsProcessor.RemoveStatusEffectsOnAction(skillUsedData.Attacker, expirationType);
+            if (skillUsedData.HitDataStream.ConsumeStance)
+            {
+                var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillUsedData.HitDataStream.DamageType);
+                _statusEffectsProcessor.RemoveStatusEffectsOnAction(skillUsedData.Attacker, expirationType);
+            }
         }
 
         private void ProcessHitDealt(HitEventData data)
@@ -114,24 +139,41 @@ namespace Gameplay.StatusEffects.Buffs.Services
             var activeUnit = data.Attacker;
             var otherUnit = data.Target;
 
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.Hit);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.OnHit);
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
-                StatusEffectTriggerType.DamageTaken);
+                StatusEffectTriggerType.OnDamageTaken);
 
             if (data.HitData.IsCritical)
+            {
                 _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit,
-                    StatusEffectTriggerType.CriticalHit);
+                    StatusEffectTriggerType.OnCriticalHit);
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
+                    StatusEffectTriggerType.OnCriticalDamageTaken);
+            }
 
-            var triggerType = StatusEffectsHelper.GetBuffTriggerForDamageType(data.HitData.DamageType);
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, triggerType);
+            var doneTriggerType = StatusEffectsHelper.GetBuffTriggerForDamageTypeDealt(data.HitData.DamageType);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, doneTriggerType);
+            
+            var takenTriggerType = StatusEffectsHelper.GetBuffTriggerForDamageTypeTaken(data.HitData.DamageType);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, takenTriggerType);
 
             if (HealthHelper.DroppedBelowMediumHealth(data))
+            {
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit,
+                    StatusEffectTriggerType.OnOtherMediumHealth);
+                
                 _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
-                    StatusEffectTriggerType.MediumHealth);
-
+                    StatusEffectTriggerType.OnMediumHealth);
+            }
+            
             if (HealthHelper.DroppedBelowCriticalHealth(data))
+            {
+                _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit,
+                    StatusEffectTriggerType.OnOtherCriticalHealth);
+                
                 _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
-                    StatusEffectTriggerType.CriticalHealth);
+                    StatusEffectTriggerType.OnCriticalHealth);   
+            }
         }
 
         private void ProcessHealed(HealEventData data)
@@ -140,9 +182,9 @@ namespace Gameplay.StatusEffects.Buffs.Services
             var otherUnit = _combatData.OtherUnit;
 
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit,
-                StatusEffectTriggerType.ActiveUnitHealed);
+                StatusEffectTriggerType.OnHealed);
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit,
-                StatusEffectTriggerType.OtherUnitHealed);
+                StatusEffectTriggerType.OnOtherHealed);
         }
 
         private void ProcessEvaded(EvadeEventData eventData)
@@ -150,8 +192,8 @@ namespace Gameplay.StatusEffects.Buffs.Services
             var activeUnit = eventData.Attacker;
             var otherUnit = eventData.Target;
 
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.Missed);
-            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.Evaded);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(activeUnit, otherUnit, StatusEffectTriggerType.OnMissed);
+            _statusEffectsProcessor.EnableStatusEffectsOnTrigger(otherUnit, activeUnit, StatusEffectTriggerType.OnEvaded);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             };
         }
 
-        public override void Apply(ICombatant activeUnit, ICombatant otherUnit)
+        protected override void ProcessApply(ICombatant activeUnit, ICombatant otherUnit)
         {
             AffectedUnit = activeUnit;
 
@@ -30,10 +30,10 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
         }
 
-        public override void Revert()
+        protected override void ProcessRevert()
         {
             UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
-            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);        
         }
     }
 }

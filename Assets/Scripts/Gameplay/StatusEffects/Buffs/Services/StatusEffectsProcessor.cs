@@ -28,7 +28,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 AddStatusEffect(activeUnit, otherUnit, statusEffect);
             }
         }
-
+        
         public void ProcessTurn(ICombatant activeUnit)
         {
             var activeStatusEffects =
@@ -39,25 +39,6 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 var instance = activeStatusEffects[i];
 
                 if (instance.EffectExpirationType != StatusEffectExpirationType.TurnCount)
-                    continue;
-
-                if (instance.DurationLeft.Value == 0)
-                    instance.Revert();
-
-                instance.DurationLeft.Value--;
-            }
-        }
-
-        public void ProcessDepthIncrease()
-        {
-            var activeStatusEffects =
-                _playerUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects;
-
-            for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
-            {
-                var instance = activeStatusEffects[i];
-
-                if (instance.EffectExpirationType != StatusEffectExpirationType.DepthIncrease)
                     continue;
 
                 if (instance.DurationLeft.Value == 0)

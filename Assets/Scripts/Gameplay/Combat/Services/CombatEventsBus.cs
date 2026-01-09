@@ -14,6 +14,7 @@ namespace Gameplay.Combat.Services
         private readonly Subject<HealEventData> _onHealed = new();
 
         private readonly Subject<HitEventData> _onHitDealt = new();
+        private readonly Subject<SkillCastedData> _onSkillCasted = new();
         private readonly Subject<SkillUsedData> _onSkillUsed = new();
         private readonly Subject<TurnData> _onTurnEnded = new();
 
@@ -23,6 +24,7 @@ namespace Gameplay.Combat.Services
         public IObservable<IGameUnit> OnCombatEnded => _onCombatEnded;
 
         public IObservable<HitEventData> OnHitDealt => _onHitDealt;
+        public IObservable<SkillCastedData> OnSkillCasted => _onSkillCasted;
         public IObservable<SkillUsedData> OnSkillUsed => _onSkillUsed;
         public IObservable<HealEventData> OnHealed => _onHealed;
         public IObservable<EvadeEventData> OnEvaded => _onEvaded;
@@ -44,6 +46,11 @@ namespace Gameplay.Combat.Services
         public void InvokeHitDealt(HitEventData data)
         {
             _onHitDealt.OnNext(data);
+        }
+        
+        public void InvokeSkillCasted(SkillCastedData data)
+        {
+            _onSkillCasted.OnNext(data);
         }
 
         public void InvokeSkillUsed(SkillUsedData data)

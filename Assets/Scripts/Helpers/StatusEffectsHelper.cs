@@ -8,11 +8,18 @@ namespace Helpers
 {
     public static class StatusEffectsHelper
     {
-        private static readonly Dictionary<DamageType, StatusEffectTriggerType> DamageTypeToTriggerDict = new()
+        private static readonly Dictionary<DamageType, StatusEffectTriggerType> DamageTypeToTriggerDoneDict = new()
         {
-            { DamageType.Physical, StatusEffectTriggerType.PhysicalDamage },
-            { DamageType.Magical, StatusEffectTriggerType.MagicalDamage },
-            { DamageType.Absolute, StatusEffectTriggerType.AbsoluteDamage }
+            { DamageType.Physical, StatusEffectTriggerType.OnPhysicalDamageDealt },
+            { DamageType.Magical, StatusEffectTriggerType.OnMagicalDamageDealt },
+            { DamageType.Absolute, StatusEffectTriggerType.OnAbsoluteDamageDealt }
+        };
+        
+        private static readonly Dictionary<DamageType, StatusEffectTriggerType> DamageTypeToTriggerTakenDict = new()
+        {
+            { DamageType.Physical, StatusEffectTriggerType.OnPhysicalDamageTaken },
+            { DamageType.Magical, StatusEffectTriggerType.OnMagicalDamageTaken },
+            { DamageType.Absolute, StatusEffectTriggerType.OnAbsoluteDamageTaken }
         };
 
         private static readonly Dictionary<DamageType, StatusEffectExpirationType> DamageTypeToExpirationDict = new()
@@ -31,9 +38,17 @@ namespace Helpers
                 { StatusEffectReapplyType.RefreshDuration, new ReapplyRefreshDurationStrategy() }
             };
 
-        public static StatusEffectTriggerType GetBuffTriggerForDamageType(DamageType damageType)
+        public static StatusEffectTriggerType GetBuffTriggerForDamageTypeDealt(DamageType damageType)
         {
-            if (DamageTypeToTriggerDict.TryGetValue(damageType, out var buffTrigger))
+            if (DamageTypeToTriggerDoneDict.TryGetValue(damageType, out var buffTrigger))
+                return buffTrigger;
+
+            throw new ArgumentException("Unknown damage type: " + damageType);
+        }
+        
+        public static StatusEffectTriggerType GetBuffTriggerForDamageTypeTaken(DamageType damageType)
+        {
+            if (DamageTypeToTriggerTakenDict.TryGetValue(damageType, out var buffTrigger))
                 return buffTrigger;
 
             throw new ArgumentException("Unknown damage type: " + damageType);

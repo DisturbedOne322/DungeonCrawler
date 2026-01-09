@@ -6,7 +6,7 @@ namespace Gameplay.Skills.Core
 {
     public abstract class BaseOffensiveBuffSkill : BaseSkill
     {
-        [FormerlySerializedAs("OffensiveBuffData")] [SerializeField]
-        protected HitBuffData _hitBuffData;
+        [SerializeField]
+        protected HitBuffData HitBuffData;
     }
 }

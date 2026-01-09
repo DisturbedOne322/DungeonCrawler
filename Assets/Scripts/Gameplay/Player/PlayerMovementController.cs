@@ -93,7 +93,6 @@ namespace Gameplay.Player
                     SetPositionIndex(index);
                     
                     _unitRegenerationService.RegeneratePlayerOutOfBattle();
-                    _statusEffectsProcessor.ProcessDepthIncrease();
                 }, isLast);
             }
 

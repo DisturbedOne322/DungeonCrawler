@@ -21,13 +21,13 @@ namespace Gameplay.StatusEffects.Buffs.HitBuffsCore
             };
         }
 
-        public override void Apply(ICombatant activeUnit, ICombatant otherUnit)
+        protected override void ProcessApply(ICombatant activeUnit, ICombatant otherUnit)
         {
             AffectedUnit = activeUnit;
             AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
         }
 
-        public override void Revert()
+        protected override void ProcessRevert()
         {
             AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
         }

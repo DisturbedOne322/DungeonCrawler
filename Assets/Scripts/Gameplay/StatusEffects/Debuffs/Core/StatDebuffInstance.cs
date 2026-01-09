@@ -2,6 +2,7 @@ using System;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
+using Helpers;
 using UniRx;
 
 namespace Gameplay.StatusEffects.Debuffs.Core
@@ -23,18 +24,21 @@ namespace Gameplay.StatusEffects.Debuffs.Core
             };
         }
 
-        public override void Apply(ICombatant activeUnit, ICombatant otherUnit)
+        protected override void ProcessApply(ICombatant activeUnit, ICombatant otherUnit)
         {
             AffectedUnit = StatDebuffData.DebuffTarget == DebuffTarget.ThisUnit ? activeUnit : otherUnit;
-            
+
             if (AffectedUnit == null)
-                throw new Exception("TRIED TO APPLY STATUS EFFECT TO A NULL UNIT");
+            {
+                DebugHelper.LogError("TRIED TO APPLY STATUS EFFECT TO A NULL UNIT");
+                return;
+            }
 
             ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
-            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
+            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);        
         }
 
-        public override void Revert()
+        protected override void ProcessRevert()
         {
             if (AffectedUnit == null)
                 return;

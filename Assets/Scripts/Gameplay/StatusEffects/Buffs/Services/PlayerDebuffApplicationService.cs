@@ -1,4 +1,3 @@
-using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.Debuffs.Core;
 using Gameplay.Units;
 

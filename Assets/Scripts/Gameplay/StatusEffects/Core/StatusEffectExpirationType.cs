@@ -7,8 +7,6 @@ namespace Gameplay.StatusEffects.Core
         NextMagicalAction,
         NextAbsoluteAction,
         TurnCount,
-        CombatEnd,
-        DepthIncrease,
         Reapply
     }
 }
