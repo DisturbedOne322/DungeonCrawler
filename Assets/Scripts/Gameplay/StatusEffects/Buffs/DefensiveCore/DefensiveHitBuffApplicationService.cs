@@ -9,7 +9,7 @@ namespace Gameplay.StatusEffects.Buffs.DefensiveCore
     {
         protected override List<DefensiveBuffInstance> GetActiveBuffs(in DamageContext damageContext)
         {
-            return damageContext.Defender.UnitActiveStatusEffectsData.ActiveDefensiveBuffs;
+            return damageContext.Defender.UnitActiveStatusEffectsContainer.ActiveDefensiveBuffs;
         }
 
         protected override bool CanApplyBuffs(in DamageContext damageContext)

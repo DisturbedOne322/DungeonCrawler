@@ -121,20 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e62ea3a0ff0485a9610d7dd3d12709f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trapData:
-    DamageChance: 1
-    Skills:
-    - BaseDamage: 20
-      DamageType: 0
-      MinHits: 1
-      MaxHits: 1
-      BaseCritChance: 0
-      CanCrit: 0
-      BaseHitChance: 1
-      IsUnavoidable: 0
-      PenetrationRatio: 0
-      IsPiercing: 1
-      CanBeBuffed: 0
-      ConsumeStance: 0
-    Debuffs:
-    - {fileID: 11400000, guid: 01b3983bde2a4704785b5b77babeb0fd, type: 2}
+  _trapData: {fileID: 11400000, guid: 5a8066d2e9118394097249c756bb0e35, type: 2}

@@ -6,16 +6,18 @@ namespace Gameplay.StatusEffects.Core
 {
     public abstract class BaseStatusEffectInstance
     {
-        protected ICombatant AffectedUnit;
         public StatusEffectExpirationType EffectExpirationType;
         public IntReactiveProperty Stacks = new(1);
         public BaseStatusEffectData StatusEffectData;
         public IntReactiveProperty DurationLeft;
+        public StatusEffectContext Context;
 
         private bool _reverted = false;
         private bool _applied = false;
+        
+        public bool Applied => _applied;
 
-        public void Apply(ICombatant activeUnit, ICombatant otherUnit)
+        public void Apply(StatusEffectContext context)
         {
             if (_applied)
             {
@@ -23,7 +25,8 @@ namespace Gameplay.StatusEffects.Core
                 return;
             }
             
-            ProcessApply(activeUnit, otherUnit);
+            Context = context;
+            ProcessApply(context.ActiveUnit, context.OtherUnit);
             _applied = true;
         }
 

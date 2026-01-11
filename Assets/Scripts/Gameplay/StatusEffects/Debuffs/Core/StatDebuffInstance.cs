@@ -26,25 +26,29 @@ namespace Gameplay.StatusEffects.Debuffs.Core
 
         protected override void ProcessApply(ICombatant activeUnit, ICombatant otherUnit)
         {
-            AffectedUnit = StatDebuffData.DebuffTarget == DebuffTarget.ThisUnit ? activeUnit : otherUnit;
+            var affectedUnit = StatDebuffData.DebuffTarget == DebuffTarget.ThisUnit ? activeUnit : otherUnit;
 
-            if (AffectedUnit == null)
+            if (affectedUnit == null)
             {
                 DebugHelper.LogError("TRIED TO APPLY STATUS EFFECT TO A NULL UNIT");
                 return;
             }
 
-            ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
-            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);        
+            
+            ValueChange = UnitStatsModificationService.ModifyStat(affectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
+            affectedUnit.UnitActiveStatusEffectsContainer.AddStatusEffect(this);    
+            
+            Context.SetAffectedUnit(affectedUnit);
         }
 
         protected override void ProcessRevert()
         {
-            if (AffectedUnit == null)
+            var affectedUnit = Context.AffectedUnit;
+            if (affectedUnit == null)
                 return;
 
-            UnitStatsModificationService.ModifyStat(AffectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
-            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+            UnitStatsModificationService.ModifyStat(affectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
+            affectedUnit.UnitActiveStatusEffectsContainer.RemoveStatusEffect(this);
         }
     }
 }

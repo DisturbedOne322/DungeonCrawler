@@ -4,7 +4,7 @@ namespace Gameplay.Facades
 {
     public interface IStatusEffectCarrier
     {
-        UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; }
-        UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; }
+        UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; }
+        UnitActiveStatusEffectsContainer UnitActiveStatusEffectsContainer { get; }
     }
 }

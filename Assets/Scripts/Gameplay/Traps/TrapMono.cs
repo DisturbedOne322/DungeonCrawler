@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Services;
-using Gameplay.Dungeon;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Debuffs.Core;
@@ -18,19 +16,19 @@ namespace Gameplay.Traps
     {
         [SerializeField] private TrapData _trapData;
 
-        private PlayerDebuffApplicationService _debuffApplicationService;
         private HitProcessor _hitProcessor;
+        private StatusEffectsProcessor _statusEffectsProcessor;
         
-        public UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; } = new ();
-        public UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; } = new();
+        public UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; } = new ();
+        public UnitActiveStatusEffectsContainer UnitActiveStatusEffectsContainer { get; } = new();
         public UnitStatsData UnitStatsData { get; } = new();
         public UnitBonusStatsData UnitBonusStatsData { get; } = new();
 
         [Inject]
-        private void Construct(PlayerDebuffApplicationService debuffApplicationService, HitProcessor hitProcessor)
+        private void Construct(HitProcessor hitProcessor, StatusEffectsProcessor statusEffectsProcessor)
         {
-            _debuffApplicationService = debuffApplicationService;
             _hitProcessor =  hitProcessor;
+            _statusEffectsProcessor = statusEffectsProcessor;
         }
 
         private void Start()
@@ -65,7 +63,8 @@ namespace Gameplay.Traps
 
         private void ApplyDebuff()
         {
-            _debuffApplicationService.ApplyDebuffOnPlayer(SelectDebuff());
+            var debuff = SelectDebuff();
+            _statusEffectsProcessor.ApplyStatusEffectToPlayer(debuff, debuff);
         }
 
         private StatDebuffData SelectDebuff()

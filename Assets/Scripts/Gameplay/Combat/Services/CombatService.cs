@@ -5,7 +5,6 @@ using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
-using Helpers;
 using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat.Services
@@ -17,26 +16,26 @@ namespace Gameplay.Combat.Services
         private readonly CombatEventsBus _combatEventsBus;
         private readonly UnitRegenerationService _unitRegenerationService;
         private readonly HitProcessor _hitProcessor;
-
-        public CombatService(CombatData combatData,
-            CombatStatusEffectsService combatStatusEffectsService, BuffsCalculationService buffsCalculationService,
-            CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService, HitProcessor hitProcessor)
-        {
-            _combatData = combatData;
-            CombatStatusEffectsService = combatStatusEffectsService;
-            _buffsCalculationService = buffsCalculationService;
-            _combatEventsBus = combatEventsBus;
-            _unitRegenerationService = unitRegenerationService;
-            _hitProcessor = hitProcessor;
-        }
-
+        private readonly StatusEffectsProcessor _statusEffectsProcessor;
+        
         public IGameUnit ActiveUnit => _combatData.ActiveUnit;
         public IGameUnit OtherUnit => _combatData.OtherUnit;
 
         public int TurnCount => _combatData.TurnCount;
 
-        public CombatStatusEffectsService CombatStatusEffectsService { get; }
-
+        public CombatService(CombatData combatData,
+            BuffsCalculationService buffsCalculationService,
+            CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService, 
+            HitProcessor hitProcessor, StatusEffectsProcessor statusEffectsProcessor)
+        {
+            _combatData = combatData;
+            _buffsCalculationService = buffsCalculationService;
+            _combatEventsBus = combatEventsBus;
+            _unitRegenerationService = unitRegenerationService;
+            _hitProcessor = hitProcessor;
+            _statusEffectsProcessor = statusEffectsProcessor;
+        }
+        
         public bool IsPlayerTurn()
         {
             return ActiveUnit is PlayerUnit;
@@ -113,6 +112,15 @@ namespace Gameplay.Combat.Services
 
             return hitDataStream;
         }
+
+        public void ApplyStatusEffectToActiveUnit(BaseStatusEffectData statusEffect) => 
+            ApplyStatusEffectTo(ActiveUnit, statusEffect);
+
+        public void ApplyStatusEffectToOtherUnit(BaseStatusEffectData statusEffect) => 
+            ApplyStatusEffectTo(OtherUnit, statusEffect);
+
+        private void ApplyStatusEffectTo(ICombatant unit, BaseStatusEffectData statusEffect) => 
+            _statusEffectsProcessor.ApplyStatusEffectTo(unit, statusEffect, statusEffect);
 
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitDataStream hitDataStream, int index)
         {

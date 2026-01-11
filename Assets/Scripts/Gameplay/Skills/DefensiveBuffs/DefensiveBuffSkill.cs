@@ -10,13 +10,13 @@ namespace Gameplay.Skills.DefensiveBuffs
     {
         protected override UniTask PerformAction(CombatService combatService)
         {
-            combatService.CombatStatusEffectsService.AddDefensiveBuff(DefensiveBuffData);
+            combatService.ApplyStatusEffectToActiveUnit(DefensiveBuffData);
             return UniTask.CompletedTask;
         }
 
         public override bool CanUse(CombatService combatService)
         {
-            return !combatService.ActiveUnit.UnitActiveStatusEffectsData.IsStatusEffectActive(DefensiveBuffData);
+            return !combatService.ActiveUnit.UnitActiveStatusEffectsContainer.IsStatusEffectActive(DefensiveBuffData);
         }
     }
 }

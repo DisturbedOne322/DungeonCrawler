@@ -23,13 +23,13 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
 
         protected override void ProcessApply(ICombatant activeUnit, ICombatant otherUnit)
         {
-            AffectedUnit = activeUnit;
-            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
+            activeUnit.UnitActiveStatusEffectsContainer.AddStatusEffect(this);
+            Context.SetAffectedUnit(activeUnit);
         }
 
         protected override void ProcessRevert()
         {
-            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);
+            Context.AffectedUnit.UnitActiveStatusEffectsContainer.RemoveStatusEffect(this);
         }
     }
 }

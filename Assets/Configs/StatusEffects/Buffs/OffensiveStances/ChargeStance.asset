@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _name: Charge Stance
+  _itemRarity: 0
   _description: Increases the damage of the next physical attack by 100%.
   _statusEffectDurationData: {fileID: 11400000, guid: 039864eb366ca9a40aa4e605ea416d59, type: 2}
-  _triggerType: 1
-  _statusEffectReapplyType: 0
+  _triggerType: 0
+  _statusEffectReapplyType: 2
   _maxStacks: 1
   _priority: 2
   _damageMultiplier: 2

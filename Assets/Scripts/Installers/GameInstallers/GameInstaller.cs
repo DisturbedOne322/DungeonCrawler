@@ -42,9 +42,7 @@ namespace Installers.GameInstallers
             Container.Bind<CombatEventsBus>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
 
-            Container.Bind<CombatStatusEffectsService>().AsSingle();
             Container.Bind<StatusEffectsProcessor>().AsSingle();
-            Container.Bind<PlayerDebuffApplicationService>().AsSingle();
             Container.BindInterfacesAndSelfTo<CombatStatusEffectsApplicationService>().AsSingle().NonLazy();
 
             Container.Bind<BuffsCalculationService>().AsSingle();

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   _name: On Hit Flat Attack Buff
+  _itemRarity: 0
   _description: On hit, increases any damage instance by 5 points for the next 3
     turns. Stacks up to 5 times. Refreshes the duration on hit.
-  _statusEffectDurationData: {fileID: 11400000, guid: f9fe3cfb13fc36240ac7100a7cc1abef, type: 2}
-  _triggerType: 2
+  _statusEffectDurationData: {fileID: 11400000, guid: a77771e8592387a499b924362105b355, type: 2}
+  _triggerType: 4
   _statusEffectReapplyType: 2
   _maxStacks: 5
   _priority: 0

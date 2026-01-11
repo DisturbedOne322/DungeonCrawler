@@ -25,11 +25,11 @@ namespace Installers.UnitInstallers
             Container.Bind<UnitInventoryData>().AsSingle();
             Container.Bind<UnitStatsData>().AsSingle();
             Container.Bind<UnitBonusStatsData>().AsSingle();
-            Container.Bind<UnitHeldStatusEffectsData>().AsSingle();
-            Container.Bind<UnitActiveStatusEffectsData>().AsSingle();
+            Container.Bind<UnitHeldStatusEffectsContainer>().AsSingle();
+            Container.Bind<UnitActiveStatusEffectsContainer>().AsSingle();
             Container.Bind<UnitEquipmentData>().AsSingle();
 
-            Container.Bind<OnObtainStatusEffectApplier>().AsSingle().NonLazy();
+            Container.Bind<EquipmentStatusEffectApplier>().AsSingle().NonLazy();
             Container.Bind<EquipmentStatBuffsApplier>().AsSingle().NonLazy();
         }
     }

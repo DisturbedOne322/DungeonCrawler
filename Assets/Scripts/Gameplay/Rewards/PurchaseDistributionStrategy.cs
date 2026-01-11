@@ -4,6 +4,7 @@ using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Player;
 using Gameplay.Skills.Core;
+using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.Units;
 using PopupControllers;
 
@@ -16,7 +17,8 @@ namespace Gameplay.Rewards
 
         public PurchaseDistributionStrategy(SkillDiscardController skillDiscardController, 
             PlayerSkillSlotsManager skillSlotsManager, PlayerUnit playerUnit,
-            GameplayConfigsProvider configsProvider) : base(playerUnit, configsProvider)
+            GameplayConfigsProvider configsProvider,
+            StatusEffectsProcessor statusEffectsProcessor) : base(playerUnit, configsProvider, statusEffectsProcessor)
          {
             _skillDiscardController = skillDiscardController;
             _skillSlotsManager = skillSlotsManager;

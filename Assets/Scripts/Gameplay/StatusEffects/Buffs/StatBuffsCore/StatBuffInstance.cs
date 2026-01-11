@@ -2,6 +2,7 @@ using Data;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
 using UniRx;
+using UnityEngine;
 
 namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 {
@@ -24,16 +25,20 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
 
         protected override void ProcessApply(ICombatant activeUnit, ICombatant otherUnit)
         {
-            AffectedUnit = activeUnit;
-
-            ValueChange = UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, ValueChange);
-            AffectedUnit.UnitActiveStatusEffectsData.AddStatusEffect(this);
+            var affectedUnit = activeUnit;
+            
+            ValueChange = UnitStatsModificationService.ModifyStat(affectedUnit, StatType, ValueChange);
+            affectedUnit.UnitActiveStatusEffectsContainer.AddStatusEffect(this);
+            
+            Context.SetAffectedUnit(affectedUnit);
         }
 
         protected override void ProcessRevert()
         {
-            UnitStatsModificationService.ModifyStat(AffectedUnit, StatType, -ValueChange);
-            AffectedUnit.UnitActiveStatusEffectsData.RemoveStatusEffect(this);        
+            var affectedUnit = Context.AffectedUnit;
+            
+            UnitStatsModificationService.ModifyStat(affectedUnit, StatType, -ValueChange);
+            affectedUnit.UnitActiveStatusEffectsContainer.RemoveStatusEffect(this);        
         }
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace Gameplay.Traps
 {
-    [Serializable]
-    public class TrapData
+    [CreateAssetMenu(menuName = "Gameplay/Dungeon/Trap Data")]
+    public class TrapData : BaseGameItem
     {
         [Range(0,1f)] public float DamageChance = 0.5f;
         public List<SkillData> Skills = new List<SkillData>();

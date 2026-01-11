@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Extensions;
+using System.Linq;
 using Gameplay.StatusEffects.Buffs.DefensiveCore;
 using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
@@ -9,34 +9,28 @@ using UniRx;
 
 namespace Gameplay.Units
 {
-    public class UnitHeldStatusEffectsData
+    public class UnitHeldStatusEffectsContainer
     {
         private readonly List<DefensiveBuffData> _defensive = new();
         private readonly List<HitBuffData> _offensive = new();
         private readonly List<StatBuffData> _statBuffs = new();
         private readonly List<StatDebuffData> _statDebuffs = new();
 
-        public ReactiveCollection<BaseStatusEffectData> All { get; } = new();
+        public ReactiveCollection<HeldStatusEffectData> All { get; } = new();
 
         public IReadOnlyList<DefensiveBuffData> DefensiveBuffs => _defensive;
         public IReadOnlyList<HitBuffData> OffensiveBuffs => _offensive;
         public IReadOnlyList<StatBuffData> StatBuffs => _statBuffs;
         public IReadOnlyList<StatDebuffData> StatDebuffs => _statDebuffs;
-
-        public void AssignStartingStatusEffects(List<BaseStatusEffectData> statusEffects)
-        {
-            foreach (var effectData in statusEffects) 
-                Add(effectData);
-        }
         
-        public void Add(BaseStatusEffectData data)
+        public void Add(HeldStatusEffectData data)
         {
-            if (!data)
+            if (data == null || !data.Effect)
                 return;
-
+            
             All.Add(data);
 
-            switch (data)
+            switch (data.Effect)
             {
                 case DefensiveBuffData defBuff: _defensive.Add(defBuff); break;
                 case HitBuffData offBuff: _offensive.Add(offBuff); break;
@@ -45,14 +39,16 @@ namespace Gameplay.Units
             }
         }
 
-        public void Remove(BaseStatusEffectData data)
+        public void RemoveFromSource(BaseGameItem source)
         {
-            if (!data)
+            if (!source)
                 return;
 
-            All.Remove(data);
+            var heldStatusEffect = All.First(x => x.Source == source);
+            
+            All.Remove(heldStatusEffect);
 
-            switch (data)
+            switch (heldStatusEffect.Effect)
             {
                 case DefensiveBuffData defBuff: _defensive.Remove(defBuff); break;
                 case HitBuffData offBuff: _offensive.Remove(offBuff); break;

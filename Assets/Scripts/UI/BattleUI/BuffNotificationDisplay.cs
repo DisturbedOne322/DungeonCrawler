@@ -51,7 +51,7 @@ namespace UI.BattleUI
         private void SubscribeToUnit(IGameUnit gameUnit)
         {
             var unitName = gameUnit.EntityName;
-            var buffsData = gameUnit.UnitHeldStatusEffectsData;
+            var buffsData = gameUnit.UnitHeldStatusEffectsContainer;
 
             /*_unitSubscriptions.Add(
                 buffsData.Guarded.Subscribe(buffed =>

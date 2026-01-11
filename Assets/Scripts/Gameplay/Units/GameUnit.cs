@@ -3,6 +3,7 @@ using Gameplay.Combat;
 using Gameplay.Combat.SkillSelection;
 using Gameplay.Equipment;
 using Gameplay.Facades;
+using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.Visual;
 using UnityEngine;
 using Zenject;
@@ -14,7 +15,8 @@ namespace Gameplay.Units
         [SerializeField] private EvadeAnimator _evadeAnimator;
         [SerializeField] private AttackAnimator _attackAnimator;
 
-
+        private StatusEffectsProcessor _statusEffectsProcessor;
+        
         #region Unit Data
         
         public UnitHealthData UnitHealthData { get; private set; }
@@ -22,8 +24,8 @@ namespace Gameplay.Units
         public UnitStatsData UnitStatsData { get; private set; }
         public UnitBonusStatsData UnitBonusStatsData { get; private set; }
         public UnitSkillsData UnitSkillsData { get; private set; }
-        public UnitHeldStatusEffectsData UnitHeldStatusEffectsData { get; private set; }
-        public UnitActiveStatusEffectsData UnitActiveStatusEffectsData { get; private set; }
+        public UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; private set; }
+        public UnitActiveStatusEffectsContainer UnitActiveStatusEffectsContainer { get; private set; }
         public UnitInventoryData UnitInventoryData { get; private set; }
         public UnitEquipmentData UnitEquipmentData { get; private set; }
         
@@ -44,7 +46,9 @@ namespace Gameplay.Units
         public Vector3 Position => transform.position;
 
         [Inject]
-        private void Construct(UnitHealthData unitHealthData,
+        private void Construct(
+            StatusEffectsProcessor statusEffectsProcessor,
+            UnitHealthData unitHealthData,
             UnitHealthController unitHealthController,
             UnitManaData unitManaData,
             UnitManaController unitManaController,
@@ -52,11 +56,13 @@ namespace Gameplay.Units
             UnitStatsData unitStatsData,
             UnitBonusStatsData unitBonusStatsData,
             UnitSkillsData unitSkillsData,
-            UnitHeldStatusEffectsData unitHeldStatusEffectsData,
-            UnitActiveStatusEffectsData unitActiveStatusEffectsData,
+            UnitHeldStatusEffectsContainer unitHeldStatusEffectsContainer,
+            UnitActiveStatusEffectsContainer unitActiveStatusEffectsContainer,
             UnitInventoryData unitInventoryData,
             UnitEquipmentData unitEquipmentData)
         {
+            _statusEffectsProcessor = statusEffectsProcessor;
+            
             UnitHealthData = unitHealthData;
             UnitHealthController = unitHealthController;
             UnitManaData = unitManaData;
@@ -65,8 +71,8 @@ namespace Gameplay.Units
             UnitStatsData = unitStatsData;
             UnitBonusStatsData = unitBonusStatsData;
             UnitSkillsData = unitSkillsData;
-            UnitHeldStatusEffectsData = unitHeldStatusEffectsData;
-            UnitActiveStatusEffectsData = unitActiveStatusEffectsData;
+            UnitHeldStatusEffectsContainer = unitHeldStatusEffectsContainer;
+            UnitActiveStatusEffectsContainer = unitActiveStatusEffectsContainer;
             UnitInventoryData = unitInventoryData;
             UnitEquipmentData = unitEquipmentData;
         }
@@ -83,9 +89,10 @@ namespace Gameplay.Units
 
             UnitSkillsData.AssignStartingSkills(unitData);
             UnitInventoryData.AddItems(unitData.Items);
-            
-            UnitHeldStatusEffectsData.AssignStartingStatusEffects(unitData.StatusEffects);
 
+            foreach (var statusEffect in unitData.StatusEffects) 
+                _statusEffectsProcessor.AddStatusEffectTo(this, statusEffect, statusEffect);
+            
             if (unitData.BaseWeapon)
                 UnitEquipmentData.EquipWeapon(unitData.BaseWeapon);
 

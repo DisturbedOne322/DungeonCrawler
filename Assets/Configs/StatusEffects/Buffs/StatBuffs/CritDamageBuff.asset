@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   _name: Mega crit damage
+  _itemRarity: 0
   _description: +200% crit damage on next hit. Triggered on hit
   _statusEffectDurationData: {fileID: 11400000, guid: a843265a95d9a3b4a855b6eab8851a19, type: 2}
-  _triggerType: 2
+  _triggerType: 4
   _statusEffectReapplyType: 1
   _maxStacks: 1
   _buffedStatType: 8

@@ -5,6 +5,7 @@ using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Player;
 using Gameplay.Skills.Core;
+using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.Units;
 using PopupControllers;
 
@@ -18,7 +19,8 @@ namespace Gameplay.Rewards
 
         public LootDistributionStrategy(EquipmentChangeController equipmentChangeController,
             SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager, 
-            PlayerUnit playerUnit, GameplayConfigsProvider configsProvider) : base(playerUnit, configsProvider)
+            PlayerUnit playerUnit, GameplayConfigsProvider configsProvider,
+            StatusEffectsProcessor statusEffectsProcessor) : base(playerUnit, configsProvider, statusEffectsProcessor)
         {
             _equipmentChangeController = equipmentChangeController;
             _skillDiscardController = skillDiscardController;

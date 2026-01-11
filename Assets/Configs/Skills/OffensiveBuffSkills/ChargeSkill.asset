@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _name: Charge stance
+  _itemRarity: 0
   _description: Doubles the next physical attack damage.
-  _hitBuffData: {fileID: 11400000, guid: efdd2c6366aef764281f16cf12fa0b9e, type: 2}
+  HitBuffData: {fileID: 11400000, guid: efdd2c6366aef764281f16cf12fa0b9e, type: 2}

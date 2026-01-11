@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _name: Mana Drain
+  _itemRarity: 0
   _description: Drains 1 mana after each room cleared. Effect ends upon clearing
     a certain amount of rooms.
   _statusEffectDurationData: {fileID: 11400000, guid: 21c18923cbcb95b4ab4d65a3b4614130, type: 2}
   _triggerType: 0
-  _statusEffectReapplyType: 32
-  _maxStacks: 1
+  _statusEffectReapplyType: 2
+  _maxStacks: 5
   _debuffedStatType: 10
   _debuffTarget: 0
   _debuffValue: 1

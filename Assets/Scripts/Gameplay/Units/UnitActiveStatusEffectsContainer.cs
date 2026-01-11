@@ -9,7 +9,7 @@ using UniRx;
 
 namespace Gameplay.Units
 {
-    public class UnitActiveStatusEffectsData
+    public class UnitActiveStatusEffectsContainer
     {
         public readonly List<DefensiveBuffInstance> ActiveDefensiveBuffs = new();
         public readonly List<HitStreamBuffInstance> ActiveHitStreamBuffs = new();
@@ -17,12 +17,12 @@ namespace Gameplay.Units
         public readonly List<StatBuffInstance> ActiveStatBuffs = new();
         public readonly List<StatDebuffInstance> ActiveStatDebuffs = new();
 
-        public readonly ReactiveCollection<BaseStatusEffectInstance> AllActiveStatusEffects = new();
+        public readonly ReactiveCollection<BaseStatusEffectInstance> All = new();
 
         public void AddStatusEffect(BaseStatusEffectInstance effect)
         {
-            AllActiveStatusEffects.Add(effect);
-
+            All.Add(effect);
+            
             switch (effect)
             {
                 case DefensiveBuffInstance defBuff: ActiveDefensiveBuffs.Add(defBuff); break;
@@ -35,7 +35,7 @@ namespace Gameplay.Units
 
         public void RemoveStatusEffect(BaseStatusEffectInstance effect)
         {
-            AllActiveStatusEffects.Remove(effect);
+            All.Remove(effect);
 
             switch (effect)
             {

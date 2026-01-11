@@ -33,10 +33,12 @@ MonoBehaviour:
   _skillSet:
   - {fileID: 11400000, guid: 0858c102f24ad3a48b80d507b5807b4d, type: 2}
   - {fileID: 11400000, guid: 8262d71984cb6d5458f58f23092f0fc9, type: 2}
+  - {fileID: 11400000, guid: c8626eaaea3e4dd46af25de239bde580, type: 2}
   _items:
   - {fileID: 11400000, guid: d168ba6c9028c804d9ffefe4c1ec73db, type: 2}
   - {fileID: 11400000, guid: 38607ef3b4f273c4cbff5d30b1a16cd3, type: 2}
-  _statusEffects: []
+  _statusEffects:
+  - {fileID: 11400000, guid: a829b295d78db63498d20de271588c22, type: 2}
   _baseWeapon: {fileID: 11400000, guid: 5e11bfc90a9f49148b5a11e64c92969d, type: 2}
   _baseArmor: {fileID: 11400000, guid: 94fd4053e9861cc4fb9ec8897e733740, type: 2}
-  _startingBalance: 1000
+  _startingBalance: 100

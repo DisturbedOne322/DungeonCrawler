@@ -15,11 +15,11 @@ namespace UI.InventoryDisplay.StatusEffects
         
         protected override void BuildItems(List<MenuItemData> target)
         {
-            var statusEffectsHeld = Player.UnitHeldStatusEffectsData.All;
+            var statusEffectsHeld = Player.UnitHeldStatusEffectsContainer.All;
             
             foreach (var data in statusEffectsHeld)
             {
-                var item = new StatusEffectMenuItemData(data, () => true, () => { });
+                var item = new StatusEffectMenuItemData(data.Effect, () => true, () => { });
                 target.Add(item);
             }
         }

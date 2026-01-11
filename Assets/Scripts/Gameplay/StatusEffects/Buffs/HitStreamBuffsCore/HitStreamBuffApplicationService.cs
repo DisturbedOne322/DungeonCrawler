@@ -40,7 +40,7 @@ namespace Gameplay.StatusEffects.Buffs.HitStreamBuffsCore
             HitDataStream hitDataStream,
             Func<HitStreamBuffPriorityType, bool> filter)
         {
-            var buffs = attacker.UnitActiveStatusEffectsData.ActiveHitStreamBuffs;
+            var buffs = attacker.UnitActiveStatusEffectsContainer.ActiveHitStreamBuffs;
             if (buffs.Count == 0)
                 return;
 

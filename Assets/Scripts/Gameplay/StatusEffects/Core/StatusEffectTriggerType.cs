@@ -3,6 +3,7 @@ namespace Gameplay.StatusEffects.Core
     public enum StatusEffectTriggerType
     {
         //universal conditions
+        Manual,
         OnObtained,
 
         OnCombatStart,

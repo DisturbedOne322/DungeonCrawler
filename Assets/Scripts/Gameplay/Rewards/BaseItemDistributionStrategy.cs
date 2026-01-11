@@ -4,6 +4,7 @@ using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
 using Gameplay.Skills.Core;
+using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using UnityEngine;
@@ -14,11 +15,13 @@ namespace Gameplay.Rewards
     {
         protected readonly PlayerUnit Player;
         private readonly GameplayConfigsProvider _configsProvider;
+        private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
-        public BaseItemDistributionStrategy(PlayerUnit player, GameplayConfigsProvider configsProvider)
+        public BaseItemDistributionStrategy(PlayerUnit player, GameplayConfigsProvider configsProvider, StatusEffectsProcessor statusEffectsProcessor)
         {
             Player = player;
             _configsProvider = configsProvider;
+            _statusEffectsProcessor = statusEffectsProcessor;
         }
         
         public async UniTask DistributeItem(BaseGameItem item, int amount)
@@ -62,15 +65,15 @@ namespace Gameplay.Rewards
         protected abstract UniTask HandleArmor(BaseArmor armor);
         protected abstract UniTask HandleSkill(BaseSkill skill);
 
-        protected virtual UniTask HandleConsumable(BaseConsumable consumable, int amount)
+        private UniTask HandleConsumable(BaseConsumable consumable, int amount)
         {
             Player.UnitInventoryData.AddItems(consumable, amount);
             return UniTask.CompletedTask;
         }
 
-        protected virtual UniTask HandleStatusEffect(BaseStatusEffectData statusEffect)
+        private UniTask HandleStatusEffect(BaseStatusEffectData statusEffect)
         {
-            Player.UnitHeldStatusEffectsData.Add(statusEffect);
+            _statusEffectsProcessor.AddStatusEffectTo(Player, statusEffect, statusEffect);
             return UniTask.CompletedTask;
         }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TwoTurnDuration
   m_EditorClassIdentifier: 
   _effectExpirationType: 4
-  _turnDurations: 2
+  _duration: 2

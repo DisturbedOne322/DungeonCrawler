@@ -1,5 +1,4 @@
 using System;
-using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Cysharp.Threading.Tasks;
 using Data;
@@ -7,11 +6,8 @@ using Gameplay.Combat;
 using Gameplay.Configs;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.Rooms;
-using Gameplay.Dungeon.RoomVariants;
 using Gameplay.StatusEffects.Buffs.Services;
-using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
-using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -93,6 +89,7 @@ namespace Gameplay.Player
                     SetPositionIndex(index);
                     
                     _unitRegenerationService.RegeneratePlayerOutOfBattle();
+                    _statusEffectsProcessor.ProcessDepthIncrease();
                 }, isLast);
             }
 

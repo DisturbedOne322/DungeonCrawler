@@ -15,22 +15,22 @@ namespace Gameplay.StatusEffects.Buffs.Services
     {
         private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEvents;
+        private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
         private readonly CompositeDisposable _disposables = new();
         private readonly PlayerUnit _playerUnit;
-        private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
         [Inject]
         public CombatStatusEffectsApplicationService(
             PlayerUnit playerUnit,
-            StatusEffectsProcessor statusEffectsProcessor,
             CombatEventsBus combatEvents,
-            CombatData combatData)
+            CombatData combatData,
+            StatusEffectsProcessor statusEffectsProcessor)
         {
             _playerUnit = playerUnit;
-            _statusEffectsProcessor = statusEffectsProcessor;
             _combatEvents = combatEvents;
             _combatData = combatData;
+            _statusEffectsProcessor = statusEffectsProcessor;
         }
 
         public void Dispose()

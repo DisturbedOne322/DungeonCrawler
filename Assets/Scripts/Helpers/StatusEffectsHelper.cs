@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Gameplay;
 using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.ReapplyStrategies;
+using UnityEngine;
 
 namespace Helpers
 {
@@ -78,5 +80,34 @@ namespace Helpers
                 StatusEffectExpirationType.NextMagicalAction or
                 StatusEffectExpirationType.NextPhysicalAction;
         }
+        
+        public static bool SameSource(BaseStatusEffectInstance instance, BaseGameItem source)
+        {
+            var context = instance.Context;
+            return context.Source == source;
+        }
+
+        public static bool IsTriggeredOnObtain(BaseStatusEffectData data)
+        {
+            return data.TriggerType == StatusEffectTriggerType.OnObtained;
+        }
+        
+        public static bool IsClearableStatusEffect(BaseStatusEffectInstance instance)
+        {
+            return GetExpirationType(instance) is not (StatusEffectExpirationType.Permanent or StatusEffectExpirationType.DepthIncrease);
+        }
+
+        public static bool IsTurnBased(BaseStatusEffectInstance instance)
+        {
+            return GetExpirationType(instance) is StatusEffectExpirationType.TurnCount;
+        }
+
+        public static bool IsDepthBased(BaseStatusEffectInstance instance)
+        {
+            return GetExpirationType(instance) is StatusEffectExpirationType.DepthIncrease;
+        }
+        
+        private static StatusEffectExpirationType GetExpirationType(BaseStatusEffectInstance instance) => 
+            instance.EffectExpirationType;
     }
 }

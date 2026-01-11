@@ -31,10 +31,10 @@ namespace UI.Gameplay.StatusEffects
             _statusEffectDisplayPool = new BasePool<StatusEffectDisplay>(factory);
             _statusEffectDisplayPool.Initialize(_statusEffectDisplay);
 
-            playerUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects.ObserveAdd()
+            playerUnit.UnitActiveStatusEffectsContainer.All.ObserveAdd()
                 .Subscribe(e => { AddStatusEffectDisplay(e.Value); }).AddTo(_subscription);
 
-            playerUnit.UnitActiveStatusEffectsData.AllActiveStatusEffects.ObserveRemove()
+            playerUnit.UnitActiveStatusEffectsContainer.All.ObserveRemove()
                 .Subscribe(e => { RemoveStatusEffectDisplay(e.Value); }).AddTo(_subscription);
         }
 

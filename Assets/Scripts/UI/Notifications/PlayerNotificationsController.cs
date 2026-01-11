@@ -48,7 +48,7 @@ namespace UI.Notifications
             Subscribe(_player.UnitSkillsData.Skills.ObserveAdd(), EnqueueSkillNotification);
             Subscribe(_player.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
             Subscribe(_player.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
-            Subscribe(_player.UnitHeldStatusEffectsData.All.ObserveAdd(), EnqueueStatusEffectNotification);
+            Subscribe(_player.UnitHeldStatusEffectsContainer.All.ObserveAdd(), EnqueueStatusEffectNotification);
             Subscribe(_skillSlotsManager.OnSkillSlotsAdded, EnqueueSkillSlotNotification);
             SubscribeConsumables(_player);
         }
@@ -88,10 +88,10 @@ namespace UI.Notifications
             );
         }
 
-        private void EnqueueStatusEffectNotification(CollectionAddEvent<BaseStatusEffectData> @event)
+        private void EnqueueStatusEffectNotification(CollectionAddEvent<HeldStatusEffectData> @event)
         {
             EnqueueNotification(new NotificationData(
-                () => _gameItemNotificationDisplay.SetData(@event.Value),
+                () => _gameItemNotificationDisplay.SetData(@event.Value.Effect),
                 _gameItemNotificationDisplay.Show)
             );
         }

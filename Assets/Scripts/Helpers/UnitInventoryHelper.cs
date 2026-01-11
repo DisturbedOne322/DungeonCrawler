@@ -49,12 +49,12 @@ namespace Helpers
 
         private static bool HasStatusEffect(IGameUnit unit, BaseGameItem searchedStatusEffect)
         {
-            var unitStatusEffects = unit.UnitHeldStatusEffectsData.All;
+            var unitStatusEffects = unit.UnitHeldStatusEffectsContainer.All;
 
             for (var i = unitStatusEffects.Count - 1; i >= 0; i--)
             {
-                var statusEffect = unitStatusEffects[i];
-                if (searchedStatusEffect == statusEffect)
+                var heldEffect = unitStatusEffects[i];
+                if (searchedStatusEffect == heldEffect.Effect)
                     return true;
             }
 
