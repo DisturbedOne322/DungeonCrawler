@@ -34,9 +34,9 @@ namespace Gameplay.Player
 
         private void SubscribeMovementActions()
         {
-            _inputActions.Movement.GoLeft.performed += ctx => OnGoLeft.OnNext(Unit.Default);
-            _inputActions.Movement.GoForward.performed += ctx => OnGoForward.OnNext(Unit.Default);
-            _inputActions.Movement.GoRight.performed += ctx => OnGoRight.OnNext(Unit.Default);
+            _inputActions.Movement.GoLeft.performed += _ => OnGoLeft.OnNext(Unit.Default);
+            _inputActions.Movement.GoForward.performed += _ => OnGoForward.OnNext(Unit.Default);
+            _inputActions.Movement.GoRight.performed += _ => OnGoRight.OnNext(Unit.Default);
         }
 
         private void SubscribeUiActions()
@@ -96,11 +96,19 @@ namespace Gameplay.Player
                 _uiInputHandlers.Pop();
             else
                 Debug.LogWarning("Tried to pop non-top UI handler (possible mismatched calls)");
-
+            
             if (_uiInputHandlers.Count == 0)
                 _inputActions.UI.Disable();
         }
 
+        public void TrimInputStackTo(IUiInputHandler target)
+        {
+            while (_uiInputHandlers.Count > 0 && _uiInputHandlers.Peek() != target) 
+                _uiInputHandlers.Pop();
+            
+            RemoveUiInputOwner(target);
+        }
+        
         private IUiInputHandler GetActiveUiOwner()
         {
             return _uiInputHandlers.PeekOrNull();

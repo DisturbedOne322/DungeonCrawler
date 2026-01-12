@@ -1,4 +1,3 @@
-using Animations;
 using UI.Core;
 using UI.InventoryDisplay;
 using UI.Navigation;
@@ -18,6 +17,7 @@ namespace UI.Popups
         private void Construct(VerticalUiNavigator uiNavigator)
         {
             _uiNavigator = uiNavigator;
+            _uiNavigator.TakeControl();
         }
 
         private void Start()
@@ -30,7 +30,6 @@ namespace UI.Popups
                 var page = _pages[i];
                 
                 _uiNavigator.AddMenuItem(item, () => _pages[index].Select());
-
                 page.OnBack += () => page.Deselect();
             }
         }

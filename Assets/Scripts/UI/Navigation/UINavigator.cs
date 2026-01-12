@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Gameplay.Player;
 using UI.Menus.Data;
+using UniRx;
 
 namespace UI.Navigation
 {
@@ -13,11 +14,8 @@ namespace UI.Navigation
         private int _prevIndex;
         private int _selectedIndex;
 
-        public UINavigator(PlayerInputProvider playerInputProvider)
-        {
+        public UINavigator(PlayerInputProvider playerInputProvider) => 
             _playerInputProvider = playerInputProvider;
-            TakeControl();
-        }
 
         public override void OnUISubmit()
         {
@@ -32,10 +30,12 @@ namespace UI.Navigation
             if (_menuItemsData.Count == 1)
                 data.IsHighlighted.Value = true;
         }
-        
-        public void TakeControl() => _playerInputProvider.AddUiInputOwner(this);
- 
-        public void RemoveControl() =>  _playerInputProvider.RemoveUiInputOwner(this);
+
+        public void BindToObservable(IObservable<Unit> until)
+        {
+            TakeControl();
+            until.Subscribe(_ => RemoveControl());
+        }
 
         protected void UpdateSelection(int increment)
         {
@@ -58,5 +58,9 @@ namespace UI.Navigation
 
             return nextIndex;
         }
+        
+        public void TakeControl() => _playerInputProvider.AddUiInputOwner(this);
+ 
+        public void RemoveControl() =>  _playerInputProvider.RemoveUiInputOwner(this);
     }
 }

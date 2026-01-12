@@ -1,6 +1,8 @@
 using System;
 using Attributes;
+using Data;
 using Gameplay;
+using Gameplay.Player;
 using UI.Core;
 using UI.Navigation;
 using UnityEngine;
@@ -20,19 +22,12 @@ namespace UI.Gameplay.Experience
         public event Action OnChangePressed;
 
         [Inject]
-        private void Construct(HorizontalUINavigator uiNavigator)
+        private void Construct(HorizontalUINavigator uiNavigator, PlayerInputProvider playerInputProvider, GameplayData gameplayData)
         {
-            uiNavigator.AddMenuItem(_keepMenuItem, () =>
-            {
-                uiNavigator.RemoveControl();
-                OnKeepPressed?.Invoke();
-            });
+            uiNavigator.BindToObservable(OnCloseCalled);
             
-            uiNavigator.AddMenuItem(_changeMenuItem, () =>
-            {
-                uiNavigator.RemoveControl();
-                OnChangePressed?.Invoke();
-            });
+            uiNavigator.AddMenuItem(_keepMenuItem, () => OnKeepPressed?.Invoke());
+            uiNavigator.AddMenuItem(_changeMenuItem, () => OnChangePressed?.Invoke());
         }
 
         public void SetData(BaseGameItem oldItem, BaseGameItem newItem)

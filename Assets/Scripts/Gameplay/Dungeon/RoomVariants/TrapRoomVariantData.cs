@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Data;
-using Gameplay.Dungeon.Rooms;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants

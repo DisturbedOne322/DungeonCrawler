@@ -111,12 +111,6 @@ namespace Gameplay.StatusEffects.Buffs.Services
             
             _statusEffectsProcessor.EnableStatusEffectsOnTrigger(skillCastedData.Target, skillCastedData.Attacker,
                 StatusEffectTriggerType.OnOtherSkillCasted);
-
-            if (skillCastedData.HitDataStream.ConsumeStance)
-            {
-                var expirationType = StatusEffectsHelper.GetExpirationForDamageType(skillCastedData.HitDataStream.DamageType);
-                _statusEffectsProcessor.RemoveStatusEffectsOnAction(skillCastedData.Attacker, expirationType);
-            }
         }
         
         private void ProcessSkillUsed(SkillUsedData skillUsedData)

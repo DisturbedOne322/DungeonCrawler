@@ -1,6 +1,7 @@
 using System;
 using Attributes;
 using Data.UI;
+using Gameplay.Player;
 using TMPro;
 using UI.Core;
 using UI.Navigation;
@@ -19,19 +20,11 @@ namespace UI.Popups
         public event Action<ConfirmChoice> OnDecisionMade;
 
         [Inject]
-        private void Construct(HorizontalUINavigator uiNavigator)
+        private void Construct(HorizontalUINavigator uiNavigator, PlayerInputProvider playerInputProvider)
         {
-            uiNavigator.AddMenuItem(_noItem, () =>
-            {
-                OnDecisionMade?.Invoke(ConfirmChoice.Deny);
-                uiNavigator.RemoveControl();
-            });
-            
-            uiNavigator.AddMenuItem(_yesItem, () =>
-            {
-                OnDecisionMade?.Invoke(ConfirmChoice.Accept);
-                uiNavigator.RemoveControl();
-            });
+            uiNavigator.BindToObservable(OnCloseCalled);
+            uiNavigator.AddMenuItem(_noItem, () => OnDecisionMade?.Invoke(ConfirmChoice.Deny));
+            uiNavigator.AddMenuItem(_yesItem, () => OnDecisionMade?.Invoke(ConfirmChoice.Accept));
         }
 
         public void SetMessage(string message)
