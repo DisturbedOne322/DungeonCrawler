@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Gameplay.Rewards
 {
-    [CreateAssetMenu(menuName = "Gameplay/Rewards/Luck Table")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayRewards + "Luck Table")]
     public class LuckTableConfig : GameplayConfig
     {
         [SerializeField] private SerializedDictionary<ItemRarity, int> _minLuckWeights;

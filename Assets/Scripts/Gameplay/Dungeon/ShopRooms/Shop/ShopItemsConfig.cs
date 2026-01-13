@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Data.Constants;
 using Gameplay.Consumables;
 using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using Gameplay.Equipment;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.ShopRooms.Shop
 {
-    [CreateAssetMenu(fileName = "ShopItemsConfig", menuName = "Gameplay/Shop/Shop Items Config")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayShop + "Shop Items Config")]
     public class ShopItemsConfig : ScriptableObject
     {
         [SerializeField] private List<PurchasableItemData<BaseConsumable>> _consumableItems;

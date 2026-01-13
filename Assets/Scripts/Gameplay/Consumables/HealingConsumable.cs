@@ -1,10 +1,11 @@
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 using Gameplay.Combat.Services;
 using UnityEngine;
 
 namespace Gameplay.Consumables
 {
-    [CreateAssetMenu(fileName = "HealingItem", menuName = "Gameplay/Items/HealingItem")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayItems + "HealingItem")]
     public class HealingConsumable : BaseConsumable
     {
         [SerializeField] [Space] private int _healAmount;

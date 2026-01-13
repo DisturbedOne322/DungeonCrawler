@@ -1,9 +1,10 @@
+using Data.Constants;
 using Gameplay.Skills.Core;
 using UnityEngine;
 
 namespace Gameplay.Skills.OffensiveSkills
 {
-    [CreateAssetMenu(fileName = "BaseOffensiveSkill", menuName = "Gameplay/Skills/BaseOffensiveSkill")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplaySkills + "BaseOffensiveSkill")]
     public class BaseAttackSkill : OffensiveSkill
     {
     }

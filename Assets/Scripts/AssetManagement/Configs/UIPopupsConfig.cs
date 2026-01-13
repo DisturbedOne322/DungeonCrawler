@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Data.Constants;
 using UI.Core;
 using UnityEngine;
 
 namespace AssetManagement.Configs
 {
-    [CreateAssetMenu(fileName = "UIPopupsConfig", menuName = "Visuals/UI/PopupsConfig")]
+    [CreateAssetMenu(menuName = MenuPaths.VisualsUI + "PopupsConfig")]
     public class UIPopupsConfig : BaseConfig
     {
         [SerializeField] private List<BasePopup> _prefabs;

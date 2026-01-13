@@ -1,10 +1,11 @@
+using Data.Constants;
 using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Buffs.HitBuffsCore;
 using UnityEngine;
 
 namespace Gameplay.StatusEffects.Buffs.OffensiveBuffs
 {
-    [CreateAssetMenu(fileName = "FlatAttackBuff", menuName = "Gameplay/Buffs/OffensiveBuffs/FlatAttackBuff")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayOffensiveBuffs + "FlatAttackBuff")]
     public class FlatAttackBuff : HitBuffData
     {
         [SerializeField] private int _damageIncrease;

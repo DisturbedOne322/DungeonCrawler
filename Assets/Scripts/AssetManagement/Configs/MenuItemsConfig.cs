@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Data.Constants;
 using UI.BattleMenu;
 using UI.Menus.MenuItemViews;
 using UnityEngine;
 
 namespace AssetManagement.Configs
 {
-    [CreateAssetMenu(fileName = "UIMenuItemsConfig", menuName = "Visuals/UI/UIMenuItemsConfig")]
+    [CreateAssetMenu(menuName = MenuPaths.VisualsUI + "UIMenuItemsConfig")]
     public class MenuItemsConfig : BaseConfig
     {
         [SerializeField] private List<BaseMenuItemView> _prefabs;

@@ -1,8 +1,9 @@
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Configs
 {
-    [CreateAssetMenu(menuName = "Gameplay/Configs/PlayerLevelUpBuffsConfig")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayConfigs + "PlayerLevelUpBuffsConfig")]
     public class PlayerLevelUpBuffsConfig : GameplayConfig
     {
         [SerializeField] [Min(0)] private int _healthBonus;

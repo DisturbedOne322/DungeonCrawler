@@ -1,9 +1,10 @@
 using Data;
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(fileName = "DecisionRoomVariantData", menuName = "Gameplay/Dungeon/Data/DecisionRoomVariantData")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "DecisionRoomVariantData")]
     public class DecisionRoomVariantData : RoomVariantData
     {
         public override RoomType RoomType => RoomType.Decision;

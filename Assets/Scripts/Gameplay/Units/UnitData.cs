@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Attributes;
+using Data.Constants;
 using Gameplay.Consumables;
 using Gameplay.Equipment.Armor;
 using Gameplay.Equipment.Weapons;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace Gameplay.Units
 {
-    [CreateAssetMenu(fileName = "UnitData", menuName = "Gameplay/Units/UnitData")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayUnits + "UnitData")]
     public class UnitData : ScriptableObject
     {
         [SerializeField] private string _name;

@@ -1,8 +1,9 @@
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Combat
 {
-    [CreateAssetMenu(fileName = "SkillAnimationData", menuName = "Gameplay/Animations/Skills/SkillAnimationData")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplaySkillAnimations + "SkillAnimationData")]
     public class SkillAnimationData : ScriptableObject
     {
         [SerializeField] private AnimationClip _fpvAnimationClip;

@@ -1,12 +1,12 @@
 using System;
 using AYellowpaper.SerializedCollections;
 using Data;
+using Data.Constants;
 using UnityEngine;
 
 namespace AssetManagement.Configs
 {
-    [CreateAssetMenu(fileName = "DungeonVisualsDatabaseConfig",
-        menuName = "Visuals/Dungeon/DungeonVisualsDatabaseConfig")]
+    [CreateAssetMenu(menuName = MenuPaths.VisualsDungeon + "DungeonVisualsDatabaseConfig")]
     public class DungeonVisualsConfig : BaseConfig
     {
         [SerializedDictionary("ROOM TYPE", "ROOM ICON")] [SerializeField]

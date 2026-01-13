@@ -1,8 +1,9 @@
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Equipment.Weapons
 {
-    [CreateAssetMenu(fileName = "WeaponSo", menuName = "Gameplay/Equipment/Weapons/WeaponSo")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayWeapon + "WeaponSo")]
     public class WeaponSo : BaseWeapon
     {
     }

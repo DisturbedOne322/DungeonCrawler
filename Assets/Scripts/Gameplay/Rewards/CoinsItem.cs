@@ -1,8 +1,9 @@
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Rewards
 {
-    [CreateAssetMenu(menuName = "Gameplay/Items/CoinsItem")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayItems + "CoinsItem")]
     public class CoinsItem : BaseGameItem
     {
         [SerializeField] [Min(1)] private int _minAmount = 50;

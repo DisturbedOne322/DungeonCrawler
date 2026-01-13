@@ -1,11 +1,12 @@
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 using Gameplay.Combat.Services;
 using Gameplay.Skills.Core;
 using UnityEngine;
 
 namespace Gameplay.Skills.OffensiveBuffs
 {
-    [CreateAssetMenu(fileName = "OffensiveBuffSkill", menuName = "Gameplay/Skills/Buffs/OffensiveBuffSkill")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplaySkillBuffs + "OffensiveBuffSkill")]
     public class OffensiveBuffSkill : BaseOffensiveBuffSkill
     {
         protected override UniTask PerformAction(CombatService combatService)

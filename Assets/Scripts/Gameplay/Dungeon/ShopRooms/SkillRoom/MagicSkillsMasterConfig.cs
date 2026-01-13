@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Data.Constants;
 using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using Gameplay.Skills.Core;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.ShopRooms.SkillRoom
 {
-    [CreateAssetMenu(fileName = "MagicSkillsMasterConfig", menuName = "Gameplay/Shop/Magic Skills Master Config")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayShop + "Magic Skills Master Config")]
     public class MagicSkillsMasterConfig : BasePurchasableItemsConfig
     {
         [SerializeField] private List<PurchasableItemData<BaseSkill>> _skillsForSale;

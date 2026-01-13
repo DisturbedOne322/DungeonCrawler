@@ -1,8 +1,9 @@
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Units
 {
-    [CreateAssetMenu(fileName = "EnemyUnitData", menuName = "Gameplay/Units/EnemyUnitData")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayUnits + "EnemyUnitData")]
     public class EnemyUnitData : UnitData
     {
         [SerializeField] private int _experienceBonus;

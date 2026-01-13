@@ -1,11 +1,12 @@
 using Data;
+using Data.Constants;
 using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using Gameplay.Dungeon.ShopRooms.SkillRoom;
 using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(fileName = "MagicMasterRoomVariantData", menuName = "Gameplay/Dungeon/Data/MagicMasterRoomVariantData")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "MagicMasterRoomVariantData")]
     public class MagicMasterRoomVariantData : BaseSpecialtyShopRoomVariantData
     {
         [SerializeField] private MagicSkillsMasterConfig _config;

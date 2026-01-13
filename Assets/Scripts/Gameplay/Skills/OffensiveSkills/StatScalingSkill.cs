@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Data.Constants;
 using Gameplay.Combat.Data;
 using Gameplay.Facades;
 using Gameplay.Skills.Core;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Gameplay.Skills.OffensiveSkills
 {
-    [CreateAssetMenu(fileName = "StatScalingSkill", menuName = "Gameplay/Skills/StatScalingSkill")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplaySkills + "StatScalingSkill")]
     public class StatScalingSkill : OffensiveSkill
     {
         [SerializeField] private List<SkillScalingData> _scalingsList;

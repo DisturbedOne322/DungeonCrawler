@@ -1,8 +1,9 @@
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.StatusEffects.Core
 {
-    [CreateAssetMenu(fileName = "BuffDurationData", menuName = "Gameplay/Buffs/DurationType")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayBuffs + "DurationType")]
     public class StatusEffectDurationData : ScriptableObject
     {
         [SerializeField] private StatusEffectExpirationType _effectExpirationType;

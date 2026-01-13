@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Configs
 {
-    [CreateAssetMenu(menuName = "Gameplay/Configs/PlayerExperienceRequirementsConfig")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayConfigs + "PlayerExperienceRequirementsConfig")]
     public class PlayerExperienceRequirementsConfig : GameplayConfig
     {
         [SerializeField] private List<int> _levelRequirements = new();

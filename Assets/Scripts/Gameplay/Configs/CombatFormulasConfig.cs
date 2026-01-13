@@ -1,8 +1,9 @@
+using Data.Constants;
 using UnityEngine;
 
 namespace Gameplay.Configs
 {
-    [CreateAssetMenu(menuName = "Gameplay/Configs/CombatFormulasConfig")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayConfigs + "CombatFormulasConfig")]
     public class CombatFormulasConfig : GameplayConfig
     {
         [Header("Hit Chance")] [Min(0)] public float AttackerDexterityInfluence = 1;
