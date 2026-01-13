@@ -3,6 +3,7 @@ using System.Linq;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Data;
 using Gameplay.Dungeon.RoomVariants;
+using Helpers;
 
 namespace Gameplay.Dungeon
 {
@@ -39,13 +40,7 @@ namespace Gameplay.Dungeon
             return selection;
         }
 
-        public RoomVariantData GetDecisionRoomData() =>GetRoomData(RoomType.Decision);
-        
-        public RoomVariantData GetCorridorRoomData() => GetRoomData(RoomType.Corridor);
-
-        public TrapRoomVariantData GetTrapRoomData() => GetRoomData(RoomType.Trap) as TrapRoomVariantData;
-
-        private RoomVariantData GetRoomData(RoomType roomType)
+        public RoomVariantData GetRoomData(RoomType roomType)
         {
             int currentDepth = _playerMovementHistory.Depth;
             
@@ -55,7 +50,7 @@ namespace Gameplay.Dungeon
                 if (IsValidDepth(roomData, currentDepth))
                     return roomData;
             
-            throw new KeyNotFoundException($"No acceptable room data found for type {roomType}");
+            return null;
         }
 
         private void MapRoomVariantsToTypes()
@@ -73,7 +68,10 @@ namespace Gameplay.Dungeon
 
         private bool IsValidRoomForSelection(RoomVariantData roomData, int depth)
         {
-            if(!IsValidRoomTypeForSelection(roomData.RoomType))
+            if(!roomData)
+                return false;
+            
+            if(!RoomTypeHelper.IsRoomValidForSelection(roomData.RoomType))
                 return false;
             
             return IsValidDepth(roomData, depth);
@@ -88,11 +86,6 @@ namespace Gameplay.Dungeon
                 return false;
             
             return true;
-        }
-
-        private bool IsValidRoomTypeForSelection(RoomType roomType)
-        {
-            return roomType is not (RoomType.Corridor or RoomType.Decision or RoomType.Trap);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Installers.GameInstallers
             Container.Bind<DungeonPositioner>().AsSingle();
             Container.Bind<DungeonLayoutProvider>().AsSingle();
             Container.Bind<DungeonRoomsProvider>().AsSingle();
+            Container.Bind<EncounterRoomSelector>().AsSingle();
             Container.BindInterfacesAndSelfTo<DungeonRoomsPool>().AsSingle();
             Container.BindInterfacesAndSelfTo<DungeonFactory>().AsSingle();
         }

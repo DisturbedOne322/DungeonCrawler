@@ -77,7 +77,7 @@ namespace Editor
                 case RoomType.PhysicalMaster: variantType = typeof(PhysicalMasterRoomVariantData); break;
                 case RoomType.MagicMaster: variantType = typeof(MagicMasterRoomVariantData); break;
                 case RoomType.Trap: variantType = typeof(TrapRoomVariantData); break;
-                case RoomType.RandomEncounter:  variantType = typeof(RandomEncounterRoomVariantData); break;
+                case RoomType.EncounterBattle:  variantType = typeof(EncounterBattleRoomVariantData); break;
             }
 
             string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{folderPath}/{_roomType}Variant.asset");

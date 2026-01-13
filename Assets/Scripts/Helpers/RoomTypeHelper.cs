@@ -20,7 +20,33 @@ namespace Helpers
             {RoomType.PhysicalMaster, typeof(PhysicalMasterRoom)},
             {RoomType.MagicMaster, typeof(MagicMasterRoom)},
             {RoomType.Trap, typeof(TrapRoom)},
-            {RoomType.RandomEncounter, typeof(RandomEncounterRoom)},
+            {RoomType.EncounterBattle, typeof(EncounterBattleRoom)},
+        };
+
+        public static bool IsRoomValidForSelection(RoomType roomType)
+        {
+            if(EncounterRoomTypes.Contains(roomType))
+                return false;
+            
+            if (SpecialRoomTypes.Contains(roomType))
+                return false;
+            
+            if(roomType is RoomType.Corridor)
+                return false;
+
+            return true;
+        }
+        
+        public static readonly List<RoomType> EncounterRoomTypes = new()
+        {
+            RoomType.Trap,
+            RoomType.EncounterBattle,
+        };
+
+        public static readonly List<RoomType> SpecialRoomTypes = new()
+        {
+            RoomType.BossFight,
+            RoomType.Decision
         };
         
         public static Type GetExpectedType(RoomType roomType) => _typeDict[roomType];

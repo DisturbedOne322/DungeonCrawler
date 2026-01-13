@@ -13,6 +13,6 @@ namespace Data
         PhysicalMaster,
         MagicMaster,
         Trap,
-        RandomEncounter,
+        EncounterBattle,
     }
 }

@@ -26,7 +26,7 @@ namespace Editor
             { RoomType.PhysicalMaster, new Color(0.6f, 0.3f, 1f) },
             { RoomType.MagicMaster, new Color(1f, 0.3f, 1f) },
             { RoomType.Trap, new Color(0.8f, 0.8f, 0.4f) },
-            { RoomType.RandomEncounter, new Color(0.65f, 1f, 0.5f) },
+            { RoomType.EncounterBattle, new Color(0.65f, 1f, 0.5f) },
         };
 
         [MenuItem("Tools/Dungeon Rooms Visualizer")]

@@ -1,3 +1,4 @@
+using Data;
 using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Services;
 using UnityEngine;
@@ -8,22 +9,22 @@ namespace Gameplay.Dungeon
     {
         private const int MinCorridorLength = 3;
         private const int MaxCorridorLength = 8;
-        private const int MinTrapIndex = 1;
-        private const int TrapMaxIndexOffset = -1;
         
         private readonly DungeonFactory _dungeonFactory;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly DungeonPositioner _dungeonPositioner;
         private readonly DungeonRoomsProvider _dungeonRoomsProvider;
+        private readonly EncounterRoomSelector _encounterRoomSelector;
 
         private DungeonGenerator(DungeonLayoutProvider dungeonLayoutProvider,
             DungeonFactory dungeonFactory, DungeonPositioner dungeonPositioner,
-            DungeonRoomsProvider dungeonRoomsProvider)
+            DungeonRoomsProvider dungeonRoomsProvider, EncounterRoomSelector encounterRoomSelector)
         {
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _dungeonFactory = dungeonFactory;
             _dungeonPositioner = dungeonPositioner;
             _dungeonRoomsProvider = dungeonRoomsProvider;
+            _encounterRoomSelector = encounterRoomSelector;
         }
 
         public void CreateFirstMapSection()
@@ -41,27 +42,22 @@ namespace Gameplay.Dungeon
 
         private void CreateCorridors()
         {
-            var trapRoomDate = _dungeonRoomsProvider.GetTrapRoomData();
-            bool spawnTrap = Random.value <= trapRoomDate.TrapChance;
-            
             int roomsToSpawn = Random.Range(MinCorridorLength, MaxCorridorLength);
-            
-            int trapIndex = Random.Range(MinTrapIndex, roomsToSpawn + TrapMaxIndexOffset);
-            
-            for (var i = 0; i < roomsToSpawn; i++)
+
+            var specialRoom = _encounterRoomSelector.SelectSpecialRoomData(roomsToSpawn);
+
+            for (int i = 0; i < roomsToSpawn; i++)
             {
-                if (trapIndex == i && spawnTrap)
-                    CreateTrapRoom();
+                if (specialRoom.HasValue && specialRoom.Value.Index == i)
+                    CreateRoom(specialRoom.Value.RoomData);
                 else
                     CreateCorridor();
             }
         }
 
-        private void CreateDecisionRoom() => CreateRoom(_dungeonRoomsProvider.GetDecisionRoomData());
+        private void CreateDecisionRoom() => CreateRoom(_dungeonRoomsProvider.GetRoomData(RoomType.Decision));
 
-        private void CreateCorridor() => CreateRoom(_dungeonRoomsProvider.GetCorridorRoomData());
-
-        private void CreateTrapRoom() => CreateRoom(_dungeonRoomsProvider.GetTrapRoomData());
+        private void CreateCorridor() => CreateRoom(_dungeonRoomsProvider.GetRoomData(RoomType.Corridor));
 
         private void CreateRoom(RoomVariantData roomData)
         {
