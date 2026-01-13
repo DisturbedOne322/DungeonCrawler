@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DungeonRoomsDatabase
   m_EditorClassIdentifier: 
   _rooms:
-  - {fileID: 11400000, guid: b1eaefe50a2ddf348b5cdfac0fe427e0, type: 2}
+  - {fileID: 11400000, guid: 4fd464c8631a5194b9c62c0ee5084f0b, type: 2}
   - {fileID: 11400000, guid: 54031d739193b1b42928a54495b76e5f, type: 2}
   - {fileID: 11400000, guid: 88ab763baf29e71498f93cd8dd5e02eb, type: 2}
   - {fileID: 11400000, guid: b2044036d91afe8478327a4a2e2ee45f, type: 2}

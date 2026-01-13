@@ -69,12 +69,15 @@ namespace Editor
                 case RoomType.Corridor: variantType = typeof(CorridorRoomVariantData); break;
                 case RoomType.Decision: variantType = typeof(DecisionRoomVariantData); break;
                 case RoomType.TreasureChest: variantType = typeof(TreasureChestRoomVariantData); break;
-                case RoomType.Combat: variantType = typeof(CombatRoomVariantData); break;
+                case RoomType.BasicFight: variantType = typeof(BasicFightRoomVariantData); break;
+                case RoomType.EliteFight: variantType = typeof(EliteFightRoomVariantData); break;
+                case RoomType.BossFight: variantType = typeof(BossFightRoomVariantData); break;
                 case RoomType.Shop: variantType = typeof(ShopRoomVariantData); break;
                 case RoomType.Shrine: variantType = typeof(ShrineRoomVariantData); break;
                 case RoomType.PhysicalMaster: variantType = typeof(PhysicalMasterRoomVariantData); break;
                 case RoomType.MagicMaster: variantType = typeof(MagicMasterRoomVariantData); break;
                 case RoomType.Trap: variantType = typeof(TrapRoomVariantData); break;
+                case RoomType.RandomEncounter:  variantType = typeof(RandomEncounterRoomVariantData); break;
             }
 
             string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{folderPath}/{_roomType}Variant.asset");
@@ -105,7 +108,6 @@ namespace Editor
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            // Add to database list
             if (_database != null)
             {
                 Undo.RecordObject(_database, "Add new room variant");

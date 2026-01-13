@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Gameplay.Dungeon.Rooms
 {
-    public class CombatRoom : VariantRoom<CombatRoomVariantData>
+    public abstract class BaseCombatRoom<T> : VariantRoom<T> where T : CombatRoomVariantData
     {
         [SerializeField] private Transform _enemySpawnPoint;
 

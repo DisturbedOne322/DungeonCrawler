@@ -18,12 +18,15 @@ namespace Editor
             { RoomType.Corridor, new Color(0.6f, 0.6f, 0.6f) },
             { RoomType.Decision, new Color(0.8f, 0.8f, 0.4f) },
             { RoomType.TreasureChest, new Color(1f, 0.8f, 0.2f) },
-            { RoomType.Combat, new Color(1f, 0.4f, 0.4f) },
+            { RoomType.BasicFight, new Color(1f, 1, 0.4f) },
+            { RoomType.EliteFight, new Color(1f, 0.8f, 0.4f) },
+            { RoomType.BossFight, new Color(1f, 0.4f, 0.4f) },
             { RoomType.Shop, new Color(0.4f, 1f, 0.4f) },
             { RoomType.Shrine, new Color(0.4f, 0.8f, 1f) },
             { RoomType.PhysicalMaster, new Color(0.6f, 0.3f, 1f) },
             { RoomType.MagicMaster, new Color(1f, 0.3f, 1f) },
             { RoomType.Trap, new Color(0.8f, 0.8f, 0.4f) },
+            { RoomType.RandomEncounter, new Color(0.65f, 1f, 0.5f) },
         };
 
         [MenuItem("Tools/Dungeon Rooms Visualizer")]
@@ -95,11 +98,11 @@ namespace Editor
                     Handles.color = Color.black;
                     Handles.DrawAAPolyLine(2f, new Vector3[]
                     {
-                        new Vector3(rect.x, rect.y),
-                        new Vector3(rect.x + rect.width, rect.y),
-                        new Vector3(rect.x + rect.width, rect.y + rect.height),
-                        new Vector3(rect.x, rect.y + rect.height),
-                        new Vector3(rect.x, rect.y)
+                        new (rect.x, rect.y),
+                        new (rect.x + rect.width, rect.y),
+                        new (rect.x + rect.width, rect.y + rect.height),
+                        new (rect.x, rect.y + rect.height),
+                        new (rect.x, rect.y)
                     });
 
                     GUIStyle textStyle = new GUIStyle(EditorStyles.boldLabel)
@@ -139,12 +142,9 @@ namespace Editor
                 GUIStyle labelStyle = new GUIStyle(EditorStyles.boldLabel) { alignment = TextAnchor.MiddleCenter };
                 EditorGUI.LabelField(labelRect, type.ToString(), labelStyle);
 
-                // Create button
                 Rect buttonRect = new Rect(columnRect.x, columnRect.y + graphHeight + 25, columnWidth, 20);
-                if (GUI.Button(buttonRect, "Create " + type + " Variant"))
-                {
+                if (GUI.Button(buttonRect, "Create")) 
                     DungeonRoomVariantCreator.ShowWindow(type, _database);
-                }
 
                 roomTypeIndex++;
             }

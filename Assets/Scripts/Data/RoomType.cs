@@ -5,11 +5,14 @@ namespace Data
         Corridor,
         Decision,
         TreasureChest,
-        Combat,
+        BasicFight,
+        EliteFight,
+        BossFight,
         Shop,
         Shrine,
         PhysicalMaster,
         MagicMaster,
         Trap,
+        RandomEncounter,
     }
 }

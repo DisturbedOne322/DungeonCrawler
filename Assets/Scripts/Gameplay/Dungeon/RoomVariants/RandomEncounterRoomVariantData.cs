@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Gameplay.Dungeon.RoomVariants
 {
     [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "RandomEncounterRoomVariantData")]
-    public class RandomEncounterRoomVariantData : RoomVariantData
+    public class RandomEncounterRoomVariantData : CombatRoomVariantData
     {
-        public override RoomType RoomType { get; }
+        public override RoomType RoomType => RoomType.RandomEncounter;
     }
 }

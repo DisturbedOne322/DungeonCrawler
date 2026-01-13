@@ -12,12 +12,15 @@ namespace Helpers
             {RoomType.Corridor, typeof(CorridorRoom)},
             {RoomType.Decision, typeof(DecisionRoom)},
             {RoomType.TreasureChest, typeof(TreasureChestRoom)},
-            {RoomType.Combat, typeof(CombatRoom)},
+            {RoomType.BasicFight, typeof(BasicFightRoom)},
+            {RoomType.EliteFight, typeof(EliteFightRoom)},
+            {RoomType.BossFight, typeof(BossFightRoom)},
             {RoomType.Shop, typeof(ShopRoom)},
             {RoomType.Shrine, typeof(ShrineRoom)},
             {RoomType.PhysicalMaster, typeof(PhysicalMasterRoom)},
             {RoomType.MagicMaster, typeof(MagicMasterRoom)},
             {RoomType.Trap, typeof(TrapRoom)},
+            {RoomType.RandomEncounter, typeof(RandomEncounterRoom)},
         };
         
         public static Type GetExpectedType(RoomType roomType) => _typeDict[roomType];

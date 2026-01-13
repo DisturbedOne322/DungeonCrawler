@@ -1,5 +1,4 @@
-using AssetManagement.AssetProviders;
-using AssetManagement.AssetProviders.ConfigProviders;
+using System.Collections.Generic;
 using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Services;
 using Gameplay.Units;
@@ -19,7 +18,17 @@ namespace Gameplay.Enemies
         public EnemyUnit CreateEnemy(CombatRoomVariantData roomData)
         {
             var enemySelection = roomData.EnemiesSelection;
+            return SpawnRandomEnemy(enemySelection);
+        }
+        
+        public EnemyUnit CreateEnemy(RandomEncounterRoomVariantData roomData)
+        {
+            var enemySelection = roomData.EnemiesSelection;
+            return SpawnRandomEnemy(enemySelection);
+        }
 
+        private EnemyUnit SpawnRandomEnemy(List<EnemyUnitData> enemySelection)
+        {
             int enemyIndex = Random.Range(0, enemySelection.Count);
             var enemyData = enemySelection[enemyIndex];
             
@@ -28,7 +37,6 @@ namespace Gameplay.Enemies
 
             unit.InitializeUnit(enemyData);
             unit.SetExperienceBonus(enemyData.ExperienceBonus);
-
             return unit;
         }
     }
