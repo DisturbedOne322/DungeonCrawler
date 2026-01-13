@@ -1,3 +1,4 @@
+using Data.Constants;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
@@ -5,9 +6,6 @@ namespace Editor
 {
     public class SceneLauncher
     {
-        private const string BootstrapScenePath = "Assets/Scenes/MainMenuScene.unity";
-        private const string GameplayScenePath = "Assets/Scenes/GameplayScene.unity";
-
         [MenuItem("Play/Play From Bootstrap Scene %#t")]
         public static void PlayFromBootstrapScene()
         {
@@ -19,12 +17,12 @@ namespace Editor
 
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
-                EditorSceneManager.OpenScene(BootstrapScenePath);
+                EditorSceneManager.OpenScene(AssetsPathsHelper.BootstrapScenePath);
                 EditorApplication.isPlaying = true;
             }
         }
 
         [MenuItem("Play/Open Test Scene %#y")]
-        public static void OpenGameplayScene() => EditorSceneManager.OpenScene(GameplayScenePath);
+        public static void OpenGameplayScene() => EditorSceneManager.OpenScene(AssetsPathsHelper.GameplayScenePath);
     }
 }

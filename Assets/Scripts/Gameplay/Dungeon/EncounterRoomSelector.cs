@@ -29,7 +29,7 @@ namespace Gameplay.Dungeon
             
             int index = Random.Range(
                 selected.StartOffset,
-                rooms + selected.EndOffset);
+                rooms - selected.EndOffset);
 
             index = Mathf.Clamp(index, 0, rooms - 1);
 

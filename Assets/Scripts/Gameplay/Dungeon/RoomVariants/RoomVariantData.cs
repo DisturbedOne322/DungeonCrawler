@@ -37,7 +37,7 @@ namespace Gameplay.Dungeon.RoomVariants
                 return;
             }
 
-            var expectedType = RoomTypeHelper.GetExpectedType(RoomType);
+            var expectedType = RoomTypeHelper.GetExpectedRoomType(RoomType);
             
             if (!prefab.TryGetComponent(expectedType, out Component c))
             {

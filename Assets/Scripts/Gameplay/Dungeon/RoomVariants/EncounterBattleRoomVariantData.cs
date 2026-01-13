@@ -4,7 +4,6 @@ using Data.Constants;
 using Gameplay.Dungeon.Rooms;
 using Gameplay.Units;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Gameplay.Dungeon.RoomVariants
 {

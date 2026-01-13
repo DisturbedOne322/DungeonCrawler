@@ -7,8 +7,8 @@ namespace Gameplay.Dungeon.RoomVariants
         [Range(0f, 1f)]
         [SerializeField] private float _rollChance = 1f;
 
-        [SerializeField] private int startOffset = 1;
-        [SerializeField] private int endOffset = -1;
+        [SerializeField, Min(1)] private int startOffset = 1;
+        [SerializeField, Min(1)] private int endOffset = 1;
 
         public float RollChance => _rollChance;
         public int StartOffset => startOffset;

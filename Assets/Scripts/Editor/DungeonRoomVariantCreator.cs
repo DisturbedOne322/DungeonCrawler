@@ -1,8 +1,10 @@
 using System.IO;
 using Data;
+using Data.Constants;
 using Gameplay.Dungeon;
 using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Rewards;
+using Helpers;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +19,7 @@ namespace Editor
 
         private GameObject _prefab;
         private RewardDropTable _rewardDropTable;
-        
+
         private DungeonRoomsDatabase _database;
 
         public static void ShowWindow(RoomType roomType, DungeonRoomsDatabase database)
@@ -35,10 +37,12 @@ namespace Editor
             _minDepth = EditorGUILayout.IntField("Min Depth", _minDepth);
             _maxDepth = EditorGUILayout.IntField("Max Depth", _maxDepth);
             _weight = EditorGUILayout.IntField("Weight", _weight);
-            
+
             _prefab = EditorGUILayout.ObjectField("Prefab", _prefab, typeof(GameObject), false) as GameObject;
-            _rewardDropTable = EditorGUILayout.ObjectField("Reward Drop Table", _rewardDropTable, typeof(RewardDropTable), false) as RewardDropTable;
-            
+            _rewardDropTable =
+                EditorGUILayout.ObjectField("Reward Drop Table", _rewardDropTable, typeof(RewardDropTable), false) as
+                    RewardDropTable;
+
             if (_maxDepth < _minDepth) _maxDepth = _minDepth;
 
             if (GUILayout.Button("Create"))
@@ -55,52 +59,59 @@ namespace Editor
 
         private void CreateVariant()
         {
-            string folderPath = $"Assets/Configs/Dungeon/RoomVariants/{_roomType}";
-            if (!AssetDatabase.IsValidFolder(folderPath))
+            AssetsPathsHelper.EnsureRoomCreationFolders(_roomType);
+
+            if (_prefab == null)
             {
-                Directory.CreateDirectory(folderPath);
-                AssetDatabase.Refresh();
+                Debug.LogError("A base prefab must be assigned to create a room");
+                return;
             }
+            
+            System.Type variantType = RoomTypeHelper.GetExpectedRoomType(_roomType);
+            System.Type variantDataType = RoomTypeHelper.GetExpectedRoomDataType(_roomType);
 
-            // Determine type of ScriptableObject to create based on RoomType
-            System.Type variantType = typeof(RoomVariantData);
-            switch (_roomType)
-            {
-                case RoomType.Corridor: variantType = typeof(CorridorRoomVariantData); break;
-                case RoomType.Decision: variantType = typeof(DecisionRoomVariantData); break;
-                case RoomType.TreasureChest: variantType = typeof(TreasureChestRoomVariantData); break;
-                case RoomType.BasicFight: variantType = typeof(BasicFightRoomVariantData); break;
-                case RoomType.EliteFight: variantType = typeof(EliteFightRoomVariantData); break;
-                case RoomType.BossFight: variantType = typeof(BossFightRoomVariantData); break;
-                case RoomType.Shop: variantType = typeof(ShopRoomVariantData); break;
-                case RoomType.Shrine: variantType = typeof(ShrineRoomVariantData); break;
-                case RoomType.PhysicalMaster: variantType = typeof(PhysicalMasterRoomVariantData); break;
-                case RoomType.MagicMaster: variantType = typeof(MagicMasterRoomVariantData); break;
-                case RoomType.Trap: variantType = typeof(TrapRoomVariantData); break;
-                case RoomType.EncounterBattle:  variantType = typeof(EncounterBattleRoomVariantData); break;
-            }
+            // ----------------------------
+            // 1. Create prefab variant
+            // ----------------------------
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(_prefab);
+            instance.name = $"{_roomType}Variant";
 
-            string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{folderPath}/{_roomType}Variant.asset");
-            var asset = ScriptableObject.CreateInstance(variantType) as RoomVariantData;
+            // Add variant component
+            if (!instance.GetComponent(variantType))
+                instance.AddComponent(variantType);
 
-            // Set depth
+            string prefabPath = AssetDatabase.GenerateUniqueAssetPath(
+                AssetsPathsHelper.GetRoomPrefabPath(_roomType, instance.name)
+            );
+
+            // Save as prefab variant
+            GameObject createdPrefab = PrefabUtility.SaveAsPrefabAsset(
+                instance,
+                prefabPath
+            );
+
+            DestroyImmediate(instance);
+            
+            // ----------------------------
+            // 2. Create ScriptableObject data
+            // ----------------------------
+            string assetPath = AssetDatabase.GenerateUniqueAssetPath(
+                AssetsPathsHelper.GetRoomDataPath(_roomType, $"{_roomType}VariantData")
+            );
+
+            var asset = ScriptableObject.CreateInstance(variantDataType) as RoomVariantData;
+
             SerializedObject so = new SerializedObject(asset);
-            
-            SerializedProperty prefabProp = so.FindProperty("_prefab");
-            SerializedProperty minProp = so.FindProperty("_minDepth");
-            SerializedProperty maxProp = so.FindProperty("_maxDepth");
-            SerializedProperty weightProp = so.FindProperty("_weight");
-            SerializedProperty dropTableProp = so.FindProperty("_rewardDropTable");
 
-            minProp.intValue = _minDepth;
-            maxProp.intValue = _maxDepth;
-            weightProp.intValue = _weight;
-            
-            if(_prefab)
-                prefabProp.objectReferenceValue = _prefab;
-            
-            if(_rewardDropTable)
-                dropTableProp.objectReferenceValue = _rewardDropTable;
+            so.FindProperty("_minDepth").intValue = _minDepth;
+            so.FindProperty("_maxDepth").intValue = _maxDepth;
+            so.FindProperty("_weight").intValue = _weight;
+
+            if (createdPrefab != null)
+                so.FindProperty("_prefab").objectReferenceValue = createdPrefab;
+
+            if (_rewardDropTable)
+                so.FindProperty("_rewardDropTable").objectReferenceValue = _rewardDropTable;
 
             so.ApplyModifiedProperties();
 
@@ -108,6 +119,9 @@ namespace Editor
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
+            // ----------------------------
+            // 3. Register in database
+            // ----------------------------
             if (_database != null)
             {
                 Undo.RecordObject(_database, "Add new room variant");
