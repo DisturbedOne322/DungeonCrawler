@@ -286,7 +286,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &386849951456672501
 MonoBehaviour:
@@ -512,14 +512,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManaDisplay
       objectReference: {fileID: 0}
-    - target: {fileID: 5696435972663595664, guid: 2d5ff1047f051c9418a987e538081910, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5696435972663595664, guid: 2d5ff1047f051c9418a987e538081910, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -724,14 +716,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHealthDisplay
       objectReference: {fileID: 0}
-    - target: {fileID: 3806038414836735458, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3806038414836735458, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4461514308767012891, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -739,10 +723,6 @@ PrefabInstance:
     - target: {fileID: 4461514308767012891, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6737168362627493591, guid: c2ed4ad33e5d13f429610cac94d17948, type: 3}
-      propertyPath: m_fontSize
-      value: 40.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
