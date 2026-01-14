@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "Elite Fight Room Variant Data")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonRoomsData + "Elite Fight Room Variant Data")]
     public class EliteFightRoomVariantData : CombatRoomVariantData
     {
         public override RoomType RoomType => RoomType.EliteFight;

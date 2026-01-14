@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb4aa24505f4680a97ff19160a5b5dc, type: 3}
-  m_Name: Player Movement Config
+  m_Script: {fileID: 11500000, guid: 0219eb83e95244248f2c68e33b5226d0, type: 3}
+  m_Name: DungeonRulesConfig
   m_EditorClassIdentifier: 
-  _moveTimePerMeter: 0.07
+  _minCorridorLength: 3
+  _maxCorridorLength: 5
+  _startEncounterOffset: 1
+  _endEncounterOffset: 1

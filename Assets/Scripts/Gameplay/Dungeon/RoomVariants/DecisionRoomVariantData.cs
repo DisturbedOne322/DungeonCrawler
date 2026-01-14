@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "DecisionRoomVariantData")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonRoomsData + "DecisionRoomVariantData")]
     public class DecisionRoomVariantData : RoomVariantData
     {
         [SerializeField] [Range(1, 3)] private int _roomsForSelection = 3;

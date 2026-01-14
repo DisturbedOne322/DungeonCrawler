@@ -51,6 +51,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameplayConfig
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bcf6d65439e931498b9aa82b02faa88
+    m_Address: DungeonRulesConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayConfig
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a42e97ca95b7f184ba99faa3254c4881
     m_Address: Combat Formulas Config
     m_ReadOnly: 0

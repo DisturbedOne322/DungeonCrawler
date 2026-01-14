@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AssetManagement.AssetProviders.ConfigProviders;
 using Gameplay.Dungeon.RoomVariants;
 using Helpers;
 using UnityEngine;
@@ -8,10 +9,14 @@ namespace Gameplay.Dungeon
     public class EncounterRoomSelector
     {
         private readonly DungeonRoomsProvider _dungeonRoomsProvider;
+        
+        private DungeonRulesConfig _dungeonRulesConfig;
 
-        public EncounterRoomSelector(DungeonRoomsProvider dungeonRoomsProvider)
+        public EncounterRoomSelector(DungeonRoomsProvider dungeonRoomsProvider, GameplayConfigsProvider gameplayConfigsProvider)
         {
             _dungeonRoomsProvider = dungeonRoomsProvider;
+            
+            _dungeonRulesConfig = gameplayConfigsProvider.GetConfig<DungeonRulesConfig>();
         }
 
         public EncounterRoomSpawnData? SelectSpecialRoomData(int rooms)
@@ -28,8 +33,8 @@ namespace Gameplay.Dungeon
                 return null;
 
             var index = Random.Range(
-                selected.StartOffset,
-                rooms - selected.EndOffset);
+                _dungeonRulesConfig.StartEncounterOffset,
+                rooms - _dungeonRulesConfig.EndEncounterOffset);
 
             index = Mathf.Clamp(index, 0, rooms - 1);
 

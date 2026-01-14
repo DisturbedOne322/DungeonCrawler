@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "Encounter Battle Room Variant Data")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonRoomsData + "Encounter Battle Room Variant Data")]
     public class EncounterBattleRoomVariantData : EncounterRoomVariantData, ICombatRoomData
     {
         [SerializeField] private List<EnemyUnitData> _enemiesSelection;

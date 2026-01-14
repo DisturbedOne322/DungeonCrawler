@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "PhysicalMasterRoomVariantData")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonRoomsData + "PhysicalMasterRoomVariantData")]
     public class PhysicalMasterRoomVariantData : BaseSpecialtyShopRoomVariantData
     {
         [SerializeField] private PhysicalSkillsMasterConfig _config;

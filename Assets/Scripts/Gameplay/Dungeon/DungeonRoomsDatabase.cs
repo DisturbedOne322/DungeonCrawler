@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "DungeonRoomsDatabase")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonConfigs + "DungeonRoomsDatabase")]
     public class DungeonRoomsDatabase : GameplayConfig
     {
         [SerializeField] private List<RoomVariantData> _rooms;

@@ -19,7 +19,8 @@ namespace Data.Constants
         public const string GameplayItems = Gameplay + "Items/";
 
         public const string GameplayDungeon = Gameplay + "Dungeon/";
-        public const string GameplayDungeonData = GameplayDungeon + "Data/";
+        public const string GameplayDungeonRoomsData = GameplayDungeon + "RoomsData/";
+        public const string GameplayDungeonConfigs = GameplayDungeon + "Configs/";
 
         public const string GameplayShop = Gameplay + "Shop/";
         public const string GameplayEquipment = Gameplay + "Equipment/";

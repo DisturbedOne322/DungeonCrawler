@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "Trap Room Variant Data")]
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonRoomsData + "Trap Room Variant Data")]
     public class TrapRoomVariantData : EncounterRoomVariantData
     {
         [SerializeField] private List<GameObject> _trapPrefabs;

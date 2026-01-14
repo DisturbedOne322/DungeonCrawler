@@ -1,3 +1,4 @@
+using AssetManagement.AssetProviders.ConfigProviders;
 using Data;
 using Gameplay.Dungeon.RoomVariants;
 using Gameplay.Services;
@@ -7,20 +8,19 @@ namespace Gameplay.Dungeon
 {
     public class DungeonGenerator
     {
-        private const int MinCorridorLength = 3;
-        private const int MaxCorridorLength = 8;
-
         private readonly DungeonFactory _dungeonFactory;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly DungeonPositioner _dungeonPositioner;
         private readonly DungeonRoomsProvider _dungeonRoomsProvider;
         private readonly EncounterRoomSelector _encounterRoomSelector;
         private readonly DungeonBranchingSelector _dungeonBranchingSelector;
+        
+        private DungeonRulesConfig _dungeonRulesConfig;
 
         private DungeonGenerator(DungeonLayoutProvider dungeonLayoutProvider,
             DungeonFactory dungeonFactory, DungeonPositioner dungeonPositioner,
             DungeonRoomsProvider dungeonRoomsProvider, EncounterRoomSelector encounterRoomSelector,
-            DungeonBranchingSelector dungeonBranchingSelector)
+            DungeonBranchingSelector dungeonBranchingSelector, GameplayConfigsProvider gameplayConfigsProvider)
         {
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _dungeonFactory = dungeonFactory;
@@ -28,8 +28,10 @@ namespace Gameplay.Dungeon
             _dungeonRoomsProvider = dungeonRoomsProvider;
             _encounterRoomSelector = encounterRoomSelector;
             _dungeonBranchingSelector = dungeonBranchingSelector;
+            
+            _dungeonRulesConfig = gameplayConfigsProvider.GetConfig<DungeonRulesConfig>();
         }
-
+        
         public void CreateFirstMapSection()
         {
             CreateCorridors();
@@ -45,7 +47,7 @@ namespace Gameplay.Dungeon
 
         private void CreateCorridors()
         {
-            var roomsToSpawn = Random.Range(MinCorridorLength, MaxCorridorLength);
+            var roomsToSpawn = Random.Range(_dungeonRulesConfig.MinCorridorLength, _dungeonRulesConfig.MaxCorridorLength);
 
             var specialRoom = _encounterRoomSelector.SelectSpecialRoomData(roomsToSpawn);
 
