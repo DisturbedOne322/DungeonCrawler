@@ -18,6 +18,13 @@ namespace Gameplay.Enemies
         public EnemyUnit CreateEnemy(ICombatRoomData roomData)
         {
             var enemySelection = roomData.EnemiesSelection;
+
+            if (enemySelection.Count == 0)
+            {
+                Debug.LogWarning("Enemies selection is empty");
+                return null;
+            }
+            
             return SpawnRandomEnemy(enemySelection);
         }
         

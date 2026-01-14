@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8068240453885547951
+--- !u!1 &9036338430729834350
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,30 +8,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6938206531318926924}
+  - component: {fileID: 4057014675214424919}
   m_Layer: 0
-  m_Name: EnemyPoint
+  m_Name: EnemySpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6938206531318926924
+--- !u!4 &4057014675214424919
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8068240453885547951}
+  m_GameObject: {fileID: 9036338430729834350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2057406789579971343}
+  m_Father: {fileID: 531733665465521798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1885760432647804147
+--- !u!1001 &128327849447905658
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479335995503906812, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 479335995503906812, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -81,49 +81,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       propertyPath: m_Name
-      value: BasicFightRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 8322089526744266799, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3
+      value: EncounterBattleVariant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 479335995503906812, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6938206531318926924}
+      addedObject: {fileID: 4057014675214424919}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7118996373455122041}
+      addedObject: {fileID: 8910370114500422912}
   m_SourcePrefab: {fileID: 100100000, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
---- !u!4 &2057406789579971343 stripped
+--- !u!4 &531733665465521798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 479335995503906812, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
-  m_PrefabInstance: {fileID: 1885760432647804147}
+  m_PrefabInstance: {fileID: 128327849447905658}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7590132495121820892 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8322089526744266799, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
-  m_PrefabInstance: {fileID: 1885760432647804147}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9171519878567692849 stripped
+--- !u!1 &7254086084188063672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
-  m_PrefabInstance: {fileID: 1885760432647804147}
+  m_PrefabInstance: {fileID: 128327849447905658}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7118996373455122041
+--- !u!114 &8910370114500422912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9171519878567692849}
+  m_GameObject: {fileID: 7254086084188063672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c19bd4ad8ae411881d0ef47a73f7bf9, type: 3}
+  m_Script: {fileID: 11500000, guid: 92ebc35930e24d33a3aa9479ad372298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerStandPoint: {fileID: 7590132495121820892}
-  _enemySpawnPoint: {fileID: 6938206531318926924}
+  _playerStandPoint: {fileID: 8266894960963805525}
+  _enemySpawnPoint: {fileID: 4057014675214424919}
+--- !u!4 &8266894960963805525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8322089526744266799, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
+  m_PrefabInstance: {fileID: 128327849447905658}
+  m_PrefabAsset: {fileID: 0}

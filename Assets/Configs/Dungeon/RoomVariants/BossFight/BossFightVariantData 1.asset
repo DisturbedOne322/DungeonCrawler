@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aed24f689e74f7a8a4de3cb8ed6aa93, type: 3}
-  m_Name: BossFightVariantData
+  m_Name: BossFightVariantData 1
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8240958906963548558, guid: 06fa252f9d7d9b54f9ea311f2fdebbf9, type: 3}
+  _prefab: {fileID: 6647328894599818225, guid: 12a545cda0049454a96db9bbba4c1b59, type: 3}
   _minDepth: 0
-  _maxDepth: 100
+  _maxDepth: 200
   _weight: 1
   _rewardDropTable: {fileID: 0}
   _enemiesSelection: []

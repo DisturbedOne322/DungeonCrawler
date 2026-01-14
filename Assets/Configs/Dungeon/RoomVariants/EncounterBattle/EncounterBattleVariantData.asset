@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1eb2959fac4fbf8ced4ed2c4c909ae, type: 3}
-  m_Name: TrapRoomVariant
+  m_Script: {fileID: 11500000, guid: 4b3e13efd20b483c86c448a8e015260d, type: 3}
+  m_Name: EncounterBattleVariantData
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8415087648742597410, guid: 490c24323eee8284a9308742ec831452, type: 3}
+  _prefab: {fileID: 7254086084188063672, guid: ae6de1b0ada533e4fa227765d3b45719, type: 3}
   _minDepth: 0
   _maxDepth: 1000
-  _weight: 1
+  _weight: 10
   _rewardDropTable: {fileID: 0}
   _rollChance: 0.5
   startOffset: 1
-  endOffset: -1
-  _trapPrefabs:
-  - {fileID: 8707959303797605859, guid: 6da237270bab38845be77df6482b8971, type: 3}
+  endOffset: 1
+  _enemiesSelection:
+  - {fileID: 11400000, guid: b85a98c9d7f89a74c9ec27e0abfdc416, type: 2}
