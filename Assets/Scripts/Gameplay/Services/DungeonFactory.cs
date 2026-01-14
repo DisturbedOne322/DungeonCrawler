@@ -30,7 +30,7 @@ namespace Gameplay.Services
 
         public DungeonRoom CreateRoom<T>(T roomData) where T : RoomVariantData
         {
-            if (_roomsPool.TryGetRoom(roomData.RoomType, out var room))
+            if (_roomsPool.TryGetRoom(roomData, out var room))
                 return room;
 
             var roomPrefab = roomData.Prefab;

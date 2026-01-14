@@ -24,10 +24,23 @@ namespace Gameplay.Dungeon
             room.transform.position = new Vector3(_xOffset, 0, posZ);
         }
 
-        public void AddXOffsetFromChoice(int choiceIndex)
+        public void AddXOffsetFromChoice(int choiceIndex, int selectionCount)
         {
-            choiceIndex--;
-            _xOffset += choiceIndex * GameplayConstants.RoomSize.x;
+            switch (selectionCount)
+            {
+                case 1:
+                    break;
+                case 2:
+                    if (choiceIndex == 0)
+                        choiceIndex = -1;
+                    
+                    _xOffset += choiceIndex * (GameplayConstants.RoomSize.x / 2);
+                    break;
+                case 3:
+                    choiceIndex--;
+                    _xOffset += choiceIndex * GameplayConstants.RoomSize.x;
+                    break;
+            }
         }
     }
 }

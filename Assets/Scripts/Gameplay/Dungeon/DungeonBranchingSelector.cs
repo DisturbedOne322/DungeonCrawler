@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Data.Constants;
 using Gameplay.Dungeon.RoomVariants;
 using UnityEngine;
 
@@ -8,8 +9,6 @@ namespace Gameplay.Dungeon
 {
     public class DungeonBranchingSelector
     {
-        private const int RoomsForSelectionCount = 3;
-
         private readonly DungeonRoomsProvider _dungeonRoomsProvider;
 
         private readonly Dictionary<RoomType, int> _selectionHistory = new();
@@ -20,20 +19,33 @@ namespace Gameplay.Dungeon
             _dungeonRoomsProvider = dungeonRoomsProvider;
         }
 
-        public List<RoomVariantData> RoomsForSelection { get; } = new(RoomsForSelectionCount);
+        public List<RoomVariantData> RoomsForSelection { get; } = new(GameplayConstants.RoomsForSelectionMax);
+
+        public void PrepareFirstSelection()
+        {
+            int selectionCount = GameplayConstants.RoomsForSelectionMax;
+            SelectRooms(selectionCount);
+        }
 
         public void PrepareSelection()
         {
-            RoomsForSelection.Clear();
+            int selectionCount = ChooseSelectionCount();
+            SelectRooms(selectionCount);
+        }
 
+        private void SelectRooms(int selectionCount)
+        {
+            Debug.Log(selectionCount);
+            
+            RoomsForSelection.Clear();
             var candidates = _dungeonRoomsProvider.GetRoomsSelection();
-            if (candidates == null || candidates.Count < RoomsForSelectionCount)
+            if (candidates == null || candidates.Count < selectionCount)
             {
                 Debug.LogWarning("DungeonBranchingSelector: no valid rooms available for selection.");
                 return;
             }
 
-            while (RoomsForSelection.Count < RoomsForSelectionCount && candidates.Count > 0)
+            while (RoomsForSelection.Count < selectionCount && candidates.Count > 0)
             {
                 var picked = WeightedPickFromList(candidates);
 
@@ -47,7 +59,13 @@ namespace Gameplay.Dungeon
 
             ResetUnusedRoomTypes();
         }
-
+        
+        private int ChooseSelectionCount()
+        {
+            return Random.Range(GameplayConstants.RoomsForSelectionMin, 
+                GameplayConstants.RoomsForSelectionMax + 1);
+        }
+        
         private RoomVariantData WeightedPickFromList(List<RoomVariantData> list)
         {
             var size = list.Count;

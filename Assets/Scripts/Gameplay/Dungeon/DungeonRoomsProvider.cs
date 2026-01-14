@@ -51,6 +51,25 @@ namespace Gameplay.Dungeon
             return null;
         }
 
+        public DecisionRoomVariantData GetDecisionRoomData(int selection)
+        {
+            var currentDepth = _playerMovementHistory.Depth;
+
+            var decisionRooms = _roomDataMap[RoomType.Decision];
+
+            foreach (var decisionRoom in decisionRooms)
+            {
+                if(!IsValidDepth(decisionRoom, currentDepth))
+                    continue;
+                
+                var room = decisionRoom as DecisionRoomVariantData;
+                if(room.RoomsForSelection == selection)
+                    return room;
+            }
+            
+            return null;
+        }
+
         private void MapRoomVariantsToTypes()
         {
             foreach (var roomVariantData in _dungeonRoomsDatabase.Rooms)

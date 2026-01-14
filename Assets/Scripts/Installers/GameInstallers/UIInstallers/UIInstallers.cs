@@ -21,7 +21,7 @@ namespace Installers.GameInstallers.UIInstallers
             Container.Bind<HorizontalUINavigator>().AsTransient();
             Container.Bind<VerticalUiNavigator>().AsTransient();
 
-            Container.Bind<UIFactory>().FromNewComponentOnNewPrefab(_uiFactoryPrefab).AsSingle();
+            Container.Bind<UIFactory>().FromComponentInNewPrefab(_uiFactoryPrefab).AsSingle();
             Container.Bind<PopupsRegistry>().AsSingle();
             Container.Bind<MenuItemPrefabsRegistry>().AsSingle();
 

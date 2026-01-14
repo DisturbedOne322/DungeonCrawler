@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Player;
+using UnityEngine;
 
 namespace Gameplay.Dungeon
 {
@@ -23,11 +24,14 @@ namespace Gameplay.Dungeon
         public async UniTask<int> WaitForDecision()
         {
             var roomSelection = _dungeonBranchingSelector.RoomsForSelection;
-
-            var inputIndex = await _decisionProvider.MakeDecision();
+            
+            int selectionCount = roomSelection.Count;
+            
+            var inputIndex = await _decisionProvider.MakeDecision(selectionCount);
+            
             var selectedRoom = roomSelection[inputIndex];
 
-            _dungeonPositioner.AddXOffsetFromChoice(inputIndex);
+            _dungeonPositioner.AddXOffsetFromChoice(inputIndex, selectionCount);
 
             _dungeonBranchingSelector.PrepareSelection();
             _dungeonGenerator.CreateNextMapSection(selectedRoom);

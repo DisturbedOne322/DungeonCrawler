@@ -15,16 +15,19 @@ namespace Gameplay.Dungeon
         private readonly DungeonPositioner _dungeonPositioner;
         private readonly DungeonRoomsProvider _dungeonRoomsProvider;
         private readonly EncounterRoomSelector _encounterRoomSelector;
+        private readonly DungeonBranchingSelector _dungeonBranchingSelector;
 
         private DungeonGenerator(DungeonLayoutProvider dungeonLayoutProvider,
             DungeonFactory dungeonFactory, DungeonPositioner dungeonPositioner,
-            DungeonRoomsProvider dungeonRoomsProvider, EncounterRoomSelector encounterRoomSelector)
+            DungeonRoomsProvider dungeonRoomsProvider, EncounterRoomSelector encounterRoomSelector,
+            DungeonBranchingSelector dungeonBranchingSelector)
         {
             _dungeonLayoutProvider = dungeonLayoutProvider;
             _dungeonFactory = dungeonFactory;
             _dungeonPositioner = dungeonPositioner;
             _dungeonRoomsProvider = dungeonRoomsProvider;
             _encounterRoomSelector = encounterRoomSelector;
+            _dungeonBranchingSelector = dungeonBranchingSelector;
         }
 
         public void CreateFirstMapSection()
@@ -55,7 +58,8 @@ namespace Gameplay.Dungeon
 
         private void CreateDecisionRoom()
         {
-            CreateRoom(_dungeonRoomsProvider.GetRoomData(RoomType.Decision));
+            int selectionCount = _dungeonBranchingSelector.RoomsForSelection.Count;
+            CreateRoom(_dungeonRoomsProvider.GetDecisionRoomData(selectionCount));
         }
 
         private void CreateCorridor()

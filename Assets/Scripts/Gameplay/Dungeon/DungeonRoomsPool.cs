@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using Data;
 using Gameplay.Dungeon.Rooms;
+using Gameplay.Dungeon.RoomVariants;
 using UniRx;
 
 namespace Gameplay.Dungeon
 {
     public class DungeonRoomsPool : IDisposable
     {
-        private readonly Dictionary<RoomType, List<DungeonRoom>> _dictionary = new();
+        private readonly Dictionary<RoomVariantData, List<DungeonRoom>> _dictionary = new();
 
         private readonly IDisposable _disposable;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
@@ -26,9 +27,9 @@ namespace Gameplay.Dungeon
             _disposable.Dispose();
         }
 
-        public bool TryGetRoom(RoomType roomType, out DungeonRoom room)
+        public bool TryGetRoom(RoomVariantData roomVariantData, out DungeonRoom room)
         {
-            if (_dictionary.TryGetValue(roomType, out var list) && list.Count > 0)
+            if (_dictionary.TryGetValue(roomVariantData, out var list) && list.Count > 0)
             {
                 room = list[0];
                 list.RemoveAt(0);
@@ -50,12 +51,12 @@ namespace Gameplay.Dungeon
             room.ResetRoom();
             room.gameObject.SetActive(false);
 
-            var roomType = room.RoomData.RoomType;
+            var roomData = room.RoomData;
 
-            if (_dictionary.TryGetValue(roomType, out var list))
+            if (_dictionary.TryGetValue(roomData, out var list))
                 list.Add(room);
             else
-                _dictionary.Add(roomType, new List<DungeonRoom> { room });
+                _dictionary.Add(roomData, new List<DungeonRoom> { room });
         }
     }
 }

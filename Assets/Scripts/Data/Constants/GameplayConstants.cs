@@ -11,5 +11,8 @@ namespace Data.Constants
 
         public const int MaxBalance = 999_999_999;
         public static readonly Vector2 RoomSize = new(10f, 10f);
+        
+        public const int RoomsForSelectionMin = 1;
+        public const int RoomsForSelectionMax = 3;
     }
 }

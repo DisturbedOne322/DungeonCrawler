@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Data.Constants;
 using Gameplay.Dungeon;
 using Gameplay.Player;
 using Gameplay.Rewards;
@@ -38,9 +39,7 @@ namespace Gameplay
 
         public async UniTask StartRun()
         {
-            _dungeonBranchingSelector.PrepareSelection();
-            _dungeonGenerator.CreateFirstMapSection();
-            _playerMovementController.PositionPlayer();
+            SetupDungeon();
 
             while (IsPlayerAlive())
             {
@@ -56,6 +55,15 @@ namespace Gameplay
             }
 
             ShowGameOverPopup();
+        }
+
+        private void SetupDungeon()
+        {
+            int firstSelection = GameplayConstants.RoomsForSelectionMax;
+
+            _dungeonBranchingSelector.PrepareFirstSelection();
+            _dungeonGenerator.CreateFirstMapSection();
+            _playerMovementController.PositionPlayer();
         }
 
         private bool IsPlayerAlive()
