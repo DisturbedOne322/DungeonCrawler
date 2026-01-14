@@ -24,27 +24,26 @@ namespace Gameplay.Dungeon
         public void PrepareFirstSelection()
         {
             int selectionCount = GameplayConstants.RoomsForSelectionMax;
-            SelectRooms(selectionCount);
+            var candidates = _dungeonRoomsProvider.GetRoomsSelection();
+            
+            if(selectionCount > candidates.Count)
+                selectionCount = candidates.Count;
+            
+            SelectRooms(candidates, selectionCount);
         }
 
         public void PrepareSelection()
         {
-            int selectionCount = ChooseSelectionCount();
-            SelectRooms(selectionCount);
+            var candidates = _dungeonRoomsProvider.GetRoomsSelection();
+            int selectionCount = ChooseSelectionCount(candidates.Count);
+
+            SelectRooms(candidates, selectionCount);
         }
 
-        private void SelectRooms(int selectionCount)
+        private void SelectRooms(List<RoomVariantData> candidates, int selectionCount)
         {
-            Debug.Log(selectionCount);
-            
             RoomsForSelection.Clear();
-            var candidates = _dungeonRoomsProvider.GetRoomsSelection();
-            if (candidates == null || candidates.Count < selectionCount)
-            {
-                Debug.LogWarning("DungeonBranchingSelector: no valid rooms available for selection.");
-                return;
-            }
-
+            
             while (RoomsForSelection.Count < selectionCount && candidates.Count > 0)
             {
                 var picked = WeightedPickFromList(candidates);
@@ -60,10 +59,15 @@ namespace Gameplay.Dungeon
             ResetUnusedRoomTypes();
         }
         
-        private int ChooseSelectionCount()
+        private int ChooseSelectionCount(int maxSelection)
         {
-            return Random.Range(GameplayConstants.RoomsForSelectionMin, 
+            int random = Random.Range(GameplayConstants.RoomsForSelectionMin,
                 GameplayConstants.RoomsForSelectionMax + 1);
+            
+            if(random > maxSelection)
+                random = maxSelection;
+            
+            return random;
         }
         
         private RoomVariantData WeightedPickFromList(List<RoomVariantData> list)
