@@ -1,4 +1,3 @@
-using System;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
@@ -8,12 +7,12 @@ namespace UI.Core
     public abstract class BasePopup : MonoBehaviour
     {
         [SerializeField] private PopupAnimator _popupAnimator;
-
-        public readonly Subject<Unit> OnOpenCalled = new();
-        public readonly Subject<Unit> OnOpened = new ();
         public readonly Subject<Unit> OnCloseCalled = new();
         public readonly Subject<Unit> OnDestroyed = new();
-        
+
+        public readonly Subject<Unit> OnOpenCalled = new();
+        public readonly Subject<Unit> OnOpened = new();
+
         private void Awake()
         {
             InitializePopup();
@@ -40,7 +39,6 @@ namespace UI.Core
 
         protected virtual void InitializePopup()
         {
-            
         }
     }
 }

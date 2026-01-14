@@ -27,7 +27,7 @@ namespace UI.InventoryDisplay
 
         private void SetStats(Dictionary<BaseMenuItemView, StatIncreaseView> statsTable)
         {
-            _uiTable.SetTable(statsTable); 
+            _uiTable.SetTable(statsTable);
         }
     }
 }

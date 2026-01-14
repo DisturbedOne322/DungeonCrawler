@@ -22,10 +22,11 @@ namespace UI.Gameplay.Experience
         public event Action OnChangePressed;
 
         [Inject]
-        private void Construct(HorizontalUINavigator uiNavigator, PlayerInputProvider playerInputProvider, GameplayData gameplayData)
+        private void Construct(HorizontalUINavigator uiNavigator, PlayerInputProvider playerInputProvider,
+            GameplayData gameplayData)
         {
             uiNavigator.BindToObservable(OnCloseCalled);
-            
+
             uiNavigator.AddMenuItem(_keepMenuItem, () => OnKeepPressed?.Invoke());
             uiNavigator.AddMenuItem(_changeMenuItem, () => OnChangePressed?.Invoke());
         }

@@ -8,7 +8,7 @@ namespace Gameplay.Traps
     public class TrapFactory
     {
         private readonly ContainerFactory _containerFactory;
-        
+
         public TrapFactory(ContainerFactory containerFactory)
         {
             _containerFactory = containerFactory;
@@ -22,14 +22,14 @@ namespace Gameplay.Traps
 
             foreach (var prefab in trapPrefabs)
             {
-                if(!prefab.TryGetComponent(out TrapMono trap))
+                if (!prefab.TryGetComponent(out TrapMono trap))
                     continue;
-                
+
                 selection.Add(trap);
             }
-            
+
             var index = Random.Range(0, selection.Count);
-            var selectedPrefab =  selection[index];
+            var selectedPrefab = selection[index];
             var instance = _containerFactory.Create(selectedPrefab);
             return instance;
         }

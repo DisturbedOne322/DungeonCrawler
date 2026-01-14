@@ -1,4 +1,3 @@
-using Data.Constants;
 using Gameplay.Facades;
 using Gameplay.Units;
 using UnityEngine;
@@ -28,7 +27,7 @@ namespace Gameplay.Combat
         {
             var healthRegen = unit.UnitBonusStatsData.HealthRegenBonus.Value;
             var manaRegen = unit.UnitBonusStatsData.ManaRegenBonus.Value;
-            
+
             healthRegen = Mathf.CeilToInt(healthRegen);
             manaRegen = Mathf.CeilToInt(manaRegen);
 

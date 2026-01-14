@@ -18,9 +18,7 @@ namespace UI.InventoryDisplay.StatusEffects
         {
             List<BaseMenuItemView> result = new();
             foreach (var item in itemsData)
-            {
                 result.Add(_menuItemViewFactory.CreateStatusEffectMenuItem(item as StatusEffectMenuItemData));
-            }
 
             return result;
         }

@@ -21,13 +21,24 @@ namespace UI.Notifications
 
         private readonly CompositeDisposable _disposables = new();
         private NotificationsPlayer _notificationsPlayer;
-        
+
         private PlayerUnit _player;
         private PlayerSkillSlotsManager _skillSlotsManager;
 
         private void Awake()
         {
-            _notificationsPlayer = new (gameObject.GetCancellationTokenOnDestroy());
+            _notificationsPlayer = new NotificationsPlayer(gameObject.GetCancellationTokenOnDestroy());
+        }
+
+        //in start to subscribe only after player receives starting inventory
+        private void Start()
+        {
+            Subscribe(_player.UnitSkillsData.Skills.ObserveAdd(), EnqueueSkillNotification);
+            Subscribe(_player.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
+            Subscribe(_player.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
+            Subscribe(_player.UnitHeldStatusEffectsContainer.All.ObserveAdd(), EnqueueStatusEffectNotification);
+            Subscribe(_skillSlotsManager.OnSkillSlotsAdded, EnqueueSkillSlotNotification);
+            SubscribeConsumables(_player);
         }
 
         private void OnDestroy()
@@ -40,17 +51,6 @@ namespace UI.Notifications
         {
             _player = player;
             _skillSlotsManager = playerSkillSlotsManager;
-        }
-
-        //in start to subscribe only after player receives starting inventory
-        private void Start()
-        {
-            Subscribe(_player.UnitSkillsData.Skills.ObserveAdd(), EnqueueSkillNotification);
-            Subscribe(_player.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
-            Subscribe(_player.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
-            Subscribe(_player.UnitHeldStatusEffectsContainer.All.ObserveAdd(), EnqueueStatusEffectNotification);
-            Subscribe(_skillSlotsManager.OnSkillSlotsAdded, EnqueueSkillSlotNotification);
-            SubscribeConsumables(_player);
         }
 
         private void Subscribe<T>(IObservable<T> stream, Action<T> handler)

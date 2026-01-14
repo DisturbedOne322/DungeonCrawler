@@ -6,12 +6,11 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "ShrineRoomVariantData")] 
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "ShrineRoomVariantData")]
     public class ShrineRoomVariantData : BaseSpecialtyShopRoomVariantData
     {
         [SerializeField] private ShrineBuffsConfig _config;
-        public override BasePurchasableItemsConfig Config => _config;
-
         public override RoomType RoomType => RoomType.Shrine;
+        public override BasePurchasableItemsConfig Config => _config;
     }
 }

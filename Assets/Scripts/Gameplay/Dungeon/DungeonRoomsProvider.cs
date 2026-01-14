@@ -11,7 +11,7 @@ namespace Gameplay.Dungeon
     {
         private readonly DungeonRoomsDatabase _dungeonRoomsDatabase;
         private readonly PlayerMovementHistory _playerMovementHistory;
-        
+
         private readonly Dictionary<RoomType, List<RoomVariantData>> _roomDataMap = new();
 
         public DungeonRoomsProvider(GameplayConfigsProvider configsProvider,
@@ -24,32 +24,30 @@ namespace Gameplay.Dungeon
 
         public List<RoomVariantData> GetRoomsSelection()
         {
-            int currentDepth = _playerMovementHistory.Depth;
-            
+            var currentDepth = _playerMovementHistory.Depth;
+
             List<RoomVariantData> selection = new();
 
             var roomsPerType = _roomDataMap.Values.ToList();
-            
+
             foreach (var roomsList in roomsPerType)
-            {
-                foreach (var roomData in roomsList)
-                    if(IsValidRoomForSelection(roomData, currentDepth))
-                        selection.Add(roomData);
-            }
-            
+            foreach (var roomData in roomsList)
+                if (IsValidRoomForSelection(roomData, currentDepth))
+                    selection.Add(roomData);
+
             return selection;
         }
 
         public RoomVariantData GetRoomData(RoomType roomType)
         {
-            int currentDepth = _playerMovementHistory.Depth;
-            
+            var currentDepth = _playerMovementHistory.Depth;
+
             var rooms = _roomDataMap[roomType];
-            
+
             foreach (var roomData in rooms)
                 if (IsValidDepth(roomData, currentDepth))
                     return roomData;
-            
+
             return null;
         }
 
@@ -58,33 +56,33 @@ namespace Gameplay.Dungeon
             foreach (var roomVariantData in _dungeonRoomsDatabase.Rooms)
             {
                 var type = roomVariantData.RoomType;
-                
-                if(!_roomDataMap.ContainsKey(type))
-                    _roomDataMap.Add(type, new ());
-                
+
+                if (!_roomDataMap.ContainsKey(type))
+                    _roomDataMap.Add(type, new List<RoomVariantData>());
+
                 _roomDataMap[type].Add(roomVariantData);
             }
         }
 
         private bool IsValidRoomForSelection(RoomVariantData roomData, int depth)
         {
-            if(!roomData)
+            if (!roomData)
                 return false;
-            
-            if(!RoomTypeHelper.IsRoomValidForSelection(roomData.RoomType))
+
+            if (!RoomTypeHelper.IsRoomValidForSelection(roomData.RoomType))
                 return false;
-            
+
             return IsValidDepth(roomData, depth);
         }
 
         private bool IsValidDepth(RoomVariantData roomData, int depth)
         {
-            if(depth < roomData.MinDepth)
+            if (depth < roomData.MinDepth)
                 return false;
-            
-            if(depth > roomData.MaxDepth)
+
+            if (depth > roomData.MaxDepth)
                 return false;
-            
+
             return true;
         }
     }

@@ -10,8 +10,7 @@ namespace Gameplay.Dungeon.RoomVariants
     public class MagicMasterRoomVariantData : BaseSpecialtyShopRoomVariantData
     {
         [SerializeField] private MagicSkillsMasterConfig _config;
-        public override BasePurchasableItemsConfig Config => _config;
-        
         public override RoomType RoomType => RoomType.MagicMaster;
+        public override BasePurchasableItemsConfig Config => _config;
     }
 }

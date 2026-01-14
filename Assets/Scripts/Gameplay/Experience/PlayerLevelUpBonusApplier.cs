@@ -1,4 +1,3 @@
-using AssetManagement.AssetProviders;
 using AssetManagement.AssetProviders.ConfigProviders;
 using Gameplay.Configs;
 using Gameplay.Units;

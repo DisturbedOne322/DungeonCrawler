@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="25026f71-4ae4-4243-81ba-a1a4d4d18549" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DungeonCrawler/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/GameInstallers/UIInstallers/UIInstallers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/GameInstallers/UIInstallers/UIInstallers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomVariants/DecisionRoomVariantData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dungeon/RoomVariants/DecisionRoomVariantData.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +276,7 @@
       <workItem from="1768239399326" duration="5478000" />
       <workItem from="1768302357639" duration="2227000" />
       <workItem from="1768308633237" duration="19907000" />
-      <workItem from="1768400538869" duration="4953000" />
+      <workItem from="1768400538869" duration="5742000" />
     </task>
     <servers />
   </component>

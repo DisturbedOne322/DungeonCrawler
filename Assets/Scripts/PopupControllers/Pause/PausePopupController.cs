@@ -7,11 +7,11 @@ namespace PopupControllers.Pause
 {
     public class PausePopupController : BaseUIInputHandler
     {
-        private readonly UIFactory _uiFactory;
         private readonly PlayerInputProvider _playerInputProvider;
+        private readonly UIFactory _uiFactory;
 
         private PausePopup _activePopup;
-        
+
         public PausePopupController(UIFactory uiFactory, PlayerInputProvider playerInputProvider)
         {
             _uiFactory = uiFactory;

@@ -8,7 +8,7 @@ namespace UI
     public class UIFactory : MonoBehaviour
     {
         [SerializeField] private Canvas _canvas;
-        
+
         private ContainerFactory _factory;
         private PopupsRegistry _popupsRegistry;
 
@@ -22,7 +22,7 @@ namespace UI
         public T CreatePopup<T>() where T : BasePopup
         {
             var prefab = _popupsRegistry.GetPopupPrefab<T>();
-            
+
             var popup = _factory.Create<T>(prefab.gameObject);
             popup.transform.SetParent(_canvas.transform, false);
             return popup;

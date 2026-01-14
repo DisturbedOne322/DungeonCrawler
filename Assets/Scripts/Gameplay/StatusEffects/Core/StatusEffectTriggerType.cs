@@ -8,18 +8,18 @@ namespace Gameplay.StatusEffects.Core
 
         OnCombatStart,
         OnCombatEnd,
-        
+
         //active unit conditions
         OnHit,
         OnSkillCasted,
         OnSkillUsed,
         OnCriticalHit,
         OnEvaded,
-        
+
         OnPhysicalDamageDealt,
         OnMagicalDamageDealt,
         OnAbsoluteDamageDealt,
-        
+
         OnHealed,
         OnMediumHealth,
         OnCriticalHealth,
@@ -31,13 +31,13 @@ namespace Gameplay.StatusEffects.Core
         OnOtherSkillUsed,
         OnCriticalDamageTaken,
         OnMissed,
-        
+
         OnPhysicalDamageTaken,
         OnMagicalDamageTaken,
         OnAbsoluteDamageTaken,
-        
+
         OnOtherHealed,
         OnOtherMediumHealth,
-        OnOtherCriticalHealth,
+        OnOtherCriticalHealth
     }
 }

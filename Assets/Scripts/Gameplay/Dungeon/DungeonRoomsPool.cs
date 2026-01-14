@@ -51,7 +51,7 @@ namespace Gameplay.Dungeon
             room.gameObject.SetActive(false);
 
             var roomType = room.RoomData.RoomType;
-            
+
             if (_dictionary.TryGetValue(roomType, out var list))
                 list.Add(room);
             else

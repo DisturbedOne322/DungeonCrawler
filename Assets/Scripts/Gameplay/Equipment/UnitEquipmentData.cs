@@ -8,10 +8,10 @@ namespace Gameplay.Equipment
     {
         public readonly Subject<BaseArmor> OnArmorEquipped = new();
         public readonly Subject<BaseArmor> OnArmorRemoved = new();
-        
+
         public readonly Subject<BaseWeapon> OnWeaponEquipped = new();
         public readonly Subject<BaseWeapon> OnWeaponRemoved = new();
-        
+
         private BaseArmor _armor;
         private BaseWeapon _weapon;
 

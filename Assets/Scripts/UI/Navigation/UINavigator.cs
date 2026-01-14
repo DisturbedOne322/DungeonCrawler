@@ -14,8 +14,10 @@ namespace UI.Navigation
         private int _prevIndex;
         private int _selectedIndex;
 
-        public UINavigator(PlayerInputProvider playerInputProvider) => 
+        public UINavigator(PlayerInputProvider playerInputProvider)
+        {
             _playerInputProvider = playerInputProvider;
+        }
 
         public override void OnUISubmit()
         {
@@ -58,9 +60,15 @@ namespace UI.Navigation
 
             return nextIndex;
         }
-        
-        public void TakeControl() => _playerInputProvider.AddUiInputOwner(this);
- 
-        public void RemoveControl() =>  _playerInputProvider.RemoveUiInputOwner(this);
+
+        public void TakeControl()
+        {
+            _playerInputProvider.AddUiInputOwner(this);
+        }
+
+        public void RemoveControl()
+        {
+            _playerInputProvider.RemoveUiInputOwner(this);
+        }
     }
 }

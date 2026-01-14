@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Data.Constants;
 using UI;
-using UI.Gameplay.Experience;
 using UI.Popups;
 using UniRx;
 
@@ -31,7 +30,7 @@ namespace Gameplay.Services.Stats
             var popup = _uiFactory.CreatePopup<LevelUpPopup>();
 
             var menuItems = _playerStatTableBuilder.CreateMenuItems();
-            
+
             popup.SetTable(_playerStatTableBuilder.GetStatsTable(menuItems));
             popup.SetReactivePointsLeft(_statPoints);
             popup.ShowPopup().Forget();

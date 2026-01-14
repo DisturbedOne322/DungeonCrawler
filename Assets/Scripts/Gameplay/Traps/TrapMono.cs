@@ -18,8 +18,14 @@ namespace Gameplay.Traps
 
         private HitProcessor _hitProcessor;
         private StatusEffectsProcessor _statusEffectsProcessor;
-        
-        public UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; } = new ();
+
+        private void Start()
+        {
+            UnitStatsData.SetStats(new UnitStartingStats());
+            UnitBonusStatsData.SetData(new UnitStartingBonusStats());
+        }
+
+        public UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; } = new();
         public UnitActiveStatusEffectsContainer UnitActiveStatusEffectsContainer { get; } = new();
         public UnitStatsData UnitStatsData { get; } = new();
         public UnitBonusStatsData UnitBonusStatsData { get; } = new();
@@ -27,36 +33,39 @@ namespace Gameplay.Traps
         [Inject]
         private void Construct(HitProcessor hitProcessor, StatusEffectsProcessor statusEffectsProcessor)
         {
-            _hitProcessor =  hitProcessor;
+            _hitProcessor = hitProcessor;
             _statusEffectsProcessor = statusEffectsProcessor;
-        }
-
-        private void Start()
-        {
-            UnitStatsData.SetStats(new());
-            UnitBonusStatsData.SetData(new());
         }
 
         public void TriggerTrap()
         {
-            bool hasSkills = HasValidSkills();
-            bool hasDebuffs = HasValidDebuffs();
+            var hasSkills = HasValidSkills();
+            var hasDebuffs = HasValidDebuffs();
 
             if (!hasSkills && !hasDebuffs) return;
-            if (!hasSkills) { ApplyDebuff(); return; }
-            if (!hasDebuffs) { DealDamage(); return; }
+            if (!hasSkills)
+            {
+                ApplyDebuff();
+                return;
+            }
+
+            if (!hasDebuffs)
+            {
+                DealDamage();
+                return;
+            }
 
             if (Random.value < _trapData.DamageChance)
                 DealDamage();
             else
                 ApplyDebuff();
         }
-        
+
         private void DealDamage()
         {
             var skills = _trapData.Skills;
-            int index = Random.Range(0, skills.Count);
-            
+            var index = Random.Range(0, skills.Count);
+
             var skill = skills[index];
             _hitProcessor.DealDamageToPlayer(this, new HitData(skill, 0));
         }
@@ -72,15 +81,15 @@ namespace Gameplay.Traps
             var debuffs = _trapData.Debuffs;
 
             var selection = new List<StatDebuffData>(debuffs).Where(x => x).ToList();
-            int index = Random.Range(0, selection.Count);
+            var index = Random.Range(0, selection.Count);
             return selection[index];
         }
-        
+
         private bool HasValidSkills()
         {
             return _trapData.Skills.Count > 0;
         }
-        
+
         private bool HasValidDebuffs()
         {
             return _trapData.Debuffs.Count(x => x) > 0;

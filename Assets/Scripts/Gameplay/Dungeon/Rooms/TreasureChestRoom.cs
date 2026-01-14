@@ -10,9 +10,9 @@ namespace Gameplay.Dungeon.Rooms
     public class TreasureChestRoom : VariantRoom<TreasureChestRoomVariantData>
     {
         [SerializeField] private ChestAnimator _chestAnimator;
-        
+
         private PlayerUnit _playerUnit;
-        
+
         public override void ResetRoom()
         {
             _chestAnimator.ResetChest();

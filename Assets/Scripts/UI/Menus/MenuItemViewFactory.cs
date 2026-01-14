@@ -72,18 +72,18 @@ namespace UI.Menus
 
         public List<BaseMenuItemView> CreateSkillMenuItems(List<MenuItemData> dataList)
         {
-            List<BaseMenuItemView> result = new ();
-            
+            List<BaseMenuItemView> result = new();
+
             foreach (var data in dataList)
                 result.Add(CreateSkillMenuItem(data));
 
             return result;
         }
-        
+
         public List<BaseMenuItemView> CreateConsumableMenuItems(List<MenuItemData> dataList)
         {
-            List<BaseMenuItemView> result = new ();
-            
+            List<BaseMenuItemView> result = new();
+
             foreach (var data in dataList)
                 result.Add(CreateConsumableMenuItem(data));
 
@@ -118,7 +118,7 @@ namespace UI.Menus
             return view;
         }
 
-        private GameObject GetPrefab<T>() where  T : BaseMenuItemView
+        private GameObject GetPrefab<T>() where T : BaseMenuItemView
         {
             return _prefabRegistry.GetMenuItemPrefab<T>().gameObject;
         }

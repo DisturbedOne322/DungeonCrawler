@@ -9,7 +9,7 @@ namespace Gameplay.Units
         public ReactiveProperty<int> Intelligence;
         public ReactiveProperty<int> Luck;
         public ReactiveProperty<int> Strength;
-        
+
         public void SetStats(UnitStartingStats stats)
         {
             Constitution = new ReactiveProperty<int>(stats.Constitution);

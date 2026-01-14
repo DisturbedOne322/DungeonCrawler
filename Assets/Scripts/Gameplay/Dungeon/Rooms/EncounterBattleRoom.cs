@@ -4,6 +4,5 @@ namespace Gameplay.Dungeon.Rooms
 {
     public class EncounterBattleRoom : BaseCombatRoom<EncounterBattleRoomVariantData>
     {
-        
     }
 }

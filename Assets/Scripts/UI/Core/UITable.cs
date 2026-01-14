@@ -9,7 +9,8 @@ namespace UI.Core
         [SerializeField] private VerticalLayoutGroup _namesParent;
         [SerializeField] private VerticalLayoutGroup _statsParent;
 
-        public void SetTable<TType1, TType2>(Dictionary<TType1, TType2> table) where TType1 : Component where TType2 : Component
+        public void SetTable<TType1, TType2>(Dictionary<TType1, TType2> table)
+            where TType1 : Component where TType2 : Component
         {
             foreach (var kv in table)
             {

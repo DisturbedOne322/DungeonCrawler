@@ -8,24 +8,24 @@ namespace Gameplay.Dungeon.RoomVariants
     public abstract class RoomVariantData : ScriptableObject
     {
         [SerializeField] private GameObject _prefab;
-        [SerializeField, Min(0)] private int _minDepth = 0;
+        [SerializeField] [Min(0)] private int _minDepth;
         [SerializeField] private int _maxDepth = 10;
-        [SerializeField, Min(1)] private int _weight = 1;
+        [SerializeField] [Min(1)] private int _weight = 1;
         [SerializeField] private RewardDropTable _rewardDropTable;
 
         public abstract RoomType RoomType { get; }
-        
+
         public GameObject Prefab => _prefab;
         public int MinDepth => _minDepth;
         public int MaxDepth => _maxDepth;
         public int Weight => _weight;
         public RewardDropTable RewardDropTable => _rewardDropTable;
-        
+
         private void OnValidate()
         {
-            if(_minDepth > _maxDepth)
+            if (_minDepth > _maxDepth)
                 _maxDepth = _minDepth;
-            
+
             ValidatePrefab(_prefab);
         }
 
@@ -38,13 +38,11 @@ namespace Gameplay.Dungeon.RoomVariants
             }
 
             var expectedType = RoomTypeHelper.GetExpectedRoomType(RoomType);
-            
-            if (!prefab.TryGetComponent(expectedType, out Component c))
-            {
+
+            if (!prefab.TryGetComponent(expectedType, out var c))
                 Debug.LogError(
                     $"Prefab '{prefab.name}' type mismatch on '{name}'. Expected component '{expectedType.Name}'."
                 );
-            }
         }
     }
 }

@@ -24,15 +24,15 @@ namespace Gameplay.Enemies
                 Debug.LogWarning("Enemies selection is empty");
                 return null;
             }
-            
+
             return SpawnRandomEnemy(enemySelection);
         }
-        
+
         private EnemyUnit SpawnRandomEnemy(IReadOnlyList<EnemyUnitData> enemySelection)
         {
-            int enemyIndex = Random.Range(0, enemySelection.Count);
+            var enemyIndex = Random.Range(0, enemySelection.Count);
             var enemyData = enemySelection[enemyIndex];
-            
+
             var prefab = enemyData.Prefab.gameObject;
             var unit = _containerFactory.Create<EnemyUnit>(prefab);
 

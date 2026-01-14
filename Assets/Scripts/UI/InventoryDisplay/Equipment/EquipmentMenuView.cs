@@ -25,7 +25,7 @@ namespace UI.InventoryDisplay.Equipment
 
         private void DisplayArmor()
         {
-            if(_playerUnit.UnitEquipmentData.TryGetEquippedArmor(out var armor))
+            if (_playerUnit.UnitEquipmentData.TryGetEquippedArmor(out var armor))
                 _armorDataView.SetEquipped(armor);
             else
                 _armorDataView.SetUnequipped();
@@ -33,7 +33,7 @@ namespace UI.InventoryDisplay.Equipment
 
         private void DisplayWeapon()
         {
-            if(_playerUnit.UnitEquipmentData.TryGetEquippedWeapon(out var weapon))
+            if (_playerUnit.UnitEquipmentData.TryGetEquippedWeapon(out var weapon))
                 _weaponDataView.SetEquipped(weapon);
             else
                 _weaponDataView.SetUnequipped();

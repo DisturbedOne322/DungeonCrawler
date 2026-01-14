@@ -11,19 +11,19 @@ namespace Gameplay.Player
     {
         private readonly PlayerInputActions _inputActions = new();
         private readonly Stack<IUiInputHandler> _uiInputHandlers = new();
-        
+
         public readonly Subject<Unit> OnGoForward = new();
         public readonly Subject<Unit> OnGoLeft = new();
         public readonly Subject<Unit> OnGoRight = new();
 
         public readonly Subject<Unit> OnPause = new();
-        
+
         public PlayerInputProvider()
         {
             SubscribeMovementActions();
             SubscribeUiActions();
             SubscribeGameEvents();
-            
+
             _inputActions.Game.Enable();
         }
 
@@ -96,19 +96,19 @@ namespace Gameplay.Player
                 _uiInputHandlers.Pop();
             else
                 Debug.LogWarning("Tried to pop non-top UI handler (possible mismatched calls)");
-            
+
             if (_uiInputHandlers.Count == 0)
                 _inputActions.UI.Disable();
         }
 
         public void TrimInputStackTo(IUiInputHandler target)
         {
-            while (_uiInputHandlers.Count > 0 && _uiInputHandlers.Peek() != target) 
+            while (_uiInputHandlers.Count > 0 && _uiInputHandlers.Peek() != target)
                 _uiInputHandlers.Pop();
-            
+
             RemoveUiInputOwner(target);
         }
-        
+
         private IUiInputHandler GetActiveUiOwner()
         {
             return _uiInputHandlers.PeekOrNull();

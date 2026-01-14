@@ -47,7 +47,7 @@ namespace Gameplay.Combat.Services
         {
             _onHitDealt.OnNext(data);
         }
-        
+
         public void InvokeSkillCasted(SkillCastedData data)
         {
             _onSkillCasted.OnNext(data);

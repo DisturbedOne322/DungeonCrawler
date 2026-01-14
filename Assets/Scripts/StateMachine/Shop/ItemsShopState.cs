@@ -4,7 +4,6 @@ using Gameplay.Dungeon.ShopRooms.Shop;
 using Gameplay.Player;
 using Gameplay.Rewards;
 using Gameplay.Services;
-using UI.BattleMenu;
 using UI.Menus;
 
 namespace StateMachine.Shop

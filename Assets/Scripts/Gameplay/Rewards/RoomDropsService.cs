@@ -18,9 +18,9 @@ namespace Gameplay.Rewards
         {
             var reward = _rewardSelectorService.SelectReward(room.RoomData.RewardDropTable);
 
-            if(reward == null)
+            if (reward == null)
                 return;
-            
+
             await _itemsDistributor.GiveRewardToPlayer(reward.Item, reward.Amount, ItemObtainContext.Loot);
         }
     }

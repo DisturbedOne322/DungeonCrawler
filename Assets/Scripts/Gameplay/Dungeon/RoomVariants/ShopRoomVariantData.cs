@@ -5,12 +5,11 @@ using UnityEngine;
 
 namespace Gameplay.Dungeon.RoomVariants
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "ShopRoomVariantData")] 
+    [CreateAssetMenu(menuName = MenuPaths.GameplayDungeonData + "ShopRoomVariantData")]
     public class ShopRoomVariantData : RoomVariantData
     {
         [SerializeField] private ShopItemsConfig _config;
-        public ShopItemsConfig Config => _config;
-        
         public override RoomType RoomType => RoomType.Shop;
+        public ShopItemsConfig Config => _config;
     }
 }

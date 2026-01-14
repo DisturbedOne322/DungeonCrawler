@@ -9,7 +9,7 @@ namespace Gameplay.Facades
     {
         EvadeAnimator EvadeAnimator { get; }
         AttackAnimator AttackAnimator { get; }
-        
+
         UnitEquipmentData UnitEquipmentData { get; }
         UnitInventoryData UnitInventoryData { get; }
     }

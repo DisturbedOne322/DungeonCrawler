@@ -10,17 +10,20 @@ namespace UI.InventoryDisplay
     {
         [SerializeField] protected MenuPageView MenuPageView;
         [SerializeField] private MenuPageSelectAnimator _animator;
-        
-        protected BaseInventoryDisplayMenu DisplayMenu;
 
         private IDisposable _disposable;
-        
+
+        protected BaseInventoryDisplayMenu DisplayMenu;
+
+        private void OnDestroy()
+        {
+            _disposable?.Dispose();
+        }
+
         protected override void Initialize()
         {
             _disposable = DisplayMenu.OnBack.Subscribe(_ => InvokeOnBack());
         }
-
-        private void OnDestroy() => _disposable?.Dispose();
 
         public override void Select()
         {

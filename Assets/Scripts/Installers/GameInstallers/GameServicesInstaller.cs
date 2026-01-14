@@ -28,9 +28,9 @@ namespace Installers.GameInstallers
             Container.Bind<LootDistributionStrategy>().AsSingle();
             Container.Bind<RewardSelectorService>().AsSingle();
             Container.Bind<RoomDropsService>().AsSingle();
-            
+
             Container.Bind<EquipmentChangeController>().AsSingle();
-            
+
             Container.Bind<SkillDiscardController>().AsSingle();
             Container.Bind<LootSkillDiscardStrategy>().AsSingle();
             Container.Bind<PurchasedSkillDiscardStrategy>().AsSingle();

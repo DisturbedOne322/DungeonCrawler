@@ -6,6 +6,6 @@ namespace Gameplay.Rewards
         Uncommon,
         Rare,
         Epic,
-        Legendary,
+        Legendary
     }
 }

@@ -20,9 +20,15 @@ namespace Gameplay
             UpdateTimeScale(_gameplayTimescale);
         }
 
-        public void Pause() => UpdateTimeScale(0);
+        public void Pause()
+        {
+            UpdateTimeScale(0);
+        }
 
-        public void Unpause() => UpdateTimeScale(_gameplayTimescale);
+        public void Unpause()
+        {
+            UpdateTimeScale(_gameplayTimescale);
+        }
 
         private void UpdateTimeScale(float timeScale)
         {

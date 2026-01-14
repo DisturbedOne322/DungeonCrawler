@@ -11,19 +11,20 @@ using UnityEngine;
 
 namespace Gameplay.Rewards
 {
-    public abstract class BaseItemDistributionStrategy: IItemDistributionStrategy
+    public abstract class BaseItemDistributionStrategy : IItemDistributionStrategy
     {
-        protected readonly PlayerUnit Player;
         private readonly GameplayConfigsProvider _configsProvider;
         private readonly StatusEffectsProcessor _statusEffectsProcessor;
+        protected readonly PlayerUnit Player;
 
-        public BaseItemDistributionStrategy(PlayerUnit player, GameplayConfigsProvider configsProvider, StatusEffectsProcessor statusEffectsProcessor)
+        public BaseItemDistributionStrategy(PlayerUnit player, GameplayConfigsProvider configsProvider,
+            StatusEffectsProcessor statusEffectsProcessor)
         {
             Player = player;
             _configsProvider = configsProvider;
             _statusEffectsProcessor = statusEffectsProcessor;
         }
-        
+
         public async UniTask DistributeItem(BaseGameItem item, int amount)
         {
             if (!item)
@@ -80,8 +81,8 @@ namespace Gameplay.Rewards
         private UniTask HandleCoins(CoinsItem coinsItem)
         {
             var config = _configsProvider.GetConfig<LuckTableConfig>();
-            int reward = config.GetCoins(coinsItem, Player.UnitStatsData.Luck.Value);
-            
+            var reward = config.GetCoins(coinsItem, Player.UnitStatsData.Luck.Value);
+
             Player.UnitInventoryData.Coins.Value += reward;
             return UniTask.CompletedTask;
         }

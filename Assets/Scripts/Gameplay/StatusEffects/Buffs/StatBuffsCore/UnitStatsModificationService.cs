@@ -85,7 +85,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             applied = 0f;
             var intDelta = Mathf.RoundToInt(delta);
 
-            if (unit is not IEntity entity) 
+            if (unit is not IEntity entity)
                 return false;
 
             switch (type)
@@ -143,7 +143,7 @@ namespace Gameplay.StatusEffects.Buffs.StatBuffsCore
             prop.Value = requestedNew;
             return requestedNew - old;
         }
-        
+
         private static float ApplyIntClamped(ReactiveProperty<int> prop, int intDelta, int minValue)
         {
             var old = prop.Value;

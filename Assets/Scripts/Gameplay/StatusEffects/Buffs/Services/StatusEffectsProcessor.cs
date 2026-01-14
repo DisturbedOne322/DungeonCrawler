@@ -2,7 +2,6 @@ using Gameplay.Facades;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using Helpers;
-using UnityEngine;
 
 namespace Gameplay.StatusEffects.Buffs.Services
 {
@@ -14,7 +13,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             _playerUnit = playerUnit;
         }
-        
+
         public void EnableStatusEffectsOnTrigger(ICombatant activeUnit, ICombatant otherUnit,
             StatusEffectTriggerType triggerType)
         {
@@ -24,32 +23,36 @@ namespace Gameplay.StatusEffects.Buffs.Services
             {
                 var heldData = heldStatusEffects[i];
                 var effect = heldData.Effect;
-                
+
                 if (effect.TriggerType != triggerType)
                     continue;
 
                 var source = heldData.Source;
-                
+
                 CreateStatusEffect(activeUnit, otherUnit, effect, source);
             }
         }
 
-        public void ApplyStatusEffectToPlayer(BaseStatusEffectData statusEffect, BaseGameItem source) => 
+        public void ApplyStatusEffectToPlayer(BaseStatusEffectData statusEffect, BaseGameItem source)
+        {
             ApplyStatusEffectTo(_playerUnit, statusEffect, source);
+        }
 
-        public void ApplyStatusEffectTo(ICombatant unit, BaseStatusEffectData statusEffect, BaseGameItem source) => 
+        public void ApplyStatusEffectTo(ICombatant unit, BaseStatusEffectData statusEffect, BaseGameItem source)
+        {
             CreateStatusEffect(unit, null, statusEffect, source);
+        }
 
         public void AddStatusEffectTo(IGameUnit unit, BaseStatusEffectData statusEffect, BaseGameItem source)
         {
-            unit.UnitHeldStatusEffectsContainer.Add(new (statusEffect, source));
-            
-            if(!StatusEffectsHelper.IsTriggeredOnObtain(statusEffect))
+            unit.UnitHeldStatusEffectsContainer.Add(new HeldStatusEffectData(statusEffect, source));
+
+            if (!StatusEffectsHelper.IsTriggeredOnObtain(statusEffect))
                 return;
-            
+
             ApplyStatusEffectTo(unit, statusEffect, source);
         }
-        
+
         public void ProcessTurn(ICombatant activeUnit)
         {
             var activeStatusEffects =
@@ -63,12 +66,12 @@ namespace Gameplay.StatusEffects.Buffs.Services
                     continue;
 
                 instance.DurationLeft.Value--;
-                
+
                 if (instance.DurationLeft.Value == 0)
                     instance.Revert();
             }
         }
-        
+
         public void ProcessDepthIncrease()
         {
             var activeStatusEffects =
@@ -109,16 +112,16 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             var heldStatusEffects = unit.UnitHeldStatusEffectsContainer;
             heldStatusEffects.RemoveFromSource(source);
-            
+
             var activeStatusEffects = unit.UnitActiveStatusEffectsContainer.All;
 
-            for (int i = activeStatusEffects.Count - 1; i >= 0; i--)
-            {                
+            for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
+            {
                 var activeStatusEffect = activeStatusEffects[i];
-                
-                if(!StatusEffectsHelper.SameSource(activeStatusEffect, source))
+
+                if (!StatusEffectsHelper.SameSource(activeStatusEffect, source))
                     continue;
-                
+
                 activeStatusEffect.Revert();
             }
         }
@@ -130,7 +133,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             for (var index = allEffects.Count - 1; index >= 0; index--)
             {
                 var effect = allEffects[index];
-                
+
                 if (!StatusEffectsHelper.IsClearableStatusEffect(effect))
                     continue;
 
@@ -145,18 +148,18 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
             var activeStatusEffects =
                 activeUnit.UnitActiveStatusEffectsContainer.All;
-            
+
             if (!isIndependent)
                 for (var i = activeStatusEffects.Count - 1; i >= 0; i--)
                 {
                     var activeBuff = activeStatusEffects[i];
-                    
+
                     if (activeBuff.StatusEffectData != statusEffectData)
                         continue;
-                    
+
                     if (!StatusEffectsHelper.SameSource(activeBuff, source))
                         continue;
-                    
+
                     var expirationType = activeBuff.StatusEffectData.StatusEffectDurationData.EffectExpirationType;
                     if (expirationType == StatusEffectExpirationType.Reapply)
                     {
@@ -167,9 +170,9 @@ namespace Gameplay.StatusEffects.Buffs.Services
                     StatusEffectsHelper.ReapplyStatusEffect(activeBuff);
                     return;
                 }
-            
-            var instance =  statusEffectData.CreateInstance();
-            instance.Apply(new (source, activeUnit, otherUnit));
+
+            var instance = statusEffectData.CreateInstance();
+            instance.Apply(new StatusEffectContext(source, activeUnit, otherUnit));
         }
     }
 }

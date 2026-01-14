@@ -6,7 +6,8 @@ namespace AssetManagement.AssetProviders.ConfigProviders
 {
     public class MenuItemPrefabsConfigProvider : NamedConfigProvider<MenuItemsConfig>
     {
-        public MenuItemPrefabsConfigProvider(IAssetLoader assetLoader) : base(assetLoader, ConstConfigs.MenuItemPrefabsConfig)
+        public MenuItemPrefabsConfigProvider(IAssetLoader assetLoader) : base(assetLoader,
+            ConstConfigs.MenuItemPrefabsConfig)
         {
         }
     }

@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Data.Events;
 using Gameplay.Facades;
@@ -14,18 +13,13 @@ namespace Gameplay.Combat.Services
         private readonly BuffsCalculationService _buffsCalculationService;
         private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEventsBus;
-        private readonly UnitRegenerationService _unitRegenerationService;
         private readonly HitProcessor _hitProcessor;
         private readonly StatusEffectsProcessor _statusEffectsProcessor;
-        
-        public IGameUnit ActiveUnit => _combatData.ActiveUnit;
-        public IGameUnit OtherUnit => _combatData.OtherUnit;
-
-        public int TurnCount => _combatData.TurnCount;
+        private readonly UnitRegenerationService _unitRegenerationService;
 
         public CombatService(CombatData combatData,
             BuffsCalculationService buffsCalculationService,
-            CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService, 
+            CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService,
             HitProcessor hitProcessor, StatusEffectsProcessor statusEffectsProcessor)
         {
             _combatData = combatData;
@@ -35,7 +29,12 @@ namespace Gameplay.Combat.Services
             _hitProcessor = hitProcessor;
             _statusEffectsProcessor = statusEffectsProcessor;
         }
-        
+
+        public IGameUnit ActiveUnit => _combatData.ActiveUnit;
+        public IGameUnit OtherUnit => _combatData.OtherUnit;
+
+        public int TurnCount => _combatData.TurnCount;
+
         public bool IsPlayerTurn()
         {
             return ActiveUnit is PlayerUnit;
@@ -113,29 +112,35 @@ namespace Gameplay.Combat.Services
             return hitDataStream;
         }
 
-        public void ApplyStatusEffectToActiveUnit(BaseStatusEffectData statusEffect) => 
+        public void ApplyStatusEffectToActiveUnit(BaseStatusEffectData statusEffect)
+        {
             ApplyStatusEffectTo(ActiveUnit, statusEffect);
+        }
 
-        public void ApplyStatusEffectToOtherUnit(BaseStatusEffectData statusEffect) => 
+        public void ApplyStatusEffectToOtherUnit(BaseStatusEffectData statusEffect)
+        {
             ApplyStatusEffectTo(OtherUnit, statusEffect);
+        }
 
-        private void ApplyStatusEffectTo(ICombatant unit, BaseStatusEffectData statusEffect) => 
+        private void ApplyStatusEffectTo(ICombatant unit, BaseStatusEffectData statusEffect)
+        {
             _statusEffectsProcessor.ApplyStatusEffectTo(unit, statusEffect, statusEffect);
+        }
 
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitDataStream hitDataStream, int index)
         {
             if (index == 0)
-                _combatEventsBus.InvokeSkillCasted(new SkillCastedData()
+                _combatEventsBus.InvokeSkillCasted(new SkillCastedData
                 {
                     Attacker = attacker,
                     Target = target,
                     HitDataStream = hitDataStream
                 });
-            
+
             var hitData = hitDataStream.Hits[index];
-            
+
             DealDamageToUnit(attacker, target, hitData);
-            
+
             if (index == hitDataStream.Hits.Count - 1)
                 _combatEventsBus.InvokeSkillUsed(new SkillUsedData
                 {
@@ -149,7 +154,7 @@ namespace Gameplay.Combat.Services
         {
             _hitProcessor.DealDamageToUnit(attacker, target, hitData);
         }
-        
+
         private void HealUnit(IGameUnit target, int amount)
         {
             target.UnitHealthController.AddHealth(amount);

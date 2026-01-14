@@ -13,7 +13,7 @@ namespace Installers.GameInstallers.UIInstallers
     public class UIInstallers : MonoInstaller
     {
         [SerializeField] private UIFactory _uiFactoryPrefab;
-        
+
         public override void InstallBindings()
         {
             Container.Bind<MenuItemViewFactory>().AsSingle();
@@ -24,7 +24,7 @@ namespace Installers.GameInstallers.UIInstallers
             Container.Bind<UIFactory>().FromNewComponentOnNewPrefab(_uiFactoryPrefab).AsSingle();
             Container.Bind<PopupsRegistry>().AsSingle();
             Container.Bind<MenuItemPrefabsRegistry>().AsSingle();
-            
+
             Container.Bind<ConsumablesHeldMenu>().AsSingle();
             Container.Bind<SkillsHeldMenu>().AsSingle();
             Container.Bind<StatusEffectsHeldDisplayMenu>().AsSingle();

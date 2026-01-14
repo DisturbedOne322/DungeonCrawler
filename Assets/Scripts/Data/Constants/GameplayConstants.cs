@@ -8,7 +8,7 @@ namespace Data.Constants
         public const float DelayBeforeAction = 0.15f;
 
         public const float CriticalDamageMultiplier = 2f;
-        
+
         public const int MaxBalance = 999_999_999;
         public static readonly Vector2 RoomSize = new(10f, 10f);
     }

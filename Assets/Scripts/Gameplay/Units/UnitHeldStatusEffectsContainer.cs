@@ -22,12 +22,12 @@ namespace Gameplay.Units
         public IReadOnlyList<HitBuffData> OffensiveBuffs => _offensive;
         public IReadOnlyList<StatBuffData> StatBuffs => _statBuffs;
         public IReadOnlyList<StatDebuffData> StatDebuffs => _statDebuffs;
-        
+
         public void Add(HeldStatusEffectData data)
         {
             if (data == null || !data.Effect)
                 return;
-            
+
             All.Add(data);
 
             switch (data.Effect)
@@ -45,7 +45,7 @@ namespace Gameplay.Units
                 return;
 
             var heldStatusEffect = All.First(x => x.Source == source);
-            
+
             All.Remove(heldStatusEffect);
 
             switch (heldStatusEffect.Effect)

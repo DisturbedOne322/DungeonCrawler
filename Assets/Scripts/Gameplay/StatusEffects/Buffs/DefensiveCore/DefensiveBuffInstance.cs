@@ -23,7 +23,7 @@ namespace Gameplay.StatusEffects.Buffs.DefensiveCore
 
         protected override void ProcessApply(ICombatant activeUnit, ICombatant otherUnit)
         {
-            activeUnit.UnitActiveStatusEffectsContainer.AddStatusEffect(this);      
+            activeUnit.UnitActiveStatusEffectsContainer.AddStatusEffect(this);
             Context.SetAffectedUnit(activeUnit);
         }
 

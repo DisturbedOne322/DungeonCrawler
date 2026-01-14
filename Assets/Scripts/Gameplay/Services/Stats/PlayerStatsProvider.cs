@@ -12,7 +12,7 @@ namespace Gameplay.Services.Stats
         {
             _player = player;
         }
-        
+
         public Dictionary<string, ReactiveProperty<int>> GetPlayerStats()
         {
             var starNames = new List<string>

@@ -22,7 +22,7 @@ namespace Gameplay.Units
         public void AddStatusEffect(BaseStatusEffectInstance effect)
         {
             All.Add(effect);
-            
+
             switch (effect)
             {
                 case DefensiveBuffInstance defBuff: ActiveDefensiveBuffs.Add(defBuff); break;

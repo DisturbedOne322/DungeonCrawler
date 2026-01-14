@@ -15,15 +15,15 @@ namespace Gameplay.Rewards
         private readonly SkillDiscardController _skillDiscardController;
         private readonly PlayerSkillSlotsManager _skillSlotsManager;
 
-        public PurchaseDistributionStrategy(SkillDiscardController skillDiscardController, 
+        public PurchaseDistributionStrategy(SkillDiscardController skillDiscardController,
             PlayerSkillSlotsManager skillSlotsManager, PlayerUnit playerUnit,
             GameplayConfigsProvider configsProvider,
             StatusEffectsProcessor statusEffectsProcessor) : base(playerUnit, configsProvider, statusEffectsProcessor)
-         {
+        {
             _skillDiscardController = skillDiscardController;
             _skillSlotsManager = skillSlotsManager;
         }
-        
+
         protected override UniTask HandleWeapon(BaseWeapon weapon)
         {
             Player.UnitEquipmentData.EquipWeapon(weapon);
@@ -33,7 +33,7 @@ namespace Gameplay.Rewards
         protected override UniTask HandleArmor(BaseArmor armor)
         {
             Player.UnitEquipmentData.EquipArmor(armor);
-            return UniTask.CompletedTask;        
+            return UniTask.CompletedTask;
         }
 
         protected override async UniTask HandleSkill(BaseSkill skill)
@@ -44,8 +44,9 @@ namespace Gameplay.Rewards
                 return;
             }
 
-            var skillToDiscard = await _skillDiscardController.MakeSkillDiscardChoice(skill, ItemObtainContext.Purchase);
-            
+            var skillToDiscard =
+                await _skillDiscardController.MakeSkillDiscardChoice(skill, ItemObtainContext.Purchase);
+
             if (skillToDiscard != skill)
             {
                 Player.UnitSkillsData.RemoveSkill(skillToDiscard);

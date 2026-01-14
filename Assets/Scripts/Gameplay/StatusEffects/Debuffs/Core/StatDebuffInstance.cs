@@ -1,4 +1,3 @@
-using System;
 using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.StatBuffsCore;
 using Gameplay.StatusEffects.Core;
@@ -34,10 +33,11 @@ namespace Gameplay.StatusEffects.Debuffs.Core
                 return;
             }
 
-            
-            ValueChange = UnitStatsModificationService.ModifyStat(affectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
-            affectedUnit.UnitActiveStatusEffectsContainer.AddStatusEffect(this);    
-            
+
+            ValueChange =
+                UnitStatsModificationService.ModifyStat(affectedUnit, StatDebuffData.DebuffedStatType, -ValueChange);
+            affectedUnit.UnitActiveStatusEffectsContainer.AddStatusEffect(this);
+
             Context.SetAffectedUnit(affectedUnit);
         }
 

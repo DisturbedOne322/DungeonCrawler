@@ -10,8 +10,7 @@ namespace Gameplay.Dungeon.RoomVariants
     public class PhysicalMasterRoomVariantData : BaseSpecialtyShopRoomVariantData
     {
         [SerializeField] private PhysicalSkillsMasterConfig _config;
-        public override BasePurchasableItemsConfig Config => _config;
-        
         public override RoomType RoomType => RoomType.PhysicalMaster;
+        public override BasePurchasableItemsConfig Config => _config;
     }
 }

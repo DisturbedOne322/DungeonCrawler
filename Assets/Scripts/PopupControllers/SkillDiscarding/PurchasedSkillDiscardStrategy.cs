@@ -4,8 +4,6 @@ using Gameplay.Player;
 using Gameplay.Skills.Core;
 using Gameplay.Units;
 using UI;
-using UI.BattleMenu;
-using UI.Gameplay;
 using UI.Menus;
 using UI.Menus.Data;
 using UI.Popups;
@@ -14,10 +12,10 @@ namespace PopupControllers.SkillDiscarding
 {
     public class PurchasedSkillDiscardStrategy : BaseUIInputHandler, ISkillDiscardStrategy
     {
+        private readonly MenuItemsUpdater _menuItemsUpdater;
         private readonly PlayerInputProvider _playerInputProvider;
 
         private readonly PlayerUnit _playerUnit;
-        private readonly MenuItemsUpdater _menuItemsUpdater;
         private readonly UIFactory _uiFactory;
 
         private SkillPurchaseDiscardPopup _popup;

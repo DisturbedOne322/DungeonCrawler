@@ -9,8 +9,7 @@ namespace Gameplay.Dungeon.RoomVariants
     public class TrapRoomVariantData : EncounterRoomVariantData
     {
         [SerializeField] private List<GameObject> _trapPrefabs;
-        public IReadOnlyList<GameObject> TrapPrefabs => _trapPrefabs;
-        
         public override RoomType RoomType => RoomType.Trap;
+        public IReadOnlyList<GameObject> TrapPrefabs => _trapPrefabs;
     }
 }

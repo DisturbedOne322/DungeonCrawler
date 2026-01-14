@@ -13,7 +13,7 @@ namespace UI.Popups
         [SerializeField] private TextMeshProUGUI _pointsLeftText;
 
         [SerializeField] private UITable _uiTable;
-        
+
         public void SetTable(Dictionary<BaseMenuItemView, StatIncreaseView> table)
         {
             _uiTable.SetTable(table);

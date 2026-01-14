@@ -6,10 +6,10 @@ namespace Gameplay.Dungeon.Rooms
     {
         private CorridorRoomVariantData _roomData;
         public override RoomVariantData RoomData => _roomData;
-        
+
         public override void SetData(RoomVariantData data)
         {
-            _roomData =  data as CorridorRoomVariantData;
+            _roomData = data as CorridorRoomVariantData;
         }
     }
 }

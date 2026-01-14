@@ -58,7 +58,7 @@ namespace Gameplay.Combat.Services
                 return 1;
 
             var hitData = damageContext.HitData;
-            
+
             var effectiveHitRatio = GetAttackerEffectiveHit(attacker);
             var effectiveEvasion = GetDefenderEffectiveEvasion(defender);
 

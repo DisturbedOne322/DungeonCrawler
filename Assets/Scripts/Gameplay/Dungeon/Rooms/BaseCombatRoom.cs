@@ -16,14 +16,14 @@ namespace Gameplay.Dungeon.Rooms
 
         private EnemyUnit _enemy;
         private EnemyFactory _enemyFactory;
-        
+
         [Inject]
         private void Construct(CombatSequenceController combatSequenceController, EnemyFactory enemyFactory)
         {
             _combatSequenceController = combatSequenceController;
             _enemyFactory = enemyFactory;
         }
-        
+
         public override void SetupRoom()
         {
             _enemy = _enemyFactory.CreateEnemy(RoomVariantData);

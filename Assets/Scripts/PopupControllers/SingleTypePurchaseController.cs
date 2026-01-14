@@ -2,8 +2,6 @@ using System;
 using Cysharp.Threading.Tasks;
 using Gameplay.Dungeon.ShopRooms.BasePurchasableItems;
 using UI;
-using UI.BattleMenu;
-using UI.Gameplay;
 using UI.Menus;
 using UI.Popups;
 

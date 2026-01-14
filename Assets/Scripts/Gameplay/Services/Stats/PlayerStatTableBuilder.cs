@@ -13,8 +13,8 @@ namespace Gameplay.Services.Stats
     {
         private readonly ContainerFactory _containerFactory;
         private readonly MenuItemViewFactory _menuFactory;
-        private readonly UIPrefabsProvider _uiPrefabsProvider;
         private readonly PlayerStatsProvider _playerStatProvider;
+        private readonly UIPrefabsProvider _uiPrefabsProvider;
 
         public PlayerStatTableBuilder(UIPrefabsProvider uiPrefabsProvider,
             ContainerFactory containerFactory, MenuItemViewFactory menuFactory,
@@ -31,7 +31,7 @@ namespace Gameplay.Services.Stats
             Dictionary<MenuItemData, ReactiveProperty<int>> menuItems = new();
 
             var playerStats = _playerStatProvider.GetPlayerStats();
-            
+
             foreach (var name in playerStats.Keys)
                 menuItems.Add(new MenuItemData(
                     name,

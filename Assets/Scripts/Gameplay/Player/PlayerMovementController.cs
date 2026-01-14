@@ -19,8 +19,8 @@ namespace Gameplay.Player
 
         private readonly PlayerMoveAnimator _moveAnimator;
         private readonly PlayerMovementHistory _playerMovementHistory;
-        private readonly UnitRegenerationService _unitRegenerationService;
         private readonly StatusEffectsProcessor _statusEffectsProcessor;
+        private readonly UnitRegenerationService _unitRegenerationService;
 
         public PlayerMovementController(PlayerUnit playerUnit,
             DungeonLayoutProvider dungeonLayoutProvider,
@@ -87,7 +87,7 @@ namespace Gameplay.Player
                 {
                     _playerMovementHistory.AddRoom(room.RoomData.RoomType);
                     SetPositionIndex(index);
-                    
+
                     _unitRegenerationService.RegeneratePlayerOutOfBattle();
                     _statusEffectsProcessor.ProcessDepthIncrease();
                 }, isLast);

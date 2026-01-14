@@ -9,7 +9,7 @@ namespace Gameplay.Units
     {
         public readonly ReactiveProperty<int> Coins = new();
         public ReactiveCollection<BaseConsumable> Consumables { get; } = new();
-        
+
         public void AddItems(List<BaseConsumable> items)
         {
             Consumables.AllocFreeAddRange(items);

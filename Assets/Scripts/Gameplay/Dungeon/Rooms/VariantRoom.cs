@@ -7,6 +7,9 @@ namespace Gameplay.Dungeon.Rooms
         protected T RoomVariantData { get; set; }
         public override RoomVariantData RoomData => RoomVariantData;
 
-        public override void SetData(RoomVariantData data) => RoomVariantData = data as T;
+        public override void SetData(RoomVariantData data)
+        {
+            RoomVariantData = data as T;
+        }
     }
 }

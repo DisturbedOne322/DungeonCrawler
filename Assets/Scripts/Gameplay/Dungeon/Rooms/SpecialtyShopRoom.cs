@@ -14,7 +14,7 @@ namespace Gameplay.Dungeon.Rooms
         private SingleTypePurchaseController _shopController;
 
         public BasePurchasableItemsConfig Config => RoomVariantData.Config;
-        
+
         [Inject]
         private void Construct(SingleTypePurchaseController shopController)
         {

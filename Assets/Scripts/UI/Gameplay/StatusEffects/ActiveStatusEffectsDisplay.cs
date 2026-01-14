@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Gameplay.Facades;
 using Gameplay.Services;
 using Gameplay.StatusEffects.Core;
-using Gameplay.Units;
 using Pools;
 using UniRx;
 using UnityEngine;

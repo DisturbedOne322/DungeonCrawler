@@ -5,16 +5,16 @@ namespace Gameplay.Rewards
 {
     public class ItemsDistributor
     {
-        private readonly PurchaseDistributionStrategy _purchaseDistributionStrategy;
         private readonly LootDistributionStrategy _lootDistributionStrategy;
-        
-        public ItemsDistributor(PurchaseDistributionStrategy purchaseStrategy, 
+        private readonly PurchaseDistributionStrategy _purchaseDistributionStrategy;
+
+        public ItemsDistributor(PurchaseDistributionStrategy purchaseStrategy,
             LootDistributionStrategy lootDistributionStrategy)
         {
             _purchaseDistributionStrategy = purchaseStrategy;
             _lootDistributionStrategy = lootDistributionStrategy;
         }
-        
+
         public async UniTask GiveRewardToPlayer(BaseGameItem item, int amount, ItemObtainContext itemObtainContext)
         {
             switch (itemObtainContext)

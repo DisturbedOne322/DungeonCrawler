@@ -13,7 +13,7 @@ namespace Gameplay.Services.Stats
     {
         private readonly PlayerInputProvider _playerInputProvider;
         private List<ReactiveProperty<int>> _currentStats;
-        
+
         private MenuItemsUpdater _menuItemsUpdater;
 
         private List<int> _originalStats;

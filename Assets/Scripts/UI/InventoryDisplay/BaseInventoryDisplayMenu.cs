@@ -9,11 +9,11 @@ namespace UI.InventoryDisplay
 {
     public abstract class BaseInventoryDisplayMenu : BaseUIInputHandler
     {
-        protected readonly PlayerUnit Player;
         protected readonly PlayerInputProvider InputProvider;
+        protected readonly List<MenuItemData> Items = new();
 
         protected readonly MenuItemsUpdater ItemsUpdater = new();
-        protected readonly List<MenuItemData> Items = new();
+        protected readonly PlayerUnit Player;
 
         public Subject<Unit> OnBack = new();
 
@@ -23,12 +23,30 @@ namespace UI.InventoryDisplay
             InputProvider = inputProvider;
         }
 
-        public void TakeControls() => InputProvider.AddUiInputOwner(this);
-        public void RemoveControls() => InputProvider.RemoveUiInputOwner(this);
+        public void TakeControls()
+        {
+            InputProvider.AddUiInputOwner(this);
+        }
 
-        public override void OnUIUp() => ItemsUpdater.UpdateSelection(-1);
-        public override void OnUIDown() => ItemsUpdater.UpdateSelection(+1);
-        public override void OnUIBack() => OnBack?.OnNext(Unit.Default);
+        public void RemoveControls()
+        {
+            InputProvider.RemoveUiInputOwner(this);
+        }
+
+        public override void OnUIUp()
+        {
+            ItemsUpdater.UpdateSelection(-1);
+        }
+
+        public override void OnUIDown()
+        {
+            ItemsUpdater.UpdateSelection(+1);
+        }
+
+        public override void OnUIBack()
+        {
+            OnBack?.OnNext(Unit.Default);
+        }
 
         public Menu CreateMenu()
         {

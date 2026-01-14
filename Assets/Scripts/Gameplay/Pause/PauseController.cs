@@ -9,16 +9,16 @@ namespace Gameplay.Pause
 {
     public class PauseController : IInitializable, IDisposable
     {
-        private readonly PlayerInputProvider _playerInputProvider;
         private readonly GameplayData _gameplayData;
-        private readonly TimeScaleController _timeScaleController;
         private readonly PausePopupController _pausePopupController;
+        private readonly PlayerInputProvider _playerInputProvider;
+        private readonly TimeScaleController _timeScaleController;
 
         private IDisposable _subscription;
-        
+
         public PauseController(PlayerInputProvider playerInputProvider,
             GameplayData gameplayData,
-            TimeScaleController timeScaleController, 
+            TimeScaleController timeScaleController,
             PausePopupController pausePopupController)
         {
             _playerInputProvider = playerInputProvider;
@@ -27,14 +27,14 @@ namespace Gameplay.Pause
             _pausePopupController = pausePopupController;
         }
 
-        public void Initialize()
-        {
-            _subscription = _playerInputProvider.OnPause.Subscribe(_ => TogglePause());
-        }
-
         public void Dispose()
         {
             _subscription.Dispose();
+        }
+
+        public void Initialize()
+        {
+            _subscription = _playerInputProvider.OnPause.Subscribe(_ => TogglePause());
         }
 
         private void TogglePause()

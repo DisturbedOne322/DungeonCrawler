@@ -10,54 +10,40 @@ namespace Helpers
     {
         private static readonly Dictionary<RoomType, Type> _roomTypeDict = new()
         {
-            {RoomType.Corridor, typeof(CorridorRoom)},
-            {RoomType.Decision, typeof(DecisionRoom)},
-            {RoomType.TreasureChest, typeof(TreasureChestRoom)},
-            {RoomType.BasicFight, typeof(BasicFightRoom)},
-            {RoomType.EliteFight, typeof(EliteFightRoom)},
-            {RoomType.BossFight, typeof(BossFightRoom)},
-            {RoomType.Shop, typeof(ShopRoom)},
-            {RoomType.Shrine, typeof(ShrineRoom)},
-            {RoomType.PhysicalMaster, typeof(PhysicalMasterRoom)},
-            {RoomType.MagicMaster, typeof(MagicMasterRoom)},
-            {RoomType.Trap, typeof(TrapRoom)},
-            {RoomType.EncounterBattle, typeof(EncounterBattleRoom)},
+            { RoomType.Corridor, typeof(CorridorRoom) },
+            { RoomType.Decision, typeof(DecisionRoom) },
+            { RoomType.TreasureChest, typeof(TreasureChestRoom) },
+            { RoomType.BasicFight, typeof(BasicFightRoom) },
+            { RoomType.EliteFight, typeof(EliteFightRoom) },
+            { RoomType.BossFight, typeof(BossFightRoom) },
+            { RoomType.Shop, typeof(ShopRoom) },
+            { RoomType.Shrine, typeof(ShrineRoom) },
+            { RoomType.PhysicalMaster, typeof(PhysicalMasterRoom) },
+            { RoomType.MagicMaster, typeof(MagicMasterRoom) },
+            { RoomType.Trap, typeof(TrapRoom) },
+            { RoomType.EncounterBattle, typeof(EncounterBattleRoom) }
         };
-        
+
         private static readonly Dictionary<RoomType, Type> _roomDataTypeDict = new()
         {
-            {RoomType.Corridor, typeof(CorridorRoomVariantData)},
-            {RoomType.Decision, typeof(DecisionRoomVariantData)},
-            {RoomType.TreasureChest, typeof(TreasureChestRoomVariantData)},
-            {RoomType.BasicFight, typeof(BasicFightRoomVariantData)},
-            {RoomType.EliteFight, typeof(EliteFightRoomVariantData)},
-            {RoomType.BossFight, typeof(BossFightRoomVariantData)},
-            {RoomType.Shop, typeof(ShopRoomVariantData)},
-            {RoomType.Shrine, typeof(ShrineRoomVariantData)},
-            {RoomType.PhysicalMaster, typeof(PhysicalMasterRoomVariantData)},
-            {RoomType.MagicMaster, typeof(MagicMasterRoomVariantData)},
-            {RoomType.Trap, typeof(TrapRoomVariantData)},
-            {RoomType.EncounterBattle, typeof(EncounterBattleRoomVariantData)},
+            { RoomType.Corridor, typeof(CorridorRoomVariantData) },
+            { RoomType.Decision, typeof(DecisionRoomVariantData) },
+            { RoomType.TreasureChest, typeof(TreasureChestRoomVariantData) },
+            { RoomType.BasicFight, typeof(BasicFightRoomVariantData) },
+            { RoomType.EliteFight, typeof(EliteFightRoomVariantData) },
+            { RoomType.BossFight, typeof(BossFightRoomVariantData) },
+            { RoomType.Shop, typeof(ShopRoomVariantData) },
+            { RoomType.Shrine, typeof(ShrineRoomVariantData) },
+            { RoomType.PhysicalMaster, typeof(PhysicalMasterRoomVariantData) },
+            { RoomType.MagicMaster, typeof(MagicMasterRoomVariantData) },
+            { RoomType.Trap, typeof(TrapRoomVariantData) },
+            { RoomType.EncounterBattle, typeof(EncounterBattleRoomVariantData) }
         };
 
-        public static bool IsRoomValidForSelection(RoomType roomType)
-        {
-            if(EncounterRoomTypes.Contains(roomType))
-                return false;
-            
-            if (SpecialRoomTypes.Contains(roomType))
-                return false;
-            
-            if(roomType is RoomType.Corridor)
-                return false;
-
-            return true;
-        }
-        
         public static readonly List<RoomType> EncounterRoomTypes = new()
         {
             RoomType.Trap,
-            RoomType.EncounterBattle,
+            RoomType.EncounterBattle
         };
 
         public static readonly List<RoomType> SpecialRoomTypes = new()
@@ -65,8 +51,29 @@ namespace Helpers
             RoomType.BossFight,
             RoomType.Decision
         };
-        
-        public static Type GetExpectedRoomType(RoomType roomType) => _roomTypeDict[roomType];
-        public static Type GetExpectedRoomDataType(RoomType roomType) => _roomDataTypeDict[roomType];
+
+        public static bool IsRoomValidForSelection(RoomType roomType)
+        {
+            if (EncounterRoomTypes.Contains(roomType))
+                return false;
+
+            if (SpecialRoomTypes.Contains(roomType))
+                return false;
+
+            if (roomType is RoomType.Corridor)
+                return false;
+
+            return true;
+        }
+
+        public static Type GetExpectedRoomType(RoomType roomType)
+        {
+            return _roomTypeDict[roomType];
+        }
+
+        public static Type GetExpectedRoomDataType(RoomType roomType)
+        {
+            return _roomDataTypeDict[roomType];
+        }
     }
 }

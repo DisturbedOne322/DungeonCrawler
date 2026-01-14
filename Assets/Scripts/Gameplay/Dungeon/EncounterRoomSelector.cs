@@ -13,7 +13,7 @@ namespace Gameplay.Dungeon
         {
             _dungeonRoomsProvider = dungeonRoomsProvider;
         }
-        
+
         public EncounterRoomSpawnData? SelectSpecialRoomData(int rooms)
         {
             var candidates = GetSpecialRoomsSelection();
@@ -26,8 +26,8 @@ namespace Gameplay.Dungeon
 
             if (Random.value > selected.RollChance)
                 return null;
-            
-            int index = Random.Range(
+
+            var index = Random.Range(
                 selected.StartOffset,
                 rooms - selected.EndOffset);
 
@@ -39,7 +39,7 @@ namespace Gameplay.Dungeon
                 Index = index
             };
         }
-        
+
         private List<RoomVariantData> GetSpecialRoomsSelection()
         {
             List<RoomVariantData> selection = new();
@@ -47,22 +47,22 @@ namespace Gameplay.Dungeon
             foreach (var roomType in RoomTypeHelper.EncounterRoomTypes)
             {
                 var roomData = _dungeonRoomsProvider.GetRoomData(roomType);
-                if(roomData)
+                if (roomData)
                     selection.Add(roomData);
             }
-            
+
             return selection;
         }
-        
+
         private EncounterRoomVariantData PickByWeight(
             IReadOnlyList<RoomVariantData> rooms)
         {
-            int totalWeight = 0;
+            var totalWeight = 0;
 
             foreach (var room in rooms)
                 totalWeight += room.Weight;
 
-            int roll = Random.Range(0, totalWeight);
+            var roll = Random.Range(0, totalWeight);
 
             foreach (var room in rooms)
             {

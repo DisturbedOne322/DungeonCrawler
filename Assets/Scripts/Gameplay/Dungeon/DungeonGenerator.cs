@@ -9,7 +9,7 @@ namespace Gameplay.Dungeon
     {
         private const int MinCorridorLength = 3;
         private const int MaxCorridorLength = 8;
-        
+
         private readonly DungeonFactory _dungeonFactory;
         private readonly DungeonLayoutProvider _dungeonLayoutProvider;
         private readonly DungeonPositioner _dungeonPositioner;
@@ -32,7 +32,7 @@ namespace Gameplay.Dungeon
             CreateCorridors();
             CreateDecisionRoom();
         }
-        
+
         public void CreateNextMapSection(RoomVariantData firstRoom)
         {
             CreateRoom(firstRoom);
@@ -42,22 +42,26 @@ namespace Gameplay.Dungeon
 
         private void CreateCorridors()
         {
-            int roomsToSpawn = Random.Range(MinCorridorLength, MaxCorridorLength);
+            var roomsToSpawn = Random.Range(MinCorridorLength, MaxCorridorLength);
 
             var specialRoom = _encounterRoomSelector.SelectSpecialRoomData(roomsToSpawn);
 
-            for (int i = 0; i < roomsToSpawn; i++)
-            {
+            for (var i = 0; i < roomsToSpawn; i++)
                 if (specialRoom.HasValue && specialRoom.Value.Index == i)
                     CreateRoom(specialRoom.Value.RoomData);
                 else
                     CreateCorridor();
-            }
         }
 
-        private void CreateDecisionRoom() => CreateRoom(_dungeonRoomsProvider.GetRoomData(RoomType.Decision));
+        private void CreateDecisionRoom()
+        {
+            CreateRoom(_dungeonRoomsProvider.GetRoomData(RoomType.Decision));
+        }
 
-        private void CreateCorridor() => CreateRoom(_dungeonRoomsProvider.GetRoomData(RoomType.Corridor));
+        private void CreateCorridor()
+        {
+            CreateRoom(_dungeonRoomsProvider.GetRoomData(RoomType.Corridor));
+        }
 
         private void CreateRoom(RoomVariantData roomData)
         {

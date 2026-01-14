@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Data.Constants;
 using Gameplay.Combat.Data;
@@ -10,8 +9,8 @@ namespace Gameplay.Traps
     [CreateAssetMenu(menuName = MenuPaths.GameplayDungeon + "Trap Data")]
     public class TrapData : BaseGameItem
     {
-        [Range(0,1f)] public float DamageChance = 0.5f;
-        public List<SkillData> Skills = new List<SkillData>();
+        [Range(0, 1f)] public float DamageChance = 0.5f;
+        public List<SkillData> Skills = new();
         public List<StatDebuffData> Debuffs = new();
     }
 }

@@ -6,28 +6,26 @@ namespace Gameplay.StatusEffects.Core
 {
     public abstract class BaseStatusEffectInstance
     {
+        private bool _reverted;
+        public StatusEffectContext Context;
+        public IntReactiveProperty DurationLeft;
         public StatusEffectExpirationType EffectExpirationType;
         public IntReactiveProperty Stacks = new(1);
         public BaseStatusEffectData StatusEffectData;
-        public IntReactiveProperty DurationLeft;
-        public StatusEffectContext Context;
 
-        private bool _reverted = false;
-        private bool _applied = false;
-        
-        public bool Applied => _applied;
+        public bool Applied { get; private set; }
 
         public void Apply(StatusEffectContext context)
         {
-            if (_applied)
+            if (Applied)
             {
                 DebugHelper.LogWarning("Buff instance already applied");
                 return;
             }
-            
+
             Context = context;
             ProcessApply(context.ActiveUnit, context.OtherUnit);
-            _applied = true;
+            Applied = true;
         }
 
         public void Revert()
@@ -37,7 +35,7 @@ namespace Gameplay.StatusEffects.Core
                 DebugHelper.LogWarning("Buff instance already reverted");
                 return;
             }
-            
+
             ProcessRevert();
             _reverted = true;
         }

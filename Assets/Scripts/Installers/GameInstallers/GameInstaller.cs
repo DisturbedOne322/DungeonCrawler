@@ -7,7 +7,6 @@ using Gameplay.Experience;
 using Gameplay.Player;
 using Gameplay.Services.Stats;
 using Gameplay.StatusEffects.Buffs.Services;
-using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
 using UnityEngine;
 using Zenject;

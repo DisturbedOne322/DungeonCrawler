@@ -51,8 +51,8 @@ namespace Pools
 
             _activeElements.Remove(view);
             _pool.Push(view);
-            
-            if(reparent)
+
+            if (reparent)
                 view.transform.SetParent(_parent);
         }
 

@@ -18,7 +18,7 @@ namespace Gameplay.Rewards
         private readonly PlayerSkillSlotsManager _skillSlotsManager;
 
         public LootDistributionStrategy(EquipmentChangeController equipmentChangeController,
-            SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager, 
+            SkillDiscardController skillDiscardController, PlayerSkillSlotsManager skillSlotsManager,
             PlayerUnit playerUnit, GameplayConfigsProvider configsProvider,
             StatusEffectsProcessor statusEffectsProcessor) : base(playerUnit, configsProvider, statusEffectsProcessor)
         {

@@ -10,9 +10,9 @@ namespace Gameplay.Rewards
 {
     public class RewardSelectorService
     {
-        private readonly PlayerUnit _player;
         private readonly GameplayConfigsProvider _configProvider;
-        
+        private readonly PlayerUnit _player;
+
         private readonly Random _rng = new();
 
         public RewardSelectorService(PlayerUnit player, GameplayConfigsProvider configProvider)
@@ -27,17 +27,17 @@ namespace Gameplay.Rewards
                 return null;
 
             var rewards = new List<DropEntry>(dropTable.EntriesList);
-            
+
             RemovePlayerItemsFromSelection(_player, rewards);
-            
+
             if (rewards.Count == 0)
                 return dropTable.FallbackItem;
 
             var itemReward = SelectDrop(rewards);
-            
-            if(itemReward == null)
+
+            if (itemReward == null)
                 return dropTable.FallbackItem;
-            
+
             return itemReward;
         }
 
@@ -50,29 +50,29 @@ namespace Gameplay.Rewards
                     allRewards.RemoveAt(i);
             }
         }
-        
+
         private Dictionary<ItemRarity, List<DropEntry>> GroupByRarity(List<DropEntry> entries)
         {
             return entries
                 .GroupBy(e => e.Item.Rarity)
                 .ToDictionary(g => g.Key, g => g.ToList());
         }
-        
+
         private ItemRarity RollRarity(int luck, IEnumerable<ItemRarity> availableRarities)
         {
             var weighted = new List<(ItemRarity rarity, int weight)>();
 
             var rarityLuckTable = _configProvider.GetConfig<LuckTableConfig>();
-            
+
             foreach (var rarity in availableRarities)
             {
-                int weight = rarityLuckTable.GetWeight(rarity, luck);
+                var weight = rarityLuckTable.GetWeight(rarity, luck);
                 if (weight > 0)
                     weighted.Add((rarity, weight));
             }
 
-            int total = weighted.Sum(w => w.weight);
-            int roll = _rng.Next(0, total);
+            var total = weighted.Sum(w => w.weight);
+            var roll = _rng.Next(0, total);
 
             foreach (var entry in weighted)
             {
@@ -83,10 +83,10 @@ namespace Gameplay.Rewards
 
             return weighted.Last().rarity;
         }
-        
+
         private DropEntry SelectDrop(List<DropEntry> rewards)
         {
-            int luck = _player.UnitStatsData.Luck.Value;
+            var luck = _player.UnitStatsData.Luck.Value;
 
             var grouped = GroupByRarity(rewards);
             var rolledRarity = RollRarity(luck, grouped.Keys);

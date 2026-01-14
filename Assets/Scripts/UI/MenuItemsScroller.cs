@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using UI.BattleMenu;
 using UI.Menus;
 using UI.Menus.MenuItemViews;
 using UniRx;
@@ -66,9 +65,7 @@ namespace UI
                 _parentYPos = GetTargetPos(activeItemId, localPos.y);
 
                 _content.DOKill();
-                _content.DOAnchorPosY(_parentYPos, 0.25f).
-                    SetEase(Ease.OutCubic).
-                    SetUpdate(true);
+                _content.DOAnchorPosY(_parentYPos, 0.25f).SetEase(Ease.OutCubic).SetUpdate(true);
             }
 
             _prevItemIndex = activeItemId;

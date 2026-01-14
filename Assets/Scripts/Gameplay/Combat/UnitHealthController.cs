@@ -49,7 +49,7 @@ namespace Gameplay.Combat
             if (_unitHealthData.IsDead.Value)
                 return;
 
-            int current = _unitHealthData.CurrentHealth.Value;
+            var current = _unitHealthData.CurrentHealth.Value;
             current = Mathf.Clamp(current + amount, 1, _unitHealthData.MaxHealth.Value);
 
             _unitHealthData.CurrentHealth.Value = current;

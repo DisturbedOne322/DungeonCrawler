@@ -15,10 +15,10 @@ namespace Gameplay.StatusEffects.Buffs.Services
     {
         private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEvents;
-        private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
         private readonly CompositeDisposable _disposables = new();
         private readonly PlayerUnit _playerUnit;
+        private readonly StatusEffectsProcessor _statusEffectsProcessor;
 
         [Inject]
         public CombatStatusEffectsApplicationService(
@@ -50,23 +50,23 @@ namespace Gameplay.StatusEffects.Buffs.Services
             Bind(_combatEvents.OnHealed, ProcessHealed);
             Bind(_combatEvents.OnEvaded, ProcessEvaded);
         }
-        
+
         private void Bind<T>(IObservable<T> stream, Action<T> handler)
         {
             stream.Subscribe(handler).AddTo(_disposables);
         }
-        
+
         private void ProcessCombatStart(IGameUnit enemy)
         {
-            TriggerBoth(_playerUnit, enemy, 
+            TriggerBoth(_playerUnit, enemy,
                 StatusEffectTriggerType.OnCombatStart, StatusEffectTriggerType.OnCombatStart);
         }
 
         private void ProcessCombatEnded(IGameUnit enemy)
         {
-            TriggerBoth(_playerUnit, enemy,  StatusEffectTriggerType.OnCombatEnd, 
+            TriggerBoth(_playerUnit, enemy, StatusEffectTriggerType.OnCombatEnd,
                 StatusEffectTriggerType.OnCombatEnd);
-            
+
             _statusEffectsProcessor.ClearAllStatusEffects(_playerUnit);
             _statusEffectsProcessor.ClearAllStatusEffects(enemy);
         }
@@ -78,7 +78,6 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
         private void ProcessTurnEnded(TurnData turn)
         {
-            
         }
 
         private void ProcessSkillCasted(SkillCastedData skillCastedData)
@@ -89,7 +88,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 StatusEffectTriggerType.OnSkillCasted,
                 StatusEffectTriggerType.OnOtherSkillCasted);
         }
-        
+
         private void ProcessSkillUsed(SkillUsedData skillUsedData)
         {
             TriggerBoth(
@@ -117,11 +116,9 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 StatusEffectTriggerType.OnDamageTaken);
 
             if (data.HitData.IsCritical)
-            {
                 TriggerBoth(active, other,
                     StatusEffectTriggerType.OnCriticalHit,
                     StatusEffectTriggerType.OnCriticalDamageTaken);
-            }
 
             TriggerBoth(active, other,
                 StatusEffectsHelper.GetBuffTriggerForDamageTypeDealt(data.HitData.DamageType),
@@ -134,14 +131,16 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             var activeUnit = data.Target;
             var otherUnit = _combatData.OtherUnit;
-            
-            TriggerBoth(activeUnit, otherUnit, 
+
+            TriggerBoth(activeUnit, otherUnit,
                 StatusEffectTriggerType.OnHealed, StatusEffectTriggerType.OnOtherHealed);
         }
 
-        private void ProcessEvaded(EvadeEventData eventData) => 
-            TriggerBoth(eventData.Attacker, eventData.Target, 
+        private void ProcessEvaded(EvadeEventData eventData)
+        {
+            TriggerBoth(eventData.Attacker, eventData.Target,
                 StatusEffectTriggerType.OnMissed, StatusEffectTriggerType.OnEvaded);
+        }
 
         private void ProcessHealthThresholds(
             HitEventData data,
@@ -149,20 +148,16 @@ namespace Gameplay.StatusEffects.Buffs.Services
             ICombatant other)
         {
             if (HealthHelper.DroppedBelowMediumHealth(data))
-            {
                 TriggerBoth(active, other,
                     StatusEffectTriggerType.OnOtherMediumHealth,
                     StatusEffectTriggerType.OnMediumHealth);
-            }
 
             if (HealthHelper.DroppedBelowCriticalHealth(data))
-            {
                 TriggerBoth(active, other,
                     StatusEffectTriggerType.OnOtherCriticalHealth,
                     StatusEffectTriggerType.OnCriticalHealth);
-            }
         }
-        
+
         private void TriggerBoth(
             ICombatant active,
             ICombatant other,

@@ -4,10 +4,9 @@ namespace Gameplay.StatusEffects.Core
 {
     public class StatusEffectContext
     {
-        public readonly BaseGameItem Source;
         public readonly ICombatant ActiveUnit;
         public readonly ICombatant OtherUnit;
-        public ICombatant AffectedUnit { get; private set; }
+        public readonly BaseGameItem Source;
 
         public StatusEffectContext(BaseGameItem source, ICombatant activeUnit, ICombatant otherUnit)
         {
@@ -15,7 +14,12 @@ namespace Gameplay.StatusEffects.Core
             ActiveUnit = activeUnit;
             OtherUnit = otherUnit;
         }
-        
-        public void SetAffectedUnit(ICombatant affectedUnit) => AffectedUnit = affectedUnit;
+
+        public ICombatant AffectedUnit { get; private set; }
+
+        public void SetAffectedUnit(ICombatant affectedUnit)
+        {
+            AffectedUnit = affectedUnit;
+        }
     }
 }

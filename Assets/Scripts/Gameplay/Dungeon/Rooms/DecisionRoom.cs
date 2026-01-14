@@ -17,7 +17,7 @@ namespace Gameplay.Dungeon.Rooms
         private DungeonBranchingController _dungeonBranchingController;
         private DungeonBranchingSelector _dungeonBranchingSelector;
         private DungeonVisualsConfigProvider _dungeonVisualsConfigProvider;
-        
+
         [Inject]
         private void Construct(DungeonBranchingController dungeonBranchingController,
             DungeonBranchingSelector dungeonBranchingSelector,
@@ -27,7 +27,7 @@ namespace Gameplay.Dungeon.Rooms
             _dungeonBranchingSelector = dungeonBranchingSelector;
             _dungeonVisualsConfigProvider = dungeonVisualsConfigProvider;
         }
-        
+
         public override void ResetRoom()
         {
             _doorAnimator.ResetDoors();

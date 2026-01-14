@@ -40,7 +40,7 @@ namespace Gameplay.Combat
 
         public void AddMana(int amount)
         {
-            int current = _unitManaData.CurrentMana.Value;
+            var current = _unitManaData.CurrentMana.Value;
             current = Mathf.Clamp(current + amount, 0, _unitManaData.MaxMana.Value);
 
             _unitManaData.CurrentMana.Value = current;

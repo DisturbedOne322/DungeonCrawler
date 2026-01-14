@@ -12,11 +12,11 @@ namespace Gameplay.Combat.Services
     public class HitProcessor
     {
         private readonly BuffsCalculationService _buffsCalculationService;
-        private readonly CombatFormulaService _combatFormulaService;
         private readonly CombatEventsBus _combatEventsBus;
+        private readonly CombatFormulaService _combatFormulaService;
         private readonly PlayerUnit _playerUnit;
 
-        public HitProcessor(BuffsCalculationService buffsCalculationService, 
+        public HitProcessor(BuffsCalculationService buffsCalculationService,
             CombatFormulaService combatFormulaService, CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
         {
             _buffsCalculationService = buffsCalculationService;
@@ -54,7 +54,7 @@ namespace Gameplay.Combat.Services
         {
             var damageContext = new DamageContext(attacker, defender, hitData);
             SetMissed(attacker, defender, damageContext);
-            
+
             if (hitData.Missed)
             {
                 defender.EvadeAnimator.PlayEvadeAnimation().Forget();
@@ -91,7 +91,7 @@ namespace Gameplay.Combat.Services
         {
             var hitData = damageContext.HitData;
             var hitChance = _combatFormulaService.GetHitChance(attacker, defender, damageContext);
-            
+
             hitData.Missed = Random.value > hitChance;
         }
     }

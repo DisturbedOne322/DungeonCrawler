@@ -10,7 +10,7 @@ namespace Gameplay.Dungeon
     public class DungeonRoomsDatabase : GameplayConfig
     {
         [SerializeField] private List<RoomVariantData> _rooms;
-        
+
         public List<RoomVariantData> Rooms => _rooms;
     }
 }

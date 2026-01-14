@@ -4,7 +4,6 @@ using Gameplay;
 using Gameplay.Combat.Data;
 using Gameplay.StatusEffects.Core;
 using Gameplay.StatusEffects.ReapplyStrategies;
-using UnityEngine;
 
 namespace Helpers
 {
@@ -16,7 +15,7 @@ namespace Helpers
             { DamageType.Magical, StatusEffectTriggerType.OnMagicalDamageDealt },
             { DamageType.Absolute, StatusEffectTriggerType.OnAbsoluteDamageDealt }
         };
-        
+
         private static readonly Dictionary<DamageType, StatusEffectTriggerType> DamageTypeToTriggerTakenDict = new()
         {
             { DamageType.Physical, StatusEffectTriggerType.OnPhysicalDamageTaken },
@@ -47,7 +46,7 @@ namespace Helpers
 
             throw new ArgumentException("Unknown damage type: " + damageType);
         }
-        
+
         public static StatusEffectTriggerType GetBuffTriggerForDamageTypeTaken(DamageType damageType)
         {
             if (DamageTypeToTriggerTakenDict.TryGetValue(damageType, out var buffTrigger))
@@ -80,7 +79,7 @@ namespace Helpers
                 StatusEffectExpirationType.NextMagicalAction or
                 StatusEffectExpirationType.NextPhysicalAction;
         }
-        
+
         public static bool SameSource(BaseStatusEffectInstance instance, BaseGameItem source)
         {
             var context = instance.Context;
@@ -91,10 +90,11 @@ namespace Helpers
         {
             return data.TriggerType == StatusEffectTriggerType.OnObtained;
         }
-        
+
         public static bool IsClearableStatusEffect(BaseStatusEffectInstance instance)
         {
-            return GetExpirationType(instance) is not (StatusEffectExpirationType.Permanent or StatusEffectExpirationType.DepthIncrease);
+            return GetExpirationType(instance) is not (StatusEffectExpirationType.Permanent
+                or StatusEffectExpirationType.DepthIncrease);
         }
 
         public static bool IsTurnBased(BaseStatusEffectInstance instance)
@@ -106,8 +106,10 @@ namespace Helpers
         {
             return GetExpirationType(instance) is StatusEffectExpirationType.DepthIncrease;
         }
-        
-        private static StatusEffectExpirationType GetExpirationType(BaseStatusEffectInstance instance) => 
-            instance.EffectExpirationType;
+
+        private static StatusEffectExpirationType GetExpirationType(BaseStatusEffectInstance instance)
+        {
+            return instance.EffectExpirationType;
+        }
     }
 }

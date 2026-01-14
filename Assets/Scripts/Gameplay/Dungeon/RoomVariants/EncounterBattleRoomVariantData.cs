@@ -11,8 +11,7 @@ namespace Gameplay.Dungeon.RoomVariants
     public class EncounterBattleRoomVariantData : EncounterRoomVariantData, ICombatRoomData
     {
         [SerializeField] private List<EnemyUnitData> _enemiesSelection;
-        public IReadOnlyList<EnemyUnitData> EnemiesSelection => _enemiesSelection;
-
         public override RoomType RoomType => RoomType.EncounterBattle;
+        public IReadOnlyList<EnemyUnitData> EnemiesSelection => _enemiesSelection;
     }
 }

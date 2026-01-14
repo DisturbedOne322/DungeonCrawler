@@ -16,28 +16,6 @@ namespace Gameplay.Units
         [SerializeField] private AttackAnimator _attackAnimator;
 
         private StatusEffectsProcessor _statusEffectsProcessor;
-        
-        #region Unit Data
-        
-        public UnitHealthData UnitHealthData { get; private set; }
-        public UnitManaData UnitManaData { get; private set; }
-        public UnitStatsData UnitStatsData { get; private set; }
-        public UnitBonusStatsData UnitBonusStatsData { get; private set; }
-        public UnitSkillsData UnitSkillsData { get; private set; }
-        public UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; private set; }
-        public UnitActiveStatusEffectsContainer UnitActiveStatusEffectsContainer { get; private set; }
-        public UnitInventoryData UnitInventoryData { get; private set; }
-        public UnitEquipmentData UnitEquipmentData { get; private set; }
-        
-        #endregion
-
-        #region Unit Controllers
-
-        public UnitHealthController UnitHealthController { get; private set; }
-        public UnitManaController UnitManaController { get; private set; }
-        public BaseActionSelectionProvider BaseActionSelectionProvider { get; private set; }
-
-        #endregion
 
         public EvadeAnimator EvadeAnimator => _evadeAnimator;
         public AttackAnimator AttackAnimator => _attackAnimator;
@@ -62,7 +40,7 @@ namespace Gameplay.Units
             UnitEquipmentData unitEquipmentData)
         {
             _statusEffectsProcessor = statusEffectsProcessor;
-            
+
             UnitHealthData = unitHealthData;
             UnitHealthController = unitHealthController;
             UnitManaData = unitManaData;
@@ -90,14 +68,36 @@ namespace Gameplay.Units
             UnitSkillsData.AssignStartingSkills(unitData);
             UnitInventoryData.AddItems(unitData.Items);
 
-            foreach (var statusEffect in unitData.StatusEffects) 
+            foreach (var statusEffect in unitData.StatusEffects)
                 _statusEffectsProcessor.AddStatusEffectTo(this, statusEffect, statusEffect);
-            
+
             if (unitData.BaseWeapon)
                 UnitEquipmentData.EquipWeapon(unitData.BaseWeapon);
 
             if (unitData.BaseArmor)
                 UnitEquipmentData.EquipArmor(unitData.BaseArmor);
         }
+
+        #region Unit Data
+
+        public UnitHealthData UnitHealthData { get; private set; }
+        public UnitManaData UnitManaData { get; private set; }
+        public UnitStatsData UnitStatsData { get; private set; }
+        public UnitBonusStatsData UnitBonusStatsData { get; private set; }
+        public UnitSkillsData UnitSkillsData { get; private set; }
+        public UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; private set; }
+        public UnitActiveStatusEffectsContainer UnitActiveStatusEffectsContainer { get; private set; }
+        public UnitInventoryData UnitInventoryData { get; private set; }
+        public UnitEquipmentData UnitEquipmentData { get; private set; }
+
+        #endregion
+
+        #region Unit Controllers
+
+        public UnitHealthController UnitHealthController { get; private set; }
+        public UnitManaController UnitManaController { get; private set; }
+        public BaseActionSelectionProvider BaseActionSelectionProvider { get; private set; }
+
+        #endregion
     }
 }

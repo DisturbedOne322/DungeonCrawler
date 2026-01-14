@@ -10,7 +10,7 @@ namespace UI.Navigation
     {
         [SerializeField] private string _name;
         [SerializeField] private BaseMenuItemView _baseMenuItemView;
-        
+
         public MenuItemData CreateData(Action callback)
         {
             var data = MenuItemData.ForNavigationItem(
@@ -25,7 +25,6 @@ namespace UI.Navigation
 
         protected virtual void ProcessAdditionalBindings(MenuItemData data)
         {
-            
         }
     }
 }

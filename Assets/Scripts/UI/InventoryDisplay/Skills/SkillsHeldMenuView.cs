@@ -20,7 +20,7 @@ namespace UI.InventoryDisplay.Skills
 
             var views = _factory.CreateSkillMenuItems(menu.Items);
             MenuPageView.SetItems(views, menu.ItemsUpdater);
-            
+
             base.Initialize();
         }
     }

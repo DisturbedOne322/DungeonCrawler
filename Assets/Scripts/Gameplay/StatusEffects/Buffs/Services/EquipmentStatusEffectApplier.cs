@@ -21,7 +21,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
 
             unitEquipmentData.OnWeaponEquipped.Subscribe(EquipStatusEffectsFromEquipment).AddTo(_compositeDisposable);
             unitEquipmentData.OnArmorEquipped.Subscribe(EquipStatusEffectsFromEquipment).AddTo(_compositeDisposable);
-            
+
             unitEquipmentData.OnWeaponRemoved.Subscribe(RemoveStatusEffectsFromEquipment).AddTo(_compositeDisposable);
             unitEquipmentData.OnArmorRemoved.Subscribe(RemoveStatusEffectsFromEquipment).AddTo(_compositeDisposable);
         }
@@ -37,7 +37,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             {
                 if (!statusEffect)
                     continue;
-                
+
                 _statusEffectProcessor.AddStatusEffectTo(_unit, statusEffect, equipmentPiece);
             }
         }
@@ -48,7 +48,7 @@ namespace Gameplay.StatusEffects.Buffs.Services
             {
                 if (!statusEffect)
                     continue;
-                
+
                 _statusEffectProcessor.RemoveStatusEffectFromSource(_unit, equipmentPiece);
             }
         }

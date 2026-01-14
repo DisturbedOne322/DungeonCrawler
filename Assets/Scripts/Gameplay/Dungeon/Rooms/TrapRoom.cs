@@ -9,9 +9,9 @@ namespace Gameplay.Dungeon.Rooms
     public class TrapRoom : VariantRoom<TrapRoomVariantData>
     {
         [SerializeField] private Transform _trapPoint;
-        
+
         private TrapFactory _factory;
-        
+
         private TrapMono _trapInstance;
 
         [Inject]
@@ -19,7 +19,7 @@ namespace Gameplay.Dungeon.Rooms
         {
             _factory = factory;
         }
-        
+
         public override void SetupRoom()
         {
             _trapInstance = _factory.CreateTrap(RoomVariantData);
@@ -29,10 +29,10 @@ namespace Gameplay.Dungeon.Rooms
 
         public override void ResetRoom()
         {
-            if(_trapInstance)
+            if (_trapInstance)
                 Destroy(_trapInstance.gameObject);
         }
-        
+
         public override async UniTask ClearRoom()
         {
             await UniTask.WaitForSeconds(0.5f);

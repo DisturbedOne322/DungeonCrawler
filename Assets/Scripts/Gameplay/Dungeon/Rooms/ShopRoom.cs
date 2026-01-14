@@ -9,9 +9,9 @@ namespace Gameplay.Dungeon.Rooms
     public class ShopRoom : VariantRoom<ShopRoomVariantData>
     {
         private ShopController _shopController;
-        
+
         public ShopItemsConfig Config => RoomVariantData.Config;
-        
+
         [Inject]
         private void Construct(ShopController shopController)
         {

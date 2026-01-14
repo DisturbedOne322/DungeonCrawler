@@ -17,8 +17,8 @@ namespace UI.InventoryDisplay.Skills
             skills.Insert(0, Player.UnitSkillsData.GuardSkill);
             skills.Insert(0, Player.UnitSkillsData.BasicAttackSkill);
 
-            foreach (var skill in skills) 
-                target.Add(MenuItemData.ForSkillItem(skill, () => true, () =>{}));
+            foreach (var skill in skills)
+                target.Add(MenuItemData.ForSkillItem(skill, () => true, () => { }));
         }
     }
 }
