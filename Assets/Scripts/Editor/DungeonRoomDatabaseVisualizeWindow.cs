@@ -21,6 +21,10 @@ namespace Editor
         private const float MaxZoom = 3.5f;
         private const float ZoomSpeed = 0.1f;
 
+        // ---------------- HEADERS ----------------
+        private const float HeaderHeight = 22f;
+        private const float HeaderPadding = 4f;
+
         private readonly Dictionary<RoomType, Color> _columnColors = new()
         {
             { RoomType.Corridor, new Color(0.6f, 0.6f, 0.6f) },
@@ -66,14 +70,23 @@ namespace Editor
             var rooms = _database.Rooms ?? new List<RoomVariantData>();
             int overallMaxDepth = rooms.Count > 0 ? rooms.Max(r => r.MaxDepth) : 10;
 
-            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
-
             int columnCount = System.Enum.GetValues(typeof(RoomType)).Length;
             float baseColumnWidth = 150f;
             float columnWidth = baseColumnWidth * _horizontalZoom;
 
             float graphHeight = Mathf.Max(position.height * 0.75f, 200f) * _verticalZoom;
             float totalWidth = columnWidth * columnCount;
+
+            // ---------- HEADERS (NON-SCROLLING) ----------
+            Rect headerRect = GUILayoutUtility.GetRect(
+                totalWidth,
+                HeaderHeight + HeaderPadding * 2
+            );
+
+            DrawColumnHeaders(headerRect, columnWidth);
+
+            // ---------- SCROLL VIEW ----------
+            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
             Rect graphRect = GUILayoutUtility.GetRect(totalWidth, graphHeight);
 
@@ -102,7 +115,33 @@ namespace Editor
             DrawZoomHint();
         }
 
-        // ---------------- ZOOM HANDLING ----------------
+        // ---------------- HEADERS ----------------
+
+        private void DrawColumnHeaders(Rect rect, float columnWidth)
+        {
+            EditorGUI.DrawRect(rect, new Color(0f, 0f, 0f, 0.15f));
+
+            int index = 0;
+            foreach (RoomType type in System.Enum.GetValues(typeof(RoomType)))
+            {
+                Rect labelRect = new Rect(
+                    rect.x + index * columnWidth,
+                    rect.y + HeaderPadding,
+                    columnWidth,
+                    HeaderHeight
+                );
+
+                EditorGUI.LabelField(
+                    labelRect,
+                    type.ToString(),
+                    EditorStyles.boldLabel
+                );
+
+                index++;
+            }
+        }
+
+        // ---------------- ZOOM ----------------
 
         private void HandleZoomEvents()
         {
