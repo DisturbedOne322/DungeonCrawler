@@ -20,7 +20,7 @@ namespace Installers.GameInstallers
 
         public override void InstallBindings()
         {
-            Container.Bind<PlayerUnit>().FromComponentInNewPrefab(_prefab).AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerUnit>().FromComponentInNewPrefab(_prefab).AsSingle();
 
             Container.BindInterfacesAndSelfTo<GameplayBootstrapper>().AsSingle();
 

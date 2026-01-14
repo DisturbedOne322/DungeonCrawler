@@ -13,7 +13,7 @@ namespace Installers.UnitInstallers
 
         public override void InstallBindings()
         {
-            Container.BindInstance(_gameUnit).AsSingle();
+            Container.BindInterfacesAndSelfTo<GameUnit>().FromInstance(_gameUnit).AsSingle();
 
             Container.Bind<UnitHealthData>().AsSingle();
             Container.Bind<UnitHealthController>().AsSingle();

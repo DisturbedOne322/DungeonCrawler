@@ -62,10 +62,10 @@ namespace Gameplay.StatusEffects.Buffs.Services
                 if (!StatusEffectsHelper.IsTurnBased(instance))
                     continue;
 
+                instance.DurationLeft.Value--;
+                
                 if (instance.DurationLeft.Value == 0)
                     instance.Revert();
-
-                instance.DurationLeft.Value--;
             }
         }
         

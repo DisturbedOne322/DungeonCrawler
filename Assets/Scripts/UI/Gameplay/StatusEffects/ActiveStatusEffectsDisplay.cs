@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gameplay.Facades;
 using Gameplay.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
@@ -26,15 +27,15 @@ namespace UI.Gameplay.StatusEffects
         }
 
         [Inject]
-        private void Construct(PlayerUnit playerUnit, ContainerFactory factory)
+        private void Construct(IStatusEffectCarrier unit, ContainerFactory factory)
         {
             _statusEffectDisplayPool = new BasePool<StatusEffectDisplay>(factory);
             _statusEffectDisplayPool.Initialize(_statusEffectDisplay);
 
-            playerUnit.UnitActiveStatusEffectsContainer.All.ObserveAdd()
+            unit.UnitActiveStatusEffectsContainer.All.ObserveAdd()
                 .Subscribe(e => { AddStatusEffectDisplay(e.Value); }).AddTo(_subscription);
 
-            playerUnit.UnitActiveStatusEffectsContainer.All.ObserveRemove()
+            unit.UnitActiveStatusEffectsContainer.All.ObserveRemove()
                 .Subscribe(e => { RemoveStatusEffectDisplay(e.Value); }).AddTo(_subscription);
         }
 

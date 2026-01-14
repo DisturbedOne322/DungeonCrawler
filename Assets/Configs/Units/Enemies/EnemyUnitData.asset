@@ -32,7 +32,8 @@ MonoBehaviour:
   _guardSkill: {fileID: 11400000, guid: 5a2ec0e93c678fb42b0087f73304518c, type: 2}
   _skillSet: []
   _items: []
-  _statusEffects: []
+  _statusEffects:
+  - {fileID: 11400000, guid: bd87ab00ef7e8044c9df8299953c6a8a, type: 2}
   _baseWeapon: {fileID: 0}
   _baseArmor: {fileID: 0}
   _experienceBonus: 200
