@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Gameplay;
 using Gameplay.Player;
+using Gameplay.Skills.Core;
 using Gameplay.Units;
 using UI.Menus.Data;
 
@@ -13,7 +15,7 @@ namespace UI.InventoryDisplay.Skills
 
         protected override void BuildItems(List<MenuItemData> target)
         {
-            var skills = Player.UnitSkillsData.Skills;
+            var skills = new List<BaseSkill>(Player.UnitSkillsData.Skills);
             skills.Insert(0, Player.UnitSkillsData.GuardSkill);
             skills.Insert(0, Player.UnitSkillsData.BasicAttackSkill);
 

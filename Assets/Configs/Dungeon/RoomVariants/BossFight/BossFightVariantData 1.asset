@@ -17,4 +17,5 @@ MonoBehaviour:
   _maxDepth: 200
   _weight: 1
   _rewardDropTable: {fileID: 0}
-  _enemiesSelection: []
+  _enemiesSelection:
+  - {fileID: 11400000, guid: b85a98c9d7f89a74c9ec27e0abfdc416, type: 2}

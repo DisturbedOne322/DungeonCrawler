@@ -17,6 +17,7 @@ namespace Gameplay.Player
         public readonly Subject<Unit> OnGoRight = new();
 
         public readonly Subject<Unit> OnPause = new();
+        public readonly Subject<Unit> OnSpeedUp = new();
 
         public PlayerInputProvider()
         {
@@ -52,6 +53,7 @@ namespace Gameplay.Player
         private void SubscribeGameEvents()
         {
             _inputActions.Game.Pause.performed += _ => OnPause.OnNext(Unit.Default);
+            _inputActions.Game.SpeedUp.performed += _ => OnSpeedUp.OnNext(Unit.Default);
         }
 
         public void EnableMovementInput(bool enable)

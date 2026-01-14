@@ -14,5 +14,7 @@ namespace Data.Constants
         
         public const int RoomsForSelectionMin = 1;
         public const int RoomsForSelectionMax = 3;
+
+        public const float SpeedUpTimeScale = 3;
     }
 }

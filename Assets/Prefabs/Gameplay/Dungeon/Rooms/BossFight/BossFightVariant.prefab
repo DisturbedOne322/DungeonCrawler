@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4992744793387557682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4322786599818847818}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4322786599818847818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992744793387557682}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1267600950394439856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1671290476782995276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,12 +85,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 479335995503906812, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4322786599818847818}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7308314855470243522, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7010300315358171237}
   m_SourcePrefab: {fileID: 100100000, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
+--- !u!4 &1267600950394439856 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 479335995503906812, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
+  m_PrefabInstance: {fileID: 1671290476782995276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7228169102176812899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8322089526744266799, guid: 7461c7cf9adcc834c9d3b137993074d2, type: 3}
@@ -83,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStandPoint: {fileID: 7228169102176812899}
-  _enemySpawnPoint: {fileID: 0}
+  _enemySpawnPoint: {fileID: 4322786599818847818}
