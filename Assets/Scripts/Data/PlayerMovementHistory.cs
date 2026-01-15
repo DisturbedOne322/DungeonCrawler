@@ -1,16 +1,25 @@
+using Helpers;
 using UniRx;
+using UnityEngine;
 
 namespace Data
 {
     public class PlayerMovementHistory
     {
-        public ReactiveCollection<RoomType> RoomsHistory { get; } = new();
+        public ReactiveCollection<RoomType> AllRoomsHistory { get; } = new();
 
-        public int Depth => RoomsHistory.Count;
+        public int AllRoomsCount => AllRoomsHistory.Count;
+
+        public int Depth { get; private set; } = 0;
 
         public void AddRoom(RoomType roomType)
         {
-            RoomsHistory.Add(roomType);
+            AllRoomsHistory.Add(roomType);
+
+            if (RoomTypeHelper.IsRecordableRoom(roomType))
+                Depth++;
+            
+            Debug.Log(Depth);
         }
     }
 }

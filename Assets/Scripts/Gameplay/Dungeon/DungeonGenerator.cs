@@ -15,7 +15,7 @@ namespace Gameplay.Dungeon
         private readonly EncounterRoomSelector _encounterRoomSelector;
         private readonly DungeonBranchingSelector _dungeonBranchingSelector;
         
-        private DungeonRulesConfig _dungeonRulesConfig;
+        private readonly DungeonRulesConfig _dungeonRulesConfig;
 
         private DungeonGenerator(DungeonLayoutProvider dungeonLayoutProvider,
             DungeonFactory dungeonFactory, DungeonPositioner dungeonPositioner,

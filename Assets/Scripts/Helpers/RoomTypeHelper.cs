@@ -40,30 +40,28 @@ namespace Helpers
             { RoomType.EncounterBattle, typeof(EncounterBattleRoomVariantData) }
         };
 
-        public static readonly List<RoomType> EncounterRoomTypes = new()
+        private static readonly HashSet<RoomType> NonSelectableRoomTypes = new()
+        {
+            RoomType.Corridor,
+            RoomType.Trap,
+            RoomType.EncounterBattle,
+            RoomType.Decision
+        };
+
+        public static readonly HashSet<RoomType> EncounterRoomsTypes = new()
         {
             RoomType.Trap,
             RoomType.EncounterBattle
         };
 
-        public static readonly List<RoomType> SpecialRoomTypes = new()
+        public static bool IsRecordableRoom(RoomType roomType)
         {
-            RoomType.BossFight,
-            RoomType.Decision
-        };
-
+            return IsRoomValidForSelection(roomType);
+        }
+        
         public static bool IsRoomValidForSelection(RoomType roomType)
         {
-            if (EncounterRoomTypes.Contains(roomType))
-                return false;
-
-            if (SpecialRoomTypes.Contains(roomType))
-                return false;
-
-            if (roomType is RoomType.Corridor)
-                return false;
-
-            return true;
+            return !NonSelectableRoomTypes.Contains(roomType);
         }
 
         public static Type GetExpectedRoomType(RoomType roomType)

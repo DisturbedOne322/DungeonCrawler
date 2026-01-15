@@ -63,7 +63,7 @@ namespace Gameplay.Dungeon
                     continue;
                 
                 var room = decisionRoom as DecisionRoomVariantData;
-                if(room.RoomsForSelection == selection)
+                if(room?.RoomsForSelection == selection)
                     return room;
             }
             

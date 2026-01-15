@@ -32,7 +32,7 @@ namespace UI.Gameplay.MovementsHistory
                 _activeDisplays.AddLast(display);
             }
 
-            history.RoomsHistory.ObserveAdd().Subscribe(newRoom => { ShowRoomDisplay(newRoom.Value); })
+            history.AllRoomsHistory.ObserveAdd().Subscribe(newRoom => { ShowRoomDisplay(newRoom.Value); })
                 .AddTo(gameObject);
         }
 
