@@ -50,13 +50,6 @@ namespace StateMachine.Shop
                     () => _shopItemsProvider.AnyConsumablesSold(),
                     () => StateMachine.GoToState<ConsumablesShopState>().Forget())
             );
-
-            MenuItems.Add(
-                MenuItemData.ForSubmenu(
-                    "LEAVE",
-                    () => true,
-                    () => StateMachine.InvokeShopExit())
-            );
         }
 
         public override void OnUISubmit()
@@ -72,6 +65,11 @@ namespace StateMachine.Shop
         public override void OnUIDown()
         {
             MenuItemsUpdater.UpdateSelection(+1);
+        }
+
+        public override void OnUIBack()
+        {
+            StateMachine.InvokeShopExit();
         }
     }
 }

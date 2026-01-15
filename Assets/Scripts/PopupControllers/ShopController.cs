@@ -15,8 +15,7 @@ namespace PopupControllers
 
         private IDisposable _disposable;
 
-        public ShopController(ShopStateMachine stateMachine, UIFactory uiFactory,
-            PlayerInputProvider playerInputProvider)
+        public ShopController(ShopStateMachine stateMachine, UIFactory uiFactory)
         {
             _stateMachine = stateMachine;
             _uiFactory = uiFactory;

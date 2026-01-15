@@ -49,7 +49,7 @@ namespace Gameplay.Dungeon
         {
             List<RoomVariantData> selection = new();
 
-            foreach (var roomType in RoomTypeHelper.EncounterRoomsTypes)
+            foreach (var roomType in RoomTypeHelper.EncounterRoomTypes)
             {
                 var roomData = _dungeonRoomsProvider.GetRoomData(roomType);
                 if (roomData)

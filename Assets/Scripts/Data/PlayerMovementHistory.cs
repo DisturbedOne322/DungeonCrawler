@@ -18,8 +18,6 @@ namespace Data
 
             if (RoomTypeHelper.IsRecordableRoom(roomType))
                 Depth++;
-            
-            Debug.Log(Depth);
         }
     }
 }

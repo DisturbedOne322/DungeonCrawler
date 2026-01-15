@@ -48,7 +48,7 @@ namespace Helpers
             RoomType.Decision
         };
 
-        public static readonly HashSet<RoomType> EncounterRoomsTypes = new()
+        public static readonly HashSet<RoomType> EncounterRoomTypes = new()
         {
             RoomType.Trap,
             RoomType.EncounterBattle
