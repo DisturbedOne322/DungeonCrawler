@@ -23,7 +23,9 @@ namespace Gameplay.Combat.AI
             foreach (HitData hitData in hitDataStream.Hits)
             {
                 _damageDealingService.ProcessHit(activeUnit, otherUnit, hitData);
-                damageSum += hitData.Damage;
+
+                if (!hitData.Missed)
+                    damageSum += hitData.Damage;
             }
 
             int otherUnitMaxHp = otherUnit.UnitHealthData.MaxHealth.Value;

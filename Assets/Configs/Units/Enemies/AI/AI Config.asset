@@ -15,5 +15,5 @@ MonoBehaviour:
   _intelligence: 0.5
   _aggression: 0.5
   _defense: 0.5
-  _randomness: 0.5
+  _randomness: 0.802
   Debug: 1
