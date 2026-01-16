@@ -78,8 +78,11 @@ namespace Gameplay.Combat.Services
 
         private float GetDamageReductionFinal(in DamageContext damageContext)
         {
+            if (damageContext.HitData.IsPiercing)
+                return 1;
+            
             var attacker = damageContext.Attacker;
-            var penRatio = attacker.UnitBonusStatsData.PenetrationRatio.Value;
+            var penRatio = attacker.UnitBonusStatsData.PenetrationRatio.Value + damageContext.HitData.PenetrationRatio;
 
             var defender = damageContext.Defender;
 
