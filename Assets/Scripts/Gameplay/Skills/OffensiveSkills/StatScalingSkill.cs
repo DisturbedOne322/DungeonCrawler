@@ -13,7 +13,7 @@ namespace Gameplay.Skills.OffensiveSkills
     {
         [SerializeField] private List<SkillScalingData> _scalingsList;
 
-        protected override SkillData GetSkillData(IGameUnit entity)
+        public override SkillData GetSkillData(IGameUnit entity)
         {
             var skillData = base.GetSkillData(entity);
 

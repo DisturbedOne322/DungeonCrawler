@@ -1,12 +1,13 @@
 using Cysharp.Threading.Tasks;
 using Data.Constants;
+using Gameplay.Combat.AI;
 using Gameplay.Combat.Services;
 using UnityEngine;
 
 namespace Gameplay.Consumables
 {
-    [CreateAssetMenu(menuName = MenuPaths.GameplayItems + "HealingItem")]
-    public class HealingConsumable : BaseConsumable
+    [CreateAssetMenu(menuName = MenuPaths.GameplayItems + "FlatHealingItem")]
+    public class FlatHealingConsumable : BaseConsumable
     {
         [SerializeField] [Space] private int _healAmount;
 
@@ -22,6 +23,11 @@ namespace Gameplay.Consumables
             var activeUnitMaxHealth = combatService.ActiveUnit.UnitHealthData.MaxHealth.Value;
 
             return activeUnitHealth < activeUnitMaxHealth;
+        }
+
+        public override float EvaluateAction(AIActionEvaluationService evaluationService, AIContext context)
+        {
+            return evaluationService.GetHealingValue(context, _healAmount);
         }
     }
 }

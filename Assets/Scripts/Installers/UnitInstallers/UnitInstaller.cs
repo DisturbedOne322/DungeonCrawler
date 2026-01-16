@@ -21,7 +21,7 @@ namespace Installers.UnitInstallers
             Container.Bind<UnitManaData>().AsSingle();
             Container.Bind<UnitManaController>().AsSingle();
 
-            Container.Bind<UnitSkillsData>().AsSingle();
+            Container.Bind<UnitSkillsContainer>().AsSingle();
             Container.Bind<UnitInventoryData>().AsSingle();
             Container.Bind<UnitStatsData>().AsSingle();
             Container.Bind<UnitBonusStatsData>().AsSingle();

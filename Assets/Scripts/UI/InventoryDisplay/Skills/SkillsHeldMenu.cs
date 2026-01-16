@@ -15,9 +15,9 @@ namespace UI.InventoryDisplay.Skills
 
         protected override void BuildItems(List<MenuItemData> target)
         {
-            var skills = new List<BaseSkill>(Player.UnitSkillsData.Skills);
-            skills.Insert(0, Player.UnitSkillsData.GuardSkill);
-            skills.Insert(0, Player.UnitSkillsData.BasicAttackSkill);
+            var skills = new List<BaseSkill>(Player.UnitSkillsContainer.Skills);
+            skills.Insert(0, Player.UnitSkillsContainer.GuardSkill);
+            skills.Insert(0, Player.UnitSkillsContainer.BasicAttackSkill);
 
             foreach (var skill in skills)
                 target.Add(MenuItemData.ForSkillItem(skill, () => true, () => { }));

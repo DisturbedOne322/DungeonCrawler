@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Gameplay.Combat;
+using Gameplay.Combat.AI;
 using Gameplay.Combat.Data;
 using Gameplay.Combat.Services;
 using Gameplay.Facades;
@@ -21,7 +22,8 @@ namespace Gameplay.Skills.Core
 
             var task = StartAnimation(combatService);
 
-            var hitsStream = combatService.CreateHitsStream(GetSkillData(combatService.ActiveUnit));
+            var activeUnit = combatService.ActiveUnit;
+            var hitsStream = HitDataStream.CreateHitsStream(GetSkillData(activeUnit), activeUnit);
             var hitsCount = hitsStream.Hits.Count;
 
             var animStartTime = _skillAnimationData.SwingTiming;
@@ -52,17 +54,26 @@ namespace Gameplay.Skills.Core
             return true;
         }
 
-        private UniTask StartAnimation(CombatService combatService)
+        public override float EvaluateAction(AIActionEvaluationService evaluationService, AIContext context)
         {
-            if (combatService.IsPlayerTurn())
-                return combatService.ActiveUnit.AttackAnimator.PlayAnimation(_skillAnimationData.FpvAnimationClip);
-
-            return combatService.ActiveUnit.AttackAnimator.PlayAnimation(_skillAnimationData.TpvAnimationClip);
+            var activeUnit = context.ActiveUnit;
+            return evaluationService.GetOffensiveValue(context, 
+                HitDataStream.CreateHitsStream(GetSkillData(activeUnit), activeUnit));
         }
 
-        protected virtual SkillData GetSkillData(IGameUnit entity)
+        public virtual SkillData GetSkillData(IGameUnit entity)
         {
             return _skillData;
+        }
+
+        private UniTask StartAnimation(CombatService combatService)
+        {
+            var activeUnit = combatService.ActiveUnit;
+            
+            if (combatService.IsPlayerTurn())
+                return activeUnit.AttackAnimator.PlayAnimation(_skillAnimationData.FpvAnimationClip);
+
+            return activeUnit.AttackAnimator.PlayAnimation(_skillAnimationData.TpvAnimationClip);
         }
     }
 }

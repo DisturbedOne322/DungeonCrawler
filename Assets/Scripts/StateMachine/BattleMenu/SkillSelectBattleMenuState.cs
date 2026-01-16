@@ -22,7 +22,7 @@ namespace StateMachine.BattleMenu
 
         public override void InitMenuItems()
         {
-            var skillsData = Player.UnitSkillsData;
+            var skillsData = Player.UnitSkillsContainer;
 
             foreach (var skill in skillsData.Skills)
                 MenuItems.Add(

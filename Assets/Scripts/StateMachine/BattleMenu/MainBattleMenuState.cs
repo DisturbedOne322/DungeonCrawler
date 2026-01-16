@@ -24,22 +24,22 @@ namespace StateMachine.BattleMenu
         {
             MenuItems.Add(
                 MenuItemData.ForSkillItem(
-                    Player.UnitSkillsData.BasicAttackSkill,
+                    Player.UnitSkillsContainer.BasicAttackSkill,
                     () => true,
-                    () => StateMachine.SelectAction(Player.UnitSkillsData.BasicAttackSkill))
+                    () => StateMachine.SelectAction(Player.UnitSkillsContainer.BasicAttackSkill))
             );
 
             MenuItems.Add(
                 MenuItemData.ForSkillItem(
-                    Player.UnitSkillsData.GuardSkill,
+                    Player.UnitSkillsContainer.GuardSkill,
                     () => true,
-                    () => StateMachine.SelectAction(Player.UnitSkillsData.GuardSkill))
+                    () => StateMachine.SelectAction(Player.UnitSkillsContainer.GuardSkill))
             );
 
             MenuItems.Add(
                 MenuItemData.ForSubmenu(
                     "SKILLS",
-                    () => Player.UnitSkillsData.Skills.Count > 0,
+                    () => Player.UnitSkillsContainer.Skills.Count > 0,
                     () => StateMachine.GoToState<SkillSelectBattleMenuState>().Forget())
             );
 

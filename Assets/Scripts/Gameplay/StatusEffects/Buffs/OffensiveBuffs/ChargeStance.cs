@@ -12,10 +12,20 @@ namespace Gameplay.StatusEffects.Buffs.OffensiveBuffs
 
         public override int ModifyOutgoingDamage(int currentDamage, in DamageContext ctx)
         {
-            if (ctx.HitData.DamageType is not DamageType.Physical)
+            if (!AppliesTo(ctx.HitData))
                 return currentDamage;
 
             return Mathf.RoundToInt(currentDamage * _damageMultiplier);
         }
+
+        public override float GetExpectedDamageMultiplier(HitData hitData)
+        {
+            if(!AppliesTo(hitData))
+                return 1;
+
+            return _damageMultiplier;
+        }
+
+        protected override bool AppliesTo(HitData hitData) => hitData.DamageType == DamageType.Physical;
     }
 }

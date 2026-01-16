@@ -29,7 +29,7 @@ namespace Helpers
 
         private static bool HasSkill(IGameUnit unit, BaseGameItem searchedSkill)
         {
-            var unitSkills = unit.UnitSkillsData.Skills;
+            var unitSkills = unit.UnitSkillsContainer.Skills;
 
             for (var i = unitSkills.Count - 1; i >= 0; i--)
             {
@@ -38,10 +38,10 @@ namespace Helpers
                     return true;
             }
 
-            if (searchedSkill == unit.UnitSkillsData.GuardSkill)
+            if (searchedSkill == unit.UnitSkillsContainer.GuardSkill)
                 return true;
 
-            if (searchedSkill == unit.UnitSkillsData.BasicAttackSkill)
+            if (searchedSkill == unit.UnitSkillsContainer.BasicAttackSkill)
                 return true;
 
             return false;

@@ -33,7 +33,7 @@ namespace Gameplay.Units
             BaseActionSelectionProvider baseActionSelectionProvider,
             UnitStatsData unitStatsData,
             UnitBonusStatsData unitBonusStatsData,
-            UnitSkillsData unitSkillsData,
+            UnitSkillsContainer unitSkillsContainer,
             UnitHeldStatusEffectsContainer unitHeldStatusEffectsContainer,
             UnitActiveStatusEffectsContainer unitActiveStatusEffectsContainer,
             UnitInventoryData unitInventoryData,
@@ -48,7 +48,7 @@ namespace Gameplay.Units
             BaseActionSelectionProvider = baseActionSelectionProvider;
             UnitStatsData = unitStatsData;
             UnitBonusStatsData = unitBonusStatsData;
-            UnitSkillsData = unitSkillsData;
+            UnitSkillsContainer = unitSkillsContainer;
             UnitHeldStatusEffectsContainer = unitHeldStatusEffectsContainer;
             UnitActiveStatusEffectsContainer = unitActiveStatusEffectsContainer;
             UnitInventoryData = unitInventoryData;
@@ -65,7 +65,7 @@ namespace Gameplay.Units
             UnitStatsData.SetStats(unitData.UnitStartingStats);
             UnitBonusStatsData.SetData(unitData.UnitStartingBonusStats);
 
-            UnitSkillsData.AssignStartingSkills(unitData);
+            UnitSkillsContainer.AssignStartingSkills(unitData);
             UnitInventoryData.AddItems(unitData.Items);
 
             foreach (var statusEffect in unitData.StatusEffects)
@@ -84,7 +84,7 @@ namespace Gameplay.Units
         public UnitManaData UnitManaData { get; private set; }
         public UnitStatsData UnitStatsData { get; private set; }
         public UnitBonusStatsData UnitBonusStatsData { get; private set; }
-        public UnitSkillsData UnitSkillsData { get; private set; }
+        public UnitSkillsContainer UnitSkillsContainer { get; private set; }
         public UnitHeldStatusEffectsContainer UnitHeldStatusEffectsContainer { get; private set; }
         public UnitActiveStatusEffectsContainer UnitActiveStatusEffectsContainer { get; private set; }
         public UnitInventoryData UnitInventoryData { get; private set; }

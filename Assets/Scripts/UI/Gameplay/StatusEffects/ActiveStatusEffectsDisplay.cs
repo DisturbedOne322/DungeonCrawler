@@ -57,6 +57,7 @@ namespace UI.Gameplay.StatusEffects
             var display = _statusEffectDisplayPool.Get();
             display.SetData(statusEffect);
             display.transform.SetParent(_parent, false);
+            display.transform.localPosition = Vector3.zero;
             return display;
         }
     }

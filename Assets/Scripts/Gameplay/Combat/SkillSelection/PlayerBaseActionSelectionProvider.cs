@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Units;
+using Gameplay.Facades;
 using StateMachine.BattleMenu;
 using UniRx;
 
@@ -9,8 +9,8 @@ namespace Gameplay.Combat.SkillSelection
     {
         private readonly BattleMenuStateMachine _battleMenuStateMachine;
 
-        public PlayerBaseActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData,
-            BattleMenuStateMachine battleMenuStateMachine) : base(unitSkillsData, unitInventoryData)
+        public PlayerBaseActionSelectionProvider(IGameUnit unit,
+            BattleMenuStateMachine battleMenuStateMachine) : base(unit)
         {
             _battleMenuStateMachine = battleMenuStateMachine;
         }

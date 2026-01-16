@@ -28,6 +28,7 @@ namespace Data.Constants
         public const string GameplayWeapon = GameplayEquipment + "Weapon/";
         public const string GameplayPlayer = Gameplay + "Player/";
         public const string GameplayUnits = Gameplay + "Units/";
+        public const string GameplayAI = Gameplay + "AI/";
 
         public const string GameplaySkills = Gameplay + "Skills/";
         public const string GameplayBuffs = Gameplay + "Buffs/";

@@ -2,6 +2,7 @@ using Bootstrap;
 using Data;
 using Gameplay;
 using Gameplay.Combat;
+using Gameplay.Combat.AI;
 using Gameplay.Combat.Services;
 using Gameplay.Experience;
 using Gameplay.Player;
@@ -37,14 +38,14 @@ namespace Installers.GameInstallers
             Container.Bind<GameSequenceController>().AsSingle();
             Container.Bind<CombatSequenceController>().AsSingle();
             Container.Bind<CombatService>().AsSingle();
-            Container.Bind<HitProcessor>().AsSingle();
+            Container.Bind<DamageDealingService>().AsSingle();
             Container.Bind<CombatEventsBus>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
+            Container.Bind<AIActionEvaluationService>().AsSingle();
 
             Container.Bind<StatusEffectsProcessor>().AsSingle();
             Container.BindInterfacesAndSelfTo<CombatStatusEffectsApplicationService>().AsSingle().NonLazy();
 
-            Container.Bind<BuffsCalculationService>().AsSingle();
             Container.Bind<UnitRegenerationService>().AsSingle();
         }
 

@@ -1,5 +1,6 @@
 using Gameplay.Combat.Data.Events;
 using Gameplay.Facades;
+using UnityEngine;
 
 namespace Helpers
 {
@@ -36,6 +37,25 @@ namespace Helpers
             var maxHp = entity.UnitHealthData.MaxHealth.Value;
 
             return currentHp * 1f / maxHp;
+        }
+
+        public static float GetHealthIncreasePercent(IEntity entity, int flatIncrease)
+        {
+            int maxHp = entity.UnitHealthData.MaxHealth.Value;
+            float increasePercent = flatIncrease * 1f / maxHp;
+            
+            return GetHealthIncreasePercent(entity, increasePercent);
+        }
+        
+        public static float GetHealthIncreasePercent(IEntity entity, float increasePercent)
+        {
+            var currentHealthPercent = GetHealthPercent(entity);
+            
+            float missingHealthPercent = 1 - currentHealthPercent;
+            
+            increasePercent = Mathf.Clamp(increasePercent, 0, missingHealthPercent);
+            
+            return increasePercent;
         }
 
         public static bool IsAtMediumThreshold(float hpPercent)

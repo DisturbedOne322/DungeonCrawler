@@ -62,7 +62,7 @@ namespace PopupControllers.SkillDiscarding
         {
             List<MenuItemData> playerSkills = new();
 
-            var skillsData = _playerUnit.UnitSkillsData;
+            var skillsData = _playerUnit.UnitSkillsContainer;
 
             foreach (var skill in skillsData.Skills)
                 playerSkills.Add(

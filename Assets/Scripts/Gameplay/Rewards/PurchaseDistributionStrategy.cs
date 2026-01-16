@@ -40,7 +40,7 @@ namespace Gameplay.Rewards
         {
             if (_skillSlotsManager.HasFreeSkillSlot())
             {
-                Player.UnitSkillsData.AddSkill(skill);
+                Player.UnitSkillsContainer.AddSkill(skill);
                 return;
             }
 
@@ -49,8 +49,8 @@ namespace Gameplay.Rewards
 
             if (skillToDiscard != skill)
             {
-                Player.UnitSkillsData.RemoveSkill(skillToDiscard);
-                Player.UnitSkillsData.AddSkill(skill);
+                Player.UnitSkillsContainer.RemoveSkill(skillToDiscard);
+                Player.UnitSkillsContainer.AddSkill(skill);
             }
         }
     }

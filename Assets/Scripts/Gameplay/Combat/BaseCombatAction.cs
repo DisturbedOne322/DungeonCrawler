@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Data.Constants;
+using Gameplay.Combat.AI;
 using Gameplay.Combat.Services;
 
 namespace Gameplay.Combat
@@ -17,6 +18,8 @@ namespace Gameplay.Combat
         {
             return true;
         }
+
+        public abstract float EvaluateAction(AIActionEvaluationService evaluationService, AIContext context);
 
         protected abstract UniTask PerformAction(CombatService combatService);
     }

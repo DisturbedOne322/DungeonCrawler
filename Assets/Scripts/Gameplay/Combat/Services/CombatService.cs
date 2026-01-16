@@ -4,29 +4,25 @@ using Gameplay.Facades;
 using Gameplay.StatusEffects.Buffs.Services;
 using Gameplay.StatusEffects.Core;
 using Gameplay.Units;
-using Random = UnityEngine.Random;
 
 namespace Gameplay.Combat.Services
 {
     public class CombatService
     {
-        private readonly BuffsCalculationService _buffsCalculationService;
         private readonly CombatData _combatData;
         private readonly CombatEventsBus _combatEventsBus;
-        private readonly HitProcessor _hitProcessor;
+        private readonly DamageDealingService _damageDealingService;
         private readonly StatusEffectsProcessor _statusEffectsProcessor;
         private readonly UnitRegenerationService _unitRegenerationService;
 
         public CombatService(CombatData combatData,
-            BuffsCalculationService buffsCalculationService,
             CombatEventsBus combatEventsBus, UnitRegenerationService unitRegenerationService,
-            HitProcessor hitProcessor, StatusEffectsProcessor statusEffectsProcessor)
+            DamageDealingService damageDealingService, StatusEffectsProcessor statusEffectsProcessor)
         {
             _combatData = combatData;
-            _buffsCalculationService = buffsCalculationService;
             _combatEventsBus = combatEventsBus;
             _unitRegenerationService = unitRegenerationService;
-            _hitProcessor = hitProcessor;
+            _damageDealingService = damageDealingService;
             _statusEffectsProcessor = statusEffectsProcessor;
         }
 
@@ -98,20 +94,6 @@ namespace Gameplay.Combat.Services
             DealDamageToUnit(ActiveUnit, OtherUnit, hitData);
         }
 
-        public HitDataStream CreateHitsStream(SkillData skillData)
-        {
-            HitDataStream hitDataStream = new(skillData);
-
-            _buffsCalculationService.ApplyStructuralHitStreamBuffs(ActiveUnit, hitDataStream);
-
-            var hits = Random.Range(hitDataStream.MinHits, hitDataStream.MaxHits);
-            hitDataStream.CreateHitDataList(hits);
-
-            _buffsCalculationService.BuffHitStream(ActiveUnit, hitDataStream);
-
-            return hitDataStream;
-        }
-
         public void ApplyStatusEffectToActiveUnit(BaseStatusEffectData statusEffect)
         {
             ApplyStatusEffectTo(ActiveUnit, statusEffect);
@@ -152,7 +134,7 @@ namespace Gameplay.Combat.Services
 
         private void DealDamageToUnit(IGameUnit attacker, IGameUnit target, HitData hitData)
         {
-            _hitProcessor.DealDamageToUnit(attacker, target, hitData);
+            _damageDealingService.DealDamageToUnit(attacker, target, hitData);
         }
 
         private void HealUnit(IGameUnit target, int amount)

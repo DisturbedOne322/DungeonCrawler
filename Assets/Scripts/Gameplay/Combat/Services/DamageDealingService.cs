@@ -9,17 +9,14 @@ using UnityEngine;
 
 namespace Gameplay.Combat.Services
 {
-    public class HitProcessor
+    public class DamageDealingService
     {
-        private readonly BuffsCalculationService _buffsCalculationService;
         private readonly CombatEventsBus _combatEventsBus;
         private readonly CombatFormulaService _combatFormulaService;
         private readonly PlayerUnit _playerUnit;
 
-        public HitProcessor(BuffsCalculationService buffsCalculationService,
-            CombatFormulaService combatFormulaService, CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
+        public DamageDealingService(CombatFormulaService combatFormulaService, CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
         {
-            _buffsCalculationService = buffsCalculationService;
             _combatFormulaService = combatFormulaService;
             _combatEventsBus = combatEventsBus;
             _playerUnit = playerUnit;
@@ -32,10 +29,18 @@ namespace Gameplay.Combat.Services
 
         public void DealDamageToUnit(ICombatant attacker, IGameUnit target, HitData hitData)
         {
-            ProcessHitData(attacker, target, hitData);
+            ProcessHit(attacker, target, hitData);
 
             if (hitData.Missed)
+            {
+                target.EvadeAnimator.PlayEvadeAnimation().Forget();
+                _combatEventsBus.InvokeEvaded(new EvadeEventData
+                {
+                    Attacker = attacker,
+                    Target = target
+                });
                 return;
+            }
 
             var hpPercentBeforeHit = HealthHelper.GetHealthPercent(target);
 
@@ -50,29 +55,21 @@ namespace Gameplay.Combat.Services
             });
         }
 
-        private void ProcessHitData(ICombatant attacker, IGameUnit defender, HitData hitData)
+        public void ProcessHit(ICombatant attacker, IGameUnit defender, HitData hitData)
         {
             var damageContext = new DamageContext(attacker, defender, hitData);
+            ProcessDamage(damageContext);
             SetMissed(attacker, defender, damageContext);
+        }
 
-            if (hitData.Missed)
-            {
-                defender.EvadeAnimator.PlayEvadeAnimation().Forget();
-                _combatEventsBus.InvokeEvaded(new EvadeEventData
-                {
-                    Attacker = attacker,
-                    Target = defender
-                });
-                return;
-            }
-
+        private void ProcessDamage(DamageContext damageContext)
+        {
             SetCritical(damageContext);
 
-            _buffsCalculationService.BuffOutgoingDamage(damageContext);
-            _buffsCalculationService.DebuffIncomingDamage(damageContext);
+            BuffApplicationService.BuffOutgoingHits(damageContext);
+            BuffApplicationService.DebuffIncomingHits(damageContext);
 
             _combatFormulaService.ApplyFinalDamageMultiplier(damageContext);
-
             _combatFormulaService.ReduceDamageByStats(damageContext);
         }
 

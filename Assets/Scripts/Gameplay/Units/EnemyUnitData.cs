@@ -1,4 +1,5 @@
 using Data.Constants;
+using Gameplay.Combat.AI;
 using UnityEngine;
 
 namespace Gameplay.Units
@@ -7,7 +8,9 @@ namespace Gameplay.Units
     public class EnemyUnitData : UnitData
     {
         [SerializeField] private int _experienceBonus;
-
+        [SerializeField] private AIConfig _aiConfig;
+        
         public int ExperienceBonus => _experienceBonus;
+        public AIConfig AIConfig => _aiConfig;
     }
 }

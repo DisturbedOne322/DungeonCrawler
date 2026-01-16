@@ -37,3 +37,4 @@ MonoBehaviour:
   _baseWeapon: {fileID: 0}
   _baseArmor: {fileID: 0}
   _experienceBonus: 200
+  _aiConfig: {fileID: 11400000, guid: 750de9cabf8cf764d9c71a17bd3efcc6, type: 2}

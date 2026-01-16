@@ -16,7 +16,7 @@ namespace Gameplay.Traps
     {
         [SerializeField] private TrapData _trapData;
 
-        private HitProcessor _hitProcessor;
+        private DamageDealingService _damageDealingService;
         private StatusEffectsProcessor _statusEffectsProcessor;
 
         private void Start()
@@ -31,9 +31,9 @@ namespace Gameplay.Traps
         public UnitBonusStatsData UnitBonusStatsData { get; } = new();
 
         [Inject]
-        private void Construct(HitProcessor hitProcessor, StatusEffectsProcessor statusEffectsProcessor)
+        private void Construct(DamageDealingService damageDealingService, StatusEffectsProcessor statusEffectsProcessor)
         {
-            _hitProcessor = hitProcessor;
+            _damageDealingService = damageDealingService;
             _statusEffectsProcessor = statusEffectsProcessor;
         }
 
@@ -67,7 +67,7 @@ namespace Gameplay.Traps
             var index = Random.Range(0, skills.Count);
 
             var skill = skills[index];
-            _hitProcessor.DealDamageToPlayer(this, new HitData(skill, 0));
+            _damageDealingService.DealDamageToPlayer(this, new HitData(skill, 0));
         }
 
         private void ApplyDebuff()

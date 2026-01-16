@@ -1,17 +1,15 @@
 using Cysharp.Threading.Tasks;
-using Gameplay.Units;
+using Gameplay.Facades;
 
 namespace Gameplay.Combat.SkillSelection
 {
     public abstract class BaseActionSelectionProvider
     {
-        protected UnitInventoryData UnitInventoryData;
-        protected UnitSkillsData UnitSkillsData;
+        protected IGameUnit Unit;
 
-        public BaseActionSelectionProvider(UnitSkillsData unitSkillsData, UnitInventoryData unitInventoryData)
+        public BaseActionSelectionProvider(IGameUnit unit)
         {
-            UnitSkillsData = unitSkillsData;
-            UnitInventoryData = unitInventoryData;
+            Unit = unit;
         }
 
         public abstract UniTask<BaseCombatAction> SelectAction();

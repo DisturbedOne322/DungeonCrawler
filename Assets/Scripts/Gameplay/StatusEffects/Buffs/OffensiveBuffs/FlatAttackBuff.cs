@@ -14,5 +14,12 @@ namespace Gameplay.StatusEffects.Buffs.OffensiveBuffs
         {
             return currentDamage + _damageIncrease;
         }
+
+        public override float GetExpectedDamageMultiplier(HitData hitData)
+        {
+            return (hitData.Damage + _damageIncrease) * 1f / hitData.Damage;
+        }
+
+        protected override bool AppliesTo(HitData hitData) => true;
     }
 }

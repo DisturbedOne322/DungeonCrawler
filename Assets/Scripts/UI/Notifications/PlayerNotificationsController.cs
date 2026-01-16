@@ -33,7 +33,7 @@ namespace UI.Notifications
         //in start to subscribe only after player receives starting inventory
         private void Start()
         {
-            Subscribe(_player.UnitSkillsData.Skills.ObserveAdd(), EnqueueSkillNotification);
+            Subscribe(_player.UnitSkillsContainer.Skills.ObserveAdd(), EnqueueSkillNotification);
             Subscribe(_player.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
             Subscribe(_player.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
             Subscribe(_player.UnitHeldStatusEffectsContainer.All.ObserveAdd(), EnqueueStatusEffectNotification);
