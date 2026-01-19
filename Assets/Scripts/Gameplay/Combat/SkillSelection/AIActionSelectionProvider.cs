@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Combat.AI;
 using Gameplay.Combat.Services;
 using Gameplay.Facades;
+using Gameplay.Skills.Core;
 using Gameplay.Units;
 using Helpers;
 using UnityEngine;
@@ -43,15 +44,11 @@ namespace Gameplay.Combat.SkillSelection
             if (_actionsSelection.Count == 0)
                 return null;
 
-            DebugActions();
+            DebugActionsSelection();
 
             var action = SelectAction(_actionsSelection, _unit.AIConfig.Randomness);
             
-            if(_unit.AIConfig.Debug)
-            {
-                DebugHelper.Log(action.Name);
-                DebugHelper.Log("-----------------------");
-            }
+            DebugSelectedAction(action);
             
             return action;
         }
@@ -65,9 +62,9 @@ namespace Gameplay.Combat.SkillSelection
         private void AddSkillActions(AIContext context)
         {
             var skillsContainer = Unit.UnitSkillsContainer;
-            var skills = skillsContainer.Skills;
+            var heldSkills = skillsContainer.HeldSkills;
 
-            foreach (var skill in skills) 
+            foreach (var skill in heldSkills) 
                 TryAddAction(skill, context);
             
             TryAddAction(skillsContainer.BasicAttackSkill, context);
@@ -81,7 +78,7 @@ namespace Gameplay.Combat.SkillSelection
             foreach (var consumable in inventory.Consumables) 
                 TryAddAction(consumable, context);
         }
-        
+
         private BaseCombatAction SelectAction(Dictionary<BaseCombatAction, float> actions, float randomness)
         {
             if (randomness >= 1f)
@@ -109,6 +106,14 @@ namespace Gameplay.Combat.SkillSelection
             return adjustedScores.Keys.First();
         }
 
+        private void TryAddAction(SkillHeldData skillHeldData, AIContext context)
+        {
+            if(!skillHeldData.CanUse(_combatService))
+                return;
+
+            TryAddAction(skillHeldData.Skill, context);
+        }
+        
         private void TryAddAction(BaseCombatAction action, AIContext context)
         {
             if(!action.CanUse(_combatService))
@@ -117,7 +122,7 @@ namespace Gameplay.Combat.SkillSelection
             _actionsSelection.Add(action, action.EvaluateAction(_actionEvaluationService, context));
         }
 
-        private void DebugActions()
+        private void DebugActionsSelection()
         {
             if(!_unit.AIConfig.Debug)
                 return;
@@ -125,6 +130,15 @@ namespace Gameplay.Combat.SkillSelection
             foreach (var kvp in _actionsSelection)
             {
                 DebugHelper.Log($"{kvp.Key.Name}: {kvp.Value}");
+            }
+        }
+
+        private void DebugSelectedAction(BaseCombatAction action)
+        {
+            if(_unit.AIConfig.Debug)
+            {
+                DebugHelper.Log(action.Name);
+                DebugHelper.Log("-----------------------");
             }
         }
     }

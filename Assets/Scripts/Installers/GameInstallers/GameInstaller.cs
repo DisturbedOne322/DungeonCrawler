@@ -41,6 +41,9 @@ namespace Installers.GameInstallers
             Container.Bind<DamageDealingService>().AsSingle();
             Container.Bind<CombatEventsBus>().AsSingle();
             Container.Bind<CombatFormulaService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CombatSkillsUpdateService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CombatCleanupService>().AsSingle().NonLazy();
+            
             Container.Bind<AIActionEvaluationService>().AsSingle();
 
             Container.Bind<StatusEffectsProcessor>().AsSingle();

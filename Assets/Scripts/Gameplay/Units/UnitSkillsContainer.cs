@@ -6,41 +6,43 @@ namespace Gameplay.Units
 {
     public class UnitSkillsContainer
     {
-        private readonly ReactiveCollection<BaseSkill> _skills = new();
+        private readonly ReactiveCollection<SkillHeldData> _heldSkills = new();
         
-        public BaseSkill BasicAttackSkill { get; private set; }
+        public SkillHeldData BasicAttackSkill { get; private set; }
 
-        public BaseSkill GuardSkill { get; private set; }
+        public SkillHeldData GuardSkill { get; private set; }
 
-        public IReadOnlyReactiveCollection<BaseSkill> Skills => _skills;
+        public IReadOnlyReactiveCollection<SkillHeldData> HeldSkills => _heldSkills;
 
         public void AssignStartingSkills(UnitData data)
         {
-            _skills.Clear();
-            _skills.AllocFreeAddRange(data.SkillSet);
+            _heldSkills.Clear();
 
-            BasicAttackSkill = data.BasicAttackSkill;
-            GuardSkill = data.GuardSkill;
+            foreach (var baseSkill in data.SkillSet) 
+                _heldSkills.Add(new (baseSkill));
+
+            BasicAttackSkill = new(data.BasicAttackSkill);
+            GuardSkill = new(data.GuardSkill);
         }
 
         public void AddSkill(BaseSkill skill)
         {
-            _skills.Add(skill);
+            _heldSkills.Add(new(skill));
         }
 
         public void RemoveSkill(BaseSkill skill)
         {
-            _skills.Remove(skill);
+            _heldSkills.Remove(new(skill));
         }
 
         public void SetNewBasicAttack(BaseSkill skill)
         {
-            BasicAttackSkill = skill;
+            BasicAttackSkill = new(skill);
         }
 
         public void SetNewGuardSkill(BaseSkill skill)
         {
-            GuardSkill = skill;
+            GuardSkill = new(skill);
         }
     }
 }

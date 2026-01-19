@@ -17,7 +17,6 @@ namespace Gameplay.Combat.Services
         private readonly Subject<SkillCastedData> _onSkillCasted = new();
         private readonly Subject<SkillUsedData> _onSkillUsed = new();
         private readonly Subject<TurnData> _onTurnEnded = new();
-
         private readonly Subject<TurnData> _onTurnStarted = new();
 
         public IObservable<IGameUnit> OnCombatStarted => _onCombatStarted;
@@ -31,7 +30,6 @@ namespace Gameplay.Combat.Services
 
         public IObservable<TurnData> OnTurnStarted => _onTurnStarted;
         public IObservable<TurnData> OnTurnEnded => _onTurnEnded;
-
 
         public void InvokeCombatStarted(IGameUnit enemy)
         {

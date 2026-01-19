@@ -74,12 +74,14 @@ namespace Gameplay.Combat.AI
         {
             float bestBonus = 0f;
 
-            foreach (var skill in unit.UnitSkillsContainer.Skills)
+            foreach (var heldSkill in unit.UnitSkillsContainer.HeldSkills)
             {
+                var skill = heldSkill.Skill;
+                
                 if(skill is not OffensiveSkill offSkill)
                     continue;
                 
-                if (!skill.CanUse(_combatService))
+                if (!heldSkill.CanUse(_combatService))
                     continue;
 
                 float bonus = CalculateSkillBonusDamage(unit, offSkill, hitBuffData);

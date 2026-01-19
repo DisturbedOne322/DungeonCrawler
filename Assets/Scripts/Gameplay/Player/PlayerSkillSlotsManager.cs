@@ -42,7 +42,7 @@ namespace Gameplay.Player
 
         public bool HasFreeSkillSlot()
         {
-            return GetPlayerSkillSlots() > _playerUnit.UnitSkillsContainer.Skills.Count;
+            return GetPlayerSkillSlots() > _playerUnit.UnitSkillsContainer.HeldSkills.Count;
         }
 
         private void ProcessLevelUp(int level)

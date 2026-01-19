@@ -33,7 +33,7 @@ namespace UI.Notifications
         //in start to subscribe only after player receives starting inventory
         private void Start()
         {
-            Subscribe(_player.UnitSkillsContainer.Skills.ObserveAdd(), EnqueueSkillNotification);
+            Subscribe(_player.UnitSkillsContainer.HeldSkills.ObserveAdd(), EnqueueSkillNotification);
             Subscribe(_player.UnitEquipmentData.OnWeaponEquipped, EnqueueEquipmentNotification);
             Subscribe(_player.UnitEquipmentData.OnArmorEquipped, EnqueueEquipmentNotification);
             Subscribe(_player.UnitHeldStatusEffectsContainer.All.ObserveAdd(), EnqueueStatusEffectNotification);
@@ -72,10 +72,10 @@ namespace UI.Notifications
                 .AddTo(_disposables);
         }
 
-        private void EnqueueSkillNotification(CollectionAddEvent<BaseSkill> @event)
+        private void EnqueueSkillNotification(CollectionAddEvent<SkillHeldData> @event)
         {
             EnqueueNotification(new NotificationData(
-                () => _gameItemNotificationDisplay.SetData(@event.Value),
+                () => _gameItemNotificationDisplay.SetData(@event.Value.Skill),
                 _gameItemNotificationDisplay.Show)
             );
         }

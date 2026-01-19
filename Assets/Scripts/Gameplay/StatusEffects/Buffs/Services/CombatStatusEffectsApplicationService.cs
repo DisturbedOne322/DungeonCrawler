@@ -66,9 +66,6 @@ namespace Gameplay.StatusEffects.Buffs.Services
         {
             TriggerBoth(_playerUnit, enemy, StatusEffectTriggerType.OnCombatEnd,
                 StatusEffectTriggerType.OnCombatEnd);
-
-            _statusEffectsProcessor.ClearAllStatusEffects(_playerUnit);
-            _statusEffectsProcessor.ClearAllStatusEffects(enemy);
         }
 
         private void ProcessTurnStarted(TurnData turn)

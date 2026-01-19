@@ -29,19 +29,20 @@ namespace Helpers
 
         private static bool HasSkill(IGameUnit unit, BaseGameItem searchedSkill)
         {
-            var unitSkills = unit.UnitSkillsContainer.Skills;
+            var unitHeldSkills = unit.UnitSkillsContainer.HeldSkills;
 
-            for (var i = unitSkills.Count - 1; i >= 0; i--)
+            for (var i = unitHeldSkills.Count - 1; i >= 0; i--)
             {
-                var skill = unitSkills[i];
+                var skill = unitHeldSkills[i].Skill;
+                
                 if (searchedSkill == skill)
                     return true;
             }
 
-            if (searchedSkill == unit.UnitSkillsContainer.GuardSkill)
+            if (searchedSkill == unit.UnitSkillsContainer.GuardSkill.Skill)
                 return true;
 
-            if (searchedSkill == unit.UnitSkillsContainer.BasicAttackSkill)
+            if (searchedSkill == unit.UnitSkillsContainer.BasicAttackSkill.Skill)
                 return true;
 
             return false;

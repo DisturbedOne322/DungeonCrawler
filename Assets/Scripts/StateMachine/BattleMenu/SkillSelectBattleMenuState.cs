@@ -24,13 +24,20 @@ namespace StateMachine.BattleMenu
         {
             var skillsData = Player.UnitSkillsContainer;
 
-            foreach (var skill in skillsData.Skills)
+            foreach (var heldSkill in skillsData.HeldSkills)
+            {
+                var skill = heldSkill.Skill;
                 MenuItems.Add(
                     MenuItemData.ForSkillItem(
                         skill,
-                        () => skill.CanUse(CombatService),
-                        () => StateMachine.SelectAction(skill))
+                        () => heldSkill.CanUse(CombatService),
+                        () =>
+                        {
+                            heldSkill.SetCooldown();
+                            StateMachine.SelectAction(skill);
+                        })
                 );
+            }
         }
 
         public override void OnUISubmit()
