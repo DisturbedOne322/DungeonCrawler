@@ -27,7 +27,6 @@ namespace StateMachine.App
         public override async UniTask ExitState()
         {
             _assetProvidersController.Dispose();
-
             await _sceneTransitionController.LoadNextScene(ConstSceneNames.MainMenuScene);
         }
     }

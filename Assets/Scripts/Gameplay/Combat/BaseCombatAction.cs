@@ -7,7 +7,7 @@ namespace Gameplay.Combat
 {
     public abstract class BaseCombatAction : BaseGameItem
     {
-        public async UniTask UseAction(CombatService combatService)
+        public async UniTask ExecuteAction(CombatService combatService)
         {
             await UniTask.WaitForSeconds(GameplayConstants.DelayBeforeAction);
             await PerformAction(combatService);

@@ -15,7 +15,8 @@ namespace Gameplay.Combat.Services
         private readonly CombatFormulaService _combatFormulaService;
         private readonly PlayerUnit _playerUnit;
 
-        public DamageDealingService(CombatFormulaService combatFormulaService, CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
+        public DamageDealingService(CombatFormulaService combatFormulaService, 
+            CombatEventsBus combatEventsBus, PlayerUnit playerUnit)
         {
             _combatFormulaService = combatFormulaService;
             _combatEventsBus = combatEventsBus;

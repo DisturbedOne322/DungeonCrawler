@@ -8,7 +8,7 @@ using UniRx;
 
 namespace Gameplay
 {
-    public class TimeScaleController : IDisposable
+    public class TimeScaleController : IGameplayService
     {
         private readonly GameplayData _gameplayData;
 
@@ -22,11 +22,17 @@ namespace Gameplay
             _subscription = playerInputProvider.OnSpeedUp.Subscribe(_ => ToggleSpeedUp());
         }
 
-        public void Dispose()
+        public void ProcessGameplayStart()
         {
-            _subscription.Dispose();
+            UpdateTimeScale(1);
         }
 
+        public void ProcessGameplayEnd()
+        {
+            _subscription.Dispose();
+            UpdateTimeScale(1);
+        }
+        
         public void Pause()
         {
             UpdateTimeScale(0);

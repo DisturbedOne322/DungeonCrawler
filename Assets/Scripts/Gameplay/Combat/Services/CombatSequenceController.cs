@@ -42,7 +42,7 @@ namespace Gameplay.Combat.Services
             var currentUnit = _combatData.ActiveUnit;
 
             var action = await currentUnit.BaseActionSelectionProvider.SelectAction();
-            await action.UseAction(_combatService);
+            await action.ExecuteAction(_combatService);
         }
 
         private bool IsCombatOver()

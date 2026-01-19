@@ -36,7 +36,9 @@ namespace Installers.GameInstallers
             Container.Bind<PurchasedSkillDiscardStrategy>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<PauseController>().AsSingle().NonLazy();
-            Container.Bind<TimeScaleController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayContext>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TimeScaleController>()
+                .AsSingle();
             Container.Bind<PausePopupController>().AsSingle();
 
             BindFactories();
