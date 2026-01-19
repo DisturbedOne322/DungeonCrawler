@@ -36,8 +36,13 @@ namespace Gameplay.Dungeon
         {
             var candidates = _dungeonRoomsProvider.GetRoomsSelection();
             int selectionCount = ChooseSelectionCount(candidates.Count);
-
+            
             SelectRooms(candidates, selectionCount);
+        }
+
+        public bool IsLastRoom()
+        {
+            return _dungeonRoomsProvider.GetRoomsSelection().Count == 0;
         }
 
         private void SelectRooms(List<RoomVariantData> candidates, int selectionCount)
@@ -126,8 +131,6 @@ namespace Gameplay.Dungeon
                         wasSelected = true;
                         break;
                     }
-
-                    ;
                 }
 
                 if (!wasSelected)

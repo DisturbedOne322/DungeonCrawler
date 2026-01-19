@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 8415087648742597410, guid: 490c24323eee8284a9308742ec831452, type: 3}
   _minDepth: 0
-  _maxDepth: 1000
+  _maxDepth: 3
   _weight: 1
   _rewardDropTable: {fileID: 0}
   _rollChance: 0.5
-  startOffset: 1
-  endOffset: -1
   _trapPrefabs:
   - {fileID: 8707959303797605859, guid: 6da237270bab38845be77df6482b8971, type: 3}

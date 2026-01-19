@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Data.Constants;
 using Gameplay.Dungeon;
 using Gameplay.Player;
 using Gameplay.Rewards;
@@ -45,6 +44,8 @@ namespace Gameplay
             {
                 var targetRoom = _playerMovementController.GetNextInteractiveRoom();
 
+                bool lastRoom = IsLastRoom();
+                
                 await _playerMovementController.MovePlayer();
 
                 await targetRoom.PlayEnterSequence();
@@ -52,6 +53,9 @@ namespace Gameplay
 
                 if (IsPlayerAlive())
                     await _roomDropsService.GiveRewardToPlayer(targetRoom);
+                
+                if (lastRoom)
+                    break;
             }
 
             ShowGameOverPopup();
@@ -59,13 +63,16 @@ namespace Gameplay
 
         private void SetupDungeon()
         {
-            int firstSelection = GameplayConstants.RoomsForSelectionMax;
-
             _dungeonBranchingSelector.PrepareFirstSelection();
             _dungeonGenerator.CreateFirstMapSection();
             _playerMovementController.PositionPlayer();
         }
 
+        private bool IsLastRoom()
+        {
+            return _dungeonBranchingSelector.IsLastRoom();
+        }
+        
         private bool IsPlayerAlive()
         {
             return !_playerUnit.UnitHealthData.IsDead.Value;

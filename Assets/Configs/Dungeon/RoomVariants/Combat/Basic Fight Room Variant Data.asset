@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 9171519878567692849, guid: 6b9d4c928510e704385ec4b0a5391690, type: 3}
   _minDepth: 0
-  _maxDepth: 1000
+  _maxDepth: 3
   _weight: 1
   _rewardDropTable: {fileID: 11400000, guid: bb1277b7946852f45aae95d7531a1dac, type: 2}
   _enemiesSelection:

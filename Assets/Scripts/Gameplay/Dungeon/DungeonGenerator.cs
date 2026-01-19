@@ -45,6 +45,11 @@ namespace Gameplay.Dungeon
             CreateDecisionRoom();
         }
 
+        public void CreateLastMapSection(RoomVariantData lastRoom)
+        {
+            CreateRoom(lastRoom);
+        }
+        
         private void CreateCorridors()
         {
             var roomsToSpawn = Random.Range(_dungeonRulesConfig.MinCorridorLength, _dungeonRulesConfig.MaxCorridorLength);
@@ -71,6 +76,7 @@ namespace Gameplay.Dungeon
 
         private void CreateRoom(RoomVariantData roomData)
         {
+
             var room = _dungeonFactory.CreateRoom(roomData);
 
             room.SetData(roomData);

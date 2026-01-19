@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BossFightVariantData
   m_EditorClassIdentifier: 
   _prefab: {fileID: 8240958906963548558, guid: 06fa252f9d7d9b54f9ea311f2fdebbf9, type: 3}
-  _minDepth: 0
-  _maxDepth: 100
+  _minDepth: 4
+  _maxDepth: 4
   _weight: 1
   _rewardDropTable: {fileID: 0}
   _enemiesSelection:

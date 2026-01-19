@@ -34,7 +34,13 @@ namespace Gameplay.Dungeon
             _dungeonPositioner.AddXOffsetFromChoice(inputIndex, selectionCount);
 
             _dungeonBranchingSelector.PrepareSelection();
-            _dungeonGenerator.CreateNextMapSection(selectedRoom);
+
+            bool lastRoom = _dungeonBranchingSelector.RoomsForSelection.Count == 0;
+            
+            if(lastRoom)
+                _dungeonGenerator.CreateLastMapSection(selectedRoom);
+            else
+                _dungeonGenerator.CreateNextMapSection(selectedRoom);
 
             return inputIndex;
         }

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 7491394401190662960, guid: 3f6d1a824aac86a4c90f1dceafcc1ef2, type: 3}
   _minDepth: 0
-  _maxDepth: 1000
+  _maxDepth: 3
   _weight: 1
   _rewardDropTable: {fileID: 11400000, guid: 40974e44eab654d46ae6a95f43081129, type: 2}

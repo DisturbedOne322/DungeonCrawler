@@ -4,6 +4,7 @@ using AssetManagement.AssetProviders.ConfigProviders;
 using Data;
 using Gameplay.Dungeon.RoomVariants;
 using Helpers;
+using UnityEngine;
 
 namespace Gameplay.Dungeon
 {
@@ -13,6 +14,8 @@ namespace Gameplay.Dungeon
         private readonly PlayerMovementHistory _playerMovementHistory;
 
         private readonly Dictionary<RoomType, List<RoomVariantData>> _roomDataMap = new();
+        
+        private readonly List<RoomVariantData> _selection = new();
 
         public DungeonRoomsProvider(GameplayConfigsProvider configsProvider,
             PlayerMovementHistory playerMovementHistory)
@@ -26,24 +29,28 @@ namespace Gameplay.Dungeon
         {
             var currentDepth = _playerMovementHistory.Depth;
 
-            List<RoomVariantData> selection = new();
+            _selection.Clear();
 
             var roomsPerType = _roomDataMap.Values.ToList();
-
+            
             foreach (var roomsList in roomsPerType)
             foreach (var roomData in roomsList)
-                if (IsValidRoomForSelection(roomData, currentDepth))
-                    selection.Add(roomData);
-
-            return selection;
+            {
+                bool isValid = IsValidRoomForSelection(roomData, currentDepth);
+                if (isValid)
+                    _selection.Add(roomData);
+            }
+            
+            return _selection;
         }
 
         public RoomVariantData GetRoomData(RoomType roomType)
         {
+            if (!_roomDataMap.TryGetValue(roomType, out var rooms))
+                return null;
+            
             var currentDepth = _playerMovementHistory.Depth;
-
-            var rooms = _roomDataMap[roomType];
-
+            
             foreach (var roomData in rooms)
                 if (IsValidDepth(roomData, currentDepth))
                     return roomData;
